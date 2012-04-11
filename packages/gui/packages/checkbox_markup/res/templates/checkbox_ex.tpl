@@ -1,0 +1,1 @@
+<input type='checkbox' id='{id}' name='{name}' onclick='ultimix.grids.ProcessLinkedCheckboxes( this );' class='{self_class}' {selector}>

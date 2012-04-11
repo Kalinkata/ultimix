@@ -1,0 +1,1 @@
+<table class="error message_corner_all"><tr><td><div class="aligned_message_white">

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="Windows-1251"?>
+<root>
+	<author name="Default user" email="default@email.net" />
+	<label value="Default manifest" />
+	<timeout value="10" />
+	<type value="py" />
+</root>

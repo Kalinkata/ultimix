@@ -1,0 +1,1 @@
+<td>{checkbox:name=_id_{id};default={value}}&nbsp;{title}</td>

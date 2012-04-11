@@ -1,0 +1,3 @@
+call_params_filter=logout_button:integer,value_1
+success_func=simple_form
+form_template=logout_button

@@ -1,0 +1,1 @@
+<a id="{id}" class="{class}" href="javascript:alert( 'message' );">{lang:{text}}</a>

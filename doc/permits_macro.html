@@ -1,0 +1,124 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Pre-/post-processing permits macro</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Postprocessing macro</h4>
+					<b>&nbsp;&nbsp;Macro: {permit:&lt;permit name&gt;}&lt;block&gt;{permit:~&lt;permit name&gt;}
+					<br>&nbsp;&nbsp;Requires: permits::permits_view package</b>
+					<p>&nbsp;&nbsp;This macro shows block &lt;block&gt; for all users who have permit &lt;permit name&gt;. And it will be hidden
+					for all other users (who have no permit &lt;permit name&gt;).
+					<div class="code"><strong>Example:</strong><pre>
+{permit:admin}Some text for admin's only{permit:~admin}
+{permit:public}Some text for every user{permit:~public}
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro:{permit_list}
+					<br>&nbsp;&nbsp;Requires: permits::permits_view package</b>
+					<p>&nbsp;&nbsp;This macro outputs comma separated list of all possible permits.
+					<div class="code"><strong>Example:</strong><pre>
+Possible permits : {permit_list}
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro:{permit_list_for_object:object=&lt;object name&gt;;type=&lt;object type&gt;}
+					<br>&nbsp;&nbsp;Requires: permits::permits_view package, permit_manager permit</b>
+					<p>&nbsp;&nbsp;This macro outputs comma separated list of all possible permits for the defined object. Here &lt;object name&gt; is a name of the object for wich we are 
+					outputting permit list. And &lt;object type&gt; is a type of the object. It can be equal to 'user', 'page' , 'menu' or 'group'.
+					<div class="code"><strong>Example:</strong><pre>
+{permit_list_for_object:object=admin;type=user}
+{permit_list_for_object:object=developer;type=group}
+{permit_list_for_object:object=main;type=menu}
+{permit_list_for_object:object=index;type=page}
+</pre></div>
+					<p>&nbsp;&nbsp;If a user has no permit 'permit_manager' then this macro will be replaced with an empty string.
+					<p><b>&nbsp;&nbsp;Macro:{group_list_for_user:user=&lt;user login&gt;}
+					<br>&nbsp;&nbsp;Requires: permits::permits_view package, permit_manager permit</b>
+					<p>&nbsp;&nbsp;This macro outputs comma separated list of all groups for the defined user.
+					<div class="code"><strong>Example:</strong><pre>
+{group_list_for_user:user=admin}
+</pre></div>
+					<p>&nbsp;&nbsp;If a user has no permit 'permit_manager' then this macro will be replaced with an empty string.
+					<p><b>&nbsp;&nbsp;Macro:{permit_list_widget:all=&lt;all permits&gt;;object=&lt;objects permits&gt;}
+					<br>&nbsp;&nbsp;Requires: permits::permits_view package, permit_manager permit</b>
+					<p>&nbsp;&nbsp;This macro outputs widget for manipulating object's permits.
+					<div class="code"><strong>Example:</strong><pre>
+{permit_list_widget:all=admin,registered,public;object=admin,permit_manager,user_manager}
+</pre></div>
+					<p>&nbsp;&nbsp;If a user has no permit 'permit_manager' then this macro will be replaced with an empty string.
+					<p><b>&nbsp;&nbsp;Macro:{group_list_widget:user=&lt;user login&gt;}
+					<br>&nbsp;&nbsp;Requires: permits::permits_view package, permit_manager permit</b>
+					<p>&nbsp;&nbsp;This macro outputs widget for manipulating object's permits.
+					<div class="code"><strong>Example:</strong><pre>
+{group_list_widget:user=admin}
+{group_list_widget:user=public}
+</pre></div>
+					<p>&nbsp;&nbsp;If a user has no permit 'permit_manager' then this macro will be replaced with an empty string.
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

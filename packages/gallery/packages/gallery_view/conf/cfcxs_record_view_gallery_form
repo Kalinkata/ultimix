@@ -1,0 +1,4 @@
+call_params_filter=record_view_{prefix}_form:integer,value_1
+get_post_filter={prefix}_record_id:integer
+permits_filter={prefix}_manager
+access_package_name={prefix}::{prefix}_access

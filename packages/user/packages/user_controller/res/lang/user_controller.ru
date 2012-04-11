@@ -1,0 +1,11 @@
+user_was_activated=Пользователь был активирован
+authentification_successful=Аутентифкация выполнена успешно
+user_does_not_exists=Пользователь не существует
+registration_was_not_confirmed=Регистрация не была подтверждена
+registration_confirm=Подтверждение регистрации
+this_email_was_sent_by_robot=Это письмо было отправлено почтовым роботом. Не надо отвечать на него.
+to_confirm_registration=Чтобы подтвердить регистрацию, перейдите по следующей ссылке
+receive_mistake=Если это письмо попало к Вам по ошибке, то просто удалите его.
+activation_link=Ссылка для завершения регистрации
+password_restoration=Восстановление пароля
+confirm_registration=Подтверждение регистрации

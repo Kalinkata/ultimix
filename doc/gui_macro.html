@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Pre-/post-processing gui macro</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Preprocessing macro</h4>
+					<p><b>&nbsp;&nbsp;Macro: {textarea:name=&lt;name&gt;;class=&lt;class&gt;}
+					<br>&nbsp;&nbsp;Requires: gui, ckeditor packages</b>
+					<p>&nbsp;&nbsp;This will be replaced with textarea with name &lt;name&gt; and class &lt;class&gt;. Then it will be replaced with ckeditor.
+					<div class="code"><strong>Example:</strong><pre>
+{textarea:name=msg}
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {collapsing_widget:width=&lt;width&gt;;border_color=&lt;border_color&gt;;background_color=&lt;background_color&gt;;timeout=&lt;timeout&gt;;button_text=&lt;button_text&gt;;div_selector=&lt;div_selector&gt;}
+					<br>&nbsp;&nbsp;Requires: gui, jquery packages</b>
+					<p>&nbsp;&nbsp;This will be replaced with script wich will create collapsing block.
+					<div class="code"><strong>Example:</strong><pre>
+{collapsing_widget:div_selector=.block1;width=400px}
+</pre></div>
+					<h4 class="header">&nbsp;&nbsp;Postprocessing macro</h4>
+					<b>&nbsp;&nbsp;Macro: {encoding:name=&lt;code&gt;;selected=&lt;selected_encoding&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with select widget with a list of encodings.
+					<div class="code"><strong>Example:</strong><pre>
+{encoding:name=internal;selected=utf-8}
+</pre></div>
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

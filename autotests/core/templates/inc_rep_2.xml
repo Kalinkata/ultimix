@@ -1,0 +1,7 @@
+	<personal_stat>
+		<tester_name>#tester_name#</tester_name>
+		<tester_error_label>#tester_error#</tester_error_label>
+		<tester_error_count>#tester_error_count#</tester_error_count>
+		<tester_success_label>#tester_success#</tester_success_label>
+		<tester_success_count>#tester_success_count#</tester_success_count>
+	</personal_stat>

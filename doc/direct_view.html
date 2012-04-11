@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Direct view</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Direct calling 'view' method of the class</h4>
+					<b>&nbsp;&nbsp;&nbsp;&nbsp;Package <strong>page::page_conposer</strong> provides functioanlity wich allows you to call 'view' method of any other package. 
+					You can use it in your ajax scripts to get parts of the page dinamically. To do it send request to the page ./direct_view.html with to GET parameters 'package_name' 
+					and 'package_version' with the requesting package's name and version respectively (if version is not specified then it will be defaulted to 'last').
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,1 @@
+./content_view.html?content_id={content_id}&template=print

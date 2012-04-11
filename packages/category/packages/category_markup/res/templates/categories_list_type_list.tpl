@@ -1,0 +1,1 @@
+<table><tr><td align="left">{titles}</td></tr></table>

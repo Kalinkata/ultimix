@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<author name="Dodonov.A.A." email="dodonov_a_a@inbox.ru" />
+	<label value="db_config_set" />
+	<timeout value="30" />
+	<type value="http" />
+	<host value="{host}" />
+	<url value="{path}direct_view.html?testing_package_name=database::db_config_set{amp}package_name=testing{amp}package_version=last{amp}login={login}{amp}password={password}{amp}testing_package_version=last" />
+	<method value="POST" />
+	<description value="Тестирование класса для коннекта к базе по многострочному конфигу" />
+</root>

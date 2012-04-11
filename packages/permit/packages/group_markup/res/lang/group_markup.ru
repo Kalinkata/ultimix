@@ -1,0 +1,2 @@
+permit_delete=удалить
+changes_were_saved=Изменения были сохранены

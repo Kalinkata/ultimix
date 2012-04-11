@@ -1,0 +1,3 @@
+call_params_filter=show_{prefix}_list:integer,value_1
+permits_validation={prefix}_manager
+access_package_name={prefix}::{prefix}_access

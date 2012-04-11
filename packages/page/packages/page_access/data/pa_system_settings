@@ -1,0 +1,8 @@
+settings::settings_controller#last#controller=1;save_settings=1;form_name=user_settings,site_settings,template_settings#
+settings::settings_view#last#view=1;settings_form=1;form_name=user_settings#main
+settings::settings_view#last#view=1;settings_form=1;form_name=site_settings#main
+settings::settings_view#last#view=1;settings_form=1;form_name=template_settings#main
+jquery#last#view=1;tab_control=1;id=settings_form#main
+jquery#last#view=1;add_tab=1;id=settings_form;content_id=user_settings;title=user_settings#main
+jquery#last#view=1;add_tab=1;id=settings_form;content_id=site_settings;title=site_settings#main
+jquery#last#view=1;add_tab=1;id=settings_form;content_id=template_settings;title=template_settings#main

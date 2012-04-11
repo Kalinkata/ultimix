@@ -1,0 +1,9 @@
+type=input;package_name=core_data;config_file_name=cf_system;label=settings_site_session_timeout;setting_name=session_timeout
+type=input;package_name=page::page_composer;config_file_name=cf_site;label=settings_site_title;setting_name=site_title
+type=input;package_name=page::page_composer;config_file_name=cf_site;label=welcome_text_title;setting_name=welcome_text_title
+type=textarea;package_name=page::page_composer;config_file_name=cf_site;label=welcome_text_demo;setting_name=welcome_text_demo
+type=input;package_name=page::page_composer;config_file_name=cf_site;label=company_name;setting_name=company_name
+type=input;package_name=page::page_composer;config_file_name=cf_site;label=front_page_welcome_title;setting_name=front_page_welcome_title
+type=textarea;package_name=page::page_composer;config_file_name=cf_site;label=front_page_welcome_text;setting_name=front_page_welcome_text
+type=input;package_name=page::page_composer;config_file_name=cf_site;label=email_sender;setting_name=email_sender
+type=input;package_name=page::page_composer;config_file_name=cf_site;label=system_email;setting_name=system_email

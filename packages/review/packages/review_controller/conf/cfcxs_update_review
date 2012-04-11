@@ -1,0 +1,5 @@
+call_params_filter=update_{prefix}:integer,value_1
+permits_filter={prefix}_update
+get_post_filter={prefix}_action:string,value_update_record
+custom_get_post_validation=review:string,err_msg_review_must_be_filled#rank:integer,err_msg_rank_must_be_filled
+access_package_name={prefix}::{prefix}_access

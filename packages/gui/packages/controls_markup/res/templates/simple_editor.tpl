@@ -1,0 +1,1 @@
+		<textarea class="{class}" id="{name}" name="{name}">{text}</textarea>

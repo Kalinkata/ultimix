@@ -1,0 +1,3 @@
+call_params_filter=registration_form:integer,value_1
+permits_validation_error_message=no_registration_allowed
+success_func=show_registration_form

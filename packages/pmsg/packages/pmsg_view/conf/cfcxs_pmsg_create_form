@@ -1,0 +1,3 @@
+call_params_filter=send_pmsg:integer,value_1
+permits_validation=registered
+form_template={prefix}_create_form

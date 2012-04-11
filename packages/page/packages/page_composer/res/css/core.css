@@ -1,0 +1,828 @@
+/*
+	Styles for the MultipleInput widget.
+*/
+.add_button
+{
+	float					: left;
+	cursor					: pointer;
+}
+
+.delete_button
+{
+	float					: left;
+	cursor					: pointer;
+}
+
+/*
+	Styles of the component button.
+*/
+.component_button
+{
+	border					: 1px solid #DDDDDD;
+	padding					: 5px;
+	margin					: 5px;
+	text-align				: center;
+	display					: block;
+	text-decoration			: none;
+	float					: left;
+	outline 				: medium none;
+}
+
+.component_button:hover
+{
+	border					: 1px solid #888888;
+}
+
+.component_button_image
+{
+	margin					: 0 auto;
+	border					: 0;
+}
+
+.component_button_label
+{
+	text-align				: center;
+	display					: block;
+	font-size				: 10px;
+	margin-top				: 7px;
+	line-height				: 8px;
+}
+
+/*
+	Styles of the toolbar button.
+*/
+
+.toolbar_button
+{
+	border					: 1px solid #DDDDDD;
+	padding					: 2px;
+	margin					: 2px 2px 2px 0;
+	text-align				: center;
+	display					: block;
+	text-decoration			: none;
+	float					: left;
+	outline 				: medium none;
+}
+
+.toolbar_button:hover
+{
+	border					: 1px solid #888888;
+}
+
+.toolbar_button_image
+{
+	margin					: 0 auto;
+	border					: 0;
+}
+
+.toolbar
+{
+	height					: 32px;
+	width					: 100%;
+}
+
+/*
+	Styles of the menu button.
+*/
+.menu_button
+{
+	border					: 1px solid #DDDDDD;
+	text-align				: left;
+	display					: block;
+	text-decoration			: none;
+	max-width				: 1024px;
+	margin					: 0 -1px 0 -1px;
+}
+
+.menu_button:hover
+{
+	border					: 1px solid #888888;
+	text-align				: left;
+	display					: block;
+	text-decoration			: none;
+	max-width				: 1024px;
+	margin					: 0 -1px 0 -1px;
+}
+
+.menu_button_image
+{
+	margin-right			: 5px;
+	border					: 0;
+}
+
+.menu_button_label
+{
+	text-align				: left;
+	display					: block;
+	font-size				: 12px;
+	margin					: 3px;
+	line-height				: 24px;
+	outline 				: medium none;
+}
+
+.menu_button_frame
+{
+	display					: block;
+	margin					: 3px;
+}
+
+/*
+	Styles of the double panel.
+*/
+.double_panel_row
+{
+	color					: #555555;
+	font-size				: 13px;
+	font-weight				: bold;
+	text-decoration			: none;
+}
+
+.double_panel_row:hover
+{
+	background-color 		: #D6CCFF;
+	cursor					: pointer;
+	color					: #103566;
+	font-size				: 13px;
+	font-weight				: bold;
+	text-decoration			: none;
+}
+
+/*
+	Styles of the expanding block widget.
+*/
+.collapsing_widget_container
+{
+	width					: 0px;
+	height					: 0px;
+}
+
+.collapsing_widget_border
+{
+	margin-top				: -12px;
+	border					: 1px solid black;
+	margin-bottom			: 20px;
+	margin-left				: 15px;
+	margin-right			: 15px;
+}
+
+.collapsing_widget_content
+{
+	margin					: 10px;
+	text-align				: justify;
+	overflow				: auto;
+}
+
+.collapsing_widget_button
+{
+	margin-left				: 20px;
+	padding-left			: 5px;
+	padding-right			: 5px;
+	background-color		: white;
+	color					: blue;
+	text-decoration			: none;
+}
+
+.collapsing_widget_button:visited
+{
+	color					: blue;
+	text-decoration			: none;
+}
+
+.collapsing_widget_button_wrapper
+{
+	margin-top				: -12px;
+	margin-left				: 15px;
+}
+
+/*
+	Grid styles.
+*/
+.grid_waiting_message
+{
+	border					: 1px solid #DDDDDD;
+	width					: 100%;
+	text-align				: center;
+	line-height				: 100px;
+}
+
+td.table_header
+{
+	background-color 		: #84B9FF;
+	padding					: 3px;
+}
+
+td.table_header:hover
+{
+	background-color 		: #74A0DB;
+	padding					: 3px;
+}
+
+td.table_footer
+{
+	background-color 		: #84B9FF;
+	padding-left			: 4px;
+	padding-right			: 4px;
+}
+ 
+.table_row_even
+{
+	background-color 		: #F0ECFF;
+	padding					: 3px;
+}
+ 
+.table_row_odd
+{
+	background-color 		: #FFFFFF;
+	padding					: 3px;
+}
+
+.grid_row:hover .table_row_even
+{
+	background-color 		: #D6CCFF;
+	padding					: 3px;
+}
+ 
+.grid_row:hover .table_row_odd
+{
+	background-color 		: #D6CCFF;
+	padding					: 3px;
+}
+
+/*
+	Other styles.
+*/
+body , html
+{
+	padding          		: 0px;
+	margin           		: 0px;
+}
+
+p
+{
+	margin					: 0px;
+}
+
+.login_buttons
+{
+	text-align				: center;
+}
+
+.logout_button
+{
+}
+
+.highlight_green
+{
+	color 					: #008F00;
+}
+
+.highlight_red
+{
+	color 					: #AE0000;
+}
+
+.p
+{
+	margin-top				: 10px;
+	margin-bottom			: 10px;
+}
+
+.full_scroll
+{
+	overflow				: visible;
+	text-align				: left;
+}
+
+.error
+{
+	background				: #C0C7FC url(../images/error.png) 50% 50% repeat;
+	width					: 100%;
+	height					: 27px;
+}
+
+.success
+{
+	background				: #C0C7FC url(../images/success.png) 50% 50% repeat;
+	width					: 100%;
+	height					: 27px;
+}
+
+.common_button_layout
+{
+	margin-right			: 5px;
+}
+
+.aligned_message_white
+{
+	padding-top				: 5px;
+	padding-bottom			: 5px;
+	padding-left			: 15px;
+	font-size        		: 13px;
+	font-weight        		: bold;
+	color					: #FFFFFF;
+}
+
+.aligned_message_black
+{
+	padding-top				: 5px;
+	padding-bottom			: 5px;
+	padding-left			: 15px;
+	font-size        		: 13px;
+	font-weight        		: bold;
+	color					: #000000;
+}
+
+.message_corner_all
+{
+	-moz-border-radius		: 5px;
+	-webkit-border-radius	: 5px;
+	margin-top				: 10px;
+}
+
+.width_10p
+{
+	width					: 10%;
+}
+
+.width_20p
+{
+	width					: 20%;
+}
+
+.width_30p
+{
+	width					: 30%;
+}
+
+.width_40p
+{
+	width					: 40%;
+}
+
+.width_50p
+{
+	width					: 50%;
+}
+
+.width_60p
+{
+	width					: 60%;
+}
+
+.width_70p
+{
+	width					: 70%;
+}
+
+.width_80p
+{
+	width					: 80%;
+}
+
+.width_90p
+{
+	width					: 90%;
+}
+
+.width_100p
+{
+	width					: 100%;
+}
+
+.width_20
+{
+	width					: 20px;
+}
+
+.width_32
+{
+	width					: 32px;
+}
+
+.width_40
+{
+	width					: 40px;
+}
+
+.width_48
+{
+	width					: 48px;
+}
+
+.width_50
+{
+	width					: 50px;
+}
+
+.width_64
+{
+	width					: 64px;
+}
+
+.width_80
+{
+	width					: 80px;
+}
+
+.width_100
+{
+	width					: 100px;
+}
+
+.width_160
+{
+	width					: 160px;
+}
+
+.width_180
+{
+	width					: 180px;
+}
+
+.width_240
+{
+	width					: 240px;
+}
+
+.width_320
+{
+	width					: 320px;
+}
+
+.width_400
+{
+	width					: 400px;
+}
+
+.width_480
+{
+	width					: 480px;
+}
+
+.width_500
+{
+	width					: 500px;
+}
+
+.width_640
+{
+	width					: 640px;
+}
+
+.width_800
+{
+	width					: 800px;
+}
+
+.height_32
+{
+	height					: 32px;
+}
+
+.height_40
+{
+	height					: 40px;
+}
+
+.height_48
+{
+	height					: 48px;
+}
+
+.height_60
+{
+	height					: 60px;
+}
+
+.height_64
+{
+	height					: 64px;
+}
+
+.height_80
+{
+	height					: 80px;
+}
+
+.height_100
+{
+	height					: 100px;
+}
+
+.height_120
+{
+	height					: 120px;
+}
+
+.height_160
+{
+	height					: 160px;
+}
+
+.height_180
+{
+	height					: 180px;
+}
+
+.height_200
+{
+	height					: 200px;
+}
+
+.height_240
+{
+	height					: 240px;
+}
+
+.height_300
+{
+	height					: 300px;
+}
+
+.height_320
+{
+	height					: 320px;
+}
+
+.height_400
+{
+	height					: 400px;
+}
+
+.height_480
+{
+	height					: 480px;
+}
+
+.flat
+{
+	border-style			: solid;
+	border-color			: #000000;
+	border-width			: 1px;
+}
+
+.flat:focus
+{
+	border-style			: solid;
+	border-color			: #445AFF;
+	border-width			: 1px;
+	background-color		: #EFF1FF;
+}
+
+.form_field_compact
+{
+	padding					: 5px;
+	display					: block;
+}
+
+.left_aligned
+{
+	text-align				: left;
+	margin					: 0 auto 0 0;
+}
+
+.centered
+{
+	text-align				: center;
+	margin					: 0 auto;
+}
+
+.centered_text
+{
+	text-align				: center;
+}
+
+.right_aligned
+{
+	text-align				: right;
+	margin					: 0 0 0 auto;
+}
+
+.bold
+{
+	font-weight				: bold;
+}
+
+.italic
+{
+	font-style				: italic;
+}
+
+.pointer
+{
+	cursor					: pointer;
+}
+
+#site_search_form
+{
+}
+
+.site_search_form_input
+{
+	padding					: 5px 5px 5px 0;
+	width					: 100%;
+}
+
+.site_search_form_button
+{
+	padding					: 5px 0 5px 5px;
+	width					: 0%;
+}
+
+.search_hilight
+{
+	color					: #ff0000;
+	background-color		: #EFF1FF;
+}
+
+.search_item
+{
+	margin-top				: 10px;
+}
+
+.search_item_number
+{
+	font-weight				: bold;
+}
+
+.search_switch_page_controller
+{
+	margin-top				: 20px;
+}
+
+.form_650
+{
+	width					: 650px;
+	margin					: 30px auto;
+}
+
+.form_600
+{
+	width					: 600px;
+	margin					: 30px auto;
+}
+
+.form_500
+{
+	width					: 500px;
+	margin					: 30px auto;
+}
+
+.form_450
+{
+	width					: 500px;
+	margin					: 30px auto;
+}
+
+.form_330
+{
+	width					: 330px;
+	margin					: 30px auto;
+}
+
+.form_170
+{
+	width					: 170px;
+	margin					: 30px auto;
+}
+
+.margin_0_auto
+{
+	margin					: 0px auto;
+}
+
+.pointer
+{
+	cursor					: pointer;
+}
+
+.invisible
+{
+	display					: none;
+}
+
+.inline
+{
+	display					: inline;
+}
+
+.block
+{
+	display					: block;
+}
+
+.no_padding
+{
+	padding					: 0px;
+}
+
+.padding_10
+{
+	padding					: 10px;
+}
+
+.avatar_image
+{
+	max-width				: 96px;
+	max-height				: 96px;
+	border					: 0px;
+}
+
+.avatar_image_64
+{
+	float					: left;
+	max-width				: 64px;
+	max-height				: 64px;
+	border					: 1px solid grey;
+	margin					: 0 6px 3px 0;
+}
+
+.user_line_item
+{
+	border					: 1px dashed grey;
+	margin					: 10px 0 10px 0;
+	min-height				: 67px;
+	padding					: 3px;
+}
+
+.line_height_19
+{
+	line-height				: 19px;
+}
+
+.comment_main
+{
+	margin					: 0 0 10px 0;
+	border					: 1px solid #DDDDDD;
+	min-height				: 90px;
+	text-align				: left;
+}
+
+.comment_main2
+{
+	margin					: 5px;
+}
+
+.comment_author
+{
+	float					: left;
+	min-width				: 120px;
+	text-align				: center;
+	line-height				: 80px;
+	border-right			: 1px dashed #DDDDDD;
+	margin					: 0 5px 0 0;
+}
+
+.review_rank_red
+{
+	font-weight				: bold;
+	color					: #FF0000;
+}
+
+.review_rank_zero
+{
+	font-weight				: bold;
+	color					: #DDDDDD;
+}
+
+.review_rank_green
+{
+	font-weight				: bold;
+	color					: #008800;
+}
+
+.margin_0_auto
+{
+	margin					: 0 auto;
+}
+
+.triple_checkbox_style_0
+{
+	position				: absolute;
+	z-index					: 0;
+}
+
+.triple_checkbox_style_1
+{
+	position				: absolute;
+	z-index					: 1;
+}
+
+.valign_child 
+{
+	display					: -moz-inline-box;
+	display					: inline-block;
+	vertical-align			: middle;
+	zoom					: 1;
+	//display				: inline
+}
+.valign_helper
+{
+	display					: -moz-inline-box;
+	display					: inline-block;
+	height					: 100%;
+	width					: 0px;
+	vertical-align			: middle;
+	zoom					: 1;
+	//display				: inline
+}

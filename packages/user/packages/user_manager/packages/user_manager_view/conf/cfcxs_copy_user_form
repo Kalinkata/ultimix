@@ -1,0 +1,4 @@
+call_params_filter=show_copy_{prefix}_form:integer,value_1
+access_package_name={prefix}::{prefix}_access
+permits_validation={prefix}_manager
+form_template={prefix}_copy_form

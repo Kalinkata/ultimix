@@ -1,0 +1,3 @@
+call_params_filter=activate_user:integer,value_1
+success_func=simple_form
+form_template=registration_was_confirmed

@@ -1,0 +1,2 @@
+call_params_filter=send_feedback:integer,value_1
+success_func=show_feedback_form

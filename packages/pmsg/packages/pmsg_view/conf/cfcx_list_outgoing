@@ -1,0 +1,10 @@
+call_params_filter={prefix}_outgoing:integer,value_1
+get_post_filter=pmsg_context_action:not_filled
+permits_validation=registered
+success_func=list_view
+header={prefix}_outgoing_header.tpl
+item={prefix}_outgoing_item.tpl
+footer={prefix}_outgoing_footer.tpl
+access_package_name={prefix}::{prefix}_algorithms
+select_func=select_outgoing_messages
+no_data_found_message=no_data_found_outgoing.tpl

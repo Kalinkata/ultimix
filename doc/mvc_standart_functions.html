@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Standart functions</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Overview</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;As member of the MVC paradigm each package may have up to 5 standart functions (in the beyond list they are placed in the exact 
+					order as they are called in the page generation function). They are:
+					<ol style="margin-left:25px;">
+						<li><strong>pre_generation( $Options )</strong> - this function is called before any generating actions and used for some validations. It does not modify page's content
+						because it is called before any generations and controller/view calls.</li>
+						<li><strong>pre_process( $Options , $ProcessingString , &$Changed )</strong> - this function is called to modify structure of the generated page, but some times it is 
+						also used to replace some macro.</li>
+						<li><strong>controller( $Options )</strong> - this function processes all commands from gui and external requests (<a href="./ajax_gateway.html">ajax requests</a> 
+						for example)</li>
+						<li><strong>view( $Options )</strong> - this (and only this) function generates GUI and any other output</li>
+						<li><strong>post_process( $Options , $ProcessingString , &$Changed )</strong> - this function almost always is used to replace <a href="./pre_post_macro.html">macro</a>.</li>
+					</ol>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Here $Options are page generation settings wich are taken from the page description. $ProcessingString is a generating page's 
+					content wich can be modified by MVC components. And &$Changed is flag wich must be set if the $ProcessingString was changed while function execution.
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

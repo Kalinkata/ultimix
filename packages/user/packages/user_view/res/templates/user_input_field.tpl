@@ -1,0 +1,1 @@
+<input type="text" {locked} class="{class}" name="visible_{name}" id="visible_{id}" value="{visible_value}"{set_dialog}><input type="hidden" name="{name}" id="{id}" value="{value}">

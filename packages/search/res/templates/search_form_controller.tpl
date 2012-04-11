@@ -1,0 +1,1 @@
+<div class="search_switch_page_controller">{arrows}</div>

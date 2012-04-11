@@ -1,0 +1,1 @@
+<a href="./{page}">{lang:comments} [ {comment_count} ]</a>

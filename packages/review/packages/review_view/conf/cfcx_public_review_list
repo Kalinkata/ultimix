@@ -1,0 +1,2 @@
+call_params_filter=public_{prefix}_list:integer,value_1
+success_func=public_review_list

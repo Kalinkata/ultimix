@@ -1,0 +1,170 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Package creation</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Introduction</h4>
+					&nbsp;&nbsp;Package is the smallest unit in the Ultimix Framework. Each package a set of 
+					php and javascript code, language files, templates, css files, images, configs, any other data and of course nested packages. Some of them may be omitted. 
+					Each package can be accessed by calling core function get_package, wich takes 3 parameters - package name, package version (can be set to 'last' - it means that 
+					the last version of the package will be returned) and __FILE__ as a third parameter. This function works as a singleton and returns reference to the stored object.
+					If you want to create a brand new package's object use get_package_object with the same parameters.
+					<div class="code"><strong>Example:</strong><pre>
+$Security1 = get_package( 'security' , 'last' , __FILE__ );
+$Security2 = get_package( 'security' , 'last' , __FILE__ );
+# here $Security1 and $Security2 are the same
+</pre></div>
+<div class="code"><strong>Example:</strong><pre>
+$Security1 = get_package_object( 'security' , 'last' , __FILE__ );
+$Security2 = get_package_object( 'security' , 'last' , __FILE__ );
+# here $Security1 and $Security2 are two differnet objects
+</pre></div>
+					
+					<h4 class="header">&nbsp;&nbsp;Package's directory structure</h4>
+					&nbsp;&nbsp;All packages have almost the same directory structure wich can be seen below:
+<pre class="code">
+package_directory
+/
+|
++---conf
+|
++---data
+|   |
+|   +---page
+|   |
+|   +---permit
+|   |
+|   +---static_content
+|
++---packages
+|   |
+|   +---core
+|       |
+|       +---data
+|
++---res
+|   |
+|   +---css
+|   |
+|   +---images
+|   |
+|   +---lang
+|   |
+|   +---template
+|
++---include
+|   |
+|   +---js
+|   |
+|   +---php
+|
++---tmp
+</pre>
+					&nbsp;&nbsp;You certanly can use your own structure, but numerous features were adopted for the directory 
+					structure wich is listed above.
+					<h4 class="header">&nbsp;&nbsp;Package creation steps</h4>
+					&nbsp;&nbsp;1. Go to the directory <b>packages</b>;
+					<br>&nbsp;&nbsp;2. Create there the directory wich name is &lt;package_directory&gt; (for example - it is not necessary that names of the package and it's directory should match);
+					<br>&nbsp;&nbsp;3. Open the file <b>/packages/core/data/package_list</b> and append a new string &lt;package_name&gt;;.&lt;package_version&gt;;#&lt;package_directory&gt;
+					<div class="code"><strong>Example:</strong><pre>
+security.1.0.0#security
+</pre></div>
+					where 1.0.0 is the package's version.
+					<br>&nbsp;&nbsp;4. Then go to the directory <b>/packages/&lt;package_directory&gt;</b> and create file &lt;package_name&gt;.php wich contains class &lt;package_name&gt;_&lt;package_version*&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+class	security_1_0_0
+{
+	function	s()
+	{
+	}
+}
+</pre></div>
+					File &lt;package_name&gt;.php may be omitted, then the function 'get_package' will return false.
+					<br>&nbsp;&nbsp;That's all! Th created package can be accessed by calling function get_package.
+					<div class="code"><strong>Example:</strong><pre>
+$Security = get_package( '&lt;package_name&gt;' , '&lt;package_version&gt;' , __FILE__ );
+</pre></div>
+					<br>&nbsp;&nbsp;Each package may have nested packages. To create them create the file (if it does not exist) 
+					<b>/packages/&lt;package_directory&gt;/packages/core/data/package_list</b> go to the directory <b>/packages/&lt;package_directory&gt;/packages</b> and use the above steps.
+					<div class="code"><strong>Example:</strong><pre>
+# access to the nested package can provided like this:
+$obj = get_package( 'master_package::nested_package' , 'last' , __FILE__ ); # 1
+$obj = get_package( 'master_package::nested_package' , 'last::last' , __FILE__ ); # 2
+# here 1 and 2 are the same
+
+# some other examples
+$obj = get_package( 'master_package::nested_package' , '1.2.3::last' , __FILE__ );
+$obj = get_package( 'master_package::nested_package' , 'last::3.2.1' , __FILE__ );
+$obj = get_package( 'master_package::nested_package' , '1.2.3::3.2.1' , __FILE__ );
+</pre></div>
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

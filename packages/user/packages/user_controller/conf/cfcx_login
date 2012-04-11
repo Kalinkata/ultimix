@@ -1,0 +1,4 @@
+call_params_filter=login:integer,value_1
+get_post_filter=action:string,value_login
+success_func=login
+*=self

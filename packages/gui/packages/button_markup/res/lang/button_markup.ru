@@ -1,0 +1,2 @@
+publish_button=Опубликовать
+unpublish_button=Снять с публикации

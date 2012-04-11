@@ -1,0 +1,1 @@
+<div class="trace_block">{output}</div>

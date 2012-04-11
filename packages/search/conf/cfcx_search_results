@@ -1,0 +1,3 @@
+call_params_filter=search_results:integer,value_1
+permit_validation=public
+success_func=search_results

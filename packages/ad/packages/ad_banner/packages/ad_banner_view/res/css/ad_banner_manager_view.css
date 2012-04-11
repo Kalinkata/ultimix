@@ -1,0 +1,13 @@
+.ad_campaign
+{
+	padding-bottom			: 20px;
+}
+
+.ad_campaign_title
+{
+	width					: 100%;
+	border-bottom			: 1px solid black;
+	font-size				: 18px;
+	margin-bottom			: 5px;
+	padding-left			: 10px;
+}

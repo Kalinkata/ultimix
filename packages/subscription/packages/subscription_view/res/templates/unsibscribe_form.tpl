@@ -1,0 +1,1 @@
+<center>	{lang:you_were_unsibscribed}</center>

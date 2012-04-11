@@ -1,0 +1,13 @@
+permit_access.1.0.0#permit_access
+permit_algorithms.1.0.0#permit_algorithms
+permit_controller.1.0.0#permit_controller
+permit_view.1.0.0#permit_view
+permit_markup.1.0.0#permit_markup
+permit_manager.1.0.0#permit_manager
+user_permit_manager.1.0.0#user_permit_manager
+group_access.1.0.0#group_access
+group_controller.1.0.0#group_controller
+group_view.1.0.0#group_view
+group_markup.1.0.0#group_markup
+group_manager.1.0.0#group_manager
+ownership.1.0.0#ownership

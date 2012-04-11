@@ -1,0 +1,1 @@
+<div id="ad_campaigns_list">{output}</div>

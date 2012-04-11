@@ -1,0 +1,5 @@
+call_params_filter=edit_{prefix}:integer,value_1
+permits_filter=edit_{prefix}
+get_post_filter={prefix}_action:string,value_update_record
+custom_get_post_validation=title:string,err_msg_title_must_be_filled#description:string,err_msg_description_must_be_filled
+access_package_name={prefix}::{prefix}_access

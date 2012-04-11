@@ -1,0 +1,1 @@
+<div class="centered">{href:tpl=std;page=./index.html;text=go_on_main}</div>

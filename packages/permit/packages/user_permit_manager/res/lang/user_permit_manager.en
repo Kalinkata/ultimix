@@ -1,0 +1,13 @@
+user_permit_manager=User permit manager
+permit_manager=Permit manager
+user_groups=Groups
+user_permits=Permits
+change=change
+already_added_permits=Already added permits
+permit_to_add=Permits to add
+add_permit=add
+delete_permit=delete
+permit_changes_were_saved=Permit changes were saved
+already_added_groups=Already added groups
+groups_to_add=Groups to add
+group_changes_were_saved=Group changes were saved

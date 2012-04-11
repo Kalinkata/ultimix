@@ -1,0 +1,6 @@
+call_params_filter=create_{prefix}:integer,value_1
+permits_filter=create_{prefix}
+get_post_filter={prefix}_action:command,value_create_record
+get_post_validation=title:string,err_msg_title_must_be_filled
+get_post_extraction_script=mask:integer,allow_not_set#title:string#root_id:integer#direct_category:integer,allow_not_set
+access_package_name={prefix}::{prefix}_algorithms

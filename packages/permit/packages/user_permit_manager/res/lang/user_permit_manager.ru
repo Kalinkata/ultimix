@@ -1,0 +1,13 @@
+user_permit_manager=Управление доступами пользователей
+permit_manager=Управление доступами
+user_groups=Группы
+user_permits=Доступы
+change=изменить
+already_added_permits=Уже добавленные доступы
+permit_to_add=Доступы, которые можно добавить
+add_permit=добавить
+delete_permit=удалить
+permit_changes_were_saved=Доступы были изменены
+already_added_groups=Уже добавленные группы
+groups_to_add=Группы, которые можно добавить
+group_changes_were_saved=Группы были изменены

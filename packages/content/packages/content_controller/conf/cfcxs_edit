@@ -1,0 +1,4 @@
+call_params_filter=edit_{prefix}:integer,value_1
+custom_get_post_validation=keywords:string#description:string#title:string,err_msg_title_must_be_set#category:integer#demo_content:string#main_content:string
+permits_validation=edit_{prefix}
+access_package_name={prefix}::{prefix}_access

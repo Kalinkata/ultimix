@@ -1,0 +1,3 @@
+event=anonimous;package_name=permit::group_controller;package_version=last;handler=on_set_single_group_for_object
+event=on_before_delete_category;package_name=category::category_controller;package_version=last;handler=on_before_delete_category
+event=on_after_delete_page;package_name=permit::permit_controller;package_version=last;handler=on_after_delete_page

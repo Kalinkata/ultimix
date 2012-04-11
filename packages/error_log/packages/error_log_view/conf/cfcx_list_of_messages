@@ -1,0 +1,2 @@
+call_params_filter=list_of_messages:integer,value_1
+success_func=show_list_of_messages

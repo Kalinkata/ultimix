@@ -1,0 +1,9 @@
+.not_read
+{
+	font-weight : bold;
+}
+
+.read
+{
+	font-weight : normal;
+}

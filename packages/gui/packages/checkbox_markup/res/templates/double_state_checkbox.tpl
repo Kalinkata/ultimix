@@ -1,0 +1,3 @@
+<input onclick="ultimix.forms.DoubleSetCheckboxClick( '{id}' , '{name}' );" type="checkbox" id="_checkbox_{id}" name="_checkbox_{name}" {if:condition={eq:value1=1;value2={http_param:name={name};type=integer;post=1;default={default}}};then=checked;else=}>
+<label for="_checkbox_{id}" class="pointer">{label}</label>
+<input type="hidden" id="{id}" name="{name}" value="{http_param:name={name};type=integer;post=1;default={default}}">

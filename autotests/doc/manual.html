@@ -1,0 +1,227 @@
+<html>
+	<head>
+		<title>Ra Testing Manager > Documentation > Manual</title>
+		<style>
+			.header{
+				background-color:#294563;
+				color:#FFFFFF;
+			}
+			
+			a:hover{
+				color:#000066;
+			}
+			
+			a:link{
+				color:#0F3660;
+			}
+			
+			a:visited{
+				color:#0F3660;
+			}
+			
+			.note{
+				background-color:#CFDCED;
+				border-bottom:1px solid #294563;
+				border-top:1px solid #294563;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:0px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#CFDCED;
+				border-bottom:1px solid #294563;
+				border-top:1px solid #294563;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Manual</h2>
+					<a href="./index.html">index</a>&nbsp;>&nbsp;<a href="./documentation.html">documentation</a>&nbsp;>&nbsp;<a href="./manual.html">manual</a>
+					<h4 class="header">&nbsp;&nbsp;Creating simple test</h4>
+					&nbsp;&nbsp;Simply test represents a pythonic script with a special XML manifest. Both of them must be placed in <strong>%instal dir%/tests</strong> 
+					directory or in it's subdirectories. Now let's create a simple test.
+					<p>&nbsp;&nbsp;Create a python file in the %project_path%/autotests as shown in the example below:
+<div class="code"><strong>Example (passed_example.py):</strong><pre>
+00001| #!/usr/python
+00002| # -*- coding: utf-8 -*-
+00003| 
+00004| print( "TEST PASSED" );</pre>
+					</div>
+					<div class="note">
+						<strong>Note:</strong> If the string "TEST PASSED" was found in the stdout, then test is considered to be passed successfully.
+					</div>
+					<br>&nbsp;&nbsp;Then let's create manifest for this test. It may looks like in the example below:
+<div class="code"><strong>Example (passed_example.xml):</strong><pre>
+00001| &lt;?xml version="1.0" encoding="utf-8"?&gt;
+00002| &lt;root&gt;
+00003| 	&lt;author name="tester's name" email="tester@localhost"/&gt;
+00004| 	&lt;description value="dsc"/&gt;
+00005| 	&lt;label value="tag"/&gt;
+00006| 	&lt;timeout value="10"/&gt;
+00007| 	&lt;type value="py"/&gt;
+00008| 	&lt;execution_count value="5"/&gt;
+00009| 	&lt;format value="html_format"/&gt;
+00010| &lt;/root&gt;</pre>
+					</div>
+					<br>&nbsp;&nbsp;Here tag <strong>author</strong> contains informathion about test-case's author (attribute "author"), author's email 
+					(attribute "email"). Tag <strong>description</strong> contains test case description. Tag <strong>timeout</strong> contains information about maximum time (in seconds)
+					wich is granted for the test. If the execution time exceeds this timeout then test-case is concidered to be finished with 
+					error. Tag <strong>label</strong> contain comma separted tags for this test. Each test will be executed N times (here N is stored in attribute "value" 
+					of the tag <strong>execution_count</strong>. In the example above it is equal to 5. If there is no tag <strong>execution_count</strong> then N will be defaulted to 1).
+					Tag <strong>format</strong> is responsible for log formatting modes. If it's attribute 'value' is set to html_format then all white spaces and "\n" symbols will be replaced 
+					with &amp;nbsp; and &lt;br /&gt; respectively (see reference for more information about -html_format command line option).
+					<p>&nbsp;&nbsp;Well, all preparations are finished and we can start testing:
+<div class="code"><pre>
+cmd&gt;python run.py -l tag</pre>
+					</div>
+					<br>&nbsp;&nbsp;After this you will find file <a target="_blank" href="./autotest_log.example.html">autotest_log.html</a> in RaTM root directory.
+					<h4 class="header">&nbsp;&nbsp;Integration with the Python's module unittest</h4>
+					&nbsp;&nbsp;Integration is very simple. To do it just create manifest for your tests as described in the previous chapter, but set type of the test equal to 'unittest'.
+					<h4 class="header">&nbsp;&nbsp;Gateway to other languages</h4>
+					&nbsp;&nbsp;If your modules are written not in Python but in other language, you still can use RaTM. There is a way to 
+					load binary modules using ctypes Python library.
+					<div class="note">
+						<strong>Note:</strong> ctypes is available for Python 2.5 and later.
+					</div>
+					<br>&nbsp;&nbsp;First of all create manifest like in the examle above. Then create script wich will test your module:
+<div class="code"><strong>Example (windows_example.py):</strong><pre>
+00001| #!/usr/python
+00002| # -*- coding: utf-8 -*-
+00003| 
+00004| import		ctypes
+00005| 
+00006| lib = ctypes.CDLL( "kernel32" );
+00007| print( lib.GetModuleHandleA( None ) );
+00008| 
+00009| print( "TEST PASSED" );</pre>
+					</div>
+					<p>&nbsp;&nbsp;Now you can run your scripts:
+<div class="code"><pre>
+cmd&gt;python run.py -l ctypes</pre>
+					</div>
+					<br>&nbsp;&nbsp;That's all.
+					<p>&nbsp;&nbsp;Python ctypes documentation available <a target="_blank" href="http://docs.python.org/3.1/library/ctypes.html">here</a>.
+					<h4 class="header">&nbsp;&nbsp;HTTP gateway</h4>
+					&nbsp;&nbsp;RaTM provides abilities for sending requests to the HTTP server (file 
+					%ratm_path%/core/http_utilities.py). So you can run tests wich are created using any server side
+					language. Such as PHP, Perl, Python, ASP etc. Manifest's sintax is shown in the next example 
+					(file http_test.php can be found in the %ratm_path%/misc):
+				<div class="code"><strong>Example (http_example.py):</strong><pre>
+00001| &lt;?xml version="1.0" encoding="utf-8"?&gt;
+00002| &lt;root&gt;
+00003| 	&lt;author name="tester's name" email="tester@localhost" /&gt;
+00004| 	&lt;label value="http" /&gt;
+00005| 	&lt;timeout value="10" /&gt;
+00006| 	&lt;type value="http" /&gt;
+00007| 	&lt;host value="localhost" /&gt;
+00008| 	&lt;url value="/http_test.php" /&gt;
+00009| 	&lt;method value="POST" /&gt;
+00010| 	&lt;description value="Description" /&gt;
+00011| 	&lt;test_id value="0,1,4,6" /&gt;
+00012|  &lt;format value="" /&gt;
+00012| &lt;/root&gt;</pre>
+					</div>
+					<div class="note">
+						<strong>Note:</strong> All ampersants in field 'value' of the tag 'url' must be replaces with {amp} macro.
+					</div>
+					<div class="note">
+						<strong>Note</strong> that in this example <strong>format</strong> tag is set to "". It was done because of that reasons that 
+						logs for http tests are already well formatted for visualisation and any extra formatting can break it's HTML structure.
+					</div>
+					&nbsp;&nbsp;Using this manifest run.py will send requests to the server. Your server-side script must handle all 
+					two types of these requests. It uses first request to get
+					total count of subtests (parameter 'action' with value 'get_sub_test_count'). Next requests are 
+					used to launch exact subtest (parameter 'action' with value 'run_sub_test', parameter 'test_id' with 
+					the subtest's identificator from the range [ 0 , sub_test_count - 1 ]). If an error occured while request 
+					processing then the response 'Illegal request parameters' is expected. There is one more command is 
+					this protocol: 'get_sub_test_name' with parameter 'test_id'. Server should return name of the subtest with id 'test_id'.
+					<p>&nbsp;&nbsp;Tag test_id is optional and contain list of subtest's identificators. If tag test_id was found in the test's manifest
+					then only those subtests will be run wich id was found in the manifest's list of identificators.
+					<h4 class="header">&nbsp;&nbsp;Running tests from command line</h4>
+					&nbsp;&nbsp;Running tests from command line is very simple. The example of the manifest is shown here:
+					<div class="code"><strong>Example (cmd_example.xml):</strong><pre>
+00001| &lt;?xml version="1.0" encoding="utf-8"?&gt;
+00002| &lt;root&gt;
+00003| &lt;author name="tester's name" email="tester@localhost" /&gt;
+00004| 	&lt;label value="cmd" /&gt;
+00005| 	&lt;timeout value="60" /&gt;
+00006| 	&lt;type value="cmd" /&gt;
+00007| 	&lt;cmd value="python.exe run.py -l passed" /&gt;
+00008| 	&lt;description value="Description" /&gt;
+00009| 	&lt;execution_count value="5" /&gt;
+00010| &lt;/root&gt;</pre></div>
+					&nbsp;&nbsp;Here you can find only one new tag - <b>cmd</b>. In it's attribute 'value' path to the running executable and startup parameters are defined.
+					<h4 class="header">&nbsp;&nbsp;Sintax for testing project's manifests</h4>
+					&nbsp;&nbsp;You can create a manifest and put there all settigs for you testing project like it was done in the next example:
+				<div class="code"><strong>Example (project.xml):</strong><pre>
+00001| &lt;?xml version="1.0" encoding="utf-8"?&gt;
+00002| &lt;root&gt;
+00003| 	&lt;project_path value="../" /&gt;
+00004| 	&lt;tests_path value="./tests/" /&gt;
+00005| 	&lt;bin_modules_path value="#project_path#lib/" /&gt;
+00006| 	&lt;workspace_path value="./workspace/" /&gt;
+00007| 	&lt;core_path value="./core/" /&gt;
+00008| 	&lt;send_logs value="-cls#-show_log#-external#-blank" /&gt;
+00009| &lt;/root&gt;</pre></div>
+					&nbsp;&nbsp;Sintax is very simple:
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;- project_path - this is path to the project wich will be tested by RaTM
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;- tests_path - path to the directory where all tests are put
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;- bin_modules_path - path to the application (or any other) binaries wich will be tested
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;- workspace_path - path to the temporary directory
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;- core_path - path to the RaTM's core
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;- extra_params - all other command line parameters
+					<p>&nbsp;&nbsp;This project allows you to start testing in a very simple way:
+					<div class="code"><strong>Example:</strong><pre>
+cmd&gt;python.exe -project project.xml</pre></div>
+					<br>&nbsp;&nbsp;You can also specify tag <strong>http</strong> (if you are testing your web applications). It may have up to 4 attributes - <strong>host</strong>, 
+					<strong>path</strong> (to the script in http request), <strong>login</strong> and <strong>password</strong>. And when you are executing your http unit-tests all
+					macro {login}, {password}, {path} and {host} in test's manifest file (value attributes of the <strong>url</strong> and <strong>host</strong> tags) will be replaced with the 
+					corresponding value from the projest's manifest.
+					<h4 class="header">&nbsp;&nbsp;Sending logs using email</h4>
+					&nbsp;&nbsp;After all tests has been finished, testing logs may be sent to testers. It will be done if you will set command line 
+					option <strong>-send_logs</strong>. All email addresses will be extracted from test's manifests (tag <strong>author</strong> attribute <strong>email</strong>). But there is 
+					a way to define extra email addresses of people wich are intrested in viewing results of each testing, but who does not write tests at all. It can be developers or team leads, 
+					you can also add email of your CEO )). These emails and other parameters acan be defined in the testing project's manifest. Just add tag <strong>send_email</strong> with 
+					attribute <strong>extra_emails</strong> and write there a comma separated list of emails. There are two other attributes for this tag: <strong>email_server_host</strong> 
+					and <strong>email_server_port</strong>. There are email server's host and port are stored. If they are not defined then their values will be defaulted to 'localhost' and 25 respectively.
+					<h4 class="header">&nbsp;&nbsp;Sending logs on FTP server</h4>
+					&nbsp;&nbsp;Zip archive with all testing logs can backuped  on FTP server. To enable this functionality set command line parameter option <strong>-send_logs_ftp</strong> 
+					and add tag <strong>send_logs_ftp</strong> in testing project manifest. It should have 5 attributes <strong>ftp_server_host</strong>, <strong>ftp_server_port</strong>, 
+					<strong>ftp_server_dir</strong>, <strong>ftp_user</strong> and <strong>ftp_password</strong>.
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color: #CFDCED;border-top: thin solid #4C6C8F;">2009 &copy; Ra Testing Manager <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>File with connection settings</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Default structure for MySQL</h4>
+					&nbsp;&nbsp;Default file with connection settings looks like in the nex example:
+<div class="code"><strong>Example (cf_mysql_database):</strong><pre>
+db_host#user#password#database#table_prefix#logging_option
+</pre>
+					</div>
+					&nbsp;&nbsp;Here db_host, user, password, database are database host, user's login, user's password and database name respectively. table_prefix is
+					a prefix for all databases, it's default value is umx_ but you can change it while installation of ultimix. And logging_option can be 0 or 1, if 1 then all
+					queries will be saved to database (table umx_actions).
+					<h4 class="header">&nbsp;&nbsp;Multyline structure</h4>
+					&nbsp;&nbsp;Sometimes setting more than one connection strings may be usefull. For this purposes you can write config in this manner (each string 
+					must be separated with "\r\n" or "\n" end of line symbols):
+					<div class="code"><strong>Example:</strong><pre>
+db_host1#user1#password1#database1#table_prefix1#logging_option1
+db_host2#user2#password2#database2#table_prefix2#logging_option2
+.
+.
+.
+db_hostn#usern#passwordn#databasen#table_prefixn#logging_optionn
+</pre>
+					</div>
+					<div class="note">
+						<strong>Note:</strong> If connection failed then an exception of type Exception will be thrown.
+					</div>
+					<div class="note">
+						<strong>Note:</strong> If connection was set with config row db_hostk#userk#passwordk#databasek#table_prefixk#logging_optionk at position 'k' then this line will be put at the first 
+						position in the config (it was done because of the speed optimisation reasons).
+					</div>
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

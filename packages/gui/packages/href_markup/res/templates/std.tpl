@@ -1,0 +1,1 @@
+<a id="{id}" class="{class}" href="{page}{params}">{lang:{text}}{raw_text}</a>

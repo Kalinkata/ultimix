@@ -1,0 +1,1 @@
+<tr><td align="left">{lang:{label}}</td><td></td></tr><tr><td colspan="2"><textarea class="flat width_480 height_200" name="{name}">{value}</textarea></td></tr>

@@ -1,0 +1,15 @@
+pending=Pending...
+file_is_too_big=File is too big.
+cannot_upload_zero_bytes=Cannot upload Zero Byte files.
+invalid_file_type=Invalid File Type.
+unhandled_error=Unhandled Error
+upload_error=Upload Error: 
+upload_failed=Upload Failed.
+server_io_error=Server (IO) Error
+security_error=Security Error
+upload_limit=Upload limit exceeded.
+failed_validation=Failed Validation. Upload skipped.
+cancelled=Cancelled
+stopped=Stopped
+uploading=Uploading...
+complete=Complete

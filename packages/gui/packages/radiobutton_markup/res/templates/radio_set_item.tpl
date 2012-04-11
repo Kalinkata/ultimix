@@ -1,0 +1,1 @@
+<td>{radio:name={name};value={value};current_value={current_value};label={label}}</td>

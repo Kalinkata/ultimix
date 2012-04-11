@@ -1,0 +1,9 @@
+permit::permit_view#last#pre_generation=1#
+permit::user_permit_manager#last#controller=1;change_permits_controller=1#
+permit::user_permit_manager#last#controller=1;change_groups_controller=1#
+permit::user_permit_manager#last#view=1;show_user_permits_list=1#main
+permit::user_permit_manager#last#view=1;change_permits_view=1#main
+permit::user_permit_manager#last#view=1;change_groups_view=1#main
+permit::permit_markup#last#post_process=1#
+permit::group_markup#last#post_process=1#
+report#last#post_process=1#

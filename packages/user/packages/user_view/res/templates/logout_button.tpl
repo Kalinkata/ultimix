@@ -1,0 +1,1 @@
+{auth:logged_in}<form method="post" id="logout_form" class="inline"><input type="hidden" name="action" value="logout">{href:class=logout_button;tpl=submit0;form_id=logout_form;text=logout;waiting=false}</form>{auth:~logged_in}

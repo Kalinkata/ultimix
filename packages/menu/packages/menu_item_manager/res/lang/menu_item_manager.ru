@@ -1,0 +1,12 @@
+menu_item_manager=Управление элементами меню
+menu_item_name=Имя
+menu_item_menu=Меню
+menu_item_href=Код меню
+menu_item_was_created=Элемент меню был создан
+no_selected_menu_item=Ни одного элемента меню не выбрано
+shure_to_delete_all_menu_item=Вы уверены что хотите удалить все выбранные элементы?
+menu_item_was_deleted=Элементы меню были удалены
+name_must_be_filled=Поле '{lang:menu_item_name}' должно быть заполнено
+menu_must_be_filled=Поле '{lang:menu_item_menu}' должно быть заполнено
+href_must_be_filled=Поле '{lang:menu_item_href}' должно быть заполнено
+menu_item_update_was_completed=Редактирование было успешно завершено

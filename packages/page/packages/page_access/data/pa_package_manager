@@ -1,0 +1,2 @@
+core::package_manager::package_manager_controller#last#controller=1;delete_package=1#
+core::package_manager::package_manager_view#last#view=1;show_package_tree=1#main

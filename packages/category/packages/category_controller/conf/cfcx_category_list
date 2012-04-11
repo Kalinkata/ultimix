@@ -1,0 +1,4 @@
+call_params_filter=category_list:integer,value_1
+get_post_filter=category_active_list:command,value_save
+permits_filter=public
+success_func=category_list

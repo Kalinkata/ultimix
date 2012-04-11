@@ -1,0 +1,1 @@
+<a href="javascript:ultimix.dialog.show_dom_in_dialog( '#history_{id}' , '{lang:change_history}' )">{lang:history}</a>

@@ -1,0 +1,58 @@
+.ui-layout-pane
+{
+	padding 		: 0px; 
+}
+
+.ui-layout-pane-center
+{
+	padding			: 0;
+	margin			:  0;
+}
+
+.ui-layout-pane-west
+{
+	background-color: #FFF !important;
+	overflow		: auto;
+} 
+
+.ui-layout-resizer
+{
+	background		: #DDD; 
+}
+
+.ui-layout-resizer-open:hover
+{
+	background		: #9D9; 
+}
+
+.ui-layout-toggler
+{
+	background		: #AAA; 
+}
+
+.ui-layout-toggler-closed
+{
+	background		: #CCC;
+	border-bottom	: 1px solid #BBB; 
+}
+
+.ui-layout-toggler .content
+{
+	font-size			: 14px;
+	font-weight			: bold;
+}
+
+.ui-layout-toggler:hover
+{
+	background		: #DCA; 
+}
+
+.ui-layout-toggler:hover .content
+{
+	color			: #009; 
+}
+
+.ui-layout-toggler-closed
+{
+	background		: none repeat scroll 0 0 #777;
+}

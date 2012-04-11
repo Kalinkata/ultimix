@@ -1,0 +1,1 @@
+<span class="search_highlight">{search_string}</span>

@@ -1,0 +1,16 @@
+edit_system_structure=редактировать
+create_system_structure=создать
+delete_system_structure=удалить
+save_system_structure=сохранить
+system_structure_manager=Управление структурой системы
+system_structure_page=Страница
+system_structure_root_page=Корневая страница
+system_structure_navigation=Навигация
+system_structure_was_created=Информация о структуре системы добавлена
+page_must_be_filled=Поле '{lang:system_structure_page}' должно быть заполнено
+root_page_must_be_filled=Поле '{lang:system_structure_root_page}' должно быть заполнено
+navigation_must_be_filled=Поле '{lang:system_structure_navigation}' должно быть заполнено
+system_structure_was_deleted=Все выделенные записи были удалены
+no_selected_system_structure=Не выбрано ни одной записи
+system_structure_update_was_completed=Редактирование было завершено
+shure_to_delete_all_system_structure=Вы уверены, что хотите удалить все выбранные записи?

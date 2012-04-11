@@ -1,0 +1,1 @@
+query=SELECT login AS title , 0 AS `value` FROM umx_user ORDER BY id DESC LIMIT 0 , 50

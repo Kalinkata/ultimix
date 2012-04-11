@@ -1,0 +1,1 @@
+{search_form}{create_button:text=create_message}{search_button}<br><center>{lang:data_for_grid_was_not_found}</center>

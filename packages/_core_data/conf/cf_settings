@@ -1,0 +1,2 @@
+HTTP_HOST=http://localhost/ultimix
+GZIP_TRAFFIC=false

@@ -1,0 +1,1 @@
+<div class="select_dialog">	<input class="select_dialog_checkbox" {checked} type="radio" name="{name}" value="{value}" id="{id}">	<label class="select_dialog_label" for="{id}">{title}</label></div>

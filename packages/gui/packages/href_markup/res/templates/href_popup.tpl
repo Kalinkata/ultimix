@@ -1,0 +1,1 @@
+<a id="{id}" href="javascript:ultimix.PopupHref( '{url}' , {width} , {height} );" class="{class}">{lang:{text}}{raw_text}</a>

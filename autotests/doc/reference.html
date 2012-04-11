@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<title>Ra Testing Manager > Documentation > Reference</title>
+		<style>
+			.header{
+				background-color:#294563;
+				color:#FFFFFF;
+			}
+			
+			a:hover{
+				color:#000066;
+			}
+			
+			a:link{
+				color:#0F3660;
+			}
+			
+			a:visited{
+				color:#0F3660;
+			}
+			
+			.note{
+				background-color:#CFDCED;
+				border-bottom:1px solid #294563;
+				border-top:1px solid #294563;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:0px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#CFDCED;
+				border-bottom:1px solid #294563;
+				border-top:1px solid #294563;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Reference</h2>
+					<a href="./index.html">index</a>&nbsp;>&nbsp;<a href="./documentation.html">documentation</a>&nbsp;>&nbsp;<a href="./reference.html">reference</a>
+					<h4 class="header">&nbsp;&nbsp;Command line options</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;<strong>-rn</strong> - pattern for report file name. Available substitutions:
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#now_year# - system year
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#now_month# - system month
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#now_day# - system day
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#now_hour# - system hour
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#now_minute# - system minute
+					<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#now_second# - system second
+	
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-cls</strong> - if defined, script will clear console screen before testing
+
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-xml</strong> - testing log will be generated in XML format (html is the default value)
+
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-show_log</strong> - testing log will be show automaticaly
+
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-help</strong> - script outputs manual on the screen
+
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-l</strong> &lt;tags&gt; - Here &lt;tags&gt; is a comma separated list of tags and if the script is executed with this option, then only those scripts will be run wich have at least one of the <tags> in their description. Values of that parameter can be accumulated if it was defined more than once. For example using this command line python.exe run.py -l tag1 -l tag2 will runs all tests which have tag1 or tag2 in their manifests.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-lang</strong> &lt;lang name&gt; - this command switches on language pack, where &lt;lang name&gt; is the name of the selecting language.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-external</strong> - if set than each result log will be stored in the separate log file in directory ./logs
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-blank</strong> - if set than result log (for each single test) will be opened in the new browser's window.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-test_id</strong> - Parameter filters subtests (see description of the manifest's 'test_id' tag in chapter 'HTTP gateway'). Values of that parameter can be accumulated  if it was defined more than once. For example using this command line python.exe run.py -test_id 1,2 tag1 -test_id 2,3 will runs all subtests which have 1, 2 or 3 id.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-project</strong> - using this parameter you can specify manifest for the entire testing session.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-html_format</strong> - if this parameter is set then all logs for all tests will be formatted in HTML way (white spaces will be replaced with &amp;nbsp;, and "\n" will be replaced with &lt;br /&gt;).
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-send_logs</strong> - this parameter enables 'send logs using email' functionality.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-send_logs_ftp</strong> - this parameter enables 'send logs on ftp server' functionality.
+					
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-email</strong> &lt;emails&gt; - Here &lt;email&gt; is a comma separated list of email and if the script is executed with this option, then only those scripts will be run wich authors have one of the email from list <tags> in their <strong>author</strong>. Values of that parameter can be accumulated if it was defined more than once. For example using this command line python.exe run.py -email email1 -email email2 will runs all tests which author's have email1 or email2 in their manifests.
+					<h4 class="header">&nbsp;&nbsp;String functions</h4>
+					&nbsp;&nbsp;<strong>string_utilities</strong> - module with string processing functions.
+					<p>&nbsp;&nbsp;string_utilities.<big>FindStringInFile</big>( SearchString , FilePath ) - function returns 1 if 
+					the SearchString was found in the file with path FilePath.
+					<p>&nbsp;&nbsp;string_utilities.<big>FileMatchesRegexp</big>( RegexpPattern , FilePath ) - function returns 1 if 
+					the file with path FilePath matches regular expression pattern RegexpPattern.
+					<h4 class="header">&nbsp;&nbsp;Common functions</h4>
+					&nbsp;&nbsp;<strong>utilities</strong> - module with different utility functions.
+					<p>&nbsp;&nbsp;utilities.<big>GetPlatform</big>() - function returns name of the platform on wich script was executed.
+					<h4 class="header">&nbsp;&nbsp;HTTP functions</h4>
+					&nbsp;&nbsp;<strong>http_utilities</strong> provides HTTP requests manipulation routine.
+					<p>&nbsp;&nbsp;http_utilities.<big>HTTPRequest</big>( Host , URL , Timeout = 10 , Method = 'POST' ) - function sends HTTP request to the Host with the defined URL. The return value is a dictionary with two keys - 'status' and 'response'.
+					<p>&nbsp;&nbsp;http_utilities.<big>HTTPSRequest</big>( Host , URL , Timeout = 10 , Method = 'POST' ) - function sends HTTPS request to the Host with the defined URL. The return value is a dictionary with two keys - 'status' and 'response'.
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color: #CFDCED;border-top: thin solid #4C6C8F;">2009 &copy; Ra Testing Manager <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

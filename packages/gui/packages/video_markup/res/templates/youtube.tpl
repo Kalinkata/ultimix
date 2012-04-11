@@ -1,0 +1,1 @@
+<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{hash}?autoplay={autoplay}" frameborder="0" allowfullscreen></iframe>

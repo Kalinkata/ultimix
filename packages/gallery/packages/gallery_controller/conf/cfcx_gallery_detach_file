@@ -1,0 +1,3 @@
+call_params_filter=detach_file:integer,value_1
+permits_filter=registered
+success_func=detach_file

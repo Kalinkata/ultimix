@@ -1,0 +1,3 @@
+feed_settings=Настройки RSS канала
+feed_title=Новости
+feed_description=Описание

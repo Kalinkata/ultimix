@@ -1,0 +1,3 @@
+call_params_filter=auto_open_login_dialog:integer,value_1
+success_func=simple_form
+form_template=auto_open_login_dialog

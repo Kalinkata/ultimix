@@ -1,0 +1,4 @@
+call_params_filter=logout_img_button:integer,value_1
+permit_filter=registered
+success_func=simple_form
+form_template=logout_img_button

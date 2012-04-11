@@ -1,0 +1,8 @@
+call_params_filter=edit_system_structure:integer,value_1
+permits_validation=update_{prefix}
+custom_get_post_validation={prefix}_page:string#{prefix}_root_page:string,err_msg_root_page_must_be_filled#{prefix}_navigation:raw
+custom_validation_func=pre_edit_validation
+success_func=edit
+access_package_name={prefix}::{prefix}_access
+cleanup_fields={prefix}_action,{prefix}_context_action
+auto_redirect=0

@@ -1,0 +1,5 @@
+user::user_controller#last#controller=1;login=1;redirect_after_login=1#
+page::static_content::static_content_view#last#view=1;content=static_content_admin_html#main
+user::user_view#last#view=1;login_form=1;wrapper_class=centered#main
+file_input::file_input_markup#last#post_process=1#
+pmsg::pmsg_view#last#post_process=1#

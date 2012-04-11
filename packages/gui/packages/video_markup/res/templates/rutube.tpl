@@ -1,0 +1,1 @@
+<OBJECT width="{width}" height="{height}"><PARAM name="movie" value="http://video.rutube.ru/{hash}"></PARAM><PARAM name="wmode" value="window"></PARAM><PARAM name="allowFullScreen" value="true"></PARAM><EMBED src="http://video.rutube.ru/{code}" type="application/x-shockwave-flash" wmode="window" width="470" height="353" allowFullScreen="true" ></EMBED></OBJECT>

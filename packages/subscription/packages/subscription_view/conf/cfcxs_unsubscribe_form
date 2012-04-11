@@ -1,0 +1,4 @@
+call_params_filter=unsibscribe_form:integer,value_1
+permits_validation=public
+success_func=simple_form
+form_template=unsibscribe_form

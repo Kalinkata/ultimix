@@ -1,0 +1,1 @@
+no_articles_were_found=Ни одной статьи не найдено

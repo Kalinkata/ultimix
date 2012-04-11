@@ -1,0 +1,27 @@
+-rn - pattern for report file name. Available substitutions:
+	#now_year# - system year
+	#now_month# - system month
+	#now_day# - system day
+	#now_hour# - system hour
+	#now_minute# - system minute
+	#now_second# - system second
+	
+-cls - if defined, script will clear console screen before testing
+
+-xml - testing log will be generated in XML format (html is the default value)
+
+-show_log - testing log will be show automaticaly
+
+-help - script outputs manual on the screen
+
+-l <tags> - Here <tags> is a comma separated list of tags and if the script is executed with this option, then only those scripts will be run wich have at least one of the <tags> in their description.
+
+-lang <lang name> - this command switches on language pack, where <lang name> is the name of the selecting language.
+
+-extern - if set than each result log will be stored in the separate log file in directory ./logs
+
+-blank - if set than result log (for each single test) will be opened in the new browser's window.
+
+-test_id - Parameter filters subtests (see description of the manifest's 'test_id' tag in chapter 'HTTP gateway'). Values of that parameter can be accumulated  if it was defined more than once. For example using this command line python.exe run.py -test_id 1,2 tag1 -test_id 2,3 will runs all subtests which have 1, 2 or 3 id.
+					
+-project <path_to_testing_project> - using this parameter you can specify manifest for the entire testing session.

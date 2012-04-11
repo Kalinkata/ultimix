@@ -1,0 +1,15 @@
+pending=Отправка...
+file_is_too_big=Файл слишком большой.
+cannot_upload_zero_bytes=Невозможно отправить файл нулевого размера.
+invalid_file_type=Некорректный тип файла.
+unhandled_error=Неизвестная ошибка
+upload_error=Ошибка загрузки: 
+upload_failed=Загрузка сорвана
+server_io_error=Ошибка сервера
+security_error=Ошибка безопасности
+upload_limit=Предел загрузки исчерпан
+failed_validation=Проверка не пройдена. Загрузка пропущена.
+cancelled=Отменена
+stopped=Остановлена
+uploading=Загрузка...
+complete=Завершено

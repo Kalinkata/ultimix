@@ -1,0 +1,3 @@
+call_params_filter=unsibscribe:integer,value_1
+permits_validation=public
+success_func=unsibscribe

@@ -1,0 +1,133 @@
+<html>
+	<head>
+		<title>Ra Testing Manager</title>
+		<style>
+			.header{
+				background-color:#294563;
+				color:#FFFFFF;
+			}
+			
+			a:hover{
+				color:#000066;
+			}
+			
+			a:link{
+				color:#0F3660;
+			}
+			
+			a:visited{
+				color:#0F3660;
+			}
+			
+			.note{
+				background-color:#CFDCED;
+				border-bottom:1px solid #294563;
+				border-top:1px solid #294563;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#CFDCED;
+				border-bottom:1px solid #294563;
+				border-top:1px solid #294563;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Welcome</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;RaTM 1.4.1</h4>
+					&nbsp;&nbsp;A new release of RaTM is available:
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;1. Console output visualisation improvements.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;2. Fixed error with -l parameter (now comma separated lists of tags work well).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;3. Encoding error for external logs was fixed.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;4. Integration with module unittest was implemented (see manual for more information).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;5. Added command-line parameter -email (see reference for more information).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;6. File 'conf' now stores absolute paths.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;7. Minor bugfixes.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;8. Documentation was updated.
+					<p>&nbsp;&nbsp;It can be downloaded <a target="_blank" href="http://sourceforge.net/projects/ratm/files/">here</a>.
+					<p>&nbsp;&nbsp;Documentation can be found <a href="./documentation.html">here</a>.
+					<h4 class="header">&nbsp;&nbsp;RaTM 1.4.0</h4>
+					&nbsp;&nbsp;A new release of RaTM is available:
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;1. Error was fixed in SendLogsByEmail function.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;2. Testing logs now can be sent on FTP servers (command-line parameter -send_logs_ftp enables it).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;3. Documentation was updated.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;4. Testing project manifest parse function was fixed.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;5. RaTM is now available under LGPL license (BSD licensing is also available).
+					<p>&nbsp;&nbsp;It can be downloaded <a target="_blank" href="http://sourceforge.net/projects/ratm/files/">here</a>.
+					<p>&nbsp;&nbsp;Documentation can be found <a href="./documentation.html">here</a>.
+					<h4 class="header">&nbsp;&nbsp;RaTM 1.3.0</h4>
+					&nbsp;&nbsp;A new release of RaTM is available:
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;1. Manifset sintax was extended (see manual for more information).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;2. Command-line parameter -html_format was added (see reference for more information).
+					<p>&nbsp;&nbsp;It can be downloaded <a target="_blank" href="http://sourceforge.net/projects/ratm/files/">here</a>.
+					<p>&nbsp;&nbsp;Documentation can be found <a href="./documentation.html">here</a>.
+					<h4 class="header">&nbsp;&nbsp;RaTM 1.2.1</h4>
+					&nbsp;&nbsp;A new release of RaTM is available:
+					<p>&nbsp;&nbsp;It can be downloaded <a target="_blank" href="http://sourceforge.net/projects/ratm/files/">here</a>.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;1. New type of tests is available - since now test can be run from the command line directly.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;2. Testing and minor changes.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;3. External log was improved.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;4. Several bugs were fixed in the http_utilities.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;5. Template for the single test log was improved.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;6. Several CYGWIN specific bugs were fixed.
+					<p>&nbsp;&nbsp;Documentation can be found <a href="./documentation.html">here</a>.
+					<h4 class="header">&nbsp;&nbsp;RaTM 1.2.0</h4>
+					&nbsp;&nbsp;A new release of RaTM is available:
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;1. Added execution_counter in the test's manifest syntax (check the manual for more information http://ratm.sourceforge.net/manual.html).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;2. According to execution_counter parameter appearance, testing report was extended. Now total test's execution time is outputted and the average time per test iteration.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;3. Command line parameter -test_id was added.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;4. Manifest sintax was extended - added test_id tag (see manual for more information http://ratm.sourceforge.net/manual.html).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;5. Protocol for running tests via HTTP was changed (see ./misc/http_test.php example for more information).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;6. Added new command line parameter -project (see manual for more information).
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;7. Row sorting bug in testing report was fixed.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;8. Fiexed bug with external log processing.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;9. Minor changes and improvements.
+					<br>&nbsp;&nbsp;&nbsp;&nbsp;10. Refactoring.
+					<p>&nbsp;&nbsp;It can be downloaded <a target="_blank" href="http://sourceforge.net/projects/ratm/files/">here</a>.
+					<p>&nbsp;&nbsp;Documentation can be found <a href="./documentation.html">here</a>.
+					<h4 class="header">&nbsp;&nbsp;Other projects</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://freshmeat.net/projects/ultimix" target="_blank">ultimix php framework</a> - simple but powerfull php framework wich.
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://freshmeat.net/projects/nitro-c" target="_blank">nitro c++ framework</a> - lightweight and extreamly fast c++ crossplatform framework.
+					<h4 class="header">&nbsp;&nbsp;Contacts</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;You can send feature requests, bug reports and questions on email dodonov_a_a@inbox.ru
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Author's <a href="http://gdzone.ru" target="_blank">blog</a>
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color: #CFDCED;border-top: thin solid #4C6C8F;">2009 &copy; Ra Testing Manager <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

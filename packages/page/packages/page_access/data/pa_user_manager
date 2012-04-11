@@ -1,0 +1,7 @@
+user::user_manager::user_manager_controller#last#controller=1;edit_user=1#
+user::user_manager::user_manager_controller#last#controller=1;delete_user=1#
+user::user_manager::user_manager_controller#last#controller=1;copy_user=1#
+user::user_manager::user_manager_view#last#view=1;user_list=1#main
+user::user_manager::user_manager_view#last#view=1;show_edit_user_form=1#main
+user::user_manager::user_manager_view#last#view=1;show_copy_user_form=1#main
+user::user_view#last#pre_generation=1#

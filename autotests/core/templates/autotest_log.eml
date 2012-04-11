@@ -1,0 +1,18 @@
+From: <#from#>
+To: <#to#>
+Subject: #subject#
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0003_01CA4208.365E6D10"
+
+------=_NextPart_000_0003_01CA4208.365E6D10
+Content-Type: application/octet-stream;
+	name="#autotest_log_file_name#"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="#autotest_log_file_name#"
+
+#autotest_log_content#
+
+------=_NextPart_000_0003_01CA4208.365E6D10--
+

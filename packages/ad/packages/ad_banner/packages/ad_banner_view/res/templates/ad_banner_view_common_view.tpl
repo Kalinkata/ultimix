@@ -1,0 +1,1 @@
+<div class="padding_10">{preview}</div>

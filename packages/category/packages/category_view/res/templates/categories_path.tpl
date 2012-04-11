@@ -1,0 +1,1 @@
+<a href="./catalogue.html?cid={id}">{title}</a>

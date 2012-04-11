@@ -1,0 +1,1 @@
+<a class="func_link" id="link{id}" href="javascript:show( '{data}' , {id} );">[{k}]</a><span id="{id}"></span> 

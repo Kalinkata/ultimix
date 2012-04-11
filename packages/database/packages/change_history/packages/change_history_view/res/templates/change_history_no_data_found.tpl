@@ -1,0 +1,1 @@
+<div id="history_{id}" class="centered_text">{lang:data_for_grid_was_not_found}</div>

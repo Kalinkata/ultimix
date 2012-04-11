@@ -1,0 +1,2 @@
+call_params_filter=draw_form:integer,value_1;form_template:strings
+success_func=draw_form

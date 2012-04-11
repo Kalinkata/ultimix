@@ -1,0 +1,1 @@
+{toolbar_button:page=javascript:ultimix.forms.SubmitForm1( '{prefix}_form' , '{prefix}_context_action' , 'create_record_form' , false , false , false , 'post' );package_name=gui::context_set::common_buttons;icon=create_24.gif;permit=create_{prefix};title=create_button}

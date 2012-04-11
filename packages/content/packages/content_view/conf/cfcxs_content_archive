@@ -1,0 +1,3 @@
+call_params_filter={prefix}_archive:integer,value_1
+permits_validation=public
+success_func=content_archive

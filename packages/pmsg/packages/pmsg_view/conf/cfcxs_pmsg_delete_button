@@ -1,0 +1,3 @@
+call_params_filter=delete_message:integer,value_1
+permits_validation=registered
+success_func=delete

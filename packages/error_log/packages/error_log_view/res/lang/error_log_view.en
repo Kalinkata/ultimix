@@ -1,0 +1,7 @@
+error_message_severity=Severity
+error_message_description=Description
+error_message_date=Event's[nbsp]date
+error_message_title=Title
+no_logs_selected=At least one record must be selected
+delete=delete
+shure_to_delete=Are you shure that you want to delete?

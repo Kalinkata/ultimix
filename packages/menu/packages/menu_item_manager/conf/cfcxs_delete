@@ -1,0 +1,4 @@
+call_params_filter=delete_{prefix}:integer,value_1
+permits_validation=delete_{prefix}
+success_message={prefix}_was_deleted
+access_package_name=menu::{prefix}_access

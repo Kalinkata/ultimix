@@ -1,0 +1,2932 @@
+Ultimix v. 1.5.239
+-----------------------------------------
+1. An error in the page generation functions was fixed.
+2. Trace output error was fixed.
+3. A new demo was added.
+4. The documentation was updated.
+
+Ultimix v. 1.5.238
+-----------------------------------------
+1. Demo script was added.
+2. Installation script was fixed.
+3. The 'jquery_media' package was fixed.
+4. Small bugfixes and improvements.
+
+Ultimix v. 1.5.237
+-----------------------------------------
+1. Performance was improved.
+2. The package 'user::user_controller' was refactored.
+3. Page compilation functions were improved.
+4. View caching scripts were added.
+5. An erro in the form processing functions was fixed.
+6. Trace visualisation was fixed.
+7. Trace output was improved.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.236
+-----------------------------------------
+1. Security error was fixed.
+2. An error in the 'rss_button' was fixed.
+3. An error in the jstree package was fixed.
+4. Small bugfixes and improvements.
+
+Ultimix v. 1.5.235
+-----------------------------------------
+1. The Yandex.XML API was improved.
+2. Small bugfixes and improvements.
+
+Ultimix v. 1.5.234
+-----------------------------------------
+1. A new template was added.
+2. The script 'iterator.js' was added.
+3. A few iterations of refactoring were implemented.
+4. Small bugfixes and improvements.
+
+Ultimix v. 1.5.233
+-----------------------------------------
+1. Database logging API was added.
+2. Error processing functions were removed.
+3. Users manipulation functions were removed.
+4. Search package was refactored.
+5. Map generation API was improved.
+6. Small bugfixes and improvements.
+
+Ultimix v. 1.5.232
+-----------------------------------------
+1. Page compilation functions were added.
+2. User registration function were fixed.
+3. Mail sending functions were refactored.
+4. Grids creation functions were refactored.
+5. Graph drawing API was refactored.
+6. RSS comiplation functions were refactored.
+7. Small bugfixes and improvements.
+
+Ultimix v. 1.5.231
+-----------------------------------------
+1. Performance was improved.
+2. jQueryUI stylesheets were improved.
+3. Unsubscribe function was fixed.
+4. User update function was fixed.
+5. Small bugfixes and improvements.
+
+Ultimix v. 1.5.230
+-----------------------------------------
+1. Stylesheets compressing script was improved.
+2. Graph drawing API was improved.
+3. The package 'gui::context::context_utilities' was added.
+4. The page compilation functions were refactored.
+5. User registration errors were fixed.
+6. JavaScript dialogs were fixed.
+7. JavaScript Forms API was fixed.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.229
+-----------------------------------------
+1. The grid class was improved.
+2. Graph drawing API was improved.
+3. The package 'string::tags' was refactored.
+4. Caching subsystem was refactored.
+5. Small bugfixes and improvements.
+
+Ultimix v. 1.5.228
+-----------------------------------------
+1. The cron tasks processing was improved.
+2. Tab control JavaScript API was improved. Option 'AutoSelect' was added.
+3. An error in the subscription sending functions were fixed.
+4. The paginator was improved.
+5. Graph drawing API was improved.
+6. Cron scripts were improved.
+7. The package 'gui' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.227
+-----------------------------------------
+1. Charset detection functions were improved.
+2. The grids.js script was improved.
+3. The grid compilation class was improved.
+4. 1 unit-test was improved.
+5. The core JavaScript API was refactored.
+6. The SAPE API was improved.
+7. The package 'gui::paging' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.226
+-----------------------------------------
+1. Forms JavaScript API was refactored.
+2. Performance was improved.
+3. 1 unit-test was fixed.
+4. Installation script was fixed.
+5. The paginator was refactored.
+6. Wizards creation JavaScript API was improved.
+7. The package 'string::text' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.225
+-----------------------------------------
+1. Tab Control wrappers were improved - creation of the selected tabs was added.
+2. New widgets were added - vertical algined block and horisontal alogned block.
+3. A new data type was adde - 'digits'.
+4. jQuery.media package was refactored.
+5. Security fix: data types validation was improved.
+6. The package 'security::supported_data_types' was refactored.
+7. The package 'user::user_markup' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.224
+-----------------------------------------
+1. Fullscreen mode was added to the 'jquery::jquery_media' package.
+2. Caching subsystem was improved.
+3. Template engine was improved.
+4. Login dialog was fixed.
+5. Forms JavaScript API was fixed.
+6. Localization data was improved.
+7. The documentation was updated.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.223
+-----------------------------------------
+1. JavaScript message boxes were improved.
+2. Grid class was improved.
+3. Installation script was improved.
+4. Object lists visualisation was improved.
+5. Exception visualisation was improved.
+6. Cron command line script was added.
+7. Core script were refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.222
+-----------------------------------------
+1. Notification email templates were fixed.
+2. User activation functions were fixed.
+3. Trace output was improved.
+4. Registration confirm form was fixed.
+5. Page comipilation functions were improved.
+6. Forms JavaScript API was improved.
+7. Installation script was improved.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.221
+-----------------------------------------
+1. 1 unit-test was fixed.
+2. JavaScript dialogs were refactored.
+3. The AJAX API was refactored.
+4. Banner manager was refactored.
+5. Template engine was improved.
+6. JavaScript Forms API was refactored.
+7. User views were refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.220
+-----------------------------------------
+1. The package 'page::page_meta' was added.
+2. Forms JavaScript API was improved.
+3. The package 'jQuery' was refactored.
+4. JavaScript and CSS files minimization script was fixed.
+5. Page compilation script was fixed.
+6. Banner manager was refactored.
+7. Template engine was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.219
+-----------------------------------------
+1. CSS files minimizaion script was added.
+2. JS files minimizaion script was added.
+3. The package 'page::page_composer_utilities' was refactored.
+4. Template engine was improved.
+5. Forms JavaScript API was improved.
+6. JavaScript dialogs were refactored.
+7. MVC code was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.218
+-----------------------------------------
+1. 1 unit-test was fixed.
+2. JavaScript API was fixed for the 'page::static_content::static_content_view' package.
+3. Translation errors were fixed.
+4. The package 'page::static_content::static_content_manager::static_content_manager_view' was removed.
+5. The package 'page::static_content::static_content_manager::static_content_manager_controller' was renamed in 'page::static_content::static_content_controller'.
+6. Page compilation functions were improved.
+7. 1 unit-test was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.217
+-----------------------------------------
+1. Small bugfixes and improvements.
+2. The documentation was updated.
+
+Ultimix v. 1.5.216
+-----------------------------------------
+1. Tab control creation function was fixed.
+2. The script 'tabs_ex.js' was refactored.
+3. Small bugfixes and improvements.
+
+Ultimix v. 1.5.215
+-----------------------------------------
+1. The package 'data_form' was added.
+2. The page compilation functions were refactored.
+3. The default JavaScript message boxes were refactored.
+4. The script 'cookie.js' was replaced with the 'jquery.cookie.js'.
+5. The script 'forms.js' was improved.
+6. An error in the 'gui::cotext_set' package was fixed.
+7. jQuery tabs styles were improved.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.214
+-----------------------------------------
+1. 1 unit-test was added.
+2. The default grid widget was fixed.
+3. The grid compilation functions were improved.
+4. The page compilation package 'gui:context_set' was refactored.
+5. 1 unit-test was refactored.
+6. The package 'jslib' was refactored.
+7. jQuery.dialog API was refactred.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.213
+-----------------------------------------
+1. Timer widget was fixed.
+2. Fields 'site' and 'about' in the user profile were set optional.
+3. Mailing functions were fixed.
+4. Styles of the jquery-ui were fixed.
+5. Core CSS classeswere improved.
+6. The macro 'logout_menu_button' was added.
+7. The JavaScript API fot the class 'sites' was extended.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.212
+-----------------------------------------
+1. The package wich runs custom view/controller script was added.
+2. The package 'jquery' was refactored.
+3. Mail sending functions were refactored.
+4. An error in the package 'lang' was fixed.
+5. Page generation function were fixed.
+6. 1 unit-test was fixed.
+7. Open dialog fuctions were fixed.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.211
+-----------------------------------------
+1. The namespace 'ultimix.timer' was added to the 'jquery.timer.js' script.
+2. The documentation error was fixed for the 'data_form' package.
+3. Transplation compiling functions were improved.
+4. The function 'ultimix.std_dialogs.SimpleWaitingMessageBox' was added to the 'jsdialogs.js' script.
+5. The package 'report' was refactored.
+6. The package 'jslib' was improved.
+7. The package 'gui context_set' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.210
+----------------------------------------- 
+1. The 'jquery.dialog.js' script was refactored.
+2. The package 'jquery' was refactored.
+3. 1 hnit-test was fixed.
+4. The script 'string_utilities.js' was refactored.
+5. The script 'request_manager.js' was refactored.
+6. An error in the 'jsdialogs' package was fixed.
+7. The package 'page::page_comopser' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.209
+-----------------------------------------
+1. The package 'permit::permit_view' was refactored.
+2. Namespace for widget 'double_panel' was added.
+3. Charset detecting functions were improved.
+4. An error in the 'page::page_access' was fixed.
+5. The package for parsing href macroes was added.
+6. AJAX API was added to the 'page::static_content::static_content_view' package.
+7. Javascript API was added to the 'database::change_history::change_history_view' package.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.208
+-----------------------------------------
+1. Installation script was improved.
+2. The user line view was improved - system users were excluded.
+3. 1 unit-test was improved.
+4. The package 'jquery::jquery_media' was fixed.
+5. The package 'page::page_access' was refactored.
+6. The package 'site::site_view' was refactored.
+7. The package 'gui::context_set' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.207
+-----------------------------------------
+1. 2 unit-tests were added.
+2. List view errors were fixed.
+3. List view post processing was fixed.
+4. User registration was fixed.
+5. Email compilation functions were fixed.
+6. The package 'user::user_view' was refactored.
+7. Documentation was updated.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.206
+-----------------------------------------
+1. The parameter 'autoplay' was added to the 'jquery::jquery_media' package.
+2. An error in the 'gui::context::messages' was fixed.
+3. Meta information output for pages was improved.
+4. Installation script was updated.
+5. Ajax API was improved.
+6. Processing of the predefined packages was added to the 'direct_view.html' and 'direct_controller.html' pages.
+7. A script wich searches for TODO tags was added.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.205
+-----------------------------------------
+1. The package 'jquery' was refactored.
+2. Unit-tests were refactored.
+3. The package 'gui::context_set' was refactored.
+4. The package 'gui::paging' was refactored.
+5. The package 'lang' was refactored.
+6. The package 'data_form' was refactored.
+7. An error in the 'gui::calendar' package was fixed.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.204
+-----------------------------------------
+1. An error was fixed in the 'permit::permit_algorithms' package.
+2. An error in the 'user::user_access' was fixed.
+3. An erorr in the 'user::user_controller' package was fixed.
+4. An erorr in the 'user::user_controller::user_controller_utilities' package was fixed.
+5. The package 'user::user_controller' was refactored.
+6. The package 'gui::context_set' was refactored.
+7. The package 'gui::button_markup' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.203
+-----------------------------------------
+1. The unit tests were refactored.
+2. The package 'user::user_controller' was refactored.
+3. The package 'site::site_access' was added.
+4. The package 'site::site_view' was added.
+5. The page 'site_manager.html' was added.
+6. An error in the 'page::page_markup::page_markup_utilities' was fixed.
+7. Installation script was improved.
+8. An error in the 'gui::context_set::default_views' was fixed.
+
+Ultimix v. 1.5.202
+-----------------------------------------
+1. The package 'gui::context_set::default_views' was refactored.
+2. The unit-tests were improved.
+3. The package 'gallery' was refactored.
+4. The package 'gui::button_markup' was refactored.
+5. The package 'gui::context_set' was refactored.
+6. The package 'gui::jqgrid' was refactored
+7. The package 'jquery' was refactored.
+8. The package 'gui::multiple_line' was refactored.
+
+Ultimix v. 1.5.201
+-----------------------------------------
+1. The script 'opener_manager.js' was added.
+2. The calendar styles were improved.
+3. An error in the 'graph::graph_data::graph_data_access' was fixed.
+4. The template of the password restoration email was fixed.
+5. The message compiltion function of the 'mail' package was improved.
+6. Database dump creation package was fixed.
+7. The package 'subscription' was refactored.
+8. The package 'gui::context_set::default_views' was refactored.
+
+Ultimix v. 1.5.200
+-----------------------------------------
+1. 5 unit-tests were added.
+2. Stylesheet of the 'business' template was improved.
+3. jQueryUI was updated up to 1.8.17 version.
+4. The 'accordion' widget was fixed.
+5. The stylesheet of the 'jquery' package was improved.
+6. The macro 'menu_button' was fixed.
+7. The script 'ajax_gate.js' was improved.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.199
+-----------------------------------------
+1. The package 'user::user_access' was fixed.
+2. The package 'page::page_composer_view' was fixed.
+3. The macro 'date' was improved.
+4. User updating functions were improved.
+5. The 'trace' package's templates were improved.
+6. Password restoration was fixed.
+7. An error in the 'gui::forms' package was fixed.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.198
+-----------------------------------------
+1. The package 'settings::settings' was refactored.
+2. The package 'gui::calendar' was refactored.
+3. The package 'string' was refactored.
+4. The package 'report' was refactored.
+5. The package 'lang' was refactored.
+6. The package 'jquery' was refactored.
+7. The package 'user::user_view' was refactored.
+8. The package 'database' was refactored.
+
+Ultimix v. 1.5.197
+-----------------------------------------
+1. The package 'string::text' was refactored.
+2. The package 'page::page_composer' was refactored.
+3. The package 'user::user_access' was refactored.
+4. The package 'xml::yandex_xml' was refactored.
+5. The package 'gui::db_markup' was refactored.
+6. The package 'page::page_markup' was refactored.
+7. The package 'gui::context_set' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.196
+-----------------------------------------
+1. An error in the 'page' package was fixed.
+2. The package 'security::security_validator::predicates' was refactored.
+3. The package 'template_manager::base_template' was refactored.
+4. The package 'security::security_markup' was refactored.
+5. The package 'sape::sape_project_api' was refactored.
+6. The package 'gallery::gallery_access' was refactored.
+7. The package 'review::review_access' was refactored.
+8. The package 'page::page_composer' was refactored.
+
+Ultimix v. 1.5.195
+-----------------------------------------
+1. The package 'report' was refactored.
+2. An error in the 'page::page_composer' package was fixed.
+3. The package 'page::messages' was refactored and improved.
+4. The package 'http' was fixed.
+5. The package 'xml::yandex_xml' was fixed.
+6. Division by zero error wa fixed for the 'graph' package.
+7. The package 'subscription::subscription_algorithms' was improved - custom settings for eash subscription were added.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.194
+-----------------------------------------
+1. The package 'string::text' was refactored.
+2. The package 'gui::context_set' was refactored.
+3. The package 'page::page_composer' was refactored.
+4. The package 'page::page_composer_view' was added.
+5. Unit-tests of the 'page' package were improved.
+6. The package 'report' was refactored.
+7. The package 'user::user_access' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.193
+-----------------------------------------
+1. The package 'user::user_access' was refactored.
+2. The package 'user::user_algorithms' was refactored.
+3. The manual how to use multy domain functionality was added.
+4. User activation function was fixed.
+5. Unit-tests of the 'page' package were improved.
+6. The package 'gui::context_set' was refactored.
+7. The package 'core' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.192
+-----------------------------------------
+1. The package 'gui::context_set' was refactored.
+2. The 'core' package was improved.
+3. An error in the 'page' package was fixed.
+4. An error in the 'gui::date_picker' was fixed.
+5. The package 'graph' was refactored.
+6. Template engine was improved.
+7. An error in the 'category::category_widgets' were fixed.
+8. Other numerous bugfixes and improvements.
+
+Ultimix v. 1.5.191
+-----------------------------------------
+1. The package 'gui:::context_set' was refactored.
+2. The package 'page::messages' was added.
+3. The package 'page::page_composer' was refactored.
+4. The function 'report->process_report_query' was refactored.
+5. The package 'gui::paging' was refactored.
+6. The package 'user::user_access' was refactored.
+7. The package 'page::page_markup' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.190
+-----------------------------------------
+1. Global variables were removed from the 'jslib' package.
+2. User activation was fixed for the user manager.
+3. The event 'on_before_update_user' was added.
+4. Sending subscriptions errors were fixed.
+5. JSON export was fixed.
+6. Event emitting code was improveds for the 'user:user_access' package.
+7. The package 'string::text' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.189
+-----------------------------------------
+1. The package 'gui::context' was refactored.
+2. An error in the 'gui::paging' package was fixed.
+3. A toolbar in the user manager was improved.
+4. Method access options were changed in 'user::*' packages.
+5. Toolbar button code was fixed.
+6. Installation script was fixed.
+7. An error in the 'user::user_manager::user_manager_view' package's config was fixed.
+8. Field validation function were fixed for the 'user::user_access' package.
+
+Ultimix v. 1.5.188
+------------------------------------------
+1. Security error was fixed in the 'sape::sape_common_api' package.
+2. The ability to get placements with new prices was added to the 'sape::sape_common_api' package.
+3. Numerous errors in the 'sape' package were fixed.
+4. Database dump creation script was fixed.
+5. Localization files of the 'gui::calendar' package were fixed.
+6. Default stylesheets were improved.
+7. Items compilation script was improved for the 'gui::paging' package.
+8. Text functions were refactored.
+
+Ultimix v. 1.5.187
+------------------------------------------
+1. The unsubscribe controller was added.
+2. The macro 'unsubscribe_url' was added.
+3. The 'on_after_activate_user' event was added.
+4. The 'on_after_deactivate_user' event was added.
+5. The deactivation function was added to the 'user::user_access' package.
+6. The 'user::user_access::user_access_algoritms' package was improved.
+7. The subscription validation functions were added.
+8. Email sending functions were improved.
+
+Ultimix v. 1.5.186
+------------------------------------------
+1. The subscription message compilation function was added.
+2. The package 'subscription::subscription_algorithms' was added.
+3. Security functions were added to the 'subscription::subscription_algorithms' package.
+4. The subscription controller was added.
+5. The subscription view was added.
+6. The subscription markup package was added.
+7. The unsubscribe form was added.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.185
+------------------------------------------
+1. Template engine was fixed for the 'permit::group_markup' package.
+2. Logging was switched off for the 'lang' package.
+3. The package 'subscription' was added.
+4. The table 'umx_subscription' was added to the installation script.
+5. The package 'subscription::subscription_access' was added.
+6. Subscribing and unsubscribing functions were added.
+7. The page 'unsibscribe.html' was added.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.184
+------------------------------------------
+1. The core was improved.
+2. The package 'gui::context_set::exact_config' was added.
+3. The package 'settings' was improved.
+4. HTML code was removed from the 'gui::calendar' package.
+5. An error in the 'jsdialogs' was fixed.
+6. Packages list was fixed in the 'user::user_access' package.
+7. Class name was fixed for the 'user::user_access::user_access_algorithms' package.
+8. Constructor was fixed for the 'jquery::dialog_markup' package.
+
+Ultimix v. 1.5.183
+------------------------------------------
+1. The package 'core' was refactored.
+2. The package 'jstree' was refactored.
+3. The package 'report' was refactored.
+4. The package 'utilities' was refactored.
+5. The package 'search' was refactored.
+6. The package 'utilities' was refactored.
+7. The package 'paging' was refactored.
+8. The package 'user::user_access' was refactored.
+
+Ultimix v. 1.5.182
+------------------------------------------
+1. The package 'jsdialogs' was refactored.
+2. The package 'database::dump' was refactored.
+3. The package 'report' was refactored.
+4. The package 'sape' was refactored.
+5. The package 'page::page_composer' was refactored.
+6. The package 'page::page_markup' was refactored.
+7. The package 'permit::group_markup' was refactored.
+8. The package 'permit::group_buttons' was added.
+
+Ultimix v. 1.5.181
+------------------------------------------
+1. The 'jquery::jquery_simplemodal' package was upgraded to 1.4.2 version of the script.
+2. An error of showing modal dialog in IE was fixed.
+3. The function 'premit::premit_access->add_permit_for_object' was refactored.
+4. Charset detection functions were refactored.
+5. The package 'jquery::dialog_markup' was refactored.
+6. The package 'jquery::dialog_markup::dialog_markup_utilities' was added.
+7. The package 'gui::context' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.180
+------------------------------------------
+1. An error in the 'jquery::jquery_corner' was fixed.
+2. An error in the 'gui::date_picker' was fixed.
+3. The function 'utilities->detect_browser' was added.
+4. The package 'browser_markup' was added.
+5. The block 'for_browsers' was added.
+6. The block 'not_for_browsers' was added.
+7. The macro 'browser' was added.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.179
+------------------------------------------
+1. The package 'utilities' was refactored.
+2. The function 'permit::permit_access->add_permit_for_page' was removed.
+3. Styles of the 'trace' package were improved.
+4. The package 'schedule' was refactored.
+5. An error in the 'string::text' was fixed.
+6. Visualization of the password restoration form was improved.
+7. The package 'jquery::jquery_corner' was added.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.178
+------------------------------------------
+1. Localization data was fixed for the 'jslib' package.
+2. An error in the 'page::page_parts' package was fixed.
+3. The package 'string::text' was refactored.
+4. The 'user::user_view' was refactored.
+5. The package 'gui::controls_markup' was refactored.
+6. The package 'gui::date_picker' was added.
+7. The package 'permit::permit_markup' was refactored.
+8. The package 'permit::permit_button' was added.
+
+Ultimix v. 1.5.177
+------------------------------------------
+1. The package 'gui::paging' was refactored.
+2. The package 'search' was refactored.
+3. The package 'user::user_view' was refactored.
+4. The package 'user::user_view' was refactored.
+5. The package 'xml::yandex_xml' was added.
+6. Setting function was added to the 'http' package.
+7. The 'http->http_request' function was improved.
+8. HTTP reqest responses functions were added.
+
+Ultimix v. 1.5.176
+------------------------------------------
+1. One unit-test was fixed.
+2. The package 'gui::controls_markup' was refactored.
+3. The function 'user::user_access->process_update_record' was refactored.
+4. The charset detection function were refactored.
+5. The package 'user::user_controller::user_controller_utilities' was added.
+6. The package 'user::user_controller' was refactored.
+7. The package 'gui::timer_widget' was added.
+8. The package 'sape::sape_common_api' was refactored.
+
+Ultimix v. 1.5.175
+------------------------------------------
+1. User update form alignment was fixed.
+2. Changing password was improved.
+3. An error in the 'gui::controls_markup' package was fixed.
+4. The package 'gui::controls_markup' was refactored.
+5. Negative integers processing was fixed in the 'security::supported_data_types'.
+6. Since this release 'success_message' may be overriden in page settings.
+7. Functional programming code was improved (see 'core' package).
+8. Other small bugfixes and improvements.
+
+Ultimix v. 1.5.174
+------------------------------------------
+1. Map generation was added to the 'graph' package.
+2. Lables for the graph map were added.
+3. Lables for the X axis of graphs were added.
+4. The setting 'display_date_format' was added to the 'date_picker' macro.
+5. Templates of all login forms were improved.
+6. All login forms were improved - top and bottom spaces were added.
+7. The macro 'redirect' was added.
+8. Small bugfixes and improvemenets.
+
+Ultimix v. 1.5.173
+------------------------------------------
+1. The package 'security::security_validator' was refactored.
+2. The package 'gui::controls_markup' was refactored.
+3. The package 'user::user_access' was refactored.
+4. The package 'user::user_view' was refactored.
+5. The package 'string::text' was refactored.
+6. The macro 'prevent_from_closing' was improved - the parameter 'redirect_page' was added.
+7. The styles for the 'graph' package was changed.
+8. The package 'graph::graph_core' was refactored and fixed.
+9. Small bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.172
+------------------------------------------
+1. Graph grid drawing algorithm was improved.
+2. The font 'arial.ttf' was added to the 'graph' package.
+3. The lables drawing functions were added to the 'graph' package.
+4. The setting 'email_as_login' was added.
+5. THe function 'get_error_message' was added to the 'security::security_validator' package.
+6. The package 'gui::context' was fixed.
+7. Since this release users can use email as login.
+8. The paramater 'simple_editor' was added to the 'textarea' macro.
+9. Small bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.171
+------------------------------------------
+1. The package 'gui::paging' was refactored.
+2. Paginator output was refactored in the grid.
+3. The package 'report' was refactored.
+4. One unit-test was improved.
+5. The package 'string::text' was refactored.
+6. An error in the 'user::user_controller' package was fixed.
+7. Private nmethods were declared as public in the 'security::security_validator::predicates' package.
+8. Offsets for graphs were added.
+9. Client area drawing for the graph view was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.170
+------------------------------------------
+1. The package 'security::supported_data_types' was refactored.
+2. Type processing policy was changed.
+3. The package 'settings::settings_view' was refactored.
+4. The package 'user::user_access' was refactored.
+5. The package 'page::page_composer_utilities' was refactored.
+6. The package 'string' was refactored.
+7. The package 'content::content_access' was refactored.
+8. The package 'security::security_validator' was refactored.
+9. The package 'security::security_validator::predicates' was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.169
+------------------------------------------
+1. The package 'jquery::jquery_simplemodal' was improved.
+2. Inplace editing was improved.
+3. An error in the 'settings::settings_view' was fixed.
+4. The config 'cf_system' was added the 'code_data' package.
+5. An error in the 'settings::settings_controller' was fixed.
+6. A new setting 'session_timeout' was added.
+7. Some security errors were fixed.
+8. The package graph was refactored.
+9. Small bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.168
+------------------------------------------
+1. The package 'string::text' was refactored and improved.
+2. Multy domen support was added.
+3. The package 'database::db_config_set' was refactored.
+4. The constant 'DOMAIN' was added.
+5. The package 'sape::sape_common_api' was refactored.
+6. The package 'sape::sape_site_api' was refactored.
+7. An error in the 'sape::sape_common_api' was fixed.
+8. The package 'sape::sape_utilities' was improved.
+9. Small bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.167
+------------------------------------------
+1. The package 'search' was fixed.
+2. The package 'category::category_markup' was fixed.
+3. The field 'print_content' was added to the 'content' package.
+4. Installation script was improved.
+5. The package 'content::content_access' was improved.
+6. The macro 'not' was added.
+7. Inplace editing was improved.
+8. An error in the 'database::dump' was fixed.
+9. Other bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.166
+------------------------------------------
+1. The package 'gui::paging' was refactored.
+2. The package 'permit::group_markup' was refactored.
+3. The package 'string' was refactored.
+4. The package 'database' was refactored.
+5. The package 'search' was refactored.
+6. The package 'gui::context' was refactored.
+7. The package 'sape::sape_common_api' was refactored.
+8. The package 'sape::sape_site_api' was refactored.
+9. Small refactoring and improvements
+10. The documentation was updated.
+
+Ultimix v. 1.5.165
+------------------------------------------
+1. The package 'json::json_view' was refactored.
+2. The package 'core' was refactored.
+3. The package 'category::category_widgets' was added.
+4. The package 'database::dump' was refactored.
+5. The package 'menu::menu_view' was refactored.
+6. The package 'report' was refactored.
+7. The package 'jstree' was refactored.
+8. The package 'gui::calendar' was refactored.
+9. The package 'string::text' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.164
+------------------------------------------
+1. The package 'graph::graph_data::graph_data_access' was fixed.
+2. The package 'file_formats::excel' was added.
+3. The package 'file_formats::excel::writer' was added.
+4. The package 'user::user_controller' was refactored.
+5. The package 'security::security_validator' was refactored.
+6. The package 'user::user_access' was refactored.
+7. The package 'page::page_access' was refactored.
+8. The package 'string::tags' was refactored.
+9. Small bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.163
+------------------------------------------
+1. The package 'graph::graph_data' was added.
+2. The package 'graph::graph_data::graph_data_access' was added.
+3. The package 'graph::graph_data::graph_data_algorithms' was added.
+4. The package 'page::page_composer' was improved.
+5. Installation script was updated.
+6. The package 'graph' was improved.
+7. The page 'graph' was added.
+8. The package 'graph' was fixed.
+9. Other bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.162
+------------------------------------------
+1. The package 'gui::controls_markup' was fixed.
+2. The package 'schedule' was improved.
+3. Small bugfixes and improvements.
+4. The package 'page::page_composer_utilities' was improved.
+5. The package 'user::user_controller' was improved.
+6. The package 'sape::sape_common_api' was fixed.
+7. An error in the 'gui::paging' was fixed.
+8. The macro 'date_picker' was refactored.
+9. The macro 'submit' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.161
+------------------------------------------
+1. The package 'security::security_utilities' was fixed.
+2. The package 'security::security_validator' was fixed.
+3. The package 'gui::context_set' was fixed.
+4. The package 'gui' was fixed.
+5. The package 'gui::controls_markup' was fixed.
+6. The package 'gui::context' was fixed and refactored.
+7. The package 'schedule::schedule_access' was fixed.
+8. The package 'security::security_parser' was fixed.
+9. Small bugfixes and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.160
+------------------------------------------
+1. The function 'user::user_controller->update_user' was fixed.
+2. The function 'user::user_controller->register_do' was fixed.
+3. The package 'user::user_controller' was refactored.
+4. The function 'user::user_access->register_user' was fixed.
+5. The function 'user::user_controller->restore_password' was fixed.
+6. The package 'mail' was fixed and refactored.
+7. Localization files of the 'user::user_controller' package were improved.
+8. UTF-8 support for the 'from' field was added to the 'mail' package.
+9. Email templates for the registration were improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.159
+------------------------------------------
+1. The package 'gui::context_set' was refactored.
+2. The package 'gui::paging' was refactored.
+3. The package 'security::security_validator' was added.
+4. The package 'security::security_utilities' was refactored.
+5. The package 'core' was refactored.
+6. The package 'permit::group_manager' was refactored.
+7. The state 'json_data' was removed.
+8. The package 'json::json_view' was refactored.
+9. The package 'page::page_access' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.158
+------------------------------------------
+1. Unit-test was fixed.
+2. The package 'gui::math_markup' was refactored.
+3. The package 'gui::context_set' was refactored.
+4. The package 'core' was refactored.
+5. The package 'gui::colobox' was refactored.
+6. The package 'gui::paging' was refactored.
+7. The package 'permit::permit_manager' was refactored.
+8. The package 'permit::group_manager' was refactored.
+9. An error in the 'security::security_utilities' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.157
+------------------------------------------
+1. The package 'page::page_parts' was refactored.
+2. An error in the 'user::user_acces' was fixed.
+3. The package 'review::review_access' was refactored.
+4. The package 'security::security_parser' was added.
+5. The package 'security::security_utilities' was refactored.
+6. The package 'rating::rating_access' was refactored.
+7. The package 'page::page_composer' was refactored.
+8. The package 'user::user_view' was refactored.
+9. The package 'user::user_access' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.156
+------------------------------------------
+1. The package 'gui::content' was refactored.
+2. Two unit-tests were fixed.
+3. The package 'gui::fs_markup' was refactored.
+4. The package 'user::user_access' was refactored.
+5. The package 'graph::graph_core' was refactored.
+6. The package 'user::user_access' was refactored.
+7. The package 'gui::fs_markup' was refactored.
+8. The package 'gui::math_markup' was refactored.
+9. The package 'lang::lang_markup' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.155
+------------------------------------------
+1. An error in the 'content::content_markup' was fixed.
+2. The package 'user::user_controller' was refactored.
+3. The package 'gui::content_set::default_views' was refactored.
+4. The package 'gui::content_set::default_views::default_views_utilities' was refactored.
+5. An error in the 'gui::content_set::default_views::default_views_utilities' package was fixed.
+6. The package 'content::content_markup' was refactored.
+7. The package 'user::user_markup' was refactored.
+8. The package 'core' was refactored.
+9. The package 'content::content_view' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.154
+------------------------------------------
+1. The template layout 'print' was added.
+2. The package 'template_manager::base_template' was refactored.
+3. An error in the documentation was fixed.
+4. The 'jquery' package was improved.
+5. The class 'auto_print' was added. Use it to print page when it's loaded.
+6. An error in the 'pahe::page_composer::page_composer_utilities' was fixed.
+7. The macro 'print_content_url' was added.
+8. An error in the 'gui::context' wa fixed.
+9. The package 'content::content_markup' was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.153
+------------------------------------------
+1. The package 'gui::context_set::default_views' was refactored.
+2. The package 'gui::context_set::default_views::default_views_utilities' was refactored.
+3. The function 'string::text->detect_encoding' was added.
+4. The package 'user::user_markup' was refactored.
+5. The package 'page::page_composer' was refactored.
+6. The package 'gui::db_markup' was refactored.
+7. The package 'page::page_parts' was refactored.
+8. An error in the 'user::user_view' was fixed.
+9. Small errors and improvemenets.
+10. The documentation was updated.
+
+Ultimix v. 1.5.152
+------------------------------------------
+1. An error in the 'jslib' package was fixed.
+2. An error in the 'jquery::jquery_media' package was fixed.
+3. The jQueryUI was upgraded to the 1.8.16 version.
+4. An error in the 'gui::controls_markup' package was fixed.
+5. An error in the 'core' package was fixed.
+6. An error in the 'user::user_markup' package was fixed.
+7. The macro 'logout_img_button' was added.
+8. The macro 'edit_profile_button' was added.
+9. Small refactoring and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.151
+------------------------------------------
+1. An error in the 'permit::group_markup' was fixed.
+2. An error in the 'gui::default_views::default_views_utilities' was fixed.
+3. An error in the 'gui::button_markup' was fixed.
+4. The package 'content::content_view' was improved.
+5. An error in the 'content_manager' was fixed.
+6. An error in the 'gui::controls_markup' was fixed.
+7. Small refactoring and improvemenets.
+8. The macro 'content' was added.
+9. The package 'content::content_view' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.150
+------------------------------------------
+1. The package 'database::oracle_database' was refactored.
+2. The package 'gui::context' was refactored.
+3. The package 'user::user_markup' was refactored.
+4. The package 'page::page_markup' was refactored.
+5. The package 'gui::video_markup' was refactored.
+6. The package 'core' was refactored.
+7. An error in the 'permit::group_markup' was fixed.
+8. An error in the 'user::user_markup' was fixed.
+9. An error in the 'page::page_markup' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.149
+------------------------------------------
+1. The package 'gui::context_set::default_views' was refactored.
+2. The package 'page::page_composer::page_composer_utilities' was refactored.
+3. An error in the 'page::page_composer::page_composer_utilities' package was fixed.
+4. The package 'lang::lang_markup' was refactored.
+5. An error in the 'page::page_parts' was fixed.
+6. The package 'page::page_composer' was refactored.
+7. The package 'permit::group_markup' was refactored.
+8. The package 'user::user_controller' was refactored.
+9. The package 'gui::paginator3000' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.148
+------------------------------------------
+1. An error in the 'user::user_markup' was fixed.
+2. An error in the 'permit::permit_markup' was fixed.
+3. An error in the 'page::page_parts' was fixed.
+4. Stylesheets were improved and fixed.
+5. The package 'page::page_markup' was refactored.
+6. The package 'page::page_composer' was refactored.
+7. An error in the 'page::page_parts' was refactored.
+8. An error in the 'maps::google_maps' was refactored.
+9. An error in the 'user::user_view' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.147
+------------------------------------------
+1. The package 'gui::controls_markup' was refactored.
+2. The package 'content::content_view' was refactored.
+3. The package 'gui::context_set' was refactored.
+4. The package 'page::page_access' was refactored.
+5. The package 'permit::group_view' wa refactored.
+6. The package 'rating::rating_markup' wa refactored.
+7. The package 'review::review_access' wa refactored.
+8. The package 'core' was refactored.
+9. The package 'gui::string_markup' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.146
+------------------------------------------
+1. The package 'gui::controls_markup' was refactored.
+2. The package 'gui::paging' was refactored.
+3. The package 'pmsg::pmsg_controller' was refactored.
+4. The package 'security::security_markup' was refactored.
+5. The package 'user::user_markup' was refactored.
+6. The package 'user::user_controller' was refactored.
+7. The package 'settings::settings_view' was refactored.
+8. The package 'permit::permit_markup' was refactored.
+9. The package 'group::group_view' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.145
+------------------------------------------
+1. The package 'page::page_parts' was refactored.
+2. The package 'gui::button_markup' was refactored.
+3. The package 'database::chronological' was refactored.
+4. The package 'gui::context' was refactored.
+5. The package 'security::data_filtraion' was refactored.
+6. The package 'gui::context_set' was refactored.
+7. The package 'gui::controls_markup' was refactored.
+8. The package 'gui::mouse_markup' was refactored.
+9. The package 'gui::paging' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.144
+------------------------------------------
+1. The page 'restore_password.html' was addded.
+2. The page 'password_restoration_complete.html' was addded.
+3. An error in the 'page::auto_markup' was fixed.
+4. The package 'gui::button_markup' was refactored.
+5. The package 'core' was refactored.
+6. The package 'security::data_filtraion' was refactored.
+7. The package 'settings::settings_view' was refactored.
+8. The package 'template_manager::base_template' was refactored.
+9. Other small inprovements and bugfixes.
+10. The documentation was updated.
+
+Ultimix v. 1.5.143
+------------------------------------------
+1. The package 'page::auto_markup' was improved.
+2. The macro 'prevent_from_leaving' was added.
+3. An error in the 'jquery' package was fixed.
+4. An error in the 'page::auto_markup' was fixed.
+5. An error in the 'jquery::jquery_simplemodal' package was fixed.
+6. An error in the 'gui::context' package was fixed.
+7. An error in the 'gui::context::custom_validations' package was fixed.
+8. The function 'user::user_algorithms::generate_password' package was added.
+9. An error in the 'security::security_markup' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.142
+------------------------------------------
+1. The package 'jquery::dialog_markup' was refactored.
+2. The package 'database::mysql_database' was refactored.
+3. The package 'gui::checkbox_markup' was refactored.
+4. The package 'gui::controls_markup' was refactored.
+5. An error in the 'security::security_utilities' was fixed.
+6. An error in the 'permit::group_access' was fixed.
+7. An error in the 'jquery::jquery_media' was fixed.
+8. The package 'jquery::jquery_simplemodal' was added.
+9. The package 'page::auto_markup' was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.141
+------------------------------------------
+1. The package 'gui::checkbox_markup' was refactored.
+2. The package 'gui::controls_markup' was refactored.
+3. The package 'review::review_markup' was refactored.
+4. The package 'sape::sape_common_api' was refactored.
+5. The package 'user::user_controller' was refactored.
+6. The package 'mail' was improved.
+7. The package 'security::security_utilities' was refactored.
+8. The package 'gallery::gallery_markup' was refactored.
+9. The documentation was updated.
+
+Ultimix v. 1.5.140
+------------------------------------------
+1. An error in the 'file_input::file_input_view' was fixed.
+2. An error in the 'error_log::error_log_view' unit-test was fixed.
+3. Two unit-tests were refactored.
+4. The package 'page::page_composer' was refactored.
+5. The package 'page::page_db_access' was refactored.
+6. The package 'jquery::jquery_media' was improved and fixed.
+7. The package 'permit::group_access' was refactored.
+8. The package 'security::security_markup' was refactored.
+9. The package 'gui::button_markup' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.139
+------------------------------------------
+1. All magic qoutes were switched off.
+2. The package 'security::supported_data_types' was fixed.
+3. Installation script was fixed.
+4. Numerous errors in unit-tests were fixed.
+5. An error in the 'error_log::error_log_view' was fixed.
+6. The package 'gui::video_macro' was improved.
+7. The package 'jquery::jquery_media' was added.
+8. The macro 'media' was added.
+9. The 'jquery' library was upgraded up to 1.7.1 version.
+10. The documentation was updated.
+
+Ultimix v. 1.5.138
+------------------------------------------
+1. The package 'page::auto_macro' was added.
+2. The package 'database::mysql_database' was refactored.
+3. The package 'gui::checkbox_markup' was refactored.
+4. The package 'gui::radiobutton_markup' was refactored.
+5. An error in the 'jquery::dialog_markup' was fixed.
+6. The package 'jquery::dialog_markup' was refactored.
+7. The package 'mail' was refactored.
+8. The package 'mail' was improved (utf8 headers were added to the email).
+9. Small refactoring and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.137
+------------------------------------------
+1. The package 'gui::checkbox_markup' was refactored.
+2. The package 'gui::forms' was fixed.
+3. The package 'template_manager::base_template' was refactored.
+4. The package 'string::tags' was improved.
+5. The function 'mail::send_email' was improved - lang and string parsers are applied to the email text.
+6. The package 'mail' was refactored.
+7. Security checks were removed from the 'mail::send_email' function.
+8. Default email template was fixed for the 'gui::forms' package.
+9. Auto redirection was added to the 'gui:forms' controller.
+10. The documentation was updated.
+
+Ultimix v. 1.5.136
+------------------------------------------
+1. An error in the installation script was fixed.
+2. The package 'database' was refactored
+3. The package 'database::mysql_database' was refactored.
+4. The package 'database::oracle_database' was refactored.
+5. The package 'database::mssql_database' was refactored.
+6. The package 'database::postgre_database' was refactored.
+7. The package 'gui::button_markup' was refactored.
+8. The package 'permit::permit_access' was refactored.
+9. The package 'settings::settings_view' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.135
+------------------------------------------
+1. An error in the 'security::security_utilities' was fixed.
+2. An error in the calendar was fixed.
+3. The package 'jslib' was refactored.
+4. The package 'jslib' was improved - the script 'inplace.js' was edited.
+5. Simple inplace editing was added.
+6. The package 'gui::calendar' was improved.
+7. An error in the 'security::security_algorithms' was fixed.
+8. The macro 'submit' was added to the 'gui::controls_markup' package.
+9. Small refactoring and improvements.
+10. The documentation was updated.
+
+Ultimix v. 1.5.134
+------------------------------------------
+1. Total refactoring.
+2. An error was fixed in the 'settings::package_settings' package.
+3. Unit-test configs were fixed.
+4. An error in the 'category::category_markup' was fixed.
+5. An error in the 'gui::paging' was fixed.
+6. The localisation was added to the 'gui::caledar'.
+7. The 'gui::calendar' was fixed and improved.
+8. An error in the 'gui::forms' was fixed.
+9. The controller was added to the 'gui::forms' package.
+10. The documentation was updated.
+
+Ultimix v. 1.5.133
+------------------------------------------
+1. The 'edit_profile.html' page was fixed.
+2. An error in the 'rating::rating_algorithms' was fixed.
+3. The package 'rating::rating_algorithms' was refactored.
+4. The page 'user_line.html' was fixed.
+5. The page 'profile.html' was fixed.
+6. The macro 'lang_file' was refactored and improved.
+7. The function 'review::review_algorithms::review_creation_allowed' was removed.
+8. The package 'review::review_algorithms' was improved.
+9. The package 'comment::comment_algorithms' was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.132
+------------------------------------------
+1. An error in the 'security::security_utilities' was fixed.
+2. The package 'page::static_content::static_content_manager' was refactored.
+3. An error in the cf_predefined_config was fixed.
+4. Core styles were improved.
+5. The package 'gui::object_list' was added.
+6. The macro 'object_list' was added.
+7. A view was added to the 'gui::object_list' package.
+8. An error was fixed in the 'category::category_view::draw_categories_catalogue_subtree' function.
+9. An error was fixed in the 'category::category_view::draw_categories_structure_subtree' function.
+10. The documentation was updated.
+
+Ultimix v. 1.5.131
+------------------------------------------
+1. The package 'calendar' was refactored.
+2. Tha page 'contact_us.html' was added.
+3. Installation script was improved.
+4. An error in the group manager was fixed.
+5. An error in the 'page::page_composer_utilities' was fixed.
+6. The package 'gui::context' was improved.
+7. An error in the 'permit::user_permit_manager' was fixed.
+8. An error in the 'permit::group_markup' was fixed.
+9. An error in the user groups form was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.130
+------------------------------------------
+1. Core styles were improved.
+2. 'Contact us' form was added.
+3. 'Review' form was added.
+4. The package 'calendar' was added.
+5. The package 'calendar_text_access' was added.
+6. The package 'security::security_utilities' was improved.
+7. An error in the 'security::supported_data_types' was fixed.
+8. A view was added to the 'gui::calendar' package.
+9. The package 'gui::calendar' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.129
+------------------------------------------
+1. The method 'link_utilities::delete_dependent_objects' was removed.
+2. Security error was fixed.
+3. Stylesheets include order was changed.
+4. The function 'page::page_composer::pre_generation' was refactored.
+5. The package 'content::content_view' was improved.
+6. The package 'jquery' was refactored.
+7. An error in the 'jquery' was fixed.
+8. The package 'gui::forms' was added.
+9. The macro 'form' was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.128
+------------------------------------------
+1. The permit manager was fixed.
+2. The group manager was fixed.
+3. An error in the 'permit::permit_markup' was fixed.
+4. An error in the 'permit::permit_algorithms' was fixed.
+5. An error in the user permit manager was fixed.
+6. The permit 'database_manager' id added by default to the admin user.
+7. The processing of the 'cfcxs_list_buttons' config was removed.
+8. The package 'permit::group_markup' was refactored.
+9. The package 'gui::context_set::default_views' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.127
+------------------------------------------
+1. The package 'page::page_parts' was refactored and improved.
+2. An error for the admin.html page was fixed.
+3. The 'data_form' package was improved.
+4. The package 'jsdialogs' was improved.
+5. The package 'settings::settings' was improved.
+6. The package 'data_extension' was moved to the 'database' package.
+7. The package 'database::set_field' was set.
+8. An error in the 'page::page_composer_utilities' was fixed.
+9. A new image set was added to the 'category::category_view'.
+10. The documentation was updated.
+
+Ultimix v. 1.5.126
+------------------------------------------
+1. An error in the 'gui::context_set::default_views' was fixed.
+2. Small refactoring and improvements.
+3. Global styles were improved.
+4. Buttons in the admin console was fixed.
+5. An error in the 'database::dump' was fixed.
+6. The package 'permit::permit_markup' was refactored.
+7. The common buttons were improved.
+8. An error in the 'gui::context_set::default_views' was fixed.
+9. Other bugfixes. 
+10. The documentation was updated.
+
+Ultimix v. 1.5.125
+------------------------------------------
+1. Content manager was fixed.
+2. Installation script was fixed.
+3. The package 'gui::context_set::common_buttons' was refactored and improved.
+4. An error in the 'gui::context_set::default_views' was fixed.
+5. An error in the 'gui::context_set::common_button' was fixed.
+6. An error in the 'category::category_markup' package was fixed.
+7. The package 'gui::controls_markup' was refactored - parameter 'default' was removed with 'value'.
+8. The macro 'update_record' was improved.
+9. Copy state was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.124
+------------------------------------------
+1. 2 unit-test were added.
+2. Total refactoring.
+3. Small bugfixes and improvements.
+4. An error in the 'functional_programming.php' was fixed.
+5. The documentation was updated.
+
+Ultimix v. 1.5.123
+------------------------------------------
+1. An error in the 'page::page_composer_utilities' was fixed.
+2. Numerous bug fixes and improvements.
+3. The package 'content::content_markup' was added.
+4. The macro 'content_links' was added.
+5. An error in the 'gui::paging' package was fixed.
+6. The package 'gui::paging' was refactored.
+7. An error in the package 'settings::settings' was fixed.
+8. An error in the package 'gui::checkbox_markup' was fixed.
+9. The package 'content::content_view' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.122
+------------------------------------------
+1. An error in the 'core' package was fixed.
+2. Numerous bugfixes and improvements.
+3. Total refactoring.
+4. The macro 'object_line' was removed.
+5. The documentation was updated.
+
+Ultimix v. 1.5.121
+------------------------------------------
+1. The package 'gui::controls_markup' was refactored and improved.
+2. The package 'jquery::dialog_markup' was added.
+3. The package 'jquery::jquery_markup' was refactored.
+4. The package 'jquery::permit_markup' was refactored.
+5. The package 'jquery::group_manager' was refactored.
+6. An error in the unit-test was fixed.
+7. The package 'page::page_composer' was refactored.
+8. 1 unit-test was added.
+9. Styles were improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.120
+------------------------------------------
+1. An error in the 'string' package was fixed.
+2. Total refactoring.
+3. The documentation was updated.
+
+Ultimix v. 1.5.119
+------------------------------------------
+1. The package 'page::page_access' was refactored.
+2. 1 unit-test was added.
+3. The package 'core' was refactored.
+4. A few unit-tests were improved.
+5. The package 'gui::context' was refactored.
+6. The package 'gui::context::custom_validations' was added.
+7. The package 'string' was refactored.
+8. The package 'trace' was refactored.
+9. Refactoring.
+10. The documentation was updated.
+
+Ultimix v. 1.5.118
+------------------------------------------
+1. 1 unit-test was added.
+2. The 'rss' package was improved.
+3. The registration confirm email was improved.
+4. The package 'gui' was refactored.
+5. The package 'gui::controls_markup' was added.
+6. The package 'database' was refactored.
+7. The macro 'yes_no' was added.
+8. The package 'ad::ad_manager::ad_manager_view' was refactored.
+9. Refactoring.
+10. The documentation was updated.
+
+Ultimix v. 1.5.117
+------------------------------------------
+1. Code improvements.
+2. 5 unit-tests were added.
+3. The package 'schedule' was improved.
+4. An error in the 'core' package was fixed.
+5. An error in the 'xml' package was fixed.
+6. An error in the 'xml::xml_rpc' was fixed.
+7. Total refactoring.
+8. The documentation was updated.
+
+Ultimix v. 1.5.116
+------------------------------------------
+1. The package 'sape::sape_api' was refactored.
+2. The macro 'checkbox' was improved.
+3. The macro 'checkbox_set' was improved.
+4. The package 'template_manager::base_template' was refactored.
+5. An error in the 'permit::permit_markup' was fixed.
+6. An error in the 'gui::checkbox_markup' was fixed.
+7. Checkbox styles were improved.
+8. The package 'sape::sape_api' was improved.
+9. Total refactoring.
+10. The documentation was updated.
+
+Ultimix v. 1.5.115
+------------------------------------------
+1. The method 'sape::sape_api->get_projects' was added.
+2. An error in the 'href' macro was fixed.
+3. Active URL was added to the confirm registration email.
+4. The script 'forms.js' was refactored.
+5. The script 'jsdialogs.js' was improved.
+6. The page 'confirm_registration.html' was improved.
+7. An error in the update profile form was fixed.
+8. The update user profile form was improved.
+9. An error in the 'user::user_markup' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.114
+------------------------------------------
+1. An error in the 'page::page_composer' was fixed.
+2. An error in the 'jquery::jquery_markup' was fixed.
+3. An error in the 'gui::multiple_line' was fixed.
+4. An error in the 'user::user_controller' was fixed.
+5. An error in the 'user::user_view' was fixed.
+6. An error in the 'user::user_markup' was fixed.
+7. An error in the 'category::category_view::category_view_templates' was fixed.
+8. An error in the 'page::page_composer_utilities' was fixed.
+9. An error in the 'page::page_composer' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.113
+------------------------------------------
+1. The package 'database::database_algorithms' was improved.
+2. An error in the 'page::page_composer' was fixed.
+3. The macro 'page' was removed.
+4. The 'gui::multiple_input' was replaced with the 'gui::multiple_line' package.
+5. The package 'user::user_markup' was added.
+6. The package 'xml' was added.
+7. The package 'xml::xml_rpc' was added.
+8. The package 'sape::sape_api' was added.
+9. Total refactoring.
+10. The documentation was updated.
+
+Ultimix v. 1.5.112
+------------------------------------------
+1. The macro 'for_pages' was added.
+2. Redirection after logout was added.
+3. The macro 'category_ids' was removed.
+4. The script 'multiple_input.js' was improved.
+5. The 'jquery::jquery_markup' package was refactored, fixed, and improved.
+6. The 'category::category_view' was refactored and it's performace was improved.
+7. The package 'search::search_engine' was fixed.
+8. The logout form weas improved.
+9. Total refactoring.
+10. The documentation was updated.
+
+Ultimix v. 1.5.111
+------------------------------------------
+1. An error in the 'search::search_engine' was fixed.
+2. An error in the 'pmsg::pmsg_view' was fixed.
+3. An error in the 'gui::context_set' was fixed.
+4. The package 'database::change_history' was refactored.
+5. The 'jsdialogs' package was improved.
+6. The 'jslib' package was improved.
+7. Styles of the radion buttons were fixed.
+8. Logout form was improved.
+9. The macro 'session_login' was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.110
+------------------------------------------
+1. Custom search form was improved - parameter 'action' was added.
+2. An error in the 'jquery.dialog.js' script was fixed.
+3. An error in the 'select' macro was fixed.
+4. 'not_selectable' type was added to the 'jstree' package.
+5. Branch categories in the category tree are "not_selectable" by default.
+6. The package 'database::database_algorithms' was refactored and improved.
+7. An error in the multiple input control was fixed.
+8. Default 'onaddline' event handler was added.
+9. Visualization of the 'multiple_input' was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.109
+------------------------------------------
+1. An error in the 'template_manager' was fixed.
+2. An error in the 'jstree' theme was fixed.
+3. The package tree displaying was improved.
+4. The package 'cached_multy_fs' was refactored.
+5. The package 'page::page_access' was refactored and improved.
+6. The 'checkbox' macro was refactored - type 'default' was removed.
+7. The registration pages were improved.
+8. Registration was fixed.
+9. Registration form was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.108
+------------------------------------------
+1. An error in the .htaccess was fixed.
+2. The package 'template_manager::data_template' was improved.
+3. The package 'dev' was added.
+4. Sort functions were added to the core package.
+5. An error in the installation script was fixed.
+6. An error in the 'gui::paging' package was fixed.
+7. The 'classic' theme for the jstree was improved.
+8. The page 'json.html' was added.
+9. The state 'json_data' was removed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.107
+------------------------------------------
+1. The 'gui::contest_set::contest_set_utilities' was improved.
+2. The 'create_button' was improved.
+3. An error in the 'gui::math_markup' package was fixed.
+4. Templates of the 'content::content_view' package were fixed.
+5. An error in the 'database::dump' package was fixed.
+6. An error in the installation script was updated.
+7. The package 'stat' was added.
+8. The package 'search::search_engines' was added.
+9. Refactoring.
+10. The documentation was updated.
+
+Ultimix v. 1.5.106
+------------------------------------------
+1. Page deleting was improved.
+2. The package 'permit::permit_markup' was added.
+3. The package 'permit::group_markup' was added.
+4. An error in the 'page::page_composer' was fixed.
+5. The function 'core->_fetch_subpackages_tree' was improved.
+6. A new state 'show_system_tree' was added to the 'core::package_manager::package_manager_view'.
+7. The package 'core::package_algorithms' was updated.
+8. The macro 'search_form' was moved to the 'gui' package.
+9. The macro 'public_search_form' was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.105
+------------------------------------------
+1. The macro 'package_dialog' was added.
+2. An error in the 'data_form' package was fixed.
+3. The script 'data_form.js' was refactored.
+4. The package 'jstree' was improved and refactored.
+5. The script 'jquery.cookies.js' was added to the 'jquery' package.
+6. An error with 'success_message' section of the 'context' script was fixed.
+7. The package 'category::category_markup' was added.
+8. The search form was fixed for the page_manager.
+9. The 'gui::context' package was improved.
+10. The documentation was updated.
+
+Ultimix v. 1.5.104
+------------------------------------------
+1. An error in the 'gui::video_markup' was fixed.
+2. An error in the 'user::user_view' was fixed.
+3. An error in the 'user::user_controller->register_user' function was fixed.
+4. An error in the 'database->apply_add_limitations' function was fixed.
+5. Installation script was updated.
+6. Page's packages editing was fixed.
+7. Page's permitions editing was added.
+8. The tree view of packages was added in the package manager.
+9. The package 'core::page_markup' was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.103
+------------------------------------------
+1. Language files were improved.
+2. The package 'page::page_access' was refactored.
+3. The page list was added.
+4. Installation script was updated.
+5. The state 'dependent_records_form' was added.
+6. An error in the 'gui::context_set::context_set_utilities->build_query_string' function was fixed.
+7. Page deleting button was added to the page manager.
+8. Page editing form was added.
+9. Page creating form was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.102
+------------------------------------------
+1. An error in the 'core' package was fixed.
+2. An error in the 'page::page_composer' was fixed.
+3. An error in the 'database::change_history::change_history_access' was fixed.
+4. New icons were added to the 'page::page_composer' package.
+5. An error in the 'page::static_content::static_content_access' was fixed.
+6. The package 'gui' was refactored and improved.
+7. Installation script was improved.
+8. Numerous bug fixes and improvements.
+9. The page 'page_manager.html' was added.
+10. The documentation was updated.
+
+Ultimix v. 1.5.101
+------------------------------------------
+1. The package 'jquery::jquery_markup' was refactored.
+2. The package 'gui::radio_markup' was refactored.
+3. An error in the 'database' package was fixed.
+4. Numerous bugfixes were fixed in the dump package.
+5. An error was fixed in the 'gui::context_set::common_buttons' package.
+6. An error in the 'user::user_manager::user_manager_view' was fixed.
+7. An error in the 'comment::comment_access' was fixed.
+8. Logout controller was improved.
+9. An error in the 'review::review_access' was fixed.
+10. The documentation was updated.
+
+Ultimix v. 1.5.100
+------------------------------------------
+1. Total refactoring.
+2. Small bugfixes and improvements.
+3. Core styles were improved.
+4. The package 'page::page_access' was improved.
+5. The package 'cache' was refactored.
+6. The package 'rating::rating_markup' was refactored.
+7. The macro 'rss_link' was added.
+8. The script 'functional_programming.php' was refactored.
+9. The script 'package_manipulation.php' was refactored.
+10. The documentation was updated.
+
+Ultimix v. 1.5.99
+------------------------------------------
+1. An error in the 'jquery.jstree.buttons.js' script was fixed.
+2. The event 'on_before_delete_category' was added.
+3. Tree manipulation functions were improved.
+4. Functions 'get_last_field_value' and 'need_save_field' were added.
+5. The package 'database::change_history::change_history_access' was improved.
+6. The package 'database::change_history::change_history_markup' was improved.
+7. The macro 'login_button' was improved.
+8. Small refactoring and improvements.
+9. The macro 'toolbar_button' was added.
+10. Documentation was updated.
+
+Ultimix v. 1.5.98
+------------------------------------------
+1. Errors in 'comment' and 'review' packages were fixed.
+2. An error in the file_input_controller was fixed.
+3. The event 'on_after_delete_category' was added.
+
+Ultimix v. 1.5.97
+------------------------------------------
+1. The 'rss' package was refactored.
+2. The page 'rss.html' was added.
+3. The macro 'category_id' was improved.
+4. The macro 'rss_button' was added.
+5. An error in the 'page::page_composer_utilities' was fixed.
+6. Installation script was fixed.
+7. A new state was added to the 'category::category_view'.
+8. The package 'category::category_access' was improved.
+9. The package 'gui::context_set' was fixed and improved.
+10. An error in the 'gui::context_set' was fixed.
+11. Errors in 'comment' and 'review' packages were fixed.
+12. An error in the file_input_controller was fixed.
+13. The event 'on_after_delete_category' was added.
+14. Documentation was updated.
+
+Ultimix v. 1.5.96
+------------------------------------------
+1. An error in the 'gui::checkbox_markup' package was fixed.
+2. An error in the 'forms.js' was fixed.
+3. An error in the 'grids.js' was fixed.
+4. The package 'gui::context_set' was improved.
+5. The package 'user::user_view' was refactored.
+6. The macro 'user_login' was added.
+7. An error in the 'gui::context_set' was fixed.
+8. Small refactoring and improvements.
+9. The package 'content::content_view' was improved.
+10. Documentation was updated.
+
+Ultimix v. 1.5.95
+------------------------------------------
+1. The package 'menu::menu_controller' was removed.
+2. 12 unit-tests were added.
+3. The package 'menu::menu_algorithms' was removed.
+4. Small refactoring and improvements.
+5. The package 'rating::rating_markup' was improved.
+6. The macro 'months_on_site' was added.
+7. Installation script was refactored and improved.
+8. Documentation was updated.
+
+Ultimix v. 1.5.94
+------------------------------------------
+1. An error in the 'gui::context_set::common_buttons' was fixed.
+2. The package 'core::package_algorithms' was refactored.
+3. The package 'gui::keyboard_markup' was added.
+4. The 'simple_login' state was removed from the 'user::user_controller' package.
+5. The package 'testing' was improved, fixed and refactored.
+6. The function 'cached_multy_fs->get_data' was added.
+7. Unit-test for the 'page::page_composer' package was created.
+8. The package 'page::page_composer' was refactored.
+9. The package 'gui::button_markup' was added.
+10. An error in the 'gui::context_set::context_set_utilities' was fixed.
+11. The function 'cache->drop_cache' was added.
+12. Documentation was updated.
+
+Ultimix v. 1.5.93
+------------------------------------------
+1. Installation script was fixed.
+2. An error was fixed in the 'gui::context_set->process_string' function.
+3. An error in the 'gui::checkbox_markup' was fixed.
+4. The package 'gui::context_set_markup' was added.
+5. The package 'gui::context_set' was refactored.
+6. The package 'page::page_composer' was refactored.
+7. Small refactoring and improvements.
+8. An error in the 'core' package was fixed.
+
+Ultimix v. 1.5.92
+------------------------------------------
+1. The macro 'object_line' was added.
+2. The state 'list_view' was refactored.
+3. The 'jslib' package was updated.
+4. The tab_ex.js was improved.
+5. The package 'rating' was added.
+6. Installation script was updated.
+7. Small refactoring and improvements.
+8. The macro 'rating' was added.
+9. The package 'utilities' was added.
+10. Documentation was updated.
+
+Ultimix v. 1.5.91
+------------------------------------------
+1. The performance of the 'soap' package was improved.
+2. The macro 'login_button' was added.
+3. The macro 'dialog' was improved. Settings 'hide_close_button' and 'close_on_escape' were added.
+4. The macro 'auto_open_login_dialog' was added.
+5. The 'business_template' was improved.
+6. The state 'user_line' was improved.
+7. The package 'user::user_view' was refactored.
+8. Pre and post processing was added to the 'gui::context_set' package.
+10. Documentation was updated.
+
+Ultimix v. 1.5.90
+------------------------------------------
+1. The package 'core' was improved.
+2. An error in the 'core' package was fixed.
+3. The package 'permit::group_access' was refactored.
+4. The package 'system_structure::system_structure_access' was refactored.
+5. The package 'gui::paging' was refactored.
+6. The package 'gui::context_set' was improved.
+7. The setting 'PageField' was added to the 'gui::paging' class.
+8. The page 'user_line.html' was added.
+9. An error in the 'page::page_composer' was fixed.
+10. The page 'admin2.html' was added.
+11. Documentation was updated.
+
+Ultimix v. 1.5.89
+------------------------------------------
+1. The 'user::user_controller' package was refactored.
+2. The 'user::user_view' package was refactored.
+3. The function 'category::category_algorithmss->get_children' was added.
+4. The function 'category::category_algorithmss->get_siblings' was added.
+5. The package 'category::category_view' was refactored.
+6. The function 'category::category_access->get_by_id' was removed.
+7. The function 'category::category_access->select_category' was removed.
+8. The function 'category::category_algorithms->select_categories_list_by_name' was added.
+9. The function 'category::category_algorithms->get_subcategories_by_name' was added.
+10. Documentation was updated.
+
+Ultimix v. 1.5.88
+------------------------------------------
+1. An error in the 'cf_predefined_packages' was fixed.
+2. An error in the 'category::category_view' was fixed.
+3. An error in the 'security' package was fixed.
+4. The function 'cached_multy_fs->compound_file_get_contents' was added.
+5. The error in the 'user::user_controller' was fixed.
+6. An error in the 'jslib::grids' was fixed.
+7. An error in the 'gui::context_set->set_main_settings' function was fixed.
+8. Installation script was improved.
+9. Fields 'site' and 'about' were added to the 'user' package.
+10. Documentation was updated.
+
+Ultimix v. 1.5.87
+------------------------------------------
+1. The 'jquery' package was improved.
+2. The setting 'system_title' was renamed in 'email_sender'.
+3. The settings 'email_sender' and 'system_email' were moved to the 'page::page_composer' package.
+4. The 'settings::settings_view' package was improved.
+5. The function 'page::page_composer->pre_process_string' was added.
+6. Email sending after registration was fixed.
+7. An error on the registration confirm page was fixed.
+8. The package 'user::user_access' was refactored.
+9. Documentation was updated.
+
+Ultimix v. 1.5.86
+------------------------------------------
+1. The macro 'user_list' was improved.
+2. Front page macros visualisation was improved.
+3. A new data type was added to the 'security' package - 'script'.
+4. An error in the template settings saving script was fixed.
+5. An error in the 'jslib' was fixed.
+6. An error in the 'data_form.js' was fixed.
+7. Documentation was updated.
+
+Ultimix v. 1.5.85
+------------------------------------------
+1. The package 'category::category_view' was improved.
+2. The function 'user::user_access->delete_user_by_id' was renamed into the 'user::user_access->delete'.
+3. The function 'user::user_algorithms->delete' was added.
+4. The macro '{login}' was renamed into the '{session_login}'.
+5. An error in the 'category::category_view' was fixed.
+6. Functionality of system users was added.
+7. Default stylesheet was improved.
+8. A new settings 'default_admin_template_[name|version]' was added.
+9. Pages data was improved.
+10. Documentation was updated.
+
+Ultimix v. 1.5.84
+------------------------------------------
+1. An error in the cf_predefined_packages config was fixed.
+2. The package 'settings::settings_view' was improved.
+3. An error in the 'content_news_line_limited_item.tpl' template was fixed.
+4. Visualisation errors were fixed.
+5. The package 'user::user_view' was refactored.
+6. Documentation was updated.
+
+Ultimix v. 1.5.83
+------------------------------------------
+1. The macro 'select' was improved and refactored.
+2. An error in the 'category::category_algorithms' was refactored.
+3. The function 'user::user_access->get_by_id' was moved to the 'user::user_algorithms' package.
+4. The package 'permit::group_view' was refactored.
+5. The package 'permit::group_controller' was cerated.
+6. Since this release direct controllers are processed before controllers.
+7. The macro 'group_select' was improved - since this release it toggles only defined groups.
+8. New macroes were added to the 'page::page_markup' package.
+9. New color schemes were added - green and black.
+10. Documentation was updated.
+
+Ultimix v. 1.5.82
+------------------------------------------
+1. An error in the 'grids.js' was fixed.
+2. An error with deleting records was fixed.
+3. The package 'permit::group_access' was improved.
+4. The function 'user::user_access->delete_user' was removed.
+5. An error in the 'user::user_access->delete_user_by_id' was fixed.
+6. The package 'gui::context_set::common_buttons' was refactored.
+7. An error in the 'jquery.tree.extractor.js' script was fixed.
+8. The script 'jquery.jstree.buttons.js' was refactored.
+9. The macro 'category' was improved.
+10. Documentation was updated.
+
+Ultimix v. 1.5.81
+------------------------------------------
+1. An error in the 'cached_multy_fs' was fixed.
+2. Macroes [r] and [n] were added.
+3. Title resolution for 'add_tab' and 'add_iframe_tab' macroes was added.
+4. The package 'security' was improved.
+5. The state 'save_settings' of the 'settings::settings_controller' was improved.
+6. Tracing info was improved for the package 'gui::context'.
+7. An error with the 'success_message' displaying was fixed.
+8. The business temlate was renamed.
+9. Installation script was improved.
+10. Documentation was updated.
+
+Ultimix v. 1.5.80
+------------------------------------------
+1. An error in the 'gui::context_set' was fixed.
+2. The ajax_result_template.tpl was improved.
+3. The function 'gui::context_set::default_controllers->create' now stores the id of the created record.
+4. Default styles were improved.
+5. The view 'add_iframe_tab' was added to the 'jquery' package.
+6. An error in the 'jquery' package was fixed.
+7. jQueryUI stylesheets were improved.
+8. Tab interface was added to the 'system_settigs' page.
+9. Site settings were added to the 'system_settings' page.
+10. Documentation was updated.
+
+Ultimix v. 1.5.79
+------------------------------------------
+1. Javascripts in the 'data_form' package were improved - added parameter 'method'.
+2. Functions in the 'forms.js' package were improved - added parameter 'method'.
+3. The macro 'update_record' was improved - parameter 'method' was added.
+4. The script 'grids.js' was refactored.
+5. The macro 'add_iframe_tab' was improved.
+6. The package 'category' was refactored and improved.
+7. The package 'jstree' was updated up to the 1.0 version.
+8. The script 'ajax_gate.js' was refactored.
+9. An error in the 'direct_controller' page was fixed.
+10. Documentation was updated.
+
+Ultimix v. 1.5.78
+------------------------------------------
+1. Small refatoring of the 'gui::context_set' package.
+2. Small refatoring of the 'jquery' package.
+3. The function 'link->get_master_objects' was created.
+4. The function 'link->master_objects_exist' was created.
+5. Documentation was updated.
+
+Ultimix v. 1.5.77
+------------------------------------------
+1. An error in the 'link->prepare_conditions' function was fixed.
+2. An error ni the 'link->get_links' function was fixed.
+3. An error in the 'link->get_dependent_objects' was fixed.
+4. An error in the 'link->get_dependent_objects' was fixed.
+5. Tracing was added to the 'page::page_markup' package.
+6. The function 'settings::settings->get_settings' was added.
+7. Documentation was updated.
+8. Small refactoring.
+
+Ultimix v. 1.5.76
+------------------------------------------
+1. The package 'gui::context_set' was improved.
+2. The macro 'add_iframe_tab' was added.
+3. An error in the 'ad::ad_campaign::ad_campaign_algorithms' was fixed.
+4. Documentation was updated.
+5. Small bugfixes and improvements.
+
+Ultimix v. 1.5.75
+------------------------------------------
+1. The setting 'output_root' was set default to 1.
+2. The page 'tree_category_manager' was added.
+3. An error in the 'category::category_access' was fixed.
+4. Installation script was fixed.
+5. Language files were fixed.
+6. Category manager was improved.
+
+Ultimix v. 1.5.74
+------------------------------------------
+1. Errors in the 'user::user_controller' were fixed.
+2. A new setting type 'checkbox' was added to the 'settings::settings_view' package.
+3. Language files of the 'user::user_view' package were improved.
+4. Installation script was improved.
+5. The package 'settings::settings_controller' was refactored.
+6. An error in the 'data_form' package was fixed.
+7. An error in the 'forms.js' script was fixed.
+8. An error in the 'cached_multy_fs' package was fixed.
+9. A new settings form was added.
+10. Small bugfixes and improvements.
+
+Ultimix v. 1.5.73
+------------------------------------------
+1. Language files were improved.
+2. An error in the 'ultimix.ToggleChildrenCheckboxes' was fixed.
+3. Numerous errors with the checkboxes were fixed (attr/prop differences of the jQuery.1.6.x).
+4. Small bugfixes and improvements.
+
+Ultimix v. 1.5.72
+------------------------------------------
+1. The package 'database::change_history::change_history_markup' was added.
+2. A new macro 'history_button' was added.
+3. The change history dialog was improved.
+4. The script 'jqeury.dialog.js' was improved.
+5. The package 'database::change_history::change_history_view' was improved.
+6. A view 'process_exact_config' was added to the 'gui::context_set' package.
+6. A controller 'process_exact_config' was added to the 'gui::context_set' package.
+7. The package 'gui::context_set' was refactored.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.5.71
+------------------------------------------
+1. jQuery was updated up to 1.6.2 version.
+2. jQueryUI was updated up to 1.8.14 version.
+3. The package 'jquery' was refactored.
+4. The package 'jquery::jquery_markup' was added.
+5. The package 'security' was refactored.
+6. Installation script was added.
+7. The package 'database::change_history::change_history_access' was added.
+8. The package 'database::change_history::change_history_view' was added.
+9. Language files were fixed.
+10. Small bugfixes and improvements.
+
+Ultimix v. 1.5.70
+------------------------------------------
+1. An error in the 'permit::permit_view' was fixed.
+2. An error was fixed in the 'file_input::file_input_view' package.
+3. Redirection after login was improved.
+4. The package 'gui::context' was refactored.
+5. Small bugfixes and improvements.
+
+Ultimix v. 1.5.69
+------------------------------------------
+1. Performace was improved.
+2. The templates manipulation was improved in the 'category::category_view' packages.
+3. New draw functions were added to the 'category::category_view' package.
+4. Algorithm of the catalog visualisation was improved.
+5. An error in the 'category::category_view->process_category' was fixed.
+6. The function 'category::category_view->process_category' was improved.
+7. A tracing error was fixed in the package 'gui::context_set'.
+8. An error in the 'gui::context_set::default_views' was fixed.
+9. An error int the 'string->get_macro_parameters' was fixed.
+10. Minor changes and improvements.
+
+Ultimix v. 1.5.68
+------------------------------------------
+1. A new method 'link->get_dependent_objects' was added.
+2. Packages 'comment::comment_algorithms' and 'review::review_algorithms' were refactored.
+3. A new method 'link->dependent_objects_exist' was added.
+4. An error in the 'user::user_controller' was fixed.
+5. Redirection after login was added.
+6. The function 'user::user_controller->login' was refactored.
+7. Some buttons were removed from the admin console.
+8. The package 'core' was refactored.
+9. The package 'jstree' was refactored.
+10. The function's 'get_package' performance was improved.
+
+Ultimix v. 1.5.67
+------------------------------------------
+1. Templates were added to the 'trace' package.
+2. The package 'trace' was refactored.
+3. Collapsable indents were added to the 'trace' package.
+4. The package 'gui::context' was refactored.
+5. The package 'page::page_composer' was refactored.
+6. The package 'gui::context_set' was refactored.
+7. Trace visualisation was improved.
+8. Tracing of the 'gui::context_set::common_state_startup' package was improved.
+9. Tracing of the 'list' state was improved.
+10. Small bugfixes and improvements.
+
+Ultimix v. 1.5.66
+------------------------------------------
+1. The function 'database::database_algorithms->select_condition' was improved.
+2. The paramater 'trace_only' was added. It allows to output only trace without page's HTML code.
+3. Execution parameter 'debug_context' was removed.
+4. Since this release '*_context_action' parameter is not necessary to run controller state.
+5. The 'jstree' package was improved (error dialogs were added).
+6. An error in the 'jstree' package was fixed.
+7. Installation script was fixed.
+8. The package 'gui::context_set::common_state_startup' was improved.
+8. An error was fixed in the 'gui::context_set::common_state_startup' package.
+10. Small improvemenst and refactoring.
+
+Ultimix v. 1.5.65
+------------------------------------------
+1. The function 'category::category_view->process_select_category_from_tree' was refactored.
+2. The function 'category::category_view->process_category' was refactored.
+3. The function 'category::category_view->draw_categories_catalogue' was refactored.
+4. The function 'category::category_view->draw_categories_structure_rec' was refactored.
+5. The package 'jquery' was improved.
+6. The package 'gui::context_set::common_state_startup' was refactored.
+7. The package 'gui::context' was improved.
+8. The package 'cached_fs' was refactored.
+9. The package 'cached_multy_fs' was refactored.
+10. Other small fixes and improvements.
+
+Ultimix v. 1.5.64
+------------------------------------------
+1. The class 'gui::paging' was improved.
+2. The package 'content' was refactored.
+3. Fields 'keywords' and 'description' were added to the content.
+4. An error was fixed in the 'user::user_access' package.
+5. The package 'content::content_algorithms' was added.
+6. The 'globe_template' package was updated.
+7. The package 'page::page_composer' was improved.
+8. The package 'database::db_markup' was refactored.
+9. An error was fixed in the 'category::category_view' package.
+10. Small refactoring and improvements.
+
+Ultimix v. 1.5.63
+------------------------------------------
+1. The package 'data_extension::data_extension_view' was refactored.
+2. An error in the 'category::category_algorithms' was fixed.
+3. An error in the 'jquery' package was fixed.
+4. An error in the 'category::category_access' was fixed.
+5. An error in the 'category::category_view' was fixed.
+6. The macro 'select_category_from_tree' was added.
+7. The function 'CachedMultyFS->get_template' was added.
+8. The package 'permit::group_view' was improved.
+9. Goup and permit managers were improved.
+10. Numerous bugfixes and improvements
+
+Ultimix v. 1.5.62
+------------------------------------------
+1. Performance pf the 'get_package' function was improved.
+2. The function 'database::database_algorithms->compile_fields_values' was improved.
+3. Performane of the '*_access' packages was improved.
+4. Trace output was improved.
+5. A new states 'public_create_form' and 'public_create' were added.
+6. A new states 'public_edit_form' and 'public_edit' were added.
+7. The package 'logger' was removed.
+8. The macro 'edit_record' was renamed into 'update_record'.
+9. A new anonimous event was added.
+10. Refactoring.
+
+Ultimix v. 1.5.61
+------------------------------------------
+1. Lots of errors were fixed in the '*_access' packages.
+2. All menu outputs were removed.
+3. An error in the 'gui::context_set::context_set_utilities->get_original_records' function was fixed.
+4. An error in the update group form was fixed.
+5. Small bugfixes and improvements.
+6. An error in the 'core' package was fixed.
+
+Ultimix v. 1.5.60
+------------------------------------------
+1. The package 'page::page_composer' was refactored.
+2. The package 'page::page_composer_utilities' was refactored.
+3. A new state 'last_records' was added.
+4. The function 'security->parse_parameters' was improved.
+5. A new type 'checkbox_list' was added to the the macro 'category_list'.
+6. The event 'on_after_create_user' now hase two parameters 'login' and 'id'.
+7. The package 'database::database_algorithms' was improved.
+8. Numerous '*_access' packages were refactored.
+
+Ultimix v. 1.5.59
+------------------------------------------
+1. The file jquery-ui-1.8.patch.css was improved.
+2. The file dialog_init.tpl was improved.
+3. The data_form.js script was improved.
+4. An error in the 'security' package was fixed.
+5. An error in the 'context_set_utilities' package was fixed.
+6. An error in the 'jsdialogs' package was fixed.
+7. Installation script was fixed.
+8. The file data.sql was updated.
+9. An error in the comment::comment_access was fixed.
+10. Buttons in the 'jsdialogs' were switched.
+11. An error int the 'jsdialogs' was fixed.
+12. An error in the 'content::content_access->delete' function was fixed.
+13. Localisation errors were fixed in the 'content::content_view' package.
+14. The function 'user::user_view::full_profile' was improved.
+15. The page 'profile' was fixed.
+16. Lots of forms were improved.
+17. An error in the 'core->_collapse_params()' function was fixed.
+18. The package 'link' was improved.
+19. The macro 'edit_button' was replace with 'update_button'.
+20. The macro 'cancel' was improved.
+21. An error in the 'database::dump' package was fixed.
+22. An error in the 'top' package was fixed.
+23. The package 'permit::permit_access' was improved.
+24. The package 'permit::permit_algorithms' was refactored.
+25. The package 'page::page_composer_utilities' was added.
+26. The package 'page::page_composer' was refactored.
+27. The package 'gui' was refactored.
+
+Ultimix v. 1.5.58
+------------------------------------------
+1. The package 'string' was refactored.
+2. An error in the user::user_view::update_user_form was fixed.
+3. An error in the user::user_controller::upate_user was fixed.
+4. The package 'gui' was refactored.
+5. The package 'gui::checkbox_markup' was added.
+6. The package 'permit::ownership::ownership_access' was improved.
+7. The macro 'category_list' was added.
+
+Ultimix v. 1.5.57
+------------------------------------------
+1. Numerous bugfixes.
+
+Ultimix v. 1.5.56
+------------------------------------------
+1. The package 'security' was refactored.
+2. An error in the 'jslib' package was fixed.
+3. The package 'permit' was improved.
+
+Ultimix v. 1.5.55
+------------------------------------------
+1. Packages 'review' and 'comment' were refactored.
+2. The package 'user::user_access' was improved.
+3. An error in the 'database::dump' package was fixed.
+4. The package 'gui::jqgrid' was added.
+5. An error in the 'captcha' package was fixed.
+6. A security error was fixed in the 'review::review_controller' package.
+7. Documentation was updated.
+
+Ultimix v. 1.5.54
+------------------------------------------
+1. The package 'gui' was refatored.
+2. The package 'permit::ownership' was added.
+3. The package 'link' was improved.
+4. The macro 'comment_link' was added in the 'comment::comment_markup' package.
+5. An error in the 'gui::context_set::common_buttons' was fixed.
+6. An error in the 'gui::context_set' was fixed.
+7. An error in the 'link' package was fixed.
+8. The package 'captcha' was refactored.
+9. The function 'user::user_view::full_profile' was improved.
+10. An error in the 'pmsg::pmsg_view' was fixed.
+
+Ultimix v. 1.5.53
+------------------------------------------
+1. An error in the package 'gui::context_set::default_controllers' was fixed.
+2. The package 'gui::context_set' was refactored.
+3. The page 'database_manager.html ' was added.
+4. A new template was added.
+5. Packages 'review' and 'comment' were refactored.
+6. The package 'jquery' was refactored.
+7. The package 'link' was improved.
+
+Ultimix v. 1.5.52
+------------------------------------------
+1. Numerous errors in the package 'gui::context_set' were fixed.
+2. Records editing was fixed in the packages 'permit:permit_manager' and 'permit::group_manager'.
+3. PageComposer now implicitly defines encoding for the .js files.
+4. The package 'maps::google_maps' was improved.
+5. The page 'profile' was added.
+6. An error in the 'settings::db_settings' was fixed.
+7. An error in the package 'database::chronological' was fixed.
+8. The page 'edit_profile.html' was added.
+
+Ultimix v. 1.5.51
+------------------------------------------
+1. The package 'settings::db_settings' was added.
+2. The packages 'settings::settings_view' and 'settings::settings_controller' were added.
+3. The macro 'db_settings' was added.
+4. The installation script was updated.
+5. The package 'database::change_history' was added.
+6. Two events 'onaddline' and 'ondeleteline' were added in the 'gui::multiple_line' package.
+7. An error in the package 'maps::google_maps' were fixed.
+8. New defailt state 'json_data' was added.
+9. Trace output was improved.
+10. The package 'gui::context_set' was refactored.
+11. The macro 'menu_button' was added.
+
+Ultimix v. 1.5.50
+------------------------------------------
+1. An error in the 'gui::context_set' package was fixed.
+2. The package 'file_formats::excel_reader' was added.
+3. The function 'lang::include_strings' was added.
+4. The package 'gui::multiple_input' was totaly refactored.
+5. Installation script was updated.
+6. Numerous errors in the 'database::chronological' package were fixed.
+
+Ultimix v. 1.5.49
+------------------------------------------
+1. The event 'on_after_update_user' was added.
+2. The package 'gui::paging' was improved.
+3. The package 'gui::context_set' was fixed.
+4. Other numerous fixes and improvements.
+5. Documentation was updated.
+
+Ultimix v. 1.5.48
+------------------------------------------
+1. The package 'search' was added.
+2. The 'gui:context_set' was refactored.
+3. The error was fixed in the 'page::page_composer' package.
+4. The error was fixed in the 'permit::group_access' package.
+5. The error was fixed in the 'user:user_access' package.
+6. The package 'maps::google_maps' was added.
+
+Ultimix v. 1.5.47
+------------------------------------------
+1. Installation script was fixed.
+2. Packages 'settings::settings_view' and 'settings::settings_controller' were refactored and fixed.
+3. The package 'category' was refactored.
+4. An error in the user manager was fixed.
+5. An error was fixed in the user_access->update function.
+6. An error was fixed in the user_access->create function.
+7. Small bugfixes and improvements.
+
+Ultimix v. 1.5.46
+------------------------------------------
+1. An error in the javascript multylanguage suport was fixed and refactored.
+2. The package 'link' was improved.
+3. Documentation was updated.
+4. The new package was added - 'comment'.
+4. The new package was added - 'review'.
+
+Ultimix v. 1.5.45
+------------------------------------------
+1. Small bugfixes and improvements.
+2. Refactoring.
+
+Ultimix v. 1.5.44
+------------------------------------------
+1. jQuery was updated to the 1.4.3
+2. jQueryUI was updated to the 1.8.5
+3. A string 'number_to_words' was added.
+4. An error in the grid was fixed.
+
+Ultimix v. 1.5.43
+------------------------------------------
+1. Small bugfixes ad improvements.
+2. Tab control was refactored.
+3. Meta-programming functions 'array_filter_ex', 'get_field_cond' and 'array_sum_cond' were added to the 'core' package.
+4. Parameter 'closable' was added to the 'add_tab' macro.
+5. The package 'gui::colorbox' was added.
+6. Installation script was fixed.
+7. Security error was fixed in the 'permit::group_access' package.
+8. Autotemplate 'ajax_result_template' was added.
+9. Macro 'hed' was replaced with the 'unsafe' macro.
+10. Macro 'safe' was added.
+11. The component 'gallery' was added.
+12. The file 'confirm_registration_email.tpl' was localized.
+13. The new package was added 'gui::math_markup'.
+14. js files were fixed.
+15. Critical error was fixed in the 'multiple_input.js'.
+
+Ultimix v. 1.5.42
+------------------------------------------
+1. An error in the 'gui::context_set' was fixed.
+2. An error in the 'gui::context_set::common_state_startup' package was fixed.
+3. Refactoring.
+4. New type was added to the 'file_input' package - 'all'.
+5. Other small bugfixes and improvements.
+6. The package 'page::page_parser' was added.
+7. The function remove_bom was added into the 'string' package. This functon is used to remove BON in language files.
+8. Since this release functions 'post_process' and 'pre_process' can be replaced by the function 'process_string'.
+
+Ultimix v. 1.5.41
+------------------------------------------
+1. An error in the package 'gui' was fixed.
+2. An error in the package 'string' was fixed.
+3. The package 'string' was refactored.
+4. The package 'gui::db_markup' was added.
+5. Macro 'record_field' was added.
+
+Ultimix v. 1.5.40
+------------------------------------------
+1. An error in the 'link' package was fixed.
+2. The package 'core' was refactored.
+3. The package 'gui::context_set::common_buttons' was added.
+4. New standart state was added - 'copy'.
+5. Small refactoring, bugfixes and improvements.
+6. Value dependent constants were added.
+
+Ultimix v. 1.5.39
+------------------------------------------
+1. The component 'pmsg' was refactored.
+2. The component 'category::category_view' was refactored.
+3. The macro 'delete_button' was improved.
+4. Refactoring of the 'report' package.
+
+Ultimix v. 1.5.38
+------------------------------------------
+1. Installation script was updated.
+2. The package 'pmsg::pmsg_algorithms' was added.
+3. An error in the 'gui::context_set' was fixed.
+4. An error in the 'gui::paging' package was fixed.
+5. The state 'view_record' was removed from the 'gui::context_set'.
+6. An error in the 'page::static_content::static_content_access' was fixed.
+7. The package 'cache' was improved.
+8. Several errors in the 'core' package were fixed.
+
+Ultimix v. 1.5.37
+------------------------------------------
+1. Set of 'filled_*' predicates was removed.
+2. 'Weak login' was renamed in the 'Simple login'.
+3. An error in the 'content:content_controller' was fixed.
+4. An error in the 'captcha' package was fixed.
+5. Refactoring.
+6. Event 'on_after_register_user' was added.
+7. Registration was fixed.
+8. Some errors in the 'user::user_manager::user_manager_view' were fixed.
+9. Redirect errors were fixed in the 'gui::context_set' package.
+10. The macro '{common_buttons}' was removed.
+11. Search form was added to the user manager.
+12. Event 'on_after_create_content' was added.
+13. Event 'on_after_create_ad_campaign' was added.
+14. Event 'on_after_create_ad_banner' was added.
+15. New configurable security layer was added (see 'database' package for more information).
+16. New event 'on_before_login' was added.
+16. New event 'on_after_login' was added.
+
+Ultimix v. 1.5.36
+------------------------------------------
+1. The package 'gui::paginator3000' was added.
+2. The macro 'paginator' was added in the 'gui::paging' package.
+3. The package 'gui::context_set' was improved.
+4. An error in the content line was fixed.
+5. Simple paginator was added in the 'gui::paging' package.
+6. An error with the language autodetection was fixed.
+7. Documentation was updated - hello world tutorial was added (feature request by Ca'rlisson Galdino).
+8. An error in the 'core' package was fixed.
+
+Ultimix v. 1.5.35
+------------------------------------------
+1. The template macro 'color_scheme' was added.
+2. Red color scheme was added in the 'jquery' package.
+3. Views 'tab_control' and 'add_tab' were added in the 'jquery' package.
+4. New common context was added - 'simple_form'.
+5. Multiple site support was added.
+6. Small refactoring.
+7. The macro 'date' was improved (parameter 'timestamp' was added).
+8. The macro 'map' was improved (parameter 'default' was added).
+
+Ultimix v. 1.5.34
+------------------------------------------
+1. The macro 'package_path' was added.
+2. Small bugfixes and improvements.
+3. The 'file_input' package was added.
+4. Numerous errors in the installation script were fixed (thanks to Carlisson Galdino for this bug-regports).
+5. An error in the cf_locale_conf config was fixed (thanks to Carlisson Galdino for this bug-regports).
+6. List of the predefined packages was corrected (thanks to Carlisson Galdino for this bug-regports).
+7. An error with quotes processing was fixed in the function 'lang::include_strings_js'.
+8. An error in the group manager was fixed.
+9. An error in the 'system' package was fixed.
+10. User selection dialog was added.
+11. An error in the function 'string::hide_block' was fixed.
+
+Ultimix v. 1.5.33
+------------------------------------------
+1. The package 'link' was improved.
+2. An error in the installation script was fixed.
+3. Numerous errors in the 'gui::context_set' package was fixed.
+4. The package 'security' was improved.
+5. The macro 'foreach' was added in the 'string' package.
+6. An error in the 'page::page_access' package was fixed.
+7. The package 'page::static_content' was improved.
+8. The package 'content::content_view' was refactored.
+9. The package 'gui::context_set' was improved.
+10. The package 'gui::context' was refactored.
+11. The package 'category' was improved (added a new field 'category_name').
+12. The page 'content_archive' was added.
+13. Content manager was fixed.
+14. The macro 'composer' was added.
+15. The macro 'options' was added.
+16. The macro 'category_id' was added.
+17. Other bugfixes and improvements.
+
+Ultimix v. 1.5.32
+------------------------------------------
+1. Context set was refactored.
+2. Macros '{create}', '{save}' and '{cancel}' were created.
+3. Small bugfixes and improvements.
+4. An error in the group manager was fixed.
+
+Ultimix v. 1.5.31
+------------------------------------------
+1. Some errors in the 'jquery' , 'jstree' , 'category::category_view' and 'page::static_content' packages were fixed.
+2. The macro 'add_opener' was added in the 'jquery' package.
+3. The macro 'dialog' was improved.
+4. The package 'gui::paging' was refactored.
+5. Javascripts were refactored.
+7. New widget 'multiple_input' was added.
+8. Ajax deleting of records was added in the 'gui::context_set' package.
+9. Small refactoring and improvements.
+10. The package 'security' was improved (data filtration functions are now available for arrays and objects).
+11. The package 'settings::settings' was improved in a way it can understand settings strings like 'param1;param2=3'.
+12. Macro 'image_path' was added in the 'gui' package.
+
+Ultimix v. 1.5.30
+------------------------------------------
+1. Ajax support was added in the 'gui::paging' package.
+2. The package 'page::static_content' was improved.
+3. An error in the package 'page::page_composer' was fixed.
+4. The package 'settings::settings' was improved.
+5. The package 'logger' was removed.
+
+Ultimix v. 1.5.29
+------------------------------------------
+1. An error in the 'page::page_composer' was fixed.
+2. Language file was fixed.
+3. Macro 'lang_file_js' was added in the 'lang' package.
+4. An error in the installation script was fixed.
+5. Installation script was improved.
+6. The function 'get_field' was improved.
+7. The function 'get_field_ex' was added.
+8. Numerous bugfixes and improvements.
+9. Macro 'checkbox_ex' was added.
+10. Macroes 'header_checkbox' and 'item_checkbox' were improved.
+11. Styles in the 'jsdialogs' package were improved.
+12. Macro 'component_button' was added.
+13. Small refactoring.
+14. Packages 'upload_file' and 'user::ext_profile' were removed.
+
+Ultimix v. 1.5.28
+------------------------------------------
+1. An error in the 'join_stylesheets' function was fixed.
+2. The macro '[amp]' was added.
+3. Installation script was updated.
+4. The macro '[random]' was added.
+5. The macro 'iframe_dialog' was added.
+6. Package 'schedule' was added.
+7. Cron script 'cron.php' was added.
+8. Refactoring.
+
+Ultimix v. 1.5.27
+------------------------------------------
+1. The parameter 'data_extractor' was renamed into 'ok_processor' for the macro 'dialog'.
+2. The macro 'report_template_list' was improved: the parameter 'subfolder' was added.
+3. An error in the 'gui::context_set' was fixed.
+4. An error in the ajax_gate.js script was fixed.
+5. The autotemplate 'primitive' was added.
+6. The autotemplate 'standalone_view' was added.
+7. Component 'gui::paging' was improved (ajax support was added).
+8. Installation was improved.
+
+Ultimix v. 1.5.26
+------------------------------------------
+1. The parameter 'index' was added into 'add_tab' macro.
+2. The package's 'report' post- and pre-processing functions were refactored.
+3. The macro 'report_list' was added in the 'report' package.
+4. The package 'soap' was added (it is based on the nusoap library).
+5. Gloabal defines will be automatically set to the default values.
+6. Small refactoring.
+
+Ultimix v. 1.5.25
+------------------------------------------
+1. Macro 'save_button', 'create_button' and 'cancel_button' were added in the 'gui::context_set' package.
+2. Type constants in the package 'security' were changed.
+3. An error in th jquery.simpl.select.extractor.js was fixed.
+4. An error in the dialog_init.tpl was fixed.
+
+Ultimix v. 1.5.24
+------------------------------------------
+1. Cookie persistance was added for the tab_control.
+2. Macro 'date' was added in the 'gui' package.
+3. An error in the macro 'checkbox' was fixed.
+4. Search form in the package 'gui::context_set' was improved.
+5. The 'cancel' button in the search form was fixed.
+6. The package 'lang' was improved.
+7. The function 'ultimix.lang' (it provides access lo language specific constants) was added in the 'lang' package.
+8. Script 'wizard.js' was added in the 'jquery' package.
+9. Package 'security' was improved.
+10. Macro 'state' was created for the 'gui::context_set' package.
+11. User deletion was fixed.
+12. The 'create user' form was added into the user manager.
+13. Last exeption message now is stored archived in the exceptin.zip file.
+14. Macro 'select_dialog_content' was added in the 'jquery' package.
+15. Package 'gui::utilities' was excluded.
+16. Dialog creation script for the macro 'view_dialog' was improved (multylingual support was added).
+17. The script 'lang.core.[locale].js' was improved.
+18. The package 'beholder' was excluded.
+19. The table `umx_stat` was removed.
+20. The package 'user::user_fs_access' was removed.
+21. Refactoring.
+22. Other bugfixes.
+
+Ultimix v. 1.5.23
+------------------------------------------
+1. Multy call standart state in 'gui::context_set' was improved.
+2. Macro 'if' was improved - parameter 'then' is treated like 'result1' and parameter 'else' is treated like 'result2'.
+3. Since this release names of common states config files can be setup.
+4. An error on the page 'user_permit_manager.html' was fixed.
+5. Packages 'page::auto_controller' and 'page::auto_view' were added.
+6. Package 'page::static_content' was improved.
+7. An error in the 'gui' package was fixed.
+8. Scripts of the package 'jslib' were improved.
+9. Code for the ultimix.MB_ICONERROR constant in the 'jsdialogs' was fixed.
+10. Package 'jsdialogs' was improved.
+11. An error when no data was selected in the 'list' state but search form is displaying was fixed.
+12. A new standart function was added - 'post_generation'.
+13. Macro 'executive' was removed from the 'page::page_composer' package.
+14. An error in the default search form was fixed.
+15. Last exception information is now stored in the 'exception.last.html' file.
+16. Package 'gui::tab_view' was removed.
+17. Macro '{tab_control}' and '{add_tab}' were added in the 'jquery' package.
+18. The package 'report' was improved.
+19. Function 'page::page_composer::join_stylesheets' was fixed for correct paths to the files were created.
+20. Function 'lang::include_strings_js' was created. It allows to include language files as JS scripts.
+21. Language files 'add_lang.{locale}' and 'project_lang.{locale}' were removed and are no longer used.
+22. New layout 'primitive' was added.
+23. Package 'payment' was excluded.
+24. Package 'data_manipulator' was removed from the distributive.
+25. Macro 'year_list' was added in the 'gui' package.
+26. Macro 'checkboxset' was improved.
+27. Documentation was updated.
+
+Ultimix v. 1.5.22
+------------------------------------------
+1. Macro '{locked}' was added.
+2. Refactoring.
+3. An error with permit editing was fixed.
+4. An error with permit group editing was fixed.
+5. An error in the 'jsdialogs' package was fixed.
+6. New dialog was added in the 'jsdialogs' packages - 'loading...' dialog.
+7. An error in the 'core' package was fixed.
+8. New standart state was added in the 'gui::context_set' - 'view_record'.
+9. jQuery UI was updated to the 1.8.1. version.
+10. Macro 'meta' was added.
+11. Documentation was updated.
+
+Ultimix v. 1.5.21
+------------------------------------------
+1. Macro 'dialog' was added in the 'jquery' package.
+2. The package 'jquery' was improved.
+3. Macro 'direct_view' and 'direct_controller' were added into the 'page::page_composer' package.
+4. Macro 'record' was added in the 'page::page_composer' package.
+5. Log in and Log out buttons were added in the package 'user:user_view'.
+6. An error in the 'view_dialog' macro was fixed.
+7. A few DB compatability errors were fixed.
+8. Refactoring.
+9. Documentation was updated.
+
+Ultimix v. 1.5.20
+------------------------------------------
+1. 'jstree' themeing error was fixed.
+2. An error in the 'string' package was fixed.
+3. The macro 'tree_control_buttons' was added in the 'jstree' package.
+4. Function 'process_string' was improved for the 'lang' package.
+5. View 'lang_file' was added to the 'lang' package.
+6. Categories output was fixed.
+7. Buttons for category manipulation tree were improved.
+8. Caching of the script files and stylesheets was improved.
+9. Package 'jsdialogs' was added.
+10. jQueryUI styles were improved.
+11. Refactoring.
+12. Documentation was updated.
+
+Ultimix v. 1.5.19
+------------------------------------------
+1. File 'ajax.js' was removed from the 'jslib' package.
+2. An error on pages 'direct_view' and 'direct_controller' were fixed.
+3. An error in the 'jstree' package was fixed.
+4. An error in the 'lang' package was fixed.
+5. Script 'ajax_gate' was added to the 'jslib' package.
+6. Macro 'sprintf' was added in the 'gui' package.
+7. An error in the 'link' package was fixed.
+8. Numerous bugfixes and improvements.
+9. Refactoring
+10. Documentation was updated.
+
+Ultimix v. 1.5.18
+------------------------------------------
+1. An error in the page::page_composer package was fixed.
+2. Package 'jstree' was added.
+3. Macro '[sharp]' was added.
+4. Small refactoring.
+5. Documentation was updated.
+
+Ultimix v. 1.5.17
+------------------------------------------
+1. Language files were updated.
+2. Styles for jQueryUI were improved.
+3. Numerous errors were fixed for packages 'core', 'lang', 'cached_multy_fs' , 'gui::context' , 'page::page_composer' , 'string' and others.
+4. Since this release if the 'enable_registration' setting is set to 0, then link to the registration page will not be visible in the login form.
+5. An error with the escaping quotes was fixed under nginx.
+6. Package 'gui::context_set' was improved.
+7. Package 'template_manager::globe_template' was fixed (error messages output was fixed).
+8. Documentation was updated.
+
+Ultimix v. 1.5.16
+------------------------------------------
+1. Installation script was fixed.
+2. An error in the 'gui::paging' package was fixed.
+3. Small error in the 'gui::context_set' was fixed.
+4. Field 'version' was added to the cfcxs_context_set config.
+5. An error in the 'gui' package was fixed.
+6. Datepicker was improved.
+7. jQuery was updated up to the 1.4.2 version.
+8. jQuery-UI was updated up to the 1.8 version.
+9. Macro 'form_value' was added into the 'gui::context_set' package.
+10. Documentation errors were fixed.
+11. Package 'gui::context_set' was improved.
+12. Numerous fields for the 'gui::contex_set' were made default.
+13. Package 'string' was improved - function 'hide_macro' and 'show_macro' were added.
+14. Package 'security' was improved - since this release some macro can pass security filter and thus can be inuted using common editor.
+15. Since this release authorised user's id is stored in it's session in the field 'user_id'.
+16. A few critical errors for the package 'core' were fixed.
+17. An error with date picker was fixed.
+18. Documentation was updated.
+
+Ultimix v. 1.5.15
+------------------------------------------
+1. Small refactoring.
+2. Documentation was updated.
+
+Ultimix v. 1.5.14
+------------------------------------------
+1. Package 'data_form' was added.
+2. An error in the 'menu::menu_item_access' was fixed.
+3. Package 'lang' was improved (since this release language switching is performed using 'data_form' package).
+4. Package 'data_form' was improved (script 'data_form.js' was added).
+5. Script 'forms' was improved (since this release records per page switch is performed using 'data_form' package).
+6. Documentation was updated.
+
+Ultimix v. 1.5.13
+------------------------------------------
+1. Script jquery.dropdown.block.js was added.
+2. Documentation errors were fixed.
+3. Documentation was updated.
+
+Ultimix v. 1.5.12
+------------------------------------------
+1. Security error was fixed.
+2. Documentation was updated.
+
+Ultimix v. 1.5.11
+------------------------------------------
+1. Small refactoring and improvements.
+2. Documentation was updated.
+
+Ultimix v. 1.5.10
+------------------------------------------
+1. A security error was fixed in 'security' package.
+2. Small refactoring and improvements.
+3. Documentation was updated.
+
+Ultimix v. 1.5.9
+------------------------------------------
+1. jQuery 1.3.2 was replace with jQuery 1.4.1
+2. An error in 'menu_item_manager' was fixed.
+3. Small refactoring and improvements.
+
+Ultimix v. 1.5.8
+------------------------------------------
+1. An error in the 'context_set' package was fixed.
+2. Refactoring.
+3. Small bug-fixes and improvements.
+
+Ultimix v. 1.5.7
+------------------------------------------
+1. An error in the script of the js and css files joining was fixed.
+2. Minor changes and improvements.
+3. Documentation was updated.
+4. Refactoring.
+5. Perfomance was improved.
+
+Ultimix v. 1.5.6
+------------------------------------------
+1. Macro [nbsp] was added.
+2. Language files were improved.
+3. An error in 'context_set' package was fixed.
+4. An error in 'security' package was fixed.
+5. Errors in packages 'menu_item_access', 'user_access' and 'permit_access' were fixed.
+6. Perfomance of the 'context_set' package was improved.
+7. All scrips are included at the bottom of the page.
+
+Ultimix v. 1.5.5
+------------------------------------------
+1. Perfomance was improved.
+2. Minor bugfixes and improvements.
+3. Exception visualisation was fixed.
+4. Macro 'setings' was added into 'settings::settings_view' package.
+5. Pre- and post-processing functions were added in the 'settings::settings_view' package.
+6. Documentation was updated.
+
+Ultimix v. 1.5.4
+------------------------------------------
+1. An error in 'get_permits_for_object' function was fixed.
+2. Perfomance was improved.
+3. Minor bugfixes and improvements.
+4. Package 'security' was improved.
+5. Macro {enter_processor} was implemented.
+6. Documentation was updated.
+7. Minor bugfixes and improvements.
+
+Ultimix v. 1.5.3
+------------------------------------------
+1. Package 'security' was updated.
+2. Search form was added in 'context_set' package.
+3. Added href type 'toggle'.
+4. Macro '[dot_dot]' was added.
+5. Package 'core' was updated - functions 'get_field' and 'set_field' were added.
+6. New 'search_form' state was added in 'context_set' package.
+7. Minor bugfixes and improvements.
+
+Ultimix v. 1.5.2
+------------------------------------------
+1. Added field 'active_to' for users wich sets activity period for users.
+2. User Manager was fixed.
+3. Scripts and stylesheets including bug was fixed.
+4. Some core stylesheets were renamed.
+5. Stylesheet including for jqueryui was fixed.
+6. Added macro {date_picker}
+7. Added field 'banned_to' for users wich sets ban period for users.
+8. Grid visualisation under IE was fixed.
+9. In grid checkboxes can be set by clicking on the row.
+10. Query logging was moved into 'database' package.
+11. 'expand all'/'collapse all' buttons were added in exception output form.
+12. Package 'trace' was added.
+13. Bug in 'group::group_access' was fixed.
+14. Package 'permit::permit_access' was improved.
+15. Checkbox with three states was added (see 'gui' package).
+16. Macro 'label' was added (see 'gui' package).
+17. Permits validations were changed for 'user_manager', 'user_permit_manager', 'permit_manager' and 'group_manager' packages.
+18. An error in processing macro 'no_permit' was fixed.
+19. Perfomance of the 'permit_view' package was improved.
+20. Perfomance of the 'permit_access' package was improved.
+21. Perfomance of the 'user_access' package was improved.
+22. Perfomance of the 'cached_multy_fs' package was improved.
+23. Perfomance of the 'lang' package was improved.
+24. Perfomance of the 'user_view' package was improved.
+25. Bug in 'context' package was fixed.
+26. Perfomance of the 'context_set' package was improved.
+27. Visualisation of the dropdown lists was fixed.
+28. Installation script was improved (now exception text is outputting correctly).
+29. Minor bugfixes and improvements.
+
+Ultimix v. 1.5.1
+------------------------------------------
+1. Added macro [page_name].
+2. Macro {page_name} was removed.
+3. Added focus CSS styles to input fields.
+4. Almost all 'a' tags were replaced with {href} macro.
+5. Mscros 'odd' and 'even' were added.
+6. Since this release all checkboxes are binded with their text with 'lable' tags.
+7. Some errors in grid output were fixed.
+8. 'select' functions were fixed for packages 'group_access' and 'permit_access'.
+9. Indexes were added into database.
+10. Installation script was improved. Now installaion is possible in the automated mode.
+11. Minor bug-fixes and improvements.
+12. Package 'user_manager' was improved.
+13. Package 'lang' was improved, macro 'lang' now may have extra perameter 'default'.
+14. core.css was improved.
+15. A bug in 'gui' was fixed (for 'checkbox' macro).
+16. 'no_permit' macro was added in 'permit' package.
+17. Macro 'checkbox' was improved. See gui.php for more information.
+18. Package 'gui' was speed up.
+19. Package 'menu::menu_manager' was added.
+20. Package 'menu::menu_access' was refactored.
+21. Perfomance was improved.
+22. Added setting 'timeout' for package 'mail'.
+23. Language files were updated.
+24. jQueryUI was integrated.
+25. Other small bugfixes and improvements.
+
+Ultimix v. 1.5.0
+------------------------------------------
+1. Package 'permit_manager' was added.
+2. Package 'group_manager' was added.
+3. Package 'user_permit_manager' was added.
+4. Package 'report' was improved (macro 'report_template' was added).
+5. Numerous bugs were fixed in 'system_structure' package.
+6. Bug in multy editing was fixed.
+7. Installation script was updated with new sql file.
+8. Small bugfixes and improvements.
+
+Ultimix v. 1.4.12
+------------------------------------------
+1. Users can be massively deleted in 'user_manager'.
+2. Added 'system_structure' package.
+3. Added 'report' package with report generating utilities.
+4. Small bugfixes and improvements.
+
+Ultimix v. 1.4.11
+------------------------------------------
+1. Page 'auth.html' was added.
+2. In 'context' package section 'success_func_message' was renamed. New name is 'success_message'.
+3. An error was fixed in 'context' package.
+4. Packages 'context_set' and 'paging' were improved (now buttons 'create', 'edit' , 'delete' are shown even if there is no data to display).
+5. Processing of the 'http_param' was moved into 'security' package.
+6. Functions 'pre_process' and 'post_process' were added into 'security' package.
+7. Fixed error with processing 'http_param' macro.
+8. Since this release in 'context_set' calls all functions not in static context but in object context.
+9. Small error in istallation script was fixed.
+10. Template compilation macro added - [dot_comma] will be replaced with ';' symbol.
+11. Packages 'user_view' and 'user_controller' were refactored.
+12. Since this release administrators can create users wich are permanently activated.
+13. Small improvements of user manager.
+14. Visualisation of the exception messages was improved.
+15. Small bugfixes and improvements.
+16. Installation script was fixed.
+17. Documentation was updated.
+
+Ultimix v. 1.4.10
+------------------------------------------
+1. 'weak_login' state from 'user_controller' was replaced with 'simple_login' state.
+2. Packages 'webmoney' and 'payment' were added.
+3. Changed 'lang' package. Now names of all language files must be same as package's name (with locale name as an extension).
+4. Added macro 'collapsing_block' (see documentation for more information).
+5. Documentation was updated.
+
+Ultimix v. 1.4.9
+------------------------------------------
+1. Package 'context_set' was improved.
+2. Bug with signing out was fixed.
+3. Minor bug fixes and improvements.
+4. Refactoring.
+5. Documentation was udated.
+
+Ultimix v. 1.4.8
+------------------------------------------
+1. New macro {nbsp}, {strlen} were added.
+2. Package 'http' was added.
+3. Installation script was updated.
+4. New global variables were added 'HTTP_HOST' and 'HTTP_PATH'.
+5. Since this release parameters 'version' and 'testing_package_version' are defaulted to 'last'.
+6. Severe bug was fixed in page::page_composer::post_process function.
+7. 5 unit-tests were added.
+8. Little improvements.
+9. Refactoring.
+10. Few lesser bugfixes.
+11. Documentation was updated.
+
+Ultimix v. 1.4.7
+------------------------------------------
+1. Installation script was improved.
+2. Bug in installation script was fixed.
+3. Default template was fixed.
+4. Installation manual was created.
+5. Package 'graph' was improved.
+6. Error in 'lang' package was fixed.
+7. All ereg function calls were replaced with preg_match function calls (ereg[*] function are deprecated since php 6.0.0).
+8. Error in 'pmsg' package was fixed.
+9. New macro 'youtube', 'rutube', 'eq', 'neq', 'lt', 'gt', 'lte', 'gte' and 'if' were added in 'gui' package (see reference for more information).
+10. Bug in db_config_set package was fixed.
+11. Perfomance optimizations.
+12. Refactoring.
+13. Documentation was updated.
+
+Ultimix v. 1.4.6
+------------------------------------------
+1. Ultimix is now available under LGPL license (BSD licensing is also available).
+2. All calls of get_block_parameters were changed on get_macro_parameters.
+3. Page's preprocessing and postprocessing is multypass.
+
+Ultimix v. 1.4.5
+------------------------------------------
+1. Menu visualisation inprovements.
+2. Paging control was upgraded with records per page selecting widget.
+3. Massive delete functionality was created for private messages subsystem.
+4. Massive delete functionality was created for error log form (error_log.html).
+5. Outputting information error was fixed for error log form (error_log.html).
+6. Class db_config_set was added.
+7. Macro {permit_list}, {permit_list_for_object}, {permit_list_for_object}, {group_list_for_user}, {permit_list_widget} and {group_list_widget} were added in package permits::permits_view (see manual for more information)
+8. Function get_macro_parameters was added into 'string' package (since now get_block_parameters is deprecated).
+9. 10 unit-tests were added.
+10. Minor changes.
+11. Documentation was updated.
+
+Ultimix v. 1.4.4
+------------------------------------------
+1. Framework was translated into english.
+2. Some packages were excluded from the main distributive ('billing' and 'guest_book').
+3. Some fixes in language files.
+
+Ultimix v. 1.4.3
+------------------------------------------
+1. New macro {query_count} wich allows to output count of DB queries into template.
+2. User management form was improved.
+3. CSS applied to form fields.
+4. Information about unexisting files now stored in cache.
+5. Structure of the cache pcackage's config file was changed.
+6. Function load_package_settings was added into package settings::settings. It allows to read package's settings directly.
+7. Various speed optimizations.
+8. 13 unit-tests for packages 'cache' and 'cached_fs' were created.
+9. Package 'testing' was changed according to the new RaTM requirements (http://ratm.sourceforge.net).
+10. Minor changes and improvements.
+11. Refactoring.
+
+Ultimix v. 1.4.2
+------------------------------------------
+1. Default css styles were extended.
+2. Yui was removed.
+3. Ckeditor 3.0 was added (markup macro {textarea} now will be replaced with ckeditor).
+4. RaTM (http://ratm.sourceforge.net) was added.
+5. Updated debug functionality in gui::context.
+6. Error- and success- messages were improved.
+7. Pages direct_view and direct_control now has public permit.
+8. Numerous bug fixes and improvements.
+
+Ultimix v. 1.4.1
+------------------------------------------
+1. Page management tool.
+2. Instalation wizzard.
+3. Sorting in grid by columns.
+4. Various bugfixes and improvements.

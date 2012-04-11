@@ -1,0 +1,1 @@
+<area title="{title}" shape="circle" coords="{coords},5" href="javascript:void(0);"/>

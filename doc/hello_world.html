@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Hello World Tutorial</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Step 1</h4>
+					&nbsp;&nbsp;First of all let's create a new empty package. Here are the steps to do this:
+					<br>&nbsp;&nbsp;1. Go to the directory <b>%install_dir%/packages/</b> and create a new 
+					directory _hello_world. It's a some kind of convention that names of all project's packages 
+					showld be started with the '_' character.
+					<br>&nbsp;&nbsp;2. Open the file <b>%install_dir%/packages/core/data/package_list</b> and add 
+					the following line of code at the end of it:
+					<div class="code"><strong>Code:</strong><pre>
+hello_world.1.0.0#_hello_world
+</pre></div>
+					<h4 class="header">&nbsp;&nbsp;Step 2</h4>
+					&nbsp;&nbsp;Now we will create the package itself.
+					<br>&nbsp;&nbsp;1. Create the directory <b>%install_dir%/packages/hello_world</b>
+					<br>&nbsp;&nbsp;2. Create the file <b>%install_dir%/packages/hello_world/hello_world.php</b> Note that the name of the package and the file name of it's php script must be the same.
+					<br>&nbsp;&nbsp;3. Open the file <b>%install_dir%/packages/hello_world/hello_world.php</b> and add the following code:
+					<div class="code"><strong>Code:</strong><pre>
+class hello_world_1_0_0
+{
+	function	view( $Options )
+	{
+		return( 'hello world' );
+	}
+}
+</pre></div>
+					<br>&nbsp;&nbsp;In this code you can see that class name contains of the package's name and i's version.
+					<h4 class="header">&nbsp;&nbsp;Step 3</h4>
+					&nbsp;&nbsp;Here is the last step of this tutorial. Let's create a standalone page to output 'hello world'.
+					<br>&nbsp;&nbsp;1. Go to the directory <b>%install_dir%/packages/page/packages/page_access/data</b> and create in this directory two files:
+					<div class="code"><strong>Code (hello_world):</strong><pre>
+Hello world!#default#default#predefined_packages=1
+</pre></div>
+					<br>&nbsp;&nbsp;Here we tell to the system that we are creating page with title 'Hello world!', with the default template and all standart packages showld be attached to this page.
+					<br>&nbsp;&nbsp;Second file:
+					<div class="code"><strong>Code (pa_hello_world):</strong><pre>
+hello_world#last#view=1#main
+</pre></div>
+					<br>&nbsp;&nbsp;Here we tell to the system that we want to display view from the package 'hello_world' and it mast be placed in the 'main' block of the template.
+					<br>&nbsp;&nbsp;2. The page was created. Now let's make it visible for public users. Right now if you open the page http://yourdomain/hello_world.html you will see 
+					an error message that you don't have permits to do this. It can be easyly explained: all new pages may be accessed by user 
+					with the <b>admin</b> permit. It was done so because of the security reasons. To change access permits go to the directory <b>%install_dir%/packages/permit/packages/permit_acess/data</b>
+					and create there a file 'phello_world' with the following content:
+					<div class="code"><strong>Code (phello_world):</strong><pre>
+public
+</pre></div>
+					<br>&nbsp;&nbsp;Here we set 'public' permit to our page. In the default configuration all users have 'public' permit. So the page will be visible for all users. 
+					Now visit the page http://yourdomain/hello_world.html and behold ).
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

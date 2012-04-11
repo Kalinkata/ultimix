@@ -1,0 +1,2 @@
+{permit:create_category}{href:page=javascript:ultimix.jstree.CreateItem()[dot_comma];text=create}&nbsp;{permit:~create_category}{permit:update_category}{href:page=javascript:ultimix.jstree.RenameItem()[dot_comma];text=edit}&nbsp;{permit:~update_category}{permit:delete_category}{href:page=javascript:ultimix.jstree.RemoveItem( '{lang:shure_to_delete_tree_item}' )[dot_comma];text=delete}{permit:~delete_category}
+<p>&nbsp;

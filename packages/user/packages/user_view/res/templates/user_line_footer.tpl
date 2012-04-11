@@ -1,0 +1,1 @@
+<center>{paginator:count_query=SELECT COUNT(*) record_count FROM umx_user}</center>

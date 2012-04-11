@@ -1,0 +1,5 @@
+call_params_filter={prefix}_view:integer,value_1
+get_post_filter={prefix}_id:integer
+permits_validation=public
+success_func=view_content
+form_template={prefix}_view_template.tpl

@@ -1,0 +1,1 @@
+<tr><td align="left">{lang:{label}}</td><td align="right"><input class="flat width_240" name="{name}" value="{value}"></td></tr>

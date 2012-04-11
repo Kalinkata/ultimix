@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Pre-/post-processing common macro</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Postprocessing macro</h4>
+					<b>&nbsp;&nbsp;Macro: {eq:value1=&lt;value1&gt;;value2=&lt;value2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with 1 if &lt;value1&gt; is equal to &lt;value2&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{eq:value1=5;value2=5} # will be replaced with 1
+{eq:value1=5;value2=7} # will be replaced with 0
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {neq:value1=&lt;value1&gt;;value2=&lt;value2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with 1 if &lt;value1&gt; is not equal to &lt;value2&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{neq:value1=5;value2=5} # will be replaced with 0
+{neq:value1=5;value2=7} # will be replaced with 1
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {gt:value1=&lt;value1&gt;;value2=&lt;value2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with 1 if &lt;value1&gt; is greater than &lt;value2&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{gt:value1=7;value2=5} # will be replaced with 1
+{gt:value1=5;value2=7} # will be replaced with 0
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {lt:value1=&lt;value1&gt;;value2=&lt;value2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with 1 if &lt;value1&gt; is lesser than &lt;value2&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{lt:value1=7;value2=5} # will be replaced with 0
+{lt:value1=5;value2=7} # will be replaced with 1
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {gte:value1=&lt;value1&gt;;value2=&lt;value2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with 1 if &lt;value1&gt; is greater or equal than &lt;value2&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{gte:value1=7;value2=7} # will be replaced with 1
+{gte:value1=7;value2=5} # will be replaced with 1
+{gte:value1=5;value2=7} # will be replaced with 0
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {lte:value1=&lt;value1&gt;;value2=&lt;value2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with 1 if &lt;value1&gt; is lesser or equal than &lt;value2&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{lte:value1=5;value2=7} # will be replaced with 1
+{lte:value1=7;value2=7} # will be replaced with 1
+{lte:value1=7;value2=5} # will be replaced with 0
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {if:condition=&lt;condition&gt;;result1=&lt;result1&gt;;result2=&lt;result2&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with &lt;reault1&gt; if &lt;condition&gt; is not equal to 0, and it will be replaced with &lt;result2&gt; if it is equal to 0.
+					<div class="code"><strong>Example:</strong><pre>
+{if:condition=1;result1=ok;result2=err} # will be replaced with ok
+{if:condition=0;result1=ok;result2=err} # will be replaced with err
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {nbsp:&lt;content&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with &lt;content&gt; with &amp;nbsp instead of spaces.
+					<div class="code"><strong>Example:</strong><pre>
+{nbsp:1 2 3} # will be replaced with 1&amp;nbsp;2&amp;nbsp;3
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {strlen:&lt;content&gt;}
+					<br>&nbsp;&nbsp;Requires: gui package</b>
+					<p>&nbsp;&nbsp;This will be replaced with length of the &lt;content&gt;.
+					<div class="code"><strong>Example:</strong><pre>
+{strlen:01234} # will be replaced with 5
+{strlen:&nbsp;&nbsp;&nbsp;} # will be replaced with 3
+{strlen:} # will be replaced with 0
+</pre></div>
+					<p><b>&nbsp;&nbsp;Macro: {settings:package_name=&lt;package_name&gt;;package_version=&lt;package_version&gt;;file_name=&lt;file_name&gt;;settings_name=&lt;settings_name&gt;;default_value=&lt;default_value&gt;}
+					<br>&nbsp;&nbsp;Requires: settings::settings_view package</b>
+					<p>&nbsp;&nbsp;This will be replaced with the settings from the specified config of the specified package.
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

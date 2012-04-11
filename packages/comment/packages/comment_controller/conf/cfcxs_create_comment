@@ -1,0 +1,6 @@
+call_params_filter=create_{prefix}:integer,value_1
+permits_filter=registered
+get_post_filter={prefix}_action:command,value_create_record
+get_post_validation=comment:string,err_msg_comment_must_be_filled
+get_post_extraction_script=comment:string#master_type:command#master_id:integer
+access_package_name={prefix}::{prefix}_access

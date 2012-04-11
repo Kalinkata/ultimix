@@ -1,0 +1,1 @@
+<table id="{name}" class="form_500"><input type="hidden" name="settings_form_action" value="1">

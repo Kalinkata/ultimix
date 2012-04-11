@@ -1,0 +1,127 @@
+/**
+author: rgb(raduga) http://mambasana.ru
+**/
+
+/*
+  template styles
+*/
+ 
+td.top_left{
+  margin           : 0;
+  padding          : 0;
+  background       : url(../images/top_left_blue.jpg) no-repeat top left;
+  width            : 171px;
+  height           : 102px;
+ }
+
+td.top_nav_repeat{
+  margin           : 0;
+  padding          : 0;
+  background       : url(../images/top_repeat_blue.jpg) repeat-x top left;
+  width            : 916px;
+  height           : 102px;
+ }
+ 
+td.top_nav_right{
+  margin           : 0;
+  padding          : 0;
+  background       : url(../images/top_right_blue.jpg) no-repeat top left;
+  width            : 13px;
+  height           : 102px;
+ }
+ 
+table.moduletable th {    
+  font-family      : Tahoma, Arial, Verdana,  Helvetica;
+  font-size        : 12px;
+  font-weight      : bold;
+  text-align       : left;
+  width            : 100%;
+  background       : url(../images/mod_blue.gif) #013C9D repeat-x top left; 
+  color            : #ffffff;
+  padding          : 2px;
+  text-indent      : 10px;
+  line-height      : 16px;	    
+ }
+
+#active_menu {
+  color            : #103566;
+  border-bottom    : 1px solid #cccccc;
+  background       : url(../images/menu.gif) #e0e0e0 96% 50% no-repeat;
+  font-weight      : bold;
+ }
+
+a:hover {
+  font-size        : 13px;
+  color            : #103566;
+  text-decoration  : none;
+  font-weight      : bold;
+ }
+
+/******************* Top Menu************************/
+
+.moduletable-topnav {
+    float: right;
+    width				: auto;
+    padding				: 0px 0px 1px 5px;
+        	}
+
+.moduletable-topnav td {
+    width				: auto;
+	}
+
+
+.topnav {
+	width				: 0px; 
+        
+	}
+
+a.topnav {
+	position			: relative;
+	width				: auto;
+	background			: none;
+ 	padding			: 5px 6px 9px 6px;
+	color				: #FFFFFF;
+      border-top   		: 5px solid #003399;
+      text-decoration		: none;
+	font-weight			: bold;
+      line-height: 35px; 
+      
+	}
+a.topnav:hover {
+ 	width				: auto;
+	color				: #ffffff;
+	background			: #013690;
+      border-top   		: 5px solid #eeeeee;
+ 	padding			: 5px 6px 9px 6px;
+ 	font-weight			: normal;
+	text-decoration		: none;
+	font-weight			: bold;
+	}
+a.topnav#current {
+	cursor			: default;
+	position			: relative;
+	width				: auto;
+	background			: #013690;
+ 	padding			: 5px 6px 9px 6px;
+	color				: #ffffff;
+      border-top   		: 5px solid #1565EB;
+      text-decoration		: none;
+	font-weight			: bold;
+
+	}
+ 
+a.topnav#current:hover {
+	cursor			: pointer;
+	position			: relative;
+	width				: auto;
+	background			: #013690;
+ 	padding			: 5px 6px 9px 6px;
+	color				: #ffffff;
+      border-top   		: 5px solid #eeeeee;
+      text-decoration		: none;
+	font-weight			: bold;
+
+	}
+
+
+

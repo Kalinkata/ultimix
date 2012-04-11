@@ -1,0 +1,1 @@
+<a href="./search_results.html?search_string={search_string}&search_output_limitations={next_limitations}&page={page}">&rarr</a>

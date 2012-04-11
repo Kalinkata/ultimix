@@ -1,0 +1,148 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+
+			a:link{
+				color:#005933;
+			}
+
+			a:visited{
+				color:#005933;
+			}
+
+			a:hover{
+				color:#00E133;
+			}
+
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Welcome</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Why Ultimix?</h4>
+					<ul>
+						<li>Object-oriented and highly reusable code</li>
+						<li>Event-driven programming</li>
+						<li>Feature-rich Web components: HTML input controls, grids, trees, wizards, dialogs and meny others</li>
+						<li>Powerfull AJAX API</li>
+						<li><a href="./documentation.html">Rich documentation and strong userbase</a></li>
+						<li>Exceptional performance</li>
+						<li>Ultimix is licensed under the MIT/BSD license which makes it perfect for use in commercial applications</li>
+						<li>Ultimix comes with a set of validators as well as numerous helper methods and widgets to simplify the task for form input and validation</li>
+						<li>Built-in support of internationalization (I18N) and localization (L10N)</li>
+						<li>Built-in enterprise modules user managemenet, authentification and authorization, content 
+						management, comments, reviews, blogs and others</li>
+						<li>Wide range of supported databases - MySQL, Oracle, MSSQL, PostgreSQL. You can extend this class with your own classes.</li>
+						<li>Separation of presentation and logic</li>
+						<li>Configurable and pluggable modular architecture</li>
+						<li>Caching modules and selective output caching</li>
+						<li>Cross-site script (XSS) prevention</li>
+						<li>Skinning and theming mechanism that allows you to quickly switch the outlook of a Ultimix-power website</li>
+						<li>Simple and effective tools help identify and solve performance issues quickly</li>
+						<li>Ultimix provides support for writing and running unit tests as well as functionality tests, campatible with PHPUnit</li>
+					</ul>
+					<h4 class="header">&nbsp;&nbsp;First 'Hello world' application</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo1.php' file. It is simple and obvious like all 'hello world' applations.</p>
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	chdir( '../../' );
+
+	print( 'Hello world!' );
+
+?&gt;
+</pre></div>
+					<h4 class="header">&nbsp;&nbsp;Modular architecture</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo2.php' file.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;All ultimix code is organized into packages. You can load any of them without limitations and use them in your code.</p>
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	chdir( '../../' );
+
+	/* include base functions wich allow you tu user the power of Ultimix ) */
+	require_once( 'include/php/startup.php' );
+
+	/* basic preparations */
+	start_script();
+
+	/* loading packages */
+	$Core = get_package( 'core' , 'last' , __FILE__ );
+
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;As you can see above the function get_package provides access to the package. Each package has at least one class, and this function returns objects of this class. It works like a singleton creating object if it was not created yet, or returns created object. If the package class was not found, then false will be returned.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;The function get_package has three parameters. First one is the package's name. Second one is the package's version. You can instal different versions of the same packages and use them at the same time in your applications. If the word 'last' is set instead of version, then the lates version of the package will be returned. Each package's version contains three digits (the major version, the minor version, and the release version). You may explicitly get package with the exact version like shown below:</p>
+<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	/* loading package 'core' with version 1.0.0 */
+	$Core = get_package( 'core' , '1.0.0' , __FILE__ );
+
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;The meaning of the third parameter of the get_package function will be described in the next tutorials.</p>
+					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b><u><a href="http://sourceforge.net/projects/ultimix/forums">Forum (registration is not necessary)</a></u></b>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b>Ultimix-based projects can be found <a href="http://sourceforge.net/projects/ultimix/files/projects/">here</a></b>
+					<h4 class="header">&nbsp;&nbsp;Other projects</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://freshmeat.net/projects/ra-testing-manager" target="_blank">Ra Testing Manager</a> - it is a simple but effective way to manage your unit-tests.
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://freshmeat.net/projects/nitro-c" target="_blank">nitro++ framework</a> - lightweight and extreamly fast c++ crossplatform framework.
+					<h4 class="header">&nbsp;&nbsp;Contacts</h4>
+					&nbsp;&nbsp;&nbsp;&nbsp;You can send feature requests, bug reports and questions on email dodonov_a_a@inbox.ru
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b><u><a href="http://gdzone.ru" target="_blank">Author's blog</a></u></b>
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2011 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

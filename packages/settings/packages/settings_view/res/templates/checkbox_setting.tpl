@@ -1,0 +1,1 @@
+<tr><td align="left">{lang:{label}}</td><td align="right"><input type="checkbox" name="{name}" {value}></td></tr>

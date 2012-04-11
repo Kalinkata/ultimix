@@ -1,0 +1,1 @@
+system_structure_label=Структура<br>системы

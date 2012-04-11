@@ -1,0 +1,13 @@
+permit_manager=Permit manager
+create_permit=create
+delete_permit=delete
+edit_permit=edit
+save_permit=save
+permit_permit=Permit
+permit_comment=Comment
+permit_must_be_filled=Field '{lang:permit_permit}' must be filled
+permit_was_created=Permit was created
+permit_was_deleted=Selected records were deleted
+no_selected_permit=At least one record must be selected
+permit_update_was_completed=Editing was finished
+shure_to_delete_all_permit=Are you shure that you want to delete all selected permits?

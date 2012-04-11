@@ -1,0 +1,1 @@
+<img class="pointer" title="{lang:change_history}" src="{image_path:package_name=database::change_history::change_history_view;file_name=history_048.gif}" onclick="ultimix.dialog.show_dom_in_dialog( '#history_{id}' , '{lang:change_history}' )">

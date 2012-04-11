@@ -1,0 +1,7 @@
+call_params_filter=change_groups_controller:integer,value_1
+get_post_filter=context_action:string,value_change_groups#action:string,value_save_groups
+permits_validation=permit_manager
+success_func=change_groups_controller
+success_message=group_changes_were_saved
+auto_redirect=1
+cleanup_fields={prefix}_action,{prefix}_context_action

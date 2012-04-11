@@ -1,0 +1,10 @@
+call_params_filter={prefix}_line:integer,value_1
+permits_validation=public
+success_func=list_view
+header={prefix}_line_header.tpl
+item={prefix}_line_item.tpl
+footer={prefix}_line_footer.tpl
+access_package_name={prefix}::{prefix}_view
+select_func=select_{prefix}_line_items
+records_per_page=5
+no_data_found_message={prefix}_was_not_found.tpl

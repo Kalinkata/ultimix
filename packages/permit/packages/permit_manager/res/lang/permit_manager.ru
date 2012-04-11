@@ -1,0 +1,13 @@
+permit_manager=Управление доступами
+create_permit=создать
+delete_permit=удалить
+edit_permit=редактировать
+save_permit=сохранить
+permit_permit=Доступ
+permit_comment=Комментарий
+permit_must_be_filled=Поле '{lang:permit_permit}' должно быть заполнено
+permit_was_created=Доступ был создан
+permit_was_deleted=Выбранные доступы были удалены
+no_selected_permit=Ни одного доступа не выбрано
+permit_update_was_completed=Редактирование завершено
+shure_to_delete_all_permit=Вы уверены, что хотите удалить высе выбранные доступы?

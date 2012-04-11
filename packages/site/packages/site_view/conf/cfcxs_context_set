@@ -1,0 +1,3 @@
+prefix=site
+version=1
+common_state_config_list_form=cfcxs_list_site_form

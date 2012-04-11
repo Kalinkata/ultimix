@@ -1,0 +1,8 @@
+call_params_filter=create_{prefix}:integer,value_1
+get_post_validation=name:string,err_msg_name_must_be_filled#menu:string,err_msg_menu_must_be_filled#href:string,err_msg_href_must_be_filled
+permits_validation=create_{prefix}
+get_post_extraction_script=name:raw#menu:raw#href:raw
+access_package_name=menu::{prefix}_access
+success_message={prefix}_was_created
+auto_redirect=1
+cleanup_fields={prefix}_action,{prefix}_context_action

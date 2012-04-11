@@ -1,0 +1,1 @@
+<a id="{id}" class="{class}" href="javascript:ultimix.grids.SubmitForm3Mass( '{form_id}' , '{param1}' , '{value1}' , '{param2}' , '{value2}' , '{param3}' , '{value3}' , '{lang:{confirm_string};default=are_you_shure}' , '{action}' , '{name}' , '{lang:{no_select_msg};default=at_least_one_record_must_be_selected}' , {waiting} , 'post' );">{lang:{text}}{raw_text}</a>

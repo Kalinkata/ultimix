@@ -1,0 +1,1 @@
+<tr><td align="center" colspan="7">{toolbar}</td></tr>

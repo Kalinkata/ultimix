@@ -1,0 +1,33 @@
+ErrorDocument 404 {http_root}/404.html
+
+AddDefaultCharset utf-8
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^$ index.php?page_name=index&%{QUERY_STRING} [L]
+RewriteRule ^([a-z0-9A-A_\-]+).html(.*)$ index.php?page_name=$1&%{QUERY_STRING} [L]
+
+<Files ~ "^cf_">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ~ "^cfcx_">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ~ "^cfcxs_">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files ~ "log$">
+    Order allow,deny
+    Deny from all
+</Files>
+
+FileETag none
+
+php_value magic_quotes_gpc off
+php_value magic_quotes_runtime off

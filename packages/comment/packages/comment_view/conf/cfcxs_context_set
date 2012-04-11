@@ -1,0 +1,6 @@
+prefix=comment
+version=1
+common_state_config_list_form=cfcxs_list_comment_form
+common_state_config_create_form=cfcxs_create_comment_form
+common_state_config_search_form=cfcxs_search_comment_form
+common_state_config_delete_button=cfcxs_delete_comment_button

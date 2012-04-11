@@ -1,0 +1,6 @@
+system_structure::system_structure_controller#last#controller=1;edit_system_structure=1#
+system_structure::system_structure_controller#last#controller=1;create_system_structure=1#
+system_structure::system_structure_controller#last#controller=1;delete_system_structure=1#
+system_structure::system_structure_view#last#view=1;show_edit_system_structure_form=1#main
+system_structure::system_structure_view#last#view=1;show_create_system_structure_form=1#main
+system_structure::system_structure_view#last#view=1;show_system_structure_list=1#main

@@ -1,0 +1,4 @@
+comments_were_not_found=Комментарии не найдены
+comment=Комментарий
+comment_create_was_completed=Комментарий был отправлен
+comments=Комментарии

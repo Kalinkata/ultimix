@@ -1,0 +1,6 @@
+ad::ad_banner::ad_banner_manager::ad_banner_manager_controller#last#create_ad_banner=1;controller=1#
+ad::ad_banner::ad_banner_manager::ad_banner_manager_controller#last#edit_ad_banner=1;controller=1#
+ad::ad_banner::ad_banner_manager::ad_banner_manager_controller#last#delete_ad_banner=1;controller=1#
+ad::ad_banner::ad_banner_manager::ad_banner_manager_view#last#show_ad_banner_list=1;view=1#main
+ad::ad_banner::ad_banner_manager::ad_banner_manager_view#last#show_create_ad_banner_form=1;view=1#main
+ad::ad_banner::ad_banner_manager::ad_banner_manager_view#last#show_edit_ad_banner_form=1;view=1#main

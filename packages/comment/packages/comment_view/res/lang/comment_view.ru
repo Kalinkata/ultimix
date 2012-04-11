@@ -1,0 +1,10 @@
+comment_manager_label=Модерация<br>комментариев
+comment_manager=Модерация комментариев
+go_to_the_page_of_the_comment=На страницу
+author_login=Автор
+comment=Комментарий
+creation_date=Дата создания
+page=Страница
+shure_to_delete_all_comment2=Вы уверены?
+no_selected_comment2=Ни одного комментария не выбрано
+comment_delete_was_completed=Все выбранные комментарии были удалены

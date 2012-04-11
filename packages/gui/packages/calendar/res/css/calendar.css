@@ -1,0 +1,44 @@
+.calendar
+{
+	border-collapse		: collapse;
+	width				: 100%;
+	border				: 1px solid black;
+}
+
+.holiday
+{
+	background-color	: #B2FFB3;
+}
+
+.calendar_header_cell
+{
+	border				: 1px solid black;
+	font-weight			: bold;
+	padding				: 5px;
+}
+
+.calendar_cell
+{
+	border				: 1px solid black;
+	padding				: 5px;
+}
+
+.cell_text
+{
+	min-height			: 100px;
+}
+
+.active_cell_bottom
+{
+	border-bottom		: 1px solid red;
+}
+
+.active_cell_right
+{
+	border-right		: 1px solid red;
+}
+
+.active_cell
+{
+	border				: 1px solid red;
+}

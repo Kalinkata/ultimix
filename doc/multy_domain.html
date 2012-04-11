@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>ultimix php framework</title>
+		<style>
+			.header{
+				background-color:#00A333;
+				color:#FFFFFF;
+			}
+			
+			a:link{
+				color:#005933;
+			}
+			
+			a:visited{
+				color:#005933;
+			}
+			
+			a:hover{
+				color:#00E133;
+			}
+			
+			.note{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			.code{
+				background-color:#BAFFC1;
+				border-bottom:1px solid #004E19;
+				border-top:1px solid #004E19;
+				margin-left:40px;
+				margin-top:5px;
+				margin-right:5px;
+				margin-bottom:5px;
+				padding:5px 5px 5px 10px;
+			}
+			
+			pre{
+				font-family:courier new;
+			}
+		</style>
+	</head>
+	
+	<body style="font-family:Verdana;">
+		<table width="100%" height="100%">
+			<tr height="100%">
+				<td valign="top">
+					<h2>Package creation</h2>
+					&nbsp;
+					<h4 class="header">&nbsp;&nbsp;Multiple domain support</h4>
+					&nbsp;&nbsp;Ultimix allows to create many sites in one install. It's very easy to do. Follow these steps:
+					<p>&nbsp;&nbsp;1. Make install directory to be accessible through different domains, for example domain1.com and domain2.com.
+					<br>&nbsp;&nbsp;2. Ultimix automatically defines global constant `DOMAIN` wich can be used in php scripts.
+					<br>&nbsp;&nbsp;3. Create additional configs in the directory './packages/cached_multy_fs/conf/' with such names 'domain_name.cf_data_storages'. 
+					In our case these files will be domain1.com.cf_data_storages and domain2.com.cf_data_storages.
+					<br>&nbsp;&nbsp;4. Set content of created configs appropriate for your purposes.
+					<p>&nbsp;&nbsp;The original content of the cf_data_storages config looks like this:
+					<div class="code"><strong>Example:</strong><pre>
+./packages/_core_data/conf
+./packages/_core_data/res/lang
+./packages/gui/packages/context_set/res/templates
+</pre></div>
+					<p>&nbsp;&nbsp;Database adapter loads config from one of these directories. Change the directory, and other 
+					config (probably to another database) will be loaded. Doing this we separate data for our sites.
+				</td>
+			</tr>
+			<tr height="0%">
+				<td>
+					<p align="right" style="background-color:#BAFFC1;border-top: thin solid #004E19;">2009 &copy; ultimix <!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</p>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

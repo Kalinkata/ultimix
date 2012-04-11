@@ -1,0 +1,1 @@
+		<row>			<test_id>#test_id#</test_id>			<script_path>#script_path#</script_path>			<log><![CDATA[#log#]]></log>			<total_execution_time>#total_execution_time#</total_execution_time>			<avg_execution_time>#avg_execution_time#</avg_execution_time>			<tester>#tester#</tester>			<email>#email#</email>			<dsc><![CDATA[#dsc#]]></dsc>		</row>

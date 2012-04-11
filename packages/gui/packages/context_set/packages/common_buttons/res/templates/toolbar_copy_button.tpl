@@ -1,0 +1,1 @@
+{toolbar_button:page=javascript:ultimix.grids.SubmitForm2Mass( '{prefix}_form' , '{prefix}_context_action' , 'copy_record_form' , '{prefix}_record_id' , '-1' , '' , '' , '{prefix}' , '{lang:no_selected_{prefix}}' , false , 'post');package_name=gui::context_set::common_buttons;icon=copy_24.gif;permit=create_{prefix};title=copy_button}

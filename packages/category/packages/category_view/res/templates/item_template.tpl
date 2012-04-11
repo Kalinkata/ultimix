@@ -1,0 +1,1 @@
+<div class="catalogue_item"><a href="./catalogue.html?cid={id}">{title}</a></div>

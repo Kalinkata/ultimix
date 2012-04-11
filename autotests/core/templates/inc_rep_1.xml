@@ -1,0 +1,12 @@
+	<total_stat>
+		<total_stat_label>#total_statistics#</total_stat_label>
+		<total_test_label>#total_tests#</total_test_label>
+		<total_test_count>#total_tests_count#</total_test_count>
+		<total_error_test_label>#total_error_tests#</total_error_test_label>
+		<total_error_test_count>#total_error_tests_count#</total_error_test_count>
+		<prs_error>#prs_error#</prs_error>
+		<total_success_tests>#total_success_tests#</total_success_tests>
+		<total_success_tests_count>#total_success_tests_count#</total_success_tests_count>
+		<prs_success>#prs_success#</prs_success>
+	</total_stat>
+	<per_tester_stat>#per_tester_statistics#</per_tester_stat>

@@ -1,0 +1,1 @@
+<tr><td align="center" colspan="2">{href:tpl=std;page=javascript:ultimix.data_form.SubmitDataForm( '#settings_form' );text=save}</td></tr></table>

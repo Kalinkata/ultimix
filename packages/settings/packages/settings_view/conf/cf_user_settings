@@ -1,0 +1,2 @@
+type=checkbox;package_name=user::user_controller;config_file_name=cf_user;label=enable_registration;setting_name=enable_registration
+type=checkbox;package_name=user::user_controller;config_file_name=cf_user;label=registration_confirm;setting_name=registration_confirm

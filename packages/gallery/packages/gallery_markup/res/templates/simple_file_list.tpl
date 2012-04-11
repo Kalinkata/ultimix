@@ -1,0 +1,1 @@
+<div id="gallery_file_{id}"><a class="file_display_container" href="./download.html?fid[eq]{id}"><span class="original_file_name">{original_file_name}</span></a>&nbsp;<a href="javascript:ultimix.gallery.DetachFile( {gallery_id} , {id} );">-</a></div>

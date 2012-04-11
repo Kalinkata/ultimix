@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<test_id>#test_id#</test_id>
+	<script_path>#script_path#</script_path>
+	<tester>#tester#</tester>
+	<email>#email#</email>
+	<dsc><![CDATA[#dsc#]]></dsc>
+	<log><![CDATA[

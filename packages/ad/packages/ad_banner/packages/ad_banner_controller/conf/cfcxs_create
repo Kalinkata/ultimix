@@ -1,0 +1,5 @@
+call_params_filter=create_{prefix}:integer,value_1
+get_post_validation=code:string,err_msg_code_must_be_set
+permits_validation={prefix}_create
+get_post_extraction_script=code:string
+access_package_name=ad::{prefix}::{prefix}_access

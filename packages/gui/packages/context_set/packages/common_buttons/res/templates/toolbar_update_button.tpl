@@ -1,0 +1,1 @@
+{toolbar_button:page=javascript:ultimix.grids.SubmitForm2Mass( '{prefix}_form' , '{prefix}_context_action' , 'update_record_form' , '{prefix}_record_id' , '-1' , '' , '' , '{prefix}' , '{lang:no_selected_{prefix}}' , false , 'post');package_name=gui::context_set::common_buttons;icon=update_24.gif;permit=update_{prefix};title=update_button}

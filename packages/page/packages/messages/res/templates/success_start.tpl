@@ -1,0 +1,1 @@
+<table class="success message_corner_all"><tr><td><div class="aligned_message_black">

@@ -1,0 +1,3 @@
+call_params_filter=set_avatar:integer,value_1
+permits_filter=registered
+success_func=set_avatar

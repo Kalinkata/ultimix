@@ -1,0 +1,12 @@
+menu_item_manager=Menu item manager
+menu_item_name=Name
+menu_item_menu=Menu
+menu_item_href=Href code
+menu_item_was_created=Menu item was created
+no_selected_menu_item=At least one menu item must be selected
+shure_to_delete_all_menu_item=Are you shure that you want to delete all selected menu items?
+menu_item_was_deleted=Menu items were deleted
+name_must_be_filled=Field '{lang:menu_item_name}' must be filled
+menu_must_be_filled=Field '{lang:menu_item_menu}' must be filled
+href_must_be_filled=Field '{lang:menu_item_href}' must be filled
+menu_item_update_was_completed=Editing was finished

@@ -1,0 +1,1 @@
+{href:tpl=std;text={title};page=./content_view.html?id[eq]{id}}<br>

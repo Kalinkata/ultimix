@@ -1,0 +1,1 @@
+<input type="hidden" name="category_active_list" value="save"><table>{code}</table>{direct_controller:package_name=category::category_controller;meta=meta_category_list;master_id={master_id};master_type={master_type}}

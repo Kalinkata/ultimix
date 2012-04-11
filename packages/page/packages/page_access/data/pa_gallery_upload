@@ -1,0 +1,5 @@
+page::page_composer#last#post_process=1#
+user::user_controller#last#controller=1;simple_login=1#
+file_input::file_input_controller#last#controller=1;upload_file=1#
+gallery::gallery_controller#last#controller=1;attach_file=1#
+lang::lang_markup#last#post_process=1#

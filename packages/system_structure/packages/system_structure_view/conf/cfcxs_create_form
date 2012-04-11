@@ -1,0 +1,4 @@
+call_params_filter=show_create_system_structure_form:integer,value_1
+permits_validation=create_system_structure
+default_form=1
+success_func=create_form

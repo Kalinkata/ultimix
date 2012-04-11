@@ -1,0 +1,6 @@
+call_params_filter=create_{prefix}:integer,value_1
+permits_filter=registered
+get_post_filter={prefix}_action:command,value_create_record
+get_post_validation=rank:integer,err_msg_rank_must_be_filled#review:string,err_msg_review_must_be_filled
+get_post_extraction_script=rank:integer#review:string#master_type:command#master_id:integer
+access_package_name={prefix}::{prefix}_algorithms

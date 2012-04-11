@@ -1,0 +1,2 @@
+{select_dialog:id={id};package_name=user::user_access;{opener_selector}data_acceptor=#{opener_id};status_acceptor=#visible_{opener_id};data_source=#{id}_data;title={lang:user_selection}}
+{lang_file:package_name=user::user_view}

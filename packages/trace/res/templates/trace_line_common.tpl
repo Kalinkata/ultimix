@@ -1,0 +1,1 @@
+<div class="trace_line_common">{string}</div>

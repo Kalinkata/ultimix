@@ -1,0 +1,92 @@
+.jsdialogs-exclamation
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/exclamation.gif ) no-repeat center center;
+}
+
+.jsdialogs-warning
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/warning.gif ) no-repeat center center;
+}
+
+.jsdialogs-information
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/information.gif ) no-repeat center center;
+}
+
+.jsdialogs-asterisk
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/asterisk.gif ) no-repeat center center;
+}
+
+.jsdialogs-question
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/question.gif ) no-repeat center center;
+}
+
+.jsdialogs-stop
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/stop.gif ) no-repeat center center;
+}
+
+.jsdialogs-error
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/error.gif ) no-repeat center center;
+}
+
+.jsdialogs-hand
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/hand.gif ) no-repeat center center;
+}
+
+.jsdialogs-loading
+{
+	height : 32px;
+	width : 32px;
+	float : left;
+	margin-right : 10px;
+	background : url( ../images/loading.gif ) no-repeat center center;
+}
+
+.jsdialogs-default
+{
+	display : none;
+}
+
+.ultimix-MessageBox-content
+{
+	padding-left: 10px;
+	padding-right: 10px;
+	min-height: 32px;
+}

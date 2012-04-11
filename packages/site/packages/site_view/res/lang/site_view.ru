@@ -1,0 +1,3 @@
+site_manager=Сайты
+domain=Домен
+comment=Комментарий

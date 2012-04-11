@@ -1,0 +1,1 @@
+<li id="phtml_$Title" class="meta"><a href="#"><ins>&nbsp;</ins>{title}</a></li>

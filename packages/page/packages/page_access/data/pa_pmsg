@@ -1,0 +1,7 @@
+pmsg::pmsg_view#last#pre_generation=1#
+pmsg::pmsg_controller#last#meta=meta_send_pmsg#
+pmsg::pmsg_controller#last#meta=meta_delete_pmsg#
+pmsg::pmsg_controller#last#meta=meta_cleanup_pmsg#
+pmsg::pmsg_controller#last#meta=meta_read_pmsg#
+pmsg::pmsg_view#last#meta=meta_send#main
+pmsg::pmsg_view#last#meta=meta_solid_control#main

@@ -1,0 +1,8 @@
+call_params_filter=cleanup_{prefix}:integer,value_1
+get_post_filter={prefix}_context_action:string,value_cleanup_{prefix}
+permits_validation=registered
+access_package_name={prefix}::{prefix}_algorithms
+success_func=multy_call
+func_name=cleanup_message_for_user
+auto_redirect=1
+success_message=pmsg_deletion_was_completed

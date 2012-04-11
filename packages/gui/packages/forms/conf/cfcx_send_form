@@ -1,0 +1,5 @@
+call_params_filter=send_form:integer,value_1;email_template:strings
+get_post_filter=form_send:integer,value_1
+success_func=send_form
+auto_redirect=1
+success_message=form_was_sent

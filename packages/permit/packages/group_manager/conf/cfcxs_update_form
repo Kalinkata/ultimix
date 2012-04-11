@@ -1,0 +1,3 @@
+call_params_filter=show_edit_{prefix}_form:integer,value_1
+access_package_name=permit::{prefix}_access
+permits_validation=update_{prefix}

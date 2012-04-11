@@ -1,0 +1,1 @@
+<div class="width_200 margin_0_auto centered">{lang:data_for_grid_was_not_found}</div>

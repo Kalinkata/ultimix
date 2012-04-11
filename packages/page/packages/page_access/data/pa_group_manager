@@ -1,0 +1,9 @@
+permit::group_manager#last#controller=1;delete_group=1#
+permit::group_manager#last#controller=1;create_group=1#
+permit::group_manager#last#controller=1;edit_group=1#
+permit::group_manager#last#controller=1;change_permits_controller=1#
+permit::group_manager#last#view=1;show_group_list=1#main
+permit::group_manager#last#view=1;change_permits_view=1#main
+permit::group_manager#last#view=1;show_create_group_form=1#main
+permit::group_manager#last#view=1;show_edit_group_form=1#main
+gui::checkbox_markup#last#post_process=1#

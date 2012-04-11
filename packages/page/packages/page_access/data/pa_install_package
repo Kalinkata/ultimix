@@ -1,0 +1,2 @@
+core::package_manager::package_manager_controller#last#controller=1;install_package=1#
+core::package_manager::package_manager_view#last#view=1;package_selection=1#upload_form_extension

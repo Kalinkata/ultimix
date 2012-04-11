@@ -1,0 +1,1 @@
+<h3><a href="#">{lang:{title}}</a></h3>

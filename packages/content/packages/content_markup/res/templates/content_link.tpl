@@ -1,0 +1,1 @@
+<a href="view_content.html?content_id={id}">{title}</a><br>

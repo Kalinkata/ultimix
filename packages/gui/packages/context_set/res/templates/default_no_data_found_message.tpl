@@ -1,0 +1,1 @@
+{search_form}{create_button}{search_button}<br><div class="width_200 form_330 centered_text">{lang:data_for_grid_was_not_found}</div>

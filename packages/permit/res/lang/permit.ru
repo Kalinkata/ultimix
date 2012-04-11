@@ -1,0 +1,3 @@
+user_permits_label=Доступы<br>пользователей
+groups_label=Группы<br>доступов
+permits_label=Доступы

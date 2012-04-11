@@ -1,0 +1,6 @@
+call_params_filter={prefix}_list:integer,value_1
+permits_filter={prefix}_manager
+header={prefix}_header.tpl
+item={prefix}_item.tpl
+footer={prefix}_footer.tpl
+access_package_name={prefix}::{prefix}_access

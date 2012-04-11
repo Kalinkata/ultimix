@@ -1,0 +1,1 @@
+SELECT 'News' as category , creation_date as pub_date , title , demo_content AS description , CONCAT( '{link}/' , id ) AS guid , CONCAT( '{link}/content_view.html?content_id=' , id ) AS item_link FROM umx_content WHERE category = {category_id:name=news} ORDER BY id DESC LIMIT 20

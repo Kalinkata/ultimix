@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>AutoTest Log</title>
+	</head>
+	
+	<body style="font-family:Courier New">
+		<style>
+			a:link {
+				text-decoration: none;
+				color: #0000bb;
+			}
+
+			a:visited {
+				text-decoration: none;
+				color: #0000bb;
+			}
+
+			a:hover {
+				text-decoration: underline;
+				color: #0000bb;
+			}
+
+			a:active {
+				text-decoration: none;
+				color: #0000bb;
+			}
+		</style>
+		<script>
+			function	SwapRows( RowIndex1 , RowIndex2 )
+			{
+				for( k = 0 ; k < 6 ; k++ )
+				{
+					var		CellId = "cell_";
+						
+					var		Span1 = document.getElementById( CellId.concat( RowIndex1 ).concat( "_" ).concat( k ) );
+					var		Span2 = document.getElementById( CellId.concat( RowIndex2 ).concat( "_" ).concat( k ) );
+					
+					var		TdId = "td_";
+					
+					var		Td1 = document.getElementById( TdId.concat( RowIndex1 ).concat( "_" ).concat( k ) );
+					var		Td2 = document.getElementById( TdId.concat( RowIndex2 ).concat( "_" ).concat( k ) );
+
+					var		Tmp = Span1.innerHTML;
+					Span1.innerHTML = Span2.innerHTML;
+					Span2.innerHTML = Tmp;
+					
+					Color1 = Td1.getAttribute( 'bgcolor' );
+					Color2 = Td2.getAttribute( 'bgcolor' );
+					if( RowIndex1 % 2 == 0 )
+					{
+						if( Color2 == '#ffcdcd' )
+						{
+							Color2 = '#ffabab';
+						}
+						if( Color2 == '#cdffcd' )
+						{
+							Color2 = '#abffab';
+						}
+					}
+					if( RowIndex1 % 2 == 1 )
+					{
+						if( Color2 == '#ffabab' )
+						{
+							Color2 = '#ffcdcd';
+						}
+						if( Color2 == '#abffab' )
+						{
+							Color2 = '#cdffcd';
+						}
+					}
+					if( RowIndex2 % 2 == 0 )
+					{
+						if( Color1 == '#ffcdcd' )
+						{
+							Color1 = '#ffabab';
+						}
+						if( Color1 == '#cdffcd' )
+						{
+							Color1 = '#abffab';
+						}
+					}
+					if( RowIndex2 % 2 == 1 )
+					{
+						if( Color1 == '#ffabab' )
+						{
+							Color1 = '#ffcdcd';
+						}
+						if( Color1 == '#abffab' )
+						{
+							Color1 = '#cdffcd';
+						}
+					}
+					
+					Td1.setAttribute( 'bgcolor' , Color2 );
+					Td2.setAttribute( 'bgcolor' , Color1 );
+				}
+			}
+			
+			function	Sort( Column )
+			{
+				var		test_count = document.getElementById( "test_count" ).value;
+				
+				var		sort_order = "sort_direction_";
+				sort_order = sort_order.concat( Column );
+				
+				for( i = 0 ; i < test_count ; i++ )
+				{
+					for( j = 0 ; j < test_count - 1 ; j++ )
+					{
+						var		CellId = "cell_";
+						
+						var		Span1 = document.getElementById( CellId.concat( j ).concat( "_" ).concat( Column ) );
+						var		Span2 = document.getElementById( CellId.concat( j + 1 ).concat( "_" ).concat( Column ) );
+						
+						if( document.getElementById( sort_order ).value == "desc" )
+						{
+							if( Span1.innerHTML.localeCompare( Span2.innerHTML ) < 0 )
+							{
+								SwapRows( j , j + 1 );
+							}
+						}
+						else
+						{
+							if( Span1.innerHTML.localeCompare( Span2.innerHTML ) > 0 )
+							{
+								SwapRows( j , j + 1 );
+							}
+						}
+					}
+				}
+				
+				if( document.getElementById( sort_order ).value == "desc" )
+				{
+					document.getElementById( sort_order ).value = "asc";
+				}
+				else
+				{
+					document.getElementById( sort_order ).value = "desc";
+				}/**/
+			}
+		</script>
+		<input type="hidden" id="sort_direction_0" value="desc">
+		<input type="hidden" id="sort_direction_1" value="desc">
+		<input type="hidden" id="sort_direction_2" value="desc">
+		<input type="hidden" id="sort_direction_3" value="desc">
+		<input type="hidden" id="sort_direction_4" value="desc">
+		<input type="hidden" id="sort_direction_5" value="desc">
+		<input type="hidden" id="test_count" value="2">
+		<table width="100%">
+			<tr>
+				<td bgcolor="#DDDDDD">
+					<a href="javascript:Sort( 0 );">#</a>
+				</td>
+				<td bgcolor="#DDDDDD">
+					<a href="javascript:Sort( 1 );">File</a>
+				</td>
+				<td bgcolor="#DDDDDD">
+					<a href="javascript:Sort( 2 );">Result</a>
+				</td>
+				<td bgcolor="#DDDDDD">
+					<a href="javascript:Sort( 3 );">Tester</a>
+				</td>
+				<td bgcolor="#DDDDDD">
+					<a href="javascript:Sort( 4 );">tester's email</a>
+				</td>
+				<td bgcolor="#DDDDDD">
+					<a href="javascript:Sort( 5 );">Description</a>
+				</td>
+			</tr>			<tr>
+				<td id="td_0_0" bgcolor="#ABFFAB" valign="top">
+					<span id="cell_0_0">
+						00001
+					</span>
+				</td>
+				<td id="td_0_1" bgcolor="#ABFFAB" valign="top">
+					<span id="cell_0_1">
+						example\passed.xml
+					</span>
+				</td>
+				<td id="td_0_2" bgcolor="#ABFFAB" valign="top">
+					<span id="cell_0_2">
+						TEST&nbsp;PASSED
+					</span>
+				</td>
+				<td id="td_0_3" bgcolor="#ABFFAB" valign="top">
+					<span id="cell_0_3">
+						tester's name
+					</span>
+				</td>
+				<td id="td_0_4" bgcolor="#ABFFAB" valign="top">
+					<span id="cell_0_4">
+						tester@localhost
+					</span>
+				</td>
+				<td id="td_0_5" bgcolor="#ABFFAB" valign="top">
+					<span id="cell_0_5">
+						Description
+					</span>
+				</td>
+			</tr>			<tr>
+				<td id="td_1_0" bgcolor="#FFCDCD" valign="top">
+					<span id="cell_1_0">
+						00002
+					</span>
+				</td>
+				<td id="td_1_1" bgcolor="#FFCDCD" valign="top">
+					<span id="cell_1_1">
+						example\failed.xml
+					</span>
+				</td>
+				<td id="td_1_2" bgcolor="#FFCDCD" valign="top">
+					<span id="cell_1_2">
+						ERROR<br>
+					</span>
+				</td>
+				<td id="td_1_3" bgcolor="#FFCDCD" valign="top">
+					<span id="cell_1_3">
+						tester's name
+					</span>
+				</td>
+				<td id="td_1_4" bgcolor="#FFCDCD" valign="top">
+					<span id="cell_1_4">
+						tester@localhost
+					</span>
+				</td>
+				<td id="td_1_5" bgcolor="#FFCDCD" valign="top">
+					<span id="cell_1_5">
+						Description
+					</span>
+				</td>
+			</tr>		</table><br><b>Basic statistics</b><br>
+Total tests count : 2<br>
+Total tests count, finished with error : 1 (50.0 %)<br>
+Total tests count, successfully finished : 1 (50.0 %)<br>
+<br>
+<b>Statistics for each tester</b><br>tester's name<br>
+Count of tests finished with error : 1<br>
+Count of tests finished successfully : 1<p>		<p>Time when the autotesting was started : 2009-08-22 13:35:34.328000<br>
+		Time when the autotesting was finished : 2009-08-22 13:35:35.437000<br>
+		Total testing time : 0:00:01.109000
+		<p><center><!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='http://www.liveinternet.ru/click' "+
+"target=_blank><img src='http://counter.yadro.ru/hit?t26.6;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число посетителей за"+
+" сегодня' "+
+"border='0' width='88' height='15'><\/a>")
+//--></script><!--/LiveInternet-->
+</center>
+	</body>
+</html>

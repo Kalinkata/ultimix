@@ -1,0 +1,1 @@
+<a id="{id}" class="{class}" href="javascript:ultimix.ToggleElement( '{element_id}' , {speed} );">{lang:{text}}{raw_text}</a>

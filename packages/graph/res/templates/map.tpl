@@ -1,0 +1,1 @@
+<map id="{map_name}" name="{map_name}">{output}</map>

@@ -1,0 +1,7 @@
+content::content_controller#last#controller=1;create_content=1#
+content::content_controller#last#controller=1;update_content=1#
+content::content_controller#last#controller=1;delete_content=1#
+content::content_view#last#view=1;show_create_content_form=1;category_name=article#main
+content::content_view#last#view=1;show_update_content_form=1;category_name=article#main
+content::content_view#last#view=1;show_content_list=1;category_name=article#main
+category::category_view#last#post_process=1#

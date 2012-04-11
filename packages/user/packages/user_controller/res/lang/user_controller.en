@@ -1,0 +1,11 @@
+user_was_activated=User was activated
+authentification_successful=Authentification was passed
+user_does_not_exists=User does not exist
+registration_was_not_confirmed=Registration was not confirmed
+registration_confirm=Registration confirmation
+this_email_was_sent_by_robot=This email was sent by robot
+to_confirm_registration=To confirm registration visit our site using the folowing link
+receive_mistake=If you don't registered on our site then delete this email.
+activation_link=Link to finish registration
+password_restoration=Password restoration
+confirm_registration=Confirm registration

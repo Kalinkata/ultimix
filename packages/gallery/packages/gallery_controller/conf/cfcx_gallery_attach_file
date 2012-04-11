@@ -1,0 +1,3 @@
+call_params_filter=attach_file:integer,value_1
+permits_filter=registered
+success_func=attach_file

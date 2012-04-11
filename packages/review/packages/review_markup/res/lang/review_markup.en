@@ -1,0 +1,6 @@
+reviews_were_not_found=Reviews were not found
+review=Review
+review_create_was_completed=Review creation was completed
+rank=Rank
+rank_must_be_filled=Field '{lang:rank}' must be filled
+review_must_be_filled=Field '{lang:review}' must be filled

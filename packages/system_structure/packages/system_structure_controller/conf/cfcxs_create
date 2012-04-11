@@ -1,0 +1,8 @@
+call_params_filter=create_system_structure:integer,value_1
+get_post_filter={prefix}_action:string,value_create_record
+get_post_validation={prefix}_page:string,err_msg_page_must_be_filled#{prefix}_root_page:string,err_msg_root_page_must_be_filled#{prefix}_navigation:raw,allow_not_set
+permits_validation=create_system_structure
+get_post_extraction_script={prefix}_page:string#{prefix}_root_page:string#{prefix}_navigation:raw,default_,allow_not_set
+success_func=create
+success_message=system_structure_was_created
+-cleanup_fields={prefix}_action,{prefix}_context_action

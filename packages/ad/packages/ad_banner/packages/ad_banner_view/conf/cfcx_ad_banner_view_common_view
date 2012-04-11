@@ -1,0 +1,3 @@
+call_params_filter=show_common_view:integer,value_1
+permits_filter=public
+success_func=common_view

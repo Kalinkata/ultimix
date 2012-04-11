@@ -1,0 +1,3 @@
+call_params_filter=delete_error:integer,value_1
+get_post_filter=error_action:string,value_massive_delete
+success_func=delete_error

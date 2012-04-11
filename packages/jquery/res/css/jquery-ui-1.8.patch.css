@@ -1,0 +1,96 @@
+.ui-tabs
+{
+	padding : 0em;
+	height : 100%;
+}
+
+.ui-widget
+{
+	font-family : Verdana;
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button
+{ 
+	font-family:  Verdana;
+}
+
+.ui-tabs .ui-tabs-nav li a
+{
+	float : left;
+	padding : 0.3em 1em;
+	text-decoration : none;
+	outline : medium none;
+}
+
+.ui-tabs .ui-tabs-nav
+{
+	margin : 0;
+	padding : 0;
+}
+
+.ui-widget
+{
+	font-family : inherit;
+	font-size : 12px;
+}
+
+.ui-dialog .ui-dialog-buttonpane
+{
+	text-align : right;
+}
+
+.ui-dialog .ui-dialog-buttonpane button
+{
+	float : right;
+}
+
+ul.ui-tabs-nav li .ui-icon-close
+{
+	cursor : pointer;
+	float : left;
+	margin : 0.2em 0.2em 0 0;
+}
+
+.ui-datepicker-trigger
+{
+    cursor : pointer;
+    margin-left : 3px;
+}
+
+.select_dialog
+{
+	height : 20px;
+	white-space : nowrap;
+	overflow : hidden;
+}
+
+.select_dialog_checkbox
+{
+	vertical-align : baseline;
+	display : inline;
+}
+
+.select_dialog_label
+{
+	margin-left : 2px;
+	vertical-align : 3px;
+	cursor : pointer;
+	white-space : nowrap;
+}
+
+body
+{
+	font-family : Verdana;
+}
+
+.ui-accordion .ui-accordion-content
+{
+    padding : 0.3em 0.4em;
+}
+
+.ui-tabs .ui-tabs-panel
+{
+	padding : 0;
+	overflow : auto;
+	height : 100%;
+}

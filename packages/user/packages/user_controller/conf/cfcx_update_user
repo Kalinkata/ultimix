@@ -1,0 +1,3 @@
+call_params_filter=update_user:integer,value_1
+get_post_filter=user_action:command,value_update_record
+success_func=update_user

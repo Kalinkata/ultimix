@@ -1,0 +1,5 @@
+call_params_filter={prefix}_read:integer,value_1
+get_post_filter=action:command,value_set_read
+permits_validation=registered
+access_package_name={prefix}::{prefix}_controller
+success_func=set_read

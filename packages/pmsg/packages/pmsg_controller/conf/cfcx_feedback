@@ -1,0 +1,5 @@
+call_params_filter=send_message:integer,value_1
+get_post_filter=message_action:string,value_send_feedback
+get_post_validation=message:string,err_msg_message_was_not_set
+success_func=send_feedback
+success_message=feedback_was_sent
