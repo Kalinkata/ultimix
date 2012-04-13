@@ -1,3 +1,8 @@
+Ultimix v. 1.5.240
+-----------------------------------------
+1. The macro 'regions' was added.
+2. Region info was added to the 'xml::yandex_xml' request functions.
+
 Ultimix v. 1.5.239
 -----------------------------------------
 1. An error in the page generation functions was fixed.

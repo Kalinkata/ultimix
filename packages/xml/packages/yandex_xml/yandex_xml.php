@@ -113,11 +113,9 @@
 		/**
 		*	\~russian Функция отправки запроса к Яндексу.
 		*
-		*	@param $User - Пользователь.
-		*
-		*	@param $Key - Ключ.
-		*
 		*	@param $Data - Данные для отправки.
+		*
+		*	@param $Region - Регион.
 		*
 		*	@return Результат выдачи яндекса.
 		*
@@ -128,11 +126,9 @@
 		/**
 		*	\~english Function sends request to yandex.
 		*
-		*	@param $User - User login.
-		*
-		*	@param $Key - Key.
-		*
 		*	@param $Data - Data to be sent.
+		*
+		*	@param $Region - Region.
 		*
 		*	@return Yandex response.
 		*
@@ -140,7 +136,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	send_request( $User , $Key , $Data = '' )
+		private function	send_request( $Data , $Region = 0 )
 		{
 			try
 			{
@@ -149,7 +145,8 @@
 				$ContextDescription = array( 'http' => $HttpDescription );
 				$Context = stream_context_create( $ContextDescription );
 
-				$URL = "http://xmlsearch.yandex.ru/xmlsearch?user=$User&key=$Key";
+				$URL = "http://xmlsearch.yandex.ru/xmlsearch?user=".
+					"$this->User&key=$this->Key".( $Region ? "&lr=$Region" : '' )/**/;
 				$Result = file_get_contents( $URL , true , $Context );
 
 				return( $Result );
@@ -163,11 +160,9 @@
 		/**
 		*	\~russian Функция отправки запроса к Яндексу.
 		*
-		*	@param $User - Пользователь.
-		*
-		*	@param $Key - Ключ.
-		*
 		*	@param $Query - Поисковый запрос.
+		*
+		*	@param $Region - Region.
 		*
 		*	@return Результат выдачи яндекса.
 		*
@@ -178,11 +173,9 @@
 		/**
 		*	\~english Function sends request to yandex.
 		*
-		*	@param $User - User login.
-		*
-		*	@param $Key - Key.
-		*
 		*	@param $Query - Search query.
+		*
+		*	@param $Region - Region.
 		*
 		*	@return Yandex response.
 		*
@@ -190,7 +183,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	search_query( $User , $Key , $Query )
+		private function	search_query( $Query , $Region = 0 )
 		{
 			try
 			{
@@ -202,7 +195,7 @@
 					</groupings>
 				</request>";
 
-				return( $this->send_request( $User , $Key , $Data ) );
+				return( $this->send_request( $Data , $Region ) );
 			}
 			catch( Exception $e )
 			{
@@ -256,6 +249,8 @@
 		*
 		*	@param $Query - Запрос.
 		*
+		*	@param $Region - Регион.
+		*
 		*	@return Позиция.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -269,24 +264,28 @@
 		*
 		*	@param $Query - Query.
 		*
+		*	@param $Region - Region.
+		*
 		*	@return Position.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_position( $Domain , $Query )
+		function			get_position( $Domain , $Query , $Region = 0 )
 		{
 			try
 			{
-				$Response = $this->search_query( $this->User , $this->Key , $Query );
+				$Domain = str_ireplace( 'http://' , '' , $Domain );
+
+				$Response = $this->search_query( $Query , $Region );
 
 				$Response = $this->parse_response( $Response );
 
 				$Counter = 1;
 				foreach( $Response as $Item )
 				{
-					if( strtolower( $Item->domain ) == $Domain )
+					if( strtolower( $Item->domain ) == strtolower( $Domain ) )
 					{
 						return( $Counter );
 					}
@@ -308,6 +307,8 @@
 		*
 		*	@param $Query - Запрос.
 		*
+		*	@param $Region - Регион.
+		*
 		*	@return array( $Position , $URL ).
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -321,19 +322,22 @@
 		*
 		*	@param $Query - Query.
 		*
+		*	@param $Region - Region.
+		*
 		*	@return array( $Position , $URL ).
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_position_and_url( $Domain , $Query )
+		function			get_position_and_url( $Domain , $Query , $Region = 0 )
 		{
 			try
 			{
-				$Response = $this->search_query( $this->User , $this->Key , $Query );
-				$Response = $this->parse_response( $Response );
 				$Domain = str_ireplace( 'http://' , '' , $Domain );
+
+				$Response = $this->search_query( $Query , $Region );
+				$Response = $this->parse_response( $Response );
 
 				if( empty( $Response ) )
 				{
@@ -343,7 +347,7 @@
 				$Counter = 1;
 				foreach( $Response as $Item )
 				{
-					if( strtolower( $Item->domain ) == $Domain )
+					if( strtolower( $Item->domain ) == strtolower( $Domain ) )
 					{
 						return( array( $Counter , "$Item->url" ) );
 					}
@@ -351,6 +355,62 @@
 				}
 
 				return( array( $Counter < count( $Response ) ? $Counter : 0 , 'undefined' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Получение позиции сайта в выдаче.
+		*
+		*	@param $Domain - Сайт.
+		*
+		*	@param $Query - Запрос.
+		*
+		*	@param $Region - Регион.
+		*
+		*	@return Позиция.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns site position.
+		*
+		*	@param $Domain - Site.
+		*
+		*	@param $Query - Query.
+		*
+		*	@param $Region - Region.
+		*
+		*	@return Position.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_url( $Domain , $Query , $Region = 0 )
+		{
+			try
+			{
+				$Domain = str_ireplace( 'http://' , '' , $Domain );
+
+				$Response = $this->search_query( "$Query site:$Domain" , $Region );
+
+				$Response = $this->parse_response( $Response );
+
+				foreach( $Response as $Item )
+				{
+					if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+					{
+						return( "$Item->url" );
+					}
+				}
+
+				return( false );
 			}
 			catch( Exception $e )
 			{
