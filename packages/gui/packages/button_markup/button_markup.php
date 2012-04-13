@@ -448,6 +448,48 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		private function	get_toggle_button_icons( &$Settings )
+		{
+			try
+			{
+				$Value = $Settings->get_setting( 'value' , 0 );
+				$Icon = $Settings->get_setting( $Value ? 'icon' : 'icon_toggle' );
+				$IconToggle = $Settings->get_setting( $Value ? 'icon_toggle' : 'icon' );
+
+				return( array( $Icon , $IconToggle ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Функция компиляции кнопки.
+		*
+		*	@param $Code - Код кнопки.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@return Скомпилированная кнопка.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles button.
+		*
+		*	@param $Code - Button code.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@return Compiled button.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
 		private function	set_toggle_button_icons( $Code , &$Settings )
 		{
 			try
@@ -456,9 +498,8 @@
 					$Settings->get_setting( 'package_name' ) , $Settings->get_setting( 'package_version' , 'last' )
 				);
 
-				$Value = $Settings->get_setting( 'value' , 0 );
-				$Icon = $Settings->get_setting( $Value ? 'icon' : 'icon_toggle' );
-				$IconToggle = $Settings->get_setting( $Value ? 'icon_toggle' : 'icon' );
+				list( $Icon , $IconToggle ) = $this->get_toggle_button_icons( $Settings );
+
 				$ToggleFunc = $Settings->get_setting( 'toggle_func' );
 
 				$Func = "ultimix.button_markup.ToggleButton( this , '$Icon' , '$IconToggle' , $ToggleFunc );";

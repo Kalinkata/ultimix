@@ -162,7 +162,6 @@
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.disable.text.select.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.dialog.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/wizard.js" );
-				$this->PageJS->add_javascript( "$Path/include/js/iframe.dialog.js" );
 			}
 			catch( Exception $e )
 			{

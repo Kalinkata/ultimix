@@ -2,6 +2,10 @@ Ultimix v. 1.5.240
 -----------------------------------------
 1. The macro 'regions' was added.
 2. Region info was added to the 'xml::yandex_xml' request functions.
+3. Buttons compilation function were improved.
+4. Documentation was fixed.
+5. Language data loading API was improved.
+6. Performance was improved.
 
 Ultimix v. 1.5.239
 -----------------------------------------

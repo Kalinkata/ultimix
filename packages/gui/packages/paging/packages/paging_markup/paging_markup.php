@@ -26,6 +26,8 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
+		var					$Settings = false;
+		var					$Security = false;
 	
 		/**
 		*	\~russian Конструктор.
@@ -46,6 +48,9 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				// TODO add get_package_object function description to demo description
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -131,11 +136,11 @@
 			{
 				$ReorderField = '';
 
-				if( $Paging->Security->get_gp( 'reorder_field' ) )
+				if( $this->Security->get_gp( 'reorder_field' ) )
 				{
-					$Field = $Paging->Security->get_gp( 'reorder_field' , 'command' );
+					$Field = $this->Security->get_gp( 'reorder_field' , 'command' );
 					$Order = 
-						$Paging->Security->get_gp( 'order' , 'command' ) === 'ascending' ? 'ascending' : 'descending';
+						$this->Security->get_gp( 'order' , 'command' ) === 'ascending' ? 'ascending' : 'descending';
 					$ReorderField = " , 'reorder_field' : '$Field' , 'order' : '$Order'";
 				}
 				
@@ -320,7 +325,7 @@
 
 				$Macro = array( '{reorder_field}' , '{prefix}' , '{fields}' , '{form_id}' , '{options}' );
 				$Data = array( 
-					$Paging->Security->get_gp( 'reorder_field' , 'command' , '' ) , $Paging->Prefix , $Fields , 
+					$this->Security->get_gp( 'reorder_field' , 'command' , '' ) , $Paging->Prefix , $Fields , 
 					$Paging->FormId , $this->compile_controller_options( $Paging , $Settings )
 				);
 				$Code = str_replace( $Macro , $Data , $Code );
@@ -363,11 +368,9 @@
 
 				for( ; $Parameters = $Paging->String->get_macro_parameters( $Control , 'records_per_page' ) ; )
 				{
-					$Paging->Settings->load_settings( $Parameters );
+					$this->Settings->load_settings( $Parameters );
 
-					// TODO remove $Paging->Settings with $this->Settings
-
-					$Code = $this->get_records_per_page_control( $Paging , $Paging->Settings );
+					$Code = $this->get_records_per_page_control( $Paging , $this->Settings );
 
 					$Control = str_replace( "{records_per_page:$Parameters}" , $Code , $Control );
 				}
@@ -512,15 +515,15 @@
 		{
 			try
 			{
-				$ReorderField = $Paging->Security->get_gp( 'reorder_field' , 'command' , false );
+				$ReorderField = $this->Security->get_gp( 'reorder_field' , 'command' , false );
 
-				if( $ReorderField && $Paging->Settings->get_setting( 'dbfield' ) === $ReorderField )
+				if( $ReorderField && $this->Settings->get_setting( 'dbfield' ) === $ReorderField )
 				{
-					$Order = ( $Paging->Security->get_gp( 'order' , 'command' ) === 'ascending' ? 
+					$Order = ( $this->Security->get_gp( 'order' , 'command' ) === 'ascending' ? 
 						'ascending' : 'descending' );
 					$HiddenFields = str_replace( '{order}' , $Order , $HiddenFields );
 					$HiddenFields = str_replace( 
-						'{field}' , $Paging->Settings->get_setting( 'dbfield' ) , $HiddenFields
+						'{field}' , $this->Settings->get_setting( 'dbfield' ) , $HiddenFields
 					);
 				}
 
@@ -564,14 +567,14 @@
 			{
 				for( ; $Parameters = $Paging->String->get_macro_parameters( $Paging->Header , 'sort_link' ) ; )
 				{
-					$Paging->Settings->load_settings( $Parameters );
+					$this->Settings->load_settings( $Parameters );
 
 					$HiddenFields = $this->set_order_data( $Paging , $HiddenFields );
 
 					$Paging->Header = str_replace( "{sort_link:$Parameters}" , "{href:style=display:block;text=".
-						$Paging->Settings->get_setting( 'text' ).";page=javascript:ultimix.Reorder( '#".$Paging->FormId.
+						$this->Settings->get_setting( 'text' ).";page=javascript:ultimix.Reorder( '#".$Paging->FormId.
 						"' , ".( $Paging->Ajaxed ? 'true' : 'false' )." , './[page_name].html' , '".
-						$Paging->Settings->get_setting( 'dbfield' )."' )}" , $Paging->Header
+						$this->Settings->get_setting( 'dbfield' )."' )}" , $Paging->Header
 					);
 				}
 

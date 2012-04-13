@@ -830,8 +830,6 @@
 			}
 		}
 
-		// TODO pass config name of the context through $Options or load all of them
-		// TODO add this^ hints to each page with user::*_view/user::*_controller packages
 		// TODO remove empty blocks from trace output
 		// TODO create trace output demo
 

@@ -6,10 +6,10 @@ jsdialogs#last#pre_generation=1#
 jslib#last#pre_generation=1#
 ckeditor#last#pre_generation=1#
 gui::context_set#last#pre_generation=1#
-user::user_controller#last#controller=1;login=1#
-user::user_controller#last#controller=1;logout=1#
-user::user_view#last#view=1;login_form=1#menu
-user::user_view#last#view=1;logout_form=1#menu
+user::user_controller#last#controller=1;login=1;context=cfcx_login#
+user::user_controller#last#controller=1;logout=1;context=cfcx_logout#
+user::user_view#last#view=1;login_form=1;context=cfcx_login_form;cached=1#menu
+user::user_view#last#view=1;logout_form=1;context=cfcx_logout_form;cached=1#menu
 lang::lang_view#last#view=1;set_locale_form=1#lang_switch
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#pathway
 page::page_composer#last#post_process=1;post=1#

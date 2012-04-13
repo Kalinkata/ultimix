@@ -104,6 +104,45 @@
 		/**
 		*	\~russian Функция обработки макроса 'media'.
 		*
+		*	@param $Settings - Параметры обработки.
+		*
+		*	@return Переменные.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes macro 'media'.
+		*
+		*	@param $Settings - Settings.
+		*
+		*	@return Variables.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_vars( &$Settings )
+		{
+			try
+			{
+				$Vars = array( 'file' => Settings->get_setting( 'file' ) );
+				$Vars[ 'width' ] = $Settings->get_setting( 'width' , 300 );
+				$Vars[ 'height' ] = $Settings->get_setting( 'height' , 20 );
+				$Vars[ 'autoplay' ] = $Settings->get_setting( 'autoplay' , 0 );
+
+				return( $Vars );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Функция обработки макроса 'media'.
+		*
 		*	@param $Str - Обрабатывемая строка.
 		*
 		*	@param $Changed - Была ли осуществлена обработка.
@@ -137,10 +176,7 @@
 
 					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'media.tpl' );
 
-					$Vars = array( 'file' => $this->Settings->get_setting( 'file' ) );
-					$Vars[ 'width' ] = $this->Settings->get_setting( 'width' , 300 );
-					$Vars[ 'height' ] = $this->Settings->get_setting( 'height' , 20 );
-					$Vars[ 'autoplay' ] = $this->Settings->get_setting( 'autoplay' , 0 );
+					$Vars = $this->get_vars( $Settings );
 
 					$Code = $this->String->print_record( $Code , $Vars );
 

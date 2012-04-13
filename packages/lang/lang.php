@@ -187,7 +187,7 @@
 
 				if( $this->CachedMultyFS->file_exists( $Path ) === false )
 				{
-					$this->Page��->add_javascript( '{http_host}/'.$Path );
+					$this->PageJS->add_javascript( '{http_host}/'.$Path );
 					$Content = $this->CachedMultyFS->get_template( __FILE__ , 'lang.core.js.tpl' );
 					$Content = str_replace( '{locale}' , $this->Language , $Content );
 					$this->CachedMultyFS->file_put_contents( $Path , $Content );
@@ -561,6 +561,77 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция загрузки языковых данных из файла.
+		*
+		*	@param $LanguageFilePath - Путь к файлу.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function loads language data from file.
+		*
+		*	@param $LanguageFilePath - Path to file.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			load_translations_from_file( $LanguageFilePath )
+		{
+			try
+			{
+				if( file_exists( $LanguageFilePath ) )
+				{
+					$RawData = $this->CachedMultyFS->file_get_contents( $LanguageFilePath , 'cleaned' );
+					$this->load_data( $RawData );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция загрузки языковых данных из файла.
+		*
+		*	@param $PackageName - Название пакета.
+		*
+		*	@param $PackageVersion - Версия пакета.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function loads language data from file.
+		*
+		*	@param $PackageName - Package name.
+		*
+		*	@param $PackageVersion - Package version.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			load_translations_from_package( $PackageName , $PackageVersion )
+		{
+			try
+			{
+				$PackagePath = _get_package_relative_path_ex( $PackageName , $PackageVersion );
+				$TopPackageName = _get_top_package_name( $PackageName );
+
+				$this->load_translations_from_file( "$PackageName/res/lang/$TopPackageName.$this->Language" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 		
 		/**
 		*	\~russian Функция загрузки всех языковых данных страницы.
@@ -583,20 +654,16 @@
 				if( $this->AutoTranslationsWereLoaded === false )
 				{
 					$this->get_locale();
-					
+
 					$Paths = _get_loaded_packages_paths();
 					foreach( $Paths as $p )
 					{
 						$PackagePath = _get_top_package_name( $p[ 'package_name' ] );
-						$LanguageFilePath = $p[ 'directory' ].'/res/lang/'.$PackagePath.'.'.$this->Language;
-						
-						if( file_exists( $LanguageFilePath ) )
-						{
-							$RawData = $this->CachedMultyFS->file_get_contents( $LanguageFilePath , 'cleaned' );
-							$this->load_data( $RawData );
-						}
+						$LanguageFilePath = $p[ 'directory' ]."/res/lang/$PackagePath.$this->Language";
+
+						$this->load_translations_from_file( $LanguageFilePath );
 					}
-					
+
 					$this->AutoTranslationsWereLoaded = true;
 				}
 			}
@@ -605,7 +672,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращающая строку для установленного языка.
 		*

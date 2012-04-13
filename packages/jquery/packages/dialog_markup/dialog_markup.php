@@ -37,6 +37,7 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$PageComposer = false;
+		var					$PageJS = false;
 		var					$Settings = false;
 		var					$String = false;
 		var					$Utilities = false;
@@ -76,6 +77,7 @@
 					'jquery::dialog_markup::dialog_markup_utilities' , 'last' , __FILE__
 				);
 				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
+				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
@@ -86,6 +88,38 @@
 			}
 		}
 
+		/**
+		*	\~russian Функция предгенерационных действий.
+		*
+		*	@param $Options - настройки работы модуля.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function executes before any page generating actions took place.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			pre_generation( &$Options )
+		{
+			try
+			{
+				$Path = '{http_host}/'._get_package_relative_path_ex( 'jquery::dialog_markup' , 'last' );
+
+				$this->PageJS->add_javascript( "$Path/include/js/iframe.dialog.js" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
 		/**
 		*	\~russian Подготовка скрипта диалога.
 		*
@@ -160,7 +194,7 @@
 		{
 			try
 			{
-				// TODO: run macro compilation funtions in 'auto_markup'
+				// TODO: replace this function with auto macro
 				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'select_dialog_content' ) ; )
 				{
 					$this->Settings->load_settings( $Parameters );
@@ -170,7 +204,7 @@
 					$Str = str_replace( "{select_dialog_content:$Parameters}" , $Script , $Str );
 					$Changed = true;
 				}
-				
+
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )

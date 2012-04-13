@@ -40,6 +40,7 @@
 		var					$MacroSettings = false;
 		var					$StaticContentAccess = false;
 		var					$String = false;
+		var					$Utilities = false;
 		
 		/**
 		*	\~russian Конфиги.
@@ -78,6 +79,7 @@
 					'page::static_content::static_content_access' , 'last' , __FILE__
 				);
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -108,6 +110,60 @@
 					$this->StaticContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_static_contents' );
 					$this->StaticContentConfigs = explode( "\n" , $this->StaticContentConfigs );
 				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Функция обработки параметризованных макросов.
+		*
+		*	@param $Config - Настройки работы модуля.
+		*
+		*	@param $MacroSettings - Параметры макроса.
+		*
+		*	@return HTML код.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes parametrized macroes.
+		*
+		*	@param $Config - Settings.
+		*
+		*	@param $MacroSettings - Macro settings.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	compile_macro( &$Config , &$MacroSettings )
+		{
+			try
+			{
+				if( $Config->get_setting( 'content' , false ) )
+				{
+					$Package = $this->Utilities->get_package( $Config , __FILE__ );
+					$Function = $Config->get_setting( 'content' , false );
+					$Content = call_user_func( array( $Package , $Function ) , $MacroSettings );
+				}
+				else
+				{
+					$Content = $this->StaticContentAccess->get_content_ex( $Config );
+				}
+
+				if( $MacroSettings !== false )
+				{
+					$Content = $this->String->print_record( $Content , $MacroSettings->get_raw_settings() );
+				}
+
+				return( $Content );
 			}
 			catch( Exception $e )
 			{
@@ -156,7 +212,8 @@
 
 					if( strpos( $Str , '{'.$Name.'}' ) !== false )
 					{
-						$Content = $this->StaticContentAccess->get_content_ex( $this->Config );
+						$MacroSettings = false;
+						$Content = $this->compile_macro( $this->Config , $MacroSettings );
 						$Str = str_replace( '{'.$Name.'}' , $Content , $Str );
 						$Changed = true;
 					}
@@ -213,10 +270,9 @@
 					{
 						$this->MacroSettings->load_settings( $Parameters );
 
-						$Content = $this->StaticContentAccess->get_content_ex( $this->Config );
-						$Content = $this->String->print_record( $Content , $this->MacroSettings->get_raw_settings() );
-						
-						$Str = str_replace( '{'."$Name:$Parameters".'}' , $Tab , $Str );
+						$Content = $this->compile_macro( $this->Config , $this->MacroSettings );
+
+						$Str = str_replace( '{'."$Name:$Parameters".'}' , $Content , $Str );
 						$Changed = true;
 					}
 				}

@@ -37,5 +37,3 @@ ultimix.IframeDialogOnOpen = function( DivSelector )
 {
 	jQuery( '#' + DivSelector ).attr( 'style' , 'padding: 0px; ' + jQuery( '#' + DivSelector ).attr( 'style' ) );
 }
-
-// TODO Перенести этот файл куда-нибудь в более подходящее место

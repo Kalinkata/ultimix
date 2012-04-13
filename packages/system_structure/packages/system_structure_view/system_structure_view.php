@@ -651,7 +651,6 @@
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
 
-				// TODO add caching for the views
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_map' );
 
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_bread_crumbs' );

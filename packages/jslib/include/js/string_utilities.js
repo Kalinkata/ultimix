@@ -36,8 +36,6 @@ ultimix.string_utilities.str_replace = function( Search , Replace , Subject )
 	return( Subject.split( Search ).join( Replace ) );
 }
 
-// TODO add API wich creates grids from div - was used in seo_tools
-
 /**
 * 	Function formats Record according to the Format.
 *

@@ -1,9 +1,9 @@
 <?php
 
 	/*
-	*	This source code is a part of the Ultimix Project. 
+	*	This source code is a part of the Ultimix Project.
 	*	It is distributed under BSD license. All other third side source code (like tinyMCE) is distributed under 
-	*	it's own license wich could be found from the corresponding files or sources. 
+	*	it's own license wich could be found from the corresponding files or sources.
 	*	This source code is provided "as is" without any warranties or garanties.
 	*
 	*	Have a nice day!
@@ -15,6 +15,9 @@
 
 	// TODO remove unnecessary strings from lang files
 	// TODO async login form using AJAX
+	// TODO run view with the exact config (pass it using &Options and meta files)
+	// TODO cache all simple_form states
+	// TODO add to cache name $_GET $POST parameters
 
 	/**
 	*	\~russian Работа с аккаунтами пользователей.

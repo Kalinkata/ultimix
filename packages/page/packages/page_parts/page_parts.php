@@ -431,10 +431,12 @@
 			try
 			{
 				$Package[ 'settings' ] = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$Package[ 'packed_settings' ] = $this->get_settings_for_package( 
+
+				$GlobalSettings = $this->get_settings_for_package( 
 					$Package[ 'package' ] , $Package[ 'package_version' ]
 				);
-				$Package[ 'settings' ]->load_settings( $Package[ 'packed_settings' ] );
+
+				$Package[ 'settings' ]->load_settings( $GlobalSettings );
 				$Package[ 'settings' ]->append_settings( $Package[ 'options' ] );
 
 				$PlaceHolderParameters = $Template->get_placeholder_parameters( $Package[ 'placeholder' ] );
@@ -828,26 +830,27 @@
 		{
 			try
 			{
-				// TODO add depending caching (depends from page name)
 				if( $p[ 'settings' ]->get_setting( 'cached' , false ) == 1 && 
-					$this->Cache->data_exists( $p[ 'packed_settings' ] ) )
+					$this->Cache->data_exists( $p[ 'options' ] ) )
 				{
-					$ControlView = $this->Cache->get_data( $p[ 'packed_settings' ] );
+					$View = $this->Cache->get_data( $p[ 'options' ] );
 				}
 				else
 				{
 					$this->Trace->start_group( "view : ".get_class( $p[ 'fetched_package' ] ) );
 
-					$ControlView = $p[ 'fetched_package' ]->view( $p[ 'settings' ] );
+					$View = $p[ 'fetched_package' ]->view( $p[ 'settings' ] );
 
-					$ControlView = $this->PageMarkupUtilities->wrap_control_view( 
-						$p[ 'settings' ] , $ControlView
+					$View = $this->PageMarkupUtilities->wrap_control_view( 
+						$p[ 'settings' ] , $View
 					);
+
+					$this->Cache->add_data( $p[ 'options' ] , $View );
 
 					$this->Trace->end_group();
 				}
 
-				$Template->parse( $p[ 'placeholder' ] , $ControlView );
+				$Template->parse( $p[ 'placeholder' ] , $View );
 			}
 			catch( Exception $e )
 			{
