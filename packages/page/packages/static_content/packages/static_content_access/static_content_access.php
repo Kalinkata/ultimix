@@ -56,6 +56,8 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
+				// TODO replace static_content with template_content...
+				// TODO ... and load *.tpl files only
 			}
 			catch( Exception $e )
 			{

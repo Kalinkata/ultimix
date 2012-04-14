@@ -127,7 +127,7 @@
 		{
 			try
 			{
-				$Vars = array( 'file' => Settings->get_setting( 'file' ) );
+				$Vars = array( 'file' => $Settings->get_setting( 'file' ) );
 				$Vars[ 'width' ] = $Settings->get_setting( 'width' , 300 );
 				$Vars[ 'height' ] = $Settings->get_setting( 'height' , 20 );
 				$Vars[ 'autoplay' ] = $Settings->get_setting( 'autoplay' , 0 );

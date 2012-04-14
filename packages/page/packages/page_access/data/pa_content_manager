@@ -4,4 +4,8 @@ content::content_controller#last#controller=1;delete_content=1#
 content::content_view#last#view=1;show_create_content_form=1#main
 content::content_view#last#view=1;show_update_content_form=1#main
 content::content_view#last#view=1;show_content_list=1#main
-category::category_view#last#post_process=1#main
+category::category_markup#last#post_process=1#main
+gui::checkbox_markup#last#post_process=1#
+gui::string_markup#last#post_process=1#
+gui::math_markup#last#post_process=1#
+search::search_markup#last#post_process=1#

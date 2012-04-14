@@ -441,9 +441,11 @@
 		function			get_macro_parameters( &$StringData , $MacroName , $RegExValidators = array() )
 		{
 			try
-			{				
+			{
+				$Matches = array();
+
 				$StartPos = -1;
-				
+
 				for( ; ( $TmpStartPos = strpos( $StringData , '{'.$MacroName.':' , $StartPos + 1 ) ) !== false ; )
 				{
 					$Counter = 1;
@@ -470,39 +472,39 @@
 								$StartPos = $TmpStartPos;
 							}
 						}
-						
+
 						if( $TmpStartPos !== false && $TmpEndPos === false )
 						{
 							$Counter++;
 							$StartPos = $TmpStartPos;
 						}
-						
+
 						if( $TmpStartPos === false && $TmpEndPos !== false )
 						{
 							$Counter--;
 							$StartPos = $TmpEndPos;
 						}
-						
+
 						if( $TmpStartPos === false && $TmpEndPos === false )
 						{
 							/* ничего не найдено, поэтому внешний цикл закончен, да и внутренний тоже
 							   $StartPos = strlen( $StringData ); */
 							$StartPos = $MacroStartPos;
 						}
-						
+
 						if( $Counter == 0 )
 						{
 							/* нашли закрывающую скобку для макроса... */
 							$Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );
-							
+
 							$Valid = true;
-							
+
 							/* проверяем валидность параметров... */
 							/* ... если надо */
 							if( count( $RegExValidators ) )
 							{
 								$ParamsList = explode( ';' , $Params );
-								
+
 								foreach( $ParamsList as $key1 => $p )
 								{
 									$p = explode( '=' , $p );
@@ -518,13 +520,13 @@
 									}
 								}
 							}
-							
+
 							if( $Valid )
 							{
 								/* валидные параметры */
 								return( $Params );
 							}
-							
+
 							/* поэтому вываливаемся из внутреннего цикла */
 							$TmpStartPos = false;
 							$StartPos = $MacroStartPos;
@@ -532,7 +534,7 @@
 					}
 					while( $TmpStartPos );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -540,7 +542,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция проверки существования.
 		*

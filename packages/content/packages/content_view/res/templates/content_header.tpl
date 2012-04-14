@@ -1,5 +1,5 @@
 						<div class="toolbar">
-						{search_form:form_id={prefix}_form}{create_button}{search_button}{copy_button}{publish_button:name={prefix};package_name={prefix}::{prefix}_access}{unpublish_button:name={prefix};package_name={prefix}::{prefix}_access}{update_button}{delete_button}
+						{search_form:form_id={prefix}_form}{create_button}{search_button}{copy_button}{update_button}{delete_button}
 						</div>
 						<table border="0" width="100%">
 							<tr>

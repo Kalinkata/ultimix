@@ -149,13 +149,14 @@
 			{
 				if( $Config->get_setting( 'content' , false ) )
 				{
-					$Package = $this->Utilities->get_package( $Config , __FILE__ );
-					$Function = $Config->get_setting( 'content' , false );
-					$Content = call_user_func( array( $Package , $Function ) , $MacroSettings );
+					$Content = $this->StaticContentAccess->get_content_ex( $Config );
+					// TODO auto_fit_div script and place it in the tab creation method
 				}
 				else
 				{
-					$Content = $this->StaticContentAccess->get_content_ex( $Config );
+					$Package = $this->Utilities->get_package( $Config , __FILE__ );
+					$Function = $Config->get_setting( 'compilation_func' , false );
+					$Content = call_user_func( array( $Package , $Function ) , $MacroSettings );
 				}
 
 				if( $MacroSettings !== false )

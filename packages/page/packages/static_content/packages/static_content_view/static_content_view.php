@@ -133,6 +133,8 @@
 					$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
 					$ContextSet->execute( $Options , $this , __FILE__ );
+
+					return( $this->Output );
 				}
 				else
 				{

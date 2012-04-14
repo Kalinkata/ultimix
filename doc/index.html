@@ -111,11 +111,24 @@
 &lt;?php
 
 	/* loading package 'core' with version 1.0.0 */
-	$Core = get_package( 'core' , '1.0.0' , __FILE__ );
+	$String1 = get_package( 'string' , '1.0.0' , __FILE__ );
+	$String2 = get_package( 'string' , '1.0.0' , __FILE__ );
+	/* here $String1 and $String2 are references on <b>the same</b> objects */
 
 ?&gt;
 </pre></div>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;The meaning of the third parameter of the get_package function will be described in the next tutorials.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;If you want to get new object instead of instance of the already created object, you may use get_package_object_function as shown below:</p>
+<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	/* loading package 'core' with version 1.0.0 */
+	$String1 = get_package_object( 'string' , '1.0.0' , __FILE__ );
+	$String2 = get_package_object( 'string' , '1.0.0' , __FILE__ );
+	/* here $String1 and $String2 are <b>not the same</b> objects */
+
+?&gt;
+</pre></div>
 					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b><u><a href="http://sourceforge.net/projects/ultimix/forums">Forum (registration is not necessary)</a></u></b>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b>Ultimix-based projects can be found <a href="http://sourceforge.net/projects/ultimix/files/projects/">here</a></b>

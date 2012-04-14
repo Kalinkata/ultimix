@@ -204,55 +204,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция вывода данных из поста.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@param $Form - Код формы.
-		*
-		*	@param $IdList - Идентифиакторы записей.
-		*
-		*	@return Код формы.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws posted data.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@param $Form - Form code.
-			*
-		*	@param $IdList - Record ids.
-		*
-		*	@return Form code.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function 			apply_posted_data_for_update_form( &$Options , $Form , $IdList )
-		{
-			try
-			{
-				$Record = $this->ContextSetUtilities->get_data_record( $Options , $IdList );
-				
-				$Record = $this->ContextSetUtilities->extract_data_from_request(
-					$Options , $Record , 'get_post_extraction_script' , $this->Prefix
-				);
-				
-				return( $this->ContextSetUtilities->set_form_data( $Form , $Record ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция компилирует запрос поиска.
 		*
@@ -347,6 +299,8 @@
 		*
 		*	@param $Form - Обрабатываемая форма.
 		*
+		*	@param $IdList - Идентифиакторы записей.
+		*
 		*	@return Обработанная форма.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
@@ -360,24 +314,35 @@
 		*
 		*	@param $Form - Form to process.
 		*
+		*	@param $IdList - Record ids.
+		*
 		*	@return Processed form.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_form( &$Options , $Form )
+		function			process_form( &$Options , $Form , $IdList = false )
 		{
 			try
 			{
-				$Changed = false;
-				
+				if( $IdList !== false )
+				{
+					$Record = $this->ContextSetUtilities->get_data_record( $Options , $IdList );
+					
+					$Record = $this->ContextSetUtilities->extract_data_from_request(
+						$Options , $Record , 'get_post_extraction_script' , $this->Prefix
+					);
+					
+					$Form = $this->ContextSetUtilities->set_form_data( $Form , $Record );
+				}
+
 				if( strpos( $Form , '{prefix}' ) !== false )
 				{
 					$Form = str_replace( '{prefix}' , $this->Prefix , $Form );
-					$Changed = true;
 				}
 
+				$Changed = false;
 				$Form = $this->ContextSet->process_string( $Options , $Form , $Changed );
 
 				return( $Form );

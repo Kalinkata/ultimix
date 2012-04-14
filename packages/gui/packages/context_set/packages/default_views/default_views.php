@@ -304,11 +304,9 @@
 					);
 				}
 
-				$this->Provider->Output = $this->DefaultViewsUtilities->apply_posted_data_for_update_form( 
+				$this->Provider->Output = $this->DefaultViewsUtilities->process_form( 
 					$Options , $this->Provider->Output , $IdList
 				);
-
-				$this->DefaultViewsUtilities->process_form( $Options , $this->Provider->Output );
 			}
 			catch( Exception $e )
 			{
