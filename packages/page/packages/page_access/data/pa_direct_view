@@ -1,4 +1,3 @@
-user::user_controller#last#controller=1;simple_login=1#
 page::page_composer_view#last#view=1;direct_view=1#data
 page::page_composer#last#post_process=1#
 lang::lang_markup#last#post_process=1#

@@ -119,7 +119,54 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Добавление контекстов.
+		*
+		*	@param $Options - Параметры.
+		*
+		*	@param $ContextFolder - Путь к директории.
+		*
+		*	@param $Contexts - Контексты.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method adds non-standart contexts.
+		*
+		*	@param $Options - Options.
+		*
+		*	@param $ContextFolder - Path to the directory.
+		*
+		*	@param $Contexts - Contexts.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			load_hinted_config( &$Options , $ContextFolder , $Contexts )
+		{
+			try
+			{
+				$HintedContext = $Options->get_setting( 'context' , false );
+
+				if( $HintedContext !== false && in_array( $HintedContext , $Contexts ) )
+				{
+					$this->load_config( "$ContextFolder/conf/$HintedContext" );
+				}
+				else
+				{
+					throw( new Exception( 'Config was not hinted' ) );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция загрузки конфига.
 		*

@@ -35,6 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Context = false;
 		var					$EventManager = false;
 		var					$Messages = false;
 		var					$PageComposerUtilities = false;
@@ -149,6 +150,7 @@
 		{
 			try
 			{
+				$this->Context = get_package( 'gui::context' , 'last' , __FILE__ );
 				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$this->Messages = get_package( 'page::messages' , 'last' , __FILE__ );
 				$this->PageComposerUtilities = get_package( 'page::page_composer_utilities' , 'last' , __FILE__ );
@@ -855,9 +857,7 @@
 		{
 			try
 			{
-				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-
-				$ContextSet->add_contexts( 
+				$this->Context->load_hinted_config( 
 					$Options , dirname( __FILE__ ) , 
 					array( 
 						'cfcx_update_user' , 'cfcx_activate_user' , 'cfcx_restore_password' , 
@@ -865,7 +865,7 @@
 					)
 				);
 
-				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
+				if( $this->Context->execute( $Options , $this , __FILE__ ) )
 				{
 					return;
 				}

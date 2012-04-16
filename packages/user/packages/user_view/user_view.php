@@ -42,6 +42,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
+		var					$ContextSet = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$UserAccess = false;
@@ -145,6 +146,7 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				$this->ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );;
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
@@ -610,11 +612,9 @@
 		{
 			try
 			{
-				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
+				$this->ContextSet->add_contexts( $Options , dirname( __FILE__ ) , $this->get_contexts() );
 
-				$ContextSet->add_contexts( $Options , dirname( __FILE__ ) , $this->get_contexts() );
-
-				$ContextSet->execute( $Options , $this , __FILE__ );
+				$this->ContextSet->execute( $Options , $this , __FILE__ );
 
 				return( $this->Output );
 			}
