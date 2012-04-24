@@ -56,7 +56,7 @@
 		var					$SecurityValidator = false;
 		var					$Settings = false;
 		var					$Trace = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -88,7 +88,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция загрузки конфига.
 		*
@@ -150,11 +150,11 @@
 		{
 			try
 			{
-				$HintedContext = $Options->get_setting( 'context' , false );
+				$Hint = $Options->get_setting( 'context' , false );
 
-				if( $HintedContext !== false && in_array( $HintedContext , $Contexts ) )
+				if( $Hint !== false && in_array( $Hint , $Contexts ) )
 				{
-					$this->load_config( "$ContextFolder/conf/$HintedContext" );
+					$this->load_config( "$ContextFolder/conf/$Hint" );
 				}
 				else
 				{
@@ -201,7 +201,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки конфига.
 		*
@@ -261,7 +261,6 @@
 				if( $this->ContextUtilities->section_exists( $this->Config , 'call_params_filter' ) )
 				{
 					$Filter = $this->ContextUtilities->get_section( $this->Config ,  'call_params_filter' );
-					$this->Trace->add_trace_string( "{lang:call_params_filter} : $Filter" , COMMON );
 					if( $this->SecurityValidator->validate_custom_fields( $Options->get_raw_settings() , 
 																						$Filter ) === false )
 					{
@@ -311,11 +310,10 @@
 				if( $this->ContextUtilities->section_exists( $this->Config ,  'permits_filter' ) )
 				{
 					$Filter = $this->ContextUtilities->get_section( $this->Config ,  'permits_filter' );
-					$this->Trace->add_trace_string( "{lang:permits_filter} : $Filter" , COMMON );
 
 					if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , $Filter ) === false )
 					{
-						$this->Trace->add_trace_string( "{lang:permits_filter_not_passed}" , COMMON );
+						$this->Trace->add_trace_string( "{lang:permits_filter_not_passed} : $Filter" , COMMON );
 						return( false );
 					}
 				}
@@ -357,10 +355,12 @@
 				if( $this->ContextUtilities->section_exists( $this->Config , 'permits_validation' ) )
 				{
 					$Validation = $this->ContextUtilities->get_section( $this->Config ,  'permits_validation' );
-					$this->Trace->add_trace_string( "{lang:permits_validation} : $Validation" , COMMON );
 
 					if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , $Validation ) === false )
 					{
+						$this->Trace->add_trace_string( 
+							"{lang:permits_validation_was_not_passed} : $Validation" , COMMON
+						);
 						$this->ContextUtilities->process_no_permits( $Validation );
 						return( false );
 					}
@@ -403,8 +403,6 @@
 				if( $this->ContextUtilities->section_exists( $this->Config , 'custom_validation' ) )
 				{
 					$CustomValidation = $this->ContextUtilities->get_section( $this->Config ,  'custom_validation' );
-
-					$this->Trace->add_trace_string( "{lang:custom_validation} : $CustomValidation" , COMMON );
 
 					if( $this->CustomValidations->custom_validation( $CustomValidation , $Options ) === false )
 					{
@@ -884,16 +882,11 @@
 			{
 				$this->Trace->start_group( "Context::execute for class \"".get_class( $Owner )."\"" );
 
-				if( $this->run_execution( $Options , $Owner ) === false )
-				{
-					$this->Trace->add_trace_string( "{lang:state_was_not_processed}" , COMMON );
-					$this->Trace->end_group();
-					return( false );
-				}
-
-				$this->Trace->add_trace_string( "{lang:state_was_processed}" , COMMON );
+				$Result = $this->run_execution( $Options , $Owner );
+				$Msg = '{lang:'.( $Result ? 'state_was_processed' : 'state_was_not_processed' ).'}';
+				$this->Trace->add_trace_string( $Msg , COMMON );
 				$this->Trace->end_group();
-				return( true );
+				return( $Result );
 			}
 			catch( Exception $e )
 			{

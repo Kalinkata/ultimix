@@ -48,7 +48,7 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				// TODO add get_package_object function description to demo description
+
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}

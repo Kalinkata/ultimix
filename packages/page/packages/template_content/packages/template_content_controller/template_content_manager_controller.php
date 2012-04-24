@@ -23,7 +23,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	static_content_controller_1_0_0{
+	class	template_content_controller_1_0_0{
 
 		/**
 		*	\~russian Функция управления компонентом.

@@ -13,18 +13,22 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	// TODO replace static_content_ from configs
+	// TODO replace static_content_ from data.sql
+	// TODO replace static_content_ from permits
+
 	/**
-	*	\~russian Получение доступа к статическому контенту.
+	*	\~russian Получение доступа к шаблону.
 	*
 	*	@author Додонов А.А.
 	*/
 	/**
-	*	\~english This class provides access to the static content.
+	*	\~english This class provides access to the templates.
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	static_content_access_1_0_0{
-		
+	class	template_content_access_1_0_0{
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -38,7 +42,7 @@
 		var					$CachedMultyFS = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -56,8 +60,6 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
-				// TODO replace static_content with template_content...
-				// TODO ... and load *.tpl files only
 			}
 			catch( Exception $e )
 			{
@@ -189,12 +191,12 @@
 				$id = explode( ',' , $id );
 				
 				$Record = $this->SecurityParser->parse_parameters( $Record , 'content:string' , 'allow_not_set' );
-				$Content = get_field( $Record , 'content' );
-				$Content = $this->Security->get( $Content , 'unsafe_string' );
+				$Template = get_field( $Record , 'content' );
+				$Template = $this->Security->get( $Template , 'unsafe_string' );
 				
 				foreach( $id as $k => $v )
 				{
-					$this->CachedMultyFS->file_put_contents( $this->get_content_path( $v ) , $Content );
+					$this->CachedMultyFS->file_put_contents( $this->get_content_path( $v ) , $Template );
 				}
 			}
 			catch( Exception $e )
@@ -230,17 +232,18 @@
 			try
 			{
 				$Path = false;
+
 				if( $this->AddCondition !== false )
 				{
 					$Path = $this->CachedMultyFS->get_file_path( $VirtualPath."_$this->AddCondition" , false );
 				}
-				
+
 				if( $Path === false )
 				{
 					$VirtualPath = $VirtualPath;
 					$Path = $this->CachedMultyFS->get_file_path( $VirtualPath , false );
 				}
-				
+
 				return( $Path );
 			}
 			catch( Exception $e )
@@ -252,7 +255,7 @@
 		/**
 		*	\~russian Выборка пути контента.
 		*
-		*	@param $Content - Название файла с контентом.
+		*	@param $Template - Название файла с контентом.
 		*
 		*	@return Путь к файлу контента.
 		*
@@ -263,7 +266,7 @@
 		/**
 		*	\~english Function returns content.
 		*
-		*	@param $Content - Content's file name.
+		*	@param $Template - Content's file name.
 		*
 		*	@return Path to the content file.
 		*
@@ -271,30 +274,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_content_path( $Content )
+		function			get_content_path( $Template )
 		{
 			try
 			{
-				$Content = $this->Security->get( $Content , 'command' );
-				
-				$VirtualPath = dirname( __FILE__ )."/$Content";
+				$VirtualPath = dirname( __FILE__ )."/res/templates/$Template";
+
 				if( ( $Path = $this->try_virtual_path( $VirtualPath ) ) !== false )
 				{
 					return( $Path );
 				}
-				
-				$VirtualPath = dirname( __FILE__ )."/data/$Content";
-				if( ( $Path = $this->try_virtual_path( $VirtualPath ) ) !== false )
-				{
-					return( $Path );
-				}
-				
-				$VirtualPath = dirname( __FILE__ )."/data/static_content/$Content";
-				if( ( $Path = $this->try_virtual_path( $VirtualPath ) ) !== false )
-				{
-					return( $Path );
-				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -306,7 +296,7 @@
 		/**
 		*	\~russian Выборка контента.
 		*
-		*	@param $Content - Название файла с контентом.
+		*	@param $Template - Название файла с контентом.
 		*
 		*	@return статический контент.
 		*
@@ -317,7 +307,7 @@
 		/**
 		*	\~english Function returns content.
 		*
-		*	@param $Content - Content's file name.
+		*	@param $Template - Content's file name.
 		*
 		*	@return Static content.
 		*
@@ -325,19 +315,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_content( $Content )
+		function			get_content( $Template )
 		{
 			try
 			{
-				$Path = $this->get_content_path( $Content );
+				$Path = $this->get_content_path( $Template );
 				
 				if( $Path !== false && $this->CachedMultyFS->file_exists( $Path ) )
 				{
-					return( $this->CachedMultyFS->file_get_contents( $this->get_content_path( $Content ) ) );
+					return( $this->CachedMultyFS->file_get_contents( $this->get_content_path( $Template ) ) );
 				}
 				else
 				{
-					throw( new Exception( "The content \"$Content\" was not found. Path : $Path" ) );
+					throw( new Exception( "The content \"$Template\" was not found. Path : $Path" ) );
 				}
 			}
 			catch( Exception $e )
@@ -383,9 +373,9 @@
 				$PackageName = $this->Security->get( $PackageName , 'string' );
 				$PackageVersion = $this->Security->get( $PackageVersion , 'string' );
 				$Template = $this->Security->get( $Template , 'string' );
-				
+
 				$Path = _get_package_relative_path_ex( $PackageName , $PackageVersion )."/res/templates/$Template";
-				
+
 				return( $this->CachedMultyFS->file_get_contents( $Path ) );
 			}
 			catch( Exception $e )
@@ -393,62 +383,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Выборка контента.
-		*
-		*	@param $PackageName - Название пакета.
-		*
-		*	@param $PackageVersion - Версия пакета.
-		*
-		*	@param $Content - Название файла с контентом.
-		*
-		*	@return статический контент.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns content.
-		*
-		*	@param $PackageName - Package name.
-		*
-		*	@param $PackageVersion - Package version.
-		*
-		*	@param $Content - Content's file name.
-		*
-		*	@return Static content.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_package_content( $PackageName , $PackageVersion , $Content )
-		{
-			try
-			{
-				$PackageName = $this->Security->get( $PackageName , 'string' );
-				$PackageVersion = $this->Security->get( $PackageVersion , 'string' );
-				$Content = $this->Security->get( $Content , 'command' );
-				
-				$PackagePath = _get_package_relative_path_ex( $PackageName , $PackageVersion );
-				
-				$Path = $this->try_virtual_path( $PackagePath."/data/$Content" );
-				
-				if( $Path === false )
-				{
-					$Path = $this->try_virtual_path( $PackagePath."/data/static_content/$Content" );
-				}
-				
-				return( $this->CachedMultyFS->file_get_contents( $Path ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Выборка контента для пакета.
 		*
@@ -478,16 +413,8 @@
 				$PackageName = $Options->get_setting( 'package_name' , false );
 				$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
 				$FileName = $Options->get_setting( 'template' , false );
-				
-				if( $FileName === false )
-				{
-					$FileName = $Options->get_setting( 'content' );
-					return( $this->get_package_content( $PackageName , $PackageVersion , $FileName ) );
-				}
-				else
-				{
-					return( $this->get_package_template( $PackageName , $PackageVersion , $FileName ) );
-				}
+
+				return( $this->get_package_template( $PackageName , $PackageVersion , $FileName ) );
 			}
 			catch( Exception $e )
 			{
@@ -522,7 +449,7 @@
 			try
 			{
 				$PackageName = $Options->get_setting( 'package_name' , false );
-				
+
 				if( $PackageName === false )
 				{
 					return( $this->get_content( $Options->get_setting( 'content' ) ) );

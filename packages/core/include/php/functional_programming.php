@@ -613,12 +613,12 @@
 			{
 				return( $Destination );
 			}
-			
+
 			foreach( $Source as $k => $v )
 			{
 				$Destination = set_field( $Destination , $k , $v );
 			}
-			
+
 			return( $Destination );
 		}
 		catch( Exception $e )
@@ -665,7 +665,7 @@
 			{
 				$Array2 = $Array;
 			}
-			
+
 			return( array_sum( $Array2 ) );
 		}
 		catch( Exception $e )
@@ -753,9 +753,9 @@
 			{
 				$Fields = array( $Fields );
 			}
-			
+
 			$ChangedEntity = get_dummie( $Entity );
-			
+
 			foreach( $Entity as $Field => $Value )
 			{
 				if( array_search( $Field , $Fields ) === false )
@@ -763,7 +763,7 @@
 					set_field( $ChangedEntity , $Field , $Value );
 				}
 			}
-			
+
 			return( $Entity = $ChangedEntity );
 		}
 		catch( Exception $e )
@@ -771,7 +771,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция создаёт массив из скаляра.
 	*
@@ -812,7 +812,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция создания хэша.
 	*
@@ -844,12 +844,12 @@
 		try
 		{
 			$Return = array();
-			
+
 			foreach( $Array as $k => $v )
 			{
 				$Return[ get_field( $v , $Field ) ] = $v;
 			}
-			
+
 			return( $Return );
 		}
 		catch( Exception $e )
@@ -857,7 +857,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция векторизации.
 	*
@@ -889,19 +889,19 @@
 		try
 		{
 			$Return = array();
-			
+
 			foreach( $Array as $k => $v )
 			{
 				$Key = get_field( $v , $Field );
-				
+
 				if( isset( $Return[ $Key ] ) === false )
 				{
 					$Return[ $Key ] = array();
 				}
-				
+
 				$Return[ $Key ][] = $v;
 			}
-			
+
 			return( $Return );
 		}
 		catch( Exception $e )
@@ -909,7 +909,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция сортировки.
 	*

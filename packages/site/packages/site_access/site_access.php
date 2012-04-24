@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	site_access_1_0_0{
-	
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*

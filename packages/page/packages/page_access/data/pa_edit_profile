@@ -1,5 +1,5 @@
 file_input::file_input_view#last#pre_generation=1#
 user::user_view#last#pre_generation=1#
-user::user_controller#last#controller=1;update_user=1#
-user::user_view#last#view=1;update_user_form=1#main
+user::user_controller#last#controller=1;update_user=1;context=cfcx_update_user#
+user::user_view#last#view=1;update_user_form=1;context=cfcx_update_user_form#main
 file_input::file_input_markup#last#post_process=1#

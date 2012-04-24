@@ -1,3 +1,17 @@
+Ultimix v. 1.5.242
+-----------------------------------------
+1. The package 'sape::pr_sape_common_api' was added.
+2. The package 'page::static_content' was renamed in 'page::template_content'.
+3. The documentation was updated.
+
+Ultimix v. 1.5.241
+-----------------------------------------
+1. An error in the admin.html page was fixed.
+2. User controller and view were refactored.
+3. An error in the user activation form was fixed.
+4. An error in the user editing form was fixed.
+5. Small bugfixes and improvements.
+
 Ultimix v. 1.5.240
 -----------------------------------------
 1. The macro 'regions' was added.

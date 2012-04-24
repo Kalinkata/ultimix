@@ -19,11 +19,11 @@
 	*	@author Додонов А.А.
 	*/
 	/**
-	*	\~english Displaying static content.
+	*	\~english Displaying template content.
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	static_content_view_1_0_0{
+	class	template_content_view_1_0_0{
 		
 		/**
 		*	\~russian Закешированные объекты.
@@ -38,7 +38,7 @@
 		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
 		var					$Security = false;
-		var					$StaticContentAccess = false;
+		var					$TemplateContentAccess = false;
 		var					$String = false;
 		
 		/**
@@ -58,7 +58,7 @@
 				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->StaticContentAccess = get_package( 'page::static_content::static_content_access' );
+				$this->TemplateContentAccess = get_package( 'page::template_content::template_content_access' );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -90,11 +90,11 @@
 			try
 			{
 				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
-				$PackagePath = _get_package_relative_path_ex( 'page::static_content::static_content_view' , 'last' );
-				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/site_view.js" );
+				$PackagePath = _get_package_relative_path_ex( 'page::template_content::template_content_view' , 'last' );
+				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/template_content_view.js" );
 
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
-				$Lang->include_strings_js( 'page::static_content::static_content_view' );
+				$Lang->include_strings_js( 'page::template_content::template_content_view' );
 			}
 			catch( Exception $e )
 			{
@@ -116,9 +116,9 @@
 		/**
 		*	\~english View loads and returns content.
 		*
-		*	@param $Options - Name of the file with the static ontent.
+		*	@param $Options - Name of the file with the template content.
 		*
-		*	@return Static content.
+		*	@return Template content.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
@@ -138,7 +138,7 @@
 				}
 				else
 				{
-					return( $this->StaticContentAccess->get_content_ex( $Options ) );
+					return( $this->TemplateContentAccess->get_content_ex( $Options ) );
 				}
 			}
 			catch( Exception $e )
@@ -181,13 +181,14 @@
 		{
 			try
 			{
+				// TODO create template_markup package
 				$Parameters = '';
 				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'static_content' ) ; )
 				{
 					$this->BlockSettings->load_settings( $Parameters );
-					$StaticContent = $this->StaticContentAccess->get_content_ex( $this->BlockSettings );
+					$Content = $this->TemplateContentAccess->get_content_ex( $this->BlockSettings );
 					$ProcessingString = str_replace( 
-						"{static_content:$Parameters}" , $StaticContent , $ProcessingString
+						"{static_content:$Parameters}" , $Content , $ProcessingString
 					);
 					$Changed = true;
 				}

@@ -137,6 +137,32 @@
 		}
 
 		/**
+		*	\~russian Загрузка стандартных пакетов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function loads common packages.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			load_common_packages()
+		{
+			try
+			{
+				$this->Context = get_package( 'gui::context' , 'last' , __FILE__ );
+				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
+				$this->Messages = get_package( 'page::messages' , 'last' , __FILE__ );
+				$this->PageComposerUtilities = get_package( 'page::page_composer_utilities' , 'last' , __FILE__ );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Конструктор.
 		*
 		*	@author Додонов А.А.
@@ -150,11 +176,8 @@
 		{
 			try
 			{
-				$this->Context = get_package( 'gui::context' , 'last' , __FILE__ );
-				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
-				$this->Messages = get_package( 'page::messages' , 'last' , __FILE__ );
-				$this->PageComposerUtilities = get_package( 'page::page_composer_utilities' , 'last' , __FILE__ );
-				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->load_common_packages();
+
 				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 				$this->UserControllerUtilities = get_package( 
@@ -737,7 +760,7 @@
 
 				$UserLogin = $this->Security->get_gp( 'login' , 'string' );
 
-				$this->EventManager->trigger_event( 'on_after_register_user' , array( 'login' => $UserLogin ) );
+				$this->EventManager->trigger_event( 'on_after_registration' , array( 'login' => $UserLogin ) );
 			}
 			catch( Exception $e )
 			{
@@ -763,7 +786,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			register_user( $Options )
+		function			registration( $Options )
 		{
 			try
 			{
@@ -861,7 +884,7 @@
 					$Options , dirname( __FILE__ ) , 
 					array( 
 						'cfcx_update_user' , 'cfcx_activate_user' , 'cfcx_restore_password' , 
-						'cfcx_registration_form' , 'cfcx_user_set_avatar' , 'cfcx_login' , 'cfcx_logout'
+						'cfcx_registration' , 'cfcx_user_set_avatar' , 'cfcx_login' , 'cfcx_logout'
 					)
 				);
 

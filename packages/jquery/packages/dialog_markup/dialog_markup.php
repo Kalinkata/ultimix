@@ -761,7 +761,7 @@
 			{
 				$this->Settings->get_setting( 'selector' );
 				$this->Settings->get_setting( 'opener' );
-				
+
 				$this->Settings->set_undefined( 'before_open_validation' , 'nop' );
 				$this->Settings->set_undefined( 'data_source' , '' );
 				$this->Settings->set_undefined( 'data_acceptor' , '' );
@@ -806,13 +806,13 @@
 				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'add_opener' ) ; )
 				{
 					$this->Settings->load_settings( $Parameters );
-					
+
 					$this->prepare_data_for_opener();
-					
+
 					$AddOpenerScript = $this->CachedMultyFS->get_template( __FILE__ , 'add_opener.tpl' );
 					$Data = $this->Settings->get_raw_settings();
 					$AddOpenerScript = $this->String->print_record( $AddOpenerScript , $Data );
-					
+
 					$Str = str_replace( "{add_opener:$Parameters}" , $AddOpenerScript , $Str );
 					$Changed = true;
 				}
@@ -860,17 +860,17 @@
 			try
 			{	
 				list( $Str , $Changed ) = $this->process_select_dialog_content( $Str , $Changed );
-				
+
 				list( $Str , $Changed ) = $this->process_select_dialog( $Str , $Changed );
-				
+
 				list( $Str , $Changed ) = $this->process_view_dialog( $Str , $Changed );
-				
+
 				list( $Str , $Changed ) = $this->process_static_dialog( $Str , $Changed );
-				
+
 				list( $Str , $Changed ) = $this->process_iframe_dialog( $Str , $Changed );
-				
+
 				list( $Str , $Changed ) = $this->process_dialog( $Str , $Changed );
-				
+
 				list( $Str , $Changed ) = $this->process_add_opener( $Str , $Changed );
 
 				return( $Str );

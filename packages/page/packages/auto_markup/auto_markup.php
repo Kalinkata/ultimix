@@ -75,8 +75,8 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Config = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->StaticContentAccess = get_package( 
-					'page::static_content::static_content_access' , 'last' , __FILE__
+				$this->TemplateContentAccess = get_package( 
+					'page::template_content::template_content_access' , 'last' , __FILE__
 				);
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
@@ -149,7 +149,7 @@
 			{
 				if( $Config->get_setting( 'content' , false ) )
 				{
-					$Content = $this->StaticContentAccess->get_content_ex( $Config );
+					$Content = $this->TemplateContentAccess->get_content_ex( $Config );
 					// TODO auto_fit_div script and place it in the tab creation method
 				}
 				else

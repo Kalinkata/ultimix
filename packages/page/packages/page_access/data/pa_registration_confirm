@@ -1,2 +1,2 @@
-user::user_controller#last#controller=1;activate_user=1#
-user::user_view#last#view=1;activate_user=1#main
+user::user_controller#last#controller=1;activate_user=1;context=cfcx_activate_user#
+user::user_view#last#view=1;activate_user_form=1;context=cfcx_activate_user_form#main

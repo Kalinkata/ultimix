@@ -574,7 +574,7 @@
 					array( 
 						'cfcxs_user_line' , 'cfcx_login_form' , 'cfcx_logout_form' , 'cfcx_auto_open_login_dialog' , 
 						'cfcx_switch_user_form' , 'cfcx_registration_form' , 'cfcx_update_user_form' , 
-						'cfcx_short_profile' , 'cfcx_full_profile' , 'cfcx_activate_user' , 
+						'cfcx_short_profile' , 'cfcx_full_profile' , 'cfcx_activate_user_form' , 
 						'cfcx_restore_password_form' , 'cfcx_login_button' , 'cfcx_logout_button' , 
 						'cfcx_logout_img_button' , 'cfcx_switch_user_button' , 'cfcx_edit_profile_button'
 					)
@@ -613,6 +613,9 @@
 			try
 			{
 				$this->ContextSet->add_contexts( $Options , dirname( __FILE__ ) , $this->get_contexts() );
+
+				// TODO login dialog shows 'email' instead of 'login' field
+				// TODO admin.html page shows exception screen
 
 				$this->ContextSet->execute( $Options , $this , __FILE__ );
 
