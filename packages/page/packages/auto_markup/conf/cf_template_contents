@@ -1,0 +1,3 @@
+name=prevent_from_closing;template=prevent_from_closing.tpl;package_name=jslib
+name=prevent_from_leaving;template=prevent_from_leaving.tpl;package_name=jquery::jquery_simplemodal
+name=logout_menu_button;template=logout_menu_button.tpl;package_name=user::user_view

@@ -523,8 +523,11 @@
 		{
 			try
 			{
-				$this->Lang->get_locale();
-				$this->Lang->load_translations();
+				if( $this->Lang->AutoTranslationsWereLoaded === false )
+				{
+					$this->Lang->get_locale();
+					$this->Lang->load_translations();
+				}
 
 				list( $Str , $Changed ) = $this->process_lang_block( $Str , $Changed );
 

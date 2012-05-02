@@ -153,20 +153,11 @@
 		{
 			try
 			{
-				if( strpos( $Settings , "\r" ) !== false )
-				{
-					$Settings = str_replace( "\r" , $Separator , $Settings );
-				}
-
-				if( strpos( $Settings , "\n" ) !== false )
-				{
-					$Settings = str_replace( "\n" , $Separator , $Settings );
-				}
-
-				if( strpos( $Settings , $Separator.$Separator ) !== false )
-				{
-					$Settings = str_replace( $Separator.$Separator , $Separator , $Settings );
-				}
+				$Settings = str_replace( 
+					array( "\r" , "\n" , $Separator.$Separator ) , 
+					array( $Separator , $Separator , $Separator ) , 
+					$Settings
+				);
 
 				return( explode( $Separator , $Settings ) );
 			}

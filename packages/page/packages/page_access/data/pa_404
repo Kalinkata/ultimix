@@ -1,2 +1,2 @@
 error_log::error_log_controller#last#controller=1;404=1#main
-page::template_content::template_content_view#last#view=1;content=content_404#main
+page::template_content::template_content_view#last#view=1;template=content_404#main

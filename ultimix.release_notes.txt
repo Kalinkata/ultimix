@@ -1,8 +1,15 @@
+Ultimix v. 1.5.243
+-----------------------------------------
+1. Small refactorings and improvements.
+
 Ultimix v. 1.5.242
 -----------------------------------------
-1. The package 'sape::pr_sape_common_api' was added.
-2. The package 'page::static_content' was renamed in 'page::template_content'.
-3. The documentation was updated.
+1. Two caching demos were added.
+2. Two caching tutorials were added.
+3. The package 'sape::pr_sape_common_api' was added.
+4. The package 'page::static_content' was renamed in 'page::template_content'.
+5. Numerous bugfixes and improvements.
+6. The documentation was updated.
 
 Ultimix v. 1.5.241
 -----------------------------------------

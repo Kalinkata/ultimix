@@ -42,6 +42,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$StoreTrace = false;
+	
+		/**
+		*	\~russian Трассировка.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Tracing strings.
+		*
+		*	@author Dodonov A.A.
+		*/
 		var					$TraceStrings = array();
 
 		/**
@@ -129,9 +141,12 @@
 		{
 			try
 			{
-				$Template = str_replace( '{string}' , $Str , $this->Templates[ $Type ] );
+				if( $this->StoreTrace )
+				{
+					$Template = str_replace( '{string}' , $Str , $this->Templates[ $Type ] );
 
-				$this->TraceStrings [] = $Template;
+					$this->TraceStrings [] = $Template;
+				}
 			}
 			catch( Exception $e )
 			{
@@ -161,10 +176,13 @@
 		{
 			try
 			{
-				$Template = str_replace( '{string}' , $Str , $this->Templates[ 'start_group' ] );
-				$Template = str_replace( '{i}' , count( $this->TraceStrings ) , $Template );
+				if( $this->StoreTrace )
+				{
+					$Template = str_replace( '{string}' , $Str , $this->Templates[ 'start_group' ] );
+					$Template = str_replace( '{i}' , count( $this->TraceStrings ) , $Template );
 
-				$this->TraceStrings [] = $Template;
+					$this->TraceStrings [] = $Template;
+				}
 			}
 			catch( Exception $e )
 			{
@@ -194,9 +212,12 @@
 		{
 			try
 			{
-				for( $i = 0 ; $i < $Count ; $i++ )
+				if( $this->StoreTrace )
 				{
-					$this->TraceStrings [] = $this->Templates[ 'end_group' ];
+					for( $i = 0 ; $i < $Count ; $i++ )
+					{
+						$this->TraceStrings [] = $this->Templates[ 'end_group' ];
+					}
 				}
 			}
 			catch( Exception $e )
@@ -227,12 +248,15 @@
 		{
 			try
 			{
-				$Database = get_package( 'database' );
-				$Database->insert( 
-					'umx_action' , "action_name , time , info" , 
-					"'".htmlspecialchars( $ActionName , ENT_QUOTES )."', NOW() ,'".
-						htmlspecialchars( $ActionDescription , ENT_QUOTES )."'"
-				);
+				if( $this->StoreTrace )
+				{
+					$Database = get_package( 'database' );
+					$Database->insert( 
+						'umx_action' , "action_name , time , info" , 
+						"'".htmlspecialchars( $ActionName , ENT_QUOTES )."', NOW() ,'".
+							htmlspecialchars( $ActionDescription , ENT_QUOTES )."'"
+					);
+				}
 			}
 			catch( Exception $e )
 			{
@@ -260,21 +284,24 @@
 		{
 			try
 			{
-				$Output  = $this->CachedMultyFS->get_template( __FILE__ , 'trace_start.tpl' );
+				if( $this->StoreTrace )
+				{
+					$Output  = $this->CachedMultyFS->get_template( __FILE__ , 'trace_start.tpl' );
+					$Output .= implode( '' , $this->TraceStrings );
+					$Output .= $this->CachedMultyFS->get_template( __FILE__ , 'trace_end.tpl' );
+					$Output = str_replace( 
+						'{output}' , $Output , $this->CachedMultyFS->get_template( __FILE__ , 'trace.tpl' )
+					);
 
-				$Output .= implode( '' , $this->TraceStrings );
+					$TraceBlock = $this->CachedMultyFS->get_template( __FILE__ , 'trace_block.tpl' );
+					$TraceBlock = str_replace( '{output}' , $Output , $TraceBlock );
 
-				$Output .= $this->CachedMultyFS->get_template( __FILE__ , 'trace_end.tpl' );
-
-				$Output = str_replace( 
-					'{output}' , $Output , $this->CachedMultyFS->get_template( __FILE__ , 'trace.tpl' )
-				);
-
-				$TraceBlock = $this->CachedMultyFS->get_template( __FILE__ , 'trace_block.tpl' );
-
-				$TraceBlock = str_replace( '{output}' , $Output , $TraceBlock );
-
-				return( $TraceBlock );
+					return( $TraceBlock );
+				}
+				else
+				{
+					return( '{lang:trace_switched_off}' );
+				}
 			}
 			catch( Exception $e )
 			{

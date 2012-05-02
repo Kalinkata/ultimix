@@ -156,7 +156,7 @@
 						}
 					}
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -196,13 +196,13 @@
 			try
 			{
 				$Parameters = explode( ';' , $Parameters );
-				
+
 				if( $this->validate_parameters( $Parameters , $Conditions ) )
 				{
 					$this->RawMacroParameters = $Parameters;
 					return( true );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -538,7 +538,7 @@
 					$this->MacroParameters = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 					$this->MacroParameters->load_settings( $this->RawMacroParameters );
 				}
-				
+
 				return( $this->MacroParameters );
 			}
 			catch( Exception $e )
@@ -601,7 +601,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка позиции.
 		*
@@ -661,7 +661,7 @@
 				{
 					$c--;
 				}
-				
+
 				return( array( $StartPos , $EndPos , $c ) );
 			}
 			catch( Exception $e )
@@ -700,7 +700,7 @@
 				$StartPos = $this->StartPosition;
 				$EndPos = false;
 				$c = 1;
-				
+
 				foreach( $Positions as $Key => $Value )
 				{
 					if( $Value == 'e' && $Key > $this->StartPosition )
@@ -710,12 +710,12 @@
 						);
 					}
 				}
-				
+
 				if( $EndPos === false )
 				{
 					throw_exception( 'Block end was not found' );
 				}
-				
+
 				$this->EndPosition = $EndPos;
 			}
 			catch( Exception $e )

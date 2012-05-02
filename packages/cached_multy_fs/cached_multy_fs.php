@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	cached_multy_fs_1_0_0{
-		
+
 		/**
 		*	\~russian Список подмонтированных хранилищ.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$MountedStorages = false;
-		
+
 		/**
 		*	\~russian Кэш.
 		*
@@ -48,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Cache = false;
-		
+
 		/**
 		*	\~russian Кэшированная файловая система.
 		*
@@ -60,7 +60,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedFS = false;
-		
+
 		/**
 		*	\~russian Алгоритмы работы со строками.
 		*
@@ -73,7 +73,7 @@
 		*/
 		var					$String = false;
 		var					$Text = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -102,7 +102,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Переустановка настроек.
 		*
@@ -128,7 +128,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция инициализирует список хранилищ файлов.
 		*
@@ -247,7 +247,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки ошибки.
 		*
@@ -290,7 +290,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает путь файла из хранилища.
 		*
@@ -322,9 +322,9 @@
 			try
 			{
 				$this->load_mounted_storages_if_necessary();
-				
+
 				$FilePath = str_replace( '/./' , '/' , $FilePath );
-								
+
 				/** \~russian Ищем файл в хранилищах.
 					\~english Searching file in storages.*/
 				$FileName = basename( $FilePath );
@@ -340,7 +340,7 @@
 				{
 					return( $FilePath );
 				}
-				
+
 				return( $this->process_file_was_not_found_error( $ThrowException ) );
 			}
 			catch( Exception $e )
@@ -348,7 +348,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция проверки существует ли файл.
 		*
@@ -393,7 +393,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Преобразование загружаемого файла.
 		*
@@ -430,14 +430,14 @@
 					$Data = str_replace( "\n\n" , "\n" , $Data );
 					$Data = $this->Text->remove_bom( $Data );
 				}
-				
+
 				if( $Mode == 'exploded' )
 				{
 					$Data = str_replace( "\r" , "\n" , $Data );
 					$Data = str_replace( "\n\n" , "\n" , $Data );
 					$Data = explode( "\n" , $Data );
 				}
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -445,7 +445,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Кэшированный ввод из файла.
 		*
@@ -491,7 +491,7 @@
 				{
 					$Data = $this->transform_file_contents( $Data , $Mode );
 				}
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -499,7 +499,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Кэшированный ввод из составного файла.
 		*
@@ -549,7 +549,7 @@
 					$this->Cache->add_data( $OriginalFilePath , $FileContent );
 				}
 				$Data = $this->transform_file_contents( $Data , $Mode );
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -557,7 +557,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Кэшированный ввод из файла.
 		*
@@ -592,9 +592,9 @@
 				{
 					$this->Cache->add_data( $OriginalFilePath , $Data );
 				}
-				
+
 				$FilePath = $this->get_file_path( $OriginalFilePath , false );
-				
+
 				@file_put_contents( $FilePath === false ? $OriginalFilePath : $FilePath , $Data );
 			}
 			catch( Exception $e )
@@ -602,7 +602,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки шаблона.
 		*
@@ -640,7 +640,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки конфига.
 		*
@@ -678,7 +678,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки данных.
 		*
@@ -720,7 +720,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки шаблона.
 		*
@@ -764,7 +764,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки конфига.
 		*
@@ -808,7 +808,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки данных.
 		*
@@ -856,7 +856,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение списка подмонтированных директорий.
 		*
@@ -886,7 +886,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция сохраняет все данные на диск.
 		*

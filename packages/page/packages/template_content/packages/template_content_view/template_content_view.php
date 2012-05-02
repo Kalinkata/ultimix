@@ -90,7 +90,9 @@
 			try
 			{
 				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
-				$PackagePath = _get_package_relative_path_ex( 'page::template_content::template_content_view' , 'last' );
+				$PackagePath = _get_package_relative_path_ex( 
+					'page::template_content::template_content_view' , 'last'
+				);
 				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/template_content_view.js" );
 
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
@@ -128,7 +130,7 @@
 		{
 			try
 			{
-				if( $Options->get_setting( 'content' , false ) === false )
+				if( $Options->get_setting( 'template' , false ) === false )
 				{
 					$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
@@ -183,12 +185,12 @@
 			{
 				// TODO create template_markup package
 				$Parameters = '';
-				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'static_content' ) ; )
+				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'template_content' ) ; )
 				{
 					$this->BlockSettings->load_settings( $Parameters );
 					$Content = $this->TemplateContentAccess->get_content_ex( $this->BlockSettings );
 					$ProcessingString = str_replace( 
-						"{static_content:$Parameters}" , $Content , $ProcessingString
+						"{template_content:$Parameters}" , $Content , $ProcessingString
 					);
 					$Changed = true;
 				}

@@ -170,6 +170,8 @@
 		/**
 		*	\~russian Функция формирования кода дерева.
 		*
+		*	@param $Records - Записи.
+		*
 		*	@param $RetCode - Код дерева.
 		*
 		*	@param $Record - Запись.
@@ -185,6 +187,8 @@
 		/**
 		*	\~english Function creates tree.
 		*
+		*	@param $Records - Records.
+		*
 		*	@param $RetCode - Tree code.
 		*
 		*	@param $Record - Record.
@@ -197,18 +201,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	draw_categories_catalogue_subtree( $RetCode , $Record , $DisplayTemplates )
+		private function	draw_categories_catalogue_subtree( $Records , $RetCode , $Record , $DisplayTemplates )
 		{
 			try
 			{
 				$RetCode .= get_field( $DisplayTemplates , 'start_item_tag' );
 				$RetCode  = $this->String->print_record( $RetCode , $Record );
 				$RetCode .= $this->draw_categories_catalogue_rec( 
-					$Records , get_field( $Record , 'id' ) , $Templates
+					$Records , get_field( $Record , 'id' ) , $DisplayTemplates
 				);
 				$RetCode .= get_field( $DisplayTemplates , 'end_item_tag' );
 				$RetCode  = $this->String->print_record( $RetCode , $Record );
-				
+
 				return( $RetCode );
 			}
 			catch( Exception $e )
@@ -216,7 +220,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение списка категорий.
 		*
@@ -251,19 +255,19 @@
 		{
 			try
 			{
-				$DisplayTemplates = $this->CategoryViewTemplates->get_categories_catalogue_templates( $Templates );
+				$Templates = $this->CategoryViewTemplates->get_categories_catalogue_templates( $Templates );
 				$Children = $this->CategoryAlgorithms->get_children( $RootId , $Records );
 
 				if( isset( $Children[ 0 ] ) )
 				{
-					$RetCode = get_field( $DisplayTemplates , 'start_tag' );
+					$RetCode = get_field( $Templates , 'start_tag' );
 
 					foreach( $Children as $k => $v )
 					{
-						$RetCode = $this->draw_categories_catalogue_subtree( $RetCode , $v , $DisplayTemplates );
+						$RetCode = $this->draw_categories_catalogue_subtree( $Records , $RetCode , $v , $Templates );
 					}
 
-					$RetCode .= get_field( $DisplayTemplates , 'end_tag' );
+					$RetCode .= get_field( $Templates , 'end_tag' );
 					return( $RetCode );
 				}
 
@@ -274,7 +278,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение списка категорий.
 		*
@@ -306,9 +310,9 @@
 			try
 			{
 				$id = $this->CategoryAccess->get_category_id( $Name );
-					
+
 				$Items = $this->CategoryAccess->select_categories_list( $id );
-				
+
 				return( $this->draw_categories_catalogue_rec( $Items , $id , $Templates ) );
 			}
 			catch( Exception $e )
@@ -316,7 +320,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение списка категорий.
 		*
@@ -340,9 +344,9 @@
 			try
 			{
 				$id = $this->get_category_id( $Options );
-				
+
 				$Items = $this->CategoryAccess->select_categories_list( $id );
-				
+
 				$this->Output = $this->draw_categories_catalogue_rec( $Items , $id );
 			}
 			catch( Exception $e )
@@ -350,7 +354,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение списка категорий.
 		*
@@ -390,7 +394,7 @@
 				);
 
 				$RetCode = '';
-				
+
 				foreach( $Records as $k => $v )
 				{
 					$SubcategoriesCount = $this->CategoryAccess->get_children_count( get_field( $v , 'id' ) );
@@ -404,7 +408,7 @@
 					}
 					$RetCode  = $this->String->print_record( $RetCode , $v );
 				}
-				
+
 				return( $RetCode );
 			}
 			catch( Exception $e )
@@ -412,7 +416,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение части каталога.
 		*
@@ -445,7 +449,7 @@
 				}
 
 				$Items = $this->CategoryAccess->get_children( $id );
-				
+
 				$this->Output = $this->draw_categories_catalogue_part( $Options , $Items );
 			}
 			catch( Exception $e )
@@ -453,7 +457,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение пути в дереве категорий.
 		*

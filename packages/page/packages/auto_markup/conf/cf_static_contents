@@ -1,3 +1,0 @@
-name=prevent_from_closing;content=static_content_prevent_from_closing;package_name=jslib
-name=prevent_from_leaving;content=static_content_prevent_from_leaving;package_name=jquery::jquery_simplemodal
-name=logout_menu_button;content=static_content_logout_menu_button;package_name=user::user_view

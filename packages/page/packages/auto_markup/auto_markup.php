@@ -101,13 +101,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	load_static_contents_configs()
+		private function	load_template_contents_configs()
 		{
 			try
 			{
 				if( $this->StaticContentConfigs === false )
 				{
-					$this->StaticContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_static_contents' );
+					$this->StaticContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_template_contents' );
 					$this->StaticContentConfigs = explode( "\n" , $this->StaticContentConfigs );
 				}
 			}
@@ -147,7 +147,7 @@
 		{
 			try
 			{
-				if( $Config->get_setting( 'content' , false ) )
+				if( $Config->get_setting( 'template' , false ) )
 				{
 					$Content = $this->TemplateContentAccess->get_content_ex( $Config );
 					// TODO auto_fit_div script and place it in the tab creation method
@@ -316,11 +316,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_static_contents( &$Options , $Str , $Changed )
+		function			process_template_contents( &$Options , $Str , $Changed )
 		{
 			try
 			{
-				$this->load_static_contents_configs();
+				$this->load_template_contents_configs();
 
 				if( $this->StaticContentConfigs != '' )
 				{
@@ -371,7 +371,7 @@
 		{
 			try
 			{
-				list( $Str , $Changed ) = $this->process_static_contents( $Options , $Str , $Changed );
+				list( $Str , $Changed ) = $this->process_template_contents( $Options , $Str , $Changed );
 
 				return( $Str );return( $Str );
 			}

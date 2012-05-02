@@ -417,6 +417,7 @@
 		{
 			try
 			{
+				// TODO move all macro the the auto_macro package
 				list( $Str , $Changed ) = $this->process_category( $Options , $Str , $Changed );
 
 				list( $Str , $Changed ) = $this->process_category_id( $Options , $Str , $Changed );

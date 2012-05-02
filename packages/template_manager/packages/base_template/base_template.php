@@ -348,7 +348,7 @@
 
 				$this->process_template_block( $PageName , $Changed );
 
-				$this->Template = $this->String->hide_anonimous_blocks( $this->Template , 'template' , $Changed );
+				$this->Template = $this->String->hide_unprocessed_blocks( $this->Template , 'template' , $Changed );
 
 				$this->process_includes( $File , $Changed );
 			}

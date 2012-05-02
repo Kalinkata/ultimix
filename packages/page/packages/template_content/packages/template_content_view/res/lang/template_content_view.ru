@@ -1,0 +1,6 @@
+faq_pagw=Вопрос-ответ
+about_page=О проекте
+contacts_page=Контакты
+template_content_manager=Менеджер статических материалов
+Content=Контент
+template_content_update_was_completed=Редактирование было завершено

@@ -89,9 +89,9 @@ ultimix.report.report_generation_process = function( OnGenerate , ShowProgress )
 /**
 *	Function runs report generation process.
 *
-*	@param PackageName - Package name.
+*	@param Name - Package name.
 *
-*	@param PackageVersion - Package version.
+*	@param Version - Package version.
 *
 *	@param ReportName - Name of the report.
 *
@@ -103,9 +103,9 @@ ultimix.report.report_generation_process = function( OnGenerate , ShowProgress )
 *
 *	@author Dodonov A.A.
 */
-ultimix.report.GenerateReport = function( PackageName , PackageVersion , ReportName , Data , OnGenerate , ShowProgress )
+ultimix.report.generate_report = function( Name , Version , ReportName , Data , OnGenerate , ShowProgress )
 {
-	ultimix.report.create_frame( PackageName , PackageVersion , ReportName , Data );
+	ultimix.report.create_frame( Name , Version , ReportName , Data );
 	
 	ultimix.report.report_generation_process( OnGenerate , ShowProgress );
 }
@@ -121,12 +121,12 @@ ultimix.report.GenerateReport = function( PackageName , PackageVersion , ReportN
 *
 *	@author Dodonov A.A.
 */
-ultimix.report.OnRunReportGeneration = function( DataAcceptor , StatusAcceptor , DataSource )
+ultimix.report.on_run_report_generation = function( DataAcceptor , StatusAcceptor , DataSource )
 {
 	var			PackageName = jQuery( DataSource ).find( 'span.package_name' ).html();
 	var			PackageVersion = jQuery( DataSource ).find( 'span.package_version' ).html();
 	var			ReportName = jQuery( DataSource ).find( 'span.report_name' ).html();
 	var			Data = ultimix.forms.ExtractFormData( DataSource );
 	
-	ultimix.report.GenerateReport( PackageName , PackageVersion , ReportName , Data , false , true );
+	ultimix.report.generate_report( PackageName , PackageVersion , ReportName , Data , false , true );
 }

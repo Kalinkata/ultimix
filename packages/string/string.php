@@ -578,7 +578,7 @@
 			try
 			{
 				list( $StartPos , $EndPos ) = $this->get_block_positions( $StringData , $BlockStart , $BlockEnd );
-					
+
 				if( $StartPos !== false )
 				{
 					$BlockData = substr( 
@@ -586,7 +586,7 @@
 						$StartPos + strlen( '{'.$BlockStart.'}' ) , 
 						$EndPos - $StartPos - strlen( '{'.$BlockStart.'}' )
 					);
-					
+
 					return( $BlockData );
 				}
 				else
@@ -634,7 +634,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			hide_anonimous_blocks( $StringData , $BlockType , &$Changed )
+		function			hide_unprocessed_blocks( $StringData , $BlockType , &$Changed )
 		{
 			try
 			{
@@ -642,9 +642,9 @@
 				do
 				{
 					$PlaceHolders = array();
-					
+
 					preg_match( "/\{$BlockType:([a-zA-Z0-9_]+)\}/" , $StringData , $PlaceHolders );
-					
+
 					if( count( $PlaceHolders ) > 1 )
 					{
 						$StringData = $this->hide_block( $StringData , "$BlockType:".$PlaceHolders[ 1 ] , 
@@ -696,10 +696,10 @@
 			try
 			{
 				$Positions = array();
-					
+
 				$StartPos = -1;
 				$EndPos = -1;
-				
+
 				for( ; $StartPos = strpos( $StringData , '{'.$BlockStart.'}' , $StartPos + 1 ) ; )
 				{
 					$Positions [ $StartPos ] = 's';
@@ -709,7 +709,7 @@
 					$Positions [ $EndPos ] = 'e';
 				}
 				ksort( $Positions );
-				
+
 				return( $Positions );
 			}
 			catch( Exception $e )

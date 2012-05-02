@@ -1,1 +1,0 @@
-<a href="{file}" class="media" width="{width}" height="{height}"></a>

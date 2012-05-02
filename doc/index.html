@@ -129,6 +129,75 @@
 
 ?&gt;
 </pre></div>
+					<h4 class="header">&nbsp;&nbsp;Caching subsystem. Part 1</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo3.php' file.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultimix has vast abilities for caching data. The package 'cache' is a basement for all of them. Cache can be switched on/off using config /packages/cache/conf/cf_cache. Where the setting 'cache_switch' swithces caching (values 'on'/'off'), and the setting 'timeout' sets cache cleaning timeout in seconds, it means that cache data will be removed from the storage when this timeout expires. Cached data is stored in the /packages/cache/data directory.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Lets code!</p>
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	/* loading package */
+	$Cache = get_package( 'cache' , '1.0.0' , __FILE__ );
+
+	/* This function call adds data to the cache */
+	$Cache->add_data( 'first_string' , 'String to be cached!' );
+
+	/* was the data cached? */
+	if( $Cache->data_exists( 'first_string' ) === true )
+	{
+		print( 'data was found in cache&lt;br&gt;' );
+	}
+
+	if( $Cache->data_exists( 'second_string' ) === false )
+	{
+		print( 'data was not found in cache&lt;br&gt;' );
+	}
+
+	print( $Cache->get_data( 'first_string' ).'&lt;br&gt;' );
+
+	/* update data */
+	$Cache->set_data( 'first_string' , 'Updated string' );
+
+	/* remove data from cache */
+	$Cache->delete_data( 'first_string' );
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Note that each stored record may be marked with a set of tags and then be deleted by one of these tags. All of this stuff is shown below:</p>
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	/* loading package */
+	$Cache = get_package( 'cache' , '1.0.0' , __FILE__ );
+
+	/* This function call adds data to the cache */
+	$Cache->add_data( 'first_string' , 'String to be cached!' , array( 'tag1' , 'tag2' , 'tag3' ) );
+
+	/* remove data from cache */
+	$Cache->delete_data_by_tag( 'tag2' );
+?&gt;
+</pre></div>
+					<h4 class="header">&nbsp;&nbsp;Caching subsystem. Part 2</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo4.php' file.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Caching subsystem is extended with the 'cached_fs' package wich caches calls to the file system, such as file_get_contents, file_put_contents and file_exists. This package is based on the 'cache' package, that's why all settings from the /packages/cache/conf/cf_cache config affect it. Note that all calls of these functions are cached within the script execution session even if the caching is switched off. The abilities of this package are shown below:</p>
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	/* loading package */
+	$CachedFS = get_package( 'cached_fs' , '1.0.0' , __FILE__ );
+
+	/* reading entire file */
+	$CachedFS->file_get_contentns( 'index.html' );
+
+	/* writing entire file */
+	$CachedFS->file_put_contentns( 'index.html' , 'Hello!' );
+
+	/* remove data from cache */
+	if( $Cache->file_exists( 'index.php' ) )
+	{
+		print( 'The file index.php exists!' );
+	}
+?&gt;
+</pre></div>
 					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b><u><a href="http://sourceforge.net/projects/ultimix/forums">Forum (registration is not necessary)</a></u></b>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b>Ultimix-based projects can be found <a href="http://sourceforge.net/projects/ultimix/files/projects/">here</a></b>

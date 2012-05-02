@@ -202,7 +202,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция обработки строки локализации.
 		*
@@ -230,23 +230,15 @@
 			try
 			{
 				$tmp1 = explode( '=' , $RawData );
-				
-				if( strpos( $tmp1[ 0 ] , '|' ) === false )
-				{
-					return( array( $tmp1[ 0 ] , 'default' , str_replace( '[eq]' , '=' , $tmp1[ 1 ] ) ) );
-				}
-				else
-				{
-					$tmp2 = explode( '|' , $tmp1[ 0 ] );
-					return( array_merge( $tmp2 , array( str_replace( '[eq]' , '=' , $tmp1[ 1 ] ) ) ) );
-				}
+
+				return( array( $tmp1[ 0 ] , 'default' , $tmp1[ 1 ] ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция подключает список строковых констант для указанного пакета.
 		*
@@ -632,6 +624,48 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция загрузки всех языковых данных страницы.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function loads all language data of the page.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	load_translations_if_necessary()
+		{
+			try
+			{
+				$Paths = _get_loaded_packages_paths();
+				$Key = implode_ex( '' , $Paths , 'directory' );
+				if( $this->Cache->data_exists( $Key ) === true )
+				{
+					$this->StringSet = unserialize( $this->Cache->get_data( $Key ) );
+				}
+				else
+				{
+					foreach( $Paths as $p )
+					{
+						$PackagePath = _get_top_package_name( $p[ 'package_name' ] );
+						$LanguageFilePath = $p[ 'directory' ]."/res/lang/$PackagePath.$this->Language";
+
+						$this->load_translations_from_file( $LanguageFilePath );
+					}
+					$this->Cache->add_data( $Key , serialize( $this->StringSet ) );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 		
 		/**
 		*	\~russian Функция загрузки всех языковых данных страницы.
@@ -655,14 +689,7 @@
 				{
 					$this->get_locale();
 
-					$Paths = _get_loaded_packages_paths();
-					foreach( $Paths as $p )
-					{
-						$PackagePath = _get_top_package_name( $p[ 'package_name' ] );
-						$LanguageFilePath = $p[ 'directory' ]."/res/lang/$PackagePath.$this->Language";
-
-						$this->load_translations_from_file( $LanguageFilePath );
-					}
+					$this->load_translations_if_necessary();
 
 					$this->AutoTranslationsWereLoaded = true;
 				}

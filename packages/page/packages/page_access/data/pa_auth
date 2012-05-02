@@ -1,5 +1,5 @@
 user::user_controller#last#controller=1;login=1;redirect_after_login=1;redirect_page=./index.html#
 user::user_controller#last#controller=1;logout=1#
-page::template_content::template_content_view#last#view=1;package_name=user::user_view;content=static_content_auth_page#main
+page::template_content::template_content_view#last#view=1;package_name=user::user_view;template=auth_page.tpl#main
 user::user_view#last#view=1;logout_form=1;wrapper_class=centered#user_forms
 user::user_view#last#view=1;login_form=1;wrapper_class=centered#user_forms

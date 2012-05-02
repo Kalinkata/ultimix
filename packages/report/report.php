@@ -674,7 +674,10 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		// TODO add report generating tutorial
+		// TODO add package creating tutorial
+
 		/**
 		*	\~russian Функция генерации отчета.
 		*
@@ -792,6 +795,8 @@
 			{
 				$Package = $this->get_report_generator( $Options );
 
+				// TODO cose reports with permits
+
 				$FunctionName = $this->Security->get_gp( 'func_name' , 'string' , 'report' );
 				$FunctionName = $Options->get_setting( 'func_name' , $FunctionName );
 
@@ -801,7 +806,7 @@
 					return;
 				}
 
-				$Message = "Method \"$FunctionName\" does not exists in the package \"$PackageName.$PackageVersion\"";
+				$Message = "Method \"$FunctionName\" does not exists in the package \"".get_class( $Package )."\"";
 				throw( new Exception( $Message ) );
 			}
 			catch( Exception $e )
@@ -832,7 +837,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{

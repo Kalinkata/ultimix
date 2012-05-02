@@ -13,10 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	// TODO replace static_content_ from configs
-	// TODO replace static_content_ from data.sql
-	// TODO replace static_content_ from permits
-
 	/**
 	*	\~russian Получение доступа к шаблону.
 	*
@@ -251,7 +247,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка пути контента.
 		*
@@ -292,7 +288,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка контента.
 		*
@@ -320,10 +316,10 @@
 			try
 			{
 				$Path = $this->get_content_path( $Template );
-				
+
 				if( $Path !== false && $this->CachedMultyFS->file_exists( $Path ) )
 				{
-					return( $this->CachedMultyFS->file_get_contents( $this->get_content_path( $Template ) ) );
+					return( $this->CachedMultyFS->file_get_contents( $Path ) );
 				}
 				else
 				{
@@ -335,7 +331,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка контента.
 		*
@@ -406,7 +402,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_package_file( $Options )
+		function			get_package_file( &$Options )
 		{
 			try
 			{
@@ -421,7 +417,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка контента.
 		*
@@ -452,7 +448,7 @@
 
 				if( $PackageName === false )
 				{
-					return( $this->get_content( $Options->get_setting( 'content' ) ) );
+					return( $this->get_content( $Options->get_setting( 'template' ) ) );
 				}
 				else
 				{
