@@ -1,6 +1,8 @@
 Ultimix v. 1.5.243
 -----------------------------------------
 1. Small refactorings and improvements.
+2. The package 'page::template_content::template_content_markup' was added.
+3. Language file './res/lang/lang.{locale}' was added.
 
 Ultimix v. 1.5.242
 -----------------------------------------

@@ -639,11 +639,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	load_translations_if_necessary()
+		private function	force_load_translations()
 		{
 			try
 			{
 				$Paths = _get_loaded_packages_paths();
+				$Paths [] = "./res/lang/lang.$this->Language";
 				$Key = implode_ex( '' , $Paths , 'directory' );
 				if( $this->Cache->data_exists( $Key ) === true )
 				{
@@ -653,8 +654,8 @@
 				{
 					foreach( $Paths as $p )
 					{
-						$PackagePath = _get_top_package_name( $p[ 'package_name' ] );
-						$LanguageFilePath = $p[ 'directory' ]."/res/lang/$PackagePath.$this->Language";
+						$PackageName = _get_top_package_name( $p[ 'package_name' ] );
+						$LanguageFilePath = $p[ 'directory' ]."/res/lang/$PackageName.$this->Language";
 
 						$this->load_translations_from_file( $LanguageFilePath );
 					}
@@ -689,7 +690,7 @@
 				{
 					$this->get_locale();
 
-					$this->load_translations_if_necessary();
+					$this->force_load_translations();
 
 					$this->AutoTranslationsWereLoaded = true;
 				}

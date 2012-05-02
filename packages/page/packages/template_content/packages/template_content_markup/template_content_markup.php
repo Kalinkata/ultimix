@@ -23,7 +23,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	template_content_view_1_0_0{
+	class	template_content_markup_1_0_0{
 		
 		/**
 		*	\~russian Закешированные объекты.
@@ -66,83 +66,53 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция предгенерационных действий.
-		*
-		*	@param $Options - настройки работы модуля.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function executes before any page generating actions took place.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			pre_generation( $Options )
-		{
-			try
-			{
-				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
-				$PackagePath = _get_package_relative_path_ex( 
-					'page::template_content::template_content_view' , 'last'
-				);
-				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/template_content_view.js" );
 
-				$Lang = get_package( 'lang' , 'last' , __FILE__ );
-				$Lang->include_strings_js( 'page::template_content::template_content_view' );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
-		*	\~russian Вид, возвращающий статический контент.
+		*	\~russian Функция отвечающая за обработку страницы.
 		*
-		*	@param $Options - название файла со статическим контентом.
+		*	@param $Options - Параметры отображения.
 		*
-		*	@return статический контент.
+		*	@param $ProcessingString - Обрабатывемая строка.
+		*
+		*	@param $Changed - Была ли осуществлена обработка.
+		*
+		*	@return HTML код для отображения.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english View loads and returns content.
+		*	\~english Function processes page.
 		*
-		*	@param $Options - Name of the file with the template content.
+		*	@param $Options - Options of drawing.
 		*
-		*	@return Template content.
+		*	@param $ProcessingString - Processing string.
+		*
+		*	@param $Changed - Was the processing completed.
+		*
+		*	@return HTML code to display.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			process_string( $Options , $ProcessingString , &$Changed )
 		{
 			try
 			{
-				// TODO detect process_string functions in the non markup packages
-				if( $Options->get_setting( 'template' , false ) === false )
+				$Parameters = '';
+				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'template_content' ) ; )
 				{
-					$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-
-					$ContextSet->execute( $Options , $this , __FILE__ );
-
-					return( $this->Output );
+					$this->BlockSettings->load_settings( $Parameters );
+					$Content = $this->TemplateContentAccess->get_content_ex( $this->BlockSettings );
+					$ProcessingString = str_replace( 
+						"{template_content:$Parameters}" , $Content , $ProcessingString
+					);
+					$Changed = true;
 				}
-				else
-				{
-					return( $this->TemplateContentAccess->get_content_ex( $Options ) );
-				}
+				
+				return( $ProcessingString );
 			}
 			catch( Exception $e )
 			{
