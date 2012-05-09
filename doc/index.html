@@ -178,7 +178,7 @@
 </pre></div>
 					<h4 class="header">&nbsp;&nbsp;Caching subsystem. Part 2</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo4.php' file.</p>
-					<p>&nbsp;&nbsp;&nbsp;&nbsp;Caching subsystem is extended with the 'cached_fs' package wich caches calls to the file system, such as file_get_contents, file_put_contents and file_exists. This package is based on the 'cache' package, that's why all settings from the /packages/cache/conf/cf_cache config affect it. Note that all calls of these functions are cached within the script execution session even if the caching is switched off. The abilities of this package are shown below:</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Caching subsystem is extended with the 'cached_fs' package wich provides access to the file system, such as file_get_contents, file_put_contents and file_exists. This package is based on the 'cache' package, that's why all settings from the /packages/cache/conf/cf_cache config affect it. Note that all calls of these functions are cached within the script execution session even if the caching is switched off. The abilities of this package are shown below:</p>
 					<div class="code"><strong>Code:</strong><pre>
 &lt;?php
 
@@ -196,6 +196,131 @@
 	{
 		print( 'The file index.php exists!' );
 	}
+?&gt;
+</pre></div>
+					<h4 class="header">&nbsp;&nbsp;Caching subsystem. Part 3</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo5.php' file.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;The last element of the caching subsystem is the 'cached_multy_fs' package wich allows you to get files from differnet folders. You'll get access to the files from different folders as they were placed in the only one folder. The list of this folders is stored in the ./packages/cached_multy_fs/conf/cf_data_storage config (as you may notice all configs are placed in the /conf directory of the package). The default content is:
+					<div class="code"><strong>Code:</strong><pre>
+packages/_core_data/conf
+packages/_core_data/res/lang
+packages/gui/packages/context_set/res/templates
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;It means that if you will try to read file with name, for example, index.html. Then it will be searched in the packages/_core_data/conf directory, then the packages/_core_data/res/lang directory will be searched, and at last the packages/gui/packages/context_set/res/templates directory will be searched. You can add your own directories to this config to extend the default set.
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This class is widely used in the Ultimix, so you are recommended to use it to. It will allow other developers to override you package's templates, CSS or JS files, configs, etc. So if you will use the cached_multy_fs package, they may do it 'from the outside' without changing your package. It will make your code more reusable. Let's see the example below.
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Create directory './packages/dir1' and add this path to the cf_data_storage as shown in the next listing
+					<div class="code"><strong>Code:</strong><pre>
+packages/dir1
+packages/_core_data/conf
+packages/_core_data/res/lang
+packages/gui/packages/context_set/res/templates
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Add file 'hello.html' with the string 'Hello base!' to the directory ./packages/dir1 Then the next code will output 'Hello base!' string
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	require_once( 'include/php/startup.php' );
+
+	start_script();
+
+	/* loading package */
+	$CachedMultyFS = get_package( 'cached_multy_fs' , '1.0.0' , __FILE__ );
+	
+	/* reading entire file */
+	print( $CachedMultyFS->file_get_contentns( 'hello.html' ) );
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Now lets create directory './packages/dir2' and add this path to the cf_data_storage as shown in the next listing
+					<div class="code"><strong>Code:</strong><pre>
+packages/dir2
+packages/dir1
+packages/_core_data/conf
+packages/_core_data/res/lang
+packages/gui/packages/context_set/res/templates
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Add file 'hello.html' (it has the same name) with the string 'Hello override!' to the directory ./packages/dir2 Then the next code will read our newly created file and output 'Hello override!' string. Note that scripts are the same. But data (configs and displaying files) are different.
+<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+
+	require_once( 'include/php/startup.php' );
+
+	start_script();
+
+	/* loading package */
+	$CachedMultyFS = get_package( 'cached_multy_fs' , '1.0.0' , __FILE__ );
+	
+	/* reading entire file */
+	print( $CachedMultyFS->file_get_contentns( 'hello.html' ) );
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;As was said above, this class is widely used in the Ultimix, so you can override data of the base Ultimix packages in your projects. For example you may override the tempate of the registration form and add some fields of your own in it. Or you may override sign in form or anything else you want.
+					<h4 class="header">&nbsp;&nbsp;Introduction to packages</h4>
+					&nbsp;&nbsp;Package is the smallest unit in the Ultimix Framework. Each package is a set of 
+					php and javascript code, language files, templates, css files, images, configs and any other data.
+					&nbsp;&nbsp;All packages have almost the same directory structure wich can be seen below:
+<pre class="code">
+package_directory
+/
+|
++---conf
+|
++---data
+|   |
+|   +---page
+|   |
+|   +---permit
+|
++---packages
+|   |
+|   +---core
+|       |
+|       +---data
+|
++---res
+|   |
+|   +---css
+|   |
+|   +---images
+|   |
+|   +---lang
+|   |
+|   +---template
+|
++---include
+|   |
+|   +---js
+|   |
+|   +---php
+|
++---tmp
+</pre>
+					&nbsp;&nbsp;You certanly can use your own structure, but numerous features were adopted for the directory 
+					structure wich is listed above.
+					<h4 class="header">&nbsp;&nbsp;Package creation steps</h4>
+					&nbsp;&nbsp;1. Go to the directory <b>packages</b>;
+					<br>&nbsp;&nbsp;2. Create there the directory wich name is &lt;package_directory&gt; (for example - it is not necessary that names of the package and it's directory should match);
+					<br>&nbsp;&nbsp;3. Open the file <b>/packages/core/data/package_list</b> and append a new string &lt;package_name&gt;;.&lt;package_version&gt;;#&lt;package_directory&gt;
+					<div class="code"><strong>Code:</strong><pre>
+package_name.1.0.0#package_directory
+</pre></div>
+					where 1.0.0 is the package's version. That's it! We have created our thirst package wwich may be accessed by calling get_package or get_package_object functions. Note that both of them will return false, because we have not created php script of the package yet. But you already may store resorces and configs in it.
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Now go to the directory <b>/packages/&lt;package_directory&gt;</b> and create file &lt;package_name&gt;.php wich contains class &lt;package_name&gt;_&lt;package_version*&gt;.
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+class	package_name_1_0_0
+{
+	function	func()
+	{
+	}
+}
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Now we have a good full featured package. Let's use it!
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+	$NewPackage = get_package( 'package_name' , 'last' , __FILE__ );
+
+	$NewPackage->func();
 ?&gt;
 </pre></div>
 					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>

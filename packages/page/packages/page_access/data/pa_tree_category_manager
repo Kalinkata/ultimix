@@ -3,3 +3,4 @@ category::category_view#last#view=1;categories_tree=1#main
 jstree#last#view=1;tree_control=1#main
 jstree#last#post_processing=1#
 jstree#last#pre_generation=1#
+gui::checkbox_markup#last#post_process=1#

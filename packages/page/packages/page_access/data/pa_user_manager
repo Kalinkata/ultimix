@@ -5,3 +5,4 @@ user::user_manager::user_manager_view#last#view=1;user_list=1#main
 user::user_manager::user_manager_view#last#view=1;show_edit_user_form=1#main
 user::user_manager::user_manager_view#last#view=1;show_copy_user_form=1#main
 user::user_view#last#pre_generation=1#
+gui::checkbox_markup#last#post_process=1#

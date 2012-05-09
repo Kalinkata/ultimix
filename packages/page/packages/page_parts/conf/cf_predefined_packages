@@ -4,7 +4,6 @@ jquery#last#pre_generation=1#
 data_form#last#pre_generation=1#
 jsdialogs#last#pre_generation=1#
 jslib#last#pre_generation=1#
-ckeditor#last#pre_generation=1#
 gui::context_set#last#pre_generation=1#
 user::user_controller#last#controller=1;login=1;context=cfcx_login#
 user::user_controller#last#controller=1;logout=1;context=cfcx_logout#
@@ -21,7 +20,6 @@ lang::lang_markup#last#post_process=1#
 security::security_markup#last#post_process=1#
 page::page_markup#last#post_process=1#
 page::page_composer#last#post_generation=1#
-page::template_content::template_content_view#last#post_process=1#
 jquery::dialog_markup#last#post_process=1#
 jquery::jquery_markup#last#post_process=1#
 gui::db_markup#last#post_process=1#

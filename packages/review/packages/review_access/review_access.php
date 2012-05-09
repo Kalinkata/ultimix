@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	review_access_1_0_0{
-	
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_review`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -53,7 +53,7 @@
 		var					$SecurityParser = false;
 		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -80,7 +80,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -92,7 +92,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -129,7 +129,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка отзывов.
 		*
@@ -157,7 +157,7 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				return( 
 					$this->Database->select( 
 						$this->UserAccess->NativeTable.'.* , '.$this->NativeTable.
@@ -173,7 +173,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -218,9 +218,9 @@
 			try
 			{
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
-					$Start , $Limit , $Field , $Order , $Condition
+					$Start , $Limit , $Field === false ? $this->NativeTable.'.id' : $Field , $Order , $Condition
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -228,7 +228,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записей.
 		*

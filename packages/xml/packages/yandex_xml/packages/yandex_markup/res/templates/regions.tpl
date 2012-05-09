@@ -13,4 +13,6 @@
 	<option value="241">Африка</option>
 	<option value="1">Москва и Московская область</option>
 	<option value="10174">Санкт-Петербург и Ленинградская область</option>
+	<option value="65">Новосибирск</option>
+	<option value="11316">Новосибирская область</option>
 </select>

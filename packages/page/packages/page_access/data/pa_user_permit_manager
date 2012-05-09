@@ -7,3 +7,4 @@ permit::user_permit_manager#last#view=1;change_groups_view=1#main
 permit::permit_markup#last#post_process=1#
 permit::group_markup#last#post_process=1#
 report#last#post_process=1#
+gui::checkbox_markup#last#post_process=1#

@@ -1,2 +1,3 @@
 advertisement::advertisement_controller#last#controller=1;delete_banner=1#main
 advertisement::advertisement_view#last#view=1;banner_list=1#main
+gui::checkbox_markup#last#post_process=1#

@@ -644,7 +644,7 @@
 			try
 			{
 				$Paths = _get_loaded_packages_paths();
-				$Paths [] = "./res/lang/lang.$this->Language";
+				$Paths [] = array( 'directory' => '.' , 'package_name' => 'lang' );
 				$Key = implode_ex( '' , $Paths , 'directory' );
 				if( $this->Cache->data_exists( $Key ) === true )
 				{
@@ -654,10 +654,10 @@
 				{
 					foreach( $Paths as $p )
 					{
-						$PackageName = _get_top_package_name( $p[ 'package_name' ] );
-						$LanguageFilePath = $p[ 'directory' ]."/res/lang/$PackageName.$this->Language";
+						$Name = _get_top_package_name( $p[ 'package_name' ] );
+						$Path = $p[ 'directory' ]."/res/lang/$Name.$this->Language";
 
-						$this->load_translations_from_file( $LanguageFilePath );
+						$this->load_translations_from_file( $Path );
 					}
 					$this->Cache->add_data( $Key , serialize( $this->StringSet ) );
 				}
@@ -736,20 +736,12 @@
 				{
 					return( $StringAlias );
 				}
-				
+
 				if( $Value == 'default' && isset( $this->StringSet[ $StringAlias ][ 'default' ] ) !== false )
 				{
 					return( $this->StringSet[ $StringAlias ][ 'default' ] );
 				}
-				
-				foreach( $this->StringSet[ $StringAlias ] as $Pattern => $LocalizedString )
-				{
-					if( preg_match( $Pattern , "$Value" ) )
-					{
-						return( str_replace( '{value}' , $Value , $LocalizedString ) );
-					}
-				}
-				
+
 				return( $StringAlias );
 			}
 			catch( Exception $e )

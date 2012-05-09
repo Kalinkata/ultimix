@@ -689,7 +689,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -716,20 +716,20 @@
 		{
 			try
 			{
-				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
+
 				$PackagePath = dirname( __FILE__ );
-				
+
 				$ContextSet->add_context( $PackagePath.'/conf/cfcx_categories_tree' );
-				
+
 				$ContextSet->add_context( $PackagePath.'/conf/cfcx_categories_catalogue' );
-				
+
 				$ContextSet->add_context( $PackagePath.'/conf/cfcx_categories_catalogue_part' );
-				
+
 				$ContextSet->add_context( $PackagePath.'/conf/cfcx_categories_path' );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )

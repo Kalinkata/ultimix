@@ -4,3 +4,4 @@ system_structure::system_structure_controller#last#controller=1;delete_system_st
 system_structure::system_structure_view#last#view=1;show_edit_system_structure_form=1#main
 system_structure::system_structure_view#last#view=1;show_create_system_structure_form=1#main
 system_structure::system_structure_view#last#view=1;show_system_structure_list=1#main
+gui::checkbox_markup#last#post_process=1#

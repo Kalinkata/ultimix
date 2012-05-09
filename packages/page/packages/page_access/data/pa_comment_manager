@@ -1,2 +1,3 @@
 comment::comment_controller#last#meta=meta_delete_comment#main
 comment::comment_view#last#meta=meta_comment_list#main
+gui::checkbox_markup#last#post_process=1#

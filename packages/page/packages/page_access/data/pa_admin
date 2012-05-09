@@ -2,3 +2,4 @@ page::template_content::template_content_view#last#view=1;template=admin_page.tp
 user::user_view#last#view=1;login_form=1;wrapper_class=centered;context=cfcx_login_form#main
 file_input::file_input_markup#last#post_process=1#
 pmsg::pmsg_view#last#post_process=1#
+gui::math_markup#last#post_process=1#

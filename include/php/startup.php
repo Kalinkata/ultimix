@@ -137,8 +137,7 @@
 
 			// TODO function register_view(function|package->method)
 			// TODO function register_controller(function|package->method)
-			// TODO add and markup demo
-			// TODO add language files loading may be load them from ./res/lang/lang.ru files? of the root folder...
+			// TODO add markup demo
 			// TODO ... (add multylanguage demo script)
 			// TODO database support (add demo)
 			// TODO caching demo

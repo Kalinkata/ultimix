@@ -27,6 +27,31 @@ if( !ultimix.report )
 *
 *	@param ReportName - Name of the report.
 *
+*	@param ReportGenerationParameters - Data wich will be trasferred to server.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.report.compile_iframe_code = function( PackageName , PackageVersion , ReportName , ReportGenerationParameters )
+{
+	var			IFrameCode = '<iframe id="report_generation_id" style="display: none;" ' + 
+								'src="./report.html?report_package_name=';
+
+	IFrameCode = IFrameCode + PackageName + '&report_package_version=' + PackageVersion;
+
+	IFrameCode = IFrameCode + '&report_name=' + ReportName + '&' + ( new Date() ).getTime();
+
+	return( IFrameCode + ReportGenerationParameters + '"></iframe>' );
+}
+
+/**
+*	Function creates report generating frame.
+*
+*	@param PackageName - Package name.
+*
+*	@param PackageVersion - Package version.
+*
+*	@param ReportName - Name of the report.
+*
 *	@param Data - Data wich will be trasferred to server.
 *
 *	@author Dodonov A.A.
@@ -38,7 +63,7 @@ ultimix.report.create_frame = function( PackageName , PackageVersion , ReportNam
 		jQuery( '#report_generation_id' ).remove();
 	}
 
-	var		ReportGenerationParameters = '';
+	var			ReportGenerationParameters = '';
 	if( !Data )
 	{
 		Data = {};
@@ -47,12 +72,10 @@ ultimix.report.create_frame = function( PackageName , PackageVersion , ReportNam
 	{
 		ReportGenerationParameters = '&' + i + "=" + new String( Data[ i ] ) + ReportGenerationParameters;
 	}
-	
-	IFrameCode = '<iframe id="report_generation_id" style="display: none;" src="./report.html?report_package_name=';
-	IFrameCode = IFrameCode + PackageName + '&report_package_version=' + PackageVersion;
-	IFrameCode = IFrameCode + '&report_name=' + ReportName + '&' + ( new Date() ).getTime();
-	IFrameCode = IFrameCode + ReportGenerationParameters + '"></iframe>';
-	jQuery( 'body' ).append( IFrameCode );
+
+	jQuery( 'body' ).append( 
+		ultimix.report.compile_iframe_code( PackageName , PackageVersion , ReportName , ReportGenerationParameters )
+	);
 }
 
 /**

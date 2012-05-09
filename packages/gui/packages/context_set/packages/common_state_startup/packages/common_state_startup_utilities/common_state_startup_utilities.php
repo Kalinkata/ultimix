@@ -153,11 +153,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			trace_no_need_to_process_message( $StateName , $Prefix , $ContextAction )
+		function			trace_no_need_to_process_state_message( $StateName , $Prefix , $ContextAction )
 		{
 			try
 			{
-				$this->Trace->add_trace_string( '{lang:no_need_to_process_message}' , COMMON );
+				$this->Trace->add_trace_string( '{lang:no_need_to_process_trace_message}' , COMMON );
 				
 				$Field = $Prefix.'_context_action';
 				$Message = $Prefix.'_context_action: "'.$this->Security->get_gp( $Field , 'command' , 'not set' ).'"';
@@ -432,7 +432,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки стейта-контроллера.
 		*
@@ -463,7 +463,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_controller_state( &$ContextSet , $Options , $StateName )
+		function			try_run_controller_state( &$ContextSet , $Options , $StateName )
 		{
 			try
 			{
@@ -477,7 +477,7 @@
 				{
 					$this->trace_config_was_not_found_message( $StateName );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -485,7 +485,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки стейта-вида.
 		*
@@ -516,7 +516,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_view_state( &$ContextSet , $Options , $StateName )
+		function			try_run_view_state( &$ContextSet , $Options , $StateName )
 		{
 			try
 			{

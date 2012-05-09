@@ -73,7 +73,6 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
 
@@ -490,16 +489,22 @@
 		{
 			try
 			{
-				$Str = str_replace( '{color_scheme}' , '{color_scheme:available=default}' , $Str );
-
-				if( $this->CachedMultyFS->file_exists( dirname( $File ).'/conf/cf_template_settings' ) )
+				if( $this->Settings === false )
 				{
-					$this->Settings->load_file( dirname( $File ).'/conf/cf_template_settings' );
+					$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+					if( $this->CachedMultyFS->file_exists( dirname( $File ).'/conf/cf_template_settings' ) )
+					{
+						$this->Settings->load_file( dirname( $File ).'/conf/cf_template_settings' );
+					}
 				}
 
-				$Str = $this->process_color_scheme( $File , $Str );
+				$Str = str_replace( 
+					array( '{color_scheme}' , '{locale}' ) , 
+					array( '{color_scheme:available=default}' , $this->Lang->get_locale() ) , 
+					$Str
+				);
 
-				$Str = str_replace( '{locale}' , $this->Lang->get_locale() , $Str );
+				$Str = $this->process_color_scheme( $File , $Str );
 
 				return( $Str );
 			}

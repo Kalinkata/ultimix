@@ -100,13 +100,13 @@
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$FileContent = file( $Files[ $i ] );
+				$Content = file( $Files[ $i ] );
 				if( skip_file( $Files[ $i ] ) === false )
 				{
-					for( $j = 0 ; $j < count( $FileContent ) ; $j++ )
+					for( $j = 0 ; $j < count( $Content ) ; $j++ )
 					{
 						$Line = str_replace( 
-							array( "\t" , "\r" , "\n" ) , array( '    ' , '' , '' ) , $FileContent[ $j ]
+							array( "\t" , "\r" , "\n" ) , array( '    ' , '' , '' ) , $Content[ $j ]
 						);
 						if( mb_strlen( $Line , 'UTF-8' ) > 120 )
 						{
@@ -136,9 +136,9 @@
 			
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) && $Errors < 100 ; $i++ )
 			{
-				$FileContent = file( $Files[ $i ] );
+				$Content = file( $Files[ $i ] );
 				
-				if( count( $FileContent ) > 1000 && strpos( $Files[ $i ] , 'excel' ) === false && 
+				if( count( $Content ) > 1000 && strpos( $Files[ $i ] , 'excel' ) === false && 
 					strpos( $Files[ $i ] , 'nusoap' ) === false )
 				{
 					$Errors++;
@@ -162,18 +162,18 @@
 		function			test_file_size_php()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-			
+
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) && $Errors < 100 ; $i++ )
 			{
-				$FileContent = file_get_contents( $Files[ $i ] );
-				
-				if( strlen( $FileContent ) > 25 * 1024 && skip_file( $Files[ $i ] ) === false )
+				$Content = file_get_contents( $Files[ $i ] );
+
+				if( strlen( $Content ) > 24 * 1024 && skip_file( $Files[ $i ] ) === false )
 				{
 					$Errors++;
 					print( "<nobr>{$Files[ $i ]}</nobr><br>" );
 				}
 			}
-			
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
 
@@ -190,7 +190,7 @@
 		function			test_file_html_code_php()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-			
+
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) && $Errors < 1000 ; $i++ )
 			{
 				if( skip_file( $Files[ $i ] ) === false && strpos( $Files[ $i ] , 'tags.php' ) === false && 
@@ -200,10 +200,10 @@
 					$Errors += find_html_content_in_file( $Files[ $i ] );
 				}
 			}
-			
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка наличия в файлах шаблонов тэгов с аттрибутом style.
 		*
@@ -217,18 +217,18 @@
 		function			test_tpl_files()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.tpl/' , true );
-			
+
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) && $Errors < 1000 ; $i++ )
 			{
-				$FileContent = file_get_contents( $Files[ $i ] );
-				
-				if( strpos( $FileContent , 'style=' ) !== false )
+				$Content = file_get_contents( $Files[ $i ] );
+
+				if( strpos( $Content , 'style=' ) !== false )
 				{
 					$Errors++;
 					print( "<nobr>{$Files[ $i ]}</nobr><br>" );
 				}
 			}
-			
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
 
@@ -251,8 +251,8 @@
 				{
 					continue;
 				}
-				$FileContent = file_get_contents( $Files[ $i ] );
-				$Bodies = get_function_bodies( $FileContent );
+				$Content = file_get_contents( $Files[ $i ] );
+				$Bodies = get_function_bodies( $Content );
 				foreach( $Bodies as $FunctionName => $Body )
 				{
 					if( ( $LinesCount = count_lines( $Body ) ) > 30 && $FunctionName != 'get_positions' && 
@@ -265,7 +265,7 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка размеров функций (размер в байтах).
 		*
@@ -285,8 +285,8 @@
 				{
 					continue;
 				}
-				$FileContent = file_get_contents( $Files[ $i ] );
-				$Bodies = get_function_bodies( $FileContent );
+				$Content = file_get_contents( $Files[ $i ] );
+				$Bodies = get_function_bodies( $Content );
 				foreach( $Bodies as $FunctionName => $Body )
 				{
 					/* 800 bytes max */
@@ -300,7 +300,7 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка наличия вызовов get_package для пакета 'settings'.
 		*
@@ -322,8 +322,8 @@
 					continue;
 				}
 
-				$FileContent = file_get_contents( $Files[ $i ] );
-				if( strpos( $FileContent , "get_package( 'settings::settings'" ) !== false )
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , "get_package( 'settings::settings'" ) !== false )
 				{
 					$Errors++;
 					print( "<nobr>{$Files[ $i ]}</nobr><br>" );
@@ -331,9 +331,9 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		// JS
-		
+
 		/**
 		*	\~russian Проверка длины строк в js файлах.
 		*
@@ -349,13 +349,13 @@
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.js/' , true );
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$FileContent = file( $Files[ $i ] );
+				$Content = file( $Files[ $i ] );
 				if( skip_file( $Files[ $i ] ) === false )
 				{
-					for( $j = 0 ; $j < count( $FileContent ) ; $j++ )
+					for( $j = 0 ; $j < count( $Content ) ; $j++ )
 					{
 						$Line = str_replace( 
-							array( "\t" , "\r" , "\n" ) , array( '    ' , '' , '' ) , $FileContent[ $j ]
+							array( "\t" , "\r" , "\n" ) , array( '    ' , '' , '' ) , $Content[ $j ]
 						);
 						if( mb_strlen( $Line , 'UTF-8' ) > 120 )
 						{
@@ -368,7 +368,7 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка js файлов в строках.
 		*
@@ -382,21 +382,21 @@
 		function			test_line_count_js()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.js/' , true );
-			
+
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) && $Errors < 100 ; $i++ )
 			{
-				$FileContent = file( $Files[ $i ] );
-				
-				if( count( $FileContent ) > 1000 && skip_file( $Files[ $i ] ) === false )
+				$Content = file( $Files[ $i ] );
+
+				if( count( $Content ) > 1000 && skip_file( $Files[ $i ] ) === false )
 				{
 					$Errors++;
 					print( "<nobr>{$Files[ $i ]}</nobr><br>" );
 				}
 			}
-			
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка размера js файлов.
 		*
@@ -410,21 +410,21 @@
 		function			test_file_size_js()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.js/' , true );
-			
+
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) && $Errors < 100 ; $i++ )
 			{
-				$FileContent = file_get_contents( $Files[ $i ] );
-				
-				if( strlen( $FileContent ) > 25 * 1024 && skip_file( $Files[ $i ] ) === false )
+				$Content = file_get_contents( $Files[ $i ] );
+
+				if( strlen( $Content ) > 24 * 1024 && skip_file( $Files[ $i ] ) === false )
 				{
 					$Errors++;
 					print( "<nobr>{$Files[ $i ]}</nobr><br>" );
 				}
 			}
-			
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка размеров функций (строки кода).
 		*
@@ -444,8 +444,8 @@
 				{
 					continue;
 				}
-				$FileContent = file_get_contents( $Files[ $i ] );
-				$Bodies = get_function_bodies( $FileContent );
+				$Content = file_get_contents( $Files[ $i ] );
+				$Bodies = get_function_bodies( $Content );
 				foreach( $Bodies as $FunctionName => $Body )
 				{
 					if( ( $LinesCount = count_lines( $Body ) ) > 20 && $FunctionName != 'get_positions' && 
@@ -478,8 +478,8 @@
 				{
 					continue;
 				}
-				$FileContent = file_get_contents( $Files[ $i ] );
-				$Bodies = get_function_bodies( $FileContent );
+				$Content = file_get_contents( $Files[ $i ] );
+				$Bodies = get_function_bodies( $Content );
 				foreach( $Bodies as $FunctionName => $Body )
 				{
 					/* 800 bytes max */
@@ -488,6 +488,68 @@
 					{
 						$Errors++;
 						print( "<nobr>{$Files[ $i ]}($FunctionName:$BytesCount)</nobr><br>" );
+					}
+				}
+			}
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка наличия функций process_string в не markup пакетах.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing process_string in the non markup packages.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_process_string()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				if( strpos( $Files[ $i ] , 'unit_tests.php' ) === false )
+				{
+					$Bodies = get_function_bodies( file_get_contents( $Files[ $i ] ) );
+					foreach( $Bodies as $FunctionName => $Body )
+					{
+						if( in_array( $FunctionName , array( 'process_string' , 'post_process' , 'pre_process' ) ) && 
+							strpos( $Files[ $i ] , 'markup.php' ) === false )
+						{
+							$Errors++;
+							print( "<nobr>".$Files[ $i ]."</nobr><br>" );
+						}
+					}
+				}
+			}
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка наличия функций process_*.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Searching for process_*.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_process()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+			/* all process_* functions of the template engine must be moved to the auto_markup */
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Bodies = get_function_bodies( file_get_contents( $Files[ $i ] ) );
+				foreach( $Bodies as $FunctionName => $Body )
+				{
+					if( strpos( $FunctionName , 'process_' ) !== false && 
+						strpos( $FunctionName , 'process_string' ) === false )
+					{
+						$Errors++;
+						print( "<nobr>".$Files[ $i ]."</nobr><br>" );
 					}
 				}
 			}
@@ -512,10 +574,10 @@
 			{
 				if( skip_file( $Files[ $i ] ) === false )
 				{
-					$FileContent = file( $Files[ $i ] );
-					for( $j = 0 ; $j < count( $FileContent ) ; $j++ )
+					$Content = file( $Files[ $i ] );
+					for( $j = 0 ; $j < count( $Content ) ; $j++ )
 					{
-						$Line = $FileContent[ $j ];
+						$Line = $Content[ $j ];
 						if( ( $Start = strpos( $Line , 'TO'.'DO' ) ) !== false )
 						{
 							$Errors++;
@@ -576,8 +638,8 @@
 					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] ).'.js';
 					if( file_exists( $Path ) )
 					{
-						$FileContent = file( $Path );
-						if( strpos( $FileContent , '.get_list_form = function(' ) === false )
+						$Content = file( $Path );
+						if( strpos( $Content , '.get_list_form = function(' ) === false )
 						{
 							$Errors++;
 							print( "<nobr>".$Path." : no get_list_form found</nobr><br>" );
@@ -608,8 +670,8 @@
 					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] ).'.js';
 					if( file_exists( $Path ) )
 					{
-						$FileContent = file( $Path );
-						if( strpos( $FileContent , '.get_custom_list_form = function(' ) === false )
+						$Content = file( $Path );
+						if( strpos( $Content , '.get_custom_list_form = function(' ) === false )
 						{
 							$Errors++;
 							print( "<nobr>".$Path." : no get_custom_list_form found</nobr><br>" );

@@ -126,11 +126,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
-				// TODO detect process_string functions in the non markup packages
 				if( $Options->get_setting( 'template' , false ) === false )
 				{
 					$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );

@@ -302,10 +302,12 @@
 
 				if( $HintedContext !== false && in_array( $HintedContext , $Contexts ) )
 				{
+					$this->Trace->add_trace_string( "Hinted context : $ContextFolder/conf/$HintedContext" , COMMON );
 					$this->Contexts [] = "$ContextFolder/conf/$HintedContext";
 				}
 				else
 				{
+					$this->Trace->add_trace_string( "Hinted context : all contexts" , COMMON );
 					foreach( $Contexts as $i => $Context )
 					{
 						$this->Contexts [] = "$ContextFolder/conf/$Context";
@@ -669,15 +671,13 @@
 		{
 			try
 			{
-				if( $this->CommonStateStartup->run_commmon_states( $this , $Options ) !== false )
+				if( $this->CommonStateStartup->run_common_states( $this , $Options ) !== false )
 				{
-					$this->clear();
 					return;
 				}
 
 				if( $this->PublicCommonStateStartup->run_public_commmon_states( $this , $Options ) !== false )
 				{
-					$this->clear();
 					return;
 				}
 			}

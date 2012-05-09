@@ -1,2 +1,3 @@
 site::site_view#last#pre_generation=1#
 site::site_view#last#meta=meta_site_list#main
+gui::checkbox_markup#last#post_process=1#

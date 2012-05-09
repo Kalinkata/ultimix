@@ -148,7 +148,7 @@
 		{
 			try
 			{
-				$this->StartupUtilities->trace_no_need_to_process_message( $Str1 , $this->Prefix , $Str2 );
+				$this->StartupUtilities->trace_no_need_to_process_state_message( $Str1 , $this->Prefix , $Str2 );
 			}
 			catch( Exception $e )
 			{
@@ -186,13 +186,13 @@
 		{
 			try
 			{
-				$ContextSet->Trace->start_group( "{lang:list_state}" );
+				$ContextSet->Trace->start_group( "{lang:list_form_state}" );
 
 				$ContextAction = $this->Security->get_gp( $this->Prefix.'_context_action' , 'command' , '' );
 
 				if( $ContextAction == '' )
 				{
-					$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'list' );
+					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'list' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -245,7 +245,7 @@
 				
 				if( $Action == 'delete_record' )
 				{
-					$Result = $this->StartupUtilities->process_controller_state( $ContextSet , $Options , 'delete' );
+					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'delete' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -298,7 +298,7 @@
 
 				if( $ContextAction == 'create_record_form' || $Options->get_setting( 'direct_create' , 0 ) != 0 )
 				{
-					$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'create' );
+					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'create' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -352,7 +352,7 @@
 
 				if( $ContextAction == 'update_record_form' || $Direct != 0 )
 				{
-					$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'update' );
+					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'update' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -406,7 +406,7 @@
 				
 				if( $Action == 'update_record' || $Direct != 0 )
 				{
-					$Result = $this->StartupUtilities->process_controller_state( $ContextSet , $Options , 'update' );
+					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'update' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -460,7 +460,7 @@
 				
 				if( $ContextAction == 'copy_record_form' || $Direct != 0 )
 				{
-					$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'copy' );
+					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'copy' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -514,7 +514,7 @@
 
 				if( $Action == 'copy_record' || $Direct != 0 )
 				{
-					$Result = $this->StartupUtilities->process_controller_state( $ContextSet , $Options , 'copy' );
+					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'copy' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -568,7 +568,7 @@
 
 				if( $Action == 'create_record' || $Direct != 0 )
 				{
-					$Result = $this->StartupUtilities->process_controller_state( $ContextSet , $Options , 'create' );
+					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'create' );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
@@ -584,7 +584,52 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Нужен ли запуск стандартных контекстов.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@param $State - Стейт.
+		*
+		*	@return true если стейт должен быть обработан.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function starts all standart controller states.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@param $State - State.
+		*
+		*	@return true if the state must be processed.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	run_it( &$Options , $State )
+		{
+			try
+			{
+				$HintedContext = $Options->get_setting( 'common_context' , false );
+
+				if( $HintedContext === false )
+				{
+					return( true );
+				}
+
+				return( $HintedContext == $State );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Запуск всех стандартных стейтов контроллеров.
 		*
@@ -615,27 +660,26 @@
 		{
 			try
 			{
-				if( $this->delete_state_startup( $ContextSet , $Options ) !== false )
+				$Next = true;
+
+				if( $Next && $this->run_it( $Options , 'delete' ) )
 				{
-					return( true );
+					$Next = $this->delete_state_startup( $ContextSet , $Options ) === false;
+				}
+				if( $Next && $this->run_it( $Options , 'create' ) )
+				{
+					$Next = $this->create_state_startup( $ContextSet , $Options ) === false;
+				}
+				if( $Next && $this->run_it( $Options , 'update' ) )
+				{
+					$Next = $this->update_state_startup( $ContextSet , $Options ) === false;
+				}
+				if( $Next && $this->run_it( $Options , 'copy' ) )
+				{
+					$Next = $this->copy_state_startup( $ContextSet , $Options ) === false;
 				}
 
-				if( $this->create_state_startup( $ContextSet , $Options ) !== false )
-				{
-					return( true );
-				}
-
-				if( $this->update_state_startup( $ContextSet , $Options ) !== false )
-				{
-					return( true );
-				}
-
-				if( $this->copy_state_startup( $ContextSet , $Options ) !== false )
-				{
-					return( true );
-				}
-
-				return( false );
+				return( !$Next );
 			}
 			catch( Exception $e )
 			{
@@ -673,24 +717,26 @@
 		{
 			try
 			{
-				if( $this->list_form_state_startup( $ContextSet , $Options ) !== false )
+				$Next = true;
+
+				if( $Next && $this->run_it( $Options , 'list' ) )
 				{
-					return( true );
+					$Next = $this->list_form_state_startup( $ContextSet , $Options ) === false;
 				}
-				if( $this->create_form_state_startup( $ContextSet , $Options ) !== false )
+				if( $Next && $this->run_it( $Options , 'create' ) )
 				{
-					return( true );
+					$Next = $this->create_form_state_startup( $ContextSet , $Options ) === false;
 				}
-				if( $this->update_form_state_startup( $ContextSet , $Options ) !== false )
+				if( $Next && $this->run_it( $Options , 'update' ) )
 				{
-					return( true );
+					$Next = $this->update_form_state_startup( $ContextSet , $Options ) === false;
 				}
-				if( $this->copy_form_state_startup( $ContextSet , $Options ) !== false )
+				if( $Next && $this->run_it( $Options , 'copy' ) )
 				{
-					return( true );
+					$Next = $this->copy_form_state_startup( $ContextSet , $Options ) === false;
 				}
 
-				return( false );
+				return( !$Next );
 			}
 			catch( Exception $e )
 			{
@@ -724,22 +770,22 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			run_commmon_states( &$ContextSet , &$Options )
+		function			run_common_states( &$ContextSet , &$Options )
 		{
 			try
 			{
 				$this->set_constants( $ContextSet , $Options );
-				
+
 				if( $this->run_controller_states( $ContextSet , $Options ) )
 				{
 					return( true );
 				}
-				
+
 				if( $this->run_view_states( $ContextSet , $Options ) )
 				{
 					return( true );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )

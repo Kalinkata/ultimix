@@ -322,7 +322,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_form( &$Options , $Form , $IdList = false )
+		function			compile_form( &$Options , $Form , $IdList = false )
 		{
 			try
 			{

@@ -236,7 +236,6 @@
 
 				if( $Path === false )
 				{
-					$VirtualPath = $VirtualPath;
 					$Path = $this->CachedMultyFS->get_file_path( $VirtualPath , false );
 				}
 

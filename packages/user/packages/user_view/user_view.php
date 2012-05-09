@@ -15,7 +15,6 @@
 
 	// TODO remove unnecessary strings from lang files
 	// TODO async login form using AJAX
-	// TODO run view with the exact config (pass it using &Options and meta files)
 	// TODO cache all simple_form states
 	// TODO add to cache name $_GET $POST parameters
 
@@ -615,7 +614,6 @@
 				$this->ContextSet->add_contexts( $Options , dirname( __FILE__ ) , $this->get_contexts() );
 
 				// TODO login dialog shows 'email' instead of 'login' field
-				// TODO admin.html page shows exception screen
 
 				$this->ContextSet->execute( $Options , $this , __FILE__ );
 

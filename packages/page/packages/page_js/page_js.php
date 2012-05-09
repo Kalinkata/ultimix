@@ -394,15 +394,23 @@
 		{
 			try
 			{
-				$this->JSFiles = $this->join_scripts( $this->JSFiles );
+				$PageName = $this->Security->get_gp( 'page_name' , 'command' );
 
-				$Start = $this->CachedMultyFS->get_template( __FILE__ , 'script_link_start.tpl' );
+				if( $this->Cache->data_exists( "$PageName scripts" ) )
+				{
+					$Content = $this->Cache->get_data( "$PageName scripts" );
+				}
+				else
+				{
+					$this->JSFiles = $this->join_scripts( $this->JSFiles );
+					$Start = $this->CachedMultyFS->get_template( __FILE__ , 'script_link_start.tpl' );
+					$End = $this->CachedMultyFS->get_template( __FILE__ , 'script_link_end.tpl' );
+					$Content = $Start.implode_ex( $End.$Start , $this->JSFiles , 'path' ).$End;
 
-				$End = $this->CachedMultyFS->get_template( __FILE__ , 'script_link_end.tpl' );
+					$this->Cache->add_data( "$PageName scripts" , $Content );
+				}
 
-				$HeaderContent = $Start.implode_ex( $End.$Start , $this->JSFiles , 'path' ).$End;
-
-				return( $HeaderContent );
+				return( $Content );
 			}
 			catch( Exception $e )
 			{
@@ -438,15 +446,15 @@
 			{
 				if( is_array( $this->JSFiles ) && count( $this->JSFiles ) )
 				{
-					$HeaderContent = $this->get_header_content();
+					$Content = $this->get_header_content();
 
 					if( strpos( $Str , '{header}' ) !== false )
 					{
-						$Str = str_replace( '{header}' , $HeaderContent.'{header}' , $Str );
+						$Str = str_replace( '{header}' , $Content.'{header}' , $Str );
 					}
 					else
 					{
-						$Str = str_replace( '</head>' , $HeaderContent.'</head>' , $Str );
+						$Str = str_replace( '</head>' , $Content.'</head>' , $Str );
 					}
 				}
 

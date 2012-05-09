@@ -1,8 +1,12 @@
 Ultimix v. 1.5.243
 -----------------------------------------
-1. Small refactorings and improvements.
-2. The package 'page::template_content::template_content_markup' was added.
-3. Language file './res/lang/lang.{locale}' was added.
+1. Four tutorials were added.
+2. Small refactorings and improvements.
+3. The package 'file_formats::excel::excel_writer' was improved.
+4. An error in the 'lang' package was fixed.
+5. A new regions were added to the 'xml::yandex_xml::yandex_xml_markup' package.
+6. 2 unit-tests were added.
+7. The param 'common_context' was added.
 
 Ultimix v. 1.5.242
 -----------------------------------------

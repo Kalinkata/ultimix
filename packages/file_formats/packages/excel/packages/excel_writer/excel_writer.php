@@ -53,22 +53,22 @@
 		}
 		
 		/**
-		*	\~russian Получение ридера.
+		*	\~russian Получение объекта класса.
 		*
 		*	@param $Path - Путь к загружаемому файлу.
 		*
-		*	@return Объект ридера.
+		*	@return Объект клсса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author  Додонов А.А.
 		*/
 		/**
-		*	\~english Function creates reader.
+		*	\~english Function creates writer.
 		*
 		*	@param $Path - Path to the loading file.
 		*
-		*	@return Reader object.
+		*	@return Writer object.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -80,12 +80,58 @@
 			{
 				if( $Path === false )
 				{
-					return( new Spreadsheet_Excel_Writer() );
+					$Writer = new Spreadsheet_Excel_Writer();
 				}
 				else
 				{
-					return( new Spreadsheet_Excel_Writer( $Path ) );
+					$Writer = new Spreadsheet_Excel_Writer( $Path );
 				}
+
+				$Writer->setVersion( 8 );
+
+				return( $Writer );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Получение содержимого файла.
+		*
+		*	@param $Excel - Файл.
+		*
+		*	@return Содержимое файла.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author  Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns file content.
+		*
+		*	@param $Excel - File.
+		*
+		*	@return File content.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_as_string( &$Excel )
+		{
+			try
+			{
+				ob_start();
+
+				$Excel->close();
+
+				$Content = ob_get_contents();
+
+				ob_end_clean();
+
+				return( $Content );
 			}
 			catch( Exception $e )
 			{

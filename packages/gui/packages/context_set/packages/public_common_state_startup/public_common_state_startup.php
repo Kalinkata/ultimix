@@ -154,7 +154,7 @@
 			{
 				$this->Trace->start_group( "{lang:public_create_form_state}" );
 				
-				$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'public_create' );
+				$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'public_create' );
 				
 				$this->Trace->end_group();
 				
@@ -197,21 +197,21 @@
 			try
 			{
 				$this->Trace->start_group( "{lang:public_create_state}" );
-				
+
 				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				
+
 				if( $Action == 'create_record' )
 				{
-					$Result = $this->StartupUtilities->process_controller_state( 
+					$Result = $this->StartupUtilities->try_run_controller_state( 
 						$ContextSet , $Options , 'public_create'
 					);
-					
+
 					$this->Trace->end_group();	
 					return( $Result );
 				}
 				else
 				{
-					$this->StartupUtilities->trace_no_need_to_process_message( 
+					$this->StartupUtilities->trace_no_need_to_process_state_message( 
 						'public_create' , $this->Prefix , 'create_record'
 					);
 					$this->Trace->end_group();
@@ -255,11 +255,11 @@
 			try
 			{
 				$this->Trace->start_group( "{lang:public_update_form_state}" );
-				
-				$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'public_update' );
-				
+
+				$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'public_update' );
+
 				$this->Trace->end_group();
-				
+
 				return( $Result );
 			}
 			catch( Exception $e )
@@ -299,21 +299,21 @@
 			try
 			{
 				$this->Trace->start_group( "{lang:public_update_state}" );
-				
+
 				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				
+
 				if( $Action == 'update_record' )
 				{
-					$Result = $this->StartupUtilities->process_controller_state(
+					$Result = $this->StartupUtilities->try_run_controller_state(
 						$ContextSet , $Options , 'public_update'
 					);
-				
+
 					$this->Trace->end_group();
 					return( $Result );
 				}
 				else
 				{
-					$this->StartupUtilities->trace_no_need_to_process_message( 
+					$this->StartupUtilities->trace_no_need_to_process_state_message( 
 						'public_update' , $this->Prefix , 'update_record'
 					);
 					$this->Trace->end_group();
@@ -357,17 +357,17 @@
 			try
 			{
 				$this->Trace->start_group( "{lang:last_records_form_state}" );
-				
+
 				if( intval( $Options->get_setting( 'last_records' , 0 ) ) )
 				{
-					$Result = $this->StartupUtilities->process_view_state( $ContextSet , $Options , 'last_records' );
-				
+					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'last_records' );
+
 					$this->Trace->end_group();
 					return( $Result );
 				}
 				else
 				{
-					$this->StartupUtilities->trace_no_need_to_process_message( 
+					$this->StartupUtilities->trace_no_need_to_process_state_message( 
 						'last_records_form' , $this->Prefix , ''
 					);
 					$this->Trace->end_group();
@@ -414,7 +414,7 @@
 				
 				if( intval( $Options->get_setting( 'dependent_records' , 0 ) ) )
 				{
-					$Result = $this->StartupUtilities->process_view_state( 
+					$Result = $this->StartupUtilities->try_run_view_state( 
 						$ContextSet , $Options , 'dependent_records'
 					);
 				
@@ -423,7 +423,7 @@
 				}
 				else
 				{
-					$this->StartupUtilities->trace_no_need_to_process_message( 
+					$this->StartupUtilities->trace_no_need_to_process_state_message( 
 						'dependent_records_form' , $this->Prefix , ''
 					);
 					$this->Trace->end_group();
@@ -435,7 +435,52 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Нужен ли запуск стандартных контекстов.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@param $State - Стейт.
+		*
+		*	@return true если стейт должен быть обработан.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function starts all standart controller states.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@param $State - State.
+		*
+		*	@return true if the state must be processed.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	run_it( &$Options , $State )
+		{
+			try
+			{
+				$HintedContext = $Options->get_setting( 'common_context' , false );
+
+				if( $HintedContext === false )
+				{
+					return( true );
+				}
+
+				return( $HintedContext == $State );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Запуск публичных стейтов.
 		*
@@ -466,22 +511,34 @@
 		{
 			try
 			{
-				if( $this->public_create_form_state_startup( $ContextSet , $Options ) !== false )return( true );
-				
-				if( $this->public_create_state_startup( $ContextSet , $Options ) !== false )return( true );
-				
-				if( $this->public_update_form_state_startup( $ContextSet , $Options ) !== false )return( true );
-				
-				if( $this->public_update_state_startup( $ContextSet , $Options ) !== false )return( true );
+				$Next = true;
 
-				return( false );
+				if( $Next && $this->run_it( $Options , 'create' )  )
+				{
+					// TODO move it to the common_state_startup
+					$Next = $this->public_create_form_state_startup( $ContextSet , $Options );
+				}
+				if( $Next && $this->run_it( $Options , 'create' )  )
+				{
+					$Next = $this->public_create_state_startup( $ContextSet , $Options );
+				}
+				if( $Next && $this->run_it( $Options , 'update' ) )
+				{
+					$Next = $this->public_update_form_state_startup( $ContextSet , $Options );
+				}
+				if( $Next && $this->run_it( $Options , 'update' ) )
+				{
+					$Next = $this->public_update_state_startup( $ContextSet , $Options );
+				}
+
+				return( !$Next );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Запуск всех стандартных стейтов.
 		*
@@ -515,9 +572,9 @@
 				$this->set_constants( $ContextSet , $Options );
 
 				if( $this->run_public_states( $ContextSet , $Options ) )return( true );
-				
+
 				if( $this->last_records_form_state_startup( $ContextSet , $Options ) !== false )return( true );
-				
+
 				if( $this->dependent_records_form_state_startup( $ContextSet , $Options ) !== false )return( true );
 
 				return( false );
