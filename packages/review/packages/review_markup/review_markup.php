@@ -392,6 +392,7 @@
 		{
 			try
 			{
+				/* TODO: move it to auto_markup */
 				list( $Str , $Changed ) = $this->process_review_line( $Str , $Changed );
 				
 				list( $Str , $Changed ) = $this->process_review_form( $Str , $Changed );

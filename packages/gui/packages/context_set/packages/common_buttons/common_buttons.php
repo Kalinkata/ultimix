@@ -36,9 +36,9 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$ContextSetUtilities = false;
-		var					$MacroSettings = false;
+		var					$ContextSetConfigs = false;
 		var					$PermitAlgorithms = false;
+		var					$Settings = false;
 		var					$String = false;
 
 		/**
@@ -72,11 +72,10 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->ContextSetUtilities = get_package( 
-					'gui::context_set::context_set_utilities' , 'last' , __FILE__
-				);
-				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$PackageName = 'gui::context_set::context_set_configs';
+				$this->ContextSetConfigs = get_package( $PackageName , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -84,7 +83,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает код кнопки создания записи.
 		*
@@ -115,7 +114,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_common_button_content( $CommonStateConfig , $ExtOptions ,  $Name )
+		function			get_common_button_content( &$CommonStateConfig , &$ExtOptions ,  $Name )
 		{
 			try
 			{
@@ -146,7 +145,7 @@
 		/**
 		*	\~russian Функция отвечающая за обработку кнопки поиска.
 		*
-		*	@param $Settings - Настройки набора контекстов.
+		*	@param $ContextSetConfig - Настройки набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -161,7 +160,7 @@
 		/**
 		*	\~english Function processes string.
 		*
-		*	@param $Settings - Set of contexts settings.
+		*	@param $ContextSetConfig - Set of contexts settings.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -173,18 +172,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_search_button_creation( $Settings , $Options , $ControlCode )
+		function			process_search_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
-				$Config = $this->ContextSetUtilities->load_common_state_config( 
-					$Settings , 
+				$Config = $this->ContextSetConfigs->load_common_state_config( 
+					$ContextSetConfig , 
 					'common_state_config_search_form' , 
 					'cfcxs_search_form' , $Options->get_setting( 'file_path' )
 				);
 
+				$ExtOptions = false;
+
 				$ControlCode = str_replace( 
-					'{search_button}' , $this->get_common_button_content( $Config , false , 'search' ) , $ControlCode 
+					'{search_button}' , 
+					$this->get_common_button_content( $Config , $ExtOptions , 'search' ) , $ControlCode 
 				);
 
 				return( $ControlCode );
@@ -198,7 +200,7 @@
 		/**
 		*	\~russian Получение конфига.
 		*
-		*	@param $Settings - Настройки набора контекстов.
+		*	@param $ContextSetConfig - Настройки набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -213,7 +215,7 @@
 		/**
 		*	\~english Fetching config.
 		*
-		*	@param $Settings - Set of contexts settings.
+		*	@param $ContextSetConfig - Set of contexts settings.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -225,12 +227,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_config( $Settings , $Options , $Name )
+		function			get_config( &$ContextSetConfig , &$Options , $Name )
 		{
 			try
 			{
-				$Config = $this->ContextSetUtilities->load_common_state_config( 
-					$Settings , 'common_state_config_'.$Name , 'cfcxs_'.$Name , $Options->get_setting( 'file_path' )
+				$Config = $this->ContextSetConfigs->load_common_state_config( 
+					$ContextSetConfig , 'common_state_config_'.$Name , 'cfcxs_'.$Name , 
+					$Options->get_setting( 'file_path' )
 				);
 
 				return( $Config );
@@ -244,7 +247,7 @@
 		/**
 		*	\~russian Функция отвечающая за обработку кнопки создания.
 		*
-		*	@param $Settings - Настройки набора контекстов.
+		*	@param $ContextSetConfig - Настройки набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -259,7 +262,7 @@
 		/**
 		*	\~english Function processes string.
 		*
-		*	@param $Settings - Set of contexts settings.
+		*	@param $ContextSetConfig - Set of contexts settings.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -271,11 +274,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_create_button_creation( $Settings , $Options , $ControlCode )
+		function			process_create_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
-				$Config = $this->get_config( $Settings , $Options , 'create_form' );
+				$Config = $this->get_config( $ContextSetConfig , $Options , 'create_form' );
 
 				if( strpos( $ControlCode , '{create_button}' ) !== false )
 				{
@@ -284,9 +287,9 @@
 
 				for( ; $Parameters = $this->String->get_macro_parameters( $ControlCode , 'create_button' ) ; )
 				{
-					$this->MacroSettings->load_settings( $Parameters );
+					$this->Settings->load_settings( $Parameters );
 
-					$ButtonCode = $this->get_common_button_content( $Config , $this->MacroSettings , 'create' );
+					$ButtonCode = $this->get_common_button_content( $Config , $this->Settings , 'create' );
 
 					$ControlCode = str_replace( "{create_button:$Parameters}" , $ButtonCode , $ControlCode );
 				}
@@ -302,7 +305,7 @@
 		/**
 		*	\~russian Функция отвечающая за обработку кнопки редактирования.
 		*
-		*	@param $Settings - Настройки набора контекстов.
+		*	@param $ContextSetConfig - Настройки набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -317,7 +320,7 @@
 		/**
 		*	\~english Function processes string.
 		*
-		*	@param $Settings - Set of contexts settings.
+		*	@param $ContextSetConfig - Set of contexts settings.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -329,11 +332,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_update_button_creation( $Settings , $Options , $ControlCode )
+		function			process_update_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
-				$Config = $this->get_config( $Settings , $Options , 'update_form' );
+				$Config = $this->get_config( $ContextSetConfig , $Options , 'update_form' );
 
 				if( strpos( $ControlCode , '{update_button}' ) !== false )
 				{
@@ -342,9 +345,9 @@
 
 				for( ; $Parameters = $this->String->get_macro_parameters( $ControlCode , 'update_button' ) ; )
 				{
-					$this->MacroSettings->load_settings( $Parameters );
+					$this->Settings->load_settings( $Parameters );
 
-					$ButtonCode = $this->get_common_button_content( $Config , $this->MacroSettings , 'update' );
+					$ButtonCode = $this->get_common_button_content( $Config , $this->Settings , 'update' );
 
 					$ControlCode = str_replace( "{update_button:$Parameters}" , $ButtonCode , $ControlCode );
 				}
@@ -360,7 +363,7 @@
 		/**
 		*	\~russian Функция отвечающая за обработку кнопки копирования записи.
 		*
-		*	@param $Settings - Настройки набора контекстов.
+		*	@param $ContextSetConfig - Настройки набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -375,7 +378,7 @@
 		/**
 		*	\~english Function processes macro 'copy_button' in a string.
 		*
-		*	@param $Settings - Set of contexts settings.
+		*	@param $ContextSetConfig - Set of contexts settings.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -387,11 +390,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_copy_button_creation( $Settings , $Options , $ControlCode )
+		function			process_copy_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
-				$Config = $this->get_config( $Settings , $Options , 'copy_form' );
+				$Config = $this->get_config( $ContextSetConfig , $Options , 'copy_form' );
 
 				if( strpos( $ControlCode , '{copy_button}' ) !== false )
 				{
@@ -400,9 +403,9 @@
 
 				for( ; $Parameters = $this->String->get_macro_parameters( $ControlCode , 'copy_button' ) ; )
 				{
-					$this->MacroSettings->load_settings( $Parameters );
+					$this->Settings->load_settings( $Parameters );
 					
-					$ButtonCode = $this->get_common_button_content( $Config , $this->MacroSettings , 'copy' );
+					$ButtonCode = $this->get_common_button_content( $Config , $this->Settings , 'copy' );
 					
 					$ControlCode = str_replace( "{copy_button:$Parameters}" , $ButtonCode , $ControlCode );
 				}
@@ -418,7 +421,7 @@
 		/**
 		*	\~russian Функция отвечающая за обработку кнопки удаления.
 		*
-		*	@param $Settings - Настройки набора контекстов.
+		*	@param $ContextSetConfig - Настройки набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -433,7 +436,7 @@
 		/**
 		*	\~english Function processes string.
 		*
-		*	@param $Settings - Set of contexts settings.
+		*	@param $ContextSetConfig - Set of contexts settings.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -445,11 +448,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_delete_button_creation( $Settings , $Options , $ControlCode )
+		function			process_delete_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
-				$Config = $this->get_config( $Settings , $Options , 'delete_button' );
+				$Config = $this->get_config( $ContextSetConfig , $Options , 'delete_button' );
 
 				if( strpos( $ControlCode , '{delete_button}' ) !== false )
 				{
@@ -458,9 +461,9 @@
 
 				for( ; $Parameters = $this->String->get_macro_parameters( $ControlCode , 'delete_button' ) ; )
 				{
-					$this->MacroSettings->load_settings( $Parameters );
+					$this->Settings->load_settings( $Parameters );
 
-					$ButtonCode = $this->get_common_button_content( $Config , $this->MacroSettings , 'delete' );
+					$ButtonCode = $this->get_common_button_content( $Config , $this->Settings , 'delete' );
 
 					$ControlCode = str_replace( "{delete_button:$Parameters}" , $ButtonCode , $ControlCode );
 				}
@@ -476,7 +479,7 @@
 		/**
 		*	\~russian Функция создания кнопок.
 		*
-		*	@param $Settings - Опции набора контекстов.
+		*	@param $ContextSetConfig - Опции набора контекстов.
 		*
 		*	@param $Options - Параметры отображения.
 		*
@@ -491,7 +494,7 @@
 		/**
 		*	\~english Method creates buttons.
 		*
-		*	@param $Settings - Options of context_set.
+		*	@param $ContextSetConfig - Options of context_set.
 		*
 		*	@param $Options - Options of drawing.
 		*
@@ -503,22 +506,22 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_buttons( &$Settings , $Options , $Str )
+		function			process_buttons( &$ContextSetConfig , &$Options , $Str )
 		{
 			try
 			{
-				$Str = $this->process_search_button_creation( $Settings , $Options , $Str );
+				$Str = $this->process_search_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_create_button_creation( $Settings , $Options , $Str );
+				$Str = $this->process_create_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_update_button_creation( $Settings , $Options , $Str );
+				$Str = $this->process_update_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_copy_button_creation( $Settings , $Options , $Str );
+				$Str = $this->process_copy_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_delete_button_creation( $Settings , $Options , $Str );
+				$Str = $this->process_delete_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = str_replace( '{prefix}' , $Settings->get_setting( 'prefix' , '' ) , $Str );
-				
+				$Str = str_replace( '{prefix}' , $ContextSetConfig->get_setting( 'prefix' , '' ) , $Str );
+
 				return( $Str );
 			}
 			catch( Exception $e )

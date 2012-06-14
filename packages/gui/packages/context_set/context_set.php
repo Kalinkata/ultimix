@@ -39,10 +39,10 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$CommonStateStartup = false;
+		var					$ContextSetConfigs = false;
 		var					$CustomStateStartup = false;
 		var					$Context = false;
 		var					$ContextSetSettings = false;
-		var					$ContextSetUtilities = false;
 		var					$CustomSettings = false;
 		var					$Messages = false;
 		var					$PageJS = false;
@@ -139,8 +139,6 @@
 			{
 				$this->CustomSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->ContextSetSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$PackageName = 'gui::context_set::context_set_utilities';
-				$this->ContextSetUtilities = get_package( $PackageName , 'last' , __FILE__ );
 				$PackageName = 'gui::context_set::context_set_markup';
 				$this->ContextSetMarkup = get_package( $PackageName , 'last' , __FILE__ );
 			}
@@ -169,6 +167,7 @@
 			try
 			{
 				$this->CommonStateStartup = get_package( 'gui::context_set::common_state_startup' , 'last' , __FILE__ );
+				$this->ContextSetConfigs = get_package( 'gui::context_set::context_set_configs' , 'last' , __FILE__ );
 				$this->CustomStateStartup = get_package( 'gui::context_set::custom_state_startup' , 'last' , __FILE__ );
 				$PackageName = 'gui::context_set::public_common_state_startup';
 				$this->PublicCommonStateStartup = get_package( $PackageName , 'last' , __FILE__ );
@@ -420,6 +419,54 @@
 		}
 
 		/**
+		*	\~russian Попытка обработать редирект.
+		*
+		*	@param $Options - Настройки редиректа.
+		*
+		*	@param $AutoRedirect - Нужен ли редирект.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function tries to redirect on another page.
+		*
+		*	@param $Options - Redirect settings.
+		*
+		*	@param $AutoRedirect - Should be redirected.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			set_locations( &$Options , $AutoRedirect )
+		{
+			try
+			{
+				$AutoRedirect = intval( $Options->get_setting( 'auto_redirect' , $AutoRedirect ) );
+				$AutoRedirect = $this->Security->get_gp( 'auto_redirect' , 'integer' , $AutoRedirect );
+				if( $AutoRedirect && $this->Security->get_srv( 'HTTP_REFERER' , 'set' ) )
+				{
+					header( $_SERVER[ 'SERVER_PROTOCOL' ].' 303 See Other' );
+					if( $Options->get_setting( 'redirect_page' , false ) )
+					{
+						header( "Location: ".$Options->get_setting( 'redirect_page' ) );
+					}
+					else
+					{
+						header( "Location: ".$this->Security->get_srv( 'HTTP_REFERER' , 'raw' ) );
+					}
+					exit( 0 );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Функция запуска контроллера/вида.
 		*
 		*	@param $Options - Параметры выполнения.
@@ -457,7 +504,7 @@
 
 				if( $this->Context->execute( $Options , $Provider ) )
 				{
-					$this->ContextSetUtilities->process_redirect( $Options , $AutoRedirect );
+					$this->set_locations( $Options , $AutoRedirect );
 
 					$GUI->set_var( 'last_context_set_execution_code' , 0 );
 					$GUI->set_var( 
@@ -607,49 +654,6 @@
 		}
 
 		/**
-		*	\~russian Функция загрузки конфига.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@param $FilePath - Путь к компоненту. Должен быть __FILE__
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Method loads config.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@param $FilePath - Path tp the component. Must be equal to __FILE__
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	load_context_set_config( &$Options , $FilePath )
-		{
-			try
-			{
-				$FileName = $Options->get_setting( 'common_settings_config' , 'cfcxs_context_set' );
-				$FilePath = dirname( $FilePath )."/conf/$FileName";
-				if( $this->CachedMultyFS->file_exists( $FilePath ) )
-				{
-					$File = $this->CachedMultyFS->file_get_contents( $FilePath );
-					$this->Trace->add_trace_string( '{lang:common_settings_config} : '.$File , COMMON );
-					$this->ContextSetSettings->load_settings( $File );
-
-					$this->load_context_set_data( $this->ContextSetSettings );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-	
-		/**
 		*	\~russian Функция запуска стандартных стейтов.
 		*
 		*	@param $Options - Параметры выполнения.
@@ -724,7 +728,8 @@
 				$this->Provider = $Provider;
 				$this->Provider->Output = false;
 
-				$this->load_context_set_config( $Options , $FilePath );
+				$this->ContextSetConfigs->load_context_set_config( $this->ContextSetSettings , $Options , $FilePath );
+				$this->load_context_set_data( $this->ContextSetSettings );
 
 				$this->run_common_states( $Options );
 

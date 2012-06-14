@@ -400,7 +400,7 @@
 		/**
 		*	\~russian Генерация страницы.
 		*
-		*	@param $String - Страница.
+		*	@param $Str - Страница.
 		*
 		*	@param $Options - Опции генерации.
 		*
@@ -413,7 +413,7 @@
 		/**
 		*	\~english Function generates page.
 		*
-		*	@param $String - Page content.
+		*	@param $Str - Page content.
 		*
 		*	@param $Options - Generation options.
 		*
@@ -423,7 +423,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	apply_options( $String , $Options )
+		private function	apply_options( $Str , $Options )
 		{
 			try
 			{
@@ -431,7 +431,7 @@
 
 				$Settings->load_settings( $Options );
 
-				return( $this->String->print_record( $String , $Settings->get_raw_settings() ) );
+				return( $this->String->print_record( $Str , $Settings->get_raw_settings() ) );
 			}
 			catch( Exception $e )
 			{
@@ -467,15 +467,15 @@
 			{
 				$this->PageParts->execute_generators( $this->Packages , 'pre_generation' , $Template );
 
-				$String = $Template->get_template();
-				if( $this->String->block_exists( $String , 'layout' ) )
+				$Str = $Template->get_template();
+				if( $this->String->block_exists( $Str , 'layout' ) )
 				{
-					$String = str_replace( '{layout}' , '{include:'.$this->Layout.'}' , $String );
+					$Str = str_replace( '{layout}' , '{include:'.$this->Layout.'}' , $Str );
 				}
 
-				$String = $this->PageParts->execute_processors( $this->Packages , $String , 'pre_process' );
-				$String = $this->apply_options( $String , $PageDescription[ 'options' ] );
-				$Template->set_template( $String );
+				$Str = $this->PageParts->execute_processors( $this->Packages , $Str , 'pre_process' );
+				$Str = $this->apply_options( $Str , $PageDescription[ 'options' ] );
+				$Template->set_template( $Str );
 			}
 			catch( Exception $e )
 			{
@@ -486,7 +486,7 @@
 		/**
 		*	\~russian Обработка постпроцессинга.
 		*
-		*	@param $String - Строка для обработки.
+		*	@param $Str - Строка для обработки.
 		*
 		*	@param $Type - Тип процессора для запуска.
 		*
@@ -499,7 +499,7 @@
 		/**
 		*	\~english Function runs postprocessing.
 		*
-		*	@param $String - String to process.
+		*	@param $Str - String to process.
 		*
 		*	@param $Type - Processor type.
 		*
@@ -509,11 +509,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			execute_processors( $String , $Type )
+		function			execute_processors( $Str , $Type )
 		{
 			try
 			{
-				return( $this->PageParts->execute_processors( $this->Packages , $String , $Type ) );
+				return( $this->PageParts->execute_processors( $this->Packages , $Str , $Type ) );
 			}
 			catch( Exception $e )
 			{
@@ -547,9 +547,9 @@
 		{
 			try
 			{
-				$String = $Template->get_template();
-				$String = $this->execute_processors( $String , 'post_process' );
-				$Template->set_template( $String );
+				$Str = $Template->get_template();
+				$Str = $this->execute_processors( $Str , 'post_process' );
+				$Template->set_template( $Str );
 
 				$this->PageParts->execute_generators( $this->Packages , 'post_generation' , $Template );
 
@@ -677,12 +677,12 @@
 			{
 				$this->Trace->start_group( "direct_controllers" );
 
-				$String = $this->Template->get_template();
+				$Str = $this->Template->get_template();
 
 				$Changed = false;
-				list( $String , $Changed ) = $this->PageMarkup->process_direct_controller( $String , $Changed );
+				list( $Str , $Changed ) = $this->PageMarkup->process_direct_controller( $Str , $Changed );
 
-				$this->Template->set_template( $String );
+				$this->Template->set_template( $Str );
 
 				$this->Trace->end_group();
 			}
@@ -714,12 +714,12 @@
 
 				$this->Security->reset_s( 'direct_view' , true );
 
-				$String = $this->Template->get_template();
+				$Str = $this->Template->get_template();
 
 				$Changed = false;
-				list( $String , $Changed ) = $this->PageMarkup->process_direct_view( $String , $Changed );
+				list( $Str , $Changed ) = $this->PageMarkup->process_direct_view( $Str , $Changed );
 
-				$this->Template->set_template( $String );
+				$this->Template->set_template( $Str );
 
 				$this->Security->reset_s( 'direct_view' , false );
 
@@ -771,9 +771,13 @@
 
 				$Str = $this->PageMarkup->process_meta( $Options , $Str , $Changed );
 
+				$this->Trace->start_group( 'direct_views' );
 				list( $Str , $Changed ) = $this->PageMarkup->process_direct_view( $Str , $Changed );
+				$this->Trace->end_group();
 
+				$this->Trace->start_group( 'direct_controllers' );
 				list( $Str , $Changed ) = $this->PageMarkup->process_direct_controller( $Str , $Changed );
+				$this->Trace->end_group();
 
 				return( $Str );
 			}

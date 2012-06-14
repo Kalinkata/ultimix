@@ -230,9 +230,6 @@
 			try
 			{
 				$XMLDoc = new SimpleXMLElement( $Response );
- 
-				$Error = $XMLDoc->response->error;
-				$FoundAll = $XMLDoc->response->found;
 
 				return( $XMLDoc->xpath( "response/results/grouping/group/doc" ) );
 			}
@@ -277,6 +274,7 @@
 			try
 			{
 				$Domain = str_ireplace( 'http://' , '' , $Domain );
+				$Domain = rtrim( $Domain , '/\\' );
 
 				$Response = $this->search_query( $Query , $Region );
 
@@ -335,7 +333,7 @@
 			try
 			{
 				$Domain = str_ireplace( 'http://' , '' , $Domain );
-
+				$Domain = rtrim( $Domain , '/\\' );
 				$Response = $this->search_query( $Query , $Region );
 				$Response = $this->parse_response( $Response );
 
@@ -397,6 +395,7 @@
 			try
 			{
 				$Domain = str_ireplace( 'http://' , '' , $Domain );
+				$Domain = rtrim( $Domain , '/\\' );
 
 				$Response = $this->search_query( "$Query site:$Domain" , $Region );
 

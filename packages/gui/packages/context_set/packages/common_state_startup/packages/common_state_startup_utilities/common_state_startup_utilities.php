@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	common_state_startup_utilities_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -35,13 +35,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$ContextSetUtilities = false;
+		var					$ContextSetConfigs = false;
 		var					$DefaultControllers = false;
 		var					$DefaultViews = false;
 		var					$LocalOptions = false;
 		var					$Security = false;
 		var					$Trace = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -60,8 +60,7 @@
 		{
 			try
 			{
-				$PackageName = 'gui::context_set::context_set_utilities';
-				$this->ContextSetUtilities = get_package( $PackageName , 'last' , __FILE__ );
+				$this->ContextSetConfigs = get_package( 'gui::context_set::context_set_configs' , 'last' , __FILE__ );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' , 'last' , __FILE__ );
 				$this->DefaultViews = get_package( 'gui::context_set::default_views' , 'last' , __FILE__ );
 				$this->LocalOptions = get_package_object( 'settings::settings' , 'last' , __FILE__ );
@@ -73,7 +72,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения конфига стейта.
 		*
@@ -116,7 +115,7 @@
 				$FileName = 'cfcxs_'.$StateName.$Suffix;
 
 				return( 
-					$this->ContextSetUtilities->get_common_state_config( 
+					$this->ContextSetConfigs->get_common_state_config( 
 						$ContextSet->ContextSetSettings , $FieldName , $FileName , $Options->get_setting( 'file_path' )
 					)
 				);
@@ -126,7 +125,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция трассировки.
 		*
@@ -153,19 +152,20 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			trace_no_need_to_process_state_message( $StateName , $Prefix , $ContextAction )
+		function			trace_no_need_to_run_state_message( $StateName , $Prefix , $ContextAction )
 		{
 			try
 			{
-				$this->Trace->add_trace_string( '{lang:no_need_to_process_trace_message}' , COMMON );
-				
+				$this->Trace->add_trace_string( '{lang:no_need_to_run_trace_message}' , COMMON );
+
 				$Field = $Prefix.'_context_action';
 				$Message = $Prefix.'_context_action: "'.$this->Security->get_gp( $Field , 'command' , 'not set' ).'"';
 				$this->Trace->add_trace_string( $Message );
-				
+
 				$this->Trace->add_trace_string( "required_context_action : \"$ContextAction\"" );
-				
-				$Message = $Prefix.'_action: '.$this->Security->get_gp( $Prefix.'_action' , 'command' , 'not set' );
+
+				$ContextAction = $this->Security->get_gp( $Prefix.'_action' , 'command' , 'not set' );
+				$Message = $Prefix.'_action: "'.$ContextAction.'"';
 				$this->Trace->add_trace_string( $Message );
 			}
 			catch( Exception $e )
@@ -173,7 +173,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция трассировки.
 		*
@@ -203,7 +203,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подготовить конфиг.
 		*
@@ -251,7 +251,7 @@
 				{
 					$Config .= "\r\nsuccess_func=$StateName";
 				}
-				
+
 				return( $Config );
 			}
 			catch( Exception $e )
@@ -259,7 +259,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция запускает стейт-вида.
 		*
@@ -319,7 +319,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подготовка опций запуска.
 		*
@@ -358,14 +358,14 @@
 				$this->LocalOptions->append_settings( $Config );				
 				$this->LocalOptions->add_settings_from_object( $Options );
 				$this->LocalOptions->set_undefined( 'access_package_version' , 'last' );
-				
+
 				if( strpos( $Config , 'success_func' ) === false )
 				{
 					$Suffix = '_form';
 					$Config .= "\r\nsuccess_func=".$StateName.$Suffix;
 					$this->LocalOptions->set_undefined( 'success_func' , $StateName.$Suffix );
 				}
-				
+
 				return( $Config );
 			}
 			catch( Exception $e )
@@ -373,7 +373,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция запускает стейт-вида.
 		*
@@ -530,7 +530,7 @@
 				{
 					$this->trace_config_was_not_found_message( $StateName );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -539,5 +539,5 @@
 			}
 		}
 	}
-	
+
 ?>

@@ -21,7 +21,7 @@
 	}
 	catch( Exception $e )
 	{
-		process_script_error( true , $e );
+		handle_script_error( true , $e );
 	}
 
 ?>

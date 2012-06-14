@@ -10,8 +10,11 @@
 								<td align="right"><input {enter_processor:form_id=login_form} class="flat width_100" type="password" id="password" name="password"><input type="hidden" name="action" value="login"></td>
 							</tr>
 							<tr>
-								<td colspan="2" class="login_buttons">
-									{href:tpl=submit0;form_id=login_form;text=sign_in;waiting=false}{registration_link}&nbsp;{href:tpl=std;text=restore_password;page=./restore_password.html}
+								<td align="left" valign="top">
+									{href:tpl=submit0;form_id=login_form;text=sign_in;waiting=false}
+								</td>
+								<td align="right">
+									{href:tpl=std;text=restore_password;page=./restore_password.html}<br>{registration_link}
 								</td>
 							</tr>
 						</table>

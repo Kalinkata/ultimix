@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	public_common_state_startup_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -41,7 +41,7 @@
 		var					$LocalOptions = false;
 		var					$Security = false;
 		var					$Trace = false;
-		
+
 		/**
 		*	\~russian Префикс.
 		*
@@ -53,7 +53,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Prefix = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -85,7 +85,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Установка параметров работы.
 		*
@@ -121,211 +121,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция запуска стейта публичной формы создания.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts public create form sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_create_form_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$this->Trace->start_group( "{lang:public_create_form_state}" );
-				
-				$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'public_create' );
-				
-				$this->Trace->end_group();
-				
-				return( $Result );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
 
-		/**
-		*	\~russian Функция запуска стейта создания.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts create sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_create_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$this->Trace->start_group( "{lang:public_create_state}" );
-
-				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-
-				if( $Action == 'create_record' )
-				{
-					$Result = $this->StartupUtilities->try_run_controller_state( 
-						$ContextSet , $Options , 'public_create'
-					);
-
-					$this->Trace->end_group();	
-					return( $Result );
-				}
-				else
-				{
-					$this->StartupUtilities->trace_no_need_to_process_state_message( 
-						'public_create' , $this->Prefix , 'create_record'
-					);
-					$this->Trace->end_group();
-					return( false );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция запуска стейта публичной формы редактирования.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts public edit form sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_update_form_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$this->Trace->start_group( "{lang:public_update_form_state}" );
-
-				$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'public_update' );
-
-				$this->Trace->end_group();
-
-				return( $Result );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция запуска стейта редактирования.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts update sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_update_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$this->Trace->start_group( "{lang:public_update_state}" );
-
-				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-
-				if( $Action == 'update_record' )
-				{
-					$Result = $this->StartupUtilities->try_run_controller_state(
-						$ContextSet , $Options , 'public_update'
-					);
-
-					$this->Trace->end_group();
-					return( $Result );
-				}
-				else
-				{
-					$this->StartupUtilities->trace_no_need_to_process_state_message( 
-						'public_update' , $this->Prefix , 'update_record'
-					);
-					$this->Trace->end_group();
-					return( false );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция запуска стейта формы последних записей.
 		*
@@ -358,21 +154,21 @@
 			{
 				$this->Trace->start_group( "{lang:last_records_form_state}" );
 
+				$Result = false;
+
 				if( intval( $Options->get_setting( 'last_records' , 0 ) ) )
 				{
 					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'last_records' );
-
-					$this->Trace->end_group();
-					return( $Result );
 				}
 				else
 				{
-					$this->StartupUtilities->trace_no_need_to_process_state_message( 
+					$this->StartupUtilities->trace_no_need_to_run_state_message( 
 						'last_records_form' , $this->Prefix , ''
 					);
-					$this->Trace->end_group();
-					return( false );
 				}
+
+				$this->Trace->end_group();
+				return( $Result );
 			}
 			catch( Exception $e )
 			{
@@ -411,24 +207,24 @@
 			try
 			{
 				$this->Trace->start_group( "{lang:dependent_records_form_state}" );
-				
+
+				$Result = false;
+
 				if( intval( $Options->get_setting( 'dependent_records' , 0 ) ) )
 				{
 					$Result = $this->StartupUtilities->try_run_view_state( 
 						$ContextSet , $Options , 'dependent_records'
 					);
-				
-					$this->Trace->end_group();
-					return( $Result );
 				}
 				else
 				{
-					$this->StartupUtilities->trace_no_need_to_process_state_message( 
+					$this->StartupUtilities->trace_no_need_to_run_state_message( 
 						'dependent_records_form' , $this->Prefix , ''
 					);
-					$this->Trace->end_group();
-					return( false );
 				}
+
+				$this->Trace->end_group();
+				return( $Result );
 			}
 			catch( Exception $e )
 			{
@@ -482,64 +278,6 @@
 		}
 
 		/**
-		*	\~russian Запуск публичных стейтов.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts public states.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			run_public_states( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$Next = true;
-
-				if( $Next && $this->run_it( $Options , 'create' )  )
-				{
-					// TODO move it to the common_state_startup
-					$Next = $this->public_create_form_state_startup( $ContextSet , $Options );
-				}
-				if( $Next && $this->run_it( $Options , 'create' )  )
-				{
-					$Next = $this->public_create_state_startup( $ContextSet , $Options );
-				}
-				if( $Next && $this->run_it( $Options , 'update' ) )
-				{
-					$Next = $this->public_update_form_state_startup( $ContextSet , $Options );
-				}
-				if( $Next && $this->run_it( $Options , 'update' ) )
-				{
-					$Next = $this->public_update_state_startup( $ContextSet , $Options );
-				}
-
-				return( !$Next );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Запуск всех стандартных стейтов.
 		*
 		*	@param $ContextSet - Набор контекстов.
@@ -570,8 +308,6 @@
 			try
 			{
 				$this->set_constants( $ContextSet , $Options );
-
-				if( $this->run_public_states( $ContextSet , $Options ) )return( true );
 
 				if( $this->last_records_form_state_startup( $ContextSet , $Options ) !== false )return( true );
 

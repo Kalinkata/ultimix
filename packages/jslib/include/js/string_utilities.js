@@ -207,3 +207,23 @@ ultimix.string_utilities.halign_block = function( Content , Width )
 		Content + "</div>"
 	);
 }
+
+/**
+* 	Function trims symbols.
+*
+* 	@param Content - Content for block.
+*
+* 	@param Charlist - Letters to trim.
+*
+* 	@return Trimmed string.
+*
+* 	@author Dodonov A.A.
+*/
+ultimix.string_utilities.trim = function( Str , Charlist )
+{
+	Charlist = !Charlist ? ' \s\xA0' : Charlist.replace( /([\[\]\(\)\.\?\/\*\{\}\+\$\^\:])/g , '\$1' );
+
+	var 		re = new RegExp( '^[' + Charlist + ']+|[' + Charlist + ']+$' , 'g' );
+
+	return( Str.replace( re , '' ) );
+}

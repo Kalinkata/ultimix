@@ -91,7 +91,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_login_errors( $UserExists , $UserActive , $AuthValid )
+		function			handle_login_errors( $UserExists , $UserActive , $AuthValid )
 		{
 			try
 			{
@@ -132,7 +132,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_register_errors()
+		function			handle_register_errors()
 		{
 			try
 			{

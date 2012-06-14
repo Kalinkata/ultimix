@@ -50,6 +50,7 @@
 		var					$Cache = false;
 		var					$CachedMultyFS = false;
 		var					$PageComposer = false;
+		var					$PageFile = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$Tags = false;
@@ -71,6 +72,7 @@
 			{
 				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				$this->PageFile = get_package( 'page:;page_file' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
@@ -249,7 +251,7 @@
 		{
 			try
 			{	
-				$FilesHash = $this->get_file_name( $Files );
+				$FilesHash = $this->PageFile->get_file_name( $Files );
 				$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.css";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 
@@ -310,7 +312,7 @@
 		{
 			try
 			{	
-				$FilesHash = $this->get_file_name( $Files );
+				$FilesHash = $this->PageFile->get_file_name( $Files );
 				$UnionFilePath = "$Path/$FilesHash.css";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 

@@ -42,7 +42,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$StoreTrace = false;
+		var					$StoreTrace = true;
 	
 		/**
 		*	\~russian Трассировка.

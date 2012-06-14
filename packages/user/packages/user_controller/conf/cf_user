@@ -1,1 +1,1 @@
-enable_registration=1;registration_confirm=1;system_title=Ultimix;system_email=ultimix@localhost;email_as_login=1
+enable_registration=1;registration_confirm=1;system_title=Ultimix;system_email=ultimix@localhost;email_as_login=0

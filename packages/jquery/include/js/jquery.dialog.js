@@ -8,6 +8,8 @@ if( !ultimix )
 	ultimix = {};
 }
 
+/* TODO: move it to the jquery_dialog package */
+
 /**
 *	Global namespace.
 *
@@ -143,4 +145,28 @@ ultimix.dialog.show_dom_in_dialog = function( Selector , Title )
 			]
 		}
 	);
+}
+
+/**
+*	Function processes create form.
+*
+*	@param DataAcceptor - Data acceptor field's selector.
+*
+*	@param StatusAcceptor - Status acceptor field's selector.
+*
+*	@param DataSource - Data source selector.
+*
+*	@param Selector - Selector of the dialog.
+*
+*	@return true/false
+*
+*	@author Dodonov A.A.
+*/
+ultimix.dialog.create_form = function( DataAcceptor , StatusAcceptor , DataSource , Selector )
+{
+	console.log( DataAcceptor );
+	console.log( StatusAcceptor );
+	console.log( DataSource );
+	console.log( Selector );
+	return( true );
 }

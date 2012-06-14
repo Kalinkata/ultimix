@@ -581,6 +581,7 @@
 		{
 			try
 			{
+				// TODO move to auto_markup package
 				$Rules = array( 'count_query' => TERMINAL_VALUE );
 
 				for( ; $Parameters = $this->String->get_macro_parameters( $this->Footer , 'paginator' , $Rules ) ; )
@@ -595,7 +596,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получения подвала контрола.
 		*
@@ -618,12 +619,8 @@
 		{
 			try
 			{
-				$Changed = false;
-				$CategoryMarkup = get_package( 'category::category_markup' , 'last' , __FILE__ );
-				$this->Footer = $CategoryMarkup->process_string( $Changed , $this->Footer , $Changed );
-				
 				$this->process_paginator();
-				
+
 				if( $this->FormId !== false && $this->FormRequired )
 				{
 					return( $this->Footer.'</form>' );
@@ -638,7 +635,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки списка записей.
 		*

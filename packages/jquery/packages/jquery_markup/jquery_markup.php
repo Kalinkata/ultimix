@@ -397,7 +397,8 @@
 		function			process_string( $Options , $Str , &$Changed )
 		{
 			try
-			{	
+			{
+				/* TODO: move to auto_markup */
 				list( $Str , $Changed ) = $this->process_accordion_section( $Str , $Changed );
 				
 				list( $Str , $Changed ) = $this->process_tab_control( $Str , $Changed );

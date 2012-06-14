@@ -38,30 +38,6 @@
 		var					$MountedStorages = false;
 
 		/**
-		*	\~russian Кэш.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Cache.
-		*
-		*	@author Dodonov A.A.
-		*/
-		var					$Cache = false;
-
-		/**
-		*	\~russian Кэшированная файловая система.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Cached file system.
-		*
-		*	@author Dodonov A.A.
-		*/
-		var					$CachedFS = false;
-
-		/**
 		*	\~russian Алгоритмы работы со строками.
 		*
 		*	@author Додонов А.А.
@@ -71,6 +47,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Cache = false;
+		var					$CachedFS = false;
 		var					$String = false;
 		var					$Text = false;
 
@@ -194,7 +172,7 @@
 				{
 					$this->get_mounted_storages_from_file( $FilePath );
 				}
-				
+
 				$this->MountedStorages = str_replace( "\r" , "\n" , $this->MountedStorages );
 				$this->MountedStorages = str_replace( "\n\n" , "\n" , $this->MountedStorages );
 				$this->MountedStorages = explode( "\n" , $this->MountedStorages );
@@ -208,7 +186,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки списак хранилищ файлов, если необходимо.
 		*
@@ -227,8 +205,6 @@
 		{
 			try
 			{
-				/** \~russian Грузим список хранилищ.
-					\~english Loading a list of storages.*/
 				if( $this->MountedStorages === false )
 				{
 					if( file_exists( dirname( __FILE__ ).'/conf/'.DOMAIN.'.cf_data_storages' ) )
@@ -274,8 +250,6 @@
 		{
 			try
 			{
-				/** \~russian Файл не найден. Обидно (.
-					\~english File was not found.*/
 				if( $ThrowException )
 				{
 					throw( new Exception( "File $FilePath was not found" ) );
@@ -325,8 +299,6 @@
 
 				$FilePath = str_replace( '/./' , '/' , $FilePath );
 
-				/** \~russian Ищем файл в хранилищах.
-					\~english Searching file in storages.*/
 				$FileName = basename( $FilePath );
 				foreach( $this->MountedStorages as $ms )
 				{
@@ -380,7 +352,7 @@
 				if( $Data === false )
 				{
 					$FilePath = $this->get_file_path( $OriginalFilePath , false );
-					
+
 					return( $this->CachedFS->store_file_exists_info( $OriginalFilePath , $FilePath ) );
 				}
 				else

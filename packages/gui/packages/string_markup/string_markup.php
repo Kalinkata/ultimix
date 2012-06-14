@@ -290,6 +290,7 @@
 		{
 			try
 			{
+				// TODO move to auto_markup package
 				list( $Str , $Changed ) = $this->process_sprintf( $Str , $Changed );
 				
 				list( $Str , $Changed ) = $this->process_encoding( $Str , $Changed );

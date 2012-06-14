@@ -74,7 +74,7 @@
 		/**
 		*	\~russian Компиляция ленты комментариев.
 		*
-		*	@param $Comments - Комментарии.
+		*	@param $BlockSettings - Параметры компиляции.
 		*
 		*	@return HTML код ленты комментариев.
 		*
@@ -85,7 +85,7 @@
 		/**
 		*	\~english Function compiles comment list.
 		*
-		*	@param $Comments - Comments.
+		*	@param $BlockSettings - Compilation parameters.
 		*
 		*	@return Comment line's HTML code.
 		*
@@ -93,10 +93,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_comments( &$Comments )
+		function			compile_comments( &$BlockSettings )
 		{
 			try
 			{
+				$Comments = $this->get_comments_for_object( $BlockSettings );
+
 				if( isset( $Comments[ 0 ] ) )
 				{
 					$CommentLine = '';
@@ -162,7 +164,7 @@
 		/**
 		*	\~russian Функция компиляции макроса 'comment_link'.
 		*
-		*	@param $Parameters - Параметры компиляции.
+		*	@param $BlockSettings - Параметры компиляции.
 		*
 		*	@return Widget.
 		*
@@ -173,7 +175,7 @@
 		/**
 		*	\~english Function compiles macro 'comment_link'.
 		*
-		*	@param $Parameters - Compilation parameters.
+		*	@param $BlockSettings - Compilation parameters.
 		*
 		*	@return Widget.
 		*
@@ -181,129 +183,28 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_comment_link( $Parameters )
+		function			compile_comment_link( &$BlockSettings )
 		{
 			try
 			{
-				$this->BlockSettings->load_settings( $Parameters );
-
-				$MasterId = $this->BlockSettings->get_setting( 'master_id' );
-				$MasterType = $this->BlockSettings->get_setting( 'master_type' );
+				$MasterId = $BlockSettings->get_setting( 'master_id' );
+				$MasterType = $BlockSettings->get_setting( 'master_type' );
 
 				$CommentsCount = $this->Link->get_links_count( $MasterId , false , $MasterType , 'comment' );
 
-				$Page = $this->BlockSettings->get_setting( 'page' );
+				$Page = $BlockSettings->get_setting( 'page' );
 
-				$Template = $this->CachedMultyFS-get_template( __FILE__ , 'comment_link.tpl' );
+				$Template = $this->CachedMultyFS->get_template( __FILE__ , 'comment_link.tpl' );
 				$PlaceHolders = array( '{page}' , '{comment_count}' );
 
-				return(str_replace( $PlaceHolders , array( $Page , $CommentCount ) , $Template ) );
+				return( str_replace( $PlaceHolders , array( $Page , $CommentsCount ) , $Template ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'comment_link'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'comment_link'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_comment_link( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'comment_link' , $Limitations ) ; )
-				{
-					$Code = $this->compile_comment_link( $Parameters );
-
-					$Str = str_replace( "{comment_link:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'comment_line'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'comment_line'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_comment_line( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'comment_line' , $Limitations ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					$Comments = $this->get_comments_for_object( $this->BlockSettings );
-			
-					$Code = $this->compile_comments( $Comments );
-					
-					$Str = str_replace( "{comment_line:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция компиляции макроса 'comment_form'.
 		*
@@ -326,7 +227,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_comment_form( $Parameters )
+		function			compile_comment_form( $Parameters )
 		{
 			try
 			{
@@ -347,103 +248,6 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'comment_form'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'comment_form'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_comment_form( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 
-					'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE , 'need_run' => TERMINAL_VALUE
-				);
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'comment_form' , $Limitations ) ; )
-				{
-					$Code = $this->compile_comment_form( $Parameters );
-					
-					$Str = str_replace( "{comment_form:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_comment_link( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_comment_line( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_comment_form( $Str , $Changed );
-				
-				return( $Str );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
 	}
+
 ?>

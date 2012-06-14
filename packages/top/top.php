@@ -127,6 +127,8 @@
 		*
 		*	@param $Options - Настройки.
 		*
+		*	@param $Item - Шаблон элемента.
+		*
 		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
@@ -136,11 +138,13 @@
 		*
 		*	@param $Options - Settings.
 		*
+		*	@param $Item - Item template.
+		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_records( &$Options )
+		private function	compile_records( &$Options , $Item )
 		{
 			try
 			{
@@ -189,7 +193,7 @@
 				$Title = $Options->get_setting( 'title' , false );
 				list( $Header , $Item , $Footer ) = $this->get_templates( $Options );
 
-				$this->compile_records( &$Options );
+				$this->compile_records( $Options , $Item );
 
 				$this->Output = $Header.$this->Output.$Footer;
 				if( $Title !== false )

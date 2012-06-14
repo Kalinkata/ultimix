@@ -13,8 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	// TODO http://habrahabr.ru/post/143188/
-	
 	/**
 	*	\~russian Класс для обработки макросов.
 	*

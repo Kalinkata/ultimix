@@ -436,6 +436,7 @@
 		{
 			try
 			{
+				/* TODO: move it to auto_markup */
 				list( $ProcessingString , $Changed ) = $this->process_gallery( $ProcessingString , $Changed );
 				
 				return( $ProcessingString );

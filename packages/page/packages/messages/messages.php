@@ -436,6 +436,7 @@
 		{
 			try
 			{
+				/* TODO: move to auto_markup */
 				list( $Str , $Changed ) = $this->process_success_messages( $Str , $Changed );
 
 				list( $Str , $Changed ) = $this->process_error_messages( $Str , $Changed );

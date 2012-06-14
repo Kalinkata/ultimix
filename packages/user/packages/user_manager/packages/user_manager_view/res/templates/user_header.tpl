@@ -1,5 +1,5 @@
 					<div class="toolbar">
-						{search_form}{toolbar_button:title=create_button;permit=user_manager;label=create;page=./admin_registration.html?back_page[eq]user_manager;package_name=gui::context_set::common_buttons;size=24;icon=create_24.gif}{search_button}{update_button}{copy_button}{delete_button}
+						{search_form}{toolbar_button:title=create_button;permit=user_manager;label=create;page=./admin_registration.html?back_page[eq]user_manager;package_name=gui::context_set::common_buttons;size=24;icon=create_24.gif}{search_button}{update_button}{copy_button}{delete_button}{href:text=activate;page=javascript:ultimix.user.ActivateUsers( 'user' )[dot_comma]}
 					</div>
 					<table border="0" width="100%">
 						<tr>

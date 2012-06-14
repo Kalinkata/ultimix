@@ -557,12 +557,12 @@
 		}
 
 		/**
-		*	\~russian Проверка наличия тэгов TODO.
+		*	\~russian Проверка наличия тэгов T0D0.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing functions searches TODO tags in the source code.
+		*	\~english Testing functions searches T0D0 tags in the source code.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -607,7 +607,7 @@
 			{
 				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
 				{
-					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] ).'.js';
+					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
 					if( file_exists( $Path ) === false )
 					{
 						$Errors++;
@@ -635,10 +635,10 @@
 			{
 				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
 				{
-					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] ).'.js';
+					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
 					if( file_exists( $Path ) )
 					{
-						$Content = file( $Path );
+						$Content = file_get_contents( $Path );
 						if( strpos( $Content , '.get_list_form = function(' ) === false )
 						{
 							$Errors++;
@@ -667,10 +667,10 @@
 			{
 				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
 				{
-					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] ).'.js';
+					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
 					if( file_exists( $Path ) )
 					{
-						$Content = file( $Path );
+						$Content = file_get_contents( $Path );
 						if( strpos( $Content , '.get_custom_list_form = function(' ) === false )
 						{
 							$Errors++;

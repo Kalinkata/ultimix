@@ -560,9 +560,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
-		// TODO add massive action 'activate' in the toolbar
-	
+
 		/**
 		*	\~russian Редактирование записи.
 		*

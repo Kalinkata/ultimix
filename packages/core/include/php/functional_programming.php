@@ -976,4 +976,58 @@
 		);
 	}
 	
+	/**
+	*	\~russian Функция выборки данных.
+	*
+	*	@param $Array - Массив сущностей.
+	*
+	*	@param $Field - Поле, по которому происходит сортировка.
+	*
+	*	@param $Value - Значение.
+	*
+	*	@param $DefaultValue - Значение по умолчанию.
+	*
+	*	@return Запись.
+	*
+	*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+	*
+	*	@author Додонов А.А.
+	*/
+	/**
+	*	\~english Function returns record.
+	*
+	*	@param $Array - Array of entities.
+	*
+	*	@param $Field - Field name.
+	*
+	*	@param $Value - Value.
+		*
+	*	@param $DefaultValue - Default value.
+	*
+	*	@return Record.
+	*
+	*	@exception Exception An exception of this type is thrown.
+	*
+	*	@author Dodonov A.A.
+	*/
+	function			get_record_by_field( &$Array , $Field , $Value , $DefaultValue = '_throw_exception' )
+	{
+		try
+		{
+			foreach( $Array as $i => $Element )
+			{
+				if( get_field( $Element , $Field , $DefaultValue ) == $Value )
+				{
+					return( $Element );
+				}
+			}
+
+			return( false );
+		}
+		catch( Exception $e )
+		{
+			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+		}
+	}
+	
 ?>

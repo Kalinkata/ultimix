@@ -1,3 +1,34 @@
+Ultimix v. 1.5.247
+-----------------------------------------
+1. Javascript API was improved.
+2. JavaScript dialogs were improved.
+3. Cached data for all packages is separated in a standalone files.
+4. The package 'page:;page_file' was added.
+5. The 'comment' package was refactored.
+
+Ultimix v. 1.5.246
+-----------------------------------------
+1. Performance was highly improved.
+2. An error in the 'comment' package was fixed.
+3. Javascript API was improved.
+4. Small refactoring and improvements.
+
+Ultimix v. 1.5.245
+-----------------------------------------
+1. Performance was improved.
+2. An error in the 'grid' package was fixed.
+3. An error was fixed for the 'top' package.
+4. Small refactoring and improvemenets.
+
+Ultimix v. 1.5.244
+-----------------------------------------
+1. 2 tutorials were added.
+2. The package 'database::table' was added.
+3. Public forms were removed.
+4. The function 'ultimix.windows.auto_fit_div' was added.
+5. The Tab control was improved.
+6. Small refactoring and improvemenets.
+
 Ultimix v. 1.5.243
 -----------------------------------------
 1. Four tutorials were added.

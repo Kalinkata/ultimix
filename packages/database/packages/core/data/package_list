@@ -10,3 +10,4 @@ oracle_database.1.0.0#oracle_database
 ordering.1.0.0#ordering
 postgre_database.1.0.0#postgre_database
 set_field.1.0.0#set_field
+table.1.0.0#table

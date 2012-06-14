@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для сохранения изменений записей.
 	*
@@ -40,7 +40,7 @@
 		var					$ChangeHistoryView = false;
 		var					$PageComposer = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -59,7 +59,6 @@
 		{
 			try
 			{
-				$this->MacroParameters = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->ChangeHistoryView = get_package( 
 					'database::change_history::change_history_view' , 'last' , __FILE__
@@ -76,7 +75,7 @@
 		/**
 		*	\~russian Получение шаблона кнопки.
 		*
-		*	@param $MacroParameters - Параметры макроса.
+		*	@param $BlockSettings - Параметры макроса.
 		*
 		*	@return Шаблон кнопки.
 		*
@@ -87,7 +86,7 @@
 		/**
 		*	\~english Function processes macro 'history_button'.
 		*
-		*	@param $MacroParameters - Macro parameters.
+		*	@param $BlockSettings - Macro parameters.
 		*
 		*	@return Button template.
 		*
@@ -95,17 +94,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_button_template( $MacroParameters )
+		function			get_button_template( &$BlockSettings )
 		{
 			try
 			{
-				switch( $MacroParameters->get_setting( 'type' , '' ) )
+				switch( $BlockSettings->get_setting( 'type' , '' ) )
 				{
 					case( 'href' ):$FileName = 'href_history_button.tpl';break;
-					
+
 					default:$FileName = 'image_history_button_48.tpl';break;
 				}
-				
+
 				return( $this->CachedMultyFS->get_template( __FILE__ , $FileName ) );
 			}
 			catch( Exception $e )
@@ -113,9 +112,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции истории.
+		*
+		*	@param $BlockSettings - Параметры генерации.
 		*
 		*	@return Скомпилированная история.
 		*
@@ -126,118 +127,27 @@
 		/**
 		*	\~english Function compiles history.
 		*
+		*	@param $BlockSettings - Parameters.
+		*
 		*	@return Compiled history.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_button_code()
+		function			compile_history_button( &$BlockSettings )
 		{
 			try
 			{
-				$id = $this->MacroParameters->get_setting( 'id' );
-				$ObjectType = $this->MacroParameters->get_setting( 'object_type' );
-				
+				$id = $BlockSettings->get_setting( 'id' );
+				$ObjectType = $BlockSettings->get_setting( 'object_type' );
+
 				$Code = $this->ChangeHistoryView->get_changes_grid( $id , $ObjectType );
-				$Code = $this->get_button_template( $this->MacroParameters ).$Code;
-				
+				$Code = $this->get_button_template( $BlockSettings ).$Code;
+
 				$Code = str_replace( '{id}' , $id , $Code );
-				
+
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'history_button'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'history_button'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_history_button( $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'object_type' => TERMINAL_VALUE , 'id' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'history_button' , $Rules ) ; )
-				{
-					$this->MacroParameters->load_settings( $Parameters );
-
-					$Str = str_replace( "{history_button:$Parameters}" , $this->get_button_code() , $Str );
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{	
-				list( $Str , $Changed ) = $this->process_history_button( $Str , $Changed );
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

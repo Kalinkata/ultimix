@@ -83,11 +83,61 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$type = 'POST';
-		
+
+		/**
+		*	\~russian Первичная инициализация.
+		*
+		*	@param $Data - Отправляемые данные.
+		*
+		*	@return Объект Curl.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Default init.
+		*
+		*	@param $Data - Data to send.
+		*
+		*	@return Curl object.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	default_init( $Data )
+		{
+			try
+			{
+				$Curl = curl_init();
+
+				curl_setopt( $Curl , CURLOPT_FAILONERROR , 1 );
+				curl_setopt( $Curl , CURLOPT_RETURNTRANSFER , 1 );
+				curl_setopt( $Curl , CURLOPT_TIMEOUT , 20 );
+				curl_setopt( $Curl , CURLOPT_POST , $this->type == 'POST' );
+				curl_setopt( $Curl , CURLOPT_USERAGENT , "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)" );
+				curl_setopt( $Curl , CURLOPT_URL , "$this->host$this->url" );
+
+				if( $Data != '' )
+				{
+					curl_setopt( $Curl , CURLOPT_POSTFIELDS , "$Data" );
+				}
+
+				return( $Curl );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Отправка запроса.
 		*
 		*	@param $Data - Отправляемые данные.
+		*
+		*	@return Ответ сервера.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -98,6 +148,8 @@
 		*
 		*	@param $Data - Data to send.
 		*
+		*	@return Server responce.
+		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
@@ -106,22 +158,63 @@
 		{
 			try
 			{
-				$Curl = curl_init();
-
-				curl_setopt( $Curl , CURLOPT_URL , "$this->host$this->url" );
-				curl_setopt( $Curl , CURLOPT_FAILONERROR , 1 );
-				curl_setopt( $Curl , CURLOPT_RETURNTRANSFER , 1 );
-				curl_setopt( $Curl , CURLOPT_TIMEOUT , 20 );
-				if( $this->type == 'POST' )
-				{
-					curl_setopt( $Curl , CURLOPT_POST , 1 );
-				}
-				if( $Data != '' )
-				{
-					curl_setopt( $Curl , CURLOPT_POSTFIELDS , "$Data" );
-				}
+				$Curl = $this->default_init( $Data );
 
 				$RequestData = curl_exec( $Curl );
+
+				if( curl_errno( $Curl ) )
+				{
+					throw( new Exception( curl_error( $Curl ) ) );
+				}
+
+				curl_close( $Curl );
+
+				return( $RequestData );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Отправка запроса.
+		*
+		*	@param $Data - Отправляемые данные.
+		*
+		*	@return Ответ сервера.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Sending requests.
+		*
+		*	@param $Data - Data to send.
+		*
+		*	@return Server responce.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function				https_request( $Data = '' )
+		{
+			try
+			{
+				$Curl = $this->default_init( $Data );
+
+				curl_setopt( $Curl , CURLOPT_SSLVERSION , 3 );
+				curl_setopt( $Curl , CURLOPT_SSL_VERIFYPEER , false );
+				curl_setopt( $Curl , CURLOPT_SSL_VERIFYHOST , 2 );
+
+				$RequestData = curl_exec( $Curl );
+
+				if( curl_errno( $Curl ) )
+				{
+					throw( new Exception( curl_error( $Curl ) ) );
+				}
 
 				curl_close( $Curl );
 

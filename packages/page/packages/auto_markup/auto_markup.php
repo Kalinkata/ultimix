@@ -150,7 +150,6 @@
 				if( $Config->get_setting( 'template' , false ) )
 				{
 					$Content = $this->TemplateContentAccess->get_content_ex( $Config );
-					// TODO auto_fit_div script and place it in the tab creation method
 				}
 				else
 				{
@@ -227,7 +226,53 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Функция получения правил обработки макроса.
+		*
+		*	@param $Config - Конфиг.
+		*
+		*	@return Правила.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns rules.
+		*
+		*	@param $Config - Config.
+		*
+		*	@return Rules.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_rules( &$Config )
+		{
+			try
+			{
+				$Rules = array();
+
+				if( $Config->get_setting( 'terminal_values' , false ) !== false )
+				{
+					$TerminalValues = explode( ',' , $Config->get_setting( 'terminal_values' ) );
+
+					foreach( $TerminalValues as $i => $Name )
+					{
+						$Rules[ $Name ] = TERMINAL_VALUE;
+					}
+				}
+
+				return( $Rules );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция обработки параметризованных макросов.
 		*
@@ -266,8 +311,9 @@
 				{
 					$this->Config->load_settings( $v );
 					$Name = $this->Config->get_setting( 'name' );
+					$Rules = $this->get_rules( $this->Config );
 
-					for( ; $Parameters = $this->String->get_macro_parameters( $Str , $Name ) ; )
+					for( ; $Parameters = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
 					{
 						$this->MacroSettings->load_settings( $Parameters );
 

@@ -276,7 +276,7 @@
 					}
 				}
 				
-				$this->UserControllerUtilities->process_login_errors( $UserExists , $UserActive , $AuthValid );
+				$this->UserControllerUtilities->handle_login_errors( $UserExists , $UserActive , $AuthValid );
 			}
 			catch( Exception $e )
 			{
@@ -500,7 +500,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Нужно ли менять пароль.
 		*
@@ -540,7 +540,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обновления пользователя.
 		*
@@ -584,7 +584,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отправки подтверждения регистрации.
 		*
@@ -618,7 +618,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Добавление дефолтовых доступов
 		*
@@ -693,7 +693,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отправки подтверждения регистрации, если необходимо.
 		*
@@ -767,7 +767,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция регистрации пользователя.
 		*
@@ -795,7 +795,7 @@
 
 				if( $this->EnableRegistration === 1 || $HasPermit )
 				{
-					if( $this->UserControllerUtilities->process_register_errors() )
+					if( $this->UserControllerUtilities->handle_register_errors() )
 					{
 						return;
 					}
@@ -808,7 +808,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция прикрепления файла к галерее.
 		*
@@ -855,7 +855,6 @@
 			}
 		}
 
-		// TODO remove empty blocks from trace output
 		// TODO create trace output demo
 
 		/**

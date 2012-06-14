@@ -113,7 +113,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения кода селекта.
 		*
@@ -136,7 +136,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_select_category_code( &$BlockSettings )
+		function			compile_category( &$BlockSettings )
 		{
 			try
 			{
@@ -160,69 +160,13 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'category'.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'category'.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_category( &$Options , $Str , $Changed )
-		{
-			try
-			{
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'category' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
 
-					$Code = $this->get_select_category_code( $this->BlockSettings );
-
-					$Str = str_replace( "{category:$Params}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция обработки макроса 'category_id'.
 		*
-		*	@param $Options - Параметры отображения.
+		*	@param $BlockSettings - Параметры обработки.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Список идентификаторов.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -231,56 +175,38 @@
 		/**
 		*	\~english Function processes macro 'category_id'.
 		*
-		*	@param $Options - Options of drawing.
+		*	@param $BlockSettings - Options of processing.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return List of ids.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_category_id( &$Options , $Str , $Changed )
+		function			compile_category_id( &$BlockSettings )
 		{
 			try
 			{
-				$Rules = array( 'names' => TERMINAL_VALUE , 'name' => TERMINAL_VALUE );
+				$Names = $BlockSettings->get_setting( 'names' , '' );
 
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'category_id' , $Rules ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
+				$Names = $BlockSettings->get_setting( 'name' , $Names );
 
-					$Names = $this->BlockSettings->get_setting( 'names' , '' );
+				$Ids = implode( ',' , $this->CategoryAlgorithms->get_category_ids( $Names ) );
 
-					$Names = $this->BlockSettings->get_setting( 'name' , $Names );
-
-					$Ids = implode( ',' , $this->CategoryAlgorithms->get_category_ids( $Names ) );
-
-					$Str = str_replace( "{category_id:$Params}" , $Ids , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Ids );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+	
 		/**
 		*	\~russian Функция обработки макроса 'category_siblings_ids'.
 		*
-		*	@param $Options - Параметры отображения.
+		*	@param $BlockSettings - Параметры обработки.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Идентификаторы.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -289,54 +215,36 @@
 		/**
 		*	\~english Function processes macro 'category_siblings_ids'.
 		*
-		*	@param $Options - Options of drawing.
+		*	@param $BlockSettings - Options of processing.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Ids.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_category_siblings_ids( &$Options , $Str , $Changed )
+		function			compile_category_siblings_ids( &$BlockSettings )
 		{
 			try
 			{
-				$Rules = array( 'id' => TERMINAL_VALUE );
+				$CategoryId = $BlockSettings->get_setting( 'id' );
 
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'category_siblings_ids' , $Rules ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
+				$SiblingsIds = implode( ',' , $this->CategoryAccess->get_siblings_ids( $CategoryId ) );
 
-					$CategoryId = $this->BlockSettings->get_setting( 'id' );
-
-					$SiblingsIds = implode( ',' , $this->CategoryAccess->get_siblings_ids( $CategoryId ) );
-
-					$Str = str_replace( "{category_siblings_ids:$Params}" , $SiblingsIds , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $SiblingsIds );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса 'category_name'.
 		*
-		*	@param $Options - Параметры отображения.
+		*	@param $BlockSettings - Параметры обработки.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Название категории.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -345,88 +253,23 @@
 		/**
 		*	\~english Function processes macro 'category_name'.
 		*
-		*	@param $Options - Options of drawing.
+		*	@param $BlockSettings - Options of processing.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Category name.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_category_name( &$Options , $Str , $Changed )
+		function			compile_category_name( &$BlockSettings )
 		{
 			try
 			{
-				$Rules = array( 'id' => TERMINAL_VALUE );
+				$Category = $this->CategoryAlgorithms->get_by_id( $BlockSettings->get_setting( 'id' ) );
 
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'category_name' , $Rules ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
+				$Title = get_field( $Category , 'title' );
 
-					$Category = $this->CategoryAlgorithms->get_by_id( $this->BlockSettings->get_setting( 'id' ) );
-
-					$Title = get_field( $Category , 'title' );
-
-					$Str = str_replace( "{category_name:$Params}" , $Title , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция отвечающая за обработку страницы.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes page.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( &$Options , $Str , &$Changed )
-		{
-			try
-			{
-				// TODO move all macro the the auto_macro package
-				list( $Str , $Changed ) = $this->process_category( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_category_id( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_category_siblings_ids( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_category_name( $Options , $Str , $Changed );
-
-				return( $Str );
+				return( $Title );
 			}
 			catch( Exception $e )
 			{

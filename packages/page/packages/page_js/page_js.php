@@ -50,6 +50,7 @@
 		var					$Cache = false;
 		var					$CachedMultyFS = false;
 		var					$PageComposer = false;
+		var					$PageFile = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$Tags = false;
@@ -71,95 +72,11 @@
 			{
 				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				$this->PageFile = get_package( 'page::page_file' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
 				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Получение названия файла.
-		*
-		*	@param $Files - Массив файлов для объединения.
-		*
-		*	@return Название файла.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Getting file name.
-		*
-		*	@param $Files - Array of files to unite.
-		*
-		*	@return File name.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	get_file_name( $Files )
-		{
-			try
-			{
-				// TODO remove duplicates from page_js and page_css
-				$FilesHash = '';
-				foreach( $Files as $k2 => $v2 )
-				{
-					$FilesHash .= $v2;
-				}
-
-				return( md5( $FilesHash ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Заполнение файла.
-		*
-		*	@param $FileName - Название файла.
-		*
-		*	@param $Files - Массив файлов для объединения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Filling file.
-			*
-		*	@param $FileName - File name.
-		*
-		*	@param $Files - Array of files to unite.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	fill_file( $FileName , $Files )
-		{
-			try
-			{
-				// TODO remove duplicates from page_js and page_css
-				$Handle = fopen( dirname( __FILE__ )."/tmp/$FileName.css" , "wb" );
-
-				foreach( $Files as $k2 => $v2 )
-				{
-					$Content = $this->CachedMultyFS->file_get_contents( "$v2" );
-					fwrite( $Handle , $Content );
-					fwrite( $Handle , "\r\n" );
-				}
-
-				fclose( $Handle );
 			}
 			catch( Exception $e )
 			{
@@ -295,7 +212,7 @@
 		{
 			try
 			{
-				$FilesHash = $this->get_file_name( $Files );
+				$FilesHash = $this->PageFile->get_file_name( $Files );
 				$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.js";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 
@@ -350,7 +267,7 @@
 				{
 					$RetFiles = $this->join_compressed_scripts( $Files );
 
-					$FilesHash = $this->get_file_name( $Files );
+					$FilesHash = $this->PageFile->get_file_name( $Files );
 					$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.js";
 
 					$RetFiles [] = array( 

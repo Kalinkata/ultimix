@@ -127,7 +127,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса direct_view.
 		*
@@ -159,21 +159,21 @@
 			try
 			{
 				$Limitations = array( 'need_run' => TERMINAL_VALUE );
-				
+
 				for( ; $Params = $this->String->get_macro_parameters( $Str , 'direct_view' , $Limitations ) ; )
 				{
 					$this->Settings->load_settings( $Params );
-					
+
 					$ViewCode = '';
 					if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
 					{
 						$ViewCode = $this->PageMarkupUtilities->direct_view( $this->Settings );
 					}
-					
+
 					$Str = str_replace( "{direct_view:$Params}" , $ViewCode , $Str );
 					$Changed = true;
 				}
-				
+
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -181,7 +181,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса 'redirect'.
 		*
@@ -728,6 +728,7 @@
 		{
 			try
 			{
+				/* TODO: move to auto_markup */
 				list( $Str , $Changed ) = $this->process_redirect( $Str , $Changed );
 
 				list( $Str , $Changed ) = $this->process_safe( $Str , $Changed );

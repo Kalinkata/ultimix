@@ -676,7 +676,6 @@
 		}
 
 		// TODO add report generating tutorial
-		// TODO add package creating tutorial
 
 		/**
 		*	\~russian Функция генерации отчета.

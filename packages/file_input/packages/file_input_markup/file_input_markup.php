@@ -409,8 +409,9 @@
 		{
 			try
 			{
+				/* TODO: move it to auto_markup */
 				list( $ProcessingString , $Changed ) = $this->process_file_input( $ProcessingString , $Changed );
-				
+
 				return( $ProcessingString );
 			}
 			catch( Exception $e )

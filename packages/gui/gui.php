@@ -432,6 +432,7 @@
 		{
 			try
 			{
+				/* TODO: move to auto_markup */
 				list( $Str , $Changed ) = $this->process_set_var( $Str , $Changed );
 				list( $Str , $Changed ) = $this->process_get_var( $Str , $Changed );
 				list( $Str , $Changed ) = $this->process_date( $Str , $Changed );

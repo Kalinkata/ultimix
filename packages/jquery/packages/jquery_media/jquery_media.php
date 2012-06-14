@@ -225,7 +225,8 @@
 		function			process_string( $Options , $Str , &$Changed )
 		{
 			try
-			{	
+			{
+				/* TODO: move to auto_markup */
 				list( $Str , $Changed ) = $this->process_media( $Str , $Changed );
 
 				return( $Str );

@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	cache_1_0_0{
-	
+
 		/**
 		*	\~russian Кэш.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Cache;
-		
+
 		/**
 		*	\~russian Признак обновленного кэша.
 		*
@@ -48,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CacheWasUpdated = false;
-	
+
 		/**
 		*	\~russian Описание кэша.
 		*
@@ -60,7 +60,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$TableOfContents = false;
-		
+
 		/**
 		*	\~russian Включено ли кэширование или нет.
 		*
@@ -72,7 +72,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CacheSwitch = true;
-	
+
 		/**
 		*	\~russian Таимаут кэша. По умолчанию 120 секунд.
 		*
@@ -84,7 +84,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CacheTimeout = 120;
-	
+
 		/**
 		*	\~russian Конструктор загружает хранилище с кэшем.
 		*
@@ -103,9 +103,12 @@
 		{
 			try
 			{
-				$this->Cache = @file_get_contents( dirname( __FILE__ ).'/data/cache' );
+				$Security = get_package( 'security' , 'last' , __FILE__ );
+				$PageName = $this->Security->get_gp( 'page_name' , 'command' );
 
-				$this->TableOfContents = @file_get_contents( dirname( __FILE__ ).'/data/table' );
+				$this->Cache = @file_get_contents( dirname( __FILE__ ).'/data/'.$PageName.'.cache' );
+
+				$this->TableOfContents = @file_get_contents( dirname( __FILE__ ).'/data/'.$PageName.'table' );
 
 				if( $this->TableOfContents !== false )
 				{
@@ -119,7 +122,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Переустановка настроек.
 		*

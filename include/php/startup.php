@@ -319,7 +319,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			process_script_error( $Visualisation , $e )
+	function			handle_script_error( $Visualisation , $e )
 	{
 		try
 		{

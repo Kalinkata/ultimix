@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	context_set_utilities_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -529,54 +529,6 @@
 		}
 		
 		/**
-		*	\~russian Попытка обработать редирект.
-		*
-		*	@param $Options - Настройки редиректа.
-		*
-		*	@param $AutoRedirect - Нужен ли редирект.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function tries to redirect on another page.
-		*
-		*	@param $Options - Redirect settings.
-		*
-		*	@param $AutoRedirect - Should be redirected.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_redirect( &$Options , $AutoRedirect )
-		{
-			try
-			{
-				$AutoRedirect = intval( $Options->get_setting( 'auto_redirect' , $AutoRedirect ) );
-				$AutoRedirect = $this->Security->get_gp( 'auto_redirect' , 'integer' , $AutoRedirect );
-				if( $AutoRedirect && $this->Security->get_srv( 'HTTP_REFERER' , 'set' ) )
-				{
-					header( $_SERVER[ 'SERVER_PROTOCOL' ].' 303 See Other' );
-					if( $Options->get_setting( 'redirect_page' , false ) )
-					{
-						header( "Location: ".$Options->get_setting( 'redirect_page' ) );
-					}
-					else
-					{
-						header( "Location: ".$this->Security->get_srv( 'HTTP_REFERER' , 'raw' ) );
-					}
-					exit( 0 );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
 		*	\~russian Функция получения значений формы.
 		*
 		*	@param $Settings - Параметры.
@@ -832,7 +784,7 @@
 				$Form = str_replace( '{prefix}' , $Prefix , $Form );
 				$Form = str_replace( '{state}' , $State , $Form );
 				$Form = str_replace( '{ids}' , implode( ',' , $IdList ) , $Form );
-				
+
 				return( $Form );
 			}
 			catch( Exception $e )
@@ -840,123 +792,6 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Загрузка конфига стейта для соответствующей кнопки.
-		*
-		*	@param $Settings - Настройки стейтов.
-		*
-		*	@param $SettingName - Название настройки.
-		*
-		*	@param $Default - Дефолтовое значение настройки.
-		*
-		*	@param $ComponentPath - Путь к компоненту.
-		*
-		*	@return Конфиг. false если файл не загружен.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function load state's config (for the corresponding button).
-		*
-		*	@param $Settings - States settings.
-		*
-		*	@param $SettingName - Setting's name.
-		*
-		*	@param $Default - Default value of the setting.
-		*
-		*	@param $ComponentPath - Path to the component.
-		*
-		*	@return Config. false if the config was not loaded.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_common_state_config( &$Settings , $SettingName , $Default , $ComponentPath )
-		{
-			try
-			{
-				$Message = "{lang:attempt_to_load_config} : \"$SettingName\" or default \"$Default\"";
-
-				$this->Trace->add_trace_string( $Message , COMMON );
-
-				$Config = $Settings->get_setting( $SettingName , $Default );
-
-				$this->Trace->add_trace_string( "{lang:searching_file} : \"$Config\"" , COMMON );
-
-				$Path = dirname( $ComponentPath )."/conf/$Config";
-
-				if( $this->CachedMultyFS->file_exists( $Path ) === false )
-				{
-					return( false );
-				}
-
-				$Config = $this->CachedMultyFS->file_get_contents( $Path );
-
-				$Config = str_replace( '{prefix}' , $Settings->get_setting( 'prefix' , '' ) , $Config );
-
-				return( $Config );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Загрузка конфига стейта для соответствующей кнопки.
-		*
-		*	@param $Settings - Настройки набора контекстов.
-		*
-		*	@param $SettingName - Название настройки.
-		*
-		*	@param $Default - Дефолтовое значение настройки.
-		*
-		*	@param $ComponentPath - Путь к компоненту.
-		*
-		*	@return true если настройки ыли згружены.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function load state's config (for the corresponding button).
-		*
-		*	@param $Settings - Set of contexts settings.
-		*
-		*	@param $SettingName - Setting's name.
-		*
-		*	@param $Default - Default value of the setting.
-		*
-		*	@param $ComponentPath - Path to the component.
-		*
-		*	@return true if the config was loaded.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			load_common_state_config( &$Settings , $SettingName , $Default , $ComponentPath )
-		{
-			try
-			{
-				$Config = $this->get_common_state_config( $Settings , $SettingName , $Default , $ComponentPath );
-
-				$CommonButtonConfig = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-
-				$CommonButtonConfig->load_settings( $Config );
-
-				return( $CommonButtonConfig );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
 	}
-	
+
 ?>

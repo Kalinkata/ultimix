@@ -240,7 +240,10 @@ ultimix.std_dialogs.MessageBox = function( Text , Caption , Style , AcceptResult
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
 
 	var			Modal = false;
-	if( Style & ultimix.std_dialogs.MB_MODAL )				Modal = true;
+	if( Style & ultimix.std_dialogs.MB_MODAL )
+	{
+		Modal = true;
+	}
 
 	if( !jQuery( "#" + id ).length )
 	{
@@ -255,7 +258,7 @@ ultimix.std_dialogs.MessageBox = function( Text , Caption , Style , AcceptResult
 		width: 480 , modal : Modal , title : ultimix.get_string( Caption ) , buttons : Buttons , 
 		resizable : false , closeOnEscape : ExitOnEscape
 	}
-	
+
 	ultimix.std_dialogs.message_box_create( id , DialogData , Class , Text );
 
 	return( "#" + id );
@@ -367,4 +370,70 @@ ultimix.std_dialogs.loading_img_widget = function()
 	var			VAlginBlock = ultimix.string_utilities.valign_block( LoadingBlock );
 
 	return( ultimix.string_utilities.halign_block( VAlginBlock , 32 ) );
+}
+
+/**
+*	Function creates buttons.
+*
+*	@param id - Dialog id.
+*
+*	@return Buttons.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.textarea_dialog_buttons = function( id )
+{
+	var			Buttons = {};
+
+	Buttons[ ultimix.get_string( 'Cancel' ) ] = function()
+	{
+		jQuery( "#" + id ).dialog( "close" );
+		jQuery( "#" + id ).remove();
+	}
+
+	Buttons[ ultimix.get_string( 'OK' ) ] = function()
+	{
+		if( OkProcessor( "#" + id ) )
+		{
+			jQuery( "#" + id ).dialog( "close" );
+			jQuery( "#" + id ).remove();
+		}
+	}
+	
+	return( Buttons );
+}
+
+/**
+*	Function creates dialog with the 'textarea' control.
+*
+*	@param Caption - Dialog caption.
+*
+*	@param OkProcessor - Processor of the OK button.
+*
+*	@return id of the created dialog.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.textarea_dialog = function( Caption , OkProcessor )
+{
+	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
+	var			Buttons = ultimix.std_dialogs.textarea_dialog_buttons( id );
+
+	/* TODO: remove duplicate code */
+	if( !jQuery( "#" + id ).length )
+	{
+		jQuery( "body" ).append( 
+			'<span id="' + id + '" style="display:none">' + 
+			'<textarea style="width: 480px; height: 360px; margin: 10px;"></textarea></span>'
+		);
+	}
+
+	var			DialogData = {
+		width: 'auto' , modal : true , title : ultimix.get_string( Caption ) , buttons : Buttons , 
+		resizable : false , closeOnEscape : true
+	}
+
+	jQuery( "#" + id ).dialog( DialogData );
+
+	return( id );
 }

@@ -579,7 +579,7 @@
 			try
 			{
 				$RealType = $this->get_function_name( $p[ 'fetched_package' ] , $Type );
-				
+
 				if( $RealType === false && $Type == 'process_string' )
 				{
 					/* nop */

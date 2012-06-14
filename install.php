@@ -51,7 +51,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			process_connection_error( $Silent )
+	function			handle_connection_error( $Silent )
 	{
 		if( $Silent === false )
 		{
@@ -108,7 +108,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			process_step_2( $Host , $Database , $Prefix , $User , $Password , $Silent = false )
+	function			handle_step_2( $Host , $Database , $Prefix , $User , $Password , $Silent = false )
 	{
 		$DatabaseAlgorithms = get_package( 'database::database_algorithms' , 'last' , __FILE__ );
 		$CachedFS = get_package( 'cached_fs' );
@@ -129,7 +129,7 @@
 		}
 		else
 		{
-			process_connection_error( $Silent );
+			handle_connection_error( $Silent );
 		}
 	}
 	
@@ -177,7 +177,7 @@
 
 		if( $Security->get_gp( 'setup_db' ) )
 		{
-			process_step_2( 
+			handle_step_2( 
 				$Security->get_gp( 'host' , 'string' , '' ) , $Security->get_gp( 'database' , 'string' , '' ) , 
 				$Security->get_gp( 'prefix' , 'string' , '' ) , $Security->get_gp( 'user' , 'string' , '' ) , 
 				$Security->get_gp( 'password' , 'string' , '' ) , $Silent
@@ -207,7 +207,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			process_step_3( $HttpHost , $Silent = false )
+	function			handle_step_3( $HttpHost , $Silent = false )
 	{
 		$HttpHost = rtrim( $HttpHost , '/\\' );
 		$HtAccess = file_get_contents( './install/res/templates/tpl.htaccess' );
@@ -264,7 +264,7 @@
 		}
 		else
 		{
-			process_step_3( $HttpHost , $Silent );
+			handle_step_3( $HttpHost , $Silent );
 		}
 	}
 	
@@ -304,7 +304,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			process_installation_steps()
+	function			handle_installation_steps()
 	{
 		$Security = get_package( 'security' );
 		$Page = $Security->get_gp( 'page' , 'integer' , 1 );
@@ -349,12 +349,12 @@
 			}
 			else
 			{
-				process_installation_steps();
+				handle_installation_steps();
 			}
 		}
 		catch( Exception $e )
 		{
-			process_script_error( true , $e );
+			handle_script_error( true , $e );
 		}
 	}
 	

@@ -323,6 +323,25 @@ class	package_name_1_0_0
 	$NewPackage->func();
 ?&gt;
 </pre></div>
+					<h4 class="header">&nbsp;&nbsp;Internationalization (I18N) and localization (L10N)</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;As we said above each package may contain language files with translations of all used strings. As usual all these files are stored in the 'packages/package_directory/res/lang' directory. Each language file has its own extension wich depends on the language of the stored data. For examle language files with english data has extension 'en', language files with russian data has extension 'ru' etc. The language file name is equal to the package name. For example 'core.ru', 'lang.en', 'cached_multy_fs.jp' and so on. There are special language files wich are user through entire ultimix project. They are '/ultimix_directory/res/lang/lang.[language code, en/ru/fr/etc.]'. These files are always loaded. Each file consists of pairs 'key=localized value'. Wich can be shown in the next example:
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Now we have a good full featured package. Let's use it!
+					<div class="code"><strong>Code:</strong><pre>
+key1=First localized string
+key2=Second localized string
+key3=Third localized string
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Now let's find out hou this data can be used in your code. It can be done using 'lang' package.
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+	/* this code can be found in the 'demo6.php' file */
+	$Lang = get_package( 'lang' , 'last' , __FILE__ );
+
+	print( 'Hello from '.$Lang->get_string( 'ultimix' ) );
+?&gt;
+</pre></div>
+					<h4 class="header">&nbsp;&nbsp;Creating templates</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Obviously all templates are packages itself. Note that html code of the template must be stored in the '/res/templates/template.tpl' file.
 					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b><u><a href="http://sourceforge.net/projects/ultimix/forums">Forum (registration is not necessary)</a></u></b>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b>Ultimix-based projects can be found <a href="http://sourceforge.net/projects/ultimix/files/projects/">here</a></b>

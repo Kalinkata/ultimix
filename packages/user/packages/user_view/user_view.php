@@ -13,7 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	// TODO remove unnecessary strings from lang files
 	// TODO async login form using AJAX
 	// TODO cache all simple_form states
 	// TODO add to cache name $_GET $POST parameters
@@ -612,8 +611,6 @@
 			try
 			{
 				$this->ContextSet->add_contexts( $Options , dirname( __FILE__ ) , $this->get_contexts() );
-
-				// TODO login dialog shows 'email' instead of 'login' field
 
 				$this->ContextSet->execute( $Options , $this , __FILE__ );
 

@@ -192,7 +192,6 @@ ultimix.tab_control.set_add_tab_handler = function( ControlId )
 */
 ultimix.tab_control.add_simple_tab = function( ControlId , Title , Index , ContentId , Selected )
 {
-	/* Informing the script that we are additing tabs and there is no need to update cookie */
 	ultimix.tab_control.AddTabFlag = 1;
 	ultimix.tab_control.AddContentId = ContentId;
 	ultimix.tab_control.SelectCreated = Selected;
@@ -207,6 +206,11 @@ ultimix.tab_control.add_simple_tab = function( ControlId , Title , Index , Conte
 	else
 	{
 		jQuery( '#' + ControlId ).tabs( 'add' , TabSelector , ultimix.get_string( Title ) );
+	}
+
+	if( Selected )
+	{
+		ultimix.windows.auto_fit_div( jQuery( '#' + ultimix.tab_control.AddContentId ).parent() );
 	}
 }
 

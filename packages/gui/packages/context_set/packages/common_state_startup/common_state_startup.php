@@ -148,7 +148,7 @@
 		{
 			try
 			{
-				$this->StartupUtilities->trace_no_need_to_process_state_message( $Str1 , $this->Prefix , $Str2 );
+				$this->StartupUtilities->trace_no_need_to_run_state_message( $Str1 , $this->Prefix , $Str2 );
 			}
 			catch( Exception $e )
 			{
@@ -348,7 +348,7 @@
 				$ContextSet->Trace->start_Group( "{lang:update_form_state}" );
 				
 				$ContextAction = $this->Security->get_gp( $this->Prefix.'_context_action' , 'command' , '' );
-				$Direct = $Options->get_setting( 'direct_edit' , 0 );
+				$Direct = $Options->get_setting( 'direct_update' , 0 );
 
 				if( $ContextAction == 'update_record_form' || $Direct != 0 )
 				{
@@ -402,7 +402,7 @@
 				$ContextSet->Trace->start_group( "{lang:update_state}" );
 				
 				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				$Direct = $Options->get_setting( 'direct_edit' , 0 );
+				$Direct = $Options->get_setting( 'direct_update' , 0 );
 				
 				if( $Action == 'update_record' || $Direct != 0 )
 				{

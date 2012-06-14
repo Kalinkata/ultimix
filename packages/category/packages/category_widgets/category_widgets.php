@@ -68,17 +68,13 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса 'category_tree'.
 		*
-		*	@param $Options - Параметры отображения.
+		*	@param $BlockSettings - Параметры отображения.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код писка.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -87,42 +83,28 @@
 		/**
 		*	\~english Function processes macro 'category_tree'.
 		*
-		*	@param $Options - Options of drawing.
+		*	@param $BlockSettings - Options of drawing.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code of the list.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_category_tree( &$Options , $Str , $Changed )
+		function			compile_category_tree( &$BlockSettings )
 		{
 			try
 			{
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'category_tree' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
+				$this->CategoryView->draw_categories_tree( $BlockSettings );
 
-					$this->BlockSettings->append_settings( $Options->get_all_settings() );
-
-					$this->CategoryView->draw_categories_tree( $this->BlockSettings );
-
-					$Str = str_replace( "{category_tree:$Params}" , $this->CategoryVie->Output , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $this->CategoryVie->Output );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки списка категорий.
 		*
@@ -162,7 +144,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляция кода списка.
 		*
@@ -415,59 +397,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'category_list' (список категорий связанных с объектом).
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'category_list' (list of categories binded with the object).
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_category_list( &$Options , $Str , $Changed )
-		{
-			try
-			{
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'category_list' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
 
-					$Code = $this->compile_category_list( $this->BlockSettings );
-
-					$Str = str_replace( "{category_list:$Params}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция получения параметров макроса.
 		*
@@ -564,150 +494,38 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки макроса 'select_category_from_tree' (список категорий связанных с объектом).
+		*	\~russian Функция обработки макроса 'select_category_from_tree'.
 		*
-		*	@param $Options - Параметры отображения.
+		*	@param $BlockSettings - Параметры отображения.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код писка.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'select_category_from_tree' (list of categories binded with the object).
+		*	\~english Function processes macro 'select_category_from_tree'.
 		*
-		*	@param $Options - Options of drawing.
+		*	@param $BlockSettings - Options of drawing.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code of the list.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_select_category_from_tree( &$Options , $Str , $Changed )
+		function			compile_select_category_from_tree( &$BlockSettings )
 		{
 			try
 			{
-				$Rules = array( 'visible_value' => TERMINAL_VALUE , 'value' => TERMINAL_VALUE );
+				$Data = $this->get_select_category_from_tree_data( $BlockSettings );
 
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'select_category_from_tree' , $Rules ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'select_category_from_tree.tpl' );
 
-					$Data = $this->get_select_category_from_tree_data( $this->BlockSettings );
+				$Code = $this->String->print_record( $Code , $Data );
 
-					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'select_category_from_tree.tpl' );
-
-					$Code = $this->String->print_record( $Code , $Data );
-
-					$Str = str_replace( "{select_category_from_tree:$Params}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку страницы.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes page.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	process_category_widgets( &$Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_category_list( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_category_tree( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_select_category_from_tree( $Options , $Str , $Changed );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку страницы.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes page.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( &$Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_category_list( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_category_tree( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_select_category_from_tree( $Options , $Str , $Changed );
-
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -715,4 +533,5 @@
 			}
 		}
 	}
+
 ?>

@@ -33,7 +33,7 @@ ultimix.site.set_default_options = function( ViewOptions )
 	{
 		ViewOptions = {};
 	}
-	
+
 	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_site_list';
 	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'site::site_view';
 	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
