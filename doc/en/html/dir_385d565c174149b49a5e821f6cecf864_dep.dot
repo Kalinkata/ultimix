@@ -1,0 +1,13 @@
+digraph "packages/pmsg/packages/pmsg_view/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_e4d075077eb47cbea9b6c6c0da2ebbc5 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_e4d075077eb47cbea9b6c6c0da2ebbc5.html"]
+  subgraph clusterdir_385d565c174149b49a5e821f6cecf864 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_385d565c174149b49a5e821f6cecf864.html"];
+    dir_385d565c174149b49a5e821f6cecf864 [shape=plaintext label="pmsg_view"];
+    dir_b6e41cfdeab1a47938760857ae26c087 [shape=box label="include" color="red" fillcolor="white" style="filled" URL="dir_b6e41cfdeab1a47938760857ae26c087.html"];
+  }
+  }
+}

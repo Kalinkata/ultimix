@@ -1,0 +1,13 @@
+digraph "packages/schedule/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_93501a11e921083efbd154e0cdff5f10 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_93501a11e921083efbd154e0cdff5f10.html"]
+  subgraph clusterdir_66b0c8fa33e3bcd6699f079319f85ff9 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_66b0c8fa33e3bcd6699f079319f85ff9.html"];
+    dir_66b0c8fa33e3bcd6699f079319f85ff9 [shape=plaintext label="schedule"];
+    dir_9633511b92f8e50def8516b814e70db3 [shape=box label="packages" color="red" fillcolor="white" style="filled" URL="dir_9633511b92f8e50def8516b814e70db3.html"];
+  }
+  }
+}

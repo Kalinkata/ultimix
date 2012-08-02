@@ -1,0 +1,9 @@
+digraph "packages/category/packages/category_markup/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_1a442f41f4975b0d66f7b20f1e8d85dd {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_1a442f41f4975b0d66f7b20f1e8d85dd.html"]
+  dir_2ef499e41f0d1c1835d203a73cddb68d [shape=box, label="category_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_2ef499e41f0d1c1835d203a73cddb68d.html"];
+  }
+}

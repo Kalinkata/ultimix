@@ -48,7 +48,7 @@ INSERT INTO `{prefix}category` ( `id` , `title` , `root_id` , `mask` , `direct_c
 ( '9' , '{lang:content_category}' , '0' , '0' , '1' , 'content_category' ),
 ( '11' , '{lang:articles}' , '9' , '0' , '9' , 'article' ),
 ( '12' , '{lang:faq}' , '9' , '0' , '9' , 'faq' ),
-( '13' , '{lang:blog_entries}' , '9' , '0' , '9' , 'blog_entry' );
+( '13' , '{lang:blog}' , '9' , '0' , '9' , 'blog' );
 
 DROP TABLE IF EXISTS `{prefix}change_history`;
 CREATE TABLE `{prefix}change_history` (

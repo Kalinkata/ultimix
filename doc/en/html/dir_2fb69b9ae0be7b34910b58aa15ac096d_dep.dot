@@ -1,0 +1,13 @@
+digraph "packages/permit/packages/permit_access/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_ba817ab0780f95827f843ef49f61c250 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_ba817ab0780f95827f843ef49f61c250.html"]
+  subgraph clusterdir_2fb69b9ae0be7b34910b58aa15ac096d {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_2fb69b9ae0be7b34910b58aa15ac096d.html"];
+    dir_2fb69b9ae0be7b34910b58aa15ac096d [shape=plaintext label="permit_access"];
+    dir_0d65b00d7ff676a4fc53197cc71f4b09 [shape=box label="packages" color="red" fillcolor="white" style="filled" URL="dir_0d65b00d7ff676a4fc53197cc71f4b09.html"];
+  }
+  }
+}

@@ -1,0 +1,9 @@
+digraph "packages/menu/packages/menu_manager/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_da6343c1e136b7d2ff4343f1820af44c {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_da6343c1e136b7d2ff4343f1820af44c.html"]
+  dir_a41101f0a8a73fa99e8a3f1fef59c02b [shape=box, label="menu_manager", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_a41101f0a8a73fa99e8a3f1fef59c02b.html"];
+  }
+}

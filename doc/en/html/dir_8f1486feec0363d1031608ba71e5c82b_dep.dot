@@ -1,0 +1,13 @@
+digraph "packages/cached_multy_fs/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_93501a11e921083efbd154e0cdff5f10 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_93501a11e921083efbd154e0cdff5f10.html"]
+  subgraph clusterdir_8f1486feec0363d1031608ba71e5c82b {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_8f1486feec0363d1031608ba71e5c82b.html"];
+    dir_8f1486feec0363d1031608ba71e5c82b [shape=plaintext label="cached_multy_fs"];
+    dir_016d9e539ae1090fd9a412ba3c633407 [shape=box label="include" color="red" fillcolor="white" style="filled" URL="dir_016d9e539ae1090fd9a412ba3c633407.html"];
+  }
+  }
+}

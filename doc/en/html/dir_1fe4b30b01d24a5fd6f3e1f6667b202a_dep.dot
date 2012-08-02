@@ -1,0 +1,9 @@
+digraph "packages/gui/packages/context/packages/custom_validations/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_54f0b299ec084911b5576f0b5f0e8688 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_54f0b299ec084911b5576f0b5f0e8688.html"]
+  dir_1fe4b30b01d24a5fd6f3e1f6667b202a [shape=box, label="custom_validations", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_1fe4b30b01d24a5fd6f3e1f6667b202a.html"];
+  }
+}

@@ -1,0 +1,9 @@
+digraph "packages/permit/packages/ownership/packages/ownership_controller/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_39517b307f33866d1f7e71d16b01bbdf {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_39517b307f33866d1f7e71d16b01bbdf.html"]
+  dir_ad5db3839231f2561279371f5b474a51 [shape=box, label="ownership_controller", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_ad5db3839231f2561279371f5b474a51.html"];
+  }
+}

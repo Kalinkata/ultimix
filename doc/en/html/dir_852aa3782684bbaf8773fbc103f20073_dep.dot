@@ -1,0 +1,9 @@
+digraph "packages/gui/packages/context_set/packages/default_views/packages/default_views_utilities/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_65abf2816dd3991d34c9c5ef35122e8c {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_65abf2816dd3991d34c9c5ef35122e8c.html"]
+  dir_852aa3782684bbaf8773fbc103f20073 [shape=box, label="default_views_utilities", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_852aa3782684bbaf8773fbc103f20073.html"];
+  }
+}

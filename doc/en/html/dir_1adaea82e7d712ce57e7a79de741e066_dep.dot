@@ -1,0 +1,9 @@
+digraph "packages/gui/packages/colorbox/include/js/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_9bd36f1f14fcd370db530ea04d6fd6ce {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_9bd36f1f14fcd370db530ea04d6fd6ce.html"]
+  dir_1adaea82e7d712ce57e7a79de741e066 [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_1adaea82e7d712ce57e7a79de741e066.html"];
+  }
+}

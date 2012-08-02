@@ -1,0 +1,9 @@
+digraph "packages/category/packages/category_view/include/js/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_3cd8dbcae7a30c4bc980365b786dfff7 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_3cd8dbcae7a30c4bc980365b786dfff7.html"]
+  dir_48c12f8b5ebad7ebd4f1d94ba2dcaf17 [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_48c12f8b5ebad7ebd4f1d94ba2dcaf17.html"];
+  }
+}

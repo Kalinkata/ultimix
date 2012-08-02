@@ -1,0 +1,9 @@
+digraph "packages/ad/packages/ad_banner/packages/ad_banner_algorithms/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_ea9e9f61c343f42a33ff53c1144edee3 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_ea9e9f61c343f42a33ff53c1144edee3.html"]
+  dir_3ca17d9873d76e79e058dea8ffbf44bc [shape=box, label="ad_banner_algorithms", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3ca17d9873d76e79e058dea8ffbf44bc.html"];
+  }
+}

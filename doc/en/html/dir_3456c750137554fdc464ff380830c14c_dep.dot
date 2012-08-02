@@ -1,0 +1,9 @@
+digraph "packages/string/packages/tags/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_0725d84b27bc33cbaf089ab4473b2b1b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_0725d84b27bc33cbaf089ab4473b2b1b.html"]
+  dir_3456c750137554fdc464ff380830c14c [shape=box, label="tags", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3456c750137554fdc464ff380830c14c.html"];
+  }
+}

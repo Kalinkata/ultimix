@@ -1,0 +1,27 @@
+var classgroup__access__1__0__0 =
+[
+    [ "__construct", "classgroup__access__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
+    [ "add_group_for_object", "classgroup__access__1__0__0.html#aafba4d076759054e8cb9954d30faccca", null ],
+    [ "create", "classgroup__access__1__0__0.html#ac1cabbba085c14178e840bf25a574163", null ],
+    [ "delete", "classgroup__access__1__0__0.html#a2f8258add505482d7f00ea26493a5723", null ],
+    [ "delete_group_for_object", "classgroup__access__1__0__0.html#a313393042d2630262201887cee678011", null ],
+    [ "get_group_by_id", "classgroup__access__1__0__0.html#aeb410edcc66db450eade22917f897fc2", null ],
+    [ "get_group_by_name", "classgroup__access__1__0__0.html#a43a35ea2163f877b9febb2f7db9985b0", null ],
+    [ "get_groups_for_object", "classgroup__access__1__0__0.html#a14ff15abf4cf2166a11c824333f2f4d4", null ],
+    [ "select", "classgroup__access__1__0__0.html#add7fea3c4c0e5ad2e51ea1d2d6e7cb57", null ],
+    [ "select_list", "classgroup__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f", null ],
+    [ "set_add_limitations", "classgroup__access__1__0__0.html#a53b3ad2447b87fa67af6d3a67e1b4ef6", null ],
+    [ "set_group_for_object", "classgroup__access__1__0__0.html#a1a315c884a3421919aa738ff0666a7e9", null ],
+    [ "toggle_group_for_object", "classgroup__access__1__0__0.html#a1357086362c743f2daa294f399b994e5", null ],
+    [ "unsafe_select", "classgroup__access__1__0__0.html#ac64a328bae7ad1ef9c6d72da6732fdd0", null ],
+    [ "update", "classgroup__access__1__0__0.html#a8d23ea5c69d9c3a439f5484e9ca33022", null ],
+    [ "$AddLimitations", "classgroup__access__1__0__0.html#a13352aef27c96654b4751d67b2cacfe9", null ],
+    [ "$Database", "classgroup__access__1__0__0.html#ae10cc045c1502f148d1aa728183898e7", null ],
+    [ "$DatabaseAlgorithms", "classgroup__access__1__0__0.html#a4e0013647f6f884c8f36c1e9463f10b6", null ],
+    [ "$Link", "classgroup__access__1__0__0.html#aeabe0ef548439095080c9a173b3a609d", null ],
+    [ "$LinkDictionary", "classgroup__access__1__0__0.html#aed0587ac6d2e4862154d16c822b1622c", null ],
+    [ "$NativeTable", "classgroup__access__1__0__0.html#a709578c9d5d62ccee7dd9ccba074794a", null ],
+    [ "$Security", "classgroup__access__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ],
+    [ "$SecurityParser", "classgroup__access__1__0__0.html#a9e817b32b3d2966b645153144cada577", null ],
+    [ "$UserAccess", "classgroup__access__1__0__0.html#a51389eaa5dbc754ca5351c42b5adbf41", null ]
+];

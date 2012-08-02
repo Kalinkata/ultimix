@@ -1,0 +1,13 @@
+digraph "packages/xml/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_fec0af10e3674bbab3d37db2e0ecc888 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="xml" fontname="FreeSans.ttf", fontsize="10", URL="dir_fec0af10e3674bbab3d37db2e0ecc888.html"]
+  subgraph clusterdir_019b03c1a7894885fd79a2e49800f463 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_019b03c1a7894885fd79a2e49800f463.html"];
+    dir_019b03c1a7894885fd79a2e49800f463 [shape=plaintext label="packages"];
+    dir_f1b3dfce50cf84bd1c25a7646a8da674 [shape=box label="yandex_xml" color="red" fillcolor="white" style="filled" URL="dir_f1b3dfce50cf84bd1c25a7646a8da674.html"];
+  }
+  }
+}

@@ -1,0 +1,9 @@
+digraph "packages/graph/packages/graph_view/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_2f0bd91a0714506c55b775447170c762 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_2f0bd91a0714506c55b775447170c762.html"]
+  dir_f1198938278f614917771125580bd7a8 [shape=box, label="graph_view", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f1198938278f614917771125580bd7a8.html"];
+  }
+}

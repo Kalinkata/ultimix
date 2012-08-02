@@ -1,0 +1,16 @@
+digraph "packages/graph/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_133536783a728810444307eae2631f60 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="graph" fontname="FreeSans.ttf", fontsize="10", URL="dir_133536783a728810444307eae2631f60.html"]
+  subgraph clusterdir_2f0bd91a0714506c55b775447170c762 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_2f0bd91a0714506c55b775447170c762.html"];
+    dir_2f0bd91a0714506c55b775447170c762 [shape=plaintext label="packages"];
+    dir_44718ed28a0f089981a2f47213985845 [shape=box label="graph_core" color="black" fillcolor="white" style="filled" URL="dir_44718ed28a0f089981a2f47213985845.html"];
+    dir_5168caad8b6a33e4b1242ec2ee885fdc [shape=box label="graph_data" color="red" fillcolor="white" style="filled" URL="dir_5168caad8b6a33e4b1242ec2ee885fdc.html"];
+    dir_3404b507bd81f2cf796a04246e5cda5a [shape=box label="graph_map" color="black" fillcolor="white" style="filled" URL="dir_3404b507bd81f2cf796a04246e5cda5a.html"];
+    dir_f1198938278f614917771125580bd7a8 [shape=box label="graph_view" color="black" fillcolor="white" style="filled" URL="dir_f1198938278f614917771125580bd7a8.html"];
+  }
+  }
+}

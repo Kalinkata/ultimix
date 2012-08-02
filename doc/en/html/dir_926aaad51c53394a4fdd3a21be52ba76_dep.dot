@@ -1,0 +1,13 @@
+digraph "packages/jslib/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_93501a11e921083efbd154e0cdff5f10 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_93501a11e921083efbd154e0cdff5f10.html"]
+  subgraph clusterdir_926aaad51c53394a4fdd3a21be52ba76 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_926aaad51c53394a4fdd3a21be52ba76.html"];
+    dir_926aaad51c53394a4fdd3a21be52ba76 [shape=plaintext label="jslib"];
+    dir_7352d4db107d32563d92f4a3c1ad7939 [shape=box label="include" color="red" fillcolor="white" style="filled" URL="dir_7352d4db107d32563d92f4a3c1ad7939.html"];
+  }
+  }
+}

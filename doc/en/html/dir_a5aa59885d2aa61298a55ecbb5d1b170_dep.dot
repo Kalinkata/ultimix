@@ -1,0 +1,9 @@
+digraph "packages/schedule/packages/schedule_access/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_9633511b92f8e50def8516b814e70db3 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9633511b92f8e50def8516b814e70db3.html"]
+  dir_a5aa59885d2aa61298a55ecbb5d1b170 [shape=box, label="schedule_access", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_a5aa59885d2aa61298a55ecbb5d1b170.html"];
+  }
+}

@@ -1,0 +1,13 @@
+digraph "packages/jsdialogs/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_762058f1630194e648f5a07137fda1a3 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="jsdialogs" fontname="FreeSans.ttf", fontsize="10", URL="dir_762058f1630194e648f5a07137fda1a3.html"]
+  subgraph clusterdir_649459efb055bef77ed5805948e9e75d {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_649459efb055bef77ed5805948e9e75d.html"];
+    dir_649459efb055bef77ed5805948e9e75d [shape=plaintext label="include"];
+    dir_b685aefb2904bde1eff35621ebd140cf [shape=box label="js" color="black" fillcolor="white" style="filled" URL="dir_b685aefb2904bde1eff35621ebd140cf.html"];
+  }
+  }
+}

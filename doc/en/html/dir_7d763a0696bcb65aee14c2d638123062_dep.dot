@@ -1,0 +1,9 @@
+digraph "packages/rss/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_93501a11e921083efbd154e0cdff5f10 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_93501a11e921083efbd154e0cdff5f10.html"]
+  dir_7d763a0696bcb65aee14c2d638123062 [shape=box, label="rss", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_7d763a0696bcb65aee14c2d638123062.html"];
+  }
+}

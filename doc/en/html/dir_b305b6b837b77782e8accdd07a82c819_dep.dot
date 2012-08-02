@@ -1,0 +1,13 @@
+digraph "packages/jquery/packages/jquery_corner/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_d1e0e168722e8d07decea1444be50152 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="jquery_corner" fontname="FreeSans.ttf", fontsize="10", URL="dir_d1e0e168722e8d07decea1444be50152.html"]
+  subgraph clusterdir_b305b6b837b77782e8accdd07a82c819 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_b305b6b837b77782e8accdd07a82c819.html"];
+    dir_b305b6b837b77782e8accdd07a82c819 [shape=plaintext label="include"];
+    dir_64d682b31f0b65701d8202c05ed11e89 [shape=box label="js" color="black" fillcolor="white" style="filled" URL="dir_64d682b31f0b65701d8202c05ed11e89.html"];
+  }
+  }
+}

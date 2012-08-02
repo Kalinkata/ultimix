@@ -1,0 +1,13 @@
+digraph "packages/core/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_2fb74f11a821d31be4330f01f62846df {
+    graph [ bgcolor="#ddddee", pencolor="black", label="core" fontname="FreeSans.ttf", fontsize="10", URL="dir_2fb74f11a821d31be4330f01f62846df.html"]
+  subgraph clusterdir_00e852e174ae9b80d1059ba795b6dac9 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_00e852e174ae9b80d1059ba795b6dac9.html"];
+    dir_00e852e174ae9b80d1059ba795b6dac9 [shape=plaintext label="include"];
+    dir_48754dedce20c5696c2001f6ac577403 [shape=box label="php" color="black" fillcolor="white" style="filled" URL="dir_48754dedce20c5696c2001f6ac577403.html"];
+  }
+  }
+}

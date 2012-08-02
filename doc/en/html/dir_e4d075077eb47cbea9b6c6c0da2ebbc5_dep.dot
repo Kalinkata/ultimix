@@ -1,0 +1,16 @@
+digraph "packages/pmsg/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_e8f58f884a5cae2761c02575783e52ff {
+    graph [ bgcolor="#ddddee", pencolor="black", label="pmsg" fontname="FreeSans.ttf", fontsize="10", URL="dir_e8f58f884a5cae2761c02575783e52ff.html"]
+  subgraph clusterdir_e4d075077eb47cbea9b6c6c0da2ebbc5 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_e4d075077eb47cbea9b6c6c0da2ebbc5.html"];
+    dir_e4d075077eb47cbea9b6c6c0da2ebbc5 [shape=plaintext label="packages"];
+    dir_4a624f5073bdf5b34d3acae45aec00e9 [shape=box label="pmsg_access" color="black" fillcolor="white" style="filled" URL="dir_4a624f5073bdf5b34d3acae45aec00e9.html"];
+    dir_e82a803fddff48117a91ddbaf35888f2 [shape=box label="pmsg_algorithms" color="black" fillcolor="white" style="filled" URL="dir_e82a803fddff48117a91ddbaf35888f2.html"];
+    dir_111bb3ecf18ceedfe1607fb893860e30 [shape=box label="pmsg_controller" color="black" fillcolor="white" style="filled" URL="dir_111bb3ecf18ceedfe1607fb893860e30.html"];
+    dir_385d565c174149b49a5e821f6cecf864 [shape=box label="pmsg_view" color="red" fillcolor="white" style="filled" URL="dir_385d565c174149b49a5e821f6cecf864.html"];
+  }
+  }
+}

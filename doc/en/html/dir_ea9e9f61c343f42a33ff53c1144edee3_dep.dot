@@ -1,0 +1,16 @@
+digraph "packages/ad/packages/ad_banner/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_3ddf68eec657224cd36300a10fbb97f0 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="ad_banner" fontname="FreeSans.ttf", fontsize="10", URL="dir_3ddf68eec657224cd36300a10fbb97f0.html"]
+  subgraph clusterdir_ea9e9f61c343f42a33ff53c1144edee3 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_ea9e9f61c343f42a33ff53c1144edee3.html"];
+    dir_ea9e9f61c343f42a33ff53c1144edee3 [shape=plaintext label="packages"];
+    dir_d0618cfaad7de8b2f0404df574659582 [shape=box label="ad_banner_access" color="black" fillcolor="white" style="filled" URL="dir_d0618cfaad7de8b2f0404df574659582.html"];
+    dir_3ca17d9873d76e79e058dea8ffbf44bc [shape=box label="ad_banner_algorithms" color="black" fillcolor="white" style="filled" URL="dir_3ca17d9873d76e79e058dea8ffbf44bc.html"];
+    dir_c7fac5cca53884c562b4233fdad794ad [shape=box label="ad_banner_controller" color="black" fillcolor="white" style="filled" URL="dir_c7fac5cca53884c562b4233fdad794ad.html"];
+    dir_99ec982383bce39907b885f032de6325 [shape=box label="ad_banner_view" color="black" fillcolor="white" style="filled" URL="dir_99ec982383bce39907b885f032de6325.html"];
+  }
+  }
+}

@@ -1,0 +1,14 @@
+digraph "packages/page/packages/page_composer_utilities/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_45d5d742c6a2e963177f6f892a398aed {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_45d5d742c6a2e963177f6f892a398aed.html"]
+  subgraph clusterdir_848f27a9e1d5746685b4beaa82f0bf34 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_848f27a9e1d5746685b4beaa82f0bf34.html"];
+    dir_848f27a9e1d5746685b4beaa82f0bf34 [shape=plaintext label="page_composer_utilities"];
+    dir_8e28f1e28d6f356db9add74cfe58269a [shape=box label="include" color="red" fillcolor="white" style="filled" URL="dir_8e28f1e28d6f356db9add74cfe58269a.html"];
+    dir_0cb5ff317be586d3baeff1486dec20e8 [shape=box label="tmp" color="black" fillcolor="white" style="filled" URL="dir_0cb5ff317be586d3baeff1486dec20e8.html"];
+  }
+  }
+}

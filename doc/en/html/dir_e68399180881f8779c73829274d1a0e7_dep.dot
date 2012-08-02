@@ -1,0 +1,13 @@
+digraph "packages/error_log/packages/error_log_access/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_1ac030a6ab26cc1ed11957ed56cdd692 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_1ac030a6ab26cc1ed11957ed56cdd692.html"]
+  subgraph clusterdir_e68399180881f8779c73829274d1a0e7 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_e68399180881f8779c73829274d1a0e7.html"];
+    dir_e68399180881f8779c73829274d1a0e7 [shape=plaintext label="error_log_access"];
+    dir_b18f608bb425daf55f7dacf94be8fcdc [shape=box label="include" color="red" fillcolor="white" style="filled" URL="dir_b18f608bb425daf55f7dacf94be8fcdc.html"];
+  }
+  }
+}

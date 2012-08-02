@@ -1,0 +1,13 @@
+digraph "packages/gui/packages/button_markup/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_b9da262f7a706c274d41056f52bc9941 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="button_markup" fontname="FreeSans.ttf", fontsize="10", URL="dir_b9da262f7a706c274d41056f52bc9941.html"]
+  subgraph clusterdir_7ff20e16e042b313a55398d554e5b970 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_7ff20e16e042b313a55398d554e5b970.html"];
+    dir_7ff20e16e042b313a55398d554e5b970 [shape=plaintext label="include"];
+    dir_4e2760f19ba3d79864fdd93c8180c3a4 [shape=box label="js" color="black" fillcolor="white" style="filled" URL="dir_4e2760f19ba3d79864fdd93c8180c3a4.html"];
+  }
+  }
+}

@@ -1,0 +1,13 @@
+digraph "packages/jquery/packages/jquery_dropdown/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_bb175f1c73f9728fab4795b90ea78cb2 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="jquery_dropdown" fontname="FreeSans.ttf", fontsize="10", URL="dir_bb175f1c73f9728fab4795b90ea78cb2.html"]
+  subgraph clusterdir_166d880558daa9d0ea406b18bb47dc89 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_166d880558daa9d0ea406b18bb47dc89.html"];
+    dir_166d880558daa9d0ea406b18bb47dc89 [shape=plaintext label="include"];
+    dir_db5764fd5a0800c09ecdc84398e013e6 [shape=box label="js" color="black" fillcolor="white" style="filled" URL="dir_db5764fd5a0800c09ecdc84398e013e6.html"];
+  }
+  }
+}

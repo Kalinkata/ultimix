@@ -1,0 +1,13 @@
+digraph "packages/review/packages/review_view/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_fb3bbfa6d0d5f232cdbec3a032871052 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="review_view" fontname="FreeSans.ttf", fontsize="10", URL="dir_fb3bbfa6d0d5f232cdbec3a032871052.html"]
+  subgraph clusterdir_83cdb35705592a051f713686ed702881 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_83cdb35705592a051f713686ed702881.html"];
+    dir_83cdb35705592a051f713686ed702881 [shape=plaintext label="include"];
+    dir_e4da1fdc2b021b81850de518c75d361a [shape=box label="js" color="black" fillcolor="white" style="filled" URL="dir_e4da1fdc2b021b81850de518c75d361a.html"];
+  }
+  }
+}

@@ -1,0 +1,9 @@
+digraph "packages/rating/packages/rating_access/include/php/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_2d8941c92f95c7e1db299f1eb1efc61d {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_2d8941c92f95c7e1db299f1eb1efc61d.html"]
+  dir_07e76d8156c09cfc27f96f76f439f988 [shape=box, label="php", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_07e76d8156c09cfc27f96f76f439f988.html"];
+  }
+}

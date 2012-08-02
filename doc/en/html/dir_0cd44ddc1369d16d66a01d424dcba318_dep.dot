@@ -1,0 +1,9 @@
+digraph "packages/gui/packages/jqgrid/include/js/i18n/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_f659afef337caa3a111e66ae671cba6b {
+    graph [ bgcolor="#ddddee", pencolor="black", label="js" fontname="FreeSans.ttf", fontsize="10", URL="dir_f659afef337caa3a111e66ae671cba6b.html"]
+  dir_0cd44ddc1369d16d66a01d424dcba318 [shape=box, label="i18n", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_0cd44ddc1369d16d66a01d424dcba318.html"];
+  }
+}

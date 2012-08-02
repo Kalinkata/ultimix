@@ -1,0 +1,13 @@
+digraph "packages/json/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_93501a11e921083efbd154e0cdff5f10 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_93501a11e921083efbd154e0cdff5f10.html"]
+  subgraph clusterdir_2cbe2fc85816c8b7b6fe9cab37b3ee93 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_2cbe2fc85816c8b7b6fe9cab37b3ee93.html"];
+    dir_2cbe2fc85816c8b7b6fe9cab37b3ee93 [shape=plaintext label="json"];
+    dir_c86e8a83ca1ebf881411699efb86b576 [shape=box label="packages" color="red" fillcolor="white" style="filled" URL="dir_c86e8a83ca1ebf881411699efb86b576.html"];
+  }
+  }
+}

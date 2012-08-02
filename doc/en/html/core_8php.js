@@ -1,0 +1,25 @@
+var core_8php =
+[
+    [ "_fill_package_cache", "core_8php.html#a9a4fe1b53e22f215b335b7d373c2e28b", null ],
+    [ "_fill_package_paths_cache", "core_8php.html#a6b509065a3ec519c261632f1c23df370", null ],
+    [ "_fill_package_paths_data", "core_8php.html#acb5445af8ffc6f76145cbb55505bd8d1", null ],
+    [ "_get_full_class_name", "core_8php.html#aa1e458c7ac345608c69dd87404d4266d", null ],
+    [ "_get_load_script_data", "core_8php.html#a48268d11e7e2028e81ae8ed17b436775", null ],
+    [ "_get_package_directory", "core_8php.html#a89b2d0058b07c104b4fd8364f6d88adc", null ],
+    [ "_get_package_path_ex", "core_8php.html#a1ea4fe90b349e48a58c207ebc3be5a1d", null ],
+    [ "_get_package_relative_path_ex", "core_8php.html#a5723fd5d1f06ff63181f91d948316d87", null ],
+    [ "_get_requested_class_name", "core_8php.html#a32870678f763de0e6350d1ef4e521f68", null ],
+    [ "_get_top_package_name", "core_8php.html#a7aa40fa195f8a69eda623a6a519f1100", null ],
+    [ "_package_script_fast_load", "core_8php.html#a252d5c529a1a5ade527504c2652263e6", null ],
+    [ "_set_object_label", "core_8php.html#ad31a0f568e54feba3f73510802d145d9", null ],
+    [ "_store_package_object", "core_8php.html#aafeefcfe16c625825f34a796c186d194", null ],
+    [ "_store_package_path", "core_8php.html#a8d21ce5940f87898e5dafbc3786d891d", null ],
+    [ "_try_fetch_from_cache", "core_8php.html#ae7696a1a7341a4479bf53620678d07d9", null ],
+    [ "$ObjectLabel", "core_8php.html#a822d4b250c38b80129c3ec5583d336b7", null ],
+    [ "$PackageCache", "core_8php.html#a1f1c4525fff3e0763d71241549231772", null ],
+    [ "$PackagePathsCache", "core_8php.html#abc712f88ae74573737b0665cb5e07423", null ],
+    [ "$PackagePathsCacheChanged", "core_8php.html#a7e967285a7877533391de11b758758db", null ],
+    [ "$RequestedClassName", "core_8php.html#adf72824f7779e16bb577c5394c47703a", null ],
+    [ "$TopPackageNameCache", "core_8php.html#a66b18d31c4ed7086ba7b5b64ee05fb10", null ],
+    [ "$TopPackageNameCacheChanged", "core_8php.html#a7ca4cdb47b1c774aa01ce1e451872607", null ]
+];

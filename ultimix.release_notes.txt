@@ -1,3 +1,27 @@
+Ultimix v. 1.5.250
+-----------------------------------------
+
+Ultimix v. 1.5.249
+-----------------------------------------
+1. Ultimate bugfixes, performance improvements and refactoring.
+2. The macro 'enter_processor' was improved.
+3. JavaScript library was improved.
+4. New event before delete site was added.
+5. The package 'site::site_controller' was added.
+6. Numerous errors in the content archive page were fixed.
+7. API reference was updated.
+
+Ultimix v. 1.5.248
+-----------------------------------------
+1. An error in the 'cache' package was fixed.
+2. The package 'page:;page_file' was removed.
+3. Performance was improved.
+4. The 'grid' control was improved.
+5. An error in the 'file_input' package was fixed.
+6. JavaScript dialog API was improved.
+7. An error in the 'cache' package was fixed.
+8. Small refactoring and improvements.
+
 Ultimix v. 1.5.247
 -----------------------------------------
 1. Javascript API was improved.

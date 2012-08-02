@@ -1,0 +1,9 @@
+digraph "packages/pmsg/packages/pmsg_view/include/js/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_b6e41cfdeab1a47938760857ae26c087 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_b6e41cfdeab1a47938760857ae26c087.html"]
+  dir_3af9e2f0a776535eb10a5f5a65a687a1 [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3af9e2f0a776535eb10a5f5a65a687a1.html"];
+  }
+}

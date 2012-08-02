@@ -1,0 +1,13 @@
+digraph "packages/jquery/packages/dialog_markup/include/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_10154668e748764494c1a487ddbd366f {
+    graph [ bgcolor="#ddddee", pencolor="black", label="dialog_markup" fontname="FreeSans.ttf", fontsize="10", URL="dir_10154668e748764494c1a487ddbd366f.html"]
+  subgraph clusterdir_09567e2197fd2a3ff62ec0e9471805d7 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_09567e2197fd2a3ff62ec0e9471805d7.html"];
+    dir_09567e2197fd2a3ff62ec0e9471805d7 [shape=plaintext label="include"];
+    dir_1f495531c7891e97295e92b0ad30a30a [shape=box label="js" color="black" fillcolor="white" style="filled" URL="dir_1f495531c7891e97295e92b0ad30a30a.html"];
+  }
+  }
+}

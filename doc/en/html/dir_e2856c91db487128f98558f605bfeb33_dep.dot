@@ -1,0 +1,9 @@
+digraph "packages/user/packages/user_markup/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_e6123e1b43fc815b1b375645a517ba88 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_e6123e1b43fc815b1b375645a517ba88.html"]
+  dir_e2856c91db487128f98558f605bfeb33 [shape=box, label="user_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e2856c91db487128f98558f605bfeb33.html"];
+  }
+}

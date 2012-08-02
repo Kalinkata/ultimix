@@ -1,0 +1,9 @@
+digraph "packages/file_input/packages/file_input_view/include/plugins/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_32cbd1583586e1e60970921097d6115a {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_32cbd1583586e1e60970921097d6115a.html"]
+  dir_3bb77f5392ba11329c7e2b9e9407f246 [shape=box, label="plugins", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3bb77f5392ba11329c7e2b9e9407f246.html"];
+  }
+}

@@ -1,0 +1,18 @@
+digraph "packages/user/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_0c02ad2f6a1c5cbd18402f39ace85698 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="user" fontname="FreeSans.ttf", fontsize="10", URL="dir_0c02ad2f6a1c5cbd18402f39ace85698.html"]
+  subgraph clusterdir_e6123e1b43fc815b1b375645a517ba88 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_e6123e1b43fc815b1b375645a517ba88.html"];
+    dir_e6123e1b43fc815b1b375645a517ba88 [shape=plaintext label="packages"];
+    dir_5e858277ae1559007f2bca39ccc6d005 [shape=box label="user_access" color="red" fillcolor="white" style="filled" URL="dir_5e858277ae1559007f2bca39ccc6d005.html"];
+    dir_085055f4c2058d5fe199ee9dcc987b2b [shape=box label="user_algorithms" color="red" fillcolor="white" style="filled" URL="dir_085055f4c2058d5fe199ee9dcc987b2b.html"];
+    dir_2834c4b3a9082cf0f99c6f226702e2a8 [shape=box label="user_controller" color="red" fillcolor="white" style="filled" URL="dir_2834c4b3a9082cf0f99c6f226702e2a8.html"];
+    dir_22955a657cfcb2af602b447931c6c8fa [shape=box label="user_manager" color="red" fillcolor="white" style="filled" URL="dir_22955a657cfcb2af602b447931c6c8fa.html"];
+    dir_e2856c91db487128f98558f605bfeb33 [shape=box label="user_markup" color="black" fillcolor="white" style="filled" URL="dir_e2856c91db487128f98558f605bfeb33.html"];
+    dir_683eec8be44a7428d67a251766a7ae37 [shape=box label="user_view" color="red" fillcolor="white" style="filled" URL="dir_683eec8be44a7428d67a251766a7ae37.html"];
+  }
+  }
+}

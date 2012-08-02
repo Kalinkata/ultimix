@@ -1,0 +1,9 @@
+digraph "packages/report/packages/report_utilities/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_8ebb0ff4ca4daeefc79e166deee6f0b9 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_8ebb0ff4ca4daeefc79e166deee6f0b9.html"]
+  dir_1dcc48cc7edb0490fe111fd442d153bc [shape=box, label="report_utilities", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_1dcc48cc7edb0490fe111fd442d153bc.html"];
+  }
+}

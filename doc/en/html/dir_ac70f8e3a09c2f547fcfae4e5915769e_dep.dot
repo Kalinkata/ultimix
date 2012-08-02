@@ -1,0 +1,13 @@
+digraph "packages/jquery/include/js/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_b3ad965dfe1388767c22f640379e1094 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_b3ad965dfe1388767c22f640379e1094.html"]
+  subgraph clusterdir_ac70f8e3a09c2f547fcfae4e5915769e {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_ac70f8e3a09c2f547fcfae4e5915769e.html"];
+    dir_ac70f8e3a09c2f547fcfae4e5915769e [shape=plaintext label="js"];
+    dir_58a47dd4d39c3ec01a5bd51256d79afe [shape=box label="lang" color="black" fillcolor="white" style="filled" URL="dir_58a47dd4d39c3ec01a5bd51256d79afe.html"];
+  }
+  }
+}

@@ -1,0 +1,9 @@
+digraph "packages/page/packages/browser_markup/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_45d5d742c6a2e963177f6f892a398aed {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_45d5d742c6a2e963177f6f892a398aed.html"]
+  dir_b6961bf0f274f02b6a573e6359e1ba7f [shape=box, label="browser_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_b6961bf0f274f02b6a573e6359e1ba7f.html"];
+  }
+}

@@ -1,0 +1,13 @@
+digraph "packages/gui/packages/context_set/packages/common_state_startup/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_7045f85d7f796604d802117f735a661e {
+    graph [ bgcolor="#ddddee", pencolor="black", label="common_state_startup" fontname="FreeSans.ttf", fontsize="10", URL="dir_7045f85d7f796604d802117f735a661e.html"]
+  subgraph clusterdir_977e7256e0107a50a0863a96bc43e8a8 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_977e7256e0107a50a0863a96bc43e8a8.html"];
+    dir_977e7256e0107a50a0863a96bc43e8a8 [shape=plaintext label="packages"];
+    dir_20109db1c907c42d9d6f3dd7fa0f5bf6 [shape=box label="common_state_startup_utilities" color="black" fillcolor="white" style="filled" URL="dir_20109db1c907c42d9d6f3dd7fa0f5bf6.html"];
+  }
+  }
+}

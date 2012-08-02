@@ -1,0 +1,9 @@
+digraph "packages/ad/packages/ad_campaign/packages/ad_campaign_access/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_9ac40cd1f0b9e5e6493c293eb817ce65 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9ac40cd1f0b9e5e6493c293eb817ce65.html"]
+  dir_3848d7282f6c72f9d7728306147243fa [shape=box, label="ad_campaign_access", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3848d7282f6c72f9d7728306147243fa.html"];
+  }
+}

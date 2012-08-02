@@ -1,0 +1,13 @@
+digraph "packages/user/packages/user_manager/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_e6123e1b43fc815b1b375645a517ba88 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_e6123e1b43fc815b1b375645a517ba88.html"]
+  subgraph clusterdir_22955a657cfcb2af602b447931c6c8fa {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_22955a657cfcb2af602b447931c6c8fa.html"];
+    dir_22955a657cfcb2af602b447931c6c8fa [shape=plaintext label="user_manager"];
+    dir_b707d709b17af13452dd29335ea64bf6 [shape=box label="packages" color="red" fillcolor="white" style="filled" URL="dir_b707d709b17af13452dd29335ea64bf6.html"];
+  }
+  }
+}

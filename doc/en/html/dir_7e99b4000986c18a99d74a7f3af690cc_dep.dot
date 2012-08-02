@@ -1,0 +1,13 @@
+digraph "packages/database/packages/db_config_set/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_9e29d43dd7407de83abd117b75b27387 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9e29d43dd7407de83abd117b75b27387.html"]
+  subgraph clusterdir_7e99b4000986c18a99d74a7f3af690cc {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_7e99b4000986c18a99d74a7f3af690cc.html"];
+    dir_7e99b4000986c18a99d74a7f3af690cc [shape=plaintext label="db_config_set"];
+    dir_d97de423506d1d5817c58eac5aefcd02 [shape=box label="include" color="red" fillcolor="white" style="filled" URL="dir_d97de423506d1d5817c58eac5aefcd02.html"];
+  }
+  }
+}

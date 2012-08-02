@@ -1,0 +1,25 @@
+var classcategory__access__1__0__0 =
+[
+    [ "__construct", "classcategory__access__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
+    [ "create", "classcategory__access__1__0__0.html#ac1cabbba085c14178e840bf25a574163", null ],
+    [ "delete", "classcategory__access__1__0__0.html#a4b1fc8fe76c3376cb9deb2782564d601", null ],
+    [ "get_category_id", "classcategory__access__1__0__0.html#a4f4ebc47ee80df72244e8a7ca359ddc3", null ],
+    [ "get_children", "classcategory__access__1__0__0.html#a23390d3c15b9c0997036498f350b281f", null ],
+    [ "get_children_count", "classcategory__access__1__0__0.html#a87cf65945450ea766d530255d340771e", null ],
+    [ "get_siblings", "classcategory__access__1__0__0.html#a74373223000e8036eda483e50797e9d1", null ],
+    [ "get_siblings_ids", "classcategory__access__1__0__0.html#a9d0f44451ed3b8c4eef33f352865ecbe", null ],
+    [ "move_up_children_categories", "classcategory__access__1__0__0.html#a22624878f63ab620eeae746ea8e90bf3", null ],
+    [ "select", "classcategory__access__1__0__0.html#af771f443d6f4ef34c39d01656c645e7d", null ],
+    [ "select_categories_list", "classcategory__access__1__0__0.html#a40840190f3506a27dbd46869dee05ae6", null ],
+    [ "select_list", "classcategory__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f", null ],
+    [ "set_add_limitations", "classcategory__access__1__0__0.html#a53b3ad2447b87fa67af6d3a67e1b4ef6", null ],
+    [ "unsafe_select", "classcategory__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208", null ],
+    [ "update", "classcategory__access__1__0__0.html#a8d23ea5c69d9c3a439f5484e9ca33022", null ],
+    [ "$AddLimitations", "classcategory__access__1__0__0.html#a13352aef27c96654b4751d67b2cacfe9", null ],
+    [ "$Database", "classcategory__access__1__0__0.html#ae10cc045c1502f148d1aa728183898e7", null ],
+    [ "$DatabaseAlgorithms", "classcategory__access__1__0__0.html#a4e0013647f6f884c8f36c1e9463f10b6", null ],
+    [ "$Dictionary", "classcategory__access__1__0__0.html#a92b980115957526db6f4d85d0645cfd1", null ],
+    [ "$NativeTable", "classcategory__access__1__0__0.html#a709578c9d5d62ccee7dd9ccba074794a", null ],
+    [ "$Security", "classcategory__access__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ],
+    [ "$SecurityParser", "classcategory__access__1__0__0.html#a9e817b32b3d2966b645153144cada577", null ]
+];

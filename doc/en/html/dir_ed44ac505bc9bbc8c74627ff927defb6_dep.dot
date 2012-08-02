@@ -1,0 +1,9 @@
+digraph "packages/security/include/php/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_f7dbbd67546f4eaf394550107b997c5f {
+    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_f7dbbd67546f4eaf394550107b997c5f.html"]
+  dir_ed44ac505bc9bbc8c74627ff927defb6 [shape=box, label="php", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_ed44ac505bc9bbc8c74627ff927defb6.html"];
+  }
+}

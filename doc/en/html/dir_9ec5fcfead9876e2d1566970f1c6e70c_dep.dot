@@ -1,0 +1,9 @@
+digraph "packages/database/packages/change_history/packages/change_history_access/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_72fd315d3bddda49f0084451f9ba8c30 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_72fd315d3bddda49f0084451f9ba8c30.html"]
+  dir_9ec5fcfead9876e2d1566970f1c6e70c [shape=box, label="change_history_access", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_9ec5fcfead9876e2d1566970f1c6e70c.html"];
+  }
+}

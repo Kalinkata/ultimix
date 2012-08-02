@@ -1,0 +1,9 @@
+digraph "packages/permit/packages/group_access/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_ba817ab0780f95827f843ef49f61c250 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_ba817ab0780f95827f843ef49f61c250.html"]
+  dir_99fb66633b76264e97bd7eb9ac96803e [shape=box, label="group_access", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_99fb66633b76264e97bd7eb9ac96803e.html"];
+  }
+}

@@ -1,0 +1,9 @@
+digraph "packages/permit/packages/permit_controller/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_ba817ab0780f95827f843ef49f61c250 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_ba817ab0780f95827f843ef49f61c250.html"]
+  dir_3a27d04100e69a114f5bfc31757f4491 [shape=box, label="permit_controller", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_3a27d04100e69a114f5bfc31757f4491.html"];
+  }
+}

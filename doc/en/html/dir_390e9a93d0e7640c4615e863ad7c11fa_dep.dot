@@ -1,0 +1,13 @@
+digraph "packages/maps/packages/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_a2d89dbda46cb1e5e356b11a246f17ed {
+    graph [ bgcolor="#ddddee", pencolor="black", label="maps" fontname="FreeSans.ttf", fontsize="10", URL="dir_a2d89dbda46cb1e5e356b11a246f17ed.html"]
+  subgraph clusterdir_390e9a93d0e7640c4615e863ad7c11fa {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_390e9a93d0e7640c4615e863ad7c11fa.html"];
+    dir_390e9a93d0e7640c4615e863ad7c11fa [shape=plaintext label="packages"];
+    dir_0199c6f11baae3ee92d60f0e175bd92c [shape=box label="google_maps" color="red" fillcolor="white" style="filled" URL="dir_0199c6f11baae3ee92d60f0e175bd92c.html"];
+  }
+  }
+}

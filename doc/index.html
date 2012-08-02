@@ -340,6 +340,41 @@ key3=Third localized string
 	print( 'Hello from '.$Lang->get_string( 'ultimix' ) );
 ?&gt;
 </pre></div>
+					<h4 class="header">&nbsp;&nbsp;Internationalization (I18N) and localization (L10N)</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultimix provides API for tracing and logging. It can be found in the 'trace' package. To switch this API on you should set trace_x_y_z->StoreTrace variable to true. This package has a very simple API wich is described below:
+					<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+	/* this code can be found in the 'demo6.php' file */
+	$Trace = get_package( 'trace' , 'last' , __FILE__ );
+
+	/* these function calls output trace strings with different severity */
+	$Trace->add_trace_string( 'Some string' , 'ERROR' );
+	$Trace->add_trace_string( 'Some string' , 'NOTIFICATION' );
+	$Trace->add_trace_string( 'Some string' , 'COMMON' );
+	$Trace->add_trace_string( 'Some string' , 'QUERY' );
+	
+	/* all trace strings can be groupped */
+	/* starting group with name 'Group 1' */
+	$Trace->start_group( 'Group 1' );
+	
+	$Trace->add_trace_string( 'Groupped string 1' , 'COMMON' );
+	$Trace->add_trace_string( 'Groupped string 2' , 'COMMON' );
+	
+	/* groups may be nested */
+	/* starting nested group with name 'Group 2' */
+	$Trace->start_group( 'Group 2' );
+	
+	$Trace->add_trace_string( 'Groupped string 3' , 'COMMON' );
+	
+	/* closing nested group with name 'Group 2' */
+	$Trace->end_group();
+	
+	/* closing group with name 'Group 1' */
+	$Trace->end_group();
+	
+	print( $Trace->compile_trace() );
+?&gt;
+</pre></div>
 					<h4 class="header">&nbsp;&nbsp;Creating templates</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Obviously all templates are packages itself. Note that html code of the template must be stored in the '/res/templates/template.tpl' file.
 					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>

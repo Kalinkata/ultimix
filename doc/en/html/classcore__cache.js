@@ -1,0 +1,28 @@
+var classcore__cache =
+[
+    [ "__construct", "classcore__cache.html#a095c5d389db211932136b53f25f39685", null ],
+    [ "__destruct", "classcore__cache.html#a421831a265621325e1fdd19aace0c758", null ],
+    [ "_load_full_class_name_cache", "classcore__cache.html#a484f6600d2dab686e80ddcc8dad0b0a5", null ],
+    [ "_load_get_package_cache", "classcore__cache.html#af2c9d11312da46b2ccd0effc514575d4", null ],
+    [ "_load_make_full_version_cache", "classcore__cache.html#ad8ebe8894739b14f4c94f8c0d76f42a4", null ],
+    [ "_load_package_path_cache", "classcore__cache.html#a7cc3e7dfd31f755b572f9b3222532d26", null ],
+    [ "_load_package_real_version_cache", "classcore__cache.html#a523ffa8b10810e8f97da2c478049b9c4", null ],
+    [ "_load_package_relative_path_cache", "classcore__cache.html#a8aab559d68cb3963ff4dafe0d3b0f5fb", null ],
+    [ "_load_package_script_paths_cache", "classcore__cache.html#a54ca92f14443aaf5e7b82654ede5cd06", null ],
+    [ "_load_rewrited_package_cache", "classcore__cache.html#a8271e1552e4c6399825b95c0a5147e23", null ],
+    [ "_load_rewrites_cache", "classcore__cache.html#a041590dfd0d5116d25aa3011fb2c132b", null ],
+    [ "_load_root_dir_cache", "classcore__cache.html#a9d11acaec5c1b7bb0a75f40629627cd9", null ],
+    [ "_load_top_package_name_cache", "classcore__cache.html#a3f198931a4254fa1a5af8a7d3b4aa5e0", null ],
+    [ "_save_full_class_name_cache", "classcore__cache.html#a3c17a55fad5351452603d5c15cf979fd", null ],
+    [ "_save_get_package_cache", "classcore__cache.html#aeb4a79d6eb263dcadbec23ffbf4811ec", null ],
+    [ "_save_make_full_version_cache", "classcore__cache.html#a4bf6e5b1d6d78eebf314973f06b47420", null ],
+    [ "_save_package_path_cache", "classcore__cache.html#a430c247f42b9fbec2e4e4c0d1f81c601", null ],
+    [ "_save_package_real_version_cache", "classcore__cache.html#a308b7677994265536df86105a8b24860", null ],
+    [ "_save_package_relative_path_cache", "classcore__cache.html#afa222f351bd3d08df722eedc9fe538da", null ],
+    [ "_save_package_script_paths_cache", "classcore__cache.html#af888b8c340d3dadcfd35a826f5983bf1", null ],
+    [ "_save_rewrited_package_cache", "classcore__cache.html#ab6eb44189732b5e2443e18b75ebcfbc1", null ],
+    [ "_save_rewrites_cache", "classcore__cache.html#a5881deb469006c2fa3298e7e93bc6da3", null ],
+    [ "_save_root_dir_cache", "classcore__cache.html#a6c76cece81bbeff81e0f6095bcfe7b2f", null ],
+    [ "_save_top_package_name_cache", "classcore__cache.html#ad58d1375308e2f1a3950581b1847f367", null ],
+    [ "drop_core_cache", "classcore__cache.html#ac2248b743e95ef9ddb3ce440b19db500", null ]
+];

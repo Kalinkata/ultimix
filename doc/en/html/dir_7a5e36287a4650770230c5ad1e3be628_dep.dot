@@ -1,0 +1,9 @@
+digraph "packages/database/packages/database_algorithms/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_9e29d43dd7407de83abd117b75b27387 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9e29d43dd7407de83abd117b75b27387.html"]
+  dir_7a5e36287a4650770230c5ad1e3be628 [shape=box, label="database_algorithms", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_7a5e36287a4650770230c5ad1e3be628.html"];
+  }
+}

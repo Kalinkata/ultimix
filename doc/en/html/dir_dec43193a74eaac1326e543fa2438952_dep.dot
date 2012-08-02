@@ -1,0 +1,9 @@
+digraph "packages/content/packages/content_algorithms/" {
+  compound=true
+  node [ fontsize="10", fontname="FreeSans.ttf"];
+  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
+  subgraph clusterdir_ca0912b424547966c43d290d7ad09429 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_ca0912b424547966c43d290d7ad09429.html"]
+  dir_dec43193a74eaac1326e543fa2438952 [shape=box, label="content_algorithms", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_dec43193a74eaac1326e543fa2438952.html"];
+  }
+}
