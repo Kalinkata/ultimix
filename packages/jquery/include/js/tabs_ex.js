@@ -44,10 +44,14 @@ ultimix.tab_control.tab_control_create_setup = function( ControlId )
 					return;
 				}
 				ultimix.tab_control.AddTabFlag = 0;
+			} , 
+			show : function( event , ui )
+			{
+				ultimix.windows.auto_fit_div( ui.panel );
 			}
 		}
 	);
-	
+
 	ultimix.tab_control.set_add_tab_handler( ControlId );
 }
 
@@ -176,6 +180,29 @@ ultimix.tab_control.set_add_tab_handler = function( ControlId )
 }
 
 /**
+*	Function post process reated tab.
+*
+*	@param TabSelector - Selector of the tab.
+*
+*	@param TabId - Id of the tab.
+*
+*	@param Selected - Should this tab be selected.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.tab_control.post_process_tab = function( TabSelector , TabId , Selected )
+{
+	jQuery( TabSelector ).html(
+		ultimix.string_utilities.str_replace( '[tab_id]' , TabId , jQuery( TabSelector ).html() )
+	);
+
+	if( Selected )
+	{
+		ultimix.windows.auto_fit_div( jQuery( '#' + ultimix.tab_control.AddContentId ).parent() );
+	}
+}
+
+/**
 *	Function adds simple tab to the control.
 *
 *	@param ControlId - id of the tab control.
@@ -197,6 +224,7 @@ ultimix.tab_control.add_simple_tab = function( ControlId , Title , Index , Conte
 	ultimix.tab_control.SelectCreated = Selected;
 	ultimix.tab_control.InsertIndex = Index;
 
+	var			TabId = 'tabs' + ( ultimix.tab_control.TabCounter );
 	var			TabSelector = '#tabs' + ( ultimix.tab_control.TabCounter++ );
 
 	if( Index >= 0 )
@@ -208,10 +236,7 @@ ultimix.tab_control.add_simple_tab = function( ControlId , Title , Index , Conte
 		jQuery( '#' + ControlId ).tabs( 'add' , TabSelector , ultimix.get_string( Title ) );
 	}
 
-	if( Selected )
-	{
-		ultimix.windows.auto_fit_div( jQuery( '#' + ultimix.tab_control.AddContentId ).parent() );
-	}
+	ultimix.tab_control.post_process_tab( TabSelector , TabId , Selected );
 }
 
 /**
@@ -469,6 +494,28 @@ ultimix.tab_control.count_of_tabs = function( ControlId )
 /**
 *	Function creates add tab from content delegate.
 *
+*	@param TabId - Id of the tab.
+*
+*	@param Data - Tab creating data.
+*
+*	@return Function.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.tab_control.get_tab_content_acceptor_success = function( TabId , Data )
+{
+	return(
+		function( Content )
+		{
+			Content = ultimix.string_utilities.str_replace( '[tab_id]' , TabId , Content );
+			jQuery( Data.CreatedTab ).html( Content );
+		}
+	);
+}
+
+/**
+*	Function creates add tab from content delegate.
+*
 *	@param ParentSelector - Selector of the tab parent.
 *
 *	@param ControlId - id of the tab control.
@@ -487,7 +534,9 @@ ultimix.tab_control.count_of_tabs = function( ControlId )
 */
 ultimix.tab_control.get_tab_content_acceptor = function( ControlId , Title , Index , Closable , Selected )
 {
-	var			CreatedTab = false;
+	var			Data = { 'CreatedTab' : false };
+	var			TabId = 'tabs' + ultimix.tab_control.TabCounter;
+
 	return(
 		{
 			before_request : function()
@@ -495,14 +544,10 @@ ultimix.tab_control.get_tab_content_acceptor = function( ControlId , Title , Ind
 					ultimix.tab_control.add_tab_from_content( 
 						ControlId , Title , Index , ultimix.std_dialogs.loading_img_widget() , Closable , Selected
 					);
-
 					Index = Index == -1 ? ultimix.tab_control.count_of_tabs( ControlId ) - 1 : Index;
-					CreatedTab = jQuery( '#' + ControlId ).children( 'div' ).eq( Index );
+					Data.CreatedTab = jQuery( '#' + ControlId ).children( 'div' ).eq( Index );
 				} , 
-			success : function( Content )
-				{
-					jQuery( CreatedTab ).html( Content );
-				}
+			success : ultimix.tab_control.get_tab_content_acceptor_success( TabId , Data )
 		}
 	);
 }

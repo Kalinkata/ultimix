@@ -89,6 +89,7 @@
 				$PageJS->add_javascript( "$Path/inplace.js" );
 				$PageJS->add_javascript( "$Path/iterator.js" );
 				$PageJS->add_javascript( "$Path/string_utilities.js" );
+				$PageJS->add_javascript( "$Path/utilities.js" );
 				$PageJS->add_javascript( "$Path/windows.js" );
 			}
 			catch( Exception $e )

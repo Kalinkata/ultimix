@@ -39,7 +39,6 @@
 		var					$CachedMultyFS = false;
 		var					$Database = false;
 		var					$Security = false;
-		var					$Settings = false;
 		var					$String = false;
 		
 		/**
@@ -59,7 +58,6 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -90,9 +88,9 @@
 		{
 			try
 			{
-				$this->Settings->set_undefined( 'toolbar' , 'ultimix_full' );
-				$this->Settings->set_undefined( 'name' , 'editor');
-				$this->Settings->set_undefined( 'class' , 'width_640 height_480' );
+				$Settings->set_undefined( 'toolbar' , 'ultimix_full' );
+				$Settings->set_undefined( 'name' , 'editor');
+				$Settings->set_undefined( 'class' , 'width_640 height_480' );
 			}
 			catch( Exception $e )
 			{
@@ -103,9 +101,9 @@
 		/**
 		*	\~russian Функция компиляции макроса 'textarea'.
 		*
-		*	@param $Str - Строка.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Parameters - Параметры.
+		*	@param $Data - Сдержимое блока.
 		*
 		*	@return Код макроса.
 		*
@@ -116,9 +114,9 @@
 		/**
 		*	\~english Function compiles macro 'textarea'.
 		*
-		*	@param $Str - String.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Parameters - Parameters.
+		*	@param $Data - Block content.
 		*
 		*	@return HTML code.
 		*
@@ -126,20 +124,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_textarea( $Str , $Parameters )
+		function			compile_textarea( &$Settings , $Data )
 		{
 			try
 			{
-				$this->Settings->load_settings( $Parameters );
-				$Text = $this->String->get_block_data( $Str , "textarea:$Parameters" , '~textarea' );
-				$this->Settings->set_setting( 'text' , $Text );
+				$Settings->set_setting( 'text' , $Data );
 
-				$this->prepare_textarea_settings( $this->Settings );
+				$this->prepare_textarea_settings( $Settings );
 
-				$SimpleEditor = $this->Settings->get_setting( 'simple_editor' , 0 );
+				$SimpleEditor = $Settings->get_setting( 'simple_editor' , 0 );
 				$File = $SimpleEditor == 1 ? 'simple_editor.tpl' : 'editor.tpl';
 				$EditorTemplate = $this->CachedMultyFS->get_template( __FILE__ , $File );
-				$RawSettings = $this->Settings->get_raw_settings();
+				$RawSettings = $Settings->get_raw_settings();
 
 				return( $this->String->print_record( $EditorTemplate , $RawSettings ) );
 			}
@@ -148,57 +144,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'textarea'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'textarea'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_textarea( $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'simple_editor' => TERMINAL_VALUE );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'textarea' , $Rules ) ; )
-				{
-					$Code = $this->compile_textarea( $Str , $Parameters );
-					
-					$Str = str_replace( "{textarea:$Parameters}" , $Code."{textarea:$Parameters}" , $Str );
-					
-					$Str = $this->String->hide_block( $Str , "textarea:$Parameters" , '~textarea' , $Changed );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Выборка данных для селекта.
 		*
@@ -329,7 +275,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_select( &$Settings )
+		function			compile_select( &$Settings )
 		{
 			try
 			{
@@ -354,57 +300,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'select'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'select'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_select( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'name' => TERMINAL_VALUE , 'value' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'select' , $Limitations ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					$Code = $this->compile_select( $this->Settings );
 
-					$Str = str_replace( "{select:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция компиляции макроса 'year_list'.
 		*
@@ -427,7 +323,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_year_list( &$Settings )
+		function			compile_year_list( &$Settings )
 		{
 			try
 			{
@@ -441,104 +337,6 @@
 				$First = implode( '|' , $First );
 
 				return( "{select:first=$First;second=$First;".$Settings->get_raw_settings()."}" );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'year_list'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'year_list'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_year_list( $Str , $Changed )
-		{
-			try
-			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'year_list' ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-
-					$Code = $this->compile_year_list( $this->Settings );
-
-					$Str = str_replace( "{year_list:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				// TODO: exclude textarea
-				list( $Str , $Changed ) = $this->process_textarea( $Str , $Changed );
-
-				// TODO: exclude select
-				list( $Str , $Changed ) = $this->process_select( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_year_list( $Str , $Changed );
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

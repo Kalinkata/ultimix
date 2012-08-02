@@ -31,7 +31,7 @@ if( !ultimix.button_markup )
 *
 *	@author Dodonov A.A.
 */
-ultimix.button_markup.ToggleButton = function( Obj , Icon , IconToggle , ToggleFunction )
+ultimix.button_markup.toggle_button = function( Obj , Icon , IconToggle , ToggleFunction )
 {
 	var			Src = jQuery( Obj ).children( 'img' ).attr( 'src' );
 	var			Value = 0;
@@ -49,4 +49,30 @@ ultimix.button_markup.ToggleButton = function( Obj , Icon , IconToggle , ToggleF
 
 	jQuery( Obj ).children( 'img' ).attr( 'src' , Src );
 	ToggleFunction( Value );
+}
+
+/**
+*	Function runs controller and removes dom.
+*
+*	@param Data - Request data.
+*
+*	@param DomSelector - Selector of the DOM element.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.button_markup.run_controller_and_remove_dom = function( Data , DomSelector )
+{
+	ultimix.std_dialogs.QuestionMessageBox( 
+		'are_you_shure' , 
+		function()
+		{
+			var			Functions = { 
+				'success' : function()
+				{
+					jQuery( DomSelector ).remove();
+				}
+			};
+			ultimix.ajax_gate.direct_controller( Data , Functions );
+		}
+	);
 }

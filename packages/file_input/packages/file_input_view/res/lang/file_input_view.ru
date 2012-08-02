@@ -1,9 +1,11 @@
 pending=Отправка...
+file_error=Ошибка
+queue_limit_exceded=Вы пытаетесь загрузить слишком много файлов
 file_is_too_big=Файл слишком большой.
 cannot_upload_zero_bytes=Невозможно отправить файл нулевого размера.
 invalid_file_type=Некорректный тип файла.
 unhandled_error=Неизвестная ошибка
-upload_error=Ошибка загрузки: 
+http_error=Ошибка HTTP
 upload_failed=Загрузка сорвана
 server_io_error=Ошибка сервера
 security_error=Ошибка безопасности

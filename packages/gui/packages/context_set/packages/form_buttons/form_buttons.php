@@ -103,7 +103,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_create( &$Options , $Str )
+		function			compile_create( &$Options , $Str )
 		{
 			try
 			{
@@ -155,7 +155,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_save( &$Options , $Str )
+		function			compile_save( &$Options , $Str )
 		{
 			try
 			{
@@ -198,7 +198,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_copy( &$Options , $Str )
+		function			compile_copy( &$Options , $Str )
 		{
 			try
 			{
@@ -285,7 +285,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_cancel( &$Options , $Str )
+		function			compile_cancel( &$Options , $Str )
 		{
 			try
 			{
@@ -341,17 +341,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_buttons( &$Settings , &$Options , $Str  )
+		function			compile_buttons( &$Settings , &$Options , $Str  )
 		{
 			try
 			{
-				$Str = $this->process_create( $Options , $Str );
+				$Str = $this->compile_create( $Options , $Str );
 				
-				$Str = $this->process_save( $Options , $Str );
+				$Str = $this->compile_save( $Options , $Str );
 				
-				$Str = $this->process_copy( $Options , $Str );
+				$Str = $this->compile_copy( $Options , $Str );
 
-				$Str = $this->process_cancel( $Options , $Str );
+				$Str = $this->compile_cancel( $Options , $Str );
 				
 				$Str = str_replace( '{prefix}' , $Settings->get_setting( 'prefix' , '' ) , $Str );
 				

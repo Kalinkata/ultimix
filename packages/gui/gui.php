@@ -141,11 +141,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'set_var'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Настройки.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -154,91 +152,60 @@
 		/**
 		*	\~english Function processes macro 'set_var'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_set_var( $Str , $Changed )
+		function			compile_set_var( &$Settings )
 		{
 			try
 			{
-				$Rules = array( 'name' => TERMINAL_VALUE , 'value' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'set_var' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					$Name = $this->Settings->get_setting( 'name' );
-					$Value = $this->Settings->get_setting( 'value' );
-					
-					$Str = str_replace( "{set_var:$Parameters}" , '' , $Str );
-					
-					$this->Vars[ $Name ] = $Value;
+				$Name = $Settings->get_setting( 'name' );
+				$Value = $Settings->get_setting( 'value' );
 
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				$this->Vars[ $Name ] = $Value;
+
+				return( '' );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'get_var'.
+		*	\~russian Функция обработки макроса 'set_var'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Настройки.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Значение.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'get_var'.
+		*	\~english Function processes macro 'set_var'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Value.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_get_var( $Str , $Changed )
+		function			compile_get_var( &$Settings )
 		{
 			try
 			{
-				$Rules = array( 'name' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'get_var' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					$Name = $this->Settings->get_setting( 'name' );
-					$Value = isset( $this->Vars[ $Name ] ) ? 
-						$this->Vars[ $Name ] : 
-						$this->Settings->get_setting( 'default' , '' );
+				$Name = $Settings->get_setting( 'name' );
 
-					$Str = str_replace( "{get_var:$Parameters}" , $Value , $Str );
-
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				return( $this->Vars[ $Name ] );
 			}
 			catch( Exception $e )
 			{
@@ -268,7 +235,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_date_value( &$Settings )
+		function			compile_date( &$Settings )
 		{
 			try
 			{
@@ -293,152 +260,45 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'date'.
+		*	\~russian Функция компиляции макроса 'composer'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Widget.
 		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'date'.
+		*	\~english Function compiles macro 'composer'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@param $Data - Data.
 		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Widget.
 		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_date( $Str , $Changed )
+		function			compile_composer( &$Settings , $Data )
 		{
 			try
 			{
-				$Rules = array( 'value' => TERMINAL_VALUE , 'timestamp' => TERMINAL_VALUE , 'now' => TERMINAL_VALUE );
+				$Condition = intval( $Settings->get_setting( 'condition' ) );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'date' , $Rules ) ; )
+				if( $Condition )
 				{
-					$this->Settings->load_settings( $Parameters );
-
-					$Value = $this->get_date_value( $this->Settings );
-
-					$Str = str_replace( "{date:$Parameters}" , $Value , $Str );
-					$Changed = true;
+					return( $Data );
 				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки макроса 'composer'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'composer'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_composer( $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'condition' => TERMINAL_VALUE );
-				
-				for( ; $this->PageParser->find_next_macro( $Str , 'composer' , $Rules ) ; )
+				else
 				{
-					$Settings = &$this->PageParser->get_macro_parameters();
-					$Condition = intval( $Settings->get_setting( 'condition' ) );
-
-					if( $Condition )
-					{
-						$Str = $this->PageParser->show_macro( $Str , 'composer' );
-					}
-					else
-					{
-						$Str = $this->PageParser->hide_macro( $Str , 'composer' );
-					}
-					$Changed = true;
+					return( '' );
 				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				/* TODO: move to auto_markup */
-				list( $Str , $Changed ) = $this->process_set_var( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_get_var( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_date( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_composer( $Str , $Changed );
-				$Str = str_replace( '{locked}' , 'onkeypress="return( false );"' , $Str );
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

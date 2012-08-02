@@ -99,7 +99,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_options( $Options , $Str , $Changed )
+		function			compile_options( &$Options , $Str , $Changed )
 		{
 			try
 			{
@@ -107,12 +107,13 @@
 				{
 					$this->MacroSettings->load_settings( $Parameters );
 					$Name = $this->MacroSettings->get_setting( 'name' );
-					$Value = $Options->get_setting( $Name , '' );
-					
+
+					$Value = $Options->get_setting( $Name , $Options->get_setting( 'default' , '0' ) );
+
 					$Str = str_replace( "{options:$Parameters}" , $Value , $Str );
 					$Changed = true;
 				}
-				
+
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -120,7 +121,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка вида.
 		*
@@ -151,20 +152,20 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_view( &$Options , &$ContextSetSettings , $Str )
+		function			compile_view( &$Options , &$ContextSetSettings , $Str )
 		{
 			try
 			{
 				if( $Options->get_setting( 'view' , 0 ) == 1 )
 				{
-					$Str = $this->CommonButtons->process_buttons( $ContextSetSettings , $Options , $Str );
+					$Str = $this->CommonButtons->compile_buttons( $ContextSetSettings , $Options , $Str );
 
-					$Str = $this->FormButtons->process_buttons( $ContextSetSettings , $Options , $Str );
+					$Str = $this->FormButtons->compile_buttons( $ContextSetSettings , $Options , $Str );
 
 					$Changed = false;
-					list( $Str , $Changed ) = $this->process_options( $Options , $Str , $Changed );
+					list( $Str , $Changed ) = $this->compile_options( $Options , $Str , $Changed );
 				}
-
+				
 				return( $Str );
 			}
 			catch( Exception $e )

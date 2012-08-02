@@ -35,11 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$MacroParameters = false;
 		var					$CachedMultyFS = false;
 		var					$PageCSS = false;
 		var					$PageJS = false;
-		var					$String = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -59,11 +57,9 @@
 		{
 			try
 			{
-				$this->MacroParameters = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageCSS = get_package( 'page::page_css' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -106,7 +102,7 @@
 		/**
 		*	\~russian Функция копиляции макроса 'paginator3000'.
 		*
-		*	@param $MacroParameters - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
 		*	@return Виджет.
 		*
@@ -117,7 +113,7 @@
 		/**
 		*	\~english Function compiles macro 'paginator3000'.
 		*
-		*	@param $MacroParameters - Processing options.
+		*	@param $Settings - Processing options.
 		*
 		*	@return Widget.
 		*
@@ -125,7 +121,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_paginator3000( &$MacroParameters )
+		function			compile_paginator3000( &$Settings )
 		{
 			try
 			{
@@ -134,66 +130,14 @@
 					'{id}' , '{page_count}' , '{visible_page_count}' , '{current_page}' , '{page_url}'
 				);
 				$Values = array(
-					$MacroParameters->get_setting( 'id' , md5( microtime( true ) ) ) , 
-					$MacroParameters->get_setting( 'page_count' ) , 
-					$MacroParameters->get_setting( 'visible_page_count' , 10 ) , 
-					$MacroParameters->get_setting( 'current_page' , 1 ) , 
-					$MacroParameters->get_setting( 'page_url' )
+					$Settings->get_setting( 'id' , md5( microtime( true ) ) ) , 
+					$Settings->get_setting( 'page_count' ) , 
+					$Settings->get_setting( 'visible_page_count' , 10 ) , 
+					$Settings->get_setting( 'current_page' , 1 ) , 
+					$Settings->get_setting( 'page_url' )
 				);
 
 				return( str_replace( $PlaceHolders , $Values , $Code ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - processing string.
-		*
-		*	@param $Changed - was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'paginator3000' ) ; )
-				{
-					$this->MacroParameters->load_settings( $Parameters );
-
-					$Code = $this->compile_paginator3000( $MacroParameters );
-
-					$Str = str_replace( "{paginator3000:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

@@ -8,8 +8,6 @@ if( !ultimix )
 	ultimix = {};
 }
 
-/* TODO: move it to the jquery_dialog package */
-
 /**
 *	Global namespace.
 *
@@ -164,9 +162,5 @@ ultimix.dialog.show_dom_in_dialog = function( Selector , Title )
 */
 ultimix.dialog.create_form = function( DataAcceptor , StatusAcceptor , DataSource , Selector )
 {
-	console.log( DataAcceptor );
-	console.log( StatusAcceptor );
-	console.log( DataSource );
-	console.log( Selector );
 	return( true );
 }

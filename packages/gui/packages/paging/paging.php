@@ -520,7 +520,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'paginator'.
 		*
@@ -544,7 +544,7 @@
 			try
 			{
 				$this->Settings->load_settings( $Parameters );
-				
+
 				$RecordCount = $this->get_record_count( $this->Settings );
 				$Type = $this->Settings->get_setting( 'type' , 'default' );
 
@@ -562,7 +562,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'paginator'.
 		*
@@ -577,7 +577,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_paginator()
+		private function	prepare_paginator()
 		{
 			try
 			{
@@ -619,7 +619,7 @@
 		{
 			try
 			{
-				$this->process_paginator();
+				$this->prepare_paginator();
 
 				if( $this->FormId !== false && $this->FormRequired )
 				{
@@ -744,7 +744,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_no_data_to_display()
+		private function	compile_no_data_to_display()
 		{
 			try
 			{
@@ -823,6 +823,8 @@
 		/**
 		*	\~russian Первичная инициализация.
 		*
+		*	@param $Options - Дополнительные настройки отображения.
+		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
@@ -830,17 +832,21 @@
 		/**
 		*	\~english Primary init.
 		*
+		*	@param $Options - Additional display options.
+		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	primary_init()
+		private function	primary_init( &$Options )
 		{
 			try
 			{
 				$this->GridId = md5( microtime( true ) );
 
 				$this->Page = $this->Security->get_gp( $this->PageField , 'integer' , 1 );
+
+				$this->RecordsPerPage = $Options->get_setting( 'records_per_page' , $this->RecordsPerPage );
 
 				$this->RecordsPerPage = $this->Security->get_c( 
 					$this->Prefix.'_records_per_page' , 'integer' , $this->RecordsPerPage
@@ -882,7 +888,7 @@
 		{
 			try
 			{
-				$this->primary_init();
+				$this->primary_init( $Options );
 
 				if( $DataToDisplay === false && $this->DataAccessor === false )
 				{
@@ -895,7 +901,7 @@
 
 				if( count( $DataToDisplay ) === 0 )
 				{
-					return( $this->process_no_data_to_display() );
+					return( $this->compile_no_data_to_display() );
 				}
 
 				return( $this->compile_macros( $DataToDisplay ) );

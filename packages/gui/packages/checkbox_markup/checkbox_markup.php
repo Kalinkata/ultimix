@@ -36,7 +36,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
 		var					$Database = false;
 		var					$Security = false;
@@ -56,7 +55,6 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
@@ -69,103 +67,77 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'header_checkbox'.
+		*	\~russian Функция компиляции макроса 'item_checkbox'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'header_checkbox'.
+		*	\~english Function compiles macro 'item_checkbox'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_header_checkbox( $Str , $Changed )
+		function			compile_header_checkbox( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'header_checkbox' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					$Name = $this->BlockSettings->get_setting( 'name' );
+				$Name = $Settings->get_setting( 'name' );
 
-					$Template = '{checkbox_ex:self_class=_'.$Name.'_header_checkbox;children_selector=._'.
-						$Name."_item_checkbox;name=$Name}";
+				$Code = '{checkbox_ex:self_class=_'.$Name.'_header_checkbox;children_selector=._'.
+					$Name."_item_checkbox;name=$Name}";
 
-					$Str = str_replace( "{header_checkbox:$Parameters}" , $Template , $Str );
-
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'item_checkbox'.
+		*	\~russian Функция компиляции макроса 'item_checkbox'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'item_checkbox'.
+		*	\~english Function compiles macro 'item_checkbox'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_item_checkbox( $Str , $Changed )
+		function			compile_item_checkbox( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'item_checkbox' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					$Name = $this->BlockSettings->get_setting( 'name' );
-					$Id = $this->BlockSettings->get_setting( 'id' );
+				$Name = $Settings->get_setting( 'name' );
+				$Id = $Settings->get_setting( 'id' );
 
-					$Template = '{checkbox_ex:self_class=_'.$Name.'_item_checkbox;parent_selector=._'.$Name.
-						"_header_checkbox;id=_id_$Id;name=_id_$Id}";
+				$Code = '{checkbox_ex:self_class=_'.$Name.'_item_checkbox;parent_selector=._'.$Name.
+					"_header_checkbox;id=_id_$Id;name=_id_$Id}";
 
-					$Str = str_replace( "{item_checkbox:$Parameters}" , $Template , $Str );
-
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -282,7 +254,7 @@
 		/**
 		*	\~russian Функция компиляции макроса 'checkboxset'.
 		*
-		*	@param $BlockSettings - Параметры.
+		*	@param $Settings - Параметры.
 		*
 		*	@return Код макроса.
 		*
@@ -293,7 +265,7 @@
 		/**
 		*	\~english Function compiles macro 'checkboxset'.
 		*
-		*	@param $BlockSettings - Parameters.
+		*	@param $Settings - Parameters.
 		*
 		*	@return HTML code.
 		*
@@ -301,13 +273,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_checkbox_set( &$BlockSettings )
+		function			compile_checkbox_set( &$Settings )
 		{
 			try
 			{
-				$Cols = $BlockSettings->get_setting( 'cols' , 3 );
-				$Value = $BlockSettings->get_setting( 'checked_all' , '0' ) == '0' ? 'off' : 'on';
-				$Query = $BlockSettings->get_setting( 'query' );
+				$Cols = $Settings->get_setting( 'cols' , 3 );
+				$Value = $Settings->get_setting( 'checked_all' , '0' ) == '0' ? 'off' : 'on';
+				$Query = $Settings->get_setting( 'query' );
 				$this->Database->query_as( DB_OBJECT );
 				$Records = $this->Database->query( $Query );
 				$Records = $this->Database->fetch_results( $Records );
@@ -321,56 +293,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'checkboxset'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'checkboxset'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_checkboxset( $Str , $Changed )
-		{
-			try
-			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'checkboxset' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
 
-					$Code = $this->compile_checkbox_set( $this->BlockSettings );
-
-					$Str = str_replace( "{checkboxset:$Parameters}" , $Code , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция компиляции макроса 'checkbox'.
 		*
@@ -393,71 +316,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_checkbox( &$BlockSettings )
+		function			compile_checkbox( &$Settings )
 		{
 			try
 			{
-				$BlockSettings->set_undefined( 'default' , 0 );
-				$BlockSettings->set_undefined( 'id' , md5( microtime() ) );
-				$BlockSettings->set_undefined( 'label' , '' );
+				$Settings->set_undefined( 'default' , 0 );
+				$Settings->set_undefined( 'id' , md5( microtime() ) );
+				$Settings->set_undefined( 'label' , '' );
 
-				$Type = $BlockSettings->get_setting( 'type' , 'double' );
+				$Type = $Settings->get_setting( 'type' , 'double' );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , $Type.'_state_checkbox.tpl' );
 
-				$Code = $this->String->print_record( $Code , $BlockSettings->get_raw_settings() );
+				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 				
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'checkbox'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'checkbox'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_checkbox( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'default' => TERMINAL_VALUE , 'current_value' => TERMINAL_VALUE );
-
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'checkbox' , $Limitations ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-
-					$Code = $this->compile_checkbox( $this->BlockSettings );
-
-					$Str = str_replace( "{checkbox:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
 			{
@@ -468,7 +341,7 @@
 		/**
 		*	\~russian Функция получения селекторов.
 		*
-		*	@param $BlockSettings - Настройки.
+		*	@param $Settings - Настройки.
 		*
 		*	@return Селектор.
 		*
@@ -489,14 +362,14 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_selectors( &$BlockSettings )
+		private function	compile_selectors( &$Settings )
 		{
 			try
 			{
-				$SelfClass = $BlockSettings->get_setting( 'self_class' , false );
-				$ParentSelector = $BlockSettings->get_setting( 'parent_selector' , false );
-				$SiblingsSelector = $BlockSettings->get_setting( 'siblings_selector' , '.'.$SelfClass );
-				$ChildrenSelector = $BlockSettings->get_setting( 'children_selector' , false );
+				$SelfClass = $Settings->get_setting( 'self_class' , false );
+				$ParentSelector = $Settings->get_setting( 'parent_selector' , false );
+				$SiblingsSelector = $Settings->get_setting( 'siblings_selector' , '.'.$SelfClass );
+				$ChildrenSelector = $Settings->get_setting( 'children_selector' , false );
 				$Sel = $ParentSelector !== false ? " parent_selector='$ParentSelector'" : '';
 				$Sel = $SiblingsSelector !== false ? $Sel." siblings_selector='$SiblingsSelector'" : $Sel;
 				return( $ChildrenSelector !== false ? $Sel." children_selector='$ChildrenSelector'" : $Sel );
@@ -508,144 +381,42 @@
 		}
 		
 		/**
-		*	\~russian Функция получения селекторов.
+		*	\~russian Функция компиляции макроса 'checkbox_ex'.
 		*
-		*	@param $BlockSettings - Настройки.
+		*	@param $Settings - Параметры.
 		*
-		*	@return Селектор.
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function returns selectors.
+		*	\~english Function compiles macro 'checkbox_ex'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Selector.
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_checkbox_ex( &$BlockSettings )
+		function				compile_checkbox_ex( &$Settings )
 		{
 			try
 			{
-				$SelfClass = $BlockSettings->get_setting( 'self_class' , false );
-				$Sel = $this->compile_selectors( $BlockSettings );
+				$SelfClass = $Settings->get_setting( 'self_class' , false );
+				$Sel = $this->compile_selectors( $Settings );
 
-				$Id = $BlockSettings->get_setting( 'id' , '' );
-				$Name = $BlockSettings->get_setting( 'name' );
+				$Id = $Settings->get_setting( 'id' , '' );
+				$Name = $Settings->get_setting( 'name' );
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'checkbox_ex.tpl' );
 				$PlaceHolders = array( '{id}' , '{name}' , '{self_class}' , '{selector}' );
 				$Data = array( $Id , $Name , $SelfClass , $Sel );
 				$Code = str_replace( $PlaceHolders , $Data , $Code );
 
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'checkbox_ex'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'checkbox_ex'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_checkbox_ex( $Str , $Changed )
-		{
-			try
-			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'checkbox_ex' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-
-					$Code = $this->compile_checkbox_ex( $this->BlockSettings );
-
-					$Str = str_replace( "{checkbox_ex:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_header_checkbox( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_item_checkbox( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_checkboxset( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_checkbox( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_checkbox_ex( $Str , $Changed );
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

@@ -31,9 +31,24 @@ if( !ultimix.grids )
 *
 *	@author Dodonov A.A.
 */
-ultimix.grids.RecordSelected = function( Name , ErrorMessage )
+ultimix.grids.record_selected = function( Name , ErrorMessage )
 {
-	return( ultimix.grids.RecordSelectedEx( '._' + Name + '_item_checkbox' , ErrorMessage ) );
+	return( ultimix.grids.record_selected_ex( '._' + Name + '_item_checkbox' , ErrorMessage ) );
+}
+
+/**
+*	Function resets checkboxes.
+*
+*	@param Name - Suffix of the checkboxes group.
+*
+*	@param Value - true/false.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.grids.set_checkboxes = function( Name , Value )
+{
+	jQuery( '._' + Name + '_item_checkbox' ).prop( 'checked' , Value );
+	jQuery( '._' + Name + '_header_checkbox' ).prop( 'checked' , Value );
 }
 
 /**
@@ -47,7 +62,7 @@ ultimix.grids.RecordSelected = function( Name , ErrorMessage )
 *
 *	@author Dodonov A.A.
 */
-ultimix.grids.RecordSelectedEx = function( Selector , ErrorMessage )
+ultimix.grids.record_selected_ex = function( Selector , ErrorMessage )
 {
 	var		Items = jQuery( Selector );
 	
@@ -76,9 +91,9 @@ ultimix.grids.RecordSelectedEx = function( Selector , ErrorMessage )
 *
 *	@author Dodonov A.A.
 */
-ultimix.grids.GetIdentificators = function( Name )
+ultimix.grids.get_identificators = function( Name )
 {
-	return( ultimix.grids.GetIdentificatorsEx( '._' + Name + '_item_checkbox' ) );
+	return( ultimix.grids.get_identificators_ex( '._' + Name + '_item_checkbox' ) );
 }
 
 /**
@@ -90,7 +105,7 @@ ultimix.grids.GetIdentificators = function( Name )
 *
 *	@author Dodonov A.A.
 */
-ultimix.grids.GetIdentificatorsEx = function( Selector )
+ultimix.grids.get_identificators_ex = function( Selector )
 {
 	var		Identificators = new Array();
 	
@@ -221,7 +236,7 @@ ultimix.grids.ProcessLinkedCheckboxes = function( Checkbox )
 ultimix.grids.SubmitForm0Mass = function( FormId , ConfirmString , Action , Name , NotSelectedErrorMessage , 
 																									Waiting , Method )
 {
-	if( ultimix.grids.RecordSelected( Name ) == false )
+	if( ultimix.grids.record_selected( Name ) == false )
 	{
 		ultimix.std_dialogs.ErrorMessageBox( NotSelectedErrorMessage );
 		return;
@@ -256,7 +271,7 @@ ultimix.grids.SubmitForm0Mass = function( FormId , ConfirmString , Action , Name
 ultimix.grids.SubmitForm1Mass = function( FormId , Param1, Value1 , ConfirmString , Action , Name , 
 																			NotSelectedErrorMessage , Waiting , Method )
 {
-	if( ultimix.grids.RecordSelected( Name ) == false )
+	if( ultimix.grids.record_selected( Name ) == false )
 	{
 		ultimix.std_dialogs.ErrorMessageBox( NotSelectedErrorMessage );
 		return;
@@ -295,7 +310,7 @@ ultimix.grids.SubmitForm1Mass = function( FormId , Param1, Value1 , ConfirmStrin
 ultimix.grids.SubmitForm2Mass = function( FormId , Param1, Value1 , Param2, Value2 , ConfirmString , Action , Name , 
 																			NotSelectedErrorMessage , Waiting , Method )
 {
-	if( ultimix.grids.RecordSelected( Name ) == false )
+	if( ultimix.grids.record_selected( Name ) == false )
 	{
 		ultimix.std_dialogs.ErrorMessageBox( NotSelectedErrorMessage );
 		return;
@@ -338,7 +353,7 @@ ultimix.grids.SubmitForm2Mass = function( FormId , Param1, Value1 , Param2, Valu
 ultimix.grids.SubmitForm3Mass = function( FormId , Param1, Value1 , Param2, Value2 , Param3, Value3 , ConfirmString , 
 															Action , Name , NotSelectedErrorMessage , Waiting , Method )
 {
-	if( ultimix.grids.RecordSelected( Name ) == false )
+	if( ultimix.grids.record_selected( Name ) == false )
 	{
 		ultimix.std_dialogs.ErrorMessageBox( NotSelectedErrorMessage );
 		return;

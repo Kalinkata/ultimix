@@ -343,7 +343,7 @@
 				}
 
 				$Changed = false;
-				$Form = $this->ContextSet->process_string( $Options , $Form , $Changed );
+				$Form = $this->ContextSet->compile_special_macro( $Options , $Form , $Changed );
 
 				return( $Form );
 			}

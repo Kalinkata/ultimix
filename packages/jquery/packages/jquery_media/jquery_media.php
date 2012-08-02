@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Settings = false;
 		var					$CachedMultyFS = false;
 		var					$PageJS = false;
 		var					$String = false;
@@ -58,7 +57,6 @@
 		{
 			try
 			{
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -141,95 +139,38 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки макроса 'media'.
+		*	\~russian Функция обработки макроса 'timer'.
 		*
-		*	@param $Str - Обрабатывемая строка.
+		*	@param $Settings - Параметры обработки.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
+		*	@return Код.
 		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'media'.
+		*	\~english Function processes macro 'timer'.
 		*
-		*	@param $Str - Processing string.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - Was the processing completed.
+		*	@return Code.
 		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_media( $Str , $Changed )
+		function			compile_media( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'media' ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'media.tpl' );
 
-					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'media.tpl' );
+				$Vars = $this->get_vars( $Settings );
 
-					$Vars = $this->get_vars( $Settings );
+				$Code = $this->String->print_record( $Code , $Vars );
 
-					$Code = $this->String->print_record( $Code , $Vars );
-
-					$Str = str_replace( "{media:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				/* TODO: move to auto_markup */
-				list( $Str , $Changed ) = $this->process_media( $Str , $Changed );
-
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

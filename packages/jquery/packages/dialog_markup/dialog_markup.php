@@ -193,6 +193,7 @@
 				$Path = '{http_host}/'._get_package_relative_path_ex( 'jquery::dialog_markup' , 'last' );
 
 				$this->PageJS->add_javascript( "$Path/include/js/iframe.dialog.js" );
+				$this->PageJS->add_javascript( "$Path/include/js/jquery.dialog.js" );
 			}
 			catch( Exception $e )
 			{

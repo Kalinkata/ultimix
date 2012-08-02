@@ -25,130 +25,47 @@
 	*/
 	class	keyboard_markup_1_0_0
 	{
-		
 		/**
-		*	\~russian Закешированные объекты.
+		*	\~russian Функция компиляции макроса 'enter_processor'.
 		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Cached objects.
+		*	@param $Settings - Параметры.
 		*
-		*	@author Dodonov A.A.
-		*/
-		var					$BlockSettings = false;
-		var					$String = false;
-		
-		/**
-		*	\~russian Конструктор.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Constructor.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			__construct()
-		{
-			try
-			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'enter_processor'.
-		*
-		*	@param $ProcessingString - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'enter_processor'.
+		*	\~english Function compiles macro 'enter_processor'.
 		*
-		*	@param $ProcessingString - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_enter_processor( $ProcessingString , $Changed )
+		function			compile_enter_processor( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'enter_processor' ) ; )
+				$EnterProcessor = $Settings->get_setting( 'function' , false );
+
+				if( $EnterProcessor === false )
 				{
-					$this->BlockSettings->load_settings( $Parameters );
-					$FormId = $this->BlockSettings->get_setting( 'form_id' );
-					$ProcessingString = str_replace( 
-						"{enter_processor:$Parameters}" , 
-						"onkeyup=\"javascript:ultimix.forms.EnterProcessor( event , '".$FormId."' );\"" , 
-						$ProcessingString
-					);
-					$Changed = true;
+					$FormId = $Settings->get_setting( 'form_id' );
+
+					return(	"onkeyup=\"javascript:ultimix.forms.enter_processor( event , '".$FormId."' );\"" );
 				}
-				
-				return( array( $ProcessingString , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $ProcessingString - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $ProcessingString - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $ProcessingString , &$Changed )
-		{
-			try
-			{
-				list( $ProcessingString , $Changed ) = $this->process_enter_processor( $ProcessingString , $Changed );
-				
-				return( $ProcessingString );
+				else
+				{
+					return(	
+						"onkeyup=\"javascript:ultimix.forms.enter_was_pressed( event ) ? ".
+						"$EnterProcessor : void( 0 );\""
+					);
+				}
 			}
 			catch( Exception $e )
 			{

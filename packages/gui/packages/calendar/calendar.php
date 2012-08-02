@@ -36,10 +36,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
 		var					$Security = false;
-		var					$String = false;
 		
 		/**
 		*	\~russian Конструктор.
@@ -55,10 +53,8 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package_object( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -120,6 +116,7 @@
 		{
 			try
 			{
+				//TODO: refactor it to get_templates( $TemplateNames )
 				return(
 					array(
 						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_start.tpl' ) , 
@@ -177,8 +174,8 @@
 			{
 				$Template = str_replace( '{header_cell}' , $Text , $Template );
 				
-				$FirstDayOfMonth = mktime( 0 , 0 , 0 , date( 'n',  $DisplayTime ) , 1 , date( 'Y' , $DisplayTime ) );
-				$w = date( 'w' , $FirstDayOfMonth );
+				$FirstDay = mktime( 0 , 0 , 0 , date( 'n',  $DisplayTime ) , 1 , date( 'Y' , $DisplayTime ) );
+				$w = date( 'w' , $FirstDay );
 				$w = $w == 0 ? 6 : $w - 1;
 				
 				$Class = $w == $Day && date( 'd' ) < 7 - $w ? ' active_cell_bottom' : '';
@@ -437,7 +434,7 @@
 		*
 		*	@param $DayOfWeek - День недели.
 		*
-		*	@param $FirstDayOfMonth - Первый день в календаре.
+		*	@param $FirstDay - Первый день в календаре.
 		*
 		*	@param $DisplayTime - Время, на которое надо отображать календарь.
 		*
@@ -452,7 +449,7 @@
 		*
 		*	@param $DayOfWeek - Day of week.
 		*
-		*	@param $FirstDayOfMonth - First day in the calendar.
+		*	@param $FirstDay - First day in the calendar.
 		*
 		*	@param $DisplayTime - Time of the displaiing month.
 		*
@@ -462,7 +459,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_rows( $DisplayTime , $DayOfWeek , $FirstDayOfMonth , $DisplayTime )
+		private function	compile_rows( $DisplayTime , $DayOfWeek , $FirstDay , $DisplayTime )
 		{
 			try
 			{
@@ -474,7 +471,7 @@
 				for( $Day = 1 ; $Day <= 42 ; $Day++ )
 				{
 					$DayAdd = $Day - $DayOfWeek;
-					$CellDay = strtotime( $DayAdd < 0 ? $DayAdd.' day' : "+$DayAdd day" , $FirstDayOfMonth );
+					$CellDay = strtotime( $DayAdd < 0 ? $DayAdd.' day' : "+$DayAdd day" , $FirstDay );
 					$Code .= $this->compile_cell( $Day , $CellDay );
 					
 					if( date( 'm' , $CellDay ) !== date( 'm' , $DisplayTime ) && $Day % 7 === 0 )
@@ -490,11 +487,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция календаря.
 		*
-		*	@param $DisplayTime - Время, на которое надо отображать календарь.
+		*	@param $Settings - Парметры.
 		*
 		*	@return Код календаря.
 		*
@@ -505,7 +502,7 @@
 		/**
 		*	\~english Calendar compilation.
 		*
-		*	@param $DisplayTime - Time of the displaiing month.
+		*	@param $Settings - Settings.
 		*
 		*	@return HTML code of the calendar.
 		*
@@ -513,31 +510,32 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_calendar( $DisplayTime = false )
+		function			compile_calendar( &$Settings )
 		{
 			try
 			{
-				$DisplayTime = $DisplayTime === false ? time() : $DisplayTime;
+				$DisplayTime = $this->Settings->get_setting( 'calendar_time' , time() );
+				$DisplayTime = $this->Security->get_gp( 'calendar_time' , 'integer' , $DisplayTime );
 
-				list( $CalendarStart , $CalendarEnd , $RowStart , $RowEnd , $HeaderCell , $Cell ) = 
-																								$this->get_templates();
+				list( $Start , $End , $RowStart , $RowEnd , $HeaderCell , $Cell ) = 
+					$this->get_templates();
 
-				$FirstDayOfMonth = mktime( 0 , 0 , 0 , date( 'n',  $DisplayTime ) , 1 , date( 'Y' , $DisplayTime ) );
-				$DayOfWeek = date( 'w' , $FirstDayOfMonth );
+				$FirstDay = mktime( 0 , 0 , 0 , date( 'n',  $DisplayTime ) , 1 , date( 'Y' , $DisplayTime ) );
 
-				$Code = $CalendarStart.$this->get_toolbar( $DisplayTime );
+				$Code = $Start.$this->get_toolbar( $DisplayTime );
 				$Code .= $this->compile_header( $DisplayTime );
-				
-				$Code .= $this->compile_rows( $DisplayTime , $DayOfWeek , $FirstDayOfMonth , $DisplayTime );
-				
-				return( $Code.$CalendarEnd );
+
+				$DayOfWeek = date( 'w' , $FirstDay );
+				$Code .= $this->compile_rows( $DisplayTime , $DayOfWeek , $FirstDay , $DisplayTime );
+
+				return( $Code.$End );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -571,102 +569,6 @@
 				}
 				
 				return( $this->Output );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'calendar'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'calendar'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_calendar( $Str , $Changed )
-		{
-			try
-			{
-				if( strpos( $Str , '{calendar}' ) !== false )
-				{
-					$Str = str_replace( '{calendar}' , '{calendar:p=1}' , $Str );
-				}
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'calendar' ) ; )
-				{
-					$CalendarTime = $this->Security->get_gp( 'calendar_time' , 'integer' , false );
-					$Code = $this->compile_calendar( $CalendarTime );;
-					
-					$Str = str_replace( "{calendar:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_calendar( $Str , $Changed );
-				
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

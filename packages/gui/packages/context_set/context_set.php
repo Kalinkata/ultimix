@@ -400,7 +400,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_prefix( $Str , $Changed )
+		function			compile_prefix( $Str , $Changed )
 		{
 			try
 			{
@@ -717,6 +717,53 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		private function	execute_do( &$Options , $Provider , $FilePath )
+		{
+			try
+			{
+				$this->ContextSetConfigs->load_context_set_config( $this->ContextSetSettings , $Options , $FilePath );
+				$this->load_context_set_data( $this->ContextSetSettings );
+
+				$this->run_common_states( $Options );
+
+				$this->run_custom_states( $Options );
+
+				$this->Provider->Output = $this->ContextSetMarkup->compile_view( 
+					$Options , $this->ContextSetSettings , $this->Provider->Output
+				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+	
+		/**
+		*	\~russian Функция запуска контроллера/вида.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@param $Provider - Объект класса представляющего функции-обработчики.
+		*
+		*	@param $FilePath - Путь к компоненту. Должен быть __FILE__
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method starts controller/view.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@param $Provider - Object of the class wich provides all handlers.
+		*
+		*	@param $FilePath - Path tp the component. Must be equal to __FILE__
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			execute( &$Options , $Provider , $FilePath )
 		{
 			try
@@ -728,16 +775,7 @@
 				$this->Provider = $Provider;
 				$this->Provider->Output = false;
 
-				$this->ContextSetConfigs->load_context_set_config( $this->ContextSetSettings , $Options , $FilePath );
-				$this->load_context_set_data( $this->ContextSetSettings );
-
-				$this->run_common_states( $Options );
-
-				$this->run_custom_states( $Options );
-
-				$this->Provider->Output = $this->ContextSetMarkup->process_view( 
-					$Options , $this->ContextSetSettings , $this->Provider->Output
-				);
+				$this->execute_do( $Options , $Provider , $FilePath );
 
 				$this->Trace->end_group();
 			}
@@ -777,11 +815,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( &$Options , $Str , &$Changed )
+		function			compile_special_macro( &$Options , $Str , &$Changed )
 		{
 			try
 			{
-				list( $Str , $Changed ) = $this->ContextSetMarkup->process_options( $Options , $Str , $Changed );
+				list( $Str , $Changed ) = $this->ContextSetMarkup->compile_options( $Options , $Str , $Changed );
 
 				$Str = str_replace( '{prefix}' , $this->Prefix , $Str );
 

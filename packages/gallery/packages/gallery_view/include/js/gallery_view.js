@@ -27,10 +27,9 @@ if( !ultimix.gallery )
 */
 ultimix.gallery.add_item_to_gallery = function( ServerData )
 {
-	var		ServerDataObject;
-	eval( "ServerDataObject=" + ServerData );
+	eval( "var			ServerDataObject=" + ServerData );
 	
-	ItemTemplate = jQuery( '.gallery>.gallery_template' ).html();
+	var			ItemTemplate = jQuery( '.gallery>.gallery_template' ).html();
 	ItemTemplate = ultimix.string_utilities.PrintRecord( ItemTemplate , ServerDataObject );
 	
 	jQuery( '.gallery>.gallery_items' ).append( ItemTemplate );
@@ -51,7 +50,8 @@ ultimix_gallery_after_image_upload_processor = function( File , ServerData , Rec
 {
 	try
 	{
-		var Progress = new FileProgress( File , this.customSettings.progressTarget );
+		var			Progress = new FileProgress( File , this.customSettings.progressTarget );
+
 		Progress.setComplete();
 		Progress.setStatus( ultimix.get_string( 'complete' ) );
 		Progress.toggleCancel( false );
@@ -75,7 +75,7 @@ ultimix_gallery_after_image_upload_processor = function( File , ServerData , Rec
 */
 ultimix.gallery.detach_file_success = function( GalleryId , FileId )
 {
-	var	LoadingId = ultimix.std_dialogs.MessageBox( 
+	var			LoadingId = ultimix.std_dialogs.MessageBox( 
 		ultimix.get_string( 'wait_please' ) , ultimix.get_string( 'Info' ) , 
 		ultimix.std_dialogs.MB_ICONLOADING | ultimix.std_dialogs.MB_MODAL
 	);

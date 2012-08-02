@@ -30,12 +30,25 @@ if( !ultimix.forms )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.EnterProcessor = function( e , Id )
+ultimix.forms.enter_processor = function( e , Id )
 {
 	if( e.keyCode == 13 )
 	{
 		document.getElementById( Id ).submit();
 	}
+}
+
+/**
+*	Function returns true if the enter key was pressed.
+*
+*	@param e - Event object.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.forms.enter_was_pressed = function( e )
+{
+	return( e.keyCode == 13 );
+	
 }
 
 // TODO convert to lower case notation

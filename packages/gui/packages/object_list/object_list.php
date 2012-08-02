@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс вывода списков объектов.
 	*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output;
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -47,10 +47,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
-		var					$String = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -65,16 +63,14 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения шаблонов.
 		*
@@ -102,16 +98,16 @@
 			try
 			{
 				$DirPath = dirname( __FILE__ )."/res/templates/";
-				
+
 				$FileName = $Options->get_setting( 'header' , 'header' );
 				$Header = $this->CachedMultyFS->file_get_contents( "$DirPath$FileName.tpl" );
-				
+
 				$FileName = $Options->get_setting( 'item' , 'item' );
 				$Item = $this->CachedMultyFS->file_get_contents( "$DirPath$FileName.tpl" );
-				
+
 				$FileName = $Options->get_setting( 'footer' , 'footer' );
 				$Footer = $this->CachedMultyFS->file_get_contents( "$DirPath$FileName.tpl" );
-				
+
 				return( array( $Header , $Item , $Footer ) );
 			}
 			catch( Exception $e )
@@ -119,7 +115,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -150,7 +146,7 @@
 				$FunctionName = $Options->get_setting( 'select_func_name' , 'select' );
 
 				$Records = call_user_func( array( $Object , $FunctionName ) , 0 , 1000000 , false , false )
-				
+
 				list( $Header , $Item , $Footer ) = $this->get_templates( $Options );
 
 				foreach( $Records as $i => $Record )
@@ -165,99 +161,39 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция отвечающая за обработку макроса 'object_line'.
+		*	\~russian Функция отрисовки компонента.
 		*
-		*	@param $Str - Обрабатывемая строка.
+		*	@param $Settings - Настройки работы модуля.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'object_line'.
+		*	\~english Function draws component.
 		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
+		*	@param $Settings - Settings.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_object_list( $Str , $Changed )
+		function			compile_object_list( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'object_list' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
+				$this->draw_object_list( $Settings );
 
-					$this->draw_object_list( $this->BlockSettings );
-
-					$Str = str_replace( "{object_list:$Parameters}" , $this->Output , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $this->Output );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( &$Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_object_list( $Str , $Changed );
-				
-				return( $Str );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -285,11 +221,11 @@
 			try
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_object_list' );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )
@@ -298,5 +234,5 @@
 			}
 		}
 	}
-	
+
 ?>

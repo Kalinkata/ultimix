@@ -160,7 +160,6 @@
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.dropdown.block.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.timer.widget.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.disable.text.select.js" );
-				$this->PageJS->add_javascript( "$Path/include/js/jquery.dialog.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/wizard.js" );
 			}
 			catch( Exception $e )

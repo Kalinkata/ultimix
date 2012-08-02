@@ -35,10 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
+		var					$Settings = false;
 		var					$CachedMultyFS = false;
 		var					$FileInputAlgorithms = false;
-		var					$PageComposer = false;
 		var					$Security = false;
 		var					$String = false;
 
@@ -60,10 +59,8 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->FileInputAlgorithms = get_package( 'file_input::file_input_algorithms' , 'last' , __FILE__ );
-				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
@@ -76,6 +73,8 @@
 		/**
 		*	\~russian Количество загружаемых файлов.
 		*
+		*	@param $Settings - Параметры компиляции.
+		*
 		*	@param $Code - Код компонента.
 		*
 		*	@return Код компонента.
@@ -87,6 +86,8 @@
 		/**
 		*	\~english Count of the uploading files.
 		*
+		*	@param $Settings - Compilation parameters.
+		*
 		*	@param $Code - Component's HTML code.
 		*
 		*	@return Component's HTML code.
@@ -95,22 +96,24 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	apply_upload_count( $Code )
+		private function	apply_upload_count( &$Settings , $Code )
 		{
 			try
 			{
-				if( $this->BlockSettings->get_setting( 'single_input' , false ) )
+				if( $Settings->get_setting( 'single_input' , false ) )
 				{
 					$Code = str_replace( '{file_upload_limit}' , 1 , $Code );
 					$Code = str_replace( '{file_queue_limit}' , 1 , $Code );
 				}
 				else
 				{
-					$FileUploadLimit = $this->BlockSettings->get_setting( 'file_upload_limit' , 0 );
+					$FileUploadLimit = $Settings->get_setting( 'file_upload_limit' , 1 );
 					$Code = str_replace( '{file_upload_limit}' , $FileUploadLimit , $Code );
-					$FileQueueLimit = $this->BlockSettings->get_setting( 'file_queue_limit' , 0 );
+					$FileQueueLimit = $Settings->get_setting( 'file_queue_limit' , 1 );
 					$Code = str_replace( '{file_queue_limit}' , $FileQueueLimit , $Code );
 				}
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -120,6 +123,8 @@
 		
 		/**
 		*	\~russian Установка ограничений на загрузку.
+		*
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@param $Code - Код компонента.
 		*
@@ -134,6 +139,8 @@
 		/**
 		*	\~english Setting upload limitations.
 		*
+		*	@param $Settings - Compilation parameters.
+		*
 		*	@param $Code - Component's HTML code.
 		*
 		*	@param $Name - Component's name.
@@ -144,19 +151,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			apply_upload_limitations( $Code , $Name )
+		private function	apply_upload_limitations( &$Settings , $Code , $Name )
 		{
 			try
 			{
-				$Type = $this->BlockSettings->get_setting( 'file_types' , 'default' );
+				$Type = $Settings->get_setting( 'file_types' , 'default' );
 				list( $FileExtensions , $FileDescription ) = $this->FileInputAlgorithms->get_file_filters( $Type );
 				
 				$Code = str_replace( '{file_types}' , $FileExtensions , $Code );
 				$Code = str_replace( '{file_types_description}' , $FileDescription , $Code );
-				$FileSizeLimit = $this->BlockSettings->get_setting( 'file_size_limit' , '512 KB' );
+				$FileSizeLimit = $Settings->get_setting( 'file_size_limit' , '512 KB' );
 				$Code = str_replace( '{file_size_limit}' , $FileSizeLimit , $Code );
 				
-				$Cocde = $this->apply_upload_count( $Code );
+				$Code = $this->apply_upload_count( $Settings , $Code );
 				
 				return( $Code );
 			}
@@ -169,6 +176,8 @@
 		/**
 		*	\~russian Установка обработчиков событий.
 		*
+		*	@param $Settings - Параметры компиляции.
+		*
 		*	@param $Code - Код компонента.
 		*
 		*	@return Код компонента.
@@ -180,6 +189,8 @@
 		/**
 		*	\~english Setting event handlers.
 		*
+		*	@param $Settings - Compilation parameters.
+		*
 		*	@param $Code - Component's HTML code.
 		*
 		*	@return Component's HTML code.
@@ -188,14 +199,14 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			set_event_handlers( $Code )
+		private function	set_event_handlers( &$Settings , $Code )
 		{
 			try
 			{
-				$UploadSuccess = $this->BlockSettings->get_setting( 'upload_success_handler' , 'uploadSuccess' );
+				$UploadSuccess = $Settings->get_setting( 'upload_success_handler' , 'uploadSuccess' );
 				$Code = str_replace( '{upload_success_handler}' , $UploadSuccess , $Code );
 				
-				$UploadComplete = $this->BlockSettings->get_setting( 'upload_complete_handler' , 'uploadComplete' );
+				$UploadComplete = $Settings->get_setting( 'upload_complete_handler' , 'uploadComplete' );
 				$Code = str_replace( '{upload_complete_handler}' , $UploadComplete , $Code );
 				
 				return( $Code );
@@ -209,6 +220,8 @@
 		/**
 		*	\~russian Получение данных и статуса.
 		*
+		*	@param $Settings - Параметры компиляции.
+		*
 		*	@return Данные и статус.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
@@ -218,22 +231,24 @@
 		/**
 		*	\~english Function returns data and status.
 		*
+		*	@param $Settings - Compilation parameters.
+		*
 		*	@return Data and status.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_data_and_status()
+		private function	get_data_and_status( &$Settings )
 		{
 			try
 			{
-				$Name = $this->BlockSettings->get_setting( 'name' , 'file_input' );
-				$Data = $this->Security->get_gp( 
-					"$Name" , 'string' , $this->BlockSettings->get_setting( 'value' , '' )
-				);
+				$Name = $Settings->get_setting( 'name' , 'file_input' );
+
+				$Data = $this->Security->get_gp( "$Name" , 'string' , $Settings->get_setting( 'value' , '' ) );
+
 				$Status = $this->Security->get_gp(
-					"visible_$Name" , 'string' , $this->BlockSettings->get_setting( 'visible_value' , '' )
+					"visible_$Name" , 'string' , $Settings->get_setting( 'visible_value' , '' )
 				);
 				
 				return( array( $Data , $Status ) );
@@ -247,6 +262,8 @@
 		/**
 		*	\~russian Компиляция формы отображения загруженного файла.
 		*
+		*	@param $Settings - Параметры компиляции.
+		*
 		*	@return Код компонента.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
@@ -256,18 +273,20 @@
 		/**
 		*	\~english Function compiles uploaded file form.
 		*
+		*	@param $Settings - Compilation parameters.
+		*
 		*	@return Component's HTML code.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_uploaded_file_code()
+		private function	get_uploaded_file_code( &$Settings )
 		{
 			try
 			{
-				list( $Data , $Status ) = $this->get_data_and_status();
-			
+				list( $Data , $Status ) = $this->get_data_and_status( $Settings );
+
 				$TemplatePath = dirname( __FILE__ ).'/res/templates/file_field.tpl';
 				$UploadedFileCode = $this->CachedMultyFS->file_get_contents( $TemplatePath );			
 				$UploadedFileCode = str_replace( "{data}" , $Data , $UploadedFileCode );
@@ -280,9 +299,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция компонента.
+		*
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return Код компонента.
 		*
@@ -293,126 +314,34 @@
 		/**
 		*	\~english Function compiles component.
 		*
+		*	@param $Settings - Compilation parameters.
+		*
 		*	@return Component's HTML code.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_upload_file_component()
+		function			compile_file_input( &$Settings )
 		{
 			try
 			{
 				$TemplatePath = dirname( __FILE__ ).'/res/templates/file_input.tpl';
 				$Code = $this->CachedMultyFS->file_get_contents( $TemplatePath );
 
-				$Code = str_replace( '{uploaded_file_code}' , $this->get_uploaded_file_code() , $Code );
+				$Code = str_replace( 
+					'{uploaded_file_code}' , $this->get_uploaded_file_code( $Settings ) , $Code
+				);
 
-				$Url = $this->BlockSettings->get_setting( 'upload_url' );
-				$Code = str_replace( '{upload_url}' , $Url , $Code );
+				$Url = $Settings->get_setting( 'upload_url' );
 
-				$Name = $this->BlockSettings->get_setting( 'name' , 'file_input' );
-				$Code = $this->apply_upload_limitations( $Code , $Name );
-				$Code = $this->set_event_handlers( $Code );
+				$Name = $Settings->get_setting( 'name' , 'file_input' );
+				$Code = $this->apply_upload_limitations( $Settings , $Code , $Name );
+				$Code = $this->set_event_handlers( $Settings , $Code );
 
-				$Code = str_replace( '{name}' , $Name , $Code );
+				$Code = str_replace( array( '{name}' , '{upload_url}' ) , array( $Name , $Url ) , $Code );
 
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'file_input'.
-		*
-		*	@param $ProcessingString - Щбрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $ProcessingString , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'file_input'.
-		*
-		*	@param $ProcessingString - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $ProcessingString , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_file_input( $ProcessingString , $Changed )
-		{
-			try
-			{
-				$ProcessingString = str_replace( '{file_input}' , '{file_input:f=1}' , $ProcessingString );
-				
-				for( ; $MacroParameters = $this->String->get_macro_parameters( $ProcessingString , 'file_input' ) ; )
-				{
-					$this->BlockSettings->load_settings( $MacroParameters );
-					
-					$Code = $this->compile_upload_file_component();
-					
-					$ProcessingString = str_replace( "{file_input:$MacroParameters}" , $Code , $ProcessingString );
-					$Changed = true;
-				}
-				
-				return( array( $ProcessingString , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $ProcessingString - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $ProcessingString - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $ProcessingString , &$Changed )
-		{
-			try
-			{
-				/* TODO: move it to auto_markup */
-				list( $ProcessingString , $Changed ) = $this->process_file_input( $ProcessingString , $Changed );
-
-				return( $ProcessingString );
 			}
 			catch( Exception $e )
 			{

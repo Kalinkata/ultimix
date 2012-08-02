@@ -124,7 +124,7 @@ if (typeof(SWFUpload) === "function") {
 	SWFUpload.speed.extendFile = function (file, trackingList) {
 		var tracking;
 		
-		if (trackingList) {
+		if (trackingList && file) {
 			tracking = trackingList[file.id];
 		}
 		
@@ -138,6 +138,7 @@ if (typeof(SWFUpload) === "function") {
 			file.sizeUploaded = tracking.bytesUploaded;
 
 		} else {
+			file = file == null ? {} : file;
 			file.currentSpeed = 0;
 			file.averageSpeed = 0;
 			file.movingAverageSpeed = 0;

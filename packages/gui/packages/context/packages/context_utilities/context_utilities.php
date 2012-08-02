@@ -87,7 +87,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_no_permits( $Validation )
+		function			compile_no_permits( $Validation )
 		{
 			try
 			{
@@ -219,7 +219,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_global_success_message()
+		private function	compile_global_success_message()
 		{
 			try
 			{
@@ -303,7 +303,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_success_messages( &$Options )
+		function			compile_success_messages( &$Options )
 		{
 			try
 			{
@@ -321,7 +321,7 @@
 					$this->Messages->add_success_message( $SuccessMessage );
 				}
 
-				$this->process_global_success_message();
+				$this->compile_global_success_message();
 			}
 			catch( Exception $e )
 			{
@@ -387,7 +387,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_get_post_filter( &$Config , &$Options )
+		function			compile_get_post_filter( &$Config , &$Options )
 		{
 			try
 			{
@@ -435,7 +435,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_get_post_validation( &$Config , &$Options )
+		function			compile_get_post_validation( &$Config , &$Options )
 		{
 			try
 			{
@@ -447,6 +447,49 @@
 				}
 
 				return( true );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Кастомные проверки провайдера.
+		*
+		*	@return Объект.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Provider's custom validations.
+		*
+		*	@return Object.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_custom_validation_object( &$Config )
+		{
+			try
+			{
+				$Name = $this->get_section( $Config ,  'custom_validation_package_name' , false );
+
+				if( $Name !== false )
+				{
+					$Version = $this->get_section( $Config ,  'custom_validation_package_version' , 'last' );
+
+					$ValidationObject = get_package( $Name , $Version , __FILE__ );
+				}
+				else
+				{
+					$ValidationObject = $Owner;
+				}
+
+				return( $ValidationObject );
 			}
 			catch( Exception $e )
 			{

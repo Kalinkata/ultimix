@@ -35,11 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$MacroSettings = false;
 		var					$CachedMultyFS = false;
 		var					$PageCSS = false;
 		var					$PageJS = false;
-		var					$String = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -59,11 +57,9 @@
 		{
 			try
 			{
-				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageCSS = get_package( 'page::page_css' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -136,9 +132,7 @@
 		/**
 		*	\~russian Функция обработки макроса colorbox.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@param $Settings - Параметры.
 		*
 		*	@return Обработанная строка.
 		*
@@ -149,9 +143,7 @@
 		/**
 		*	\~english Function processes macro 'colorbox'.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@param $Settings - Settings.
 		*
 		*	@return Processed string.
 		*
@@ -159,70 +151,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_colorbox( $Str , $Changed )
+		function			compile_colorbox( &$Settings )
 		{
 			try
 			{
-				$Rules = array( 'selector' => TERMINAL_VALUE );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'colorbox.tpl' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'colorbox' , $Rules ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
+				$Selector = $Settings->get_setting( 'selector' );
+				$Code = str_replace( '{selector}' , $Selector , $Code );
 
-					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'colorbox.tpl' );
-
-					$Selector = $this->MacroSettings->get_setting( 'selector' );
-					$Code = str_replace( '{selector}' , $Selector , $Code );
-
-					$Str = str_replace( "{colorbox:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_colorbox( $Str , $Changed );
-				
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

@@ -343,6 +343,25 @@ ultimix.std_dialogs.QuestionMessageBox = function( Text , Success )
 }
 
 /**
+*	Function shows 'info' dialog.
+*
+*	@param Text - Message box text.
+*
+*	@return Created dialog's selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.InfoMessageBox = function( Text )
+{
+	return( 
+		ultimix.std_dialogs.MessageBox( 
+			ultimix.get_string( Text ) , ultimix.get_string( 'Info' ) , 
+			ultimix.std_dialogs.MB_OK | ultimix.std_dialogs.MB_ICONINFORMATION | ultimix.std_dialogs.MB_MODAL
+		)
+	);
+}
+
+/**
 *	Function returns 'loading' image control.
 *
 *	@return HTML code of the control.
@@ -373,33 +392,98 @@ ultimix.std_dialogs.loading_img_widget = function()
 }
 
 /**
+*	Function creates dialog.
+*
+*	@param id - id of the dialog.
+*
+*	@param Caption - Caption of the dialog.
+*
+*	@param Buttons - Buttons of the dialog.
+*
+*	@return Selector of the dialog.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.construct_common_dialog = function( id , Caption , Buttons )
+{
+	var			DialogData = {
+		width: 'auto' , modal : true , title : ultimix.get_string( Caption ) , buttons : Buttons , 
+		resizable : false , closeOnEscape : true
+	}
+
+	jQuery( "#" + id ).dialog( DialogData );
+
+	return( "#" + id );
+}
+
+/**
+*	Function creates OK button.
+*
+*	@param id - Dialog id.
+*
+*	@param OkProcessor - Processor of the OK button.
+*
+*	@param AfterOkProcessor - Processor of the closing dialog after OK button.
+*
+*	@return OK button handler.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.common_ok_button = function( id , OkProcessor , AfterOkProcessor )
+{
+	return(
+		function()
+		{
+			if( OkProcessor == false || OkProcessor( "#" + id ) )
+			{
+				var			Data = jQuery( "#" + id ).find( 'textarea' ).val();
+
+				jQuery( "#" + id ).dialog( "close" );
+				jQuery( "#" + id ).remove();
+
+				if( AfterOkProcessor )
+				{
+					AfterOkProcessor( Data );
+				}
+			}
+		}
+	);
+}
+
+/**
 *	Function creates buttons.
 *
 *	@param id - Dialog id.
+*
+*	@param OkProcessor - Processor of the OK button.
+*
+*	@param AfterOkProcessor - Processor of the closing dialog after OK button.
+*
+*	@param CancelProcessor - Processor of the Cancel button.
 *
 *	@return Buttons.
 *
 *	@author Dodonov A.A.
 */
-ultimix.std_dialogs.textarea_dialog_buttons = function( id )
+ultimix.std_dialogs.textarea_dialog_buttons = function( id , OkProcessor , AfterOkProcessor , CancelProcessor )
 {
 	var			Buttons = {};
 
-	Buttons[ ultimix.get_string( 'Cancel' ) ] = function()
+	if( CancelProcessor == 'no button' )
 	{
-		jQuery( "#" + id ).dialog( "close" );
-		jQuery( "#" + id ).remove();
+		/* no button*/
 	}
-
-	Buttons[ ultimix.get_string( 'OK' ) ] = function()
+	else
 	{
-		if( OkProcessor( "#" + id ) )
+		Buttons[ ultimix.get_string( 'Cancel' ) ] = function()
 		{
 			jQuery( "#" + id ).dialog( "close" );
 			jQuery( "#" + id ).remove();
 		}
 	}
-	
+
+	Buttons[ ultimix.get_string( 'OK' ) ] = ultimix.std_dialogs.common_ok_button( id , OkProcessor , AfterOkProcessor );
+
 	return( Buttons );
 }
 
@@ -410,16 +494,21 @@ ultimix.std_dialogs.textarea_dialog_buttons = function( id )
 *
 *	@param OkProcessor - Processor of the OK button.
 *
+*	@param AfterOkProcessor - Processor of the closing dialog after OK button.
+*
+*	@param CancelProcessor - Processor of the Cancel button.
+*
 *	@return id of the created dialog.
 *
 *	@author Dodonov A.A.
 */
-ultimix.std_dialogs.textarea_dialog = function( Caption , OkProcessor )
+ultimix.std_dialogs.textarea_dialog = function( Caption , OkProcessor , AfterOkProcessor , CancelProcessor )
 {
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
-	var			Buttons = ultimix.std_dialogs.textarea_dialog_buttons( id );
+	var			Buttons = ultimix.std_dialogs.textarea_dialog_buttons( 
+		id , OkProcessor , AfterOkProcessor , CancelProcessor
+	);
 
-	/* TODO: remove duplicate code */
 	if( !jQuery( "#" + id ).length )
 	{
 		jQuery( "body" ).append( 
@@ -428,12 +517,76 @@ ultimix.std_dialogs.textarea_dialog = function( Caption , OkProcessor )
 		);
 	}
 
-	var			DialogData = {
-		width: 'auto' , modal : true , title : ultimix.get_string( Caption ) , buttons : Buttons , 
-		resizable : false , closeOnEscape : true
+	return( ultimix.std_dialogs.construct_common_dialog( id , Caption , Buttons ) );
+}
+
+/**
+*	Function creates buttons.
+*
+*	@param id - Dialog id.
+*
+*	@param OkProcessor - Processor of the OK button.
+*
+*	@param AfterOkProcessor - Processor of the closing dialog after OK button.
+*
+*	@param CancelProcessor - Processor of the Cancel button.
+*
+*	@return Buttons.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.input_dialog_buttons = function( id , OkProcessor , AfterOkProcessor , CancelProcessor )
+{
+	var			Buttons = {};
+
+	if( CancelProcessor == 'no button' )
+	{
+		/* no button*/
+	}
+	else
+	{
+		Buttons[ ultimix.get_string( 'Cancel' ) ] = function()
+		{
+			jQuery( "#" + id ).dialog( "close" );
+			jQuery( "#" + id ).remove();
+		}
 	}
 
-	jQuery( "#" + id ).dialog( DialogData );
+	Buttons[ ultimix.get_string( 'OK' ) ] = ultimix.std_dialogs.common_ok_button( id , OkProcessor , AfterOkProcessor );
 
-	return( id );
+	return( Buttons );
+}
+
+/**
+*	Function creates dialog with the 'textarea' control.
+*
+*	@param Caption - Dialog caption.
+*
+*	@param OkProcessor - Processor of the OK button.
+*
+*	@param AfterOkProcessor - Processor of the closing dialog after OK button.
+*
+*	@param CancelProcessor - Processor of the Cancel button.
+*
+*	@return id of the created dialog.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.input_dialog = function( Caption , OkProcessor , AfterOkProcessor , CancelProcessor )
+{
+	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
+	var			Buttons = ultimix.std_dialogs.input_dialog_buttons( 
+		id , OkProcessor , AfterOkProcessor , CancelProcessor
+	);
+
+	/* TODO: remove duplicate code */
+	if( !jQuery( "#" + id ).length )
+	{
+		jQuery( "body" ).append( 
+			'<span id="' + id + '" style="display:none">' + 
+			'<input sype="text" style="width: 150px; margin: 10px;" value=""></span>'
+		);
+	}
+
+	return( ultimix.std_dialogs.construct_common_dialog( id , Caption , Buttons ) );
 }

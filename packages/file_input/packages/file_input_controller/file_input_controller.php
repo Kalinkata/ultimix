@@ -197,7 +197,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_request( &$Options )
+		function			handle_request( &$Options )
 		{
 			try
 			{
@@ -247,7 +247,7 @@
 		{
 			try
 			{
-				list( $save_path , $file_name , $original_file_name ) = $this->process_request( $Options );
+				list( $save_path , $file_name , $original_file_name ) = $this->handle_request( $Options );
 				
 				$id = $this->save_uploaded_file( $save_path , $file_name , $original_file_name );
 				

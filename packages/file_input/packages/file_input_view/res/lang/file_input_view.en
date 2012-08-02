@@ -1,9 +1,11 @@
 pending=Pending...
+file_error=Error
+queue_limit_exceded=Too many files
 file_is_too_big=File is too big.
 cannot_upload_zero_bytes=Cannot upload Zero Byte files.
 invalid_file_type=Invalid File Type.
 unhandled_error=Unhandled Error
-upload_error=Upload Error: 
+http_error=HTTP error
 upload_failed=Upload Failed.
 server_io_error=Server (IO) Error
 security_error=Security Error

@@ -85,7 +85,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_exact_config( $Options )
+		function			compile_exact_config( $Options )
 		{
 			try
 			{
@@ -131,9 +131,9 @@
 		{
 			try
 			{
-				if( intval( $Options->get_setting( 'process_exact_config' , 0 ) ) )
+				if( intval( $Options->get_setting( 'compile_exact_config' , 0 ) ) )
 				{
-					$this->process_exact_config( $Options );
+					$this->compile_exact_config( $Options );
 				}
 			}
 			catch( Exception $e )
@@ -168,9 +168,9 @@
 		{
 			try
 			{
-				if( intval( $Options->get_setting( 'process_exact_config' , 0 ) ) )
+				if( intval( $Options->get_setting( 'compile_exact_config' , 0 ) ) )
 				{
-					return( $this->process_exact_config( $Options ) );
+					return( $this->compile_exact_config( $Options ) );
 				}
 			}
 			catch( Exception $e )

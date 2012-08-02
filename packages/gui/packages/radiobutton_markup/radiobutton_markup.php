@@ -36,7 +36,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$Database = false;
 		var					$Security = false;
 		var					$String = false;
@@ -55,7 +54,6 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -148,7 +146,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_radio_set( $Records , $Cols , $Name , $CurrentValue )
+		function			compile_radio_set_records( $Records , $Cols , $Name , $CurrentValue )
 		{
 			try
 			{
@@ -202,7 +200,7 @@
 		{
 			try
 			{
-				$Query = $this->BlockSettings->get_setting( 'query' );
+				$Query = $Settings->get_setting( 'query' );
 				$this->Database->query_as( DB_OBJECT );
 				$Records = $this->Database->query( $Query );
 				$Records = $this->Database->fetch_results( $Records );
@@ -216,59 +214,47 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'radio_set'.
+		*	\~russian Компиляция контрола.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Контрол.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'radio_set'.
+		*	\~english Function processes macro 'radio'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Control.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_radio_set( $Str , $Changed )
+		function			compile_radio_set( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'radio_set' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					list( $Cols , $Name )= $this->BlockSettings->get_setting( 'cols,name' );
+				list( $Cols , $Name )= $Settings->get_setting( 'cols,name' );
 
-					$CurrentValue = $this->Security->get_gp( $Name , 'command' , '' );
-					
-					$Records = $this->get_records( $this->BlockSettings );
-					
-					$Code = $this->compile_radio_set( $Records , $Cols , $Name , $CurrentValue );
-					$Str = str_replace( "{radioset:$Parameters}" , $Code , $Str );
+				$CurrentValue = $this->Security->get_gp( $Name , 'command' , '' );
 
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				$Records = $this->get_records( $Settings );
+
+				$Code = $this->compile_radio_set_records( $Records , $Cols , $Name , $CurrentValue );
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает флаг 'checked'.
 		*
@@ -349,7 +335,7 @@
 				
 				$Checked = $this->get_checked( $Settings );
 				
-				$id = $this->BlockSettings->get_setting( 'id' , md5( microtime() ) );
+				$id = $Settings->get_setting( 'id' , md5( microtime() ) );
 
 				$Template = "<input id=\"$id\" style=\"cursor: pointer;\" ".
 									"type=\"radio\" value=\"$Value\" $Checked name=\"$Name\">";
@@ -368,61 +354,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'radio'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'radio'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_radio( $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'value' => TERMINAL_VALUE , 'current_value' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'radio' , $Rules ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					$Radio = $this->compile_radio( $this->BlockSettings );
-					
-					$Str = str_replace( "{radio:$Parameters}" , $Radio , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'yes_no'.
 		*
-		*	@param $BlockSettings - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return HTML код.
 		*
@@ -433,7 +369,7 @@
 		/**
 		*	\~english Function compiles macro 'yes_no'.
 		*
-		*	@param $BlockSettings - Compilation parameters.
+		*	@param $Settings - Compilation parameters.
 		*
 		*	@return HTML code.
 		*
@@ -441,117 +377,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_yes_no( &$BlockSettings )
+		function			compile_yes_no( &$Settings )
 		{
 			try
 			{
-				$this->BlockSettings->set_undefined( 'current_value' , 1 );
+				$Settings->set_undefined( 'current_value' , 1 );
 
-				$Name = $this->BlockSettings->get_setting( 'name' );
-				$CurrentValue = $this->BlockSettings->get_setting( 'current_value' );
+				$Name = $Settings->get_setting( 'name' );
+				$CurrentValue = $Settings->get_setting( 'current_value' );
 
 				$Code = "{radio:value=1;current_value=$CurrentValue;name=$Name;label=yes}&nbsp;".
 						 "{radio:value=2;current_value=$CurrentValue;name=$Name;label=no}";
 
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'yes_no'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'yes_no'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_yes_no( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'current_value' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'yes_no' , $Limitations ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					$Code = $this->compile_yes_no( $this->BlockSettings );
-					
-					$Str = str_replace( "{yes_no:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_radio_set( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_radio( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_yes_no( $Str , $Changed );
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

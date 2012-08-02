@@ -53,7 +53,7 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
@@ -64,48 +64,35 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки макроса 'sprintf'.
+		*	\~russian Функция копиляции макроса 'sprintf'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры обработки.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@return Виджет.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'sprintf'.
+		*	\~english Function compiles macro 'sprintf'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Processing options.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@return Widget.
 		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_sprintf( $Str , $Changed )
+		function			compile_sprintf( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value' => TERMINAL_VALUE );
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'sprintf' , $Limitations ) ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
-					
-					$Format = $this->BlockSettings->get_setting( 'format' , '%s' );
-					$Value = $this->BlockSettings->get_setting( 'value' , '' );
-					
-					$Str = str_replace( "{sprintf:$Params}" , sprintf( $Format , $Value ) , $Str );
-					$Changed = true;
-				}
+				$Format = $Settings->get_setting( 'format' , '%s' );
+				$Value = $Settings->get_setting( 'value' , '' );
 				
-				return( array( $Str , $Changed ) );
+				return( sprintf( $Format , $Value ) );
 			}
 			catch( Exception $e )
 			{
@@ -114,192 +101,40 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки макроса 'encoding'.
+		*	\~russian Функция копиляции макроса 'encoding'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры обработки.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@return Виджет.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'encoding'.
+		*	\~english Function compiles macro 'encoding'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Processing options.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@return Widget.
 		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_encoding( $Str , $Changed )
+		function			compile_encoding( $Str , $Changed )
 		{
 			try
 			{
-				for( ; ( $Params = $this->String->get_macro_parameters( $Str , 'encoding' ) ) !== false ; )
-				{
-					$this->BlockSettings->load_settings( $Params );
-					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'encoding.tpl' );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'encoding.tpl' );
 
-					$Name = $this->BlockSettings->get_setting( 'name' , 'encoding' );
-					$Selected = $this->BlockSettings->get_setting( 'selected' , 'utf-8' );
+				$Name = $Settings->get_setting( 'name' , 'encoding' );
+				$Selected = $Settings->get_setting( 'selected' , 'utf-8' );
 
-					$Code = str_replace( '{name}' , $Name , $Code );
-					$Code = str_replace( '{selected'.$Selected.'}' , 'selected' , $Code );
+				$Code = str_replace( '{name}' , $Name , $Code );
+				$Code = str_replace( '{selected'.$Selected.'}' , 'selected' , $Code );
 
-					$Str = str_replace( "{encoding:$Params}" , $Code , $Str );
-					$Changed = true;
-				}
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'nbsp'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'nbsp'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_nbsp( $Str , $Changed )
-		{
-			try
-			{
-				for( ; ( $Params = $this->String->get_macro_parameters( $Str , 'nbsp' ) ) !== false ; )
-				{
-					$Str = str_replace( "{nbsp:$Params}" , str_replace( ' ' , '&nbsp;' , $Params ) , $Str );
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'strlen'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'strlen'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_strlen( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'str' => TERMINAL_VALUE );
-				for( ; ( $Params = $this->String->get_macro_parameters( $Str , 'strlen' , $Limitations ) ) !== false ; )
-				{
-					$Str = str_replace( "{strlen:$Params}" , strlen( $Params ) - 4 , $Str );
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				// TODO move to auto_markup package
-				list( $Str , $Changed ) = $this->process_sprintf( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_encoding( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_nbsp( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_strlen( $Str , $Changed );
-				
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

@@ -220,7 +220,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			load_config_from_object( $Config )
+		function			load_config_from_object( &$Config )
 		{
 			try
 			{
@@ -254,7 +254,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_call_params_filter( &$Options )
+		function			compile_call_params_filter( &$Options )
 		{
 			try
 			{
@@ -278,7 +278,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка фильтров доступов.
 		*
@@ -301,7 +301,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_permits_filter( &$Options )
+		function			compile_permits_filter( &$Options )
 		{
 			try
 			{
@@ -348,7 +348,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_permits_validation( &$Options )
+		function			compile_permits_validation( &$Options )
 		{
 			try
 			{
@@ -361,7 +361,7 @@
 						$this->Trace->add_trace_string( 
 							"{lang:permits_validation_was_not_passed} : $Validation" , COMMON
 						);
-						$this->ContextUtilities->process_no_permits( $Validation );
+						$this->ContextUtilities->compile_no_permits( $Validation );
 						return( false );
 					}
 				}
@@ -373,7 +373,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Кастомные проверки.
 		*
@@ -396,7 +396,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_custom_validation( &$Options )
+		function			compile_custom_validation( &$Options )
 		{
 			try
 			{
@@ -425,52 +425,6 @@
 		/**
 		*	\~russian Кастомные проверки провайдера.
 		*
-		*	@return Объект.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Provider's custom validations.
-		*
-		*	@return Object.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	get_custom_validation_object()
-		{
-			try
-			{
-				$Name = $this->ContextUtilities->get_section( 
-					$this->Config ,  'custom_validation_package_name' , false
-				);
-				if( $Name !== false )
-				{
-					$Version = $this->ContextUtilities->get_section( 
-						$this->Config ,  'custom_validation_package_version' , 'last'
-					);
-
-					$ValidationObject = get_package( $Name , $Version , __FILE__ );
-				}
-				else
-				{
-					$ValidationObject = $Owner;
-				}
-
-				return( $ValidationObject );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Кастомные проверки провайдера.
-		*
 		*	@param $Options - Параметры выполнения.
 		*
 		*	@return false если проверка не была пройдена.
@@ -490,13 +444,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_custom_validation_func( &$Options )
+		private function	compile_custom_validation_func( &$Options )
 		{
 			try
 			{
 				if( $this->ContextUtilities->section_exists( $this->Config , 'custom_validation_func' ) )
 				{
-					$ValidationObject = $this->get_custom_validation_object();
+					$ValidationObject = $this->ContextUtilities->get_custom_validation_object( $this->Config );
 
 					$Func = $this->ContextUtilities->get_section( $this->Config ,  'custom_validation_func' );
 
@@ -540,7 +494,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_error_func( &$Owner , &$Options )
+		function			compile_error_func( &$Owner , &$Options )
 		{
 			try
 			{
@@ -664,7 +618,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_package_success_func( &$Options , &$Owner , $Func )
+		function			compile_package_success_func( &$Options , &$Owner , $Func )
 		{
 			try
 			{
@@ -733,10 +687,10 @@
 				}
 				else
 				{
-					$this->process_package_success_func( $Options , $Owner , $Func );
+					$this->compile_package_success_func( $Options , $Owner , $Func );
 				}
 
-				$this->ContextUtilities->process_success_messages( $Options );
+				$this->ContextUtilities->compile_success_messages( $Options );
 			}
 			catch( Exception $e )
 			{
@@ -770,17 +724,17 @@
 		{
 			try
 			{
-				if( $this->process_call_params_filter( $Options ) === false )
+				if( $this->compile_call_params_filter( $Options ) === false )
 				{
 					return( false );
 				}
 
-				if( $this->ContextUtilities->process_get_post_filter( $this->Config , $Options ) === false )
+				if( $this->ContextUtilities->compile_get_post_filter( $this->Config , $Options ) === false )
 				{
 					return( false );
 				}
 
-				if( $this->process_permits_filter( $Options ) === false )
+				if( $this->compile_permits_filter( $Options ) === false )
 				{
 					return( false );
 				}
@@ -824,15 +778,15 @@
 			try
 			{
 				if( $this->run_filters( $Options , $Owner ) === false || 
-					$this->process_permits_validation( $Options ) === false	)
+					$this->compile_permits_validation( $Options ) === false	)
 				{
 					return( false );
 				}
 
-				if( $this->ContextUtilities->process_get_post_validation( $this->Config , $Options ) )
+				if( $this->ContextUtilities->compile_get_post_validation( $this->Config , $Options ) )
 				{
-					if( $this->process_custom_validation( $Options ) === false || 
-						$this->process_custom_validation_func( $Options ) === false )
+					if( $this->compile_custom_validation( $Options ) === false || 
+						$this->compile_custom_validation_func( $Options ) === false )
 					{
 						return( false );
 					}
@@ -842,7 +796,7 @@
 					return( true );
 				}
 
-				return( $this->process_error_func( $Owner , $Options ) );
+				return( $this->compile_error_func( $Owner , $Options ) );
 			}
 			catch( Exception $e )
 			{

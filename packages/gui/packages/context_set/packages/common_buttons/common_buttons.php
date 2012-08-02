@@ -172,7 +172,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_search_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
+		function			compile_search_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
@@ -274,7 +274,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_create_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
+		function			compile_create_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
@@ -332,7 +332,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_update_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
+		function			compile_update_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
@@ -390,7 +390,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_copy_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
+		function			compile_copy_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
@@ -448,7 +448,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_delete_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
+		function			compile_delete_button_creation( &$ContextSetConfig , &$Options , $ControlCode )
 		{
 			try
 			{
@@ -506,19 +506,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_buttons( &$ContextSetConfig , &$Options , $Str )
+		function			compile_buttons( &$ContextSetConfig , &$Options , $Str )
 		{
 			try
 			{
-				$Str = $this->process_search_button_creation( $ContextSetConfig , $Options , $Str );
+				$Str = $this->compile_search_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_create_button_creation( $ContextSetConfig , $Options , $Str );
+				$Str = $this->compile_create_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_update_button_creation( $ContextSetConfig , $Options , $Str );
+				$Str = $this->compile_update_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_copy_button_creation( $ContextSetConfig , $Options , $Str );
+				$Str = $this->compile_copy_button_creation( $ContextSetConfig , $Options , $Str );
 
-				$Str = $this->process_delete_button_creation( $ContextSetConfig , $Options , $Str );
+				$Str = $this->compile_delete_button_creation( $ContextSetConfig , $Options , $Str );
 
 				$Str = str_replace( '{prefix}' , $ContextSetConfig->get_setting( 'prefix' , '' ) , $Str );
 

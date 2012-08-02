@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$LangMarkup = false;
 		var					$PageComposer = false;
 		var					$Security = false;
 		var					$Tags = false;
@@ -112,7 +111,6 @@
 			try
 			{
 				$this->LastCallTime = microtime( true ) - $this->Timeout / 1000000;
-				$this->LangMarkup = get_package( 'lang::lang_markup' , 'last' , __FILE__ );
 				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
@@ -205,9 +203,8 @@
 		{
 			try
 			{
-				// TODO why markup is calld maually? not in execute_processors?
-				$Str = $this->LangMarkup->process_object( $Str );
 				$Str = $this->Tags->compile_ultimix_tags( $Str );
+
 				$this->PageComposer->execute_processors( $Str , 'post_process' );
 
 				return( $Str );

@@ -55,7 +55,7 @@
 		{
 			try
 			{
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -123,19 +123,23 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_component_button( &$Settings )
+		function			compile_component_button( &$Settings )
 		{
 			try
 			{
+				$Settings->set_undefined( 'label' , 'label' );
+				$Settings->set_undefined( 'size' , '42' );
+				$Settings->set_undefined( 'package_version' , 'last' );
+
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'component_button.tpl' );
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 
-				$PackageName = $Settings->get_setting( 'package_name' );
-				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
-				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
+				$Path = _get_package_relative_path_ex( 
+					$Settings->get_setting( 'package_name' ) , $Settings->get_setting( 'package_version' , 'last' )
+				);
 				$Icon = $Settings->get_setting( 'icon' );
-				$Code = str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code );
-				
+				$Code = str_replace( '{path_to_image}' , $Path."/res/images/$Icon" , $Code );
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -143,157 +147,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'component_button'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'component_button'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_component_button( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'icon' => TERMINAL_VALUE );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'component_button' , $Limitations ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					$this->Settings->set_undefined( 'label' , 'label' );
-					$this->Settings->set_undefined( 'size' , '42' );
-					$this->Settings->set_undefined( 'package_version' , 'last' );
-
-					$Code = $this->compile_component_button( $this->Settings );
-
-					$Str = str_replace( "{component_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция компиляции макроса 'menu_button'.
-		*
-		*	@param $Settings - Параметры компиляции.
-		*
-		*	@return HTML код.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function compiles macro 'menu_button'.
-		*
-		*	@param $Settings - Compilation parameters.
-		*
-		*	@return HTML code.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	compile_menu_button( &$Settings )
-		{
-			try
-			{
-				$Icon = $Settings->get_setting( 'icon' );
-
-				$PackageName = $Settings->get_setting( 'package_name' );
-				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
-
-				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
-
-				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'menu_button.tpl' );
-
-				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
-
-				return( str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'menu_button'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'menu_button'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_menu_button( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'icon' => TERMINAL_VALUE );
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'menu_button' , $Limitations ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					$this->Settings->set_undefined( 'size' , 24 );
-					$this->Settings->set_undefined( 'package_version' , 'last' );
-					$this->Settings->set_undefined( 'permit' , 'admin' );
-
-					$Code = $this->compile_menu_button( $this->Settings );
-
-					$Str = str_replace( "{menu_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция компиляции кнопки.
 		*
@@ -320,6 +174,64 @@
 				$Settings->set_undefined( 'size' , 24 );
 				$Settings->set_undefined( 'permit' , 'admin' );
 				$Settings->set_undefined( 'package_version' , 'last' );
+				$Settings->set_undefined( 'page' , 'javascript:void(0);' );
+
+				$OnClick = $Settings->get_setting( 'onclick' , false );
+				if( $OnClick === false )
+				{
+					$Settings->set_setting( 'onclick' , '' );
+				}
+				else
+				{
+					$Settings->set_setting( 'onclick' , 'onclick="'.$OnClick.'" ' );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'menu_button'.
+		*
+		*	@param $Settings - Параметры компиляции.
+		*
+		*	@return HTML код.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'menu_button'.
+		*
+		*	@param $Settings - Compilation parameters.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_menu_button( &$Settings )
+		{
+			try
+			{
+				$this->set_default_data_for_toolbar_button( $Settings );
+
+				$Icon = $Settings->get_setting( 'icon' );
+
+				$PackageName = $Settings->get_setting( 'package_name' );
+				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
+
+				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
+
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'menu_button.tpl' );
+
+				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
+
+				return( str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code ) );
 			}
 			catch( Exception $e )
 			{
@@ -349,10 +261,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_toolbar_button( &$Settings )
+		function			compile_toolbar_button( &$Settings )
 		{
 			try
 			{
+				$this->set_default_data_for_toolbar_button( $Settings );
+
 				$Icon = $Settings->get_setting( 'icon' );
 				$PackageName = $Settings->get_setting( 'package_name' );
 				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
@@ -363,58 +277,6 @@
 				$Code = str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code );
 
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки макроса 'toolbar_button'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'toolbar_button'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_toolbar_button( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'icon' => TERMINAL_VALUE );
-
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'toolbar_button' , $Limitations ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-
-					$this->set_default_data_for_toolbar_button( $this->Settings );
-
-					$Code = $this->compile_toolbar_button( $this->Settings );
-
-					$Str = str_replace( "{toolbar_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
 			{
@@ -538,13 +400,15 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_toggle_button( &$Settings )
+		function			compile_toggle_button( &$Settings )
 		{
 			try
 			{
+				$this->set_default_data_for_toolbar_button( $Settings );
+
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'toggle_button.tpl' );
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
-				
+
 				$Code = $this->set_toggle_button_icons( $Code , $Settings );
 
 				return( $Code );
@@ -555,101 +419,45 @@
 			}
 		}
 
+		//TODO: remove duplicate code - get_path_to_image method
+		//TODO: use run_controller_and_remove_dom_button macro anywhere
 		/**
-		*	\~russian Функция обработки макроса 'toggle_button'.
+		*	\~russian Функция компиляции кнопки 'run_controller_and_remove_dom_button'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Скомпилированная кнопка.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'toggle_button'.
+		*	\~english Function compiles buttonv.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Compiled button.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_toggle_button( $Str , $Changed )
+		function			compile_run_controller_and_remove_dom_button( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'icon' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'toggle_button' , $Limitations ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
+				$this->set_default_data_for_toolbar_button( $Settings );
 
-					$this->set_default_data_for_toolbar_button( $this->Settings );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'run_controller_and_remove_dom_button.tpl' );
+				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 
-					$Code = $this->compile_toggle_button( $this->Settings );
+				$PackageName = $Settings->get_setting( 'package_name' );
+				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
+				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
+				$Code = str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code );
 
-					$Str = str_replace( "{toggle_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_component_button( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_menu_button( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_toolbar_button( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_toggle_button( $Str , $Changed );
-				
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

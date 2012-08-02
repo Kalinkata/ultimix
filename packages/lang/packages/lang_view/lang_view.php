@@ -37,7 +37,6 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$Lang = false;
-		var					$LangMarkup = false;
 	
 		/**
 		*	\~russian Конструктор.
@@ -59,7 +58,6 @@
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Lang = get_package( 'lang' , 'last' , __FILE__ );
-				$this->LangMarkup = get_package( 'lang::lang_markup' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -140,7 +138,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
@@ -148,10 +146,10 @@
 				{
 					$ComponentHTML = '{lang_file:'.$Options->get_all_settings().'}';
 					$Changed = false;
-					$ComponentHTML = $this->LangMarkup->process_string( $Options , $ComponentHTML , $Changed );
+					$ComponentHTML = $this->LangMarkup->compile_lang_file( $Options );
 					return( '' );
 				}
-			
+
 				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
 
 				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_set_locale_form' );

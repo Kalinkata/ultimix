@@ -27,12 +27,12 @@ if( !ultimix.file_input )
 *
 *	@author Dodonov A.A.
 */
-ultimix.file_input.SetSingleUploadedFileInfo = function( ServerDataObject , ControlSettings )
+ultimix.file_input.set_single_uploaded_file_info = function( ServerDataObject , ControlSettings )
 {
 	jQuery( '#' + ControlSettings.statusAcceptor ).html(
 		ServerDataObject.original_file_name
 	);
-	
+
 	jQuery( '#' + ControlSettings.dataAcceptor ).html( 
 		"<input type=\"hidden\" name=\"" + ControlSettings.name + "\" value=\"" + ServerDataObject.id + "\">" +
 		"<input type=\"hidden\" name=\"visible_" + ControlSettings.name + "\" value=\"" + 
@@ -51,7 +51,7 @@ ultimix.file_input.SetSingleUploadedFileInfo = function( ServerDataObject , Cont
 *
 *	@author Dodonov A.A.
 */
-ultimix_file_input_view_AfterImageUploadProcessor = function( File , ServerData , ReceivedResponse )
+ultimix_file_input_view_after_image_upload_processor = function( File , ServerData , ReceivedResponse )
 {
 	try
 	{
@@ -59,11 +59,10 @@ ultimix_file_input_view_AfterImageUploadProcessor = function( File , ServerData 
 		Progress.setComplete();
 		Progress.setStatus( ultimix.get_string( 'complete' ) );
 		Progress.toggleCancel( false );
-		
-		var ServerDataObject = {};
-		eval( "ServerDataObject=" + ServerData );
-		
-		ultimix.file_input.SetSingleUploadedFileInfo( ServerDataObject , this.customSettings );
+
+		eval( "var			ServerDataObject=" + ServerData );
+
+		ultimix.file_input.set_single_uploaded_file_info( ServerDataObject , this.customSettings );
 	}
 	catch( ex )
 	{

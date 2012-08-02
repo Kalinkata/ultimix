@@ -688,9 +688,9 @@
 
 				$Changed = false;
 
-				$Form = $this->ContextSet->process_string( $Options , $Form , $Changed );
+				$Form = $this->ContextSet->compile_special_macro( $Options , $Form , $Changed );
 
-				list( $Form , $Changed ) = $this->ContextSet->process_prefix( $Form , $Changed );
+				list( $Form , $Changed ) = $this->ContextSet->compile_prefix( $Form , $Changed );
 
 				$this->Provider->Output = $Form;
 			}
@@ -808,8 +808,8 @@
 
 				$Str = $Paging->draw( false , $Options );
 
-				$Str = $this->ContextSet->process_string( $Options , $Str , $Changed );
-				list( $this->Provider->Output , $Changed ) = $this->ContextSet->process_prefix( $Str , $Changed );
+				$Str = $this->ContextSet->compile_special_macro( $Options , $Str , $Changed );
+				list( $this->Provider->Output , $Changed ) = $this->ContextSet->compile_prefix( $Str , $Changed );
 			}
 			catch( Exception $e )
 			{

@@ -35,11 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
 		var					$GalleryAccess = false;
 		var					$GalleryAlgorithms = false;
-		var					$Lin = falsek;
+		var					$Link = false;
 		var					$String = false;
 
 		/**
@@ -60,7 +59,6 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package_object( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->GalleryAccess = get_package( 'gallery::gallery_access' , 'last' , __FILE__ );
 				$this->GalleryAlgorithms = get_package( 'gallery::gallery_algorithms' , 'last' , __FILE__ );
@@ -296,7 +294,7 @@
 				$Code  = str_replace( '{gallery_id}' , $id , $Code );
 				
 				$Input  = "{file_input:file_types=images;upload_url=gallery_upload.html?gallery_id[eq]{gallery_id};";
-				$Input .= "upload_success_handler=ultimix_gallery_AfterImageUploadProcessor}";
+				$Input .= "upload_success_handler=ultimix_file_input_view_after_image_upload_processor}";
 				return( array( $Code , str_replace( '{gallery_id}' , $id , $Input ) ) );
 			}
 			catch( Exception $e )
@@ -331,7 +329,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_gallery( $Gallery , $Files )
+		private function	compile_gallery_files( $Gallery , $Files )
 		{
 			try
 			{
@@ -351,95 +349,40 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'gallery'.
+		*	\~russian Компиляция контрола.
 		*
-		*	@param $ProcessingString - Обрабатывемая строка.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
+		*	@return Контрол.
 		*
-		*	@return array( $ProcessingString , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'gallery'.
+		*	\~english Function processes macro 'radio'.
 		*
-		*	@param $ProcessingString - Processing string.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - Was the processing completed.
+		*	@return Control.
 		*
-		*	@return array( $ProcessingString , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_gallery( $ProcessingString , $Changed )
+		function			compile_gallery( &$Settings )
 		{
 			try
 			{
-				for( ; $MacroParameters = $this->String->get_macro_parameters( $ProcessingString , 'gallery' ) ; )
-				{
-					$this->BlockSettings->load_settings( $MacroParameters );
-					$Gallery = $this->get_gallery( $this->BlockSettings );
-					$Files = $this->GalleryAlgorithms->get_gallery_files( get_field( $Gallery , 'id' ) );
-			
-					$Code = $this->compile_gallery( $Gallery , $Files );
-					
-					$ProcessingString = str_replace( "{gallery:$MacroParameters}" , $Code , $ProcessingString );
-					$Changed = true;
-				}
-				
-				return( array( $ProcessingString , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $ProcessingString - Щбрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $ProcessingString - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $ProcessingString , &$Changed )
-		{
-			try
-			{
-				/* TODO: move it to auto_markup */
-				list( $ProcessingString , $Changed ) = $this->process_gallery( $ProcessingString , $Changed );
-				
-				return( $ProcessingString );
+				$Gallery = $this->get_gallery( $Settings );
+
+				$Files = $this->GalleryAlgorithms->get_gallery_files( get_field( $Gallery , 'id' ) );
+
+				$Code = $this->compile_gallery_files( $Gallery , $Files );
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

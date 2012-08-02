@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс обработки макросов файловой системы.
 	*
@@ -25,7 +25,6 @@
 	*/
 	class	fs_markup_1_0_0
 	{
-
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -37,8 +36,6 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$MacroSettings = false;
-		var					$String = false;
 		var					$TemplateManager = false;
 
 		/**
@@ -56,8 +53,6 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->TemplateManager = get_package( 'template_manager' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -67,49 +62,32 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'basename'.
+		*	\~russian Функция получения значения поля из записи.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры извлечения.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Значение поля.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'basename'.
+		*	\~english Function returns field value.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Extraction parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Field value.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_basename( $Str , $Changed )
+		function			compile_basename( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'basename' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-					
-					$Str = str_replace( 
-						"{basename:$Parameters}" , 
-						basename( $this->MacroSettings->get_setting( 'value' ) ) , 
-						$Str
-					);
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				return( basename( $Settings->get_setting( 'value' ) ) );
 			}
 			catch( Exception $e )
 			{
@@ -117,36 +95,6 @@
 			}
 		}
 
-		/**
-		*	\~russian Функция возвращает путь к шаблону страницы.
-		*
-		*	@return Путь к шаблону страницы.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns path to the template package.
-		*
-		*	@return Path to the page's template.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_template_path()
-		{
-			try
-			{
-				return( $this->TemplateManager->get_template_path( $this->TemplateName , $this->TemplateVersion ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция компиляции макроса 'image_path'.
 		*
@@ -169,7 +117,9 @@
 		{
 			try
 			{
-				$TemplatePath = $this->get_template_path();
+				$TemplatePath = $this->TemplateManager->get_template_path( 
+					$this->TemplateName , $this->TemplateVersion
+				);
 				$RealFilePath = $this->CachedMultyFS->get_file_path( 
 					$TemplatePath."/res/images/$FileName" , false
 				);
@@ -189,7 +139,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'image_path'.
 		*
@@ -212,21 +162,20 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_image_path( &$MacroSettings )
+		function			compile_image_path( &$Settings )
 		{
 			try
 			{
-				$FileName = $MacroSettings->get_setting( 'file_name' );
+				$FileName = $Settings->get_setting( 'file_name' );
 
-				if( $MacroSettings->get_setting( 'package_name' , false ) === false )
+				if( $Settings->get_setting( 'package_name' , false ) === false )
 				{
 					$RealFilePath = $this->get_path_from_template();
 				}
 				else
 				{
 					$PackageFilePath = _get_package_relative_path_ex( 
-						$MacroSettings->get_setting( 'package_name' ) , 
-						$MacroSettings->get_setting( 'package_version' , 'last' )
+						$Settings->get_setting( 'package_name' ) , $Settings->get_setting( 'package_version' , 'last' )
 					);
 					$RealFilePath = $PackageFilePath."/res/images/$FileName";
 					if( file_exists( $RealFilePath ) === false )
@@ -234,6 +183,7 @@
 						throw( new Exception( "File '$FileName' was not found" ) );
 					}
 				}
+
 				return( $RealFilePath );
 			}
 			catch( Exception $e )
@@ -241,57 +191,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'image_path'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'image_path'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_image_path( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'file_name' => TERMINAL_VALUE );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'image_path' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					$RealFilePath = $this->compile_image_path( $this->MacroSettings );
-
-					$Str = str_replace( "{image_path:$Parameters}" , $RealFilePath , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция обработки макроса 'package_path'.
 		*
@@ -318,75 +218,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_package_path( $Str , $Changed )
+		function			compile_package_path( $Str , $Changed )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'package_path' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-					
-					$RealPackagePath = _get_package_relative_path_ex( 
-						$this->MacroSettings->get_setting( 'package_name' ) , 
-						$this->MacroSettings->get_setting( 'package_version' , 'last' )
-					);
-					
-					$Str = str_replace( 
-						"{package_path:$Parameters}" , $RealPackagePath , $Str
-					);
+				$RealPackagePath = _get_package_relative_path_ex( 
+					$Settings->get_setting( 'package_name' ) , 
+					$Settings->get_setting( 'package_version' , 'last' )
+				);
 
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_basename( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_image_path( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_package_path( $Str , $Changed );
-				
-				return( $Str );
+				return( $RealPackagePath );
 			}
 			catch( Exception $e )
 			{

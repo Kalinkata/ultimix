@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$Settings = false;
 		var					$String = false;
 
@@ -57,7 +56,6 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::package_settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
@@ -129,115 +127,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_google_map( &$BlockSettings )
+		function			compile_google_map( &$Settings )
 		{
 			try
 			{
-				$BlockSettings->set_undefined( 'id' , md5( microtime( true ) ) );
-				$BlockSettings->set_undefined( 'height' , '300px' );
-				$BlockSettings->set_undefined( 'width' , '500px' );
-				$BlockSettings->set_undefined( 'class' , 'google_map' );
+				$Settings->set_undefined( 'id' , md5( microtime( true ) ) );
+				$Settings->set_undefined( 'height' , '300px' );
+				$Settings->set_undefined( 'width' , '500px' );
+				$Settings->set_undefined( 'class' , 'google_map' );
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'google_map_frame.tpl' );
-				return( $this->String->print_record( $Code , $BlockSettings->get_raw_settings() ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'google_map'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'google_map'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_google_map( $Str , $Changed )
-		{
-			try
-			{
-				if( strpos( $Str , '{google_map}' ) !== false )
-				{
-					$Str = str_replace( '{google_map}' , '{google_map:p=1}' , $Str );
-				}
-				
-				$Limitations = array( 'width' => TERMINAL_VALUE , 'height' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'google_map' , $Limitations ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					$Code = $this->compile_google_map( $this->BlockSettings );
-					
-					$Str = str_replace( "{google_map:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_google_map( $Str , $Changed );
-				
-				return( $Str );
+				return( $this->String->print_record( $Code , $Settings->get_raw_settings() ) );
 			}
 			catch( Exception $e )
 			{

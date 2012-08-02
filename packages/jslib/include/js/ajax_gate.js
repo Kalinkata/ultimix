@@ -108,3 +108,24 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 	};
 	jQuery.ajax( Request );
 }
+
+/**
+*	Function deletes page.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param ProgressDialogId - Progress dialog selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.ajax_gate.succes_delete_function = function( DataSelector , ProgressDialogId )
+{
+	return(
+		function()
+		{
+			ultimix.std_dialogs.close_message_box( ProgressDialogId );
+			ultimix.std_dialogs.InfoMessageBox( 'all_selected_records_were_deleted' );
+			jQuery( DataSelector ).remove();
+		}
+	);
+}
