@@ -13,6 +13,8 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 	
+	//TODO: maybe it will be better to remove this package
+	
 	/**
 	*	\~russian Класс обработки макросов страницы.
 	*
@@ -25,7 +27,7 @@
 	*/
 	class	page_parser_1_0_0
 	{
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -38,7 +40,7 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Позиция открывающего блока.
 		*
@@ -50,7 +52,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$StartPosition = false;
-		
+
 		/**
 		*	\~russian Позиция закрывающего блока.
 		*
@@ -62,7 +64,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$EndPosition = false;
-		
+
 		/**
 		*	\~russian Параметры макроса.
 		*
@@ -74,7 +76,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$RawMacroParameters = false;
-		
+
 		/**
 		*	\~russian Параметры макроса.
 		*
@@ -86,7 +88,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$MacroParameters = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -109,7 +111,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция валидации параметров найденного макроса.
 		*
@@ -164,7 +166,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция парсинга параметров найденного макроса.
 		*
@@ -210,7 +212,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрабатывает если вложенный макрос был найден.
 		*
@@ -262,7 +264,7 @@
 						$ParserCursor = $TmpStartPos;
 					}
 				}
-				
+
 				return( array( $Counter , $ParserCursor ) );
 			}
 			catch( Exception $e )
@@ -270,17 +272,17 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка специфических случаев парсинга.
 		*
-		*	@param $TmpStartPos
+		*	@param $TmpStartPos - Начальная позиция.
 		*
-		*	@param $TmpEndPos
+		*	@param $TmpEndPos - Конечная позиция.
 		*
-		*	@param $Counter
+		*	@param $Counter - Счетчик.
 		*
-		*	@param $ParserCursor
+		*	@param $ParserCursor - Курсор парсинга.
 		*
 		*	@return array( $Counter , $ParserCursor ).
 		*
@@ -291,13 +293,13 @@
 		/**
 		*	\~english Function processes extra cases.
 		*
-		*	@param $TmpStartPos
+		*	@param $TmpStartPos - Start position.
 		*
-		*	@param $TmpEndPos
+		*	@param $TmpEndPos - End position.
 		*
-		*	@param $Counter
+		*	@param $Counter - Counter.
 		*
-		*	@param $ParserCursor
+		*	@param $ParserCursor - Parsing cursor.
 		*
 		*	@return array( $Counter , $ParserCursor ).
 		*
@@ -305,7 +307,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_extra_cases( $TmpStartPos , $TmpEndPos , $Counter , $ParserCursor )
+		function			handle_extra_cases( $TmpStartPos , $TmpEndPos , $Counter , $ParserCursor )
 		{
 			try
 			{
@@ -314,18 +316,18 @@
 					$Counter++;
 					$ParserCursor = $TmpStartPos;
 				}
-				
+
 				if( $TmpStartPos === false && $TmpEndPos !== false )
 				{
 					$Counter--;
 					$ParserCursor = $TmpEndPos;
 				}
-				
+
 				if( $TmpStartPos === false && $TmpEndPos === false )
 				{
-					throw( new Exception( "Closing { was not found" ) );
+					throw( new Exception( 'Closing '.chr( 123 ).' was not found' ) );
 				}
-				
+
 				return( array( $Counter , $ParserCursor ) );
 			}
 			catch( Exception $e )
@@ -333,7 +335,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Поиск окончания параметров.
 		*
@@ -369,17 +371,17 @@
 			try
 			{
 				$Counter = 1;
-				
+
 				do
 				{
-					$TmpStartPos = strpos( $StringData , '{' , $ParserCursor + 1 );
-					$TmpEndPos = strpos( $StringData , '}' , $ParserCursor + 1 );
-					
+					$TmpStartPos = strpos( $StringData , chr( 123 ) , $ParserCursor + 1 );
+					$TmpEndPos = strpos( $StringData , chr( 125 ) , $ParserCursor + 1 );
+
 					list( $Counter , $ParserCursor ) = $this->other_macro_was_found( 
 						$TmpStartPos , $TmpEndPos , $Counter , $ParserCursor 
 					);
-					
-					list( $Counter , $ParserCursor ) = $this->process_extra_cases( 
+
+					list( $Counter , $ParserCursor ) = $this->handle_extra_cases( 
 						$TmpStartPos , $TmpEndPos , $Counter , $ParserCursor 
 					);
 				}
@@ -392,7 +394,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция парсинга найденного макроса.
 		*
@@ -432,15 +434,15 @@
 			try
 			{
 				$EndPos = $this->find_parameters_end( $StringData , $MacroName , $StartPos );
-				
+
 				if( $EndPos !== false )
 				{
 					/* extracting parameters */
 					$Parameters = substr( $StringData , $StartPos , $EndPos - $StartPos );
-					
+
 					return( $this->parse_parameters( $Parameters , $Conditions ) );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -448,7 +450,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция поиска необходимого макроса.
 		*
@@ -486,14 +488,14 @@
 				$this->RawMacroParameters = array();
 				$this->MacroParameters = false;
 				$StartPos = -1;
-				
-				$MacroStart = '{'.$MacroName.':';
+
+				$MacroStart = chr( 123 ).$MacroName.':';
 				$MacroLength = strlen( $MacroStart );
-				
+
 				for( ; ( $StartPos = strpos( $StringData , $MacroStart , $StartPos + 1 ) ) !== false ; )
 				{
 					$StartPos += $MacroLength;
-					
+
 					$Result = $this->parse_macro( $StringData , $MacroName , $Conditions , $StartPos );
 
 					if( $Result )
@@ -502,7 +504,7 @@
 						return( true );
 					}
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -510,7 +512,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение доступа к параметрам макроса.
 		*
@@ -546,7 +548,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Поиск кандидатов на роль возможного конца блока.
 		*
@@ -582,12 +584,12 @@
 				$StartPos = $this->StartPosition;
 				$EndPos = -1;
 
-				for( ; $StartPos = strpos( $StringData , '{'.$MacroName.':' , $StartPos + 1 ) ; )
+				for( ; $StartPos = strpos( $StringData , chr( 123 ).$MacroName.':' , $StartPos + 1 ) ; )
 				{
 					$Positions [ $StartPos ] = 's';
 				}
 
-				for( ; $EndPos = strpos( $StringData , '{~'.$MacroName.'}' , $EndPos + 1 ) ; )
+				for( ; $EndPos = strpos( $StringData , chr( 123 ).'~'.$MacroName.chr( 125 ) , $EndPos + 1 ) ; )
 				{
 					$Positions [ $EndPos ] = 'e';
 				}
@@ -640,7 +642,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_position( $Value , $Key , $StartPos , $EndPos , $c )
+		function			get_next_position( $Value , $Key , $StartPos , $EndPos , $c )
 		{
 			try
 			{
@@ -705,7 +707,7 @@
 				{
 					if( $Value == 'e' && $Key > $this->StartPosition )
 					{
-						list( $StartPos , $EndPos , $c ) = $this->process_position( 
+						list( $StartPos , $EndPos , $c ) = $this->get_next_position( 
 							$Value , $Key , $StartPos , $EndPos , $c 
 						);
 					}
@@ -755,13 +757,13 @@
 			try
 			{
 				$this->get_macro_end_position( $StringData , $MacroName );
-				
+
 				$StringData = substr_replace( $StringData , 
 					'' , 
 					$this->StartPosition , 
-					$this->EndPosition - $this->StartPosition + strlen( '{~'.$MacroName.'}' ) 
+					$this->EndPosition - $this->StartPosition + strlen( chr( 123 ).'~'.$MacroName.chr( 125 ) ) 
 				);
-				
+
 				return( $StringData );
 			}
 			catch( Exception $e )
@@ -769,7 +771,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция раскрытия макроса.
 		*
@@ -801,71 +803,16 @@
 			try
 			{
 				$this->get_macro_end_position( $StringData , $MacroName );
-				
+
 				$this->RawMacroParameters = implode( ';' , $this->RawMacroParameters );
-				$MacroLength = strlen( '{'."$MacroName:$this->RawMacroParameters}" );
+				$MacroLength = strlen( chr( 123 )."$MacroName:$this->RawMacroParameters".chr( 125 ) );
 
 				$Position = $this->EndPosition - $this->StartPosition - $MacroLength;
 				$MacroData = substr( $StringData , $this->StartPosition + $MacroLength , $Position );
 
-				$Position = $this->EndPosition - $this->StartPosition + strlen( '{~'.$MacroName.'}' );
+				$Position = $this->EndPosition - $this->StartPosition + strlen( chr( 123 ).'~'.$MacroName.chr( 125 ) );
 				$StringData = substr_replace( $StringData , $MacroData , $this->StartPosition , $Position );
-				
-				return( $StringData );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса.
-		*
-		*	@param $Mode - Режим show/hide.
-		*
-		*	@param $StringData - Обрабатываемая строка.
-		*
-		*	@param $MacroName - Название обрабатываемого макроса.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro.
-		*
-		*	@param $Mode - show/hide mode.
-		*
-		*	@param $StringData - Processing string.
-		*
-		*	@param $MacroName - Macro's name.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_macro( $Mode , $StringData , $MacroName )
-		{
-			try
-			{
-				if( $Mode == 'show' )
-				{
-					return( $this->show_macro( $StringData , $MacroName ) );
-				}
-				elseif( $Mode == 'hide' )
-				{
-					return( $this->hide_macro( $StringData , $MacroName ) );
-				}
-				else
-				{
-					throw( new Exception( "Macro processing mode '$Mode' is not defined" ) );
-				}
-				
+
 				return( $StringData );
 			}
 			catch( Exception $e )

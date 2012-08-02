@@ -767,7 +767,7 @@
 					return( $this->SupportedDataTypes->dispatch_complex_data( $Data , $Type ) );
 				}
 				
-				return( $this->SupportedDataTypes->process_data( $Data , $Type ) );
+				return( $this->SupportedDataTypes->compile_data( $Data , $Type ) );
 			}
 			catch( Exception $e )
 			{

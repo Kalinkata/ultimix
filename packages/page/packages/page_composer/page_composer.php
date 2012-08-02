@@ -13,6 +13,8 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: remove page_parts::execute_processors and replace with auto_markup::sprocess_string
+
 	/**
 	*	\~russian Компоновщик страниц.
 	*
@@ -592,14 +594,13 @@
 			try
 			{
 				$this->Trace->add_trace_string( "{lang:run_generation_loop} : $PageName" , COMMON );
+
 				$this->before_generation( $this->Template , $PageDescription );
 
 				$this->Template->process( $PageName );
-				$this->process_direct_controllers();
-				$this->PageParts->process_controllers( $this->Packages );
-				$this->PageParts->process_views( $this->Packages , $this->Template );
 
-				$this->process_direct_views();
+				$this->PageParts->compile_controllers( $this->Packages );
+				$this->PageParts->compile_views( $this->Packages , $this->Template );
 
 				$this->after_generation( $this->Template , $PageDescription );
 
@@ -648,138 +649,10 @@
 
 					return( $this->Template->get_template() );
 				}
+
 				$this->Trace->add_trace_string( "{lang:requested_page_was_not_found} : $PageName" , ERROR );
+
 				return( $this->get_page( '404' ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки контроллеров.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function process controllers.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_direct_controllers()
-		{
-			try
-			{
-				$this->Trace->start_group( "direct_controllers" );
-
-				$Str = $this->Template->get_template();
-
-				$Changed = false;
-				list( $Str , $Changed ) = $this->PageMarkup->process_direct_controller( $Str , $Changed );
-
-				$this->Template->set_template( $Str );
-
-				$this->Trace->end_group();
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки видов.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function process views.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_direct_views()
-		{
-			try
-			{
-				$this->Trace->start_group( "direct_views" );
-
-				$this->Security->reset_s( 'direct_view' , true );
-
-				$Str = $this->Template->get_template();
-
-				$Changed = false;
-				list( $Str , $Changed ) = $this->PageMarkup->process_direct_view( $Str , $Changed );
-
-				$this->Template->set_template( $Str );
-
-				$this->Security->reset_s( 'direct_view' , false );
-
-				$this->Trace->end_group();
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отвечающая за постобработку.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Постобрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function postprocesses forms and controls.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Postprocessing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->PageMeta->set_page_info( $Str , $Changed );
-
-				$this->process_direct_views();
-
-				$Str = $this->PageMarkup->process_meta( $Options , $Str , $Changed );
-
-				$this->Trace->start_group( 'direct_views' );
-				list( $Str , $Changed ) = $this->PageMarkup->process_direct_view( $Str , $Changed );
-				$this->Trace->end_group();
-
-				$this->Trace->start_group( 'direct_controllers' );
-				list( $Str , $Changed ) = $this->PageMarkup->process_direct_controller( $Str , $Changed );
-				$this->Trace->end_group();
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

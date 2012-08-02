@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для обработки макросов.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class		permit_markup_1_0_0{
-		
+
 		/**
 		*	\~russian Доступы пользователя.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Permits = array();
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -48,13 +48,10 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$Database = false;
 		var					$PermitAccess = false;
 		var					$PermitAlgorithms = false;
-		var					$Settings = false;
-		var					$String = false;
 		var					$UserAlgorithms = false;
-		
+
 		/**
 		*	\~russian Добавлен ли контроллер.
 		*
@@ -66,7 +63,38 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ControllerWasAdded = false;
-		
+
+		/**
+		*	\~russian Функция загрузки доступов.
+		*
+		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function loads permits.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	load_permits()
+		{
+			try
+			{
+				$UserId = $this->UserAlgorithms->get_id();
+				
+				if( isset( $this->Permits[ $UserId ] ) === false )
+				{
+					$this->Permits[ $UserId ] = $this->PermitAlgorithms->get_permits_for_object( $UserId , 'user' );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -83,195 +111,10 @@
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
-				$this->PermitAccess = get_package( 'permit::permit_access' , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'permit'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'permit'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_permit( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$UserId = $this->UserAlgorithms->get_id();
-					
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'permit' ) ; )
-				{
-					if( in_array( $Parameters , $this->Permits[ $UserId ] ) )
-					{
-						$Str = $this->String->show_block( 
-							$Str , 'permit:'.$Parameters , 'permit:~'.$Parameters , $Changed
-						);
-					}
-					else
-					{
-						$Str = $this->String->hide_block( 
-							$Str , 'permit:'.$Parameters , 'permit:~'.$Parameters , $Changed
-						);
-					}
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'permit'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'permit'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_no_permit( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$UserId = $this->UserAlgorithms->get_id();
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'no_permit' ) ; )
-				{
-					if( in_array( $Parameters , $this->Permits[ $UserId ] ) )
-					{
-						$Str = $this->String->hide_block( 
-							$Str , 'no_permit:'.$Parameters , 'no_permit:~'.$Parameters , $Changed
-						);
-					}
-					else
-					{
-						$Str = $this->String->show_block( 
-							$Str , 'no_permit:'.$Parameters , 'no_permit:~'.$Parameters , $Changed
-						);
-					}
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'permit_list'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'permit_list'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_permit_list( $Options , $Str , $Changed )
-		{
-			try
-			{
-				/* printing list of all available permits */
-				if( strpos( $Str , '{permit_list}' ) !== false )
-				{
-					$this->Database->query_as( DB_OBJECT );
-					$Items = $this->Database->select( 'permit' , 'umx_permit' , '1 = 1' );
-					$c = count( $Items );
-					$AllPermits = '';
-					foreach( $Items as $k => $i )
-					{
-						$AllPermits .= $i->permit;
-						if( $k + 1 != $c )
-						{
-							$AllPermits .= ', ';
-						}
-					}
-					$Str = str_replace( '{permit_list}' , $AllPermits , $Str );
-				}
-				
-				return( array( $Str , $Changed ) );
+				$this->load_permits();
 			}
 			catch( Exception $e )
 			{
@@ -280,97 +123,186 @@
 		}
 
 		/**
-		*	\~russian Функция компиляции списка доступов.
+		*	\~russian Функция компиляции макроса 'permit'.
 		*
-		*	@param $Parameters - Параметры компиляции.
+		*	@param $Settings - Параметры.
 		*
-		*	@return Список доступов.
+		*	@param $Data - Данные.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@return Код макроса.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'permit_list_for_object'.
+		*	\~english Function compiles macro 'permit'.
 		*
-		*	@param $Parameters - Compilation options.
+		*	@param $Settings - Parameters.
 		*
-		*	@return List of permits.
+		*	@param $Data - Data.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_permits_list( $Parameters )
+		function			compile_permit( &$Settings , $Data )
+		{
+			try
+			{
+				$RawSettings = $Settings->get_raw_settings();
+				$Parmit = array_shift( array_keys( $RawSettings ) );
+				$UserId = $this->UserAlgorithms->get_id();
+
+				if( in_array( $Parmit , $this->Permits[ $UserId ] ) )
+				{
+					return( $Data );
+				}
+				else
+				{
+					return( '' );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'no_permit'.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@param $Data - Данные.
+		*
+		*	@return Код макроса.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'no_permit'.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@param $Data - Data.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_no_permit( &$Settings , $Data )
+		{
+			try
+			{
+				$RawSettings = $Settings->get_raw_settings();
+				$Parmit = array_shift( array_keys( $RawSettings ) );
+				$UserId = $this->UserAlgorithms->get_id();
+
+				if( in_array( $Parmit , $this->Permits[ $UserId ] ) )
+				{
+					return( $Data );
+				}
+				else
+				{
+					return( '' );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'permit_list'.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@return Код макроса.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'permit_list'.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_permit_list( &$Settings )
+		{
+			try
+			{
+				$this->Database->query_as( DB_OBJECT );
+				$Items = $this->Database->select( 'permit' , 'umx_permit' , '1 = 1' );
+				$c = count( $Items );
+				$AllPermits = '';
+				foreach( $Items as $k => $i )
+				{
+					$AllPermits .= $i->permit;
+					if( $k + 1 != $c )
+					{
+						$AllPermits .= ', ';
+					}
+				}
+				$Str = str_replace( '{permit_list}' , $AllPermits , $Str );
+
+				return( $Str );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'permit_list_for_object'.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@return Код макроса.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'permit_list_for_object'.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_permit_list_for_object( &$Settings )
 		{
 			try
 			{
 				$PermitList = '';
-				
-				if( $this->PermitAlgorithms->object_has_permit( false , 'user' , 'permit_manager' ) )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					list( $Object , $Type ) = $this->Settings->get_settings( 'object,type' , 'public,' );
-					$PermitList = $this->PermitAlgorithms->get_permits_for_object( $Object , $Type , false );
 
-					sort( $PermitList );
-					$PermitList = implode( ', ' , $PermitList );
-				}
-				
+				list( $Object , $Type ) = $Settings->get_settings( 'object,type' , 'public,' );
+				$PermitList = $this->PermitAlgorithms->get_permits_for_object( $Object , $Type , false );
+
+				sort( $PermitList );
+				$PermitList = implode( ', ' , $PermitList );
+
 				return( $PermitList );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'permit_list_for_object'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'permit_list_for_object'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_permit_list_for_object( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'object' => TERMINAL_VALUE , 'type' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'permit_list_for_object' , $Rules ) ; )
-				{
-					$PermitList = $this->compile_permits_list( $Parameters );
-
-					$Str = str_replace( "{permit_list_for_object:$Parameters}" , $PermitList , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
 			{
@@ -501,7 +433,7 @@
 		{
 			try
 			{
-				$AllPermitList = $this->Settings->get_setting( 'all' , 'public' );
+				$AllPermitList = $Settings->get_setting( 'all' , 'public' );
 				if( strlen( $AllPermitList ) == 0 )
 				{
 					$AllPermitList = array();
@@ -522,39 +454,37 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'permit_list_widget'.
 		*
-		*	@param $Parameters - Параметры обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@return Список доступов.
+		*	@return Код макроса.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function compiles permit list.
+		*	\~english Function compiles macro 'permit_list_widget'.
 		*
-		*	@param $Parameters - Processing options.
+		*	@param $Settings - Parameters.
 		*
-		*	@return Permit list.
+		*	@return HTML code.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_permit_list_widget( $Parameters )
+		function			compile_permit_list_widget( &$Settings )
 		{
 			try
 			{
-				$this->Settings->load_settings( $Parameters );
-
-				list( $ObjectPermitList , $AllPermitList ) = $this->get_permits( $this->Settings );
+				list( $ObjectPermitList , $AllPermitList ) = $this->get_permits( $Settings );
 
 				$PermitListWidget = $this->CachedMultyFS->get_template( __FILE__ , 'permit_list.tpl' );
-				$Object = $this->Settings->get_setting( 'object' );
+				$Object = $Settings->get_setting( 'object' );
 				$PermitListWidget = str_replace( '{object}' , $Object , $PermitListWidget );
 
 				$PermitListWidget = $this->compile_object_permits( $ObjectPermitList , $PermitListWidget );
@@ -566,200 +496,40 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'permit_list_widget'.
+		*	\~russian Функция компиляции макроса 'permit_select'.
 		*
-		*	@param $Options - Параметры обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Str - Обрабатывемая строка.
+		*	@return Код макроса.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'permit_list_widget'.
+		*	\~english Function compiles macro 'permit_select'.
 		*
-		*	@param $Options - Processing options.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_permit_list_widget( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'all' => TERMINAL_VALUE , 'object_permits' => TERMINAL_VALUE );
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'permit_list_widget' , $Rules ) ; )
-				{
-					if( $this->PermitAlgorithms->object_has_permit( false , 'user' , 'permit_manager' ) )
-					{
-						$PermitListWidget = $this->compile_permit_list_widget( $Parameters );
-					}
-					else
-					{
-						$PermitListWidget = '';
-					}
-
-					$Str = str_replace( "{permit_list_widget:$Parameters}" , $PermitListWidget , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки макроса 'permit_select'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'permit_select'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_permit_select( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'name' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'permit_select' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					list( $Name , $Class ) = $this->Settings->get_settings( 'name,class',  'permit,flat width_160' );
-										
-					$Code = "{select:name=$Name;class=$Class;".
-							"query=SELECT id , title AS value FROM `umx_permit` ORDER BY title}";
-					
-					$Str = str_replace( "{permit_select:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция загрузки доступов.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function loads permits.
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	load_permits()
+		function			compile_permit_select( &$Settings )
 		{
 			try
 			{
-				$UserId = $this->UserAlgorithms->get_id();
-				
-				if( isset( $this->Permits[ $UserId ] ) === false )
-				{
-					$this->Permits[ $UserId ] = $this->PermitAlgorithms->get_permits_for_object( $UserId , 'user' );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
 
-		/**
-		*	\~russian Функция обработки страницы.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes page.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				$this->load_permits();
+				list( $Name , $Class ) = $this->Settings->get_settings( 'name,class',  'permit,flat width_160' );
 
-				list( $Str , $Changed ) = $this->process_permit( $Options , $Str , $Changed );
+				$Code = "{select:name=$Name;class=$Class;".
+						"query=SELECT id , title AS value FROM `umx_permit` ORDER BY title}";
 
-				list( $Str , $Changed ) = $this->process_no_permit( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_permit_list( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_permit_list_for_object( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_permit_list_widget( $Options , $Str , $Changed );
-
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

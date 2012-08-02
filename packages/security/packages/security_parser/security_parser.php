@@ -227,7 +227,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_allow_not_set( $ScriptLine , $GlobalPredicates , $Result )
+		private function	handle_allow_not_set( $ScriptLine , $GlobalPredicates , $Result )
 		{
 			try
 			{
@@ -356,7 +356,7 @@
 				$ValueWasSet = is_field_set( $Params , $Name );
 				if( $ValueWasSet === false )
 				{
-					$Result = $this->process_allow_not_set( $ScriptLine , $GlobalPredicates , $Result );
+					$Result = $this->handle_allow_not_set( $ScriptLine , $GlobalPredicates , $Result );
 				}
 				else
 				{

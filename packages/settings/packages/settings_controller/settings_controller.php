@@ -211,7 +211,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_config_line( $ConfigLine )
+		function			handle_config_line( $ConfigLine )
 		{
 			try
 			{
@@ -269,7 +269,7 @@
 						foreach( $Config as $i => $ConfigLine )
 						{
 							
-							$this->process_config_line( $ConfigLine );
+							$this->handle_config_line( $ConfigLine );
 						}
 					}
 				}

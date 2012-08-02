@@ -1,4 +1,4 @@
-					<a href="javascript:ultimix.data_form.SubmitDataForm( '#{prefix}_deleted_messages,.{prefix}_final_delete' , '{lang:shure_to_delete_all_pmsg}' );" class="common_button_layout" id="">удалить</a>
+					<a href="javascript:ultimix.data_form.submit_dom_data( '#{prefix}_deleted_messages,.{prefix}_final_delete' , '{lang:shure_to_delete_all_pmsg}' );" class="common_button_layout" id="">удалить</a>
 					<div class="invisible" class="{prefix}_final_delete"><input type="hidden" name="{prefix}_context_action" value="cleanup_{prefix}"></div>
 					<table border="0" width="100%" id="{prefix}_deleted_messages">
 						<tr>

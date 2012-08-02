@@ -14,7 +14,7 @@
 	*/
 	
 	require_once( dirname( __FILE__ ).'/unit_tests_utilities.php' );
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -255,8 +255,7 @@
 				$Bodies = get_function_bodies( $Content );
 				foreach( $Bodies as $FunctionName => $Body )
 				{
-					if( ( $LinesCount = count_lines( $Body ) ) > 30 && $FunctionName != 'get_positions' && 
-						$FunctionName != 'test_invalid_macro' )
+					if( ( $LinesCount = count_lines( $Body ) ) > 30 )
 					{
 						$Errors++;
 						print( "<nobr>{$Files[ $i ]}($FunctionName:$LinesCount)</nobr><br>" );
@@ -290,8 +289,7 @@
 				foreach( $Bodies as $FunctionName => $Body )
 				{
 					/* 800 bytes max */
-					if( ( $BytesCount = strlen( $Body ) ) > 800 && $FunctionName != 'get_positions' &&
-						$FunctionName != 'test_invalid_macro' )
+					if( ( $BytesCount = strlen( $Body ) ) > 800 )
 					{
 						$Errors++;
 						print( "<nobr>{$Files[ $i ]}($FunctionName:$BytesCount)</nobr><br>" );
@@ -448,11 +446,10 @@
 				$Bodies = get_function_bodies( $Content );
 				foreach( $Bodies as $FunctionName => $Body )
 				{
-					if( ( $LinesCount = count_lines( $Body ) ) > 20 && $FunctionName != 'get_positions' && 
-						$FunctionName != 'test_invalid_macro' )
+					if( ( $LinesCount = count_lines( $Body ) ) > 20 )
 					{
 						$Errors++;
-						print( "<nobr>{$Files[ $i ]}($FunctionName:$LinesCount)</nobr><br>" );
+						print( "<nobr>{$Files[ $i ]} $Body : Lines count: $LinesCount</nobr><br>" );
 					}
 				}
 			}
@@ -483,8 +480,7 @@
 				foreach( $Bodies as $FunctionName => $Body )
 				{
 					/* 800 bytes max */
-					if( ( $BytesCount = strlen( $Body ) ) > 680 && $FunctionName != 'get_positions' &&
-						$FunctionName != 'test_invalid_macro' )
+					if( ( $BytesCount = strlen( $Body ) ) > 680 )
 					{
 						$Errors++;
 						print( "<nobr>{$Files[ $i ]}($FunctionName:$BytesCount)</nobr><br>" );
@@ -643,6 +639,38 @@
 						{
 							$Errors++;
 							print( "<nobr>".$Path." : no get_list_form found</nobr><br>" );
+						}
+					}
+				}
+			}
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+		
+		/**
+		*	\~russian Проверка наличия функции.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing searches for function.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_js()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
+				{
+					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
+					if( file_exists( $Path ) )
+					{
+						$Content = file_get_contents( $Path );
+						if( strpos( $Content , '.delete = function(' ) === false )
+						{
+							$Errors++;
+							print( "<nobr>".$Path." : no delete found</nobr><br>" );
 						}
 					}
 				}

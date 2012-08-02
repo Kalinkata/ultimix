@@ -38,17 +38,44 @@
 		var					$SettingsList = false;
 
 		/**
-		*	\~russian Кэш.
+		*	\~russian Закешированные объекты.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Cache.
+		*	\~english Cached objects.
 		*
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
+		var					$SettingsUtilities = false;
 
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->SettingsUtilities = get_package( 'settings::settings_utilities' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
 		/**
 		*	\~russian Загрузка настроек.
 		*
@@ -128,94 +155,6 @@
 		}
 
 		/**
-		*	\~russian Преобразование строку настроек.
-		*
-		*	@param $Settings - Настройки.
-		*
-		*	@param $Separator - Разделитель.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function transforms settings string.
-		*
-		*	@param $Settings - Settings.
-		*
-		*	@param $Separator - Separator.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			transform_settings( $Settings , $Separator )
-		{
-			try
-			{
-				$Settings = str_replace( 
-					array( "\r" , "\n" , $Separator.$Separator ) , 
-					array( $Separator , $Separator , $Separator ) , 
-					$Settings
-				);
-
-				return( explode( $Separator , $Settings ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Загрузка настроек.
-		*
-		*	@param $Settings - Настройки.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function loads settings.
-		*
-		*	@param $Settings - Settings.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_settings( $Settings )
-		{
-			try
-			{
-				foreach( $Settings as $s )
-				{
-					$Tmp = explode( '=' , $s );
-					if( isset( $Tmp[ 1 ] ) === true )
-					{
-						$this->SettingsList[ $Tmp[ 0 ] ] = $Tmp[ 1 ];
-					}
-					elseif( isset( $Tmp[ 0 ] ) === true && isset( $Tmp[ 1 ] ) === false )
-					{
-						$this->SettingsList[ $Tmp[ 0 ] ] = true;
-					}
-					elseif( isset( $Tmp[ 0 ] ) === false )
-					{
-						$Settings = serialize( $Settings );
-						$s = serialize( $s );
-						$Tmp = serialize( $Tmp );
-						throw_exception( "Settings : $Settings s : $s Tmp : $Tmp Illegal settings string" );
-					}
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
 		*	\~russian Загрузка дополнительных настроек.
 		*
 		*	@param $Settings - Данные с настройками.
@@ -248,17 +187,19 @@
 
 				if( is_array( $Settings ) === false )
 				{
-					$Settings = $this->transform_settings( $Settings , $Separator );
+					$Settings = $this->SettingsUtilities->transform_settings( $Settings , $Separator );
 				}
 
-				$this->process_settings( $Settings );
+				$this->SettingsList = array_merge( 
+					$this->SettingsList , $this->SettingsUtilities->load_settings( $Settings )
+				);
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки настроек из $_GET и $_POST.
 		*
@@ -344,7 +285,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция сохраняет настройки.
 		*
@@ -374,7 +315,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция сохраняет настройки.
 		*
@@ -404,7 +345,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает закомпиленные настройки.
 		*
@@ -443,7 +384,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Загрузка настроек из файла.
 		*
@@ -478,7 +419,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
- 	
+
 		/**
 		*	\~russian Загрузка настроек из файла.
 		*
@@ -512,7 +453,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Загрузка настроек из файла.
 		*
@@ -546,7 +487,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Загрузка настроек пакета.
 		*
@@ -586,7 +527,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание дефайна по настройке.
 		*
@@ -620,7 +561,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения настроек.
 		*
@@ -668,7 +609,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения настроек.
 		*
@@ -709,14 +650,13 @@
 				}
 
 				return( $DefaultValue );
-
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения дефолтовых нзначений настроек.
 		*
@@ -767,7 +707,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения настроек.
 		*
@@ -815,7 +755,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция установки настроек.
 		*
@@ -852,7 +792,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция установки неопределённых настроек.
 		*
@@ -889,7 +829,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Очистка настроек.
 		*
@@ -917,7 +857,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция удаление настройки.
 		*
@@ -947,7 +887,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция конвертации объекта в строку.
 		*

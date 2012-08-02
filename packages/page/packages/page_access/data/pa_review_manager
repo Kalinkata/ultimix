@@ -1,3 +1,2 @@
 review::review_controller#last#meta=meta_delete_review#main
 review::review_view#last#meta=meta_review_list#main
-gui::checkbox_markup#last#post_process=1#

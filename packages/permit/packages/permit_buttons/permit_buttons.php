@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для обработки макросов.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class		permit_buttons_1_0_0{
-		
+
 		/**
 		*	\~russian Доступы пользователя.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Permits = array();
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -54,7 +54,7 @@
 		var					$Settings = false;
 		var					$String = false;
 		var					$UserAlgorithms = false;
-		
+
 		/**
 		*	\~russian Добавлен ли контроллер.
 		*
@@ -66,7 +66,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ControllerWasAdded = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -118,230 +118,16 @@
 			try
 			{
 				$Code = '';
-				
+
 				if( $this->ControllerWasAdded === false )
 				{
 					$Code = '{direct_controller:set_permit=1;delete_permit=1;toggle_permit=1'.
 							'package_name=permit::permit_controller}';
-							
+
 					$this->ControllerWasAdded = true;
 				}
-				
+
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Компиляция кнопки.
-		*
-		*	@param $Settings - Параметры обработки.
-		*
-		*	@param $Type - Тип кнопки.
-		*
-		*	@return Код кнопки.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Button code compilation.
-		*
-		*	@param $Settings - Processing options.
-		*
-		*	@param $Type - Button type.
-		*
-		*	@return Button code.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	compile_permit_button( &$Settings , $Type )
-		{
-			try
-			{
-				list( $Text , $Group , $MasterId ) = $Settings->get_settings( 'text,group,master_id' );
-				$MasterType = $Settings->get_setting( 'master_type' , 'user' );
-				$CheckBoxes = $Settings->get_setting( 'checkboxes' , 'user' );
-				
-				$Code = $this->get_controller();
-				$Code .= "{href:text=$Text;page=javascript:ultimix.permit.".$Type."PermitButton".
-					"( '$Permit' , $MasterId , '$MasterType' , '$CheckBoxes' )}";
-					
-				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'set_permit_button'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'set_permit_button'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_set_permit_button( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 
-					'permit' => TERMINAL_VALUE , 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE
-				);
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'set_permit_button' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					$Code = $this->compile_permit_button( $this->Settings , 'Set' );
-					
-					$Str = str_replace( "{set_permit_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'delete_permit_button'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'delete_permit_button'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_delete_permit_button( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 
-					'permit' => TERMINAL_VALUE , 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE
-				);
-
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'delete_permit_button' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-
-					$Code = $this->compile_permit_button( $this->Settings , 'Delete' );
-
-					$Str = str_replace( "{delete_permit_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'toggle_permit_button'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'toggle_permit_button'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_toggle_permit_button( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 
-					'permit' => TERMINAL_VALUE , 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE
-				);
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'toggle_permit_button' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					$Code = $this->compile_permit_button( $this->Settings , 'Toggle' );
-					
-					$Str = str_replace( "{toggle_permit_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
 			{
@@ -381,50 +167,148 @@
 		}
 
 		/**
-		*	\~russian Функция обработки страницы.
+		*	\~russian Компиляция кнопки.
 		*
-		*	@param $Options - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Type - Тип кнопки.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@return Код кнопки.
 		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes page.
+		*	\~english Button code compilation.
 		*
-		*	@param $Options - Processing options.
+		*	@param $Settings - Processing options.
 		*
-		*	@param $Str - String to process.
+		*	@param $Type - Button type.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@return Button code.
 		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Options , $Str , &$Changed )
+		private function	compile_permit_button( &$Settings , $Type )
 		{
 			try
 			{
 				$this->load_permits();
 
-				list( $Str , $Changed ) = $this->process_set_permit_button( $Options , $Str , $Changed );
+				list( $Text , $Group , $MasterId ) = $Settings->get_settings( 'text,group,master_id' );
+				$MasterType = $Settings->get_setting( 'master_type' , 'user' );
+				$CheckBoxes = $Settings->get_setting( 'checkboxes' , 'user' );
 
-				list( $Str , $Changed ) = $this->process_delete_permit_button( $Options , $Str , $Changed );
+				$Code = $this->get_controller();
+				$Code .= "{href:text=$Text;page=javascript:ultimix.permit.".$Type."PermitButton".
+					"( '$Permit' , $MasterId , '$MasterType' , '$CheckBoxes' )}";
 
-				list( $Str , $Changed ) = $this->process_toggle_permit_button( $Options , $Str , $Changed );
+				return( $Code );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
-				list( $Str , $Changed ) = $this->process_permit_select( $Options , $Str , $Changed );
+		/**
+		*	\~russian Компиляция кнопки.
+		*
+		*	@param $Settings - Параметры обработки.
+		*
+		*	@return Код кнопки.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Button code compilation.
+		*
+		*	@param $Settings - Processing options.
+		*
+		*	@return Button code.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_set_permit_button( &$Settings )
+		{
+			try
+			{
+				return( $this->compile_permit_button( $Settings , 'Set' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
-				return( $Str );
+		/**
+		*	\~russian Компиляция кнопки.
+		*
+		*	@param $Settings - Параметры обработки.
+		*
+		*	@return Код кнопки.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Button code compilation.
+		*
+		*	@param $Settings - Processing options.
+		*
+		*	@return Button code.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_delete_permit_button( &$Settings )
+		{
+			try
+			{
+				return( $this->compile_permit_button( $Settings , 'Delete' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Компиляция кнопки.
+		*
+		*	@param $Settings - Параметры обработки.
+		*
+		*	@return Код кнопки.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Button code compilation.
+		*
+		*	@param $Settings - Processing options.
+		*
+		*	@return Button code.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_toggle_permit_button( &$Settings )
+		{
+			try
+			{
+				return( $this->compile_permit_button( $Settings , 'Toggle' ) );
 			}
 			catch( Exception $e )
 			{

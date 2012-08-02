@@ -196,11 +196,7 @@
 		/**
 		*	\~russian Функция отвечающая за обработку строки.
 		*
-		*	@param $Options - Gараметры отображения.
-		*
-		*	@param $Str - Jбрабатывемая строка.
-		*
-		*	@param $Changed - <ыла ли осуществлена обработка.
+		*	@param $Settings - Gараметры отображения.
 		*
 		*	@return HTML код для отображения.
 		*
@@ -211,11 +207,7 @@
 		/**
 		*	\~english Function processes string.
 		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - processing string.
-		*
-		*	@param $Changed - was the processing completed.
+		*	@param $Settings - Options of drawing.
 		*
 		*	@return HTML code to display.
 		*
@@ -223,18 +215,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Options , $Str , &$Changed )
+		function			compile_not_read_messages_count( &$Settings )
 		{
 			try
 			{
-				if( strpos( $Str , '{not_read_messages_count}' ) !== false )
-				{
-					$Count = $this->PmsgAlgorithms->get_not_read_messages_count();
-					
-					$Str = str_replace( '{not_read_messages_count}' , $Count , $Str );
-				}
-				
-				return( $Str );
+				return( $this->PmsgAlgorithms->get_not_read_messages_count() );
 			}
 			catch( Exception $e )
 			{

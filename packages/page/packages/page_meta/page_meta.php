@@ -215,56 +215,100 @@
 		}
 
 		/**
-		*	\~russian Вставка информации о странице.
+		*	\~russian Функция компиляции макроса 'title'.
 		*
-		*	@param $Str - Постобрабатывемая строка.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function sets info about the page.
+		*	\~english Function compiles macro 'title'.
 		*
-		*	@param $Str - Postprocessing string.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			set_page_info( $Str , $Changed )
+		function			compile_title( &$Settings )
 		{
 			try
 			{
-				if( strpos( $Str , '{title}' ) )
-				{
-					$Str = str_replace( '{title}' , $this->PageTitle , $Str );
-					$Changed = true;
-				}
-
-				if( strpos( $Str , '{keywords}' ) )
-				{
-					$Str = str_replace( '{keywords}' , $this->PageKeywords , $Str );
-					$Changed = true;
-				}
-
-				if( strpos( $Str , '{description}' ) )
-				{
-					$Str = str_replace( 
-						'{description}' , $this->PageDescription , $Str 
-					);
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $this->PageTitle );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Функция компиляции макроса 'keywords'.
+		*
+		*	@param $Settings - Параметры компиляции.
+		*
+		*	@return Widget.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'keywords'.
+		*
+		*	@param $Settings - Compilation parameters.
+		*
+		*	@return Widget.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_keywords( &$Settings )
+		{
+			try
+			{
+				return( $this->PageKeywords );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Функция компиляции макроса 'description'.
+		*
+		*	@param $Settings - Параметры компиляции.
+		*
+		*	@return Widget.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'description'.
+		*
+		*	@param $Settings - Compilation parameters.
+		*
+		*	@return Widget.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_description( &$Settings )
+		{
+			try
+			{
+				return( $this->PageDescription );
 			}
 			catch( Exception $e )
 			{

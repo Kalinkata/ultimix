@@ -69,11 +69,11 @@ ultimix.permit.SubmitPermitButton = function( Permit , MasterId , MasterType , C
 
 	if( Checkboxes != '' )
 	{
-		if( !ultimix.grids.RecordSelected( Checkboxes , 'at_least_one_record_must_be_selected' ) )
+		if( !ultimix.grids.record_selected( Checkboxes , 'at_least_one_record_must_be_selected' ) )
 		{
 			return;
 		}
-		var			ids = ultimix.grids.GetIdentificators( Checkboxes );
+		var			ids = ultimix.grids.get_identificators( Checkboxes );
 		var			Data = { 'permit' : Permit , 'master_id' : MasterId , 'master_type' : MasterType , 'ids' : ids };
 	}
 	else

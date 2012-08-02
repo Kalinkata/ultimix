@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для работы с доступами (пока только доступами).
 	*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_permit`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -55,7 +55,7 @@
 		var					$Security = false;
 		var					$SecurityParser = false;
 		var					$UserAlgorithms = false;
-		
+
 		/**
 		*	\~russian Кэш доступов.
 		*
@@ -67,7 +67,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$PermitsCache = array();
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -100,7 +100,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -112,7 +112,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -141,7 +141,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -169,16 +169,16 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				$Condition = "( $this->AddLimitations ) AND $Condition";
 				$Records = $this->Database->select( '*' , $this->NativeTable , $Condition );
-				
+
 				foreach( $Records as $k => $v )
 				{
 					$Records[ $k ]->permit = htmlspecialchars_decode( $Records[ $k ]->permit , ENT_QUOTES );
 					$Records[ $k ]->comment = htmlspecialchars_decode( $Records[ $k ]->comment , ENT_QUOTES );
 				}
-				
+
 				return( $Records );
 			}
 			catch( Exception $e )
@@ -186,7 +186,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записи.
 		*
@@ -214,14 +214,14 @@
 			try
 			{
 				$Permit = $this->Security->get( $Permit , 'command' );
-				
+
 				$Items = $this->unsafe_select( "( $this->AddLimitations ) AND permit LIKE '$Permit'" );
-				
+
 				if( count( $Items ) == 0 )
 				{
 					throw( new Exception( "Permit $Permit was not found" ) );
 				}
-				
+
 				return( $Items[ 0 ] );
 			}
 			catch( Exception $e )
@@ -229,7 +229,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -276,7 +276,7 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -284,7 +284,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -308,7 +308,7 @@
 			try
 			{
 				$Record = $this->SecurityParser->parse_parameters( $Record , 'permit:command;comment:string' );
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
@@ -318,7 +318,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записи из базы.
 		*
@@ -344,7 +344,7 @@
 				$id = $this->Security->get( $id , 'integer_list' );
 
 				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
-				
+
 				$this->Database->commit();
 			}
 			catch( Exception $e )
@@ -352,7 +352,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -388,7 +388,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Редактирование записи.
 		*
@@ -416,19 +416,19 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
-				$Script = 'permit:command;comment:string';
-				
-				$Record = $this->SecurityParser->parse_parameters( $Record , $Script , 'allow_not_set' );
-				
+
+				$Record = $this->SecurityParser->parse_parameters( 
+					$Record , 'permit:command;comment:string' , 'allow_not_set'
+				);
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$Condition = "( $this->AddLimitations ) AND id IN ( $id )";
-					
+
 					$this->Database->update( $this->NativeTable , $Fields , $Values , $Condition );
-					
+
 					$this->Database->commit();
 				}
 			}
@@ -437,7 +437,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение доступов для объекта.
 		*
@@ -479,9 +479,9 @@
 			{
 				$id = $this->Security->get( $id , 'integer' );
 				$Type = $this->Security->get( $Type , 'command' );
-				
+
 				$Links = $this->Link->get_links( $id , false , $Type , 'permit' );
-				
+
 				if( isset( $Links[ 0 ] ) === false )
 				{
 					return( $Default );
@@ -489,9 +489,9 @@
 				else
 				{
 					$ids = get_field_ex( $Links , 'object2_id' );
-					
+
 					$Permits = $this->select_list( implode( ',' , $ids ) );
-					
+
 					return( get_field_ex( $Permits , 'permit' ) );
 				}
 			}
@@ -500,7 +500,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение доступов для юзера.
 		*
@@ -605,7 +605,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Добавление доступа для объекта.
 		*
@@ -637,18 +637,18 @@
 			try
 			{
 				$this->PermitsCache = array();
-			
+
 				$Permit = $this->Security->get( $Permit , 'command' );
 				$Permit = $this->unsafe_select( "permit LIKE '$Permit'" );
 				if( isset( $Permit[ 0 ] ) === false )
 				{
 					throw( new Exception( "Permit \"$Permit\" was not found" ) );
 				}
-				
+
 				$Permit = $Permit[ 0 ];
 				$Object = $this->Security->get( $Object , 'string' );
 				$ObjectType = $this->Security->get( $ObjectType , 'command' );
-				
+
 				$this->Link->create_link( $Object , get_field( $Permit , 'id' ) , $ObjectType , 'permit' , true );
 			}
 			catch( Exception $e )
@@ -656,55 +656,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Переключение доступа для объекта.
-		*
-		*	@param $Permit - Переключаемый доступ.
-		*
-		*	@param $Object - Объект, к которому добавляется доступ.
-		*
-		*	@param $ObjectType - Тип объекта, к которому добавляется доступ.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function toggles permit for object.
-		*
-		*	@param $Permit - Permit to toggle.
-		*
-		*	@param $Object - Object.
-		*
-		*	@param $ObjectType - Type of the object (may be menu, user, page).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	toggle_permits( $Permit , $Object , $ObjectType )
-		{
-			try
-			{
-				foreach( $Object as $i => $id )
-				{
-					if( $this->Link->link_exists( $id , get_field( $Permit , 'id' ) , $ObjectType , 'permit' ) )
-					{
-						$this->Link->delete_link( $id , get_field( $Permit , 'id' ) , $ObjectType , 'permit' );
-					}
-					else
-					{
-						$this->Link->create_link( $id , get_field( $Permit , 'id' ) , $ObjectType , 'permit' , true );
-					}
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Переключение доступа для объекта.
 		*
@@ -736,31 +688,31 @@
 			try
 			{
 				$this->PermitsCache = array();
-			
+
 				$Permit = $this->Security->get( $Permit , 'command' );
 				$Permit = $this->unsafe_select( "permit LIKE '$Permit'" );
 				if( isset( $Permit[ 0 ] ) === false )
 				{
 					throw( new Exception( "Permit \"$Permit\" was not found" ) );
 				}
-				
+
 				$Permit = $Permit[ 0 ];
 				$Object = $this->Security->get( $Object , 'string' );
 				$ObjectType = $this->Security->get( $ObjectType , 'command' );
-				
+
 				if( is_array( $Object ) === false )
 				{
 					$Object = array( $Object );
 				}
-				
-				$this->toggle_permits();
+
+				$this->PermitAccessUtilities->toggle_permits();
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление доступа для объекта.
 		*
@@ -792,18 +744,18 @@
 			try
 			{
 				$this->PermitsCache = array();
-			
+
 				$Permit = $this->Security->get( $Permit , 'command' );
 				$Permit = $this->unsafe_select( "permit LIKE '$Permit'" );
 				if( isset( $Permit[ 0 ] ) === false )
 				{
 					throw( new Exception( "Permit \"$Permit\" was not found" ) );
 				}
-				
+
 				$Permit = $Permit[ 0 ];
 				$Object = $this->Security->get( $Object , 'string' );
 				$ObjectType = $this->Security->get( $ObjectType , 'command' );
-				
+
 				$this->Link->delete_link( $Object , get_field( $Permit , 'id' ) , $ObjectType , 'permit' );
 			}
 			catch( Exception $e )
@@ -811,14 +763,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение доступов для страницы.
 		*
 		*	@param $Object - Название страницы.
-		*
-		*	@note Если по каким-либо причинам не найдено ни одного доступа, 
-		*	то считается что на страницу установлен доступ admin.
 		*
 		*	@return Список доступов, которыми должен обладать пользователь для работы со страницей.
 		*
@@ -830,8 +779,6 @@
 		*	\~english Function returns permits for the page.
 		*
 		*	@param $Object - Page to be accessed.
-		*
-		*	@note If permits were not defined at all, then all permits for that page are defaulted to 'admin'.
 		*
 		*	@return List of permits.
 		*

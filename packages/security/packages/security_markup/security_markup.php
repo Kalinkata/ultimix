@@ -204,6 +204,45 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция отвечающая за обработку строки.
+		*
+		*	@param $Settings - Параметры обработки.
+		*
+		*	@return Параметры.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes strings.
+		*
+		*	@param $Settings - Processing options.
+		*
+		*	@return Parameters.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_page_parameters( &$Settings )
+		{
+			try
+			{
+				$JSON = get_package( 'json' , 'last' , __FILE__ );
+
+				$Code = $JSON->encode( array_merge( $_GET , $_POST ) );
+				$Code =	str_replace( "'" , '&#039;' , $Code );
+
+				return( $Code );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 		
 		/**
 		*	\~russian Функция отвечающая за обработку строки.
@@ -241,6 +280,8 @@
 			{
 				$this->load_packages();
 
+				//TODO: move it to auto_markup
+				
 				$Limitations = array( 'default' => TERMINAL_VALUE );
 
 				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'http_param' , $Limitations ) ; )

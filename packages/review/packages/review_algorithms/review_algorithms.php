@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$FileInputAccess = false;
-		var					$Link = false;
+		var					$LinkUtilities = false;
 		var					$ReviewAccess = false;
 		var					$Security = false;
 		var					$UserAlgorithms = false;
@@ -68,7 +68,7 @@
 			try
 			{
 				$this->FileInputAccess = get_package( 'file_input::file_input_access' , 'last' , __FILE__ );
-				$this->Link = get_package( 'link' , 'last' , __FILE__ );
+				$this->LinkUtilities = get_package( 'link::link_utilities' , 'last' , __FILE__ );
 				$this->ReviewAccess = get_package( 'review::review_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
@@ -195,7 +195,7 @@
 					return( $this->Cache[ "$MasterId.$MasterType" ] );
 				}
 				
-				$this->Cache[ "$MasterId.$MasterType" ] = $this->Link->get_dependent_objects( 
+				$this->Cache[ "$MasterId.$MasterType" ] = $this->LinkUtilities->get_dependent_objects( 
 					$MasterId , $MasterType , 'review' , $this->ReviewAccess
 				);
 				

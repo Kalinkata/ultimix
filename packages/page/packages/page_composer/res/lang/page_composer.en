@@ -115,3 +115,6 @@ month=month
 half_year=half_year
 year=year
 close_tab=Close tab
+the_setting_package_name_was_not_found=The setting 'package_name' was not set
+all_selected_records_were_deleted=All selected records were deleted
+refresh_form_content=Refresh page content

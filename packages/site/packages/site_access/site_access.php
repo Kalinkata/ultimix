@@ -49,6 +49,7 @@
 		*/
 		var					$Database = false;
 		var					$DatabaseAlgorithms = false;
+		var					$EventManager = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
 		
@@ -68,6 +69,7 @@
 			{
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' , 'last' , __FILE__ );
+				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
 			}
@@ -247,19 +249,20 @@
 		{
 			try
 			{
-				$Link = get_package( 'link' , 'last' , __FILE__ );
-				$Link->delete_link( false , $id , false , 'comment' );
+				$this->EventManager->trigger_event( 'on_before_delete_site' , array( 'id' => $id ) );
 
 				$id = $this->Security->get( $id , 'integer_list' );
 				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
 				$this->Database->commit();
+
+				$this->EventManager->trigger_event( 'on_after_delete_site' , array( 'id' => $id ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Создание записи.
 		*

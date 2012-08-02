@@ -106,21 +106,21 @@
 				$o = $this->Pred;
 				if( strpos( $Predicates[ $j ] , 'value_' ) === 0 )
 				{
-					return( $o->process_value( $Data , $Name , $Predicates , $j ) );
+					return( $o->exec_value( $Data , $Name , $Predicates , $j ) );
 				}
 				if( strpos( $Predicates[ $j ] , 'min_' ) === 0 )
 				{
-					return( $o->process_min( $Data , $Name , $Predicates , $j ) );
+					return( $o->exec_min( $Data , $Name , $Predicates , $j ) );
 				}
 				if( strpos( $Predicates[ $j ] , 'max_' ) === 0 )
 				{
-					return( $o->process_max( $Data , $Name , $Predicates , $j ) );
+					return( $o->exec_max( $Data , $Name , $Predicates , $j ) );
 				}
 				if( strpos( $Predicates[ $j ] , 'same_as_' ) === 0 )
 				{
-					return( $o->process_same_as( $Data , $Name , $Predicates , $j ) );
+					return( $o->exec_same_as( $Data , $Name , $Predicates , $j ) );
 				}
-				return( $o->process_simple( $Data , $Name , $Predicates , $j ) );				
+				return( $o->exec_simple( $Data , $Name , $Predicates , $j ) );				
 			}
 			catch( Exception $e )
 			{
@@ -162,7 +162,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_data_predicates( $Data , $Name , $Predicates , $j )
+		private function	handle_data_predicates( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
@@ -217,7 +217,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_extra_predicates( $Data , $Name , $Predicates , $j )
+		private function	handle_extra_predicates( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
@@ -278,7 +278,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_predicates( $Data , $Name , $Predicates )
+		private function	handle_predicates( $Data , $Name , $Predicates )
 		{
 			try
 			{
@@ -286,10 +286,10 @@
 
 				for( $j = 0 ; $j < $c ; $j++ )
 				{
-					if( ( $Result = $this->process_data_predicates( $Data , $Name , $Predicates , $j ) ) !== 0 )
+					if( ( $Result = $this->handle_data_predicates( $Data , $Name , $Predicates , $j ) ) !== 0 )
 					{
 					}
-					elseif( ( $Result = $this->process_extra_predicates( $Data , $Name , $Predicates , $j ) ) !== 0 )
+					elseif( ( $Result = $this->handle_extra_predicates( $Data , $Name , $Predicates , $j ) ) !== 0 )
 					{
 					}
 					elseif( $this->validate_default( $Data , $Name , $Predicates , $j ) === false )
@@ -349,7 +349,7 @@
 					$s = explode( ':' , $s );
 					$Name = $s[ 0 ];
 					$Predicates = explode( ',' , $s[ 1 ] );
-					if( $this->process_predicates( $Data , $Name , $Predicates ) === false )
+					if( $this->handle_predicates( $Data , $Name , $Predicates ) === false )
 					{
 						return( false );
 					}

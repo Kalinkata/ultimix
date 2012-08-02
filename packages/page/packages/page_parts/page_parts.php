@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	page_parts_1_0_0{
-	
+
 		/**
 		*	\~russian Закэшированный объект.
 		*
@@ -41,7 +41,6 @@
 		var					$PageMarkupUtilities = false;
 		var					$Settings = false;
 		var					$String = false;
-		var					$Tags = false;
 		var					$Trace = false;
 
 		/**
@@ -65,7 +64,6 @@
 				);
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
 				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -73,7 +71,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция поиска обработчика.
 		*
@@ -111,12 +109,12 @@
 						return( $RequestionFunction );
 					}
 				}
-				
+
 				if( method_exists( $PackageObject , 'process_string' ) )
 				{
 					return( 'process_string' );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -124,7 +122,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выбрасывание исключения о ненайденном методе.
 		*
@@ -150,9 +148,9 @@
 		function			throw_method_was_not_found_exception( $p , $FunctionName )
 		{
 			$ClassName = $p[ 'fetched_package' ] !== false ? get_class( $p[ 'fetched_package' ] ) : 'false';
-				
+
 			$PackageFullName = $p[ 'package' ].'.'.$p[ 'package_version' ];
-			
+
 			throw( 
 				new Exception( 
 					'Function "'.$FunctionName.'" was not found in class "'.$ClassName.
@@ -192,7 +190,7 @@
 			try
 			{
 				$PackageDirectory = _get_package_relative_path_ex( $PackageName , $PackageVersion );
-				
+
 				if( $this->CachedMultyFS->file_exists( "$PackageDirectory/conf/cf_global_settings" ) )
 				{
 					return( $this->CachedMultyFS->file_get_contents( "$PackageDirectory/conf/cf_global_settings" ) );
@@ -207,7 +205,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение контроллера.
 		*
@@ -239,6 +237,7 @@
 			try
 			{
 				$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
+
 				if( $Package === false )
 				{
 					$Package = get_package_object( 'page::auto_controller' , 'last' , __FILE__ );
@@ -246,7 +245,7 @@
 						$PackageName , $PackageVersion ).'/unexisting_controller.php'
 					);
 				}
-				
+
 				return( $Package );
 			}
 			catch( Exception $e )
@@ -254,7 +253,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение вида.
 		*
@@ -300,7 +299,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список пакетов, применяемых к странице.
 		*
@@ -358,7 +357,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список пакетов, применяемых к странице.
 		*
@@ -403,7 +402,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки настроек.
 		*
@@ -440,7 +439,7 @@
 				$Package[ 'settings' ]->append_settings( $Package[ 'options' ] );
 
 				$PlaceHolderParameters = $Template->get_placeholder_parameters( $Package[ 'placeholder' ] );
-				
+
 				if( $PlaceHolderParameters !== false )
 				{
 					$Package[ 'settings' ]->append_settings( $PlaceHolderParameters );
@@ -451,7 +450,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки пакетов страницы.
 		*
@@ -492,7 +491,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки пакетов страницы.
 		*
@@ -530,7 +529,7 @@
 						$MetaSettings = $this->CachedMultyFS->file_get_contents( "$PackagePath/meta/$MetaFileName" );
 						$Packages[ $i ][ 'settings' ]->append_settings( $MetaSettings );
 					}
-					
+
 					$this->get_package_for_description( $Packages[ $i ] );
 				}
 			}
@@ -539,7 +538,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция вызова обработчика.
 		*
@@ -602,7 +601,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка генераторов.
 		*
@@ -634,8 +633,10 @@
 			try
 			{
 				$this->Trace->start_group( $Type );
+
 				$Changed = false;
 				$Template->add_stylesheets();
+				$counter = 0;
 
 				foreach( $Packages as $i => $p )
 				{
@@ -648,11 +649,9 @@
 							call_user_func( $Caller , $Settings );
 							continue;
 						}
-
 						$this->throw_method_was_not_found_exception( $p , $Type );
 					}
 				}
-
 				$this->Trace->end_group();
 			}
 			catch( Exception $e )
@@ -660,7 +659,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка постпроцессинга.
 		*
@@ -720,7 +719,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка контроллера.
 		*
@@ -775,7 +774,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_controllers( &$Packages )
+		function			compile_controllers( &$Packages )
 		{
 			try
 			{
@@ -880,7 +879,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_views( &$Packages , &$Template )
+		function			compile_views( &$Packages , &$Template )
 		{
 			try
 			{

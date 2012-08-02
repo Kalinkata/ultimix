@@ -91,7 +91,7 @@ ultimix.report.report_generation_process = function( OnGenerate , ShowProgress )
 {
 	if( ShowProgress )
 	{
-		var			LoadingId = ultimix.std_dialogs.WaitingMessageBox( 'report_is_generating' , 'report' );
+		var			LoadingId = ultimix.std_dialogs.WaitingMessageBox( 'report_is_generating' , 'report_dialog' );
 	}
 
 	jQuery( '#report_generation_id' ).load(

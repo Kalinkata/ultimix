@@ -30,7 +30,7 @@
 	define( 'PREFIX_NAME' , 32 );
 	define( 'KEYS' , 64 );
 	define( 'CHECKBOX_IDS' , POST | PREFIX_NAME | KEYS );
-	
+
 	/**
 	*	\~russian Класс с описанием, поддерживаемых данных.
 	*
@@ -66,7 +66,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$SupportedData = array();
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -82,7 +82,7 @@
 			try
 			{
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				
+
 				$this->init_supported_data_types();
 			}
 			catch( Exception $e )
@@ -154,7 +154,7 @@
 			try
 			{
 				$Str = preg_replace( "/\[lang\:([\{\}\[\]]{0}.*)\]/U" , "{lang:\\1}" , $Str );
-				
+
 				return( $Str );
 			}
 			catch( Exception $e )
@@ -162,7 +162,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция прячет некоторые безопасные макросы, чтобы пользователь из редактора мог их вводить.
 		*
@@ -199,7 +199,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка типа распарсенного поля.
 		*
@@ -227,7 +227,7 @@
 			try
 			{
 				$Types = array( 'integer' , 'float' , 'command' , 'string' , 'email' , 'email' , 'set' , 'raw' );
-				
+
 				foreach( $Predicates as $p )
 				{
 					$Key = array_search( $p , $Types );
@@ -236,7 +236,7 @@
 						return( $Types[ $Key ] );
 					}
 				}
-				
+
 				throw( new Exception( "Type was not found" ) );
 			}
 			catch( Exception $e )
@@ -267,7 +267,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_integer( $Data )
+		function			compile_integer( $Data )
 		{
 			try
 			{
@@ -278,7 +278,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'digits'.
 		*
@@ -305,7 +305,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_digits( $Data )
+		function			compile_digits( $Data )
 		{
 			try
 			{
@@ -319,7 +319,7 @@
 						$RetData .= $Data[ $i ];
 					}
 				}
-				
+
 				return( $RetData );
 			}
 			catch( Exception $e )
@@ -327,7 +327,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'integer_list'.
 		*
@@ -350,7 +350,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_integer_list( $Data )
+		function			compile_integer_list( $Data )
 		{
 			try
 			{
@@ -358,10 +358,10 @@
 				{
 					$Data = implode( ',' , $Data );
 				}
-				
+
 				$Matches = array();
 				preg_match( '/^[0-9\,]+$/' , $Data , $Matches );
-				
+
 				if( count( $Matches ) > 0 )
 				{
 					return( $Data );
@@ -376,7 +376,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'float'.
 		*
@@ -399,7 +399,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_float( $Data )
+		function			compile_float( $Data )
 		{
 			try
 			{
@@ -410,7 +410,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'command'.
 		*
@@ -433,7 +433,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_command( $Data )
+		function			compile_command( $Data )
 		{
 			try
 			{
@@ -449,7 +449,7 @@
 						$RetData .= $Data[ $i ];
 					}
 				}
-				
+
 				return( $RetData );
 			}
 			catch( Exception $e )
@@ -457,7 +457,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'string'.
 		*
@@ -480,7 +480,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Data )
+		function			compile_string( $Data )
 		{
 			try
 			{
@@ -488,17 +488,17 @@
 				{
 					$this->String = get_package( 'string' , 'last' , __FILE__ );
 				}
-				
+
 				$Data = $this->hide_safe_macro( $Data );
 				$Data = htmlspecialchars( $Data , ENT_QUOTES , 'UTF-8' );
-				
+
 				$PlaceHolders = array( '{' , ';' , '=' , '#' , '}' , "\r" , "\n" );
 				$Replacements = array( '[lfb]' , '[dot_comma]' , '[eq]' , '[sharp]' , '[rfb]' , '[r]' , '[n]' );
 				$Data = str_replace( $PlaceHolders, $Replacements , $Data );
 
 				$Data = $this->show_safe_macro( $Data );
 				$Data = str_replace( '&' , '[amp]' , $Data );
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -506,7 +506,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'string'.
 		*
@@ -529,7 +529,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_script( $Data )
+		function			compile_script( $Data )
 		{
 			try
 			{
@@ -537,7 +537,7 @@
 				{
 					$this->String = get_package( 'string' , 'last' , __FILE__ );
 				}
-				
+
 				$Data = htmlspecialchars( $Data , ENT_QUOTES , 'UTF-8' );
 				$Data = str_replace( '{' , '[lfb]' , $Data );
 				$Data = str_replace( ';' , '[dot_comma]' , $Data );
@@ -548,7 +548,7 @@
 				$Data = str_replace( "\n" , '[n]' , $Data );
 
 				$Data = str_replace( '&' , '[amp]' , $Data );
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -556,7 +556,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'unsafe_string'.
 		*
@@ -579,7 +579,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_unsafe_string( $Data )
+		function			compile_unsafe_string( $Data )
 		{
 			try
 			{
@@ -587,16 +587,16 @@
 				{
 					$this->String = get_package( 'string' , 'last' , __FILE__ );
 				}
-				
+
 				$Data = str_replace( '[lfb]' , '{' , $Data );
 				$Data = str_replace( '[dot_comma]' , ';' , $Data );
 				$Data = str_replace( '[eq]' , '=' , $Data );
 				$Data = str_replace( '[sharp]' , '#' , $Data );
 				$Data = str_replace( '[rfb]' , '}' , $Data );
 				$Data = str_replace( '[amp]' , '&' , $Data );
-				
+
 				$Data = htmlspecialchars_decode( $Data , ENT_QUOTES );
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -604,7 +604,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных типа 'email'.
 		*
@@ -627,7 +627,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_email( $Data )
+		function			compile_email( $Data )
 		{
 			try
 			{
@@ -646,7 +646,7 @@
 						$RetData .= $Data[ $i ];
 					}
 				}
-				
+
 				return( $RetData );
 			}
 			catch( Exception $e )
@@ -654,7 +654,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка данных.
 		*
@@ -681,7 +681,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_data( &$Data , $Type )
+		function			compile_data( &$Data , $Type )
 		{
 			try
 			{
@@ -693,14 +693,14 @@
 				{
 					return( $Data );
 				}
-				return( call_user_func( array( $this->SupportedData[ $Type ] , "process_$Type" ) , $Data ) );
+				return( call_user_func( array( $this->SupportedData[ $Type ] , "compile_$Type" ) , $Data ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка объектов и массивов.
 		*
@@ -742,7 +742,7 @@
 				{
 					if( is_array( $d ) || is_object( $d ) )
 					{
-						$d = $this->process_data( $d , $Type );
+						$d = $this->compile_data( $d , $Type );
 						if( is_object( $d ) || count( $d ) )
 						{
 							$Ret[ $key ] = $d;
@@ -752,7 +752,7 @@
 					{
 						if( $Type == 'string' || $Type == 'command' || $Type == 'raw' || strlen( $d ) != 0 )
 						{
-							$Ret[ $key ] = $this->process_data( $d , $Type );
+							$Ret[ $key ] = $this->compile_data( $d , $Type );
 						}
 					}
 				}

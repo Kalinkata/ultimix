@@ -4,4 +4,3 @@ menu::menu_manager#last#controller=1;edit_menu=1#
 menu::menu_manager#last#view=1;show_menu_list=1#main
 menu::menu_manager#last#view=1;show_create_menu_form=1#main
 menu::menu_manager#last#view=1;show_edit_menu_form=1#main
-gui::checkbox_markup#last#post_process=1#

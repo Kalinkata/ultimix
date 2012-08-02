@@ -50,7 +50,6 @@
 		var					$Cache = false;
 		var					$CachedMultyFS = false;
 		var					$PageComposer = false;
-		var					$PageFile = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$Tags = false;
@@ -72,7 +71,6 @@
 			{
 				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->PageFile = get_package( 'page:;page_file' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
@@ -131,46 +129,6 @@
 				}
 
 				return( $Compressed );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Получение названия файла.
-		*
-		*	@param $Files - Массив файлов для объединения.
-		*
-		*	@return Название файла.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Getting file name.
-		*
-		*	@param $Files - Array of files to unite.
-		*
-		*	@return File name.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	get_file_name( $Files )
-		{
-			try
-			{
-				$FilesHash = '';
-				foreach( $Files as $k2 => $v2 )
-				{
-					$FilesHash .= $v2;
-				}
-
-				return( md5( $FilesHash ) );
 			}
 			catch( Exception $e )
 			{
@@ -251,7 +209,7 @@
 		{
 			try
 			{	
-				$FilesHash = $this->PageFile->get_file_name( $Files );
+				$FilesHash = md5( implode_ex( '' , $Files , 'path' ) );
 				$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.css";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 
@@ -312,7 +270,7 @@
 		{
 			try
 			{	
-				$FilesHash = $this->PageFile->get_file_name( $Files );
+				$FilesHash = implode( '' , $Files );
 				$UnionFilePath = "$Path/$FilesHash.css";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 
@@ -557,7 +515,7 @@
 				{
 					$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 				}
-				$Path = $this->PageComposer->Template->process_string( $Path );
+				$Path = $this->PageComposer->Template->compile_string( $Path );
 				$Path = str_replace( '/./' , '/' , $Path );
 				foreach( $this->CSSFiles as $k => $v )
 				{

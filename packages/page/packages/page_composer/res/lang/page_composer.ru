@@ -115,3 +115,6 @@ month=месяц
 half_year=полгода
 year=год
 close_tab=Закрыть вкладку
+the_setting_package_name_was_not_found=Параметр 'package_name' не был установлен
+all_selected_records_were_deleted=Все выбранные записи были удалены
+refresh_form_content=Обновить содержимое формы

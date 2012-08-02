@@ -434,7 +434,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_config_line( $ConfigLine )
+		function			compile_config_line( $ConfigLine )
 		{
 			try
 			{
@@ -482,7 +482,7 @@
 				$Config = $this->CachedMultyFS->file_get_contents( $ConfigPath , 'exploded' );
 				foreach( $Config as $i => $ConfigLine )
 				{
-					$this->Output .= $this->process_config_line( $ConfigLine );
+					$this->Output .= $this->compile_config_line( $ConfigLine );
 				}
 				
 				$this->Output .= $this->CachedMultyFS->get_template( __FILE__ , 'settings_form_footer.tpl' );
@@ -575,11 +575,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'settings'.
 		*
-		*	@param $Str - Обрабатывемая строка.
+		*	@param $Settings - Настройки.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return HTML код.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
@@ -588,37 +586,26 @@
 		/**
 		*	\~english Function processes macro 'settings'.
 		*
-		*	@param $Str - Processing string.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return HTML code
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_settings( $Str , $Changed )
+		function			compile_settings( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'settings' ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					$Str = str_replace( 
-						"{settings:$Parameters}" , 
-						$this->PackageSettings->get_package_setting( 
-							$this->Settings->get_setting( 'package_name' ) , 
-							$this->Settings->get_setting( 'package_version' , 'last' ) , 
-							$this->Settings->get_setting( 'config_file_name' ) , 
-							$this->Settings->get_setting( 'name' ) , $this->Settings->get_setting( 'default' , '' ) 
-						) , 
-						$Str
-					);
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return(
+					$this->PackageSettings->get_package_setting( 
+						$Settings->get_setting( 'package_name' ) , 
+						$Settings->get_setting( 'package_version' , 'last' ) , 
+						$Settings->get_setting( 'config_file_name' ) , 
+						$Settings->get_setting( 'name' ) , $Settings->get_setting( 'default' , '' ) 
+					)
+				);
 			}
 			catch( Exception $e )
 			{
@@ -629,11 +616,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'db_settings'.
 		*
-		*	@param $Str - Обрабатывемая строка.
+		*	@param $Settings - Настройки.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return HTML код.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
@@ -642,81 +627,22 @@
 		/**
 		*	\~english Function processes macro 'db_settings'.
 		*
-		*	@param $Str - Processing string.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return HTML code
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_db_settings( $Str , $Changed )
+		function			compile_db_settings( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'db_settings' ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					$SettingName = $this->Settings->get_setting( 'name' );
-					$DefaultValue = $this->Settings->get_setting( 'default' , '' );
-					
-					$Value = $this->DBSettings->get_setting( $SettingName , $DefaultValue );
-					
-					$Str = str_replace( "{db_settings:$Parameters}" , $Value , $Str );
-					
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Обрабатываемая строка.
-		*
-		*	@param $Changed - Была ли обработана строка.
-		*
-		*	@return HTML код компонента.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the string processed.
-		*
-		*	@return HTML code of the component.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_settings( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_db_settings( $Str , $Changed );
-				
-				return( $Str );
+				$SettingName = $Settings->get_setting( 'name' );
+				$DefaultValue = $Settings->get_setting( 'default' , '' );
+
+				return( $this->DBSettings->get_setting( $SettingName , $DefaultValue ) );
 			}
 			catch( Exception $e )
 			{

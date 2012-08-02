@@ -68,18 +68,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_file_name( $Files )
+		function			get_file_name( $Files )
 		{
 			try
 			{
-				// TODO remove duplicates from page_js and page_css
-				$FilesHash = '';
+				$FilesHash = implode( '' , $Files );
+
 				foreach( $Files as $k2 => $v2 )
 				{
 					$FilesHash .= $v2;
 				}
 
-				return( md5( $FilesHash ) );
+				return( md5( implode( '' , $Files ) ) );
 			}
 			catch( Exception $e )
 			{

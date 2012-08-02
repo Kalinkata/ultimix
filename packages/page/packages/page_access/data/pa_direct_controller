@@ -1,4 +1,2 @@
-page::page_composer#last#post_process=1#
 page::page_composer_view#last#view=1;direct_controller=1#data
-lang::lang_markup#last#post_process=1#
 gui#last#post_process=1#

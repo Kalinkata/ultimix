@@ -21,4 +21,4 @@
 								</td>
 							</tr>
 						</table>
-					</form>
+					</form>{lang_file:package_name=review::review_markup}{lang_file:package_name=review::review_view}

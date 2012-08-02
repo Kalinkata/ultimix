@@ -109,7 +109,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_task( $Parameters , $CurrentIteration )
+		function			run_task( $Parameters , $CurrentIteration )
 		{
 			try
 			{
@@ -149,7 +149,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	call_process_task_function( $Task )
+		private function	call_run_task_function( $Task )
 		{
 			try
 			{
@@ -160,7 +160,7 @@
 					throw( new Exception( 'The package "'.$Task->package_name.'" has no script' ) );
 				}
 
-				$Delegate = array( $Package , 'process_task' );
+				$Delegate = array( $Package , 'schedule_task' );
 
 				return( intval( call_user_func( $Delegate , $Task->parameters , $Task->next_iteration ) ) );
 			}
@@ -232,11 +232,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_single_task( $Task )
+		function			run_single_task( $Task )
 		{
 			try
 			{
-				$NextIteration = $this->call_process_task_function( $Task );
+				$NextIteration = $this->call_run_task_function( $Task );
 
 				$this->finish_task_processing( $Task , $NextIteration );
 			}
@@ -267,7 +267,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_all_tasks( $Tasks )
+		function			run_all_tasks( $Tasks )
 		{
 			try
 			{
@@ -277,7 +277,7 @@
 
 				foreach( $Tasks as $k => $Task )
 				{
-					$this->process_single_task( $Task );
+					$this->run_single_task( $Task );
 				}
 			}
 			catch( Exception $e )
@@ -300,7 +300,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_tasks()
+		function			run_tasks()
 		{
 			try
 			{
@@ -313,7 +313,7 @@
 
 				if( isset( $Tasks[ 0 ] ) )
 				{
-					$this->process_all_tasks( $Tasks );
+					$this->run_all_tasks( $Tasks );
 				}
 				else
 				{

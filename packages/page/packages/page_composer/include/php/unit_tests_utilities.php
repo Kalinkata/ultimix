@@ -39,7 +39,7 @@
 			'<table' , '<a' , '<div' , '<span' , '<td' , '<tr' , '<li' , '<ul' , '<select' , '</a>' , '</div>' , 
 			'</span>' , '</select>' , '<script' , '<link' , '</ul>' , '</li>' , '<br>' , '<p>' , '<p ' , '<option'
 		);
-		
+
 		for( $k = 0 ; $k < count( $FileContent ) ; $k++ )
 		{
 			for( $j = 0 ; $j < count( $Patterns ) ; $j++ )
@@ -52,7 +52,7 @@
 				}
 			}
 		}
-		
+
 		return( $Errors );
 	}
 
@@ -78,21 +78,21 @@
 	{
 		$Start = 0;
 		$Entries = array();
-		
+
 		for( ; $Start !== false ; )
 		{
 			$Start = strpos( $Content , 'function' , $Start );
-			
+
 			if( $Start !== false )
 			{
 				$Entries [] = $Start;
 				$Start += 8;
 			}
 		}
-		
+
 		return( $Entries );
 	}
-	
+
 	/**
 	*	\~russian Является ли буквой названия функции.
 	*
@@ -118,10 +118,10 @@
 		{
 			return( true );
 		}
-		
+
 		return( false );
 	}
-	
+
 	/**
 	*	\~russian Получение названия функции.
 	*
@@ -167,7 +167,7 @@
 		}
 		return( false );
 	}
-	
+
 	/**
 	*	\~russian Получение курсора начала тела функции.
 	*
@@ -194,7 +194,7 @@
 	{
 		return( strpos( $Content , chr( 123 ) , $Entry ) );
 	}
-	
+
 	/**
 	*	\~russian Получение курсора начала тела функции.
 	*
@@ -237,7 +237,7 @@
 				return( $i );
 			}
 		}
-		
+
 		return( false );
 	}
 
@@ -278,7 +278,7 @@
 
 		return( $Bodies );
 	}
-	
+
 	/**
 	*	\~russian Получение количества строк.
 	*
@@ -300,11 +300,11 @@
 	function			count_lines( $Content )
 	{
 		$Content = str_replace( "\r" , "\n" , $Content );
-		
+
 		$Content = str_replace( "\n\n" , "\n" , $Content );
-		
+
 		$Content = explode( "\n" , $Content );
-		
+
 		return( count( $Content ) );
 	}
 
@@ -329,7 +329,7 @@
 			'excel' , 'soap' , 'json.php' , 'xml_rpc' , 'jquery.layout.min.js' , 'jquery.jstree.js' , 
 			'jquery.media.js' , '.en.js' , '.ru.js' , 'jquery.tree.xml_nested.js' , 'jquery.tree.xml_flat.js' , 
 			'jquery.tree.themeroller.js' , 'jquery.tree.contextmenu.js' , 'sarissa.js' , 'jquery.jstree.js' , 
-			'jquery.corner.js' , '.min.js' , 'disable.text.select.js' , 'dropdown.block.js' , 
+			'jquery.corner.js' , '.min.js' , 'disable.text.select.js' , 'dropdown.block.js' , '/doc/en/html/' , 
 			'jquery.jqGrid.min.js' , 'grid.locale-' , 'jquery.colorbox' , 'swfupload.js' , 'jquery.cookie.js' , 
 			'packages/ckeditor/include/' , 'jquery.jstree.js' , 'jquery-1.7.1.min.js' , 'ui.datepicker-ru.js' , 
 			'file_input_view/include/plugins/' , 'jstree/include/js/' , 'paginator3000.js' , '/tmp/' )

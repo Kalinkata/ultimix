@@ -4,4 +4,3 @@ permit::permit_manager#last#controller=1;edit_permit=1#
 permit::permit_manager#last#view=1;show_permit_list=1#main
 permit::permit_manager#last#view=1;show_create_permit_form=1#main
 permit::permit_manager#last#view=1;show_edit_permit_form=1#main
-gui::checkbox_markup#last#post_process=1#

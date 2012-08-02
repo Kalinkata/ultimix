@@ -157,7 +157,7 @@
 					return( true );
 				}
 				
-				if( $Value == '' || $this->SupportedDataTypes->process_data( $Value , 'email' ) != $Value )
+				if( $Value == '' || $this->SupportedDataTypes->compile_data( $Value , 'email' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
@@ -212,7 +212,7 @@
 					return( true );
 				}
 				
-				if( $Value === '' || $this->SupportedDataTypes->process_data( $Value , 'float' ) != $Value )
+				if( $Value === '' || $this->SupportedDataTypes->compile_data( $Value , 'float' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
@@ -267,7 +267,7 @@
 					return( true );
 				}
 				
-				if( $Value === '' || $this->SupportedDataTypes->process_data( $Value , 'integer' ) != $Value )
+				if( $Value === '' || $this->SupportedDataTypes->compile_data( $Value , 'integer' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
@@ -372,7 +372,7 @@
 					return( true );
 				}
 				
-				if( $this->SupportedDataTypes->process_data( $Value , 'command' ) != $Value )
+				if( $this->SupportedDataTypes->compile_data( $Value , 'command' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
@@ -561,7 +561,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_set( $Data , $Name , $Predicates )
+		private function	exec_set( $Data , $Name , $Predicates )
 		{
 			try
 			{
@@ -614,13 +614,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_value( $Data , $Name , $Predicates , $j )
+		function			exec_value( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
 				$Value = str_replace( 'value_' , '' , $Predicates[ $j ] );
 
-				if( $this->SupportedDataTypes->process_data( @$Data[ $Name ] , 'raw' ) != $Value )
+				if( $this->SupportedDataTypes->compile_data( @$Data[ $Name ] , 'raw' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 
@@ -669,13 +669,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_min( $Data , $Name , $Predicates , $j )
+		function			exec_min( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
 				$Value = intval( str_replace( 'min_' , '' , $Predicates[ $j ] ) );
 				
-				if( $this->SupportedDataTypes->process_data( $Data[ $Name ] , 'raw' ) < $Value )
+				if( $this->SupportedDataTypes->compile_data( $Data[ $Name ] , 'raw' ) < $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					
@@ -724,13 +724,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_max( $Data , $Name , $Predicates , $j )
+		function			exec_max( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
 				$Value = intval( str_replace( 'max_' , '' , $Predicates[ $j ] ) );
 				
-				if( $this->SupportedDataTypes->process_data( $Data[ $Name ] , 'raw' ) > $Value )
+				if( $this->SupportedDataTypes->compile_data( $Data[ $Name ] , 'raw' ) > $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					
@@ -779,16 +779,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_same_as( $Data , $Name , $Predicates , $j )
+		function			exec_same_as( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
 				$SecondField = str_replace( 'same_as_' , '' , $Predicates[ $j ] );
 
-				$SecondValue = $this->SupportedDataTypes->process_data( $Data[ $SecondField ] , 'raw' );
+				$SecondValue = $this->SupportedDataTypes->compile_data( $Data[ $SecondField ] , 'raw' );
 
-				$First = $this->SupportedDataTypes->process_data( $Data[ $Name ] , 'raw' );
-				$Second = $this->SupportedDataTypes->process_data( $SecondValue , 'raw' );
+				$First = $this->SupportedDataTypes->compile_data( $Data[ $Name ] , 'raw' );
+				$Second = $this->SupportedDataTypes->compile_data( $SecondValue , 'raw' );
 
 				if( $First !== $Second )
 				{
@@ -839,13 +839,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_simple( $Data , $Name , $Predicates , $j )
+		function			exec_simple( $Data , $Name , $Predicates , $j )
 		{
 			try
 			{
 				if( $Predicates[ $j ] === 'set' )
 				{
-					return( $this->process_set( $Data , $Name , $Predicates ) );
+					return( $this->exec_set( $Data , $Name , $Predicates ) );
 				}
 				if( strpos( $Predicates[ $j ] , 'err_msg_' ) === 0 )
 				{

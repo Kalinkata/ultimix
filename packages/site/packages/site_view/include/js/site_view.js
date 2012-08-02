@@ -93,3 +93,33 @@ ultimix.site.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
+
+/**
+*	Function deletes site.
+*
+*	@param SiteId - Site id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.site.delete = function( SiteId , DataSelector )
+{
+	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
+		function( Result )
+		{
+			if( Result == ultimix.std_dialogs.MB_YES )
+			{
+				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+
+				ultimix.ajax_gate.direct_controller( 
+					{ 
+						'package_name' : 'site::site_controller' , 'site_context_action' : 'delete_record' , 
+						'site_action' : 'delete_record' , 'site_record_id' : SiteId , 'meta' : 'meta_delete_site'
+					} , 
+					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
+				);
+			}
+		}
+	)
+}

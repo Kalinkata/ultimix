@@ -1,4 +1,2 @@
 page::template_content::template_content_controller#last#controller=1;edit_template_content=1#
 page::template_content::template_content_view#last#view=1;show_edit_template_content_form=1#main
-gui::controls_markup#last#post_process=1#
-gui::checkbox_markup#last#post_process=1#

@@ -221,7 +221,7 @@
 					return( $this->Security->get( $Array[ $Field ] , $Type ) );
 				}
 				
-				return( $this->process_default_set( $Array , $Field , $Type , $DefaultValue ) );
+				return( $this->handle_default_set( $Array , $Field , $Type , $DefaultValue ) );
 			}
 			catch( Exception $e )
 			{
@@ -309,7 +309,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_default_set( &$Data , $Field , $Type , $DefaultValue )
+		private function	handle_default_set( &$Data , $Field , $Type , $DefaultValue )
 		{
 			try
 			{
@@ -361,7 +361,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_get( $Field , $Mode )
+		private function	handle_get( $Field , $Mode )
 		{
 			try
 			{
@@ -506,12 +506,12 @@
 					return( $this->Security->get( $Return , $Type ) );
 				}
 
-				if( $Type !== 'set' && ( $Value = $this->process_get( $Field , $Mode ) ) !== false )
+				if( $Type !== 'set' && ( $Value = $this->handle_get( $Field , $Mode ) ) !== false )
 				{
 					return( $this->Security->get( $Value , $Type ) );
 				}
 				$Data = $this->merge_globals( $Mode );
-				return( $this->process_default_set( $Data , $Field , $Type , $DefaultValue ) );
+				return( $this->handle_default_set( $Data , $Field , $Type , $DefaultValue ) );
 			}
 			catch( Exception $e )
 			{

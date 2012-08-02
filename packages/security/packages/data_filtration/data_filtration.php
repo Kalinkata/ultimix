@@ -169,7 +169,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_filtering_data( $Data , $FiltrationScript , &$Settings )
+		private function	filter_data( $Data , $FiltrationScript , &$Settings )
 		{
 			try
 			{
@@ -238,8 +238,8 @@
 					$Settings->set_setting( 'keys' , explode( ',' , $Settings->get_setting( 'keys' ) ) );
 				}
 
-				$Ret = process_filtering_data( $Data , $FiltrationScript , $Settings );
-				
+				$Ret = filter_data( $Data , $FiltrationScript , $Settings );
+
 				return( count( $Ret ) ? $Ret : false );
 			}
 			catch( Exception $e )

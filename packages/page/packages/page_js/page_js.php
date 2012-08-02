@@ -50,7 +50,6 @@
 		var					$Cache = false;
 		var					$CachedMultyFS = false;
 		var					$PageComposer = false;
-		var					$PageFile = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$Tags = false;
@@ -72,7 +71,6 @@
 			{
 				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->PageFile = get_package( 'page::page_file' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
@@ -212,7 +210,7 @@
 		{
 			try
 			{
-				$FilesHash = $this->PageFile->get_file_name( $Files );
+				$FilesHash = md5( implode_ex( '' , $Files , 'path' ) );
 				$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.js";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 
@@ -267,7 +265,8 @@
 				{
 					$RetFiles = $this->join_compressed_scripts( $Files );
 
-					$FilesHash = $this->PageFile->get_file_name( $Files );
+					$FilesHash = md5( implode_ex( '' , $Files , 'path' ) );
+
 					$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.js";
 
 					$RetFiles [] = array( 
@@ -415,7 +414,7 @@
 				{
 					$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 				}
-				$Path = $this->PageComposer->Template->process_string( $Path );
+				$Path = $this->PageComposer->Template->compile_string( $Path );
 				foreach( $this->JSFiles as $k => $v )
 				{
 					if( $v[ 'path' ] == $Path )

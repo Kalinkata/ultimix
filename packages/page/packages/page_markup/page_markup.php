@@ -36,14 +36,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$CachedMultyFS = false;
 		var					$PageMarkupUtilities = false;
-		var					$PageParser = false;
 		var					$PageParts = false;
 		var					$Security = false;
-		var					$Settings = false;
-		var					$String = false;
-		var					$Trace = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -59,15 +54,10 @@
 		{
 			try
 			{
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageMarkupUtilities = get_package( 
 					'page::page_markup::page_markup_utilities' , 'last' , __FILE__
 				);
-				$this->PageParser = get_package( 'page::page_parser' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -76,51 +66,37 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса direct_controller.
+		*	\~russian Функция компиляции макроса 'direct_controller'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@return Widget.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro direct_controller.
+		*	\~english Function compiles macro 'direct_controller'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@return Widget.
 		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_direct_controller( $Str , $Changed )
+		function			compile_direct_controller( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'need_run' => TERMINAL_VALUE );
-
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'direct_controller' , $Limitations ) ; )
+				if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
 				{
-					$this->Settings->load_settings( $Params );
-
-					if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
-					{
-						$this->PageMarkupUtilities->direct_controller( $this->Settings );
-					}
-
-					$Str = str_replace( "{direct_controller:$Params}" , '' , $Str );
-					$Changed = true;
+					$this->PageMarkupUtilities->direct_controller( $this->Settings );
 				}
 
-				return( array( $Str , $Changed ) );
+				return( '' );
 			}
 			catch( Exception $e )
 			{
@@ -129,52 +105,44 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса direct_view.
+		*	\~russian Функция компиляции макроса 'error_messages'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@return Widget.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro direct_view.
+		*	\~english Function compiles macro 'error_messages'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@return Widget.
 		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_direct_view( $Str , $Changed )
+		function			compile_direct_view( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'need_run' => TERMINAL_VALUE );
+				$this->Security->reset_s( 'direct_view' , true );
 
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'direct_view' , $Limitations ) ; )
+				$this->Settings->set_undefined( 'view' , 1 );
+
+				$Code = '';
+				if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
 				{
-					$this->Settings->load_settings( $Params );
-
-					$ViewCode = '';
-					if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
-					{
-						$ViewCode = $this->PageMarkupUtilities->direct_view( $this->Settings );
-					}
-
-					$Str = str_replace( "{direct_view:$Params}" , $ViewCode , $Str );
-					$Changed = true;
+					$Code = $this->PageMarkupUtilities->direct_view( $this->Settings );
 				}
 
-				return( array( $Str , $Changed ) );
+				$this->Security->reset_s( 'direct_view' , false );
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -183,149 +151,78 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'redirect'.
+		*	\~russian Функция компиляции макроса 'redirect'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'redirect'.
+		*	\~english Function compiles macro 'redirect'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_redirect( $Str , $Changed )
+		function			compile_redirect( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'page' => TERMINAL_VALUE , 'need_redirect' => TERMINAL_VALUE );
+				$NeedRedirect = intval( $Settings->get_setting( 'need_redirect' , 1 ) );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'redirect' , $Limitations ) ; )
+				if( $NeedRedirect )
 				{
-					$this->Settings->load_settings( $Parameters );
-					$NeedRedirect = intval( $this->Settings->get_setting( 'need_redirect' , 1 ) );
-
-					if( $NeedRedirect )
-					{
-						header( 'Location: '.$this->Settings->get_setting( 'page' ) );
-						exit( 0 );
-					}
-
-					$Str = str_replace( "{redirect:$Parameters}" , '' , $Str );
-					$Changed = true;
+					header( 'Location: '.$Settings->get_setting( 'page' ) );
+					exit( 0 );
 				}
 
-				return( array( $Str , $Changed ) );
+				return( '' );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'safe'.
+		*	\~russian Функция компиляции макроса 'safe'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'safe'.
+		*	\~english Function compiles macro 'safe'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_safe( $Str , $Changed )
-		{
-			try
-			{
-				for( ; $this->String->block_exists( $Str , 'safe' , '~safe' ) !== false ; )
-				{
-					$BlockData = $this->String->get_block_data( $Str , 'safe' , '~safe' );
-					
-					$NewBlockData = $this->Security->get( $BlockData , 'string' );
-					
-					$Str = str_replace( "{safe}$BlockData{~safe}" , $NewBlockData , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'unsafe'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'unsafe'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_unsafe( $Str , $Changed )
+		function			compile_safe( &$Settings , $Data )
 		{
 			try
 			{
-				for( ; $this->String->block_exists( $Str , 'unsafe' , '~unsafe' ) !== false ; )
-				{
-					$BlockData = $this->String->get_block_data( $Str , 'unsafe' , '~unsafe' );
-					
-					$NewBlockData = $this->Security->get( $BlockData , 'unsafe_string' );
-					
-					$Str = str_replace( "{unsafe}$BlockData{~unsafe}" , $NewBlockData , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				return( $this->Security->get( $Data , 'string' ) );
 			}
 			catch( Exception $e )
 			{
@@ -363,7 +260,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_common_literals( $Names , $Str , $Changed )
+		function			compile_common_literals( $Names , $Str , $Changed )
 		{
 			try
 			{
@@ -416,7 +313,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_front_page_literals( $Names , $Str , $Changed )
+		function			compile_front_page_literals( $Names , $Str , $Changed )
 		{
 			try
 			{
@@ -444,44 +341,47 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макросов.
+		*	\~russian Функция компиляции макроса 'for_pages'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro.
+		*	\~english Function compiles macro 'for_pages'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_literals( $Str , $Changed )
+		function			compile_for_pages( $Settings , $Data )
 		{
 			try
 			{
-				$Literals = array( 'site_title' , 'welcome_text_title' , 'welcome_text_demo' , 'company_name' );
-				list( $Str , $Changed ) = $this->process_common_literals( $Literals , $Str , $Changed );
+				$Pages = explode( ',' ,  $Settings->get_setting( 'pages' ) );
 
-				$FrontPageLiterals = array( 'front_page_welcome_title' , 'front_page_welcome_text' );
-				list( $Str , $Changed ) = $this->process_front_page_literals( $FrontPageLiterals , $Str , $Changed );
+				$PageName = $this->Security->get_gp( 'page_name' , 'command' );
 
-				return( array( $Str , $Changed ) );
+				if( in_array( $PageName , $Pages ) )
+				{
+					return( $Data );
+				}
+
+				return( '' );
 			}
 			catch( Exception $e )
 			{
@@ -490,52 +390,45 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки блоков 'for_pages/not_for_pages'.
+		*	\~russian Функция компиляции макроса 'for_pages'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes block 'for_pages/not_for_pages'.
+		*	\~english Function compiles macro 'for_pages'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_pages_block( $Name , $Str , $Changed )
+		function			compile_not_for_pages( $Settings , $Data )
 		{
 			try
 			{
-				$Rules = array( 'pages' => TERMINAL_VALUE );
-				
-				for( ; $this->PageParser->find_next_macro( $Str , $Name , $Rules ) ; )
+				$Pages = explode( ',' ,  $Settings->get_setting( 'pages' ) );
+
+				$PageName = $this->Security->get_gp( 'page_name' , 'command' );
+
+				if( !in_array( $PageName , $Pages ) )
 				{
-					$this->Settings = $this->PageParser->get_macro_parameters();
-
-					$Pages = explode( ',' ,  $this->Settings->get_setting( 'pages' ) );
-
-					$PageName = $this->Security->get_gp( 'page_name' , 'command' );
-
-					$Flag = $Name == 'for_pages' ? in_array( $PageName , $Pages ) : !in_array( $PageName , $Pages );
-
-					$Str = $this->PageParser->process_macro( $Flag ? 'show' : 'hide' , $Str , $Name );
-					$Changed = true;
+					return( $Data );
 				}
-				
-				return( array( $Str , $Changed ) );
+
+				return( '' );
 			}
 			catch( Exception $e )
 			{
@@ -637,111 +530,35 @@
 		}
 
 		/**
-		*	\~russian Функция обработки строки.
+		*	\~russian Функция компиляции макроса 'meta'.
 		*
-		*	@param $Options - Настройки работы модуля.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes string.
+		*	\~english Function compiles macro 'meta'.
 		*
-		*	@param $Options - Settings.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_meta( $Options , $Str , &$Changed )
+		function			compile_meta( &$Settings )
 		{
 			try
 			{
-				if( strpos( $Str , '{page_name}' ) !== false )
-				{
-					$Str = str_replace( '{page_name}' , $this->Security->get_gp( 'page_name' , 'string' ) , $Str );
-				}
+				$MetaSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->load_meta_settings( $Settings , $MetaSettings );
 				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'meta' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					$MetaSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-					$this->load_meta_settings( $this->MacroSettings , $MetaSettings );
-					
-					$Str = $this->run_meta_settings( $MetaSettings , $Str );
-					$Changed = true;
-				}
-				
-				return( $Str );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				/* TODO: move to auto_markup */
-				list( $Str , $Changed ) = $this->process_redirect( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_safe( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_unsafe( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_literals( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_pages_block( 'for_pages' , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_pages_block( 'not_for_pages' , $Str , $Changed );
-
-				return( $Str );
+				$Str = $this->run_meta_settings( $MetaSettings , $Str );
 			}
 			catch( Exception $e )
 			{

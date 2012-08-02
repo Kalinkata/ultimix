@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для обработки страниц с учетом доступов.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class		group_buttons_1_0_0{
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -36,9 +36,8 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$Settings = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Добавлен ли контроллер.
 		*
@@ -50,7 +49,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ControllerWasAdded = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -66,7 +65,6 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -98,15 +96,15 @@
 			try
 			{
 				$Code = '';
-				
+
 				if( $this->ControllerWasAdded === false )
 				{
 					$Code = '{direct_controller:set_group=1;delete_group=1;toggle_group=1;'.
 							'package_name=permit::permit_controller}';
-					
+
 					$this->ControllerWasAdded = true;
 				}
-				
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -114,7 +112,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция копиляции макроса 'set_group_button'.
 		*
@@ -137,20 +135,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_set_group_button( $Parameters )
+		function			compile_set_group_button( &$Settings )
 		{
 			try
 			{
-				$this->Settings->load_settings( $Params );
-					
-				list( $Text , $Group , $MasterId ) = $this->Settings->get_settings( 'text,group,master_id' );
-				$MasterType = $this->Settings->get_setting( 'master_type' , 'user' );
-				$CheckBoxes = $this->Settings->get_setting( 'checkboxes' , 'user' );
-				
+				list( $Text , $Group , $MasterId ) = $Settings->get_settings( 'text,group,master_id' );
+				$MasterType = $Settings->get_setting( 'master_type' , 'user' );
+				$CheckBoxes = $Settings->get_setting( 'checkboxes' , 'user' );
+
 				$Code = $this->get_controller();
 				$Code .= "{href:text=$Text;page=javascript:ultimix.permit.SetGroupButton".
 					"( '$Group' , $MasterId , '$MasterType' , '$CheckBoxes' )}";
-					
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -158,61 +154,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'set_group_button'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'set_group_button'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_set_group_button( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 
-					'group' => TERMINAL_VALUE , 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE
-				);
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'toggle_group_button' , $Rules ) ; )
-				{
-					$Code = $this->compile_set_group_button( $Parameters );
-
-					$Str = str_replace( "{set_group_button:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Компиляция кнопки.
 		*
@@ -242,11 +184,11 @@
 				list( $Text , $Group , $MasterId ) = $Settings->get_settings( 'text,group,master_id' );
 				$MasterType = $Settings->get_setting( 'master_type' , 'user' );
 				$CheckBoxes = $Settings->get_setting( 'checkboxes' , 'user' );
-				
+
 				$Code = $this->get_controller();
 				$Code .= "{href:text=$Text;page=javascript:ultimix.permit.".$Name."GroupButton".
 					"( '$Group' , $MasterId , '$MasterType' , '$CheckBoxes' )}";
-					
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -256,110 +198,32 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки макроса 'delete_group_button'.
+		*	\~russian Компиляция кнопки.
 		*
-		*	@param $Options - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Кнопка.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'delete_group_button'.
+		*	\~english Function compiles button.
 		*
-		*	@param $Options - Processing options.
+		*	@param $Settings - Processing options.
 		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Button.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_delete_group_button( $Options , $Str , $Changed )
+		function			compile_set_group_button( &$Settings )
 		{
 			try
 			{
-				$Rules = array( 
-					'group' => TERMINAL_VALUE , 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE
-				);
-				
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'toggle_group_button' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Params );
-					
-					$Code = $this->compile_group_button( $this->Settings , 'Delete' );
-					
-					$Str = str_replace( "{delete_group_button:$Params}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'toggle_group_button'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'toggle_group_button'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_toggle_group_button( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 
-					'group' => TERMINAL_VALUE , 'master_id' => TERMINAL_VALUE , 'master_type' => TERMINAL_VALUE
-				);
-				
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'toggle_group_button' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Params );
-					
-					compile_group_button( $this->Settings , 'Toggle' );
-					
-					$Str = str_replace( "{toggle_permit_button:$Params}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				return( $this->compile_set_group_button( &$Settings , 'Set' ) );
 			}
 			catch( Exception $e )
 			{
@@ -368,46 +232,66 @@
 		}
 
 		/**
-		*	\~russian Функция обработки страницы.
+		*	\~russian Компиляция кнопки.
 		*
-		*	@param $Options - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@return Кнопка.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes page.
+		*	\~english Function compiles button.
 		*
-		*	@param $Options - Processing options.
+		*	@param $Settings - Processing options.
 		*
-		*	@param $Str - String to process.
+		*	@return Button.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Options , $Str , &$Changed )
+		function			compile_delete_group_button( &$Settings )
 		{
 			try
 			{
-				list( $Str , $Changed ) = $this->process_set_group_button( $Options , $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_delete_group_button( $Options , $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_toggle_group_button( $Options , $Str , $Changed );
-				
-				return( $Str );
+				return( $this->compile_set_group_button( &$Settings , 'Delete' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Компиляция кнопки.
+		*
+		*	@param $Settings - Параметры обработки.
+		*
+		*	@return Кнопка.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles button.
+		*
+		*	@param $Settings - Processing options.
+		*
+		*	@return Button.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_toggle_group_button( &$Settings )
+		{
+			try
+			{
+				return( $this->compile_set_group_button( &$Settings , 'Toggle' ) );
 			}
 			catch( Exception $e )
 			{

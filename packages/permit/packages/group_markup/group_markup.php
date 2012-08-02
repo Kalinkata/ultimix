@@ -39,9 +39,6 @@
 		var					$Database = false;
 		var					$GroupAccess = false;
 		var					$PermitAlgorithms = false;
-		var					$Settings = false;
-		var					$String = false;
-		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
 		
 		/**
@@ -73,10 +70,7 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->GroupAccess = get_package( 'permit::group_access' , 'last' , __FILE__ );
-				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
+				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ ););
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -86,104 +80,88 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'group_list'.
+		*	\~russian Функция компиляции макроса 'group_list'.
 		*
-		*	@param $Options - Параметры обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $ProcessingString - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $ProcessingString , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'group_list'.
+		*	\~english Function compiles macro 'group_list'.
 		*
-		*	@param $Options - Processing options.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $ProcessingString - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $ProcessingString , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_group_list( $Options , $ProcessingString , $Changed )
+		function			compile_group_list( &$Settings )
 		{
 			try
 			{
-				/* printing list of all available groups */
-				if( strpos( $ProcessingString , '{group_list}' ) !== false )
+				$this->Database->query_as( DB_OBJECT );
+				$Items = $this->Database->select( 'title' , '`umx_group`' , '1' );
+				$c = count( $Items );
+				$AllGroups = '';
+				foreach( $Items as $k => $i )
 				{
-					$this->Database->query_as( DB_OBJECT );
-					$Items = $this->Database->select( 'title' , '`umx_group`' , '1' );
-					$c = count( $Items );
-					$AllGroups = '';
-					foreach( $Items as $k => $i )
+					$AllGroups .= $i->title;
+					if( $k + 1 != $c )
 					{
-						$AllGroups .= $i->title;
-						if( $k + 1 != $c )
-						{
-							$AllGroups .= ', ';
-						}
+						$AllGroups .= ', ';
 					}
-					$ProcessingString = str_replace( '{group_list}' , $AllGroups , $ProcessingString );
 				}
-				
-				return( array( $ProcessingString , $Changed ) );
+				return( $AllGroups );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
-		*	\~russian Функция компиляции списка групп.
+		*	\~russian Функция компиляции макроса 'group_list'.
 		*
-		*	@param $Params - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@return Список групп.
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function compiles group list.
+		*	\~english Function compiles macro 'group_list'.
 		*
-		*	@param $Params - Compilation options.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@return List of groups.
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_group_list_for_object( $Params )
+		function			compile_group_list_for_object( &$Settings )
 		{
 			try
 			{
 				$GroupList = '';
-				
+
 				if( $this->PermitAlgorithms->object_has_permit( false , 'user' , 'permit_manager' ) )
 				{
-					$this->Settings->load_settings( $Params );
-
-					list( $Object , $Type ) = $this->Settings->get_settings( 'object,type' , 'public,' );
+					list( $Object , $Type ) = $Settings->get_settings( 'object,type' , 'public,' );
 
 					$GroupList = $this->GroupAccess->get_groups_for_object( $Object , $Type );
 					sort( $GroupList );
 					$GroupList = implode( ', ' , $GroupList );
 				}
-				
+
 				return( $GroupList );
 			}
 			catch( Exception $e )
@@ -191,59 +169,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
-		/**
-		*	\~russian Функция обработки макроса 'group_list_for_object'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'group_list_for_object'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_group_list_for_object( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'object' => TERMINAL_VALUE , 'type' => TERMINAL_VALUE );
-				
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'group_list_for_object' , $Rules ) ; )
-				{
-					$GroupList = $this->compile_group_list_for_object( $Params );
 
-					$Str = str_replace( "{group_list_for_object:$Params}" , $GroupList , $Str );
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Получение групп для виджета.
 		*
@@ -398,13 +324,13 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'group_list_widget'.
 		*
-		*	@param $Paramaters - Параметры обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@return Виджет.
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
@@ -413,7 +339,7 @@
 		/**
 		*	\~english Function compiles macro 'group_list_widget'.
 		*
-		*	@param $Paramaters - Processing options.
+		*	@param $Settings - Compilation parameters.
 		*
 		*	@return Widget.
 		*
@@ -421,16 +347,14 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_group_list_widget( $Paramaters )
+		function			compile_group_list_widget( &$Settings )
 		{
 			try
 			{
-				$this->Settings->load_settings( $Paramaters );
-
-				list( $ObjectGroupList , $AllGroupList ) = $this->get_groups( $this->Settings );
+				list( $ObjectGroupList , $AllGroupList ) = $this->get_groups( $Settings );
 
 				$GroupListWidget = $this->CachedMultyFS->get_template( __FILE__ , 'group_list.tpl' );
-				$Object = $this->Settings->get_setting( 'object' );
+				$Object = $Settings->get_setting( 'object' );
 				$GroupListWidget = str_replace( '{object}' , $Object , $GroupListWidget );
 
 				$GroupListWidget = $this->compile_object_groups( $ObjectGroupList , $GroupListWidget );
@@ -442,167 +366,39 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'group_list_widget'.
+		*	\~russian Функция компиляции макроса 'group_list_widget'.
 		*
-		*	@param $Options - Параметры обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'group_list_widget'.
+		*	\~english Function compiles macro 'group_list_widget'.
 		*
-		*	@param $Options - Processing options.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_group_list_widget( $Options , $Str , $Changed )
+		function			compile_group_select( &$Settings )
 		{
 			try
 			{
-				$Rules = array( 'object_groups' => TERMINAL_VALUE );
+				list( $Name , $Class ) = $Settings->get_settings( 'name,class',  'group,flat width_160' );
 
-				for( ; $Paramaters = $this->String->get_macro_parameters( $Str , 'group_list_widget' , $Rules ) ; )
-				{
-					if( $this->PermitAlgorithms->object_has_permit( false , 'user' , 'permit_manager' ) )
-					{
-						$GroupListWidget = $this->compile_group_list_widget( $Paramaters );
-					}
-					else
-					{
-						$GroupListWidget = '';
-					}
+				$Code = "{select:name=$Name;class=$Class;".
+						"query=SELECT id , title AS value FROM `umx_group` ORDER BY title}";
 
-					$Str = str_replace( "{group_list_widget:$Paramaters}" , $GroupListWidget , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки макроса 'group_select'.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'group_select'.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_group_select( $Options , $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'name' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'group_select' , $Rules ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					
-					list( $Name , $Class ) = $this->Settings->get_settings( 'name,class',  'group,flat width_160' );
-										
-					$Code = "{select:name=$Name;class=$Class;".
-							"query=SELECT id , title AS value FROM `umx_group` ORDER BY title}";
-					
-					$Str = str_replace( "{group_select:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки страницы.
-		*
-		*	@param $Options - Параметры обработки.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes page.
-		*
-		*	@param $Options - Processing options.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_group_list( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_group_list_for_object( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_group_list_widget( $Options , $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_group_select( $Options , $Str , $Changed );
-				
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

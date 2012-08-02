@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	page_access_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -37,7 +37,7 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$Security = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -60,7 +60,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -72,7 +72,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -109,7 +109,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка содержимого файла страницы.
 		*
@@ -147,7 +147,7 @@
 				{
 					$RawData = '';
 				}
-				
+
 				return( $RawData );
 			}
 			catch( Exception $e )
@@ -155,7 +155,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Парсинг пакетов страницы.
 		*
@@ -184,10 +184,10 @@
 			try
 			{
 				$Appliance = array();
-						
+
 				$RawData = explode( "\n" , $RawData );
 				$c = count( $RawData );
-				
+
 				for( $i = 0 ; $i < $c ; $i++ )
 				{
 					$RawDataInfo = explode( '#' , $RawData[ $i ] );
@@ -196,7 +196,7 @@
 						'options' => @$RawDataInfo[ 2 ] , 'placeholder' => @$RawDataInfo[ 3 ]
 					);
 				}
-				
+
 				return( $Appliance );
 			}
 			catch( Exception $e )
@@ -204,7 +204,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка списка пакетов, применённых к странице $PageName.
 		*
@@ -237,29 +237,25 @@
 			try
 			{
 				$RawData = $this->get_raw_page( $PageName );
-				
+
 				if( $Parse == true )
 				{
 					if( strlen( $RawData ) !== 0 )
 					{
 						return( $this->parse_raw_page( $RawData ) );
 					}
-					else
-					{
-						return( array() );
-					}
+
+					return( array() );
 				}
-				else
-				{
-					return( $RawData );
-				}
+
+				return( $RawData );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Установка пакетов, применённых к странице $PageName.
 		*
@@ -296,7 +292,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание описания страницы.
 		*
@@ -350,7 +346,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает описание запрошенной таблицы.
 		*
@@ -358,11 +354,6 @@
 		*
 		*	@return Описание запрашиваемой странице в виде array( 0 => array( id , title , name , 
 		*	template , template_version ) )
-		*
-		*	@note Все записи о страницах хранятся в отдельных файлах (каждая запись в 
-		*	своем файле), имя страницы совпадает с именем файла. Конечно это не очень быстро работает, 
-		*	но предполагается, что у сайтов без СУБД не будет много страниц, соответственно и тормозов будет 
-		*	не очень много.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
@@ -375,10 +366,6 @@
 		*
 		*	@return Description of the requesting page in the folowing representation : array( 0 => array( id , 
 		*	title , name , template , template_version ) )
-		*
-		*	@note All data about pages is stored in the stand alone files (each record in each own file),
-		*	name of the page is the same as file name. We know that it works slowly but this CMS is used to apply for
-		*	sites with small amount of pages so it would not work VERY slow)).
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
@@ -393,20 +380,18 @@
 				if( $this->CachedMultyFS->file_exists( dirname( __FILE__ ).'/data/'.$PageName ) )
 				{
 					$RawData = $this->CachedMultyFS->file_get_contents( dirname( __FILE__ ).'/data/'.$PageName );
-				}
-				else
-				{
-					return( false );
+
+					return( $this->create_object( $RawData , $PageName ) );
 				}
 
-				return( $this->create_object( $RawData , $PageName ) );
+				return( false );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение списка страниц.
 		*
@@ -455,7 +440,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Фильтрация страниц.
 		*
@@ -507,7 +492,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список страниц.
 		*
@@ -547,10 +532,10 @@
 			try
 			{
 				$ListOfPages = $this->get_list_of_pages();
-				
+
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$ListOfPages = $Lang->process_object( $ListOfPages );
-				
+
 				if( $Order !== false )
 				{
 					$SortSign = $Order === 'ascending' ? '<' : '>';
@@ -596,7 +581,7 @@
 			try
 			{
 				$PageName = $this->Security->get( $PageName , 'command' );
-				
+
 				return( $this->CachedMultyFS->file_exists( dirname( __FILE__ )."/data/".$PageName ) );
 			}
 			catch( Exception $e )
@@ -604,7 +589,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция содания страницы.
 		*
@@ -645,7 +630,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция содания страницы.
 		*
@@ -691,7 +676,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция редактирования страницы.
 		*
@@ -746,7 +731,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция удаления страницы.
 		*
@@ -770,14 +755,14 @@
 			try
 			{
 				$PageNames = explode( ',' , $PageNames );
-				
+
 				foreach( $PageNames as $i => $PageName )
 				{
 					$PageName = $this->Security->get( $PageName , 'command' );
-					
+
 					@unlink( dirname( __FILE__ ).'/data/'.$PageName );
 					@unlink( dirname( __FILE__ ).'/data/pa_'.$PageName );
-					
+
 					$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 					$EventManager->trigger_event( 'on_after_delete_page' , array( 'page_name' => $PageName ) );
 				}
@@ -787,7 +772,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция доабвления пакета к странице.
 		*
@@ -827,7 +812,7 @@
 			try
 			{
 				$PageName = $this->Security->get( $PageName , 'command' );
-				
+
 				$CachedFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$CachedFS->file_put_contents( 
 					dirname( __FILE__ ).'/data/pa_'.$PageName , 
@@ -839,7 +824,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -870,9 +855,9 @@
 				{
 					$PageNames = explode( ',' , $PageNames );
 				}
-				
+
 				$Pages = array();
-				
+
 				foreach( $PageNames as $i => $PageName )
 				{
 					$Pages [] = $this->get_page_description( $PageName );

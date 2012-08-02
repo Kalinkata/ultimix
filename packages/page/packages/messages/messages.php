@@ -296,36 +296,34 @@
 		}
 
 		/**
-		*	\~russian Функция отвечающая за постобработку.
+		*	\~russian Функция компиляции макроса 'success_messages'.
 		*
-		*	@param $Str - Постобрабатывемая строка.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function postprocesses forms and controls.
+		*	\~english Function compiles macro 'success_messages'.
 		*
-		*	@param $Str - postprocessing string.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_success_messages( $Str , $Changed )
+		function			compile_success_messages( &$Settings )
 		{
 			try
 			{
-				if( isset( $this->SuccessMessages[ 0 ] ) && strpos( $Str , '{success_message}' ) !== false )
+				$Code = '';
+
+				if( isset( $this->SuccessMessages[ 0 ] ) )
 				{
 					$StartingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'success_start.tpl' );
 
@@ -333,15 +331,12 @@
 
 					$Messages = implode( '}'.$ClosingDiv.$StartingDiv.'{lang:' , $this->SuccessMessages );
 
-					$MessageSpan = $StartingDiv."{lang:$Messages}".$ClosingDiv;
-
-					$Str = str_replace( '{success_message}' , $MessageSpan , $Str );
+					$Code = $StartingDiv."{lang:$Messages}".$ClosingDiv;
 
 					$this->SuccessMessages = array();
-					$Changed = true;
 				}
 
-				return( array( $Str , $Changed ) );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -350,98 +345,46 @@
 		}
 		
 		/**
-		*	\~russian Функция отвечающая за постобработку.
+		*	\~russian Функция компиляции макроса 'error_messages'.
 		*
-		*	@param $Str - Постобрабатывемая строка.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function postprocesses forms and controls.
+		*	\~english Function compiles macro 'error_messages'.
 		*
-		*	@param $Str - postprocessing string.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
+		*	@return Widget.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_error_messages( $Str , $Changed )
+		function			compile_error_messages( &$Settings )
 		{
 			try
 			{
-				if( isset( $this->ErrorMessages[ 0 ] ) && strpos( $Str , '{error_message}' ) !== false )
+				$Code = '';
+
+				if( isset( $this->ErrorMessages[ 0 ] ) )
 				{
 					$StartingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'error_start.tpl' );
 					$ClosingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'error_end.tpl' );
 
-					$Messages = implode( '}'.$ClosingDiv.$StartingDiv.'{lang:' , $this->ErrorMessages );
+					$Code = implode( '}'.$ClosingDiv.$StartingDiv.'{lang:' , $this->ErrorMessages );
 
-					$Messages = $StartingDiv."{lang:$Messages}".$ClosingDiv;
-
-					$Str = str_replace( '{error_message}' , $Messages , $Str );
+					$Code = $StartingDiv."{lang:$Messages}".$ClosingDiv;
 
 					$this->ErrorMessages = array();
-					$Changed = true;
 				}
 
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				/* TODO: move to auto_markup */
-				list( $Str , $Changed ) = $this->process_success_messages( $Str , $Changed );
-
-				list( $Str , $Changed ) = $this->process_error_messages( $Str , $Changed );
-
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -449,5 +392,5 @@
 			}
 		}
 	}
-	
+
 ?>

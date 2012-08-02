@@ -8,4 +8,3 @@ page::page_manager::page_manager_view#last#view=1;show_create_page_form=1#main
 page::page_manager::page_manager_view#last#view=1;show_update_page_form=1#main
 page::page_manager::page_manager_view#last#view=1;show_update_page_packages_form=1#main
 page::page_manager::page_manager_view#last#view=1;show_update_page_permitions_form=1#main
-gui::checkbox_markup#last#post_process=1#

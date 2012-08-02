@@ -272,119 +272,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_rss_button( $Str , $Changed )
+		function			compile_rss_button( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'rss_button' ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
+				$Type = $Settings->get_setting( 'type' , 'small' );
 
-					$Type = $this->Settings->get_setting( 'type' , 'small' );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , $Type.'_rss_button.tpl' );
 
-					$Code = $this->CachedMultyFS->get_template( __FILE__ , $Type.'_rss_button.tpl' );
+				$Code = $this->String->print_record( $Code , $Settings );
 
-					$Code = $this->String->print_record( $Code , $this->Settings );
+				$Code = str_replace( '{package_path}' , _get_package_relative_path_ex( 'rss' , '2.0.0' ) , $Code );
 
-					$Code = str_replace( '{package_path}' , _get_package_relative_path_ex( 'rss' , '2.0.0' ) , $Code );
-
-					$Str = str_replace( "{rss_button:$Parameters}" , $Code , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'rss_link'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'rss_link'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_rss_link( $Str , $Changed )
-		{
-			try
-			{
-				if( strpos( $Str , '{rss_link}' ) !== false )
-				{
-					$LinkTemplate = $this->CachedMultyFS->get_template( __FILE__ , 'rss_link.tpl' );
-					
-					$Str = str_replace( '{rss_link}' , $LinkTemplate , $Str );
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_rss_button( $Str , $Changed );
-				
-				list( $Str , $Changed ) = $this->process_rss_link( $Str , $Changed );
-				
-				return( $Str );
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

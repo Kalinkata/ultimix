@@ -11,7 +11,7 @@
 {component_button:package_name=content::content_view;label=news_manager;page=./news_manager.html;size=100;icon=news_064.gif;permit=news_manager}
 {component_button:package_name=content::content_view;label=article_manager;page=./article_manager.html;size=100;icon=article_064.gif;permit=article_manager}
 {component_button:package_name=content::content_view;label=faq_manager;page=./faq_manager.html;size=100;icon=faq_064.gif;permit=faq_manager}
-{component_button:package_name=content::content_view;label=blog_entry_manager;page=./blog_entry_manager.html;size=100;icon=blog_064.gif;permit=blog_entry_manager}
+{component_button:package_name=content::content_view;label=blog_manager;page=./blog_manager.html;size=100;icon=blog_064.gif;permit=blog_manager}
 {component_button:package_name=comment::comment_view;label=comment_manager_label;page=./comment_manager.html;size=100;icon=comment_064.gif;permit=comment_manager}
 {component_button:package_name=review::review_view;label=review_manager_label;page=./review_manager.html;size=100;icon=review_064.gif;permit=review_manager}
 {component_button:package_name=site::site_view;label=site_manager;page=./site_manager.html;size=100;icon=site_064.gif;permit=site_manager}
