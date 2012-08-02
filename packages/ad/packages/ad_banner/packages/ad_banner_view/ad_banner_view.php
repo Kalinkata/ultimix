@@ -95,12 +95,15 @@
 		{
 			try
 			{
-				$this->PageCÛÛ->add_stylesheet( 
+				$this->PageCSS->add_stylesheet( 
 					'{http_host}/'._get_package_relative_path_ex( 
 						'ad::ad_banner::ad_banner_view' , '1.0.0' 
 					).'/res/css/ad_banner_view.css' , 
 					true 
 				);
+
+				$Lang = get_package( 'lang' , 'last' , __FILE__ );
+				$Lang->include_strings_js( 'ad::ad_banner::ad_banner_view' );
 			}
 			catch( Exception $e )
 			{

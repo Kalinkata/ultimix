@@ -214,7 +214,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_print_content( &$Content )
+		private function	compile_print_content( &$Content )
 		{
 			try
 			{
@@ -256,7 +256,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_selected_content( &$Content )
+		private function	compile_selected_content( &$Content )
 		{
 			try
 			{
@@ -264,11 +264,13 @@
 				{
 					$DemoContent = $this->Security->get( get_field( $v , 'demo_content' ) , 'unsafe_string' );
 					set_field( $Content[ $k ] , 'demo_content_unsafe' , $DemoContent );
+					set_field( $Content[ $k ] , 'has_demo_content' , strlen( $DemoContent ) );
 
 					$MainContent = $this->Security->get( get_field( $v , 'main_content' ) , 'unsafe_string' );
 					set_field( $Content[ $k ] , 'main_content_unsafe' , $MainContent );
+					set_field( $Content[ $k ] , 'has_main_content' , strlen( $MainContent ) );
 
-					$this->process_print_content( $Content[ $k ] );
+					$this->compile_print_content( $Content[ $k ] );
 				}
 			}
 			catch( Exception $e )
@@ -276,7 +278,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -307,7 +309,7 @@
 					"author = user.id AND ( $this->AddLimitations ) AND umx_category.id = category AND $Condition"
 				);
 				
-				$this->process_selected_content( $Content );
+				$this->compile_selected_content( $Content );
 				
 				return( $Content );
 			}
@@ -623,7 +625,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_record( &$Record )
+		private function	compile_record( &$Record )
 		{
 			try
 			{
@@ -667,7 +669,7 @@
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
 				
-				$this->process_record( $Record );
+				$this->compile_record( $Record );
 				
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 				

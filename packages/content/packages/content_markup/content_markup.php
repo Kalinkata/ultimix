@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$MacroSettings = false;
 		var					$CachedMultyFS = false;
 		var					$CategoryAlgorithms = false;
 		var					$ContentAccess = false;
@@ -44,34 +43,6 @@
 		var					$Security = false;
 		var					$String = false;
 
-		/**
-		*	\~russian Загрузка пакетов.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author  Додонов А.А.
-		*/
-		/**
-		*	\~english Package loader.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	load_content_packages()
-		{
-			try
-			{
-				$this->ContentAccess = get_package( 'content::content_access' , 'last' , __FILE__ );
-				$this->ContentAlgorithms = get_package( 'content::content_algorithms' , 'last' , __FILE__ );
-				$this->ContentView = get_package( 'content::content_view' , 'last' , __FILE__ );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Конструктор.
 		*
@@ -90,9 +61,11 @@
 		{
 			try
 			{
-				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->CategoryAlgorithms = get_package( 'category::category_algorithms' , 'last' , __FILE__ );
+				$this->ContentAccess = get_package( 'content::content_access' , 'last' , __FILE__ );
+				$this->ContentAlgorithms = get_package( 'content::content_algorithms' , 'last' , __FILE__ );
+				$this->ContentView = get_package( 'content::content_view' , 'last' , __FILE__ );
 				$this->load_content_packages();
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -102,11 +75,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение статьи для указанного объекта.
 		*
-		*	@param $MacroSettings - Параметры.
+		*	@param $Settings - Параметры.
 		*
 		*	@return Статьи.
 		*
@@ -117,7 +90,7 @@
 		/**
 		*	\~english Function returns all articles for the object.
 		*
-		*	@param $MacroSettings - Parameters.
+		*	@param $Settings - Parameters.
 		*
 		*	@return Articles.
 		*
@@ -125,11 +98,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_articles( &$MacroSettings )
+		private function	get_articles( &$Settings )
 		{
 			try
 			{
-				$CategoryNames = $MacroSettings->get_setting( 'category' );
+				$CategoryNames = $Settings->get_setting( 'category' );
 
 				$CategoryIds = $this->CategoryAlgorithms->get_category_ids( $CategoryNames );
 
@@ -144,7 +117,7 @@
 		/**
 		*	\~russian Компиляция списка ссылок.
 		*
-		*	@param $MacroSettings - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return HTML код списка.
 		*
@@ -155,7 +128,7 @@
 		/**
 		*	\~english Function compiles articles.
 		*
-		*	@param $MacroSettings - Compilation parameters.
+		*	@param $Settings - Compilation parameters.
 		*
 		*	@return HTML code of the list.
 		*
@@ -163,17 +136,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_content_links( &$MacroSettings )
+		function			compile_content_links( &$Settings )
 		{
 			try
 			{
-				$Articles = $this->get_articles( $MacroSettings );
+				$Articles = $this->get_articles( $Settings );
 
 				$Code = '{lang:no_articles_were_found}';
 
 				if( isset( $Articles[ 0 ] ) )
 				{
-					$TemplateName = $MacroSettings->get_setting( 'template' , 'content_link.tpl' );
+					$TemplateName = $Settings->get_setting( 'template' , 'content_link.tpl' );
 					$Code = '';
 
 					foreach( $Articles as $Item )
@@ -190,169 +163,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'comment_line'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'comment_line'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_content_links( $Str , $Changed )
-		{
-			try
-			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'content_links' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
 
-					$Code = $this->compile_content_links( $this->MacroSettings );
-
-					$Str = str_replace( "{content_links:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки макроса 'conten'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'conten'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_content( $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'content_id' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'content' , $Rules ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-					
-					$ContentId = $this->MacroSettings->get_setting( 'content_id' );
-					$this->MacroSettings->set_setting( 'content_view' , 1 );
-					$this->Security->set_g( 'content_id' , $ContentId );
-					
-					$Code = $this->ContentView->view( $this->MacroSettings );
-
-					$Str = str_replace( "{content:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки макроса 'print_content_url'.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'print_content_url'.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_print_content_url( $Str , $Changed )
-		{
-			try
-			{
-				$Rules = array( 'content_id' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'print_content_url' , $Rules ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					$ContentId = $this->MacroSettings->get_setting( 'content_id' );
-					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'print_content_url.tpl' );
-					$Code = str_replace( '{content_id}' , $ContentId , $Code );
-
-					$Str = str_replace( "{print_content_url:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция отвечающая за обработку строки.
 		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
+		*	@param $Settings - Gараметры отображения.
 		*
 		*	@return HTML код для отображения.
 		*
@@ -363,11 +178,7 @@
 		/**
 		*	\~english Function processes string.
 		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
+		*	@param $Settings - Options of drawing.
 		*
 		*	@return HTML code to display.
 		*
@@ -375,17 +186,55 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Options , $Str , &$Changed )
+		function			compile_content( &$Settings )
 		{
 			try
 			{
-				list( $Str , $Changed ) = $this->process_content_links( $Str , $Changed );
+				$ContentId = $Settings->get_setting( 'content_id' );
+				$Settings->set_setting( 'content_view' , 1 );
+				$this->Security->set_g( 'content_id' , $ContentId );
 
-				list( $Str , $Changed ) = $this->process_content( $Str , $Changed );
+				$Code = $this->ContentView->view( $Settings );
 
-				list( $Str , $Changed ) = $this->process_print_content_url( $Str , $Changed );
+				return( $Code );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
-				return( $Str );
+		/**
+		*	\~russian Функция отвечающая за обработку строки.
+		*
+		*	@param $Settings - Gараметры отображения.
+		*
+		*	@return HTML код для отображения.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes string.
+		*
+		*	@param $Settings - Options of drawing.
+		*
+		*	@return HTML code to display.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_print_content_url( &$Settings )
+		{
+			try
+			{
+				$ContentId = $Settings->get_setting( 'content_id' );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'print_content_url.tpl' );
+				$Code = str_replace( '{content_id}' , $ContentId , $Code );
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
@@ -393,4 +242,5 @@
 			}
 		}
 	}
+
 ?>

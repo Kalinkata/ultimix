@@ -171,7 +171,7 @@
 		*
 		*	@author Додонов А.А.
 		*/
-		private function	process_config_line( $ConfigLine )
+		private function	compile_config_line( $ConfigLine )
 		{
 			try
 			{
@@ -179,7 +179,6 @@
 				$PackageName = $this->Settings->get_setting( 'package_name' );
 				$PackageVersion = $this->Settings->get_setting( 'package_version' , 'last' );
 				$AddLimitations = $this->Settings->get_setting( 'data_limitation' );
-				$AddLimitations = $this->PageComposer->process_string( $this->Settings , $AddLimitations , $c = false );
 				$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
 				$Package->set_add_limitations( $AddLimitations );
 			}
@@ -215,7 +214,7 @@
 
 					foreach( $Config as $k => $ConfigLine )
 					{
-						$this->process_config_line( $ConfigLine );
+						$this->compile_config_line( $ConfigLine );
 					}
 				}
 			}

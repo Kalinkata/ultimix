@@ -736,6 +736,7 @@
 
 	require_once( dirname( __FILE__ ).'/include/php/core_cache.php' );	
 	require_once( dirname( __FILE__ ).'/include/php/functional_programming.php' );
+	require_once( dirname( __FILE__ ).'/include/php/array_functions.php' );
 	require_once( dirname( __FILE__ ).'/include/php/core_public_api.php' );
 
 ?>

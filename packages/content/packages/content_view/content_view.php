@@ -50,7 +50,7 @@
 		var					$CachedMultyFS = false;
 		var					$ContentAccess = false;
 		var					$ContentAlgorithms = false;
-		var					$PageComposer = false;
+		var					$PageMeta = false;
 		var					$Security = false;
 		var					$Settings = false;
 		var					$String = false;
@@ -72,10 +72,42 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->ContentAccess = get_package( 'content::content_access' , 'last' , __FILE__ );
 				$this->ContentAlgorithms = get_package( 'content::content_algorithms' , 'last' , __FILE__ );
-				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
+				$this->PageMeta = get_package( 'page::page_meta' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package( 'settings::package_settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция предгенерационных действий.
+		*
+		*	@param $Options - Настройки работы модуля.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function executes before any page generating actions took place.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			pre_generation( &$Options )
+		{
+			try
+			{
+				$PackagePath = _get_package_relative_path_ex( 'content::content_view' , '1.0.0' );
+				$PageCSS = get_package( 'page::page_css' , 'last' , __FILE__ );
+				$PageCSS->add_stylesheet( "{http_host}/$PackagePath/res/css/content.css" );
 			}
 			catch( Exception $e )
 			{
@@ -197,6 +229,8 @@
 		*
 		*	@param $PublicationStructure - Структура публикаций.
 		*
+		*	@param $Year - Год.
+		*
 		*	@return Месяцы.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -208,13 +242,15 @@
 		*
 		*	@param $PublicationStructure - Publication structure.
 		*
+		*	@param $Year - Year.
+		*
 		*	@return Months.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_months( &$PublicationStructure )
+		private function	get_months( &$PublicationStructure , $Year )
 		{
 			try
 			{
@@ -223,7 +259,7 @@
 						get_field_ex( 
 							array_filter( 
 								$PublicationStructure , 
-								create_function( "\$d" , "return( \$d->publication_year == $y );" )
+								create_function( "\$d" , "return( \$d->publication_year == $Year );" )
 							) , 
 							'publication_month'
 						)
@@ -241,6 +277,10 @@
 		*
 		*	@param $PublicationStructure - Структура публикаций.
 		*
+		*	@param $Year - Год.
+		*
+		*	@param $Month - Месяц.
+		*
 		*	@return Шаблон.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -252,13 +292,17 @@
 		*
 		*	@param $PublicationStructure - Publication structure.
 		*
+		*	@param $Year - Year.
+		*
+		*	@param $Month - Month.
+		*
 		*	@return Template.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_month_tempate( &$PublicationStructure )
+		private function	get_month_template( &$PublicationStructure , $Year , $Month )
 		{
 			try
 			{
@@ -269,7 +313,7 @@
 					array_filter( 
 						$PublicationStructure , 
 						create_function( 
-							"\$d" , "return( \$d->publication_year == $y && \$d->publication_month == $m );"
+							"\$d" , "return( \$d->publication_year == $Year && \$d->publication_month == $Month );"
 						)
 					)
 				);
@@ -384,11 +428,11 @@
 			{
 				if( $this->Security->get_gp( 'year' , 'integer' , date( 'Y' ) ) == $Year )
 				{
-					$Months = $this->get_months( $PublicationStructure );
+					$Months = $this->get_months( $PublicationStructure , $Year );
 
 					foreach( $Months as $Month )
 					{
-						$MonthTemplate = $this->get_month_tempate( $PublicationStructure );
+						$MonthTemplate = $this->get_month_template( $PublicationStructure , $Year , $Month );
 
 						$MonthTemplate = $this->compile_month_content( $Year , $Month , $MonthTemplate , $CategoryIds );
 						
@@ -414,6 +458,8 @@
 		*
 		*	@param $Years - Годы.
 		*
+		*	@param $CategoryIds - Идентификаторы оборажаемых категорий.
+		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
@@ -425,13 +471,13 @@
 		*
 		*	@param $Years - Years.
 		*
-		*	@return HTML code.
+		*	@param $CategoryIds - Ids of the output categories.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_years( $PublicationStructure , $Years )
+		private function	compile_years( $PublicationStructure , $Years , $CategoryIds )
 		{
 			try
 			{
@@ -479,14 +525,14 @@
 			{
 				$CategoryAccess = get_package( 'category::category_algorithms' , 'last' , __FILE__ );
 				$CategoryIds = $CategoryAccess->get_category_ids( 
-					$Options->get_setting( 'category' , 'news,article,faq,blog_entry' )
+					$Options->get_setting( 'category' , 'news,article,faq,blog' )
 				);
 
 				$PublicationStructure = $this->ContentAccess->get_publication_structure( $CategoryIds );
 
 				$Years = array_unique( get_field_ex( $PublicationStructure , 'publication_year' ) );
 
-				$this->compile_years( $PublicationStructure , $Years );
+				$this->compile_years( $PublicationStructure , $Years , $CategoryIds );
 			}
 			catch( Exception $e )
 			{
@@ -524,9 +570,9 @@
 				$Template = $this->CachedMultyFS->get_template( __FILE__ , 'content_view_template.tpl' );
 				$Output = $this->String->print_record( $Template , $Content );
 
-				$this->PageComposer->set_page_title( get_field( $Content , 'title' ) );
-				$this->PageComposer->add_page_keywords( get_field( $Content , 'keywords' ) );
-				$this->PageComposer->add_page_description( get_field( $Content , 'description' ) );
+				$this->PageMeta->set_page_title( get_field( $Content , 'title' ) );
+				$this->PageMeta->add_page_keywords( get_field( $Content , 'keywords' ) );
+				$this->PageMeta->add_page_description( get_field( $Content , 'description' ) );
 
 				return( $Output );
 			}

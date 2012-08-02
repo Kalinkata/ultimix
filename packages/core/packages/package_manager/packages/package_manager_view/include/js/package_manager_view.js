@@ -35,7 +35,8 @@ ultimix.package_manager.set_default_options = function( ViewOptions )
 	}
 
 	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_package_manager_list';
-	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'package_manager::package_manager_view';
+	ViewOptions.package_name = 
+		ViewOptions.package_name ? ViewOptions.package_name : 'package_manager::package_manager_view';
 	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
 	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
 

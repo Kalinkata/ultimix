@@ -9,7 +9,7 @@
 							</tr>
 							<tr>
 								<td colspan="5" valign="top">
-									{composer:condition={strlen:{demo_content}}}{demo_content_unsafe}<p class="{if:condition={strlen:{main_content}};then=;else=invisible}"><a href[eq]"./content_view.html?content_id[eq]{id}">{lang:read_more}</a></p>{~composer}
+									{composer:condition={has_demo_content}}{demo_content_unsafe}<p class="{if:condition={has_main_content};then=;else=invisible}"><a href[eq]"./content_view.html?content_id[eq]{id}">{lang:read_more}</a></p>{~composer}
 								</td>
 							</tr>
 							<tr>

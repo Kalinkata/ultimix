@@ -139,7 +139,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_campaign( $Campaign , &$Banners )
+		private function	compile_campaign( $Campaign , &$Banners )
 		{
 			try
 			{
@@ -194,7 +194,7 @@
 
 				foreach( $Campaigns as $i => $Campaign )
 				{
-					$this->process_campaign( $Campaign , $Banners );
+					$this->compile_campaign( $Campaign , $Banners );
 				}
 				
 				$Template = $this->CachedMultyFS->get_template( __FILE__ , 'campaigns_list.tpl' );

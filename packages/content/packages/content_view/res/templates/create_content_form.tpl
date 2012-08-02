@@ -35,7 +35,7 @@
 							<tr>
 
 								<td valign="top">
-									{category:direct_category=9}1{options:name=category_name}1
+									{category:direct_category=9}
 								</td>
 							</tr>
 							{~composer}<tr>

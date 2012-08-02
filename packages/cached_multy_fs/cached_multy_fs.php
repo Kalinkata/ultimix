@@ -246,7 +246,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_file_was_not_found_error( $ThrowException )
+		private function	handle_file_was_not_found_error( $ThrowException )
 		{
 			try
 			{
@@ -313,7 +313,7 @@
 					return( $FilePath );
 				}
 
-				return( $this->process_file_was_not_found_error( $ThrowException ) );
+				return( $this->handle_file_was_not_found_error( $ThrowException ) );
 			}
 			catch( Exception $e )
 			{

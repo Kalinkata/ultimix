@@ -289,7 +289,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_record( &$Record )
+		private function	compile_record( &$Record )
 		{
 			try
 			{
@@ -335,7 +335,7 @@
 		{
 			try
 			{
-				$Record = $this->process_record( $Record );
+				$Record = $this->compile_record( $Record );
 				
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record , CREATION_DATE );
 				

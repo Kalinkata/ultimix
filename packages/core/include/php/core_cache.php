@@ -27,6 +27,8 @@
 	
 		function			_load_root_dir_cache( $Dirname )
 		{
+			//TODO: add server related prefix, because file paths become 
+			// incorrect while uploading framework on server
 			$Data = @file_get_contents( $Dirname.'/../../data/root_dir_cache' );
 			if( $Data !== false )
 			{

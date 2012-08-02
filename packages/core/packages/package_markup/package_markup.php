@@ -85,7 +85,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_package_dialog( &$Settings )
+		function			compile_package_dialog( &$Settings )
 		{
 			try
 			{
@@ -96,103 +96,6 @@
 				$Settings->set_setting( 'show_package_tree' , '1' );
 				
 				return( '{view_dialog:'.$Settings->get_all_settings().'}' );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'package_dialog'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'package_dialog'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_package_dialog( $Str , $Changed )
-		{
-			try
-			{
-				if( strpos( $Str , '{package_dialog}' ) !== false )
-				{
-					$Str = str_replace( '{package_dialog}' , '{package_dialog:p=1}' , $Str );
-				}
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'package_dialog' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					
-					$Code = $this->compile_package_dialog( $this->BlockSettings );
-					
-					$Str = str_replace( "{package_dialog:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$Args = func_get_args();_throw_exception_object( __METHOD__ , $Args , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_package_dialog( $Str , $Changed );
-				
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

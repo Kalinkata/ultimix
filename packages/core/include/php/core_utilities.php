@@ -145,7 +145,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			_process_data( $k , $v )
+	function			_compile_data( $k , $v )
 	{
 		if( is_object( $v ) || is_array( $v ) )
 		{
@@ -232,7 +232,7 @@
 			
 		foreach( $Params as $k => $v )
 		{
-			$Data = _process_data( $k , $v );
+			$Data = _compile_data( $k , $v );
 			
 			$_collapse_span_id += 1;
 			$id = $_collapse_span_id;

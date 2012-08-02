@@ -197,7 +197,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_config_line( $DBAdapter , $i , $ConfigLine )
+		function			compile_config_line( $DBAdapter , $i , $ConfigLine )
 		{
 			try
 			{
@@ -245,7 +245,7 @@
 				
 				foreach( $this->Config as $i => $ConfigLine )
 				{
-					$Connection = $this->process_config_line( $DBAdapter , $i , $ConfigLine );
+					$Connection = $this->compile_config_line( $DBAdapter , $i , $ConfigLine );
 					
 					if( $Connection !== false )
 					{

@@ -223,10 +223,10 @@
 				global	$PackageRealVersionCacheChanged;
 
 				$PackageRealVersionCacheChanged = true;
-
+			
 				$PackageRealVersionCache[ $Key ] = _get_package_version( $PackageName , $PackageVersion , $ROOT_DIR );
 			}
-
+			
 			return( $PackageRealVersionCache[ $Key ] );
 		}
 		catch( Exception $e )

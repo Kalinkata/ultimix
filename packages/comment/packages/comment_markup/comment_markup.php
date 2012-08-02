@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	comment_markup_1_0_0{
-	
+
 		/**
 		*	\~russian Закэшированные пакеты.
 		*
@@ -35,7 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
+		var					$Settings = false;
 		var					$CachedMultyFS = false;
 		var					$CommentAlgorithms = false;
 		var					$Link = false;
@@ -59,7 +59,7 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->CommentAlgorithms = get_package( 'comment::comment_algorithms' , 'last' , __FILE__ );
 				$this->Link = get_package( 'link' , 'last' , __FILE__ );
@@ -74,7 +74,7 @@
 		/**
 		*	\~russian Компиляция ленты комментариев.
 		*
-		*	@param $BlockSettings - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return HTML код ленты комментариев.
 		*
@@ -85,7 +85,7 @@
 		/**
 		*	\~english Function compiles comment list.
 		*
-		*	@param $BlockSettings - Compilation parameters.
+		*	@param $Settings - Compilation parameters.
 		*
 		*	@return Comment line's HTML code.
 		*
@@ -93,11 +93,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_comments( &$BlockSettings )
+		function			compile_comments( &$Settings )
 		{
 			try
 			{
-				$Comments = $this->get_comments_for_object( $BlockSettings );
+				$Comments = $this->get_comments_for_object( $Settings );
 
 				if( isset( $Comments[ 0 ] ) )
 				{
@@ -127,7 +127,7 @@
 		/**
 		*	\~russian Получение комментариев для указанного объекта.
 		*
-		*	@param $BlockSettings - Параметры.
+		*	@param $Settings - Параметры.
 		*
 		*	@return Комментарии.
 		*
@@ -138,7 +138,7 @@
 		/**
 		*	\~english Function returns all comments for the object.
 		*
-		*	@param $BlockSettings - Parameters.
+		*	@param $Settings - Parameters.
 		*
 		*	@return Comments object.
 		*
@@ -146,12 +146,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_comments_for_object( &$BlockSettings )
+		function			get_comments_for_object( &$Settings )
 		{
 			try
 			{
-				$MasterId = $BlockSettings->get_setting( 'master_id' );
-				$MasterType = $BlockSettings->get_setting( 'master_type' );
+				$MasterId = $Settings->get_setting( 'master_id' );
+				$MasterType = $Settings->get_setting( 'master_type' );
 
 				return( $this->CommentAlgorithms->get_records_for_object( $MasterId , $MasterType ) );
 			}
@@ -164,7 +164,7 @@
 		/**
 		*	\~russian Функция компиляции макроса 'comment_link'.
 		*
-		*	@param $BlockSettings - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return Widget.
 		*
@@ -175,7 +175,7 @@
 		/**
 		*	\~english Function compiles macro 'comment_link'.
 		*
-		*	@param $BlockSettings - Compilation parameters.
+		*	@param $Settings - Compilation parameters.
 		*
 		*	@return Widget.
 		*
@@ -183,16 +183,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_comment_link( &$BlockSettings )
+		function			compile_comment_link( &$Settings )
 		{
 			try
 			{
-				$MasterId = $BlockSettings->get_setting( 'master_id' );
-				$MasterType = $BlockSettings->get_setting( 'master_type' );
+				$MasterId = $Settings->get_setting( 'master_id' );
+				$MasterType = $Settings->get_setting( 'master_type' );
 
 				$CommentsCount = $this->Link->get_links_count( $MasterId , false , $MasterType , 'comment' );
 
-				$Page = $BlockSettings->get_setting( 'page' );
+				$Page = $Settings->get_setting( 'page' );
 
 				$Template = $this->CachedMultyFS->get_template( __FILE__ , 'comment_link.tpl' );
 				$PlaceHolders = array( '{page}' , '{comment_count}' );
@@ -231,10 +231,10 @@
 		{
 			try
 			{
-				$this->BlockSettings->load_settings( $Parameters );
+				$this->Settings->load_settings( $Parameters );
 
-				list( $MasterType , $MasterId )= $this->BlockSettings->get_settings( 'master_type,master_id' );
-				$NeedRun = $this->BlockSettings->get_setting( 'need_run' , 1 );
+				list( $MasterType , $MasterId )= $this->Settings->get_settings( 'master_type,master_id' );
+				$NeedRun = $this->Settings->get_setting( 'need_run' , 1 );
 
 				$Code = '{direct_controller:package_name=comment::comment_controller;meta=meta_create_comment;'.
 							"master_type=$MasterType;master_id=$MasterId;direct_create=1;need_run=$NeedRun}".

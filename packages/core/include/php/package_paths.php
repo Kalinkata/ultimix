@@ -273,7 +273,6 @@
 				$PackageNames[ 0 ] , 
 				_get_package_real_version( $PackageNames[ 0 ] , $PackageVersions[ 0 ] , $ROOT_DIR ) , $ROOT_DIR
 			);
-			
 			return( array( $PackagePath , $PackageName , $PackageVersion ) );
 		}
 		catch( Exception $e )
@@ -325,11 +324,12 @@
 					_prepare_data( $thePackageName , $thePackageVersion , $ROOT_DIR );
 
 				$RootDirCacheChanged = true;
+
 				$RootDirCache[ $Key ] = $PackageName == '' ? $ROOT_DIR : _get_root_dir( 
 					$PackageName , $PackageVersion , $PackagePath
 				);
 			}
-			
+
 			return( $RootDirCache[ $Key ] );
 		}
 		catch( Exception $e )

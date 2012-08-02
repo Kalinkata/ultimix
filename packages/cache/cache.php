@@ -104,7 +104,7 @@
 			try
 			{
 				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$PageName = $this->Security->get_gp( 'page_name' , 'command' );
+				$PageName = $Security->get_gp( 'page_name' , 'command' , 'default' );
 
 				$this->Cache = @file_get_contents( dirname( __FILE__ ).'/data/'.$PageName.'.cache' );
 

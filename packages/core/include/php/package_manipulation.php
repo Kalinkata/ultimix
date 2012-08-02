@@ -46,18 +46,19 @@
 					new Exception( 'An error occured while loading file '.$ROOT_DIR.'/packages/core/data/package_list' )
 				);
 			}
-		
+
 			$File = str_replace( "\r" , "\n" , $File );
 			$File = str_replace( "\n\n" , "\n" , $File );
 			$PackagesInfo = explode( "\n" , $File );
-			
+
 			$PackageList = array();
-			
+
 			foreach( $PackagesInfo as $pi )
 			{
 				$PackageList [] = explode( '#' , $pi );
+				$tmp = explode( '#' , $pi );
 			}
-			
+
 			return( $PackageList );
 		}
 		catch( Exception $e )
@@ -421,7 +422,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция установки пакета.
 	*
@@ -474,7 +475,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция установки пакета.
 	*
