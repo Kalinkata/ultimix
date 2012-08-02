@@ -67,7 +67,7 @@
 											<img src="[href]" class="avatar_image">
 										</span>
 									</span>
-									{file_input:file_types=images;upload_url=edit_profile_upload.html;upload_success_handler=ultimix_user_AfterAvatarUploadProcessor;file_size_limit=50 KB}
+									{file_input:file_types=images;upload_url=edit_profile_upload.html;upload_success_handler=ultimix_file_input_view_after_image_upload_processor;file_size_limit=50 KB}
 								</td>
 							</tr>
 							<tr>

@@ -1,0 +1,3 @@
+call_params_filter=admin_activate_user:integer,value_1
+permits_filter=user_manager
+success_func=admin_activate_user

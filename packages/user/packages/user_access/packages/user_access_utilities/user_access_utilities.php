@@ -236,6 +236,193 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Получение параметров обновления.
+		*
+		*	@param $Fields - Поля.
+		*
+		*	@param $Values - Значения.
+		*
+		*	@param $v - Значение.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns update data.
+		*
+		*	@param $Fields - Fields.
+		*
+		*	@param $Values - Values.
+		*
+		*	@param $v - Value.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	handle_sex_field( &$Fields , &$Values , $v )
+		{
+			try
+			{
+				if( $v != 1 && $v != 2 )
+				{
+					$v = 0;
+				}
+
+				$Fields [] = 'sex';
+				$Values [] = $v;
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Получение параметров обновления.
+		*
+		*	@param $Fields - Поля.
+		*
+		*	@param $Values - Значения.
+		*
+		*	@param $v - Значение.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns update data.
+		*
+		*	@param $Fields - Fields.
+		*
+		*	@param $Values - Values.
+		*
+		*	@param $v - Value.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	handle_active_field( &$Fields , &$Values , $v )
+		{
+			try
+			{
+				if( $v == '1' )
+				{
+					$Fields [] = 'active';
+					$Values [] = "'active'";
+				}
+				else
+				{
+					$Fields [] = 'active';
+					$Values [] = "'".md5( microtime() )."'";
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Получение параметров обновления.
+		*
+		*	@param $Fields - Поля.
+		*
+		*	@param $Values - Значения.
+		*
+		*	@param $v - Значение.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns update data.
+		*
+		*	@param $Fields - Fields.
+		*
+		*	@param $Values - Values.
+		*
+		*	@param $v - Value.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	handle_password_field( &$Fields , &$Values , $v )
+		{
+			try
+			{
+				if( $v !== '' )
+				{
+					$Fields [] = 'password';
+					$Values [] = "'".md5( $v )."'";
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Получение параметров обновления.
+		*
+		*	@param $Record - Объект по чьему образцу будет создаваться запись.
+		*
+		*	@return array( $Fields , $Values ).
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns update data.
+		*
+		*	@param $Record - Example for update.
+		*
+		*	@return array( $Fields , $Values ).
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			handle_update_record( &$Record )
+		{
+			try
+			{
+				$Fields = $Values = array();
+				foreach( $Record as $f => $v )
+				{
+					switch( $f )
+					{
+						case( 'sex' ):
+							$this->UserAccessUtilieis->handle_sex_field( $Fields , $Values , $v );
+						break;
+						case( 'active' ):
+							$this->handle_active_field( $Fields , $Values , $v );
+						break;
+						case( 'password' ):
+							$this->handle_password_field( $Fields , $Values , $v );
+						break;
+						default:
+							$Fields [] = $f;
+							$Values [] = "'$v'";
+						break;
+					}
+				}
+				return( array( $Fields , $Values ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
 
 ?>

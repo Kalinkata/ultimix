@@ -57,3 +57,4 @@ password_was_restored=Password was reset. The new password was sent on your emai
 password_restoration_complete=Password restoration complete
 new_password=New password
 change_password=Change password
+users_were_activated=All selected users were activated

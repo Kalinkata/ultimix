@@ -240,7 +240,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_template_block( $PageName , &$Changed )
+		private function	handle_template_block( $PageName , &$Changed )
 		{
 			try
 			{
@@ -291,7 +291,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_includes( $File , &$Changed )
+		private function	handle_includes( $File , &$Changed )
 		{
 			try
 			{
@@ -345,11 +345,11 @@
 				}
 				$this->Template = $this->get_template();
 
-				$this->process_template_block( $PageName , $Changed );
+				$this->handle_template_block( $PageName , $Changed );
 
 				$this->Template = $this->String->hide_unprocessed_blocks( $this->Template , 'template' , $Changed );
 
-				$this->process_includes( $File , $Changed );
+				$this->handle_includes( $File , $Changed );
 			}
 			catch( Exception $e )
 			{
@@ -434,7 +434,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_color_scheme( $File , $Str )
+		private function	handle_color_scheme( $File , $Str )
 		{
 			try
 			{
@@ -485,7 +485,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $File , $Str )
+		function			compile_string( $File , $Str )
 		{
 			try
 			{
@@ -504,7 +504,7 @@
 					$Str
 				);
 
-				$Str = $this->process_color_scheme( $File , $Str );
+				$Str = $this->handle_color_scheme( $File , $Str );
 
 				return( $Str );
 			}
@@ -687,7 +687,7 @@
 
 				$this->cleanup_placeholders();
 
-				$this->Template = $this->process_string( $File , $this->Template );
+				$this->Template = $this->compile_string( $File , $this->Template );
 
 				$this->Template = str_replace( array( '[lfb]' , '[rfb]' ) , array( '{' , '}' ) , $this->Template );
 			}

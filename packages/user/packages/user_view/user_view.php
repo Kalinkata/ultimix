@@ -13,9 +13,7 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	// TODO async login form using AJAX
 	// TODO cache all simple_form states
-	// TODO add to cache name $_GET $POST parameters
 
 	/**
 	*	\~russian Работа с аккаунтами пользователей.
@@ -186,6 +184,9 @@
 				$PackagePath = _get_package_relative_path_ex( 'user::user_view' , '1.0.0::1.0.0' );
 
 				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/user_view.js" );
+
+				$Lang = get_package( 'lang' , 'last' , __FILE__ );
+				$Lang->include_strings_js( 'user::user_view' );
 			}
 			catch( Exception $e )
 			{
@@ -545,7 +546,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Список конфигов.
 		*
@@ -583,7 +584,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*

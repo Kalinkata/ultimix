@@ -32,7 +32,7 @@
 					</table>
 					<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 						<tr>
-							<td class="pw" width="70%">{pathway}</td>
+							<td class="pw" width="70%">{bread_crumbs}</td>
 							<td width="255px" align="right">
 								<div class="date">{lang:today_is} {sysdate}&nbsp;{systime} {lang_switch}</div>
 							</td>

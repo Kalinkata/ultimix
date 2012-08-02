@@ -155,5 +155,86 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+		
+		/**
+		*	\~russian Функция отправки сообщения.
+		*
+		*	@param $SystemEmail - Системное мыло.
+		*
+		*	@param $EmailSender - Системный отправитель.
+		*
+		*	@param $Message - Сообщение.
+		*
+		*	@param $Email - Адрес.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function sends email.
+		*
+		*	@param $SystemEmail - System email.
+		*
+		*	@param $EmailSender - System sender.
+		*
+		*	@param $Message - Message.
+		*
+		*	@param $Email - Email.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			send_email( $SystemEmail , $EmailSender , $Message , $Subject , $Email = false )
+		{
+			try
+			{
+				$Email = $Email === false ? $this->Security->get_gp( 'email' , 'string' ) : $Email;
+
+				$Mail = get_package( 'mail' , 'last' , __FILE__ );
+				$Mail->send_email( 
+					$SystemEmail , $Email , $Subject , $Message , $EmailSender
+				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Добавление дефолтовых доступов
+		*
+		*	@param $id - id пользователя.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function adds default permits.
+		*
+		*	@param $id - User id.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			add_default_permits( $id )
+		{
+			try
+			{
+				$id = $this->Security->get( $id , 'integer' );
+
+				$PermitAccess = get_package( 'permit::permit_access' , 'last' , __FILE__ );
+				$PermitAccess->add_permit_for_object( 'public' , $id , 'user' );
+				$PermitAccess->add_permit_for_object( 'registered' , $id , 'user' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
 ?>

@@ -21,3 +21,5 @@ not_banned=Not banned
 user_management=Users
 shure_to_delete_all_user=Are you shure that you want to delete all selected users?
 user_copy_was_completed=User was copied
+activate=Actvate all selected users
+deactivate=Deactivate all selected users

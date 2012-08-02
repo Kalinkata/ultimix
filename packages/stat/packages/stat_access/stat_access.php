@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Получение доступа к статистике.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	stat_access_1_0_0{
-	
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_stat`';
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -49,7 +49,7 @@
 		*/
 		var					$Database = false;
 		var					$Security = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -72,7 +72,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание квитка со статистикой.
 		*
@@ -103,7 +103,7 @@
 				{
 					$Key = implode( '#' , $Key );
 				}
-				
+
 				$Key = $this->Security->get( $Key , 'string' );
 				$Key = str_replace( '[sharp]' , '#' , $Key );
 				$Value = $this->Security->get( $Value , 'string' );
@@ -111,7 +111,7 @@
 				$this->Database->insert( 
 					$this->NativeTable , '`key` , `value` , creation_date' , "\"$Key\" , \"$Value\" , NOW()"
 				);
-				
+
 				$this->Database->commit();
 			}
 			catch( Exception $e )
@@ -119,7 +119,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получения квитков со статистикой.
 		*

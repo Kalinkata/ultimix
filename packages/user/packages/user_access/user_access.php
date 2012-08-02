@@ -283,11 +283,11 @@
 				$Password = $this->Security->get( $Password , 'string' );
 
 				$Users = $this->unsafe_select( "login LIKE '$Login'" );
-				
+
 				$User = $this->get_user( $Login );
-				$id = get_field( $User , 'id' );
+
 				$Record = array( 'password' => "md5( '$Password' )" );
-				$this->update( $id , $Record );
+				$this->update( get_field( $User , 'id' ) , $Record );
 			}
 			catch( Exception $e )
 			{
@@ -325,9 +325,9 @@
 				$ImageId = $this->Security->get( $ImageId , 'integer' );
 
 				$User = $this->get_user( $Login );
-				$id = get_field( $User , 'id' );
+
 				$Record = array( 'avatar' => "$ImageId" );
-				$this->update( $id , $Record );
+				$this->update( get_field( $User , 'id' ) , $Record );
 			}
 			catch( Exception $e )
 			{
@@ -335,189 +335,6 @@
 			}
 		}
 
-		/**
-		*	\~russian Получение параметров обновления.
-		*
-		*	@param $Fields - Поля.
-		*
-		*	@param $Values - Значения.
-		*
-		*	@param $v - Значение.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns update data.
-		*
-		*	@param $Fields - Fields.
-		*
-		*	@param $Values - Values.
-		*
-		*	@param $v - Value.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	process_sex_field( &$Fields , &$Values , $v )
-		{
-			try
-			{
-				if( $v != 1 && $v != 2 )
-				{
-					$v = 0;
-				}
-				$Fields [] = 'sex';
-				$Values [] = $v;
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Получение параметров обновления.
-		*
-		*	@param $Fields - Поля.
-		*
-		*	@param $Values - Значения.
-		*
-		*	@param $v - Значение.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns update data.
-		*
-		*	@param $Fields - Fields.
-		*
-		*	@param $Values - Values.
-		*
-		*	@param $v - Value.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	process_active_field( &$Fields , &$Values , $v )
-		{
-			try
-			{
-				if( $v == '1' )
-				{
-					$Fields [] = 'active';
-					$Values [] = "'active'";
-				}
-				else
-				{
-					$Fields [] = 'active';
-					$Values [] = "'".md5( microtime() )."'";
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Получение параметров обновления.
-		*
-		*	@param $Fields - Поля.
-		*
-		*	@param $Values - Значения.
-		*
-		*	@param $v - Значение.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns update data.
-		*
-		*	@param $Fields - Fields.
-		*
-		*	@param $Values - Values.
-		*
-		*	@param $v - Value.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	process_password_field( &$Fields , &$Values , $v )
-		{
-			try
-			{
-				if( $v !== '' )
-				{
-					$Fields [] = 'password';
-					$Values [] = "'".md5( $v )."'";
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Получение параметров обновления.
-		*
-		*	@param $Record - Объект по чьему образцу будет создаваться запись.
-		*
-		*	@return array( $Fields , $Values ).
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns update data.
-		*
-		*	@param $Record - Example for update.
-		*
-		*	@return array( $Fields , $Values ).
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	process_update_record( &$Record )
-		{
-			try
-			{
-				$Fields = array();
-				$Values = array();
-
-				foreach( $Record as $f => $v )
-				{
-					switch( $f )
-					{
-						case( 'sex' ):$this->process_sex_field( $Fields , $Values , $v );break;
-						case( 'active' ):$this->process_active_field( $Fields , $Values , $v );break;
-						case( 'password' ):$this->process_password_field( $Fields , $Values , $v );break;
-						default:
-							$Fields [] = $f;
-							$Values [] = "'$v'";
-						break;
-					}
-				}
-
-				return( array( $Fields , $Values ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Получение параметров обновления.
 		*
@@ -551,7 +368,7 @@
 					'allow_not_set'
 				);
 
-				list( $Fields , $Values ) = $this->process_update_record( $Record );
+				list( $Fields , $Values ) = $this->UserAccessUtilities->handle_update_record( $Record );
 
 				return( array( $Fields , $Values ) );
 			}
@@ -612,7 +429,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция удаления пользователя.
 		*
@@ -649,7 +466,45 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Функция активации пользователей.
+		*
+		*	@param $Ids - id пользователей.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function activates users.
+		*
+		*	@param $Ids - id of the activating users.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			activate_users( $Ids )
+		{
+			try
+			{
+				$Ids = $this->Security->get( $Ids , 'integer' );
+
+				$Record = array( 'active' => '1' );
+				$this->update( implode( ',' , $Ids ) , $Record );
+
+				foreach( $Ids as $id )
+				{
+					$this->UserAccessUtilities->rise_activate_event( '' , $id );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция активации пользователя.
 		*
@@ -678,17 +533,9 @@
 
 				if( isset( $Users[ 0 ] ) )
 				{
-					$id = get_field_ex( $Users , 'id' );
+					$Ids = get_field_ex( $Users , 'id' );
 
-					$Record = array( 'active' => '1' );
-					$this->update( implode( ',' , $id ) , $Record );
-
-					foreach( $Users as $i => $User )
-					{
-						$Login = get_field( $User , 'login' );
-						$id = get_field( $User , 'id' );
-						$this->UserAccessUtilities->rise_activate_event( $Login , $id );
-					}
+					$this->activate_users( $Ids );
 				}
 			}
 			catch( Exception $e )
@@ -696,7 +543,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция активации пользователя.
 		*
@@ -762,7 +609,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -945,7 +792,7 @@
 				$User = $this->get_user( $Login );
 				$id = get_field( $User , 'id' );
 				$Record = array( 'login' => $Login , 'email' => $Email , 'site' => $Site , 'about' => $About );
-				
+
 				$this->update( $id , $Record );// TODO remove this function
 			}
 			catch( Exception $e )
@@ -977,12 +824,12 @@
 			try
 			{
 				$Records = $this->unsafe_select( '1 = 1' );
-				
+
 				foreach( $Records as $k => $v )
 				{
 					$Records[ $k ]->title = $v->id ? $v->login : '{lang:not_defined}';
 				}
-				
+
 				return( $Records );
 			}
 			catch( Exception $e )

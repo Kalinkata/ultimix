@@ -256,7 +256,8 @@
 		function			test_invalid_macro()
 		{
 			$String = get_package_object( 'string' , 'last' , __FILE__ );
-			$Script = 'some prefix {macro:a={lang:space};b=2 middle {macro:a=3;b=4} some postfix';
+			$Script = 'some prefix '.chr( 123 ).'macro:a='.chr( 123 ).'lang:space'.
+						chr( 125 ).';b=2 middle '.chr( 123 ).'macro:a=3;b=4'.chr( 125 ).' some postfix';
 			$Result = $String->get_macro_parameters( 
 				$Script , 'macro' , array( 'a' => TERMINAL_VALUE , 'b' => TERMINAL_VALUE )
 			);

@@ -1,5 +1,7 @@
 					<div class="toolbar">
-						{search_form}{toolbar_button:title=create_button;permit=user_manager;label=create;page=./admin_registration.html?back_page[eq]user_manager;package_name=gui::context_set::common_buttons;size=24;icon=create_24.gif}{search_button}{update_button}{copy_button}{delete_button}{href:text=activate;page=javascript:ultimix.user.ActivateUsers( 'user' )[dot_comma]}
+						{search_form}{toolbar_button:title=create_button;permit=user_manager;label=create;page=./admin_registration.html?back_page[eq]user_manager;package_name=gui::context_set::common_buttons;size=24;icon=create_24.gif}{search_button}{update_button}{copy_button}{delete_button}
+						{toolbar_button:title=activate;permit=user_manager;label=activate;page=javascript:ultimix.user.activate_users( 'user' )[dot_comma];package_name=page::page_composer;size=24;icon=apply_024.gif}
+						{toolbar_button:title=deactivate;permit=user_manager;label=deactivate;page=javascript:ultimix.user.deactivate_users( 'user' )[dot_comma];package_name=page::page_composer;size=24;icon=stop_024.gif}
 					</div>
 					<table border="0" width="100%">
 						<tr>

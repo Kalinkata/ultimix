@@ -252,11 +252,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $String )
+		function			compile_string( $String )
 		{
 			try
 			{
-				return( $this->TemplateParser->process_string( $this->TemplatePackagePath , $String ) );
+				return( $this->TemplateParser->compile_string( $this->TemplatePackagePath , $String ) );
 			}
 			catch( Exception $e )
 			{

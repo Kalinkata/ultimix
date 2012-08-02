@@ -63,7 +63,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_file( $Files , $Path , $File , $Mask = '/.+/' , $Recursive = true )
+		function			read_file( $Files , $Path , $File , $Mask = '/.+/' , $Recursive = true )
 		{
 			try
 			{
@@ -135,7 +135,7 @@
 				{
 					for( ; false !== ( $File = readdir( $Handle ) ) ; )
 					{
-						$Files = $this->process_file( $Files , $Path , $File , $Mask , $Recursive );
+						$Files = $this->read_file( $Files , $Path , $File , $Mask , $Recursive );
 					}
 					
 					closedir( $Handle );

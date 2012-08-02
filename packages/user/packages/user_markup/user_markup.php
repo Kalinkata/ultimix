@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Работа с аккаунтами пользователей.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	user_markup_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -41,7 +41,7 @@
 		var					$String = false;
 		var					$UserAlgorithms = false;
 		var					$UserView = false;
-	
+
 		/**
 		*	\~russian Разрешена ли регистрация.
 		*
@@ -69,7 +69,6 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
@@ -82,45 +81,119 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'session_login'.
+		*	\~russian Функция компиляции макроса 'session_login'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'session_login'.
+		*	\~english Function compiles macro 'session_login'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_session_login( $Str , $Changed )
+		function			compile_session_login( &$Settings )
 		{
 			try
 			{
 				if( $this->UserAlgorithms->logged_in() )
 				{
-					if( strpos( $Str , '{session_login}' ) !== false )
-					{
-						$Str = str_replace( '{session_login}' , $this->UserAlgorithms->get_login() , $Str );
-						$Changed = true;
-					}
+					return( $this->UserAlgorithms->get_login() , $Str ) );
 				}
-				
-				return( array( $Str , $Changed ) );
+
+				return( 'public' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'user_id'.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@return Код макроса.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'user_id'.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_user_id( &$Settings )
+		{
+			try
+			{
+				if( $this->UserAlgorithms->logged_in() )
+				{
+					return( $this->UserAlgorithms->get_login() , $Str ) );
+				}
+
+				return( $this->UserAccess->GuestUserId );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции блока 'logged_in'.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@param $Data - Данные.
+		*
+		*	@return Код макроса.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles блока 'logged_in'.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@param $Data - Data.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_logged_in( &$Settings , $Data )
+		{
+			try
+			{
+				if( $this->UserAlgorithms->logged_in() )
+				{
+					return( $Data );
+				}
+
+				return( '' );
 			}
 			catch( Exception $e )
 			{
@@ -129,145 +202,41 @@
 		}
 		
 		/**
-		*	\~russian Функция обработки макроса 'user_id'.
+		*	\~russian Функция компиляции блока 'guest'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*	@param $Data - Данные.
 		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'user_id'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_user_id( $Str , $Changed )
-		{
-			try
-			{
-				if( strpos( $Str , '{user_id}' ) !== false )
-				{
-					$Str = str_replace( '{user_id}' , $this->UserAlgorithms->get_id() , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'auth'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'auth'.
+		*	\~english Function compiles блока 'guest'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
+		*	@param $Data - Data.
 		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_auth( $Str , $Changed )
-		{
-			try
-			{
-				$Mode = $this->UserAlgorithms->logged_in() ? 'logged_in' : 'guest';
-				$AddMode = $this->UserAlgorithms->logged_in() ? 'guest' : 'logged_in';
-
-				if( $this->String->block_exists( $Str , 'auth:'.$Mode , 'auth:~'.$Mode ) )
-				{
-					$Str = $this->String->show_block( $Str , 'auth:'.$Mode , 'auth:~'.$Mode , $Changed );
-				}
-
-				if( $this->String->block_exists( $Str , 'auth:'.$AddMode , 'auth:~'.$AddMode ) )
-				{
-					$Str = $this->String->hide_block( $Str , 'auth:'.$AddMode , 'auth:~'.$AddMode , $Changed );
-				}
-
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция вставки шаблона заместо макроса.
-		*
-		*	@param $Name - Название макроса.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function loads template instead of macro.
-		*
-		*	@param $Name - Macro name.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	insert_template( $Name , $Str , $Changed )
+		function			compile_guest( &$Settings , $Data )
 		{
 			try
 			{
-				// TODO move to page::auto_markup
-				if( strpos( $Str , '{'.$Name.'}' ) !== false )
+				if( $this->UserAlgorithms->logged_in() )
 				{
-					$Template = $this->CachedMultyFS->get_package_template( 'user::user_view' , 'last' , "$Name.tpl" );
-
-					$Str = str_replace( '{'.$Name.'}' , $Template , $Str );
-
-					$Changed = true;
+					return( '' );
 				}
-				
-				return( array( $Str , $Changed ) );
+
+				return( $Data );
 			}
 			catch( Exception $e )
 			{
@@ -276,49 +245,37 @@
 		}
 
 		/**
-		*	\~russian Функция обработки диалога.
+		*	\~russian Функция компиляции макроса 'user_id'.
 		*
-		*	@param $Options - Настройки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes dialog.
+		*	\~english Function compiles macro 'user_id'.
 		*
-		*	@param $Options - Settings.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_dialog( &$Options , $Str , $Changed )
+		function			compile_user_id( &$Settings )
 		{
 			try
 			{
-				if( strpos( $Str , '{auto_open_login_dialog}' ) !== false )
+				if( $this->UserAlgorithms->logged_in() )
 				{
-					$Template = $this->CachedMultyFS->get_package_template( 
-						'user::user_view' , 'last' , 'auto_open_login_dialog.tpl'
-					);
-					$Str = str_replace( '{auto_open_login_dialog}' , $Template , $Str );
-					$Changed = true;
+					return( $this->UserAlgorithms->get_login() , $Str ) );
 				}
 
-				return( array( $Str , $Changed ) );
+				return( $this->UserAccess->GuestUserId );
 			}
 			catch( Exception $e )
 			{
@@ -348,12 +305,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			fetch_users( &$MacroSettings )
+		private function	fetch_users( &$MacroSettings )
 		{
 			try
 			{
 				$PermitFilter = $MacroSettings->get_setting( 'permit_filter' , false );
-				
+
 				if( $PermitFilter !== false )
 				{
 					$Users = $this->PermitAlgorithms->get_users_for_permit( $PermitFilter );
@@ -363,7 +320,7 @@
 					/* all users */
 					$Users = $this->PermitAlgorithms->get_users_for_permit( 'registered' );
 				}
-				
+
 				return( $Users );
 			}
 			catch( Exception $e )
@@ -371,22 +328,22 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Компиляция списка пользователей.
+		*	\~russian Функция компиляции макроса 'user_list'.
 		*
-		*	@param $MacroSettings - Параметры выборки.
+		*	@param $Settings - Параметры.
 		*
-		*	@return HTML код.
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function compiles list of users.
-		**
-		*	@param $MacroSettings - Fetch settings.
+		*	\~english Function compiles macro 'user_list'.
+		*
+		*	@param $Settings - Parameters.
 		*
 		*	@return HTML code.
 		*
@@ -394,13 +351,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_user_list( &$MacroSettings )
+		function			compile_user_list( &$Settings )
 		{
 			try
 			{
-				$Users = $this->fetch_users( $this->MacroSettings );
-				$Name = $MacroSettings->get_setting( 'name' );
-				$Field = $MacroSettings->get_setting( 'field' , 'login' );
+				$Users = $this->fetch_users( $Settings );
+				$Name = $Settings->get_setting( 'name' );
+				$Field = $Settings->get_setting( 'field' , 'login' );
 
 				$Code = '';
 				foreach( $Users as $i => $id )
@@ -418,252 +375,77 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'user_list'.
+		*	\~russian Функция компиляции макроса 'months_on_site'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'user_list'.
+		*	\~english Function compiles macro 'months_on_site'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_user_list( $Str , $Changed )
+		function			compile_months_on_site( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'user_list' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-					
-					$Code = $this->compile_user_list( $this->MacroSettings );
-					
-					$Str = str_replace( "{user_list:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
+				$User = $this->UserAlgorithms->get_by_id( $Settings->get_setting( 'user_id' ) );
+
+				$Code = time() - strtotime( get_field( $User , 'registered' ) );
+				$Code = intval( $Code / ( 30 * 24 * 60 * 60 ) );
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция обработки макроса 'months_on_site'.
+		*	\~russian Функция компиляции макроса 'user_login'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Код макроса.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'months_on_site'.
+		*	\~english Function compiles macro 'user_login'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return HTML code.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_months_on_site( $Str , $Changed )
+		function			compile_user_login( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'months_on_site' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-					
-					$User = $this->UserAlgorithms->get_by_id( $this->MacroSettings->get_setting( 'user_id' ) );
-					
-					$Code = time() - strtotime( get_field( $User , 'registered' ) );
-					$Code = intval( $Code / ( 30 * 24 * 60 * 60 ) );
-					
-					$Str = str_replace( "{months_on_site:$Parameters}" , $Code , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки макроса 'user_login'.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'user_login'.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_user_login( $Str , $Changed )
-		{
-			try
-			{
-				$Limitations = array( 'user_id' => TERMINAL_VALUE );
-				
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'user_login' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-					
-					$User = $this->UserAlgorithms->get_by_id( $this->MacroSettings->get_setting( 'user_id' ) );
-					
-					$Str = str_replace( "{user_login:$Parameters}" , get_field( $User , 'login' ) , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	process_complex_macro( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_session_login( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_user_list( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_months_on_site( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_user_id( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_auth( $Str , $Changed );
-				list( $Str , $Changed ) = $this->process_user_login( $Str , $Changed );
+				//$Limitations = array( 'user_id' => TERMINAL_VALUE );
 
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				$Templates = array( 
-					'auto_open_login_dialog' , 'logout_button' , 'edit_profile_button' , 
-					'logout_img_button' , 'login_img_button' , 'switch_user_button'
-				);
+				$User = $this->UserAlgorithms->get_by_id( $Settings->get_setting( 'user_id' ) );
 
-				foreach( $Templates as $i => $Template )
-				{
-					list( $Str , $Changed ) = $this->insert_template( $Template , $Str , $Changed );
-				}
-
-				list( $Str , $Changed ) = $this->process_complex_macro( $Options , $Str , $Changed );
-
-				return( $Str );
+				return( get_field( $User , 'login' ) );
 			}
 			catch( Exception $e )
 			{

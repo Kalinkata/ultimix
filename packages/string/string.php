@@ -37,6 +37,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$MacroParser = false;
 		var					$Settings = false;
 		var					$Tags = false;
 	
@@ -54,6 +55,7 @@
 		{
 			try
 			{
+				$this->MacroParser = get_package_object( 'string::macro_parser' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
 			}
@@ -270,7 +272,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_foreach( $Str , &$Record )
+		function			compile_foreach( $Str , &$Record )
 		{
 			try
 			{
@@ -329,7 +331,7 @@
 					throw( new Exception( 'Invalid record was passed' ) );
 				}
 
-				$Str = $this->process_foreach( $Str , $Record );
+				$Str = $this->compile_foreach( $Str , $Record );
 
 				foreach( $Record as $Field => $Value )
 				{
@@ -354,11 +356,11 @@
 		/**
 		*	\~russian Функция проверки существования блока.
 		*
-		*	@param $StringData - строковые данные, подвергаемые обработке.
+		*	@param $StringData - Строковые данные, подвергаемые обработке.
 		*
-		*	@param $BlockStart - маркер начал блока.
+		*	@param $BlockStart - Маркер начал блока.
 		*
-		*	@param $BlockEnd - маркер конца блока.
+		*	@param $BlockEnd - Маркер конца блока.
 		*
 		*	@return true если блок существует, иначе false.
 		*
@@ -411,11 +413,11 @@
 		/**
 		*	\~russian Функция выборки параметров макроса.
 		*
-		*	@param $StringData - строковые данные, подвергаемые обработке.
+		*	@param $StringData - Строковые данные, подвергаемые обработке.
 		*
-		*	@param $MacroName - параметры макроса.
+		*	@param $MacroName - Параметры макроса.
 		*
-		*	@param $RegExValidators - регулярные выражения для проверки выбираемых параметров.
+		*	@param $RegExValidators - Регулярные выражения для проверки выбираемых параметров.
 		*
 		*	@return Название блока. Если макрос не найден то будет возвращено false.
 		*
@@ -497,36 +499,13 @@
 							/* нашли закрывающую скобку для макроса... */
 							$Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );
 
-							$Valid = true;
-
-							/* проверяем валидность параметров... */
-							/* ... если надо */
-							if( count( $RegExValidators ) )
-							{
-								$ParamsList = explode( ';' , $Params );
-
-								foreach( $ParamsList as $key1 => $p )
-								{
-									$p = explode( '=' , $p );
-									foreach( $RegExValidators as $key2 => $rev )
-									{
-										if( $key2 == $p[ 0 ] )
-										{
-											$Matches = array();
-											$Result = preg_match( $rev , $p[ 1 ] , $Matches );
-											$Valid = count( $Matches ) == 0 ? false : $Valid;
-											break;
-										}
-									}
-								}
-							}
-
-							if( $Valid )
+							if( $this->MacroParser->is_params_valid( $Params , $RegExValidators ) )
 							{
 								/* валидные параметры */
 								return( $Params );
 							}
 
+							//TODO: refactor this function!
 							/* поэтому вываливаемся из внутреннего цикла */
 							$TmpStartPos = false;
 							$StartPos = $MacroStartPos;
@@ -546,11 +525,11 @@
 		/**
 		*	\~russian Функция проверки существования.
 		*
-		*	@param $StringData - строковые данные, подвергаемые обработке.
+		*	@param $StringData - Строковые данные, подвергаемые обработке.
 		*
-		*	@param $BlockStart - маркер начал блока.
+		*	@param $BlockStart - Маркер начал блока.
 		*
-		*	@param $BlockEnd - маркер конца блока.
+		*	@param $BlockEnd - Маркер конца блока.
 		*
 		*	@return true если блок существует, иначе false.
 		*
@@ -603,9 +582,9 @@
 		/**
 		*	\~russian Функция удаления блока.
 		*
-		*	@param $StringData - строковые данные, подвергаемые обработке.
+		*	@param $StringData - Строковые данные, подвергаемые обработке.
 		*
-		*	@param $BlockType - тип блока.
+		*	@param $BlockType - Тип блока.
 		*
 		*	@param $Changed - Была ли обработана строка.
 		*
@@ -827,56 +806,6 @@
 			}
 		}
 
-		/**
-		*	\~russian Функция замены блока.
-		*
-		*	@param $Str - Строка для обработки.
-		*
-		*	@param $BlockStart - Маркер начал блока.
-		*
-		*	@param $BlockEnd - Маркер конца блока.
-		*
-		*	@param $Data - Данные для замены.
-		*
-		*	@return Перекодированные данные.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function replaces block.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $BlockStart - Marker of the block's begin.
-		*
-		*	@param $BlockEnd - Marker of the block's end.
-		*
-		*	@param $Data - Replacement data.
-		*
-		*	@return - Decoded data.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			replace_block( $Str , $BlockStart , $BlockEnd , $Data )
-		{
-			try
-			{
-				$Str = str_replace( '{'.$BlockStart.'}' , $Text.'{'.$BlockStart.'}' , $Str );
-				
-				$Str = $this->hide_block( $Str , $BlockStart , $BlockEnd , $Changed );
-			
-				return( $Str );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Очистка специальных тэгов.
 		*

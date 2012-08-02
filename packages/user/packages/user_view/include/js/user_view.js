@@ -139,3 +139,83 @@ ultimix.user.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
+
+/**
+*	Function activates users.
+*
+*	@param CheckboxGroupName - Name of the checkbox group.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.user.activate_users = function( CheckboxGroupName )
+{
+	if( !ultimix.grids.record_selected( CheckboxGroupName , 'at_least_one_record_must_be_selected' ) )
+	{
+		return;
+	}
+
+	var			Ids = ultimix.grids.get_identificators( CheckboxGroupName );
+
+	ultimix.user.activate_users_ajax_request( {} , Ids , CheckboxGroupName );
+}
+
+//TODO: add deactivate js function
+//TODO: add deactivate controller
+
+/**
+*	Function process activation success.
+*
+*	@param ProgressDialogId - Dialog id.
+*
+*	@param Ids - Identificators of the activating users.
+*
+*	@param CheckboxGroupName - Name of the checkbox group.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.user.activate_success = function( ProgressDialogId , Ids , CheckboxGroupName )
+{
+	return(
+		function()
+		{
+			ultimix.std_dialogs.close_message_box( ProgressDialogId );
+			ultimix.std_dialogs.InfoMessageBox( 'users_were_activated' );
+			for( var i = 0 ; i < Ids.length ; i++ )
+			{
+				jQuery( '#active_' + Ids[ i ] ).html( ultimix.get_string( 'active' ) );
+			}
+			ultimix.grids.set_checkboxes( CheckboxGroupName , false );
+		}
+	);
+}
+
+/**
+*	Function activates users.
+*
+*	@param Functions - Functions to process success and error events.
+*
+*	@param Ids - Identificators of the activating users.
+*
+*	@param CheckboxGroupName - Name of the checkbox group.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.user.activate_users_ajax_request = function( Functions , Ids , CheckboxGroupName )
+{
+	if( !Functions )
+	{
+		Functions = {};
+	}
+	var				ProgressDialogId;
+	if( !Functions.success )
+	{
+		Functions.success = ultimix.user.activate_success( ProgressDialogId , Ids , CheckboxGroupName );
+	}
+
+	ControllerOptions = { 
+		'ids' : Ids , 'meta' : 'meta_admin_activate_user' , 'package_name' : 'user::user_controller'
+	};
+
+	ultimix.ajax_gate.direct_controller( ControllerOptions , Functions );
+	ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+}

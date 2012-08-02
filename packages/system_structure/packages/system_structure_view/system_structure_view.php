@@ -444,7 +444,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_item_loop( $Str , $MainItem , $Items )
+		private function	compile_item_loop( $Str , $MainItem , $Items )
 		{
 			try
 			{
@@ -501,7 +501,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_items( &$Options , $MainItem , $Items )
+		private function	compile_items( &$Options , $MainItem , $Items )
 		{
 			try
 			{
@@ -509,7 +509,7 @@
 				$Str = strlen( $MainItem->navigation ) != 0 ? $MainItem->navigation : '{href:tpl=std;page=./'.
 						$MainItem->page.'.html;raw_text='.$PageDescription[ 'title' ].'}';
 						
-				list( $Str , $Counter ) = $this->process_item_loop( $Str , $MainItem , $Items );
+				list( $Str , $Counter ) = $this->compile_item_loop( $Str , $MainItem , $Items );
 
 				if( $Options->get_setting( 'show_on_root_page' , false ) == false )
 				{
@@ -560,7 +560,7 @@
 				
 				if( $MainItem !== false )
 				{
-					$Str = $this->process_items( $Options , $MainItem , $Items );
+					$Str = $this->compile_items( $Options , $MainItem , $Items );
 				}
 				else
 				{

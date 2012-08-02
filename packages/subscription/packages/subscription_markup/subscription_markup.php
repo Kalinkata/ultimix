@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Settings = false;
 		var					$String = false;
 		var					$SubscriptionAlgorithms = false;
 
@@ -57,7 +56,6 @@
 		{
 			try
 			{
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package_object( 'string' , 'last' , __FILE__ );
 				$this->SubscriptionAlgorithms = get_package( 
 					'subscription::subscription_algorithms' , 'last' , __FILE__
@@ -70,95 +68,37 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'comment_line'.
+		*	\~russian Функция компиляции макроса 'browser'.
 		*
-		*	@param $Str - Обрабатывемая строка.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - Была ли осуществлена обработка.
+		*	@return Код макроса.
 		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'comment_line'.
+		*	\~english Function compiles macro 'browser'.
 		*
-		*	@param $Str - Processing string.
+		*	@param $Settings - Parameters.
 		*
-		*	@param $Changed - Was the processing completed.
+		*	@return HTML code.
 		*
-		*	@return array( $Str , $Changed ).
-		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_unsubscribe_url( $Str , $Changed )
+		function			compile_unsubscribe_url( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'unsubscribe_url' ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
+				$UserId = $Settings->get_setting( 'user_id' );
+				$SubscriptionId = $Settings->get_setting( 'subscription_id' );
 
-					$UserId = $this->Settings->get_setting( 'user_id' );
-					$SubscriptionId = $this->Settings->get_setting( 'subscription_id' );
+				$Hash = $this->SubscriptionAlgorithms->calculate_hash( $UserId , $SubscriptionId );
 
-					$Hash = $this->SubscriptionAlgorithms->calculate_hash( $UserId , $SubscriptionId );
-
-					$URL = "{http_host}/unsubscribe.html?user_id[eq]$UserId&hash[eq]$Hash";
-
-					$Str = str_replace( "{unsubscribe_url:$Parameters}" , $URL , $Str );
-					$Changed = true;
-				}
-				
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция отвечающая за обработку строки.
-		*
-		*	@param $Options - Параметры отображения.
-		*
-		*	@param $Str - Обрабатывемая строка.
-		*
-		*	@param $Changed - Была ли осуществлена обработка.
-		*
-		*	@return HTML код для отображения.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Options of drawing.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@param $Changed - Was the processing completed.
-		*
-		*	@return HTML code to display.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->process_unsubscribe_url( $Str , $Changed );
-
-				return( $Str );
+				return( "{http_host}/unsubscribe.html?user_id[eq]$UserId&hash[eq]$Hash" );
 			}
 			catch( Exception $e )
 			{

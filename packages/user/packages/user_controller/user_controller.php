@@ -255,7 +255,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			login( $Options )
+		function			login( &$Options )
 		{
 			try
 			{
@@ -302,7 +302,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			logout( $Options )
+		function			logout( &$Options )
 		{
 			try
 			{
@@ -332,7 +332,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			activate_user( $Options )
+		function			activate_user( &$Options )
 		{
 			try
 			{
@@ -345,45 +345,6 @@
 						$this->Messages->add_success_message( 'user_was_activated' );
 					}
 				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция отправки сообщения.
-		*
-		*	@param $Message - Сообщение.
-		*
-		*	@param $Email - Адрес.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function sends email.
-		*
-		*	@param $Message - Message.
-		*
-		*	@param $Email - Email.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	send_email( $Message , $Subject , $Email = false )
-		{
-			try
-			{
-				$Email = $Email === false ? $this->Security->get_gp( 'email' , 'string' ) : $Email;
-
-				$Mail = get_package( 'mail' , 'last' , __FILE__ );
-				$Mail->send_email( 
-					$this->SystemEmail , $Email , $Subject , $Message , $this->EmailSender
-				);
 			}
 			catch( Exception $e )
 			{
@@ -409,7 +370,44 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			restore_password( $Options )
+		function			admin_activate_user( &$Options )
+		{
+			try
+			{
+				$Ids = $this->Security->get_gp( 'ids' , 'integer' );
+
+				if( is_array( $Ids ) === false )
+				{
+					$Ids = array( $Ids );
+				}
+
+				$this->UserAccess->activate_users( $Ids );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция активации пользователя.
+		*
+		*	@param $Options - Настройки работы модуля.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function activates user.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			restore_password( &$Options )
 		{
 			try
 			{
@@ -417,11 +415,15 @@
 				$NewPassword = $this->UserAlgorithms->generate_password();
 
 				$CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$Message = $CachedMultyFS->get_template( __FILE__ , 'password_restoration_email.tpl' );
-				$Message = str_replace( '{new_password}' , $NewPassword , $Message );
+				$Message = str_replace( 
+					'{new_password}' , $NewPassword , 
+					$CachedMultyFS->get_template( __FILE__ , 'password_restoration_email.tpl' )
+				);
 
-				$User = $this->UserAccess->get_user( $Login );
-				$this->send_email( $Message , '{lang:password_restoration}' , get_field( $User , 'email' ) );
+				$this->UserControllerUtilities->send_email( 
+					$this->SystemEmail , $this->EmailSender , $Message , 
+					'{lang:password_restoration}' , get_field( $this->UserAccess->get_user( $Login ) , 'email' )
+				);
 
 				$this->UserAccess->reset_password( $Login , $NewPassword );
 			}
@@ -430,7 +432,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Изменение пароля, если необходиимо.
 		*
@@ -464,7 +466,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение изменённых данных.
 		*
@@ -559,7 +561,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			update_user( $Options )
+		function			update_user( &$Options )
 		{
 			try
 			{
@@ -620,40 +622,6 @@
 		}
 
 		/**
-		*	\~russian Добавление дефолтовых доступов
-		*
-		*	@param $id - id пользователя.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function adds default permits.
-		*
-		*	@param $id - User id.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	add_default_permits( $id )
-		{
-			try
-			{
-				$id = $this->Security->get( $id , 'integer' );
-
-				$this->PermitAccess = get_package( 'permit::permit_access' , 'last' , __FILE__ );
-				$this->PermitAccess->add_permit_for_object( 'public' , $id , 'user' );
-				$this->PermitAccess->add_permit_for_object( 'registered' , $id , 'user' );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Создание пользователя и доступов для него.
 		*
 		*	@return Хэш активации.
@@ -684,7 +652,7 @@
 
 				list( $id , $Hash ) = $this->UserAccess->create( $Record );
 
-				$this->add_default_permits( $id );
+				$this->UserControllerUtilities->add_default_permits( $id );
 
 				return( $Hash );
 			}
@@ -786,7 +754,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			registration( $Options )
+		function			registration( &$Options )
 		{
 			try
 			{
@@ -827,7 +795,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			set_avatar( $Options )
+		function			set_avatar( &$Options )
 		{
 			try
 			{
@@ -855,8 +823,6 @@
 			}
 		}
 
-		// TODO create trace output demo
-
 		/**
 		*	\~russian Контроллер компонента.
 		*
@@ -882,8 +848,9 @@
 				$this->Context->load_hinted_config( 
 					$Options , dirname( __FILE__ ) , 
 					array( 
-						'cfcx_update_user' , 'cfcx_activate_user' , 'cfcx_restore_password' , 
-						'cfcx_registration' , 'cfcx_user_set_avatar' , 'cfcx_login' , 'cfcx_logout'
+						'cfcx_update_user' , 'cfcx_activate_user' , 'cfcx_admin_activate_user' , 
+						'cfcx_restore_password' , 'cfcx_registration' , 'cfcx_user_set_avatar' , 'cfcx_login' , 
+						'cfcx_logout'
 					)
 				);
 

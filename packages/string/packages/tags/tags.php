@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	tags_1_0_0{
-		
+
 		/**
 		*	\~russian Функция обработки phpbb тэгов.
 		*
@@ -47,7 +47,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_format_tags( $Str )
+		private function	compile_format_tags( $Str )
 		{
 			try
 			{
@@ -86,7 +86,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_publish_tags( $Str )
+		private function	compile_publish_tags( $Str )
 		{
 			try
 			{
@@ -125,7 +125,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_list_tags( $Str )
+		private function	compile_list_tags( $Str )
 		{
 			try
 			{
@@ -168,7 +168,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_content_tags( $Str )
+		private function	compile_content_tags( $Str )
 		{
 			try
 			{
@@ -214,7 +214,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_style_tags( $Str )
+		private function	compile_style_tags( $Str )
 		{
 			try
 			{
@@ -263,15 +263,15 @@
 		{
 			try
 			{
-				$Str = $this->process_format_tags( $Str );
+				$Str = $this->compile_format_tags( $Str );
 
-				$Str = $this->process_publish_tags( $Str );
+				$Str = $this->compile_publish_tags( $Str );
 
-				$Str = $this->process_content_tags( $Str );
+				$Str = $this->compile_content_tags( $Str );
 
-				$Str = $this->process_list_tags( $Str );
+				$Str = $this->compile_list_tags( $Str );
 
-				$Str = $this->process_style_tags( $Str );
+				$Str = $this->compile_style_tags( $Str );
 
 				return( $Str );
 			}
