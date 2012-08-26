@@ -35,10 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$AutoMarkup = false;
 		var					$CachedMultyFS = false;
 		var					$Database = false;
 		var					$PageComposer = false;
-		var					$PageParts = false;
 		var					$Security = false;
 		var					$Settings = false;
 		var					$String = false;
@@ -61,10 +61,10 @@
 		{
 			try
 			{
+				$this->AutoMarkup = get_package( 'page::page_parts' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
-				$this->PageParts = get_package( 'page::page_parts' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -105,7 +105,7 @@
 				$Feed = $this->Security->get_gp( 'feed' , 'command' );
 				
 				$FeedScript = $this->CachedMultyFS->get_data( __FILE__ , "$Feed.sql" );
-				$FeedScript = $this->PageParts->execute_processors( $FeedScript , 'post_process' );
+				$FeedScript = $this->AutoMarkup->compile_string( $FeedScript );
 				
 				$this->Database->query_as( DB_OBJECT );
 				
@@ -198,7 +198,7 @@
 				$this->Settings->load_file( dirname( __FILE__ ).'/conf/cf_default' );
 				$FeedXml = $this->String->print_record( $FeedXml , $this->Settings->get_raw_settings() );
 
-				$FeedXml = $this->PageParts->execute_processors( $FeedXml , 'post_process' );
+				$FeedXml = $this->AutoMarkup->compile_string( $FeedXml );
 
 				return( $FeedXml );
 			}

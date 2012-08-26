@@ -12,9 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
-	// TODO why string.php is excluded from unit-tests?
-	
+
 	/**
 	*	\~russian Класс, отвечающий за безопасную работу с вводимыми данными.
 	*

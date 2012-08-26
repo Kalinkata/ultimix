@@ -107,26 +107,20 @@
 		{
 			try
 			{
-				do
+				list( $StartPos , $EndPos ) = $this->get_block_positions( $StringData , $BlockStart , $BlockEnd );
+
+				if( $StartPos !== false )
 				{
-					list( $StartPos , $EndPos ) = $this->get_block_positions( $StringData , $BlockStart , $BlockEnd );
-					
-					if( $StartPos !== false )
-					{
-						$StringData = substr_replace( $StringData , 
-							'' , 
-							$StartPos , 
-							$EndPos - $StartPos + strlen( '{'.$BlockEnd.'}' ) 
-						);
-						
-						$Changed = true;
-					}
-					else
-					{
-						return( $StringData );
-					}
+					$StringData = substr_replace( $StringData , 
+						'' , 
+						$StartPos , 
+						$EndPos - $StartPos + strlen( chr( 123 ).$BlockEnd.chr( 125 ) ) 
+					);
+
+					$Changed = true;
 				}
-				while( true );
+
+				return( $StringData );
 			}
 			catch( Exception $e )
 			{
@@ -180,9 +174,9 @@
 					$StringData = substr_replace( $StringData , 
 						$BlockData , 
 						$StartPos , 
-						$EndPos - $StartPos + strlen( '{'.$BlockEnd.'}' ) 
+						$EndPos - $StartPos + strlen( chr( 123 ).$BlockEnd.chr( 125 ) ) 
 					);
-					
+
 					$Changed = true;
 				}
 
@@ -295,7 +289,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция осуществляет форматированный вывод объекта $Record.
 		*
@@ -341,7 +335,7 @@
 					}
 					else
 					{
-						$Str = str_replace( '{'.$Field.'}' , $Value , $Str );
+						$Str = str_replace( chr( 123 ).$Field.chr( 125 ) , $Value , $Str );
 					}
 				}
 
@@ -387,7 +381,7 @@
 		{
 			try
 			{
-				$StartPos = strpos( $StringData , '{'.$BlockStart.'}' );
+				$StartPos = strpos( $StringData , chr( 123 ).$BlockStart.chr( 125 ) );
 				if( $StartPos == false )
 				{
 					return( false );
@@ -395,7 +389,7 @@
 				
 				if( $BlockEnd !== false )
 				{
-					$EndPos = strpos( $StringData , '{'.$BlockEnd.'}' );
+					$EndPos = strpos( $StringData , chr( 123 ).$BlockEnd.chr( 125 ) );
 					if( $EndPos == false )
 					{
 						return( false );
@@ -409,13 +403,70 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Начало макроса.
+		*
+		*	@param $TmpStartPos - Начало макроса.
+		*
+		*	@param $TmpEndPos - Конец макроса.
+		*
+		*	@param $StartPos - Начало макроса.
+		*
+		*	@param $Counter - Счетчик.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Macro start.
+		*
+		*	@param $TmpStartPos - Macro start.
+		*
+		*	@param $TmpEndPos - Macro end.
+		*
+		*	@param $StartPos - Macro start.
+		*
+		*	@param $Counter - Counter.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	handle_macro_start( $TmpStartPos , $TmpEndPos , &$StartPos , &$Counter )
+		{
+			try
+			{
+				if( $TmpStartPos !== false && $TmpEndPos !== false )
+				{
+					if( $TmpStartPos < $TmpEndPos )
+					{
+						$StartPos = $TmpEndPos;
+					}
+					if( $TmpEndPos < $TmpStartPos )
+					{
+						$Counter--;
+						if( $Counter )
+						{
+							$Counter++;
+						}
+						$StartPos = $TmpStartPos;
+					}
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция выборки параметров макроса.
 		*
 		*	@param $StringData - Строковые данные, подвергаемые обработке.
 		*
-		*	@param $MacroName - Параметры макроса.
+		*	@param $Name - Параметры макроса.
 		*
 		*	@param $RegExValidators - Регулярные выражения для проверки выбираемых параметров.
 		*
@@ -430,7 +481,7 @@
 		*
 		*	@param $StringData - Data to be parsed.
 		*
-		*	@param $MacroName - Macro's parameters.
+		*	@param $Name - Macro's parameters.
 		*
 		*	@param $RegExValidators - Regular expressions for parameters validation.
 		*
@@ -440,7 +491,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_macro_parameters( &$StringData , $MacroName , $RegExValidators = array() )
+		function			get_macro_parameters( &$StringData , $Name , $RegExValidators = array() )
 		{
 			try
 			{
@@ -448,32 +499,20 @@
 
 				$StartPos = -1;
 
-				for( ; ( $TmpStartPos = strpos( $StringData , '{'.$MacroName.':' , $StartPos + 1 ) ) !== false ; )
+				for( ; ( $TmpStartPos = strpos( $StringData , chr( 123 ).$Name.':' , $StartPos + 1 ) ) !== false ; )
 				{
 					$Counter = 1;
 					$StartPos = $TmpStartPos;
-					
+
 					$MacroStartPos = $StartPos;
-					$ParamStartPos = $MacroStartPos + strlen( '{'.$MacroName.':' );
-					
+					$ParamStartPos = $MacroStartPos + strlen( chr( 123 ).$Name.':' );
+
 					do
 					{
-						$TmpStartPos = strpos( $StringData , '{' , $StartPos + 1 );
-						$TmpEndPos = strpos( $StringData , '}' , $StartPos + 1 );
-						
-						if( $TmpStartPos !== false && $TmpEndPos !== false )
-						{
-							if( $TmpStartPos < $TmpEndPos )
-							{
-								$StartPos = $TmpEndPos;
-							}
-							if( $TmpEndPos < $TmpStartPos )
-							{
-								$Counter--;
-								if( $Counter )$Counter++;
-								$StartPos = $TmpStartPos;
-							}
-						}
+						$TmpStartPos = strpos( $StringData , chr( 123 ) , $StartPos + 1 );
+						$TmpEndPos = strpos( $StringData , chr( 125 ) , $StartPos + 1 );
+
+						$this->handle_macro_start( $TmpStartPos , $TmpEndPos , $StartPos , $Counter );
 
 						if( $TmpStartPos !== false && $TmpEndPos === false )
 						{
@@ -505,7 +544,6 @@
 								return( $Params );
 							}
 
-							//TODO: refactor this function!
 							/* поэтому вываливаемся из внутреннего цикла */
 							$TmpStartPos = false;
 							$StartPos = $MacroStartPos;
@@ -562,8 +600,8 @@
 				{
 					$BlockData = substr( 
 						$StringData , 
-						$StartPos + strlen( '{'.$BlockStart.'}' ) , 
-						$EndPos - $StartPos - strlen( '{'.$BlockStart.'}' )
+						$StartPos + strlen( chr( 123 ).$BlockStart.chr( 125 ) ) , 
+						$EndPos - $StartPos - strlen( chr( 123 ).$BlockStart.chr( 125 ) )
 					);
 
 					return( $BlockData );
@@ -679,11 +717,11 @@
 				$StartPos = -1;
 				$EndPos = -1;
 
-				for( ; $StartPos = strpos( $StringData , '{'.$BlockStart.'}' , $StartPos + 1 ) ; )
+				for( ; $StartPos = strpos( $StringData , chr( 123 ).$BlockStart.chr( 125 ) , $StartPos + 1 ) ; )
 				{
 					$Positions [ $StartPos ] = 's';
 				}
-				for( ; $EndPos = strpos( $StringData , '{'.$BlockEnd.'}' , $EndPos + 1 ) ; )
+				for( ; $EndPos = strpos( $StringData , chr( 123 ).$BlockEnd.chr( 125 ) , $EndPos + 1 ) ; )
 				{
 					$Positions [ $EndPos ] = 'e';
 				}

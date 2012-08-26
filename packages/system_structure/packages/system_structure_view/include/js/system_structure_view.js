@@ -94,3 +94,36 @@ ultimix.system_structure.get_custom_list_form = function( Fuctions , Header , It
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
+
+/**
+*	Function deletes record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.system_structure.delete = function( Id , DataSelector )
+{
+	//TODO: refactor all delete functions with a single method
+	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
+		function( Result )
+		{
+			if( Result == ultimix.std_dialogs.MB_YES )
+			{
+				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+
+				ultimix.ajax_gate.direct_controller( 
+					{ 
+						'package_name' : 'system_structure::system_structure_controller' , 
+						'system_structure_context_action' : 'delete_record' , 
+						'system_structure_action' : 'delete_record' , 'system_structure_record_id' : Id , 
+						'meta' : 'meta_delete_system_structure'
+					} , 
+					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
+				);
+			}
+		}
+	)
+}

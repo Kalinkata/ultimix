@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		{header}
+		{scripts}
+		{stylesheets}
 		<script src="{template_path}/include/js/jquery.layout.min.js"></script>
 		<script src="{template_path}/include/js/jquery.layout.autorun.js"></script>
 		<link type="text/css" rel="stylesheet" href="{template_path}/res/css/style.css"/>
@@ -16,9 +17,9 @@
 			{composer:condition={layout_south}}<div class="ui-layout-south">{south}</div>{~composer}
 			{composer:condition={layout_east}}<div class="ui-layout-east">{east}</div>{~composer}
 			{composer:condition={layout_west}}<div class="ui-layout-west">{west}</div>{~composer}
-		{auth:~logged_in}
+		{~auth}
 		{auth:guest}
 			{auto_open_login_dialog}
-		{auth:~guest}
+		{~auth}
 	</body>
 </html>

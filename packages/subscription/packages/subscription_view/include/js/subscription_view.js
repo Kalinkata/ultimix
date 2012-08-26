@@ -13,9 +13,9 @@ if( !ultimix )
 *
 *	@author Dodonov A.A.
 */
-if( !ultimix.site )
+if( !ultimix.subscription )
 {
-	ultimix.site = {};
+	ultimix.subscription = {};
 }
 
 /**
@@ -27,15 +27,15 @@ if( !ultimix.site )
 *
 *	@author Dodonov A.A.
 */
-ultimix.site.set_default_options = function( ViewOptions )
+ultimix.subscription.set_default_options = function( ViewOptions )
 {
 	if( !ViewOptions )
 	{
 		ViewOptions = {};
 	}
 
-	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_site_list';
-	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'site::site_view';
+	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_subscription_list';
+	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'subscription::subscription_view';
 	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
 	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
 
@@ -51,14 +51,14 @@ ultimix.site.set_default_options = function( ViewOptions )
 *
 *	@author Dodonov A.A.
 */
-ultimix.site.get_list_form = function( Fuctions , ViewOptions )
+ultimix.subscription.get_list_form = function( Fuctions , ViewOptions )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
-	ViewOptions = ultimix.site.set_default_options( ViewOptions );
+	ViewOptions = ultimix.subscription.set_default_options( ViewOptions );
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
@@ -78,33 +78,34 @@ ultimix.site.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@author Dodonov A.A.
 */
-ultimix.site.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
+ultimix.subscription.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
-	ViewOptions = ultimix.site.set_default_options( ViewOptions );
+	ViewOptions = ultimix.subscription.set_default_options( ViewOptions );
 
-	ViewOptions.header = Header ? Header : 'site_header.tpl';
-	ViewOptions.item = Item ? Item : 'site_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'site_footer.tpl';
+	ViewOptions.header = Header ? Header : 'subscription_header.tpl';
+	ViewOptions.item = Item ? Item : 'subscription_item.tpl';
+	ViewOptions.footer = Footer ? Footer : 'subscription_footer.tpl';
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
 
 /**
-*	Function deletes site.
+*	Function deletes record.
 *
-*	@param SiteId - Site id.
+*	@param Id - Record id.
 *
 *	@param DataSelector - Data selector.
 *
 *	@author Dodonov A.A.
 */
-ultimix.site.delete = function( SiteId , DataSelector )
+ultimix.subscription.delete = function( Id , DataSelector )
 {
+	//TODO: refactor all delete functions with a single method
 	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
 		function( Result )
 		{
@@ -114,8 +115,10 @@ ultimix.site.delete = function( SiteId , DataSelector )
 
 				ultimix.ajax_gate.direct_controller( 
 					{ 
-						'package_name' : 'site::site_controller' , 'site_context_action' : 'delete_record' , 
-						'site_action' : 'delete_record' , 'site_record_id' : SiteId , 'meta' : 'meta_delete_site'
+						'package_name' : 'subscription::subscription_controller' , 
+						'subscription_context_action' : 'delete_record' , 
+						'subscription_action' : 'delete_record' , 'subscription_record_id' : Id , 
+						'meta' : 'meta_delete_subscription'
 					} , 
 					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
 				);

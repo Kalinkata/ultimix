@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		{header}
+		{scripts}
+		{stylesheets}
 		<title>{title}</title>
 		<meta name="keywords" content="{keywords}" />
 		<meta name="description" content="{description}" />

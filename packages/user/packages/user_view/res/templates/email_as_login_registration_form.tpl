@@ -71,7 +71,7 @@
 												<input id="active_permanently" type="checkbox" name="active_permanently" {map:first=on|;second=checked|;value={http_param:name=active_permanently;type=string;post=1;default=}}>
 											</td>
 										</tr>
-{permit:~user_manager}										<tr>
+{~permit}										<tr>
 											<td colspan="2" align="center">
 												{href:tpl=submit0;form_id=registration_form;text=registration;waiting=false}&nbsp;{href:page={http_param:get=1;name=back_page;type=command;default=index}.html;text=cancel}
 											</td>

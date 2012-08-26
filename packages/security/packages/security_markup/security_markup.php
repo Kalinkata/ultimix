@@ -35,8 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Settings = false;
-		var					$String = false;
 		var					$Security = false;
 		
 		/**
@@ -53,7 +51,7 @@
 		{
 			try
 			{
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -61,43 +59,6 @@
 			}
 		}
 
-		/**
-		*	\~russian Загрузка пакетов.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function loads packages.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	load_packages()
-		{
-			try
-			{
-				if( $this->String === false )
-				{
-					$this->String = get_package( 'string' , 'last' , __FILE__ );
-				}
-				if( $this->Settings === false )
-				{
-					$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				}
-				if( $this->Security === false )
-				{
-					$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Функция получения значения.
 		*
@@ -274,29 +235,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Options , $Str , &$Changed )
+		function			compile_http_param( &$Settings )
 		{
 			try
 			{
-				$this->load_packages();
+				$Name = $Settings->get_setting( 'name' );
+				$Type = $Settings->get_setting( 'type' , 'string' );
 
-				//TODO: move it to auto_markup
-				
-				$Limitations = array( 'default' => TERMINAL_VALUE );
+				$Value = $this->get_value( $Name , $Type , $Settings );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'http_param' , $Limitations ) ; )
-				{
-					$this->Settings->load_settings( $Parameters );
-					$Name = $this->Settings->get_setting( 'name' );
-					$Type = $this->Settings->get_setting( 'type' , 'string' );
-
-					$Value = $this->get_value( $Name , $Type , $this->Settings );
-
-					$Str = str_replace( "{http_param:$Parameters}" , $Value , $Str );
-					$Changed = true;
-				}
-
-				return( $Str );
+				return( $Value );
 			}
 			catch( Exception $e )
 			{

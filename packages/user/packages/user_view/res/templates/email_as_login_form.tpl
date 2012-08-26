@@ -16,4 +16,4 @@
 							</tr>
 						</table>
 					</form>
-{auth:~guest}
+{~auth}

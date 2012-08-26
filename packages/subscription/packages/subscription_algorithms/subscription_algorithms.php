@@ -35,9 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$AutoMarkup = false;
 		var					$CachedMultyFS = false;
 		var					$Link = false;
-		var					$PageParts = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
 		var					$String = false;
@@ -57,9 +57,9 @@
 		{
 			try
 			{
+				$this->AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Link = get_package( 'link' , 'last' , __FILE__ );
-				$this->PageParts = get_package( 'page::page_parts' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -110,7 +110,7 @@
 				$Subscription = set_field( $Subscription , 'subscription_id' , get_field( $Subscription , 'id' ) );
 				$Code = $this->String->print_record( $Code , $Subscription );
 
-				$Code = $this->PageParts->execute_processors( $Code , 'post_process' );
+				$Code = $this->AutoMarkup->compile_string( $Code );
 
 				return( $Code );
 			}

@@ -8,6 +8,7 @@
 	<option value="241">Африка</option>
 	<option value="111">Европа</option>
 	<option value="44">Ижевск</option>
+	<option value="63">Иркутск</option>
 	<option value="22">Калининград</option>
 	<option value="10857">Калининградская область</option>
 	<option value="1">Москва и Московская область</option>

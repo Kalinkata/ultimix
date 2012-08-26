@@ -3,7 +3,7 @@
 						<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="copy_record">
 						<input type="hidden" name="{prefix}_id" id="{prefix}_record_id" value="{ids}">{permit:user_manager}
 						<input type="hidden" name="current_password" value="current_password">
-{permit:~user_manager}
+{~permit}
 						<table>
 							<tr>
 								<td valign="top">

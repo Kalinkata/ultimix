@@ -219,3 +219,36 @@ ultimix.user.activate_users_ajax_request = function( Functions , Ids , CheckboxG
 	ultimix.ajax_gate.direct_controller( ControllerOptions , Functions );
 	ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
 }
+
+/**
+*	Function deletes record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.user.delete = function( Id , DataSelector )
+{
+	//TODO: refactor all delete functions with a single method
+	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
+		function( Result )
+		{
+			if( Result == ultimix.std_dialogs.MB_YES )
+			{
+				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+
+				ultimix.ajax_gate.direct_controller( 
+					{ 
+						'package_name' : 'user::user_controller' , 
+						'user_context_action' : 'delete_record' , 
+						'user_action' : 'delete_record' , 'user_record_id' : Id , 
+						'meta' : 'meta_delete_user'
+					} , 
+					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
+				);
+			}
+		}
+	)
+}

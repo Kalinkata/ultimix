@@ -138,7 +138,7 @@
 				$this->Output  = '';
 				$this->Output .= "{review_line:master_id=$MasterId;master_type=$MasterType}";
 				$this->Output .= "{permit:registered}{review_form:master_id=$MasterId;".
-									"master_type=$MasterType}{permit:~registered}";
+									"master_type=$MasterType}{~permit}";
 			}
 			catch( Exception $e )
 			{

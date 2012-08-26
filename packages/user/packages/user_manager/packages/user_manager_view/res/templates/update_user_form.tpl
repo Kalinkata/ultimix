@@ -3,7 +3,7 @@
 						<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="update_record">
 						<input type="hidden" name="{prefix}_record_id" id="{prefix}_record_id" value="{ids}">{permit:user_manager}
 						<input type="hidden" name="current_password" value="current_password">
-{permit:~user_manager}
+{~permit}
 						<table>
 							<tr>
 								<td valign="top" align="left">
@@ -123,10 +123,10 @@
 									{date_picker:name=banned_to;value={banned_to}}
 								</td>
 							</tr>
-{permit:~user_manager}
+{~permit}
 							<tr>
 								<td colspan="2" align="center" valign="center">
-									{href:tpl=submit0;form_id={prefix}_form;text=save_{prefix}}{permit:user_manager}&nbsp;{href:tpl=submit1;form_id={prefix}_form;param1={prefix}_context_action;value=;text=cancel;action=./{prefix}_manager.html}{permit:~user_manager}
+									{href:tpl=submit0;form_id={prefix}_form;text=save_{prefix}}{permit:user_manager}&nbsp;{href:tpl=submit1;form_id={prefix}_form;param1={prefix}_context_action;value=;text=cancel;action=./{prefix}_manager.html}{~permit}
 								</td>
 							</tr>
 						</table>

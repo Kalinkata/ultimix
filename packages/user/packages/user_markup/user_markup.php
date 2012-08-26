@@ -108,49 +108,10 @@
 			{
 				if( $this->UserAlgorithms->logged_in() )
 				{
-					return( $this->UserAlgorithms->get_login() , $Str ) );
+					return( $this->UserAlgorithms->get_login() );
 				}
 
 				return( 'public' );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция компиляции макроса 'user_id'.
-		*
-		*	@param $Settings - Параметры.
-		*
-		*	@return Код макроса.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function compiles macro 'user_id'.
-		*
-		*	@param $Settings - Parameters.
-		*
-		*	@return HTML code.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			compile_user_id( &$Settings )
-		{
-			try
-			{
-				if( $this->UserAlgorithms->logged_in() )
-				{
-					return( $this->UserAlgorithms->get_login() , $Str ) );
-				}
-
-				return( $this->UserAccess->GuestUserId );
 			}
 			catch( Exception $e )
 			{
@@ -184,59 +145,22 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_logged_in( &$Settings , $Data )
+		function			compile_auth( &$Settings , $Data )
 		{
 			try
 			{
-				if( $this->UserAlgorithms->logged_in() )
+				$RawSettings = $Settings->get_raw_settings();
+				$Flag = array_shift( array_keys( $RawSettings ) );
+
+				$ShowData = ( $Flag == 'logged_in' && $this->UserAlgorithms->logged_in() === true ) || 
+							( $Flag == 'guest' && $this->UserAlgorithms->logged_in() === false );
+
+				if( $ShowData )
 				{
 					return( $Data );
 				}
 
 				return( '' );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция компиляции блока 'guest'.
-		*
-		*	@param $Settings - Параметры.
-		*
-		*	@param $Data - Данные.
-		*
-		*	@return Код макроса.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function compiles блока 'guest'.
-		*
-		*	@param $Settings - Parameters.
-		*
-		*	@param $Data - Data.
-		*
-		*	@return HTML code.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			compile_guest( &$Settings , $Data )
-		{
-			try
-			{
-				if( $this->UserAlgorithms->logged_in() )
-				{
-					return( '' );
-				}
-
-				return( $Data );
 			}
 			catch( Exception $e )
 			{
@@ -272,7 +196,7 @@
 			{
 				if( $this->UserAlgorithms->logged_in() )
 				{
-					return( $this->UserAlgorithms->get_login() , $Str ) );
+					return( $this->UserAlgorithms->get_id() );
 				}
 
 				return( $this->UserAccess->GuestUserId );
@@ -441,8 +365,6 @@
 		{
 			try
 			{
-				//$Limitations = array( 'user_id' => TERMINAL_VALUE );
-
 				$User = $this->UserAlgorithms->get_by_id( $Settings->get_setting( 'user_id' ) );
 
 				return( get_field( $User , 'login' ) );

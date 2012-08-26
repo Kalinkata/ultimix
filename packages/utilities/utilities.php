@@ -70,7 +70,7 @@
 				if( $File != "." && $File != ".." && $File != 'index.html' )
 				{
 					$FullPath = $Path.$File;
-					
+
 					if( $Recursive && is_dir( $FullPath ) )
 					{
 						$Files = array_merge( 
@@ -83,7 +83,7 @@
 						$Files [] = $FullPath;
 					}
 				}
-				
+
 				return( $Files );
 			}
 			catch( Exception $e )
@@ -91,7 +91,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка всех файлов из директории.
 		*
@@ -127,20 +127,20 @@
 			try
 			{
 				$Path = rtrim( $Path , '/' ).'/';
-				
+
 				$Handle = @opendir( $Path );
 				$Files = array();
-				
+
 				if( $Handle !== false )
 				{
 					for( ; false !== ( $File = readdir( $Handle ) ) ; )
 					{
 						$Files = $this->read_file( $Files , $Path , $File , $Mask , $Recursive );
 					}
-					
+
 					closedir( $Handle );
 				}
-				
+
 				return( $Files );
 			}
 			catch( Exception $e )
@@ -148,7 +148,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция архивации директории.
 		*
@@ -176,10 +176,10 @@
 			try
 			{
 				$Files = $this->get_files_from_directory( $Directory );
-				
+
 				$Text = get_package( 'string::text' , 'last' , __FILE__ );
 				$Files = $Text->trim_common_prefix( $Files );
-				
+
 				$Zip = new ZipArchive;
 				$Zip->open( "$ArchivePath" , ZIPARCHIVE::CREATE );
 				foreach( $Files as $i => $File )
@@ -193,7 +193,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция запаковки параметров в URL.
 		*
@@ -225,7 +225,7 @@
 			try
 			{
 				$Tmp = array();
-				
+
 				foreach( $Params as $k => $v )
 				{
 					if( in_array( $k , $Exceptions ) === false )
@@ -233,7 +233,7 @@
 						$Tmp [] = "$k=$v";
 					}
 				}
-				
+
 				return( implode( '&' , $Tmp ) );
 			}
 			catch( Exception $e )
@@ -241,7 +241,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка пакета.
 		*
@@ -277,9 +277,9 @@
 			try
 			{
 				$PackageName = $Settings->get_setting( $Prefix.'package_name' );
-				
+
 				$PackageVersion = $Settings->get_setting( $Prefix.'package_version' , 'last' );
-				
+
 				return( get_package( $PackageName , $PackageVersion , $File ) );
 			}
 			catch( Exception $e )
@@ -287,7 +287,45 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Выборка пути к пакету.
+		*
+		*	@param $Settings - Параметры выборки.
+		*
+		*	@return Путь к пакету.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method returns path to package.
+		*
+		*	@param $Settings - Fetch parameters.
+		*
+		*	@return Path to package.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_package_path( &$Settings )
+		{
+			try
+			{
+				$PackageName = $Settings->get_setting( 'package_name' );
+
+				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
+
+				return( _get_package_relative_path_ex( $PackageName , $PackageVersion ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Выборка записей.
 		*
