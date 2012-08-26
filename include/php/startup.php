@@ -128,11 +128,10 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	function			start_script()
+	function			start_php_script()
 	{
 		try
 		{
-			// TODO rename in start_html_script
 			start_script_settings();
 
 			// TODO function register_view(function|package->method)

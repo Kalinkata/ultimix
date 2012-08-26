@@ -76,10 +76,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae52a5b2001bead258a1a9313827fc083"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#ae52a5b2001bead258a1a9313827fc083">set_var</a> ($VarName, $VarValue)</td></tr>
 <tr class="memitem:aa7a7e021f2db6a6fc6c2fd16be9330f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#aa7a7e021f2db6a6fc6c2fd16be9330f1">pre_generation</a> ($Options)</td></tr>
 <tr class="memitem:a6f906320a47c646421875699f8a4be70"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a6f906320a47c646421875699f8a4be70">compile_set_var</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:a6f906320a47c646421875699f8a4be70"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a6f906320a47c646421875699f8a4be70">compile_set_var</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a736a6d756ba4b6e691218bd973f042ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a736a6d756ba4b6e691218bd973f042ad">compile_get_var</a> (&amp;$Settings)</td></tr>
 <tr class="memitem:a50aa2caddc60eef05e15a6c317aa8ba2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a50aa2caddc60eef05e15a6c317aa8ba2">compile_date</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:a86ba1c4182f1aefa17586df7d25b9e09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a86ba1c4182f1aefa17586df7d25b9e09">process_composer</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:a34d68a89b25fd356d099307d80687bc9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a34d68a89b25fd356d099307d80687bc9">compile_composer</a> (&amp;$Settings, $Data)</td></tr>
 <tr class="memitem:a7516ca30af0db3cdbf9a7739b48ce91d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgui__1__0__0.html#a7516ca30af0db3cdbf9a7739b48ce91d">__toString</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -149,11 +148,74 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="gui_8php_source.html#l00383">383</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
+<p>Definition at line <a class="el" href="gui_8php_source.html#l00327">327</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">return</span>( <span class="stringliteral">&quot;&quot;</span> );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a34d68a89b25fd356d099307d80687bc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_composer </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$Data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function compiles macro 'composer'.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
+    <tr><td class="paramname">$Data</td><td>- Data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Widget.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="gui_8php_source.html#l00288">288</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Condition = intval( <a class="code" href="classgui__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;condition&#39;</span> ) );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( $Condition )</div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="keywordflow">return</span>( $Data );</div>
+<div class="line">                        }</div>
+<div class="line">                        <span class="keywordflow">else</span></div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="keywordflow">return</span>( <span class="stringliteral">&#39;&#39;</span> );</div>
+<div class="line">                        }</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -218,6 +280,51 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a class="anchor" id="a736a6d756ba4b6e691218bd973f042ad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_get_var </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function processes macro 'set_var'.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Settings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Value.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="gui_8php_source.html#l00202">202</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Name = <a class="code" href="classgui__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Vars[ $Name ] );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a6f906320a47c646421875699f8a4be70"></a>
 <div class="memitem">
 <div class="memproto">
@@ -266,51 +373,6 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a6f906320a47c646421875699f8a4be70"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">compile_set_var </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Settings</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'set_var'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Settings</td><td>- Settings.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Value.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="gui_8php_source.html#l00202">202</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Name = <a class="code" href="classgui__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Vars[ $Name ] );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="aa7a7e021f2db6a6fc6c2fd16be9330f1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -343,144 +405,6 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a86ba1c4182f1aefa17586df7d25b9e09"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_composer </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'composer'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="gui_8php_source.html#l00288">288</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Rules = array( <span class="stringliteral">&#39;condition&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $this-&gt;PageParser-&gt;find_next_macro( $Str , <span class="stringliteral">&#39;composer&#39;</span> , $Rules ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              <a class="code" href="classgui__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> = &amp;$this-&gt;PageParser-&gt;get_macro_parameters();</div>
-<div class="line">                              $Condition = intval( <a class="code" href="classgui__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;condition&#39;</span> ) );</div>
-<div class="line"></div>
-<div class="line">                              <span class="keywordflow">if</span>( $Condition )</div>
-<div class="line">                              {</div>
-<div class="line">                                    $Str = $this-&gt;PageParser-&gt;show_macro( $Str , <span class="stringliteral">&#39;composer&#39;</span> );</div>
-<div class="line">                              }</div>
-<div class="line">                              <span class="keywordflow">else</span></div>
-<div class="line">                              {</div>
-<div class="line">                                    $Str = $this-&gt;PageParser-&gt;hide_macro( $Str , <span class="stringliteral">&#39;composer&#39;</span> );</div>
-<div class="line">                              }</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="gui_8php_source.html#l00348">348</a> of file <a class="el" href="gui_8php_source.html">gui.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="comment">/* TODO: move to auto_markup */</span></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classgui__1__0__0.html#a86ba1c4182f1aefa17586df7d25b9e09">process_composer</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="comment">//TODO: move to keyboard_markup                       </span></div>
-<div class="line">                        $Str = str_replace( <span class="stringliteral">&#39;{locked}&#39;</span> , <span class="stringliteral">&#39;onkeypress=&quot;return( false );&quot;&#39;</span> , $Str );</div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -613,7 +537,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classgui__1__0__0.html">gui_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:21 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:35 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

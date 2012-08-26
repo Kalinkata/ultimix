@@ -81,8 +81,8 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">      */</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      </div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classtags__1__0__0.html">   26</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classtags__1__0__0.html">tags_1_0_0</a>{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_format_tags( $Str )</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_format_tags( $Str )</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                  {</div>
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                  }</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_publish_tags( $Str )</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_publish_tags( $Str )</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            {</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                  {</div>
@@ -116,7 +116,7 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                  }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            }</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_list_tags( $Str )</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_list_tags( $Str )</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            {</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                  {</div>
@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                  }</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            }</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_content_tags( $Str )</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_content_tags( $Str )</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            {</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                  {</div>
@@ -161,7 +161,7 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                  }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            }</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_style_tags( $Str )</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_style_tags( $Str )</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            {</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                  {</div>
@@ -188,15 +188,15 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            {</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                  {</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                        $Str = $this-&gt;process_format_tags( $Str );</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                        $Str = $this-&gt;compile_format_tags( $Str );</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        $Str = $this-&gt;process_publish_tags( $Str );</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        $Str = $this-&gt;compile_publish_tags( $Str );</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        $Str = $this-&gt;process_content_tags( $Str );</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        $Str = $this-&gt;compile_content_tags( $Str );</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                        $Str = $this-&gt;process_list_tags( $Str );</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                        $Str = $this-&gt;compile_list_tags( $Str );</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                        $Str = $this-&gt;process_style_tags( $Str );</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                        $Str = $this-&gt;compile_style_tags( $Str );</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                  }</div>
@@ -259,7 +259,7 @@ $(document).ready(function(){initNavTree('tags_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_9411a48ec60ca4bf1faef7f185d1c129.html">string</a></li><li class="navelem"><a class="el" href="dir_0725d84b27bc33cbaf089ab4473b2b1b.html">packages</a></li><li class="navelem"><a class="el" href="dir_3456c750137554fdc464ff380830c14c.html">tags</a></li><li class="navelem"><a class="el" href="tags_8php.html">tags.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:09 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:15 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -73,14 +73,11 @@ $(document).ready(function(){initNavTree('classrating__markup__1__0__0.html','')
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a2d1b43daef41241fe6e5766181b7b70f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#a2d1b43daef41241fe6e5766181b7b70f">process_rating</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:ac006bf58a3dc3cbf1bbda2ff955040b6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#ac006bf58a3dc3cbf1bbda2ff955040b6">compile_rating</a> (&amp;Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a42734c34e5429a8ec8d5dc3ff7331492"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> = false</td></tr>
 <tr class="memitem:a3f45bc2d71db656fc1f1d9c5380fa97c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#a3f45bc2d71db656fc1f1d9c5380fa97c">$RatingAlgorithms</a> = false</td></tr>
-<tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrating__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Class processes macro.</p>
@@ -109,13 +106,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00056">56</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00054">54</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;BlockSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;RatingAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;rating::rating_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -126,126 +121,47 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="a2d1b43daef41241fe6e5766181b7b70f"></a>
+<a class="anchor" id="ac006bf58a3dc3cbf1bbda2ff955040b6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_rating </td>
+          <td class="memname">compile_rating </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'rating'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( $Str , $Changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00136">136</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Limitations = array( <span class="stringliteral">&#39;master_id&#39;</span> =&gt; TERMINAL_VALUE , <span class="stringliteral">&#39;master_type&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Params = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;rating&#39;</span> , $Limitations ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;load_settings( $Params );</div>
-<div class="line">                              </div>
-<div class="line">                              $Rating = $this-&gt;compile_rating( $this-&gt;BlockSettings );</div>
-<div class="line">                              </div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{rating:$Params}&quot;</span> , $Rating , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>Settings</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function processes string.</p>
+<p>Function compiles macro 'rating'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Options of drawing.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Parameters.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>HTML code to display.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML code.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00190">190</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00088">88</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classrating__markup__1__0__0.html#a2d1b43daef41241fe6e5766181b7b70f">process_rating</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line">                        $MasterId = $Settings-&gt;get_setting( <span class="stringliteral">&#39;master_id&#39;</span> );</div>
+<div class="line">                        $MasterType = $Settings-&gt;get_setting( <span class="stringliteral">&#39;master_type&#39;</span> , <span class="stringliteral">&#39;user&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                        $Rating = $this-&gt;RatingAlgorithms-&gt;get_rating( $MasterId , $MasterType );</div>
+<div class="line"></div>
+<div class="line">                        $ShowPrefix = intval( $Settings-&gt;get_setting( <span class="stringliteral">&#39;show_prefix&#39;</span> , 0 ) );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $ShowPrefix == 1 ? <span class="stringliteral">&quot;{lang:rating}: $Rating&quot;</span> : $Rating );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -256,22 +172,6 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
-<a class="anchor" id="a42734c34e5429a8ec8d5dc3ff7331492"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$BlockSettings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Cached packages.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00038">38</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a3f45bc2d71db656fc1f1d9c5380fa97c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -281,22 +181,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cached packages.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00039">39</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a541f49d5b9cf7bae2f91f639abcf3458"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$String = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00040">40</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="rating__markup_8php_source.html#l00038">38</a> of file <a class="el" href="rating__markup_8php_source.html">rating_markup.php</a>.</p>
 
 </div>
 </div>
@@ -309,7 +197,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classrating__markup__1__0__0.html">rating_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:27 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:42 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -1,9 +1,0 @@
-digraph "packages/gui/packages/paginator3000/include/js/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_94cdd8bd6c62a25d9c8177a453a1d7b8 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_94cdd8bd6c62a25d9c8177a453a1d7b8.html"]
-  dir_0c66189ebc9beb1cdac717c3d2c93360 [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_0c66189ebc9beb1cdac717c3d2c93360.html"];
-  }
-}

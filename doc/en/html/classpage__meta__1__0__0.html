@@ -76,7 +76,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2155ffd2a5461d2428831239bf73e94d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#a2155ffd2a5461d2428831239bf73e94d">set_page_title</a> ($NewTitle)</td></tr>
 <tr class="memitem:a78a3a33fec9511c892c166dae2ab0610"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#a78a3a33fec9511c892c166dae2ab0610">add_page_keywords</a> ($NewKeywords)</td></tr>
 <tr class="memitem:af75afb6343ce649cb62eacc05e661d89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#af75afb6343ce649cb62eacc05e661d89">add_page_description</a> ($NewDescription)</td></tr>
-<tr class="memitem:a00bcf87e444ea9ad9cf9f89f0184420c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#a00bcf87e444ea9ad9cf9f89f0184420c">set_page_info</a> ($Str, $Changed)</td></tr>
+<tr class="memitem:ab1e8aaee7665b50883de4bf8a6213ecc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#ab1e8aaee7665b50883de4bf8a6213ecc">compile_title</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a1343c871d47d4bc3597bc497d3e2edad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#a1343c871d47d4bc3597bc497d3e2edad">compile_keywords</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a4f01e11d60090d453b7c9a047ea9769d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__meta__1__0__0.html#a4f01e11d60090d453b7c9a047ea9769d">compile_description</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -234,38 +236,27 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a00bcf87e444ea9ad9cf9f89f0184420c"></a>
+<a class="anchor" id="a4f01e11d60090d453b7c9a047ea9769d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">set_page_info </td>
+          <td class="memname">compile_description </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function sets info about the page.</p>
+<p>Function compiles macro 'description'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Postprocessing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>array( $Str , $Changed ).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Widget.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
@@ -274,31 +265,97 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__meta_8php_source.html#l00243">243</a> of file <a class="el" href="page__meta_8php_source.html">page_meta.php</a>.</p>
+<p>Definition at line <a class="el" href="page__meta_8php_source.html#l00307">307</a> of file <a class="el" href="page__meta_8php_source.html">page_meta.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{title}&#39;</span> ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&#39;{title}&#39;</span> , $this-&gt;PageTitle , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{keywords}&#39;</span> ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&#39;{keywords}&#39;</span> , $this-&gt;PageKeywords , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{description}&#39;</span> ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = str_replace( </div>
-<div class="line">                                    <span class="stringliteral">&#39;{description}&#39;</span> , $this-&gt;PageDescription , $Str </div>
-<div class="line">                              );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;PageDescription );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a1343c871d47d4bc3597bc497d3e2edad"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_keywords </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function compiles macro 'keywords'.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Widget.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="page__meta_8php_source.html#l00273">273</a> of file <a class="el" href="page__meta_8php_source.html">page_meta.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;PageKeywords );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab1e8aaee7665b50883de4bf8a6213ecc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_title </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function compiles macro 'title'.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Widget.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="page__meta_8php_source.html#l00239">239</a> of file <a class="el" href="page__meta_8php_source.html">page_meta.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;PageTitle );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -522,7 +579,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpage__meta__1__0__0.html">page_meta_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:25 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('base__template_8php_source.html','');}
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                  }</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            }</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno"><a class="code" href="classbase__template__1__0__0.html#a8dd2b6c1081a6a72f6ffdc58b27a37ff">  243</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classbase__template__1__0__0.html#a8dd2b6c1081a6a72f6ffdc58b27a37ff">process_template_block</a>( $PageName , &amp;$Changed )</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_template_block( $PageName , &amp;$Changed )</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            {</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                  {</div>
@@ -216,7 +216,7 @@ $(document).ready(function(){initNavTree('base__template_8php_source.html','');}
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                  }</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;            }</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;            </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_includes( $File , &amp;$Changed )</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_includes( $File , &amp;$Changed )</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            {</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                  {</div>
@@ -244,11 +244,11 @@ $(document).ready(function(){initNavTree('base__template_8php_source.html','');}
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                        }</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                        $this-&gt;Template = $this-&gt;<a class="code" href="classbase__template__1__0__0.html#a88ef14cf889de608eae7bebe554494f3">get_template</a>();</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                        $this-&gt;<a class="code" href="classbase__template__1__0__0.html#a8dd2b6c1081a6a72f6ffdc58b27a37ff">process_template_block</a>( $PageName , $Changed );</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                        $this-&gt;handle_template_block( $PageName , $Changed );</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                        $this-&gt;Template = $this-&gt;String-&gt;hide_unprocessed_blocks( $this-&gt;Template , <span class="stringliteral">&#39;template&#39;</span> , $Changed );</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        $this-&gt;process_includes( $File , $Changed );</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        $this-&gt;handle_includes( $File , $Changed );</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                  }</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                  {</div>
@@ -281,7 +281,7 @@ $(document).ready(function(){initNavTree('base__template_8php_source.html','');}
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                  }</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            }</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
-<div class="line"><a name="l00437"></a><span class="lineno"><a class="code" href="classbase__template__1__0__0.html#a92280a70daedbc2eb710cd42ed22d16a">  437</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classbase__template__1__0__0.html#a92280a70daedbc2eb710cd42ed22d16a">process_color_scheme</a>( $File , $Str )</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_color_scheme( $File , $Str )</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            {</div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                  {</div>
@@ -329,7 +329,7 @@ $(document).ready(function(){initNavTree('base__template_8php_source.html','');}
 <div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;                              $Str</div>
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;                        );</div>
 <div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                        $Str = $this-&gt;<a class="code" href="classbase__template__1__0__0.html#a92280a70daedbc2eb710cd42ed22d16a">process_color_scheme</a>( $File , $Str );</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                        $Str = $this-&gt;handle_color_scheme( $File , $Str );</div>
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
 <div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;                  }</div>
@@ -475,7 +475,7 @@ $(document).ready(function(){initNavTree('base__template_8php_source.html','');}
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_2fdead99e173199c795f6f76807a3239.html">template_manager</a></li><li class="navelem"><a class="el" href="dir_68b7963e76b00f34f05640e22569d3fd.html">packages</a></li><li class="navelem"><a class="el" href="dir_8a92ae58348ee9a2753b3b3cbdbcd8bb.html">base_template</a></li><li class="navelem"><a class="el" href="base__template_8php.html">base_template.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:09 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:16 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

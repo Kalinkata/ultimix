@@ -1,9 +1,0 @@
-digraph "packages/gui/packages/forms/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_22da140b0ceba9af8df63b75c08d8cba {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_22da140b0ceba9af8df63b75c08d8cba.html"]
-  dir_89cfbaba64a8d7177afb66f4c99a3115 [shape=box, label="forms", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_89cfbaba64a8d7177afb66f4c99a3115.html"];
-  }
-}

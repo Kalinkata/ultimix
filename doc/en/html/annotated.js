@@ -257,7 +257,6 @@ var annotated =
     [ "user_view_1_0_0", "classuser__view__1__0__0.html", "classuser__view__1__0__0" ],
     [ "utilities_1_0_0", "classutilities__1__0__0.html", "classutilities__1__0__0" ],
     [ "video_markup_1_0_0", "classvideo__markup__1__0__0.html", "classvideo__markup__1__0__0" ],
-    [ "yandex_markup_1_0_0", "classyandex__markup__1__0__0.html", "classyandex__markup__1__0__0" ],
     [ "yandex_xml_1_0_0", "classyandex__xml__1__0__0.html", "classyandex__xml__1__0__0" ],
     [ "зк_sape_common_api_1_0_0", "class_xD0_xB7_xD0_xBA__sape__common__api__1__0__0.html", "class_xD0_xB7_xD0_xBA__sape__common__api__1__0__0" ]
 ];

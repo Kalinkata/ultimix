@@ -4,7 +4,7 @@
 
 	require_once( 'include/php/startup.php' );
 
-	start_script();
+	start_php_script();
 
 	/* loading package */
 	$Lang = get_package( 'lang' , 'last' , __FILE__ );

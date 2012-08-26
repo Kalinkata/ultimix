@@ -74,9 +74,6 @@ $(document).ready(function(){initNavTree('classsearch__markup__1__0__0.html','')
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:a6bfdb02906df7b9a2461a231a6a61c16"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch__markup__1__0__0.html#a6bfdb02906df7b9a2461a231a6a61c16">compile_search_form</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:af6b9904eafcde47fd48c379c35be4a26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch__markup__1__0__0.html#af6b9904eafcde47fd48c379c35be4a26">process_search_form</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a9621f510f1c0904c7f87d1b2ec0bb838"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch__markup__1__0__0.html#a9621f510f1c0904c7f87d1b2ec0bb838">process_public_search_form</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsearch__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -161,222 +158,18 @@ Data Fields</h2></td></tr>
 <div class="line">                        list( $Speed , $Prefix , $FormId , $Action ) = $this-&gt;BlockSettings-&gt;get_settings( </div>
 <div class="line">                              <span class="stringliteral">&#39;speed,prefix,form_id,action&#39;</span> , <span class="stringliteral">&#39;500,common,search_form,&#39;</span></div>
 <div class="line">                        );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $TemplateFileName = $Prefix == <span class="stringliteral">&#39;common&#39;</span> ? <span class="stringliteral">&#39;common_search_form.tpl&#39;</span> : <span class="stringliteral">&#39;custom_search_form.tpl&#39;</span>;</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , $TemplateFileName );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Code = str_replace( </div>
 <div class="line">                              array( <span class="stringliteral">&#39;{speed}&#39;</span> , <span class="stringliteral">&#39;{prefix}&#39;</span> , <span class="stringliteral">&#39;{form_id}&#39;</span> , <span class="stringliteral">&#39;{action}&#39;</span> ) , </div>
 <div class="line">                              array( $Speed , $Prefix , $FormId , $Action ) , </div>
 <div class="line">                              $Code</div>
 <div class="line">                        );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a9621f510f1c0904c7f87d1b2ec0bb838"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_public_search_form </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'public_search_form'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="search__markup_8php_source.html#l00207">207</a> of file <a class="el" href="search__markup_8php_source.html">search_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{public_search_form}&#39;</span> ) !== <span class="keyword">false</span> )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&#39;{public_search_form}&#39;</span> , <span class="stringliteral">&#39;{public_search_form:prefix=custom}&#39;</span> , $Str );</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;public_search_form&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;set_undefined( <span class="stringliteral">&#39;prefix&#39;</span> , <span class="stringliteral">&#39;custom&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                              $Code = $this-&gt;<a class="code" href="classsearch__markup__1__0__0.html#a6bfdb02906df7b9a2461a231a6a61c16">compile_search_form</a>( $this-&gt;BlockSettings );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{public_search_form:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="af6b9904eafcde47fd48c379c35be4a26"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_search_form </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'search_form'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="search__markup_8php_source.html#l00154">154</a> of file <a class="el" href="search__markup_8php_source.html">search_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{search_form}&#39;</span> ) !== <span class="keyword">false</span> )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&#39;{search_form}&#39;</span> , <span class="stringliteral">&#39;{search_form:prefix=common}&#39;</span> , $Str );</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;search_form&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              </div>
-<div class="line">                              $Code = $this-&gt;<a class="code" href="classsearch__markup__1__0__0.html#a6bfdb02906df7b9a2461a231a6a61c16">compile_search_form</a>( $this-&gt;BlockSettings );</div>
-<div class="line">                              </div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{search_form:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="search__markup_8php_source.html#l00265">265</a> of file <a class="el" href="search__markup_8php_source.html">search_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classsearch__markup__1__0__0.html#af6b9904eafcde47fd48c379c35be4a26">process_search_form</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classsearch__markup__1__0__0.html#a9621f510f1c0904c7f87d1b2ec0bb838">process_public_search_form</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -470,7 +263,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classsearch__markup__1__0__0.html">search_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:29 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:44 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

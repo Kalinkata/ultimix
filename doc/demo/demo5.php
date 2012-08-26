@@ -4,7 +4,7 @@
 
 	require_once( 'include/php/startup.php' );
 
-	start_script();
+	start_php_script();
 
 	/* loading package */
 	$CachedMultyFS = get_package( 'cached_multy_fs' , '1.0.0' , __FILE__ );

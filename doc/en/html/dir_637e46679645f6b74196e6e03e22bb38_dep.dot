@@ -1,9 +1,0 @@
-digraph "packages/page/packages/template_content/packages/template_content_view/include/js/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_75400662687a19f9d53dc9d846a975ad {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_75400662687a19f9d53dc9d846a975ad.html"]
-  dir_637e46679645f6b74196e6e03e22bb38 [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_637e46679645f6b74196e6e03e22bb38.html"];
-  }
-}

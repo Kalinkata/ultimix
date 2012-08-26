@@ -73,15 +73,12 @@ $(document).ready(function(){initNavTree('classvideo__markup__1__0__0.html','');
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:ab6de1487cc092cdcf4bbab949aeab65a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#ab6de1487cc092cdcf4bbab949aeab65a">process_rutube</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a9fe0acfdfcccf88ddaeb03561cae3aa8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a9fe0acfdfcccf88ddaeb03561cae3aa8">process_youtube</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:ac5eba54900d50ed09e5dc3022db26bd4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#ac5eba54900d50ed09e5dc3022db26bd4">compile_rutube</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a306a9ef99ae2b74ec2d124226e577b5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a306a9ef99ae2b74ec2d124226e577b5a">compile_youtube</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a1e5b144ad8adeb176a4a2897878f3de2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a> = false</td></tr>
 <tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
-<tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classvideo__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Class processes video macro.</p>
@@ -104,13 +101,11 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00053">53</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00050">50</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;MacroSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -121,38 +116,27 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ab6de1487cc092cdcf4bbab949aeab65a"></a>
+<a class="anchor" id="ac5eba54900d50ed09e5dc3022db26bd4"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_rutube </td>
+          <td class="memname">compile_rutube </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function processes macro 'rutube'.</p>
+<p>Function compile macro 'rutube'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Fetch settings.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML code.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
@@ -161,21 +145,24 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00139">139</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00084">84</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;rutube&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
+<div class="line">                        <span class="comment">//TODO: remove duplicate code</span></div>
+<div class="line">                        $Hash = $Settings-&gt;get_setting( <span class="stringliteral">&#39;hash&#39;</span> );</div>
+<div class="line">                        $Width = $Settings-&gt;get_setting( <span class="stringliteral">&#39;width&#39;</span> , <span class="stringliteral">&#39;640&#39;</span> );</div>
+<div class="line">                        $Height = $Settings-&gt;get_setting( <span class="stringliteral">&#39;height&#39;</span> , <span class="stringliteral">&#39;480&#39;</span> );</div>
+<div class="line">                        $Autoplay = $Settings-&gt;get_setting( <span class="stringliteral">&#39;autoplay&#39;</span> , <span class="charliteral">&#39;0&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                              $Code = $this-&gt;compiles_rutube( $this-&gt;MacroSettings );</div>
+<div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;rutube.tpl&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{rutube:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
+<div class="line">                        $Code = str_replace( </div>
+<div class="line">                              array( <span class="stringliteral">&#39;{hash}&#39;</span> , <span class="stringliteral">&#39;{width}&#39;</span> , <span class="stringliteral">&#39;{height}&#39;</span> , <span class="stringliteral">&#39;{autoplay}&#39;</span> ) , </div>
+<div class="line">                              array( $Hash , $Width , $Height , $Autoplay ) , $Code</div>
+<div class="line">                        );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -185,45 +172,27 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
+<a class="anchor" id="a306a9ef99ae2b74ec2d124226e577b5a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_string </td>
+          <td class="memname">compile_youtube </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function processes string.</p>
+<p>Function compile macro 'youtube'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Fetch settings.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML code.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
@@ -232,84 +201,27 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00285">285</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00131">131</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="comment">/* TODO: move it to auto_markup */</span></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classvideo__markup__1__0__0.html#ab6de1487cc092cdcf4bbab949aeab65a">process_rutube</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classvideo__markup__1__0__0.html#a9fe0acfdfcccf88ddaeb03561cae3aa8">process_youtube</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line">                        $Hash = $Settings-&gt;get_setting( <span class="stringliteral">&#39;hash&#39;</span> );</div>
+<div class="line">                        $Width = $Settings-&gt;get_setting( <span class="stringliteral">&#39;width&#39;</span> , <span class="stringliteral">&#39;640&#39;</span> );</div>
+<div class="line">                        $Height = $Settings-&gt;get_setting( <span class="stringliteral">&#39;height&#39;</span> , <span class="stringliteral">&#39;480&#39;</span> );</div>
+<div class="line">                        $Autoplay = $Settings-&gt;get_setting( <span class="stringliteral">&#39;autoplay&#39;</span> , <span class="charliteral">&#39;0&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;youtube.tpl&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                        $Code = str_replace( </div>
+<div class="line">                              array( <span class="stringliteral">&#39;{hash}&#39;</span> , <span class="stringliteral">&#39;{width}&#39;</span> , <span class="stringliteral">&#39;{height}&#39;</span> , <span class="stringliteral">&#39;{autoplay}&#39;</span> ) , </div>
+<div class="line">                              array( $Hash , $Width , $Height , $Autoplay ) , $Code</div>
+<div class="line">                        );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a9fe0acfdfcccf88ddaeb03561cae3aa8"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_youtube </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'youtube'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00233">233</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;youtube&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line"></div>
-<div class="line">                              $Code = $this-&gt;compiles_youtube( $this-&gt;MacroSettings );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{youtube:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                        $Args = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $Args , $e );</div>
 <div class="line">                  }</div>
 <div class="line">            }</div>
 </div><!-- fragment -->
@@ -325,38 +237,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00040">40</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1e5b144ad8adeb176a4a2897878f3de2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$MacroSettings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 <p>Cached objects.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00039">39</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a541f49d5b9cf7bae2f91f639abcf3458"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$String = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00041">41</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00038">38</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
 
 </div>
 </div>
@@ -369,7 +253,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classvideo__markup__1__0__0.html">video_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:33 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:50 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

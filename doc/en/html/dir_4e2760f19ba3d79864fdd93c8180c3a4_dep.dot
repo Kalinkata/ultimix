@@ -1,9 +1,0 @@
-digraph "packages/gui/packages/button_markup/include/js/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_7ff20e16e042b313a55398d554e5b970 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_7ff20e16e042b313a55398d554e5b970.html"]
-  dir_4e2760f19ba3d79864fdd93c8180c3a4 [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_4e2760f19ba3d79864fdd93c8180c3a4.html"];
-  }
-}

@@ -73,7 +73,7 @@ $(document).ready(function(){initNavTree('classexact__config__1__0__0.html','');
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexact__config__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a02e5792dbe001ad1bce9b3c843d843f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexact__config__1__0__0.html#a02e5792dbe001ad1bce9b3c843d843f6">process_exact_config</a> ($Options)</td></tr>
+<tr class="memitem:aee1b8417ab6e110785e22b45395c0b7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexact__config__1__0__0.html#aee1b8417ab6e110785e22b45395c0b7e">compile_exact_config</a> ($Options)</td></tr>
 <tr class="memitem:a3dcd9567cfb61306ea71a6fdae753bd1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexact__config__1__0__0.html#a3dcd9567cfb61306ea71a6fdae753bd1">controller</a> ($Options)</td></tr>
 <tr class="memitem:a43074158f41bf195878c903457afa35f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexact__config__1__0__0.html#a43074158f41bf195878c903457afa35f">view</a> ($Options)</td></tr>
 <tr class="memitem:a7516ca30af0db3cdbf9a7739b48ce91d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classexact__config__1__0__0.html#a7516ca30af0db3cdbf9a7739b48ce91d">__toString</a> ()</td></tr>
@@ -160,57 +160,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a3dcd9567cfb61306ea71a6fdae753bd1"></a>
+<a class="anchor" id="aee1b8417ab6e110785e22b45395c0b7e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">controller </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Method processes component.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="exact__config_8php_source.html#l00130">130</a> of file <a class="el" href="exact__config_8php_source.html">exact_config.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( intval( $Options-&gt;get_setting( <span class="stringliteral">&#39;process_exact_config&#39;</span> , 0 ) ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;<a class="code" href="classexact__config__1__0__0.html#a02e5792dbe001ad1bce9b3c843d843f6">process_exact_config</a>( $Options );</div>
-<div class="line">                        }</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a02e5792dbe001ad1bce9b3c843d843f6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_exact_config </td>
+          <td class="memname">compile_exact_config </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$Options</em></td><td>)</td>
@@ -260,6 +215,51 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a class="anchor" id="a3dcd9567cfb61306ea71a6fdae753bd1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">controller </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$Options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Method processes component.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="exact__config_8php_source.html#l00130">130</a> of file <a class="el" href="exact__config_8php_source.html">exact_config.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">if</span>( intval( $Options-&gt;get_setting( <span class="stringliteral">&#39;compile_exact_config&#39;</span> , 0 ) ) )</div>
+<div class="line">                        {</div>
+<div class="line">                              $this-&gt;<a class="code" href="classexact__config__1__0__0.html#aee1b8417ab6e110785e22b45395c0b7e">compile_exact_config</a>( $Options );</div>
+<div class="line">                        }</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a43074158f41bf195878c903457afa35f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -293,9 +293,9 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( intval( $Options-&gt;get_setting( <span class="stringliteral">&#39;process_exact_config&#39;</span> , 0 ) ) )</div>
+<div class="line">                        <span class="keywordflow">if</span>( intval( $Options-&gt;get_setting( <span class="stringliteral">&#39;compile_exact_config&#39;</span> , 0 ) ) )</div>
 <div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classexact__config__1__0__0.html#a02e5792dbe001ad1bce9b3c843d843f6">process_exact_config</a>( $Options ) );</div>
+<div class="line">                              <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classexact__config__1__0__0.html#aee1b8417ab6e110785e22b45395c0b7e">compile_exact_config</a>( $Options ) );</div>
 <div class="line">                        }</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -332,7 +332,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classexact__config__1__0__0.html">exact_config_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:20 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

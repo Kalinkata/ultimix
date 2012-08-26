@@ -1,9 +1,0 @@
-digraph "packages/search/packages/search_markup/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_5259c133ad364d38d3eb916cbd829a49 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_5259c133ad364d38d3eb916cbd829a49.html"]
-  dir_4a1b04711f57324a666593c7ee34012d [shape=box, label="search_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_4a1b04711f57324a666593c7ee34012d.html"];
-  }
-}

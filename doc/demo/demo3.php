@@ -4,7 +4,7 @@
 
 	require_once( 'include/php/startup.php' );
 
-	start_script();
+	start_php_script();
 
 	/* loading package */
 	$Cache = get_package( 'cache' , '1.0.0' , __FILE__ );

@@ -8,6 +8,5 @@ var classcontrols__markup__1__0__0 =
     [ "$CachedMultyFS", "classcontrols__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d", null ],
     [ "$Database", "classcontrols__markup__1__0__0.html#ae10cc045c1502f148d1aa728183898e7", null ],
     [ "$Security", "classcontrols__markup__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ],
-    [ "$Settings", "classcontrols__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d", null ],
     [ "$String", "classcontrols__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ]
 ];

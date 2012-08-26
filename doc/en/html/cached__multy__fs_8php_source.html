@@ -183,7 +183,7 @@ $(document).ready(function(){initNavTree('cached__multy__fs_8php_source.html',''
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                  }</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            }</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno"><a class="code" href="classcached__multy__fs__1__0__0.html#a8d6d70bcb36cb507da10902413774d87">  249</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcached__multy__fs__1__0__0.html#a8d6d70bcb36cb507da10902413774d87">process_file_was_not_found_error</a>( $ThrowException )</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_file_was_not_found_error( $ThrowException )</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            {</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                  {</div>
@@ -224,7 +224,7 @@ $(document).ready(function(){initNavTree('cached__multy__fs_8php_source.html',''
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                              <span class="keywordflow">return</span>( $FilePath );</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                        }</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classcached__multy__fs__1__0__0.html#a8d6d70bcb36cb507da10902413774d87">process_file_was_not_found_error</a>( $ThrowException ) );</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;handle_file_was_not_found_error( $ThrowException ) );</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;                  }</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                  {</div>
@@ -474,7 +474,7 @@ $(document).ready(function(){initNavTree('cached__multy__fs_8php_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_8f1486feec0363d1031608ba71e5c82b.html">cached_multy_fs</a></li><li class="navelem"><a class="el" href="cached__multy__fs_8php.html">cached_multy_fs.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:35:38 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:30:46 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

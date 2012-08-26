@@ -73,8 +73,7 @@ $(document).ready(function(){initNavTree('classpackage__markup__1__0__0.html',''
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpackage__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a4c673572fb82d9827b18bd56b0c225da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpackage__markup__1__0__0.html#a4c673572fb82d9827b18bd56b0c225da">process_package_dialog</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpackage__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:acb5f65b4b13436198ab55ea0635fdb8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpackage__markup__1__0__0.html#acb5f65b4b13436198ab55ea0635fdb8b">compile_package_dialog</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -119,114 +118,27 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="a4c673572fb82d9827b18bd56b0c225da"></a>
+<a class="anchor" id="acb5f65b4b13436198ab55ea0635fdb8b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_package_dialog </td>
+          <td class="memname">compile_package_dialog </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'package_dialog'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="package__markup_8php_source.html#l00132">132</a> of file <a class="el" href="package__markup_8php_source.html">package_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{package_dialog}&#39;</span> ) !== <span class="keyword">false</span> )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&#39;{package_dialog}&#39;</span> , <span class="stringliteral">&#39;{package_dialog:p=1}&#39;</span> , $Str );</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;package_dialog&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              </div>
-<div class="line">                              $Code = $this-&gt;compile_package_dialog( $this-&gt;BlockSettings );</div>
-<div class="line">                              </div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{package_dialog:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $Args = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $Args , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function processes string.</p>
+<p>Function compiles macro 'package_dialog'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Settings.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Widget.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
@@ -235,13 +147,17 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="package__markup_8php_source.html#l00189">189</a> of file <a class="el" href="package__markup_8php_source.html">package_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="package__markup_8php_source.html#l00088">88</a> of file <a class="el" href="package__markup_8php_source.html">package_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classpackage__markup__1__0__0.html#a4c673572fb82d9827b18bd56b0c225da">process_package_dialog</a>( $Str , $Changed );</div>
+<div class="line">                        $Settings-&gt;set_setting( <span class="stringliteral">&#39;id&#39;</span> , <span class="stringliteral">&#39;package_dialog&#39;</span> );</div>
+<div class="line">                        $Settings-&gt;set_setting( <span class="stringliteral">&#39;title&#39;</span> , <span class="stringliteral">&#39;package_dialog&#39;</span> );</div>
+<div class="line">                        $PackageName = <span class="stringliteral">&#39;core::package_manager::package_manager_view&#39;</span>;</div>
+<div class="line">                        $Settings-&gt;set_setting( <span class="stringliteral">&#39;package_name&#39;</span> , $PackageName );</div>
+<div class="line">                        $Settings-&gt;set_setting( <span class="stringliteral">&#39;show_package_tree&#39;</span> , <span class="charliteral">&#39;1&#39;</span> );</div>
 <div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line">                        <span class="keywordflow">return</span>( <span class="stringliteral">&#39;{view_dialog:&#39;</span>.$Settings-&gt;get_all_settings().<span class="charliteral">&#39;}&#39;</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -291,7 +207,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpackage__markup__1__0__0.html">package_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:24 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:39 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

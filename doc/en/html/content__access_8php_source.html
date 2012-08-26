@@ -153,7 +153,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                  }</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            }</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_print_content( &amp;$Content )</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_print_content( &amp;$Content )</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            {</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                  {</div>
@@ -173,7 +173,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                  }</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            }</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_selected_content( &amp;$Content )</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_selected_content( &amp;$Content )</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            {</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                  {</div>
@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                              <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Content[ $k ] , <span class="stringliteral">&#39;main_content_unsafe&#39;</span> , $MainContent );</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                              <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Content[ $k ] , <span class="stringliteral">&#39;has_main_content&#39;</span> , strlen( $MainContent ) );</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                              $this-&gt;process_print_content( $Content[ $k ] );</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                              $this-&gt;compile_print_content( $Content[ $k ] );</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                        }</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                  }</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -208,7 +208,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;                              <span class="stringliteral">&quot;author = user.id AND ( $this-&gt;AddLimitations ) AND umx_category.id = category AND $Condition&quot;</span></div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;                        );</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                        </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                        $this-&gt;process_selected_content( $Content );</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                        $this-&gt;compile_selected_content( $Content );</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                        </div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                        <span class="keywordflow">return</span>( $Content );</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                  }</div>
@@ -348,7 +348,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                  }</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;            }</div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;            </div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_record( &amp;$Record )</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_record( &amp;$Record )</div>
 <div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;            {</div>
 <div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                  {</div>
@@ -370,7 +370,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;                  {</div>
 <div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;                        $id = $this-&gt;Security-&gt;get( $id , <span class="stringliteral">&#39;integer_list&#39;</span> );</div>
 <div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;                        </div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                        $this-&gt;process_record( $Record );</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;                        $this-&gt;compile_record( $Record );</div>
 <div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;                        </div>
 <div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;                        list( $Fields , $Values ) = $this-&gt;DatabaseAlgorithms-&gt;compile_fields_values( $Record );</div>
 <div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;                        </div>
@@ -441,7 +441,7 @@ $(document).ready(function(){initNavTree('content__access_8php_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_ed10aee40e4efd43382e3bb8ebcb854c.html">content</a></li><li class="navelem"><a class="el" href="dir_ca0912b424547966c43d290d7ad09429.html">packages</a></li><li class="navelem"><a class="el" href="dir_a50acd22d0f08aa971df306cdd75de8a.html">content_access</a></li><li class="navelem"><a class="el" href="content__access_8php.html">content_access.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:35:39 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:30:47 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

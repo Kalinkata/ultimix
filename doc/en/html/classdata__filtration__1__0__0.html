@@ -168,8 +168,8 @@ Data Fields</h2></td></tr>
 <div class="line">                              $Settings-&gt;set_setting( <span class="stringliteral">&#39;keys&#39;</span> , explode( <span class="charliteral">&#39;,&#39;</span> , $Settings-&gt;get_setting( <span class="stringliteral">&#39;keys&#39;</span> ) ) );</div>
 <div class="line">                        }</div>
 <div class="line"></div>
-<div class="line">                        $Ret = process_filtering_data( $Data , $FiltrationScript , $Settings );</div>
-<div class="line">                        </div>
+<div class="line">                        $Ret = filter_data( $Data , $FiltrationScript , $Settings );</div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( count( $Ret ) ? $Ret : <span class="keyword">false</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -213,7 +213,7 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classdata__filtration__1__0__0.html#ae8f6090a7b12929d05a26d6b2f4bb6c4">filter_data</a>( array_merge( $_GET , $_POST ) , $FiltrationScript ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;filter_data( array_merge( $_GET , $_POST ) , $FiltrationScript ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -249,7 +249,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classdata__filtration__1__0__0.html">data_filtration_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:18 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:32 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

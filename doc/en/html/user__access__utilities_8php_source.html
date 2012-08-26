@@ -164,7 +164,7 @@ $(document).ready(function(){initNavTree('user__access__utilities_8php_source.ht
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                  }</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            }</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_sex_field( &amp;$Fields , &amp;$Values , $v )</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_sex_field( &amp;$Fields , &amp;$Values , $v )</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            {</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                  {</div>
@@ -182,7 +182,7 @@ $(document).ready(function(){initNavTree('user__access__utilities_8php_source.ht
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                  }</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            }</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            </div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_active_field( &amp;$Fields , &amp;$Values , $v )</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_active_field( &amp;$Fields , &amp;$Values , $v )</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;            {</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;                  {</div>
@@ -203,7 +203,7 @@ $(document).ready(function(){initNavTree('user__access__utilities_8php_source.ht
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                  }</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;            }</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;            </div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_password_field( &amp;$Fields , &amp;$Values , $v )</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_password_field( &amp;$Fields , &amp;$Values , $v )</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;            {</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                  {</div>
@@ -219,7 +219,7 @@ $(document).ready(function(){initNavTree('user__access__utilities_8php_source.ht
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                  }</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            }</div>
 <div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;            </div>
-<div class="line"><a name="l00395"></a><span class="lineno"><a class="code" href="classuser__access__utilities__1__0__0.html#a0a15ec96e694b06c13256b88d90bfd88">  395</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__utilities__1__0__0.html#a0a15ec96e694b06c13256b88d90bfd88">process_update_record</a>( &amp;$Record )</div>
+<div class="line"><a name="l00395"></a><span class="lineno"><a class="code" href="classuser__access__utilities__1__0__0.html#a90b505bd3ac0990ec5ebf46ffdfbc3e2">  395</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__utilities__1__0__0.html#a90b505bd3ac0990ec5ebf46ffdfbc3e2">handle_update_record</a>( &amp;$Record )</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            {</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;                  {</div>
@@ -229,13 +229,13 @@ $(document).ready(function(){initNavTree('user__access__utilities_8php_source.ht
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;                              <span class="keywordflow">switch</span>( $f )</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                              {</div>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                                    <span class="keywordflow">case</span>( <span class="stringliteral">&#39;sex&#39;</span> ):</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                                          $this-&gt;UserAccessUtilieis-&gt;process_sex_field( $Fields , $Values , $v );</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                                          $this-&gt;UserAccessUtilieis-&gt;handle_sex_field( $Fields , $Values , $v );</div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                                    <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                                    <span class="keywordflow">case</span>( <span class="stringliteral">&#39;active&#39;</span> ):</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                          $this-&gt;process_active_field( $Fields , $Values , $v );</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                                          $this-&gt;handle_active_field( $Fields , $Values , $v );</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                                    <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                                    <span class="keywordflow">case</span>( <span class="stringliteral">&#39;password&#39;</span> ):</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                                          $this-&gt;process_password_field( $Fields , $Values , $v );</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                                          $this-&gt;handle_password_field( $Fields , $Values , $v );</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                                    <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                                    <span class="keywordflow">default</span>:</div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                                          $Fields [] = $f;</div>
@@ -259,7 +259,7 @@ $(document).ready(function(){initNavTree('user__access__utilities_8php_source.ht
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_0c02ad2f6a1c5cbd18402f39ace85698.html">user</a></li><li class="navelem"><a class="el" href="dir_e6123e1b43fc815b1b375645a517ba88.html">packages</a></li><li class="navelem"><a class="el" href="dir_5e858277ae1559007f2bca39ccc6d005.html">user_access</a></li><li class="navelem"><a class="el" href="dir_03ebd2f60329984180e59665e3542d41.html">packages</a></li><li class="navelem"><a class="el" href="dir_0653525e6545a62aa7786f9003f429ea.html">user_access_utilities</a></li><li class="navelem"><a class="el" href="user__access__utilities_8php.html">user_access_utilities.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:10 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:17 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -688,7 +688,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              <span class="stringliteral">&quot;author = user.id AND ( $this-&gt;AddLimitations ) AND umx_category.id = category AND $Condition&quot;</span></div>
 <div class="line">                        );</div>
 <div class="line">                        </div>
-<div class="line">                        $this-&gt;process_selected_content( $Content );</div>
+<div class="line">                        $this-&gt;compile_selected_content( $Content );</div>
 <div class="line">                        </div>
 <div class="line">                        <span class="keywordflow">return</span>( $Content );</div>
 <div class="line">                  }</div>
@@ -745,7 +745,7 @@ Data Fields</h2></td></tr>
 <div class="line">                  {</div>
 <div class="line">                        $id = $this-&gt;Security-&gt;get( $id , <span class="stringliteral">&#39;integer_list&#39;</span> );</div>
 <div class="line">                        </div>
-<div class="line">                        $this-&gt;process_record( $Record );</div>
+<div class="line">                        $this-&gt;compile_record( $Record );</div>
 <div class="line">                        </div>
 <div class="line">                        list( $Fields , $Values ) = $this-&gt;DatabaseAlgorithms-&gt;compile_fields_values( $Record );</div>
 <div class="line">                        </div>
@@ -880,7 +880,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcontent__access__1__0__0.html">content_access_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:18 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:30 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

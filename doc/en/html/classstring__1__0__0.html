@@ -75,7 +75,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:ade6cc3f592d9171bae4cb62112a39c97"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#ade6cc3f592d9171bae4cb62112a39c97">hide_block</a> ($StringData, $BlockStart, $BlockEnd, &amp;$Changed)</td></tr>
 <tr class="memitem:abc6fe32cea0139f4c01522eec018315b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#abc6fe32cea0139f4c01522eec018315b">show_block</a> ($StringData, $BlockStart, $BlockEnd, &amp;$Changed)</td></tr>
-<tr class="memitem:a61efb82e99e51cb8685c250cfb93d776"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a61efb82e99e51cb8685c250cfb93d776">process_foreach</a> ($Str, &amp;$Record)</td></tr>
+<tr class="memitem:ab76f614097eecb19a9cc1a29d0726eae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#ab76f614097eecb19a9cc1a29d0726eae">compile_foreach</a> ($Str, &amp;$Record)</td></tr>
 <tr class="memitem:a78a1799b953f30cb9831d44e2c229348"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a78a1799b953f30cb9831d44e2c229348">print_record</a> ($Str, &amp;$Record)</td></tr>
 <tr class="memitem:a6e43c2b24ac8d85514bac601c555e24e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a6e43c2b24ac8d85514bac601c555e24e">block_exists</a> ($StringData, $BlockStart, $BlockEnd=false)</td></tr>
 <tr class="memitem:a6dbe6f1a214870b83ee59eb261d6b64f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a6dbe6f1a214870b83ee59eb261d6b64f">get_macro_parameters</a> (&amp;$StringData, $MacroName, $RegExValidators=array())</td></tr>
@@ -247,6 +247,72 @@ Data Fields</h2></td></tr>
 <div class="line">                        $Data[ <span class="stringliteral">&#39;path&#39;</span> ] = $this-&gt;Tags-&gt;compile_ultimix_tags( $Data[ <span class="stringliteral">&#39;path&#39;</span> ] );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Data );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab76f614097eecb19a9cc1a29d0726eae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_foreach </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$Str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Record</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function process macro 'foreach'.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Str</td><td>- Format template.</td></tr>
+    <tr><td class="paramname">$Record</td><td>- Outputting record.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Formatted data.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="string_8php_source.html#l00275">275</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;<a class="code" href="classstring__1__0__0.html#a6dbe6f1a214870b83ee59eb261d6b64f">get_macro_parameters</a>( $Str , <span class="stringliteral">&#39;foreach&#39;</span> ) ; )</div>
+<div class="line">                        {</div>
+<div class="line">                              $this-&gt;Settings-&gt;load_settings( $Parameters );</div>
+<div class="line">                              $Var = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;var&#39;</span> );</div>
+<div class="line">                              $Data = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , $Var );</div>
+<div class="line"></div>
+<div class="line">                              $Str = $this-&gt;apply_foreach_data( $Str , $Parameters , $Data );</div>
+<div class="line"></div>
+<div class="line">                              $Str = $this-&gt;<a class="code" href="classstring__1__0__0.html#ade6cc3f592d9171bae4cb62112a39c97">hide_block</a>( $Str , <span class="stringliteral">&quot;foreach:$Parameters&quot;</span> , <span class="stringliteral">&#39;~foreach&#39;</span> , $Changed );</div>
+<div class="line">                              $Changed = <span class="keyword">false</span>;</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -890,7 +956,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&#39;Invalid record was passed&#39;</span> ) );</div>
 <div class="line">                        }</div>
 <div class="line"></div>
-<div class="line">                        $Str = $this-&gt;<a class="code" href="classstring__1__0__0.html#a61efb82e99e51cb8685c250cfb93d776">process_foreach</a>( $Str , $Record );</div>
+<div class="line">                        $Str = $this-&gt;<a class="code" href="classstring__1__0__0.html#ab76f614097eecb19a9cc1a29d0726eae">compile_foreach</a>( $Str , $Record );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Record as $Field =&gt; $Value )</div>
 <div class="line">                        {</div>
@@ -902,72 +968,6 @@ Data Fields</h2></td></tr>
 <div class="line">                              {</div>
 <div class="line">                                    $Str = str_replace( <span class="charliteral">&#39;{&#39;</span>.$Field.<span class="charliteral">&#39;}&#39;</span> , $Value , $Str );</div>
 <div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a61efb82e99e51cb8685c250cfb93d776"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_foreach </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Record</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function process macro 'foreach'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Format template.</td></tr>
-    <tr><td class="paramname">$Record</td><td>- Outputting record.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Formatted data.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="string_8php_source.html#l00275">275</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;<a class="code" href="classstring__1__0__0.html#a6dbe6f1a214870b83ee59eb261d6b64f">get_macro_parameters</a>( $Str , <span class="stringliteral">&#39;foreach&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;Settings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              $Var = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;var&#39;</span> );</div>
-<div class="line">                              $Data = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , $Var );</div>
-<div class="line"></div>
-<div class="line">                              $Str = $this-&gt;apply_foreach_data( $Str , $Parameters , $Data );</div>
-<div class="line"></div>
-<div class="line">                              $Str = $this-&gt;<a class="code" href="classstring__1__0__0.html#ade6cc3f592d9171bae4cb62112a39c97">hide_block</a>( $Str , <span class="stringliteral">&quot;foreach:$Parameters&quot;</span> , <span class="stringliteral">&#39;~foreach&#39;</span> , $Changed );</div>
-<div class="line">                              $Changed = <span class="keyword">false</span>;</div>
 <div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
@@ -1116,7 +1116,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classstring__1__0__0.html">string_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:30 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:46 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

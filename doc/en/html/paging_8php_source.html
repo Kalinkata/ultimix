@@ -275,13 +275,13 @@ $(document).ready(function(){initNavTree('paging_8php_source.html','');});
 <div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;                  }</div>
 <div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;            }</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;            </div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;</div>
 <div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_paginator( $Parameters )</div>
 <div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;            {</div>
 <div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;                  {</div>
 <div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;                        $this-&gt;Settings-&gt;load_settings( $Parameters );</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;                        </div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;</div>
 <div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;                        $RecordCount = $this-&gt;get_record_count( $this-&gt;Settings );</div>
 <div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;                        $Type = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;type&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> );</div>
 <div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;</div>
@@ -299,8 +299,8 @@ $(document).ready(function(){initNavTree('paging_8php_source.html','');});
 <div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;                  }</div>
 <div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;            }</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;            </div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_paginator()</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  prepare_paginator()</div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;            {</div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                  {</div>
@@ -324,7 +324,7 @@ $(document).ready(function(){initNavTree('paging_8php_source.html','');});
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;            {</div>
 <div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                  {</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                        $this-&gt;process_paginator();</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                        $this-&gt;prepare_paginator();</div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;</div>
 <div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                        <span class="keywordflow">if</span>( $this-&gt;FormId !== <span class="keyword">false</span> &amp;&amp; $this-&gt;FormRequired )</div>
 <div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                        {</div>
@@ -387,7 +387,7 @@ $(document).ready(function(){initNavTree('paging_8php_source.html','');});
 <div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;                  }</div>
 <div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;            }</div>
 <div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;            </div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_no_data_to_display()</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_no_data_to_display()</div>
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;            {</div>
 <div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;                  {</div>
@@ -478,7 +478,7 @@ $(document).ready(function(){initNavTree('paging_8php_source.html','');});
 <div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;</div>
 <div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;                        <span class="keywordflow">if</span>( count( $DataToDisplay ) === 0 )</div>
 <div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;                        {</div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                              <span class="keywordflow">return</span>( $this-&gt;process_no_data_to_display() );</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                              <span class="keywordflow">return</span>( $this-&gt;compile_no_data_to_display() );</div>
 <div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;                        }</div>
 <div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;</div>
 <div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;compile_macros( $DataToDisplay ) );</div>
@@ -497,7 +497,7 @@ $(document).ready(function(){initNavTree('paging_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_6e11b47f71b207b27145207ea75fef9e.html">gui</a></li><li class="navelem"><a class="el" href="dir_22da140b0ceba9af8df63b75c08d8cba.html">packages</a></li><li class="navelem"><a class="el" href="dir_7df2d8fe1638ed718cf268a2a929ea47.html">paging</a></li><li class="navelem"><a class="el" href="paging_8php.html">paging.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:35:51 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:30:59 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

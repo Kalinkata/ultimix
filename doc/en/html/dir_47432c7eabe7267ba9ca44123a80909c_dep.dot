@@ -1,9 +1,0 @@
-digraph "packages/cached_multy_fs/include/php/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_016d9e539ae1090fd9a412ba3c633407 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_016d9e539ae1090fd9a412ba3c633407.html"]
-  dir_47432c7eabe7267ba9ca44123a80909c [shape=box, label="php", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_47432c7eabe7267ba9ca44123a80909c.html"];
-  }
-}

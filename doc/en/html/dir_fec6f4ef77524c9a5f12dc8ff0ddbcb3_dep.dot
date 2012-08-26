@@ -1,9 +1,0 @@
-digraph "packages/comment/packages/comment_markup/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_79423dd2cd472b536dc22179e0cb0f15 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_79423dd2cd472b536dc22179e0cb0f15.html"]
-  dir_fec6f4ef77524c9a5f12dc8ff0ddbcb3 [shape=box, label="comment_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_fec6f4ef77524c9a5f12dc8ff0ddbcb3.html"];
-  }
-}

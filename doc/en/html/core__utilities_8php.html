@@ -76,7 +76,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a298c54bbfd6389b6b5733c62e43e9131"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a298c54bbfd6389b6b5733c62e43e9131">_file_get_contents</a> ($FilePath)</td></tr>
 <tr class="memitem:a62cdb74919fefdb6fe8d455f5195c830"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a62cdb74919fefdb6fe8d455f5195c830">_rmdir_recurse</a> ($Path)</td></tr>
 <tr class="memitem:a6368d70e1bd19d8f6d1f0aad4785bf6d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a6368d70e1bd19d8f6d1f0aad4785bf6d">_get_loaded_packages_paths</a> ()</td></tr>
-<tr class="memitem:af45b3bc5052176858e3f26092cc16af9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#af45b3bc5052176858e3f26092cc16af9">_process_data</a> ($k, $v)</td></tr>
+<tr class="memitem:a24a3b3b64c7a663ebb14e31efa350134"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a24a3b3b64c7a663ebb14e31efa350134">_compile_data</a> ($k, $v)</td></tr>
 <tr class="memitem:a62944c65695be170a047dfd5d29c2a6a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a62944c65695be170a047dfd5d29c2a6a">_return_params</a> ($Params)</td></tr>
 <tr class="memitem:a020e46a22fe64210e0e0e3ff32309248"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a020e46a22fe64210e0e0e3ff32309248">_compile_params</a> ($Params)</td></tr>
 <tr class="memitem:a4b6cdb07dbaeefe1e8287ac78cf3913c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core__utilities_8php.html#a4b6cdb07dbaeefe1e8287ac78cf3913c">_collapse_params</a> (&amp;$Params)</td></tr>
@@ -133,6 +133,66 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a class="anchor" id="a24a3b3b64c7a663ebb14e31efa350134"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">_compile_data </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function prcesses data.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$k</td><td>- Key.</td></tr>
+    <tr><td class="paramname">$v</td><td>- Data for displaying.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Processed data.</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="core__utilities_8php_source.html#l00148">148</a> of file <a class="el" href="core__utilities_8php_source.html">core_utilities.php</a>.</p>
+<div class="fragment"><div class="line">      {</div>
+<div class="line">            <span class="keywordflow">if</span>( is_object( $v ) || is_array( $v ) )</div>
+<div class="line">            {</div>
+<div class="line">                  global                              <a class="code" href="core__utilities_8php.html#a3f5fe9605623fbf6fa26a732765298a3">$_parsed_objects</a>;</div>
+<div class="line">                  </div>
+<div class="line">                  <span class="keywordflow">if</span>( <a class="code" href="core_8js.html#adb09d82f65db48187736ab317d74c67d">in_array</a>( $k , $_parsed_objects ) === <span class="keyword">false</span> || is_numeric( $k ) )</div>
+<div class="line">                  {</div>
+<div class="line">                        $_parsed_objects[] = $k;</div>
+<div class="line">                        $Data = base64_encode( <span class="stringliteral">&#39; { &#39;</span>.<a class="code" href="core__utilities_8php.html#a4b6cdb07dbaeefe1e8287ac78cf3913c">_collapse_params</a>( $v ).<span class="stringliteral">&#39; } &#39;</span> );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">else</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Data = base64_encode( <span class="stringliteral">&#39; {X} &#39;</span> );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">else</span></div>
+<div class="line">            {</div>
+<div class="line">                  $Data = base64_encode( <a class="code" href="core__utilities_8php.html#a4b6cdb07dbaeefe1e8287ac78cf3913c">_collapse_params</a>( $v ).<span class="charliteral">&#39; &#39;</span> );</div>
+<div class="line">            }</div>
+<div class="line">            </div>
+<div class="line">            <span class="keywordflow">return</span>( $Data );</div>
+<div class="line">      }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a020e46a22fe64210e0e0e3ff32309248"></a>
 <div class="memitem">
 <div class="memproto">
@@ -164,7 +224,7 @@ Variables</h2></td></tr>
 <div class="line">                  </div>
 <div class="line">            <span class="keywordflow">foreach</span>( $Params as $k =&gt; $v )</div>
 <div class="line">            {</div>
-<div class="line">                  $Data = <a class="code" href="core__utilities_8php.html#af45b3bc5052176858e3f26092cc16af9">_process_data</a>( $k , $v );</div>
+<div class="line">                  $Data = <a class="code" href="core__utilities_8php.html#a24a3b3b64c7a663ebb14e31efa350134">_compile_data</a>( $k , $v );</div>
 <div class="line">                  </div>
 <div class="line">                  $_collapse_span_id += 1;</div>
 <div class="line">                  $id = <a class="code" href="core__utilities_8php.html#a69d5e3d4c5b9f0c549cd82b9402829e8">$_collapse_span_id</a>;</div>
@@ -293,66 +353,6 @@ Variables</h2></td></tr>
 <div class="line">            {</div>
 <div class="line">                  $Args = func_get_args();<span class="keywordflow">throw</span>( <a class="code" href="core__utilities_8php.html#aac1d0a370c343b1be4a64aaca411126e">_get_exception_object</a>( __FUNCTION__ , $Args , $e ) );</div>
 <div class="line">            }</div>
-<div class="line">      }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="af45b3bc5052176858e3f26092cc16af9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">_process_data </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$k</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$v</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function prcesses data.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$k</td><td>- Key.</td></tr>
-    <tr><td class="paramname">$v</td><td>- Data for displaying.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed data.</dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="core__utilities_8php_source.html#l00148">148</a> of file <a class="el" href="core__utilities_8php_source.html">core_utilities.php</a>.</p>
-<div class="fragment"><div class="line">      {</div>
-<div class="line">            <span class="keywordflow">if</span>( is_object( $v ) || is_array( $v ) )</div>
-<div class="line">            {</div>
-<div class="line">                  global                              <a class="code" href="core__utilities_8php.html#a3f5fe9605623fbf6fa26a732765298a3">$_parsed_objects</a>;</div>
-<div class="line">                  </div>
-<div class="line">                  <span class="keywordflow">if</span>( <a class="code" href="core_8js.html#adb09d82f65db48187736ab317d74c67d">in_array</a>( $k , $_parsed_objects ) === <span class="keyword">false</span> || is_numeric( $k ) )</div>
-<div class="line">                  {</div>
-<div class="line">                        $_parsed_objects[] = $k;</div>
-<div class="line">                        $Data = base64_encode( <span class="stringliteral">&#39; { &#39;</span>.<a class="code" href="core__utilities_8php.html#a4b6cdb07dbaeefe1e8287ac78cf3913c">_collapse_params</a>( $v ).<span class="stringliteral">&#39; } &#39;</span> );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">else</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Data = base64_encode( <span class="stringliteral">&#39; {X} &#39;</span> );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-<div class="line">            <span class="keywordflow">else</span></div>
-<div class="line">            {</div>
-<div class="line">                  $Data = base64_encode( <a class="code" href="core__utilities_8php.html#a4b6cdb07dbaeefe1e8287ac78cf3913c">_collapse_params</a>( $v ).<span class="charliteral">&#39; &#39;</span> );</div>
-<div class="line">            }</div>
-<div class="line">            </div>
-<div class="line">            <span class="keywordflow">return</span>( $Data );</div>
 <div class="line">      }</div>
 </div><!-- fragment -->
 </div>
@@ -610,7 +610,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_2fb74f11a821d31be4330f01f62846df.html">core</a></li><li class="navelem"><a class="el" href="dir_00e852e174ae9b80d1059ba795b6dac9.html">include</a></li><li class="navelem"><a class="el" href="dir_48754dedce20c5696c2001f6ac577403.html">php</a></li><li class="navelem"><a class="el" href="core__utilities_8php.html">core_utilities.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:10 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:20 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

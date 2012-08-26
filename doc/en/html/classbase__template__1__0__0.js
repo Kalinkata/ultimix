@@ -10,8 +10,6 @@ var classbase__template__1__0__0 =
     [ "get_template", "classbase__template__1__0__0.html#a88ef14cf889de608eae7bebe554494f3", null ],
     [ "parse", "classbase__template__1__0__0.html#a178783845ec2ccdd0eb8eb862d7bc5c7", null ],
     [ "process", "classbase__template__1__0__0.html#aa5437e59e05446b089850cac81cfe2a1", null ],
-    [ "process_color_scheme", "classbase__template__1__0__0.html#a92280a70daedbc2eb710cd42ed22d16a", null ],
-    [ "process_template_block", "classbase__template__1__0__0.html#a8dd2b6c1081a6a72f6ffdc58b27a37ff", null ],
     [ "set_template", "classbase__template__1__0__0.html#aa7d0b3166b099f8c1770e05a60602f79", null ],
     [ "$BlockSettings", "classbase__template__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492", null ],
     [ "$CachedMultyFS", "classbase__template__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d", null ],

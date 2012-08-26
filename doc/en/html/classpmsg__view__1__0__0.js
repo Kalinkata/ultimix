@@ -1,8 +1,8 @@
 var classpmsg__view__1__0__0 =
 [
     [ "__construct", "classpmsg__view__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
+    [ "compile_not_read_messages_count", "classpmsg__view__1__0__0.html#ada58696af80878b186be65cd41de3176", null ],
     [ "pre_generation", "classpmsg__view__1__0__0.html#aa7a7e021f2db6a6fc6c2fd16be9330f1", null ],
-    [ "process_string", "classpmsg__view__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e", null ],
     [ "show_feedback_form", "classpmsg__view__1__0__0.html#a6a6b09033ebbe67cd54b50dc93e65460", null ],
     [ "view", "classpmsg__view__1__0__0.html#a43074158f41bf195878c903457afa35f", null ],
     [ "$Output", "classpmsg__view__1__0__0.html#a8a55ddd2b83051d9d86510dcd04f9f4c", null ],

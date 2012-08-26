@@ -73,14 +73,12 @@ $(document).ready(function(){initNavTree('classcontent__markup__1__0__0.html',''
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a55bb436773a9783b089e3b3efe4b0746"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#a55bb436773a9783b089e3b3efe4b0746">process_content_links</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:ab47f43086f412ec985aa561693c10e3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#ab47f43086f412ec985aa561693c10e3b">process_content</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:aa75ae20fe3f271bc0de86ec517a54641"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#aa75ae20fe3f271bc0de86ec517a54641">process_print_content_url</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:ac5753ab0c23b4003f83b52f5da81e15c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#ac5753ab0c23b4003f83b52f5da81e15c">compile_content_links</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:ac85c3cbef485d8341edc02505d43ef0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#ac85c3cbef485d8341edc02505d43ef0d">compile_content</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:ad715dd4df80fa4cff4d81d46f93a8e0c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#ad715dd4df80fa4cff4d81d46f93a8e0c">compile_print_content_url</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a1e5b144ad8adeb176a4a2897878f3de2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a> = false</td></tr>
 <tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
 <tr class="memitem:ac25e46d83bbaf71d2fbc89041ad75929"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#ac25e46d83bbaf71d2fbc89041ad75929">$CategoryAlgorithms</a> = false</td></tr>
 <tr class="memitem:a6a4a16182e4ace50093470ef7b334941"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontent__markup__1__0__0.html#a6a4a16182e4ace50093470ef7b334941">$ContentAccess</a> = false</td></tr>
@@ -116,13 +114,15 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00089">89</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00060">60</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;MacroSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;CategoryAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        $this-&gt;ContentAccess = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;content::content_access&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        $this-&gt;ContentAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;content::content_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        $this-&gt;ContentView = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;content::content_view&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;load_content_packages();</div>
 <div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
@@ -136,243 +136,23 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ab47f43086f412ec985aa561693c10e3b"></a>
+<a class="anchor" id="ac85c3cbef485d8341edc02505d43ef0d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_content </td>
+          <td class="memname">compile_content </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'conten'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( $Str , $Changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00268">268</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Rules = array( <span class="stringliteral">&#39;content_id&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;content&#39;</span> , $Rules ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              </div>
-<div class="line">                              $ContentId = $this-&gt;MacroSettings-&gt;get_setting( <span class="stringliteral">&#39;content_id&#39;</span> );</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;set_setting( <span class="stringliteral">&#39;content_view&#39;</span> , 1 );</div>
-<div class="line">                              $this-&gt;Security-&gt;set_g( <span class="stringliteral">&#39;content_id&#39;</span> , $ContentId );</div>
-<div class="line">                              </div>
-<div class="line">                              $Code = $this-&gt;ContentView-&gt;view( $this-&gt;MacroSettings );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{content:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a55bb436773a9783b089e3b3efe4b0746"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_content_links </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'comment_line'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( $Str , $Changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00220">220</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;content_links&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line"></div>
-<div class="line">                              $Code = $this-&gt;compile_content_links( $this-&gt;MacroSettings );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{content_links:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aa75ae20fe3f271bc0de86ec517a54641"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_print_content_url </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'print_content_url'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( $Str , $Changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00322">322</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Rules = array( <span class="stringliteral">&#39;content_id&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;print_content_url&#39;</span> , $Rules ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line"></div>
-<div class="line">                              $ContentId = $this-&gt;MacroSettings-&gt;get_setting( <span class="stringliteral">&#39;content_id&#39;</span> );</div>
-<div class="line">                              $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;print_content_url.tpl&#39;</span> );</div>
-<div class="line">                              $Code = str_replace( <span class="stringliteral">&#39;{content_id}&#39;</span> , $ContentId , $Code );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{print_content_url:$Parameters}&quot;</span> , $Code , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Function processes string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Options of drawing.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Options of drawing.</td></tr>
   </table>
   </dd>
 </dl>
@@ -385,17 +165,123 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00378">378</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00189">189</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classcontent__markup__1__0__0.html#a55bb436773a9783b089e3b3efe4b0746">process_content_links</a>( $Str , $Changed );</div>
+<div class="line">                        $ContentId = $Settings-&gt;get_setting( <span class="stringliteral">&#39;content_id&#39;</span> );</div>
+<div class="line">                        $Settings-&gt;set_setting( <span class="stringliteral">&#39;content_view&#39;</span> , 1 );</div>
+<div class="line">                        $this-&gt;Security-&gt;set_g( <span class="stringliteral">&#39;content_id&#39;</span> , $ContentId );</div>
 <div class="line"></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classcontent__markup__1__0__0.html#ab47f43086f412ec985aa561693c10e3b">process_content</a>( $Str , $Changed );</div>
+<div class="line">                        $Code = $this-&gt;ContentView-&gt;view( $Settings );</div>
 <div class="line"></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classcontent__markup__1__0__0.html#aa75ae20fe3f271bc0de86ec517a54641">process_print_content_url</a>( $Str , $Changed );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ac5753ab0c23b4003f83b52f5da81e15c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_content_links </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function compiles articles.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML code of the list.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00139">139</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Articles = $this-&gt;get_articles( $Settings );</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line">                        $Code = <span class="stringliteral">&#39;{lang:no_articles_were_found}&#39;</span>;</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( isset( $Articles[ 0 ] ) )</div>
+<div class="line">                        {</div>
+<div class="line">                              $TemplateName = $Settings-&gt;get_setting( <span class="stringliteral">&#39;template&#39;</span> , <span class="stringliteral">&#39;content_link.tpl&#39;</span> );</div>
+<div class="line">                              $Code = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"></div>
+<div class="line">                              <span class="keywordflow">foreach</span>( $Articles as $Item )</div>
+<div class="line">                              {</div>
+<div class="line">                                    $Code .= $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , $TemplateName );</div>
+<div class="line">                                    $Code = $this-&gt;String-&gt;print_record( $Code , $Item );</div>
+<div class="line">                              }</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ad715dd4df80fa4cff4d81d46f93a8e0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_print_content_url </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function processes string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Options of drawing.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML code to display.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00229">229</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $ContentId = $Settings-&gt;get_setting( <span class="stringliteral">&#39;content_id&#39;</span> );</div>
+<div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;print_content_url.tpl&#39;</span> );</div>
+<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{content_id}&#39;</span> , $ContentId , $Code );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -415,8 +301,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cached packages.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00039">39</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00038">38</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -430,7 +318,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00040">40</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00039">39</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -444,7 +332,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00041">41</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00040">40</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -458,7 +346,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00042">42</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00041">41</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -472,23 +360,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00043">43</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1e5b144ad8adeb176a4a2897878f3de2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$MacroSettings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Cached packages.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00038">38</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00042">42</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -502,7 +374,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00044">44</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00043">43</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -516,7 +388,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00045">45</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="content__markup_8php_source.html#l00044">44</a> of file <a class="el" href="content__markup_8php_source.html">content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -529,7 +401,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcontent__markup__1__0__0.html">content_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:18 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:31 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

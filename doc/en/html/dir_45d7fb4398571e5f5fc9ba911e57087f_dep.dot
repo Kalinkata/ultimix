@@ -1,9 +1,0 @@
-digraph "packages/gui/packages/context_set/packages/context_set_utilities/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_751b0c2ff897e77ddff87f0cc4c3f774 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_751b0c2ff897e77ddff87f0cc4c3f774.html"]
-  dir_45d7fb4398571e5f5fc9ba911e57087f [shape=box, label="context_set_utilities", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_45d7fb4398571e5f5fc9ba911e57087f.html"];
-  }
-}

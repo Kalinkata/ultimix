@@ -1,9 +1,0 @@
-digraph "packages/permit/packages/group_markup/include/js/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_e0f8665fcce47ce42ba2e2dc075066aa {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_e0f8665fcce47ce42ba2e2dc075066aa.html"]
-  dir_37703662655da1d55ee3dd98d8cf938c [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_37703662655da1d55ee3dd98d8cf938c.html"];
-  }
-}

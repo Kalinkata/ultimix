@@ -5,6 +5,6 @@ var classutilities__1__0__0 =
     [ "get_package", "classutilities__1__0__0.html#a7634af4199d368d41bcc391d0b76b8ff", null ],
     [ "get_records", "classutilities__1__0__0.html#ac0ad1ffe6dad7b91ba12fd70f5826330", null ],
     [ "pack_into_url", "classutilities__1__0__0.html#afbc2dfd839f7d63f2503b2a039f676d7", null ],
-    [ "process_file", "classutilities__1__0__0.html#a58cd63ceb05425607b5847933d6635a5", null ],
+    [ "read_file", "classutilities__1__0__0.html#a16953a779ee22ee36cc9bc1f64c8fa68", null ],
     [ "zip_directory", "classutilities__1__0__0.html#a77ecfecbcd6c5aaffd7cd538b13790f6", null ]
 ];

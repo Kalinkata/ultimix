@@ -73,16 +73,12 @@ $(document).ready(function(){initNavTree('classdb__markup__1__0__0.html','');});
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:ada22c47ef13517616f33378bdade5460"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#ada22c47ef13517616f33378bdade5460">get_query_field</a> (&amp;$MacroSettings)</td></tr>
-<tr class="memitem:a00871d2fd68cc8c68f36a230b0ffbaeb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a00871d2fd68cc8c68f36a230b0ffbaeb">process_query_field</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a8dedbab8c894f7ec18e3a062c6472eae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a8dedbab8c894f7ec18e3a062c6472eae">get_record_field</a> (&amp;$MacroSettings)</td></tr>
-<tr class="memitem:a03aae7840c9b02b794034b3f12b74098"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a03aae7840c9b02b794034b3f12b74098">process_record_field</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:ad29a975cf3e7628831f6bf5629011e9b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#ad29a975cf3e7628831f6bf5629011e9b">compile_query_field</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a72ac7c2ab6f41b146027c6c987eed510"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a72ac7c2ab6f41b146027c6c987eed510">compile_record_field</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:ae10cc045c1502f148d1aa728183898e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#ae10cc045c1502f148d1aa728183898e7">$Database</a> = false</td></tr>
-<tr class="memitem:a1e5b144ad8adeb176a4a2897878f3de2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a> = false</td></tr>
 <tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -106,12 +102,11 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00053">53</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00052">52</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;Database = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;database&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;MacroSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -123,15 +118,15 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ada22c47ef13517616f33378bdade5460"></a>
+<a class="anchor" id="ad29a975cf3e7628831f6bf5629011e9b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">get_query_field </td>
+          <td class="memname">compile_query_field </td>
           <td>(</td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$MacroSettings</em></td><td>)</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -139,7 +134,7 @@ Data Fields</h2></td></tr>
 <p>Function returns field value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$MacroSettings</td><td>- Extraction parameters.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Extraction parameters.</td></tr>
   </table>
   </dd>
 </dl>
@@ -152,12 +147,13 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00089">89</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00087">87</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $Result = $this-&gt;Database-&gt;query( <a class="code" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;query&#39;</span> ) );</div>
+<div class="line">                        $Result = $this-&gt;Database-&gt;query( $Settings-&gt;get_setting( <span class="stringliteral">&#39;query&#39;</span> ) );</div>
 <div class="line">                        $Result = $this-&gt;Database-&gt;fetch_results( $Result );</div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( isset( $Result[ 0 ] ) )</div>
 <div class="line">                        {</div>
 <div class="line">                              $Result = $Result[ 0 ];</div>
@@ -166,8 +162,8 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&quot;No data found for the query \&quot;$Query\&quot;&quot;</span> ) );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Result , <a class="code" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;field&#39;</span> ) ) );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Result , $Settings-&gt;get_setting( <span class="stringliteral">&#39;field&#39;</span> ) ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -177,15 +173,15 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a8dedbab8c894f7ec18e3a062c6472eae"></a>
+<a class="anchor" id="a72ac7c2ab6f41b146027c6c987eed510"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">get_record_field </td>
+          <td class="memname">compile_record_field </td>
           <td>(</td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$MacroSettings</em></td><td>)</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -193,7 +189,7 @@ Data Fields</h2></td></tr>
 <p>Function returns field value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$MacroSettings</td><td>- Extraction parameters.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Extraction parameters.</td></tr>
   </table>
   </dd>
 </dl>
@@ -206,222 +202,25 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00183">183</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00133">133</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $Value = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line">                        $id = <a class="code" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;id&#39;</span> );</div>
+<div class="line">                        $id = $Settings-&gt;get_setting( <span class="stringliteral">&#39;id&#39;</span> );</div>
 <div class="line">                        <span class="keywordflow">if</span>( $id != <span class="charliteral">&#39;0&#39;</span> )</div>
 <div class="line">                        {</div>
-<div class="line">                              $PackageName = <a class="code" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;access_package_name&#39;</span> );</div>
-<div class="line">                              $PackageVersion = <a class="code" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;access_package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
+<div class="line">                              $PackageName = $Settings-&gt;get_setting( <span class="stringliteral">&#39;access_package_name&#39;</span> );</div>
+<div class="line">                              $PackageVersion = $Settings-&gt;get_setting( <span class="stringliteral">&#39;access_package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
 <div class="line">                              $PackageObject = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( $PackageName , $PackageVersion , __FILE__ );</div>
 <div class="line">                        </div>
 <div class="line">                              $Record = call_user_func( array( $PackageObject , <span class="stringliteral">&#39;get_by_id&#39;</span> ) , $id );</div>
 <div class="line">                              </div>
-<div class="line">                              $Field = <a class="code" href="classdb__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;field&#39;</span> );</div>
+<div class="line">                              $Field = $Settings-&gt;get_setting( <span class="stringliteral">&#39;field&#39;</span> );</div>
 <div class="line">                              $Value = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , $Field );</div>
 <div class="line">                        }</div>
 <div class="line">                        </div>
 <div class="line">                        <span class="keywordflow">return</span>( $Value );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a00871d2fd68cc8c68f36a230b0ffbaeb"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_query_field </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'query_field'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00138">138</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Limitations = array( <span class="stringliteral">&#39;field&#39;</span> =&gt; TERMINAL_VALUE , <span class="stringliteral">&#39;query&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;query_field&#39;</span> , $Limitations ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              </div>
-<div class="line">                              $Value = $this-&gt;<a class="code" href="classdb__markup__1__0__0.html#ada22c47ef13517616f33378bdade5460">get_query_field</a>( $this-&gt;MacroSettings );</div>
-<div class="line">                              </div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{query_field:$Parameters}&quot;</span> , $Value , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a03aae7840c9b02b794034b3f12b74098"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_record_field </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'record_field'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00235">235</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; ( $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;record_field&#39;</span> , </div>
-<div class="line">                                          array( <span class="stringliteral">&#39;access_package_name&#39;</span> =&gt; TERMINAL_VALUE , <span class="stringliteral">&#39;field&#39;</span> =&gt; TERMINAL_VALUE , </div>
-<div class="line">                                          <span class="stringliteral">&#39;access_package_version&#39;</span> =&gt; TERMINAL_VALUE , <span class="stringliteral">&#39;id&#39;</span> =&gt; TERMINAL_VALUE ) ) ) !== <span class="keyword">false</span> ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              </div>
-<div class="line">                              $Value = $this-&gt;<a class="code" href="classdb__markup__1__0__0.html#a8dedbab8c894f7ec18e3a062c6472eae">get_record_field</a>( $this-&gt;MacroSettings );</div>
-<div class="line">                              </div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{record_field:$Parameters}&quot;</span> , $Value , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00289">289</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="comment">/* TODO: move it to auto_markup */</span></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classdb__markup__1__0__0.html#a03aae7840c9b02b794034b3f12b74098">process_record_field</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classdb__markup__1__0__0.html#a00871d2fd68cc8c68f36a230b0ffbaeb">process_query_field</a>( $Str , $Changed );</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -448,20 +247,6 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1e5b144ad8adeb176a4a2897878f3de2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$MacroSettings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00040">40</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a541f49d5b9cf7bae2f91f639abcf3458"></a>
 <div class="memitem">
 <div class="memproto">
@@ -472,7 +257,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00041">41</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="db__markup_8php_source.html#l00040">40</a> of file <a class="el" href="db__markup_8php_source.html">db_markup.php</a>.</p>
 
 </div>
 </div>
@@ -485,7 +270,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classdb__markup__1__0__0.html">db_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:19 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:33 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

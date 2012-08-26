@@ -1,9 +1,0 @@
-digraph "packages/json/packages/json_view/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_c86e8a83ca1ebf881411699efb86b576 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_c86e8a83ca1ebf881411699efb86b576.html"]
-  dir_f65e0cce2a85d5ab0cecd99aaf980029 [shape=box, label="json_view", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_f65e0cce2a85d5ab0cecd99aaf980029.html"];
-  }
-}

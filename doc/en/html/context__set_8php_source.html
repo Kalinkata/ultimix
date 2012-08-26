@@ -247,7 +247,7 @@ $(document).ready(function(){initNavTree('context__set_8php_source.html','');});
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                  }</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;            }</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
-<div class="line"><a name="l00403"></a><span class="lineno"><a class="code" href="classcontext__set__1__0__0.html#a46b25beb77c1a2e8ffd007ec1414ea70">  403</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcontext__set__1__0__0.html#a46b25beb77c1a2e8ffd007ec1414ea70">process_prefix</a>( $Str , $Changed )</div>
+<div class="line"><a name="l00403"></a><span class="lineno"><a class="code" href="classcontext__set__1__0__0.html#aab2973588e18fb3f1c4b60a79f0a01bd">  403</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcontext__set__1__0__0.html#aab2973588e18fb3f1c4b60a79f0a01bd">compile_prefix</a>( $Str , $Changed )</div>
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            {</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                  {</div>
@@ -448,43 +448,42 @@ $(document).ready(function(){initNavTree('context__set_8php_source.html','');});
 <div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;                  }</div>
 <div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;            }</div>
 <div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;</div>
-<div class="line"><a name="l00818"></a><span class="lineno"><a class="code" href="classcontext__set__1__0__0.html#aef87d449856ad1b6e4e808f1f4274457">  818</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcontext__set__1__0__0.html#aef87d449856ad1b6e4e808f1f4274457">process_string</a>( &amp;$Options , $Str , &amp;$Changed )</div>
+<div class="line"><a name="l00818"></a><span class="lineno"><a class="code" href="classcontext__set__1__0__0.html#abc2685b51e7a647c6222606fac2cc28c">  818</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcontext__set__1__0__0.html#abc2685b51e7a647c6222606fac2cc28c">compile_special_macro</a>( &amp;$Options , $Str , &amp;$Changed )</div>
 <div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;            {</div>
 <div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                  {</div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                        <span class="comment">// TODO: remove this function</span></div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                        list( $Str , $Changed ) = $this-&gt;ContextSetMarkup-&gt;compile_options( $Options , $Str , $Changed );</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;</div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                        $Str = str_replace( <span class="stringliteral">&#39;{prefix}&#39;</span> , $this-&gt;Prefix , $Str );</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;                        <span class="keywordflow">return</span>( $Str );</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;                  }</div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                  {</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;                  }</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;            }</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;</div>
-<div class="line"><a name="l00853"></a><span class="lineno"><a class="code" href="classcontext__set__1__0__0.html#a7516ca30af0db3cdbf9a7739b48ce91d">  853</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcontext__set__1__0__0.html#a7516ca30af0db3cdbf9a7739b48ce91d">__toString</a>()</div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;            {</div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;                  {</div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;                        <span class="keywordflow">return</span>( serialize( $this-&gt;Config ) );</div>
-<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;                  }</div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;                  {</div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;                  }</div>
-<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;            }</div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;      }</div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;?&gt;</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                        list( $Str , $Changed ) = $this-&gt;ContextSetMarkup-&gt;compile_options( $Options , $Str , $Changed );</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                        $Str = str_replace( <span class="stringliteral">&#39;{prefix}&#39;</span> , $this-&gt;Prefix , $Str );</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;                  }</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;                  {</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;                  }</div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            }</div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;</div>
+<div class="line"><a name="l00852"></a><span class="lineno"><a class="code" href="classcontext__set__1__0__0.html#a7516ca30af0db3cdbf9a7739b48ce91d">  852</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcontext__set__1__0__0.html#a7516ca30af0db3cdbf9a7739b48ce91d">__toString</a>()</div>
+<div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;            {</div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;                  {</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;                        <span class="keywordflow">return</span>( serialize( $this-&gt;Config ) );</div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;                  }</div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;                  {</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;                  }</div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;            }</div>
+<div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;      }</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_6e11b47f71b207b27145207ea75fef9e.html">gui</a></li><li class="navelem"><a class="el" href="dir_22da140b0ceba9af8df63b75c08d8cba.html">packages</a></li><li class="navelem"><a class="el" href="dir_198d97c8749811c84d471cce7b818c2f.html">context_set</a></li><li class="navelem"><a class="el" href="context__set_8php.html">context_set.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:35:45 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:30:53 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

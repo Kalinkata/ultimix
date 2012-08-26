@@ -1,9 +1,0 @@
-digraph "packages/file_input/packages/file_input_algorithms/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_60c19322799d1756e1c4f3d5f73e1234 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_60c19322799d1756e1c4f3d5f73e1234.html"]
-  dir_85d9fdec0fec1304f9bb78bff6f70454 [shape=box, label="file_input_algorithms", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_85d9fdec0fec1304f9bb78bff6f70454.html"];
-  }
-}

@@ -1,5 +1,9 @@
 Ultimix v. 1.5.250
 -----------------------------------------
+1. An error in the 'user::user_markup' package was fixed.
+2. A set of predefined packages was fixed.
+3. JavaScript API was added to the 'ad::ad_banner::ad_banner_view' package.
+4. Performance was improved.
 
 Ultimix v. 1.5.249
 -----------------------------------------

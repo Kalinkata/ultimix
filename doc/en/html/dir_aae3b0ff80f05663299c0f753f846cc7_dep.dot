@@ -1,9 +1,0 @@
-digraph "packages/gui/packages/math_markup/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_22da140b0ceba9af8df63b75c08d8cba {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_22da140b0ceba9af8df63b75c08d8cba.html"]
-  dir_aae3b0ff80f05663299c0f753f846cc7 [shape=box, label="math_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_aae3b0ff80f05663299c0f753f846cc7.html"];
-  }
-}

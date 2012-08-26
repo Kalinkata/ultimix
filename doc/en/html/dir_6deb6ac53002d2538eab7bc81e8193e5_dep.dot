@@ -1,9 +1,0 @@
-digraph "packages/sape/packages/sape_utilities/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_e81e4bd762abaa1eb83a6a6d81685025 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_e81e4bd762abaa1eb83a6a6d81685025.html"]
-  dir_6deb6ac53002d2538eab7bc81e8193e5 [shape=box, label="sape_utilities", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_6deb6ac53002d2538eab7bc81e8193e5.html"];
-  }
-}

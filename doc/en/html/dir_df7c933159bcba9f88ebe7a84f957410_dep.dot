@@ -1,9 +1,0 @@
-digraph "packages/database/packages/table/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_9e29d43dd7407de83abd117b75b27387 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9e29d43dd7407de83abd117b75b27387.html"]
-  dir_df7c933159bcba9f88ebe7a84f957410 [shape=box, label="table", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_df7c933159bcba9f88ebe7a84f957410.html"];
-  }
-}

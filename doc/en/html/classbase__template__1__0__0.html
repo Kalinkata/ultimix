@@ -76,10 +76,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab0d2c86bd8b36e128c0047e91f477899"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#ab0d2c86bd8b36e128c0047e91f477899">add_stylesheets</a> ($File)</td></tr>
 <tr class="memitem:a178783845ec2ccdd0eb8eb862d7bc5c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a178783845ec2ccdd0eb8eb862d7bc5c7">parse</a> ($File, $Variable, $Value)</td></tr>
 <tr class="memitem:a2d35fcfb3718bcb4ab20818302c42694"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a2d35fcfb3718bcb4ab20818302c42694">extract_template_name</a> ()</td></tr>
-<tr class="memitem:a8dd2b6c1081a6a72f6ffdc58b27a37ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a8dd2b6c1081a6a72f6ffdc58b27a37ff">process_template_block</a> ($PageName, &amp;$Changed)</td></tr>
 <tr class="memitem:aa5437e59e05446b089850cac81cfe2a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#aa5437e59e05446b089850cac81cfe2a1">process</a> ($File, $PageName, &amp;$Changed)</td></tr>
 <tr class="memitem:a7d852a6c2b69666eeb02f03e85ce056a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a7d852a6c2b69666eeb02f03e85ce056a">get_placeholder_parameters</a> ($File, $PurePlaceHolderName)</td></tr>
-<tr class="memitem:a92280a70daedbc2eb710cd42ed22d16a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a92280a70daedbc2eb710cd42ed22d16a">process_color_scheme</a> ($File, $Str)</td></tr>
 <tr class="memitem:a5f66e00aa632ee935dc3b5a7d0e9ef8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a5f66e00aa632ee935dc3b5a7d0e9ef8b">compile_string</a> ($File, $Str)</td></tr>
 <tr class="memitem:afe3dc5486dd2c18d636da0bae6f98351"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#afe3dc5486dd2c18d636da0bae6f98351">cleanup_placeholders</a> ()</td></tr>
 <tr class="memitem:a28bd7356d926c3f5e2b4a95bc6d963e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbase__template__1__0__0.html#a28bd7356d926c3f5e2b4a95bc6d963e8">cleanup</a> ($File, $PageName)</td></tr>
@@ -375,7 +373,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              $Str</div>
 <div class="line">                        );</div>
 <div class="line"></div>
-<div class="line">                        $Str = $this-&gt;<a class="code" href="classbase__template__1__0__0.html#a92280a70daedbc2eb710cd42ed22d16a">process_color_scheme</a>( $File , $Str );</div>
+<div class="line">                        $Str = $this-&gt;handle_color_scheme( $File , $Str );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
@@ -682,152 +680,11 @@ Data Fields</h2></td></tr>
 <div class="line">                        }</div>
 <div class="line">                        $this-&gt;Template = $this-&gt;<a class="code" href="classbase__template__1__0__0.html#a88ef14cf889de608eae7bebe554494f3">get_template</a>();</div>
 <div class="line"></div>
-<div class="line">                        $this-&gt;<a class="code" href="classbase__template__1__0__0.html#a8dd2b6c1081a6a72f6ffdc58b27a37ff">process_template_block</a>( $PageName , $Changed );</div>
+<div class="line">                        $this-&gt;handle_template_block( $PageName , $Changed );</div>
 <div class="line"></div>
 <div class="line">                        $this-&gt;Template = $this-&gt;String-&gt;hide_unprocessed_blocks( $this-&gt;Template , <span class="stringliteral">&#39;template&#39;</span> , $Changed );</div>
 <div class="line"></div>
-<div class="line">                        $this-&gt;process_includes( $File , $Changed );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a92280a70daedbc2eb710cd42ed22d16a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_color_scheme </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$File</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'color_scheme'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$File</td><td>- Real path to the template script.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="base__template_8php_source.html#l00437">437</a> of file <a class="el" href="base__template_8php_source.html">base_template.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Params = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;color_scheme&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;load_settings( $Params );</div>
-<div class="line">                              $Available = explode( <span class="charliteral">&#39;,&#39;</span> , $this-&gt;BlockSettings-&gt;get_setting( <span class="stringliteral">&#39;available&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> ) );</div>
-<div class="line"></div>
-<div class="line">                              $ColorScheme = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;color_scheme&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                              <span class="keywordflow">if</span>( array_search( $ColorScheme , $Available ) !== <span class="keyword">false</span> )</div>
-<div class="line">                              {</div>
-<div class="line">                                    $Str = str_replace( <span class="stringliteral">&quot;{color_scheme:$Params}&quot;</span> , $ColorScheme , $Str );</div>
-<div class="line">                              }</div>
-<div class="line">                              <span class="keywordflow">else</span></div>
-<div class="line">                              {</div>
-<div class="line">                                    $Str = str_replace( <span class="stringliteral">&quot;{color_scheme:$Params}&quot;</span> , <span class="stringliteral">&#39;default&#39;</span> , $Str );</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a8dd2b6c1081a6a72f6ffdc58b27a37ff"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_template_block </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$PageName</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes 'template' block.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$PageName</td><td>- Page name for precompilation.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="base__template_8php_source.html#l00243">243</a> of file <a class="el" href="base__template_8php_source.html">base_template.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( $this-&gt;String-&gt;block_exists( $this-&gt;Template , <span class="stringliteral">&#39;template:&#39;</span>.$PageName , <span class="stringliteral">&#39;template:~&#39;</span>.$PageName ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                              $this-&gt;Template = $this-&gt;String-&gt;show_block( </div>
-<div class="line">                                    $this-&gt;Template , <span class="stringliteral">&#39;template:&#39;</span>.$PageName , <span class="stringliteral">&#39;template:~&#39;</span>.$PageName , $Changed</div>
-<div class="line">                              );</div>
-<div class="line">                        }</div>
-<div class="line">                        <span class="keywordflow">else</span></div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">if</span>( $this-&gt;String-&gt;block_exists( $this-&gt;Template , <span class="stringliteral">&#39;template:_default_page&#39;</span> , </div>
-<div class="line">                                                                                                                                    <span class="stringliteral">&#39;template:~_default_page&#39;</span> ) )</div>
-<div class="line">                              {</div>
-<div class="line">                                    $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                                    $this-&gt;Template = $this-&gt;String-&gt;show_block( </div>
-<div class="line">                                          $this-&gt;Template , <span class="stringliteral">&#39;template:_default_page&#39;</span> , <span class="stringliteral">&#39;template:~_default_page&#39;</span> , $Changed</div>
-<div class="line">                                    );</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
+<div class="line">                        $this-&gt;handle_includes( $File , $Changed );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -992,7 +849,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classbase__template__1__0__0.html">base_template_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:16 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:28 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

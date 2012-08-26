@@ -1,9 +1,0 @@
-digraph "packages/database/packages/oracle_database/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_9e29d43dd7407de83abd117b75b27387 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9e29d43dd7407de83abd117b75b27387.html"]
-  dir_6e44093fc4e7f07e5b96702700443301 [shape=box, label="oracle_database", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_6e44093fc4e7f07e5b96702700443301.html"];
-  }
-}

@@ -1,7 +1,7 @@
 var classuser__access__utilities__1__0__0 =
 [
     [ "__construct", "classuser__access__utilities__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
-    [ "process_update_record", "classuser__access__utilities__1__0__0.html#a0a15ec96e694b06c13256b88d90bfd88", null ],
+    [ "handle_update_record", "classuser__access__utilities__1__0__0.html#a90b505bd3ac0990ec5ebf46ffdfbc3e2", null ],
     [ "rise_activate_event", "classuser__access__utilities__1__0__0.html#af338fdbe31eb87feb334f9e69f127d08", null ],
     [ "rise_create_event", "classuser__access__utilities__1__0__0.html#af63cb4c7865b32c626e7d5d006f517ef", null ],
     [ "rise_deactivate_event", "classuser__access__utilities__1__0__0.html#aa0a2770bb56c71037db3f4c8f52d8b46", null ],

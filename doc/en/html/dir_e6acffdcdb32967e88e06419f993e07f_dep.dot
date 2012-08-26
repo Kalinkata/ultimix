@@ -1,9 +1,0 @@
-digraph "packages/gui/packages/context/packages/context_utilities/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_54f0b299ec084911b5576f0b5f0e8688 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_54f0b299ec084911b5576f0b5f0e8688.html"]
-  dir_e6acffdcdb32967e88e06419f993e07f [shape=box, label="context_utilities", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e6acffdcdb32967e88e06419f993e07f.html"];
-  }
-}

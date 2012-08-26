@@ -84,7 +84,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac268113a385ddc41ec8b05cf9d0bd90a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ac268113a385ddc41ec8b05cf9d0bd90a">call_processor_function</a> (&amp;$p, $String, &amp;$Changed, $Type)</td></tr>
 <tr class="memitem:a2caab490039794be4c3435941e6f716e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a2caab490039794be4c3435941e6f716e">execute_generators</a> (&amp;$Packages, $Type, &amp;$Template)</td></tr>
 <tr class="memitem:ab346b44cd7dc1b263c7f5f08a55e50ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ab346b44cd7dc1b263c7f5f08a55e50ef">execute_processors</a> (&amp;$Packages, $String, $Type)</td></tr>
-<tr class="memitem:aed2df2e316068351170cc3111d8cbd0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#aed2df2e316068351170cc3111d8cbd0b">process_controllers</a> (&amp;$Packages)</td></tr>
+<tr class="memitem:ad396ac9149e5e4555cf04292c86ef654"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ad396ac9149e5e4555cf04292c86ef654">compile_controllers</a> (&amp;$Packages)</td></tr>
 <tr class="memitem:a5207ba92168b244231bcd15d4be5320f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a5207ba92168b244231bcd15d4be5320f">compile_views</a> (&amp;$Packages, &amp;$Template)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -225,6 +225,65 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a class="anchor" id="ad396ac9149e5e4555cf04292c86ef654"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_controllers </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Packages</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function processes controllers.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Packages</td><td>- Packages.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00777">777</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $this-&gt;Trace-&gt;start_group( <span class="stringliteral">&quot;controllers&quot;</span> );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">foreach</span>( $Packages as $i =&gt; $p )</div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="keywordflow">if</span>( $p[ <span class="stringliteral">&#39;settings&#39;</span> ]-&gt;get_setting( <span class="stringliteral">&#39;controller&#39;</span> , <span class="keyword">false</span> ) )</div>
+<div class="line">                              {</div>
+<div class="line">                                    <span class="keywordflow">if</span>( method_exists( $p[ <span class="stringliteral">&#39;fetched_package&#39;</span> ] , <span class="stringliteral">&#39;controller&#39;</span> ) )</div>
+<div class="line">                                    {</div>
+<div class="line">                                          $this-&gt;run_single_controller( $p );</div>
+<div class="line">                                    }</div>
+<div class="line">                                    <span class="keywordflow">else</span></div>
+<div class="line">                                    {</div>
+<div class="line">                                          $this-&gt;<a class="code" href="classpage__parts__1__0__0.html#a05c2bc0b01d881aed3c090ac3b39fce8">throw_method_was_not_found_exception</a>( $p , <span class="stringliteral">&#39;controller&#39;</span> );</div>
+<div class="line">                                    }</div>
+<div class="line">                              }</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        $this-&gt;Trace-&gt;end_group();</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a5207ba92168b244231bcd15d4be5320f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -353,7 +412,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        $Changed = <span class="keyword">false</span>;</div>
 <div class="line">                        $Template-&gt;add_stylesheets();</div>
 <div class="line">                        $counter = 0;</div>
-<div class="line">                  </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Packages as $i =&gt; $p )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">if</span>( $p[ <span class="stringliteral">&#39;settings&#39;</span> ]-&gt;get_setting( $Type , <span class="keyword">false</span> ) )</div>
@@ -910,65 +969,6 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="aed2df2e316068351170cc3111d8cbd0b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_controllers </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Packages</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes controllers.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Packages</td><td>- Packages.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00777">777</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $this-&gt;Trace-&gt;start_group( <span class="stringliteral">&quot;controllers&quot;</span> );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">foreach</span>( $Packages as $i =&gt; $p )</div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">if</span>( $p[ <span class="stringliteral">&#39;settings&#39;</span> ]-&gt;get_setting( <span class="stringliteral">&#39;controller&#39;</span> , <span class="keyword">false</span> ) )</div>
-<div class="line">                              {</div>
-<div class="line">                                    <span class="keywordflow">if</span>( method_exists( $p[ <span class="stringliteral">&#39;fetched_package&#39;</span> ] , <span class="stringliteral">&#39;controller&#39;</span> ) )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          $this-&gt;run_single_controller( $p );</div>
-<div class="line">                                    }</div>
-<div class="line">                                    <span class="keywordflow">else</span></div>
-<div class="line">                                    {</div>
-<div class="line">                                          $this-&gt;<a class="code" href="classpage__parts__1__0__0.html#a05c2bc0b01d881aed3c090ac3b39fce8">throw_method_was_not_found_exception</a>( $p , <span class="stringliteral">&#39;controller&#39;</span> );</div>
-<div class="line">                                    }</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        $this-&gt;Trace-&gt;end_group();</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="a05c2bc0b01d881aed3c090ac3b39fce8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1134,7 +1134,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpage__parts__1__0__0.html">page_parts_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:26 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

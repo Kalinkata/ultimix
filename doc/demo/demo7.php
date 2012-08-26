@@ -4,7 +4,7 @@
 
 	require_once( 'include/php/startup.php' );
 
-	start_script();
+	start_php_script();
 
 	/* loading package */
 	/* this code can be found in the 'demo6.php' file */

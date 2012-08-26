@@ -1,11 +1,11 @@
 var core__utilities_8php =
 [
     [ "_collapse_params", "core__utilities_8php.html#a4b6cdb07dbaeefe1e8287ac78cf3913c", null ],
+    [ "_compile_data", "core__utilities_8php.html#a24a3b3b64c7a663ebb14e31efa350134", null ],
     [ "_compile_params", "core__utilities_8php.html#a020e46a22fe64210e0e0e3ff32309248", null ],
     [ "_file_get_contents", "core__utilities_8php.html#a298c54bbfd6389b6b5733c62e43e9131", null ],
     [ "_get_exception_object", "core__utilities_8php.html#aac1d0a370c343b1be4a64aaca411126e", null ],
     [ "_get_loaded_packages_paths", "core__utilities_8php.html#a6368d70e1bd19d8f6d1f0aad4785bf6d", null ],
-    [ "_process_data", "core__utilities_8php.html#af45b3bc5052176858e3f26092cc16af9", null ],
     [ "_return_params", "core__utilities_8php.html#a62944c65695be170a047dfd5d29c2a6a", null ],
     [ "_rmdir_recurse", "core__utilities_8php.html#a62cdb74919fefdb6fe8d455f5195c830", null ],
     [ "_throw_exception_object", "core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961", null ],

@@ -1,9 +1,0 @@
-digraph "packages/gallery/packages/gallery_algorithms/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_f556ebe6c18d31d5b33b75e9e20ef931 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_f556ebe6c18d31d5b33b75e9e20ef931.html"]
-  dir_7f7d4c477d5ada834f6ea3befa9e0f73 [shape=box, label="gallery_algorithms", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_7f7d4c477d5ada834f6ea3befa9e0f73.html"];
-  }
-}

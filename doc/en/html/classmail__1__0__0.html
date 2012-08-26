@@ -78,7 +78,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a2ffa3bca80ad6f1b3cf5162fa8e29788"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmail__1__0__0.html#a2ffa3bca80ad6f1b3cf5162fa8e29788">$LangMarkup</a> = false</td></tr>
 <tr class="memitem:a524e5510549d6b36c3f6a9e025faca4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmail__1__0__0.html#a524e5510549d6b36c3f6a9e025faca4e">$PageComposer</a> = false</td></tr>
 <tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmail__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:a81dfa7ae89cd21db41d9f4d48424a3ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmail__1__0__0.html#a81dfa7ae89cd21db41d9f4d48424a3ed">$Tags</a> = false</td></tr>
@@ -112,12 +111,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00110">110</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00109">109</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;LastCallTime = microtime( <span class="keyword">true</span> ) - $this-&gt;Timeout / 1000000;</div>
-<div class="line">                        $this-&gt;LangMarkup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;lang::lang_markup&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;PageComposer = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_composer&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Tags = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string::tags&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
@@ -152,7 +150,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00081">81</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00080">80</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -229,7 +227,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00255">255</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00252">252</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -257,22 +255,6 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
-<a class="anchor" id="a2ffa3bca80ad6f1b3cf5162fa8e29788"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$LangMarkup = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Cached packages.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00038">38</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a0f3e1b984054b9acd6bddede40838f2f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -285,7 +267,7 @@ Data Fields</h2></td></tr>
 <p>Time of the last call of the method 'send_mail'.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00065">65</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00064">64</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 
 </div>
 </div>
@@ -298,8 +280,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cached packages.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00039">39</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00038">38</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 
 </div>
 </div>
@@ -313,7 +297,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00040">40</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00039">39</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 
 </div>
 </div>
@@ -327,7 +311,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00041">41</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00040">40</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 
 </div>
 </div>
@@ -343,7 +327,7 @@ Data Fields</h2></td></tr>
 <p>Function call timeout.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="mail_8php_source.html#l00053">53</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
+<p>Definition at line <a class="el" href="mail_8php_source.html#l00052">52</a> of file <a class="el" href="mail_8php_source.html">mail.php</a>.</p>
 
 </div>
 </div>
@@ -356,7 +340,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classmail__1__0__0.html">mail_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:22 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:36 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

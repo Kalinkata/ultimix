@@ -73,10 +73,10 @@ $(document).ready(function(){initNavTree('classschedule__1__0__0.html','');});
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:ae71f755777cfeb8608a43bd313b1557b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#ae71f755777cfeb8608a43bd313b1557b">process_task</a> ($Parameters, $CurrentIteration)</td></tr>
-<tr class="memitem:a00d39dde2cce582a46023c4fa7cf2fa3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#a00d39dde2cce582a46023c4fa7cf2fa3">process_single_task</a> ($Task)</td></tr>
-<tr class="memitem:a73b5d5292b4bf7e86da02258e98427a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#a73b5d5292b4bf7e86da02258e98427a9">process_all_tasks</a> ($Tasks)</td></tr>
-<tr class="memitem:a8a5b8d266e1d95c2bd09c463d7dc953f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#a8a5b8d266e1d95c2bd09c463d7dc953f">process_tasks</a> ()</td></tr>
+<tr class="memitem:a4b50e6beed23a5c069cd454394621b9a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#a4b50e6beed23a5c069cd454394621b9a">run_task</a> ($Parameters, $CurrentIteration)</td></tr>
+<tr class="memitem:af774c84069a2b1ec4b2a000bc069bb28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#af774c84069a2b1ec4b2a000bc069bb28">run_single_task</a> ($Task)</td></tr>
+<tr class="memitem:a40469154ffc040a69e3156349eca25fb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#a40469154ffc040a69e3156349eca25fb">run_all_tasks</a> ($Tasks)</td></tr>
+<tr class="memitem:aaf63ca8609a83b780a58efd58a8ce784"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classschedule__1__0__0.html#aaf63ca8609a83b780a58efd58a8ce784">run_tasks</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -132,12 +132,12 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="a73b5d5292b4bf7e86da02258e98427a9"></a>
+<a class="anchor" id="a40469154ffc040a69e3156349eca25fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_all_tasks </td>
+          <td class="memname">run_all_tasks </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$Tasks</em></td><td>)</td>
@@ -170,7 +170,7 @@ Data Fields</h2></td></tr>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Tasks as $k =&gt; $Task )</div>
 <div class="line">                        {</div>
-<div class="line">                              $this-&gt;<a class="code" href="classschedule__1__0__0.html#a00d39dde2cce582a46023c4fa7cf2fa3">process_single_task</a>( $Task );</div>
+<div class="line">                              $this-&gt;<a class="code" href="classschedule__1__0__0.html#af774c84069a2b1ec4b2a000bc069bb28">run_single_task</a>( $Task );</div>
 <div class="line">                        }</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -181,12 +181,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a00d39dde2cce582a46023c4fa7cf2fa3"></a>
+<a class="anchor" id="af774c84069a2b1ec4b2a000bc069bb28"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_single_task </td>
+          <td class="memname">run_single_task </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$Task</em></td><td>)</td>
@@ -213,7 +213,7 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $NextIteration = $this-&gt;call_process_task_function( $Task );</div>
+<div class="line">                        $NextIteration = $this-&gt;call_run_task_function( $Task );</div>
 <div class="line"></div>
 <div class="line">                        $this-&gt;finish_task_processing( $Task , $NextIteration );</div>
 <div class="line">                  }</div>
@@ -228,12 +228,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ae71f755777cfeb8608a43bd313b1557b"></a>
+<a class="anchor" id="a4b50e6beed23a5c069cd454394621b9a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_task </td>
+          <td class="memname">run_task </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$Parameters</em>, </td>
@@ -288,12 +288,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a8a5b8d266e1d95c2bd09c463d7dc953f"></a>
+<a class="anchor" id="aaf63ca8609a83b780a58efd58a8ce784"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_tasks </td>
+          <td class="memname">run_tasks </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -322,7 +322,7 @@ Data Fields</h2></td></tr>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( isset( $Tasks[ 0 ] ) )</div>
 <div class="line">                        {</div>
-<div class="line">                              $this-&gt;<a class="code" href="classschedule__1__0__0.html#a73b5d5292b4bf7e86da02258e98427a9">process_all_tasks</a>( $Tasks );</div>
+<div class="line">                              $this-&gt;<a class="code" href="classschedule__1__0__0.html#a40469154ffc040a69e3156349eca25fb">run_all_tasks</a>( $Tasks );</div>
 <div class="line">                        }</div>
 <div class="line">                        <span class="keywordflow">else</span></div>
 <div class="line">                        {</div>
@@ -419,7 +419,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classschedule__1__0__0.html">schedule_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:28 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:43 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

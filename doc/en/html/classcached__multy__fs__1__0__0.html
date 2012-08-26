@@ -76,7 +76,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4a20559544fdf4dcb457e258dc976cf8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#a4a20559544fdf4dcb457e258dc976cf8">reset</a> ()</td></tr>
 <tr class="memitem:afc430982c741219a42093acc9aeced19"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#afc430982c741219a42093acc9aeced19">load_mounted_storages_from_file</a> ($FilePath)</td></tr>
 <tr class="memitem:aef8da9f499e5c90e9e7cbaf0529e8c45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#aef8da9f499e5c90e9e7cbaf0529e8c45">load_mounted_storages_if_necessary</a> ()</td></tr>
-<tr class="memitem:a8d6d70bcb36cb507da10902413774d87"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#a8d6d70bcb36cb507da10902413774d87">process_file_was_not_found_error</a> ($ThrowException)</td></tr>
 <tr class="memitem:ace66555558a65c949e9d0b6400b8d4bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#ace66555558a65c949e9d0b6400b8d4bb">get_file_path</a> ($FilePath, $ThrowException=true)</td></tr>
 <tr class="memitem:a64a201f729044b0dca93cef68ccc8739"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#a64a201f729044b0dca93cef68ccc8739">file_exists</a> ($OriginalFilePath)</td></tr>
 <tr class="memitem:a987b537a60ec67eba1b724099c531743"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcached__multy__fs__1__0__0.html#a987b537a60ec67eba1b724099c531743">transform_file_contents</a> ($Data, $Mode)</td></tr>
@@ -619,7 +618,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              <span class="keywordflow">return</span>( $FilePath );</div>
 <div class="line">                        }</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classcached__multy__fs__1__0__0.html#a8d6d70bcb36cb507da10902413774d87">process_file_was_not_found_error</a>( $ThrowException ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;handle_file_was_not_found_error( $ThrowException ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -1019,56 +1018,6 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a8d6d70bcb36cb507da10902413774d87"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_file_was_not_found_error </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$ThrowException</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes error.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$ThrowException</td><td>- Should be exception be thrown if the requested file was not found.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>false</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="cached__multy__fs_8php_source.html#l00249">249</a> of file <a class="el" href="cached__multy__fs_8php_source.html">cached_multy_fs.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( $ThrowException )</div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&quot;File $FilePath was not found&quot;</span> ) );</div>
-<div class="line">                        }</div>
-<div class="line">                        <span class="keywordflow">else</span></div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
-<div class="line">                        }</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="a4a20559544fdf4dcb457e258dc976cf8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1256,7 +1205,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcached__multy__fs__1__0__0.html">cached_multy_fs_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:16 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:28 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

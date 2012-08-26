@@ -126,7 +126,7 @@ $(document).ready(function(){initNavTree('ad__manager__view_8php_source.html',''
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                  }</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            }</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_campaign( $Campaign , &amp;$Banners )</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  compile_campaign( $Campaign , &amp;$Banners )</div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            {</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                  {</div>
@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('ad__manager__view_8php_source.html',''
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                        <span class="keywordflow">foreach</span>( $Campaigns as $i =&gt; $Campaign )</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                        {</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                              $this-&gt;process_campaign( $Campaign , $Banners );</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                              $this-&gt;compile_campaign( $Campaign , $Banners );</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                        }</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                        </div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                        $Template = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;campaigns_list.tpl&#39;</span> );</div>
@@ -198,7 +198,7 @@ $(document).ready(function(){initNavTree('ad__manager__view_8php_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_671e261b7d015f0ed26e0522f8924a64.html">ad</a></li><li class="navelem"><a class="el" href="dir_f1ffb0570056a88ce82c79220c57ae8b.html">packages</a></li><li class="navelem"><a class="el" href="dir_57925592f12ef94de9fa813f7ec746f9.html">ad_manager</a></li><li class="navelem"><a class="el" href="dir_856ffc64b248d0a2b7e4422eee01e4b8.html">packages</a></li><li class="navelem"><a class="el" href="dir_bd778fb6c24caa075c570fde73eda246.html">ad_manager_view</a></li><li class="navelem"><a class="el" href="ad__manager__view_8php.html">ad_manager_view.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:35:36 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:30:45 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

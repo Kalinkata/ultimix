@@ -71,7 +71,7 @@ $(document).ready(function(){initNavTree('classutilities__1__0__0.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a58cd63ceb05425607b5847933d6635a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities__1__0__0.html#a58cd63ceb05425607b5847933d6635a5">process_file</a> ($Files, $Path, $File, $Mask= '/.+/', $Recursive=true)</td></tr>
+<tr class="memitem:a16953a779ee22ee36cc9bc1f64c8fa68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities__1__0__0.html#a16953a779ee22ee36cc9bc1f64c8fa68">read_file</a> ($Files, $Path, $File, $Mask= '/.+/', $Recursive=true)</td></tr>
 <tr class="memitem:a2a24eed8950f0e72582128ea77e43296"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities__1__0__0.html#a2a24eed8950f0e72582128ea77e43296">get_files_from_directory</a> ($Path, $Mask= '/.+/', $Recursive=true)</td></tr>
 <tr class="memitem:a77ecfecbcd6c5aaffd7cd538b13790f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities__1__0__0.html#a77ecfecbcd6c5aaffd7cd538b13790f6">zip_directory</a> ($Directory, $ArchivePath)</td></tr>
 <tr class="memitem:afbc2dfd839f7d63f2503b2a039f676d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classutilities__1__0__0.html#afbc2dfd839f7d63f2503b2a039f676d7">pack_into_url</a> ($Params, $Exceptions)</td></tr>
@@ -201,7 +201,7 @@ Public Member Functions</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">for</span>( ; <span class="keyword">false</span> !== ( $File = readdir( $Handle ) ) ; )</div>
 <div class="line">                              {</div>
-<div class="line">                                    $Files = $this-&gt;<a class="code" href="classutilities__1__0__0.html#a58cd63ceb05425607b5847933d6635a5">process_file</a>( $Files , $Path , $File , $Mask , $Recursive );</div>
+<div class="line">                                    $Files = $this-&gt;<a class="code" href="classutilities__1__0__0.html#a16953a779ee22ee36cc9bc1f64c8fa68">read_file</a>( $Files , $Path , $File , $Mask , $Recursive );</div>
 <div class="line">                              }</div>
 <div class="line">                              </div>
 <div class="line">                              closedir( $Handle );</div>
@@ -405,12 +405,12 @@ Public Member Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a58cd63ceb05425607b5847933d6635a5"></a>
+<a class="anchor" id="a16953a779ee22ee36cc9bc1f64c8fa68"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_file </td>
+          <td class="memname">read_file </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$Files</em>, </td>
@@ -570,7 +570,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classutilities__1__0__0.html">utilities_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:33 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:49 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

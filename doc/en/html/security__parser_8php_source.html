@@ -160,7 +160,7 @@ $(document).ready(function(){initNavTree('security__parser_8php_source.html','')
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                  }</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            }</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_allow_not_set( $ScriptLine , $GlobalPredicates , $Result )</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_allow_not_set( $ScriptLine , $GlobalPredicates , $Result )</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            {</div>
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                  {</div>
@@ -221,7 +221,7 @@ $(document).ready(function(){initNavTree('security__parser_8php_source.html','')
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                        $ValueWasSet = <a class="code" href="functional__programming_8php.html#aa1fd93832d44523416dd7936f2863201">is_field_set</a>( $Params , $Name );</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                        <span class="keywordflow">if</span>( $ValueWasSet === <span class="keyword">false</span> )</div>
 <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;                        {</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                              $Result = $this-&gt;process_allow_not_set( $ScriptLine , $GlobalPredicates , $Result );</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;                              $Result = $this-&gt;handle_allow_not_set( $ScriptLine , $GlobalPredicates , $Result );</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;                        }</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                        {</div>
@@ -285,7 +285,7 @@ $(document).ready(function(){initNavTree('security__parser_8php_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_0d9fd6e510365ff9b4d522113f85b9a3.html">security</a></li><li class="navelem"><a class="el" href="dir_239b67bf3a78692e33020e1f677189dc.html">packages</a></li><li class="navelem"><a class="el" href="dir_822fedad17ac0cb9fb8b8f4d11eafaad.html">security_parser</a></li><li class="navelem"><a class="el" href="security__parser_8php.html">security_parser.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:09 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:14 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

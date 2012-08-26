@@ -1,9 +1,0 @@
-digraph "packages/database/packages/chronological/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_9e29d43dd7407de83abd117b75b27387 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_9e29d43dd7407de83abd117b75b27387.html"]
-  dir_a45a9910ab0ab9ce25dd968348e99447 [shape=box, label="chronological", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_a45a9910ab0ab9ce25dd968348e99447.html"];
-  }
-}

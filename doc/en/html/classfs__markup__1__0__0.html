@@ -73,17 +73,13 @@ $(document).ready(function(){initNavTree('classfs__markup__1__0__0.html','');});
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a7b05bcaa07abb1367d584a9c080ae15f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a7b05bcaa07abb1367d584a9c080ae15f">process_basename</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:ae4bb311c9974eb0dca44d4e0007940c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#ae4bb311c9974eb0dca44d4e0007940c1">get_template_path</a> ()</td></tr>
-<tr class="memitem:a00c0a8be4be17f16cff0afd5aca8b4a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a00c0a8be4be17f16cff0afd5aca8b4a9">process_image_path</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a67d5839ea3500619f2bee79f444cd942"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a67d5839ea3500619f2bee79f444cd942">process_package_path</a> ($Str, $Changed)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:a41e8a54691ba48d53717d72a6abaa208"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a41e8a54691ba48d53717d72a6abaa208">compile_basename</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a3709b8bd506a49648afdaa6cb66c0d46"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a3709b8bd506a49648afdaa6cb66c0d46">compile_image_path</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a6355827e26b1a9c55baad179483a23d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a6355827e26b1a9c55baad179483a23d6">compile_package_path</a> ($Str, $Changed)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
-<tr class="memitem:a1e5b144ad8adeb176a4a2897878f3de2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a1e5b144ad8adeb176a4a2897878f3de2">$MacroSettings</a> = false</td></tr>
-<tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 <tr class="memitem:a7ea6f92d15db5dbd0c755a01dcb2c77d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a7ea6f92d15db5dbd0c755a01dcb2c77d">$TemplateManager</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -107,13 +103,11 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00053">53</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00051">51</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;MacroSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;TemplateManager = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;template_manager&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -125,33 +119,40 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ae4bb311c9974eb0dca44d4e0007940c1"></a>
+<a class="anchor" id="a41e8a54691ba48d53717d72a6abaa208"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">get_template_path </td>
+          <td class="memname">compile_basename </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function returns path to the template package.</p>
-<dl class="section return"><dt>Returns</dt><dd>Path to the page's template.</dd></dl>
+<p>Function returns field value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Extraction parameters.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Field value.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00137">137</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00086">86</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;TemplateManager-&gt;get_template_path( $this-&gt;TemplateName , $this-&gt;TemplateVersion ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( basename( $Settings-&gt;get_setting( <span class="stringliteral">&#39;value&#39;</span> ) ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -161,38 +162,27 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a7b05bcaa07abb1367d584a9c080ae15f"></a>
+<a class="anchor" id="a3709b8bd506a49648afdaa6cb66c0d46"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_basename </td>
+          <td class="memname">compile_image_path </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Function processes macro 'basename'.</p>
+<p>Function compiles macro 'image_path'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
+    <tr><td class="paramname">$MacroSettings</td><td>- Compilation parameters.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML код.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
@@ -201,24 +191,29 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00094">94</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00165">165</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;basename&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
+<div class="line">                        $FileName = $Settings-&gt;get_setting( <span class="stringliteral">&#39;file_name&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                              $Str = str_replace( </div>
-<div class="line">                                    <span class="stringliteral">&quot;{basename:$Parameters}&quot;</span> , </div>
-<div class="line">                                    basename( $this-&gt;MacroSettings-&gt;get_setting( <span class="stringliteral">&#39;value&#39;</span> ) ) , </div>
-<div class="line">                                    $Str</div>
+<div class="line">                        <span class="keywordflow">if</span>( $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> , <span class="keyword">false</span> ) === false )</div>
+<div class="line">                        {</div>
+<div class="line">                              $RealFilePath = $this-&gt;get_path_from_template();</div>
+<div class="line">                        }</div>
+<div class="line">                        <span class="keywordflow">else</span></div>
+<div class="line">                        {</div>
+<div class="line">                              $PackageFilePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
+<div class="line">                                    $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> ) , $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
 <div class="line">                              );</div>
-<div class="line"></div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
+<div class="line">                              $RealFilePath = $PackageFilePath.<span class="stringliteral">&quot;/res/images/$FileName&quot;</span>;</div>
+<div class="line">                              <span class="keywordflow">if</span>( file_exists( $RealFilePath ) === false )</div>
+<div class="line">                              {</div>
+<div class="line">                                    <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&quot;File &#39;$FileName&#39; was not found&quot;</span> ) );</div>
+<div class="line">                              }</div>
 <div class="line">                        }</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $RealFilePath );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -228,78 +223,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a00c0a8be4be17f16cff0afd5aca8b4a9"></a>
+<a class="anchor" id="a6355827e26b1a9c55baad179483a23d6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_image_path </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes macro 'image_path'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00270">270</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $Limitations = array( <span class="stringliteral">&#39;file_name&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;image_path&#39;</span> , $Limitations ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
-<div class="line"></div>
-<div class="line">                              $RealFilePath = $this-&gt;compile_image_path( $this-&gt;MacroSettings );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{image_path:$Parameters}&quot;</span> , $RealFilePath , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a67d5839ea3500619f2bee79f444cd942"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_package_path </td>
+          <td class="memname">compile_package_path </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$Str</em>, </td>
@@ -334,95 +263,16 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00320">320</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00221">221</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;package_path&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;MacroSettings-&gt;load_settings( $Parameters );</div>
+<div class="line">                        $RealPackagePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
+<div class="line">                              $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> ) , </div>
+<div class="line">                              $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
+<div class="line">                        );</div>
 <div class="line"></div>
-<div class="line">                              $RealPackagePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
-<div class="line">                                    $this-&gt;MacroSettings-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> ) , </div>
-<div class="line">                                    $this-&gt;MacroSettings-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
-<div class="line">                              );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( </div>
-<div class="line">                                    <span class="stringliteral">&quot;{package_path:$Parameters}&quot;</span> , $RealPackagePath , $Str</div>
-<div class="line">                              );</div>
-<div class="line"></div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( array( $Str , $Changed ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Settings.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00378">378</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="comment">/* TODO: move it to auto_markup */</span></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classfs__markup__1__0__0.html#a7b05bcaa07abb1367d584a9c080ae15f">process_basename</a>( $Str , $Changed );</div>
-<div class="line"></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classfs__markup__1__0__0.html#a00c0a8be4be17f16cff0afd5aca8b4a9">process_image_path</a>( $Str , $Changed );</div>
-<div class="line"></div>
-<div class="line">                        list( $Str , $Changed ) = $this-&gt;<a class="code" href="classfs__markup__1__0__0.html#a67d5839ea3500619f2bee79f444cd942">process_package_path</a>( $Str , $Changed );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $RealPackagePath );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -449,34 +299,6 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1e5b144ad8adeb176a4a2897878f3de2"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$MacroSettings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00039">39</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a541f49d5b9cf7bae2f91f639abcf3458"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$String = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00040">40</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a7ea6f92d15db5dbd0c755a01dcb2c77d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -487,7 +309,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00041">41</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00039">39</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
 
 </div>
 </div>
@@ -500,7 +322,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classfs__markup__1__0__0.html">fs_markup_1_0_0</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:20 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

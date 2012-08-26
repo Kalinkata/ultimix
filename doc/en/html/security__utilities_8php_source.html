@@ -168,7 +168,7 @@ $(document).ready(function(){initNavTree('security__utilities_8php_source.html',
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                              <span class="keywordflow">return</span>( $this-&gt;Security-&gt;get( $Array[ $Field ] , $Type ) );</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                        }</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                        </div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;process_default_set( $Array , $Field , $Type , $DefaultValue ) );</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;handle_default_set( $Array , $Field , $Type , $DefaultValue ) );</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                  }</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                  {</div>
@@ -200,7 +200,7 @@ $(document).ready(function(){initNavTree('security__utilities_8php_source.html',
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                  }</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            }</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;            </div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_default_set( &amp;$Data , $Field , $Type , $DefaultValue )</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_default_set( &amp;$Data , $Field , $Type , $DefaultValue )</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            {</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                  {</div>
@@ -226,7 +226,7 @@ $(document).ready(function(){initNavTree('security__utilities_8php_source.html',
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                  }</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            }</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            </div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  process_get( $Field , $Mode )</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  handle_get( $Field , $Mode )</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            {</div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                  {</div>
@@ -307,12 +307,12 @@ $(document).ready(function(){initNavTree('security__utilities_8php_source.html',
 <div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;                              <span class="keywordflow">return</span>( $this-&gt;Security-&gt;get( $Return , $Type ) );</div>
 <div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;                        }</div>
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;                        <span class="keywordflow">if</span>( $Type !== <span class="stringliteral">&#39;set&#39;</span> &amp;&amp; ( $Value = $this-&gt;process_get( $Field , $Mode ) ) !== false )</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;                        <span class="keywordflow">if</span>( $Type !== <span class="stringliteral">&#39;set&#39;</span> &amp;&amp; ( $Value = $this-&gt;handle_get( $Field , $Mode ) ) !== false )</div>
 <div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;                        {</div>
 <div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;                              <span class="keywordflow">return</span>( $this-&gt;Security-&gt;get( $Value , $Type ) );</div>
 <div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;                        }</div>
 <div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;                        $Data = $this-&gt;merge_globals( $Mode );</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;process_default_set( $Data , $Field , $Type , $DefaultValue ) );</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;handle_default_set( $Data , $Field , $Type , $DefaultValue ) );</div>
 <div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;                  }</div>
 <div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;                  {</div>
@@ -345,7 +345,7 @@ $(document).ready(function(){initNavTree('security__utilities_8php_source.html',
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_0d9fd6e510365ff9b4d522113f85b9a3.html">security</a></li><li class="navelem"><a class="el" href="dir_239b67bf3a78692e33020e1f677189dc.html">packages</a></li><li class="navelem"><a class="el" href="dir_549a142baa70a5f904b344f072ec38e8.html">security_utilities</a></li><li class="navelem"><a class="el" href="security__utilities_8php.html">security_utilities.php</a></li>
-    <li class="footer">Generated on Wed Jul 25 2012 23:36:09 for ultimix by
+    <li class="footer">Generated on Fri Aug 17 2012 18:31:14 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

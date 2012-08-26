@@ -2,6 +2,7 @@ var classpage__parts__1__0__0 =
 [
     [ "__construct", "classpage__parts__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
     [ "call_processor_function", "classpage__parts__1__0__0.html#ac268113a385ddc41ec8b05cf9d0bd90a", null ],
+    [ "compile_controllers", "classpage__parts__1__0__0.html#ad396ac9149e5e4555cf04292c86ef654", null ],
     [ "compile_views", "classpage__parts__1__0__0.html#a5207ba92168b244231bcd15d4be5320f", null ],
     [ "execute_generators", "classpage__parts__1__0__0.html#a2caab490039794be4c3435941e6f716e", null ],
     [ "execute_processors", "classpage__parts__1__0__0.html#ab346b44cd7dc1b263c7f5f08a55e50ef", null ],
@@ -12,7 +13,6 @@ var classpage__parts__1__0__0 =
     [ "get_settings_for_package", "classpage__parts__1__0__0.html#a123ce0e3bc971df9a294936c9083d9aa", null ],
     [ "get_view", "classpage__parts__1__0__0.html#a0c3e7f65fbf61a7e48307959112ae2f7", null ],
     [ "load_settings_for_package", "classpage__parts__1__0__0.html#ab9d9440ccc2c259d374516340f40bc26", null ],
-    [ "process_controllers", "classpage__parts__1__0__0.html#aed2df2e316068351170cc3111d8cbd0b", null ],
     [ "throw_method_was_not_found_exception", "classpage__parts__1__0__0.html#a05c2bc0b01d881aed3c090ac3b39fce8", null ],
     [ "$Cache", "classpage__parts__1__0__0.html#a3d8adebf449f020eb1c7d05ea2b0a55e", null ],
     [ "$CachedMultyFS", "classpage__parts__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d", null ],

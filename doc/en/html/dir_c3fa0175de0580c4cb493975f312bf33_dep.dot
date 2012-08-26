@@ -1,9 +1,0 @@
-digraph "packages/security/packages/supported_data_types/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_239b67bf3a78692e33020e1f677189dc {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_239b67bf3a78692e33020e1f677189dc.html"]
-  dir_c3fa0175de0580c4cb493975f312bf33 [shape=box, label="supported_data_types", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_c3fa0175de0580c4cb493975f312bf33.html"];
-  }
-}

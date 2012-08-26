@@ -1,9 +1,0 @@
-digraph "packages/jquery/packages/jquery_simplemodal/include/js/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_e85cb0bca4d60b238000551e640007ab {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_e85cb0bca4d60b238000551e640007ab.html"]
-  dir_6644e82edbcab3b0d5f558ddd025458b [shape=box, label="js", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_6644e82edbcab3b0d5f558ddd025458b.html"];
-  }
-}

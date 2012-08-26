@@ -1,9 +1,0 @@
-digraph "packages/page/packages/page_composer_utilities/include/php/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_8e28f1e28d6f356db9add74cfe58269a {
-    graph [ bgcolor="#ddddee", pencolor="black", label="include" fontname="FreeSans.ttf", fontsize="10", URL="dir_8e28f1e28d6f356db9add74cfe58269a.html"]
-  dir_477fd26297398ec82096eb4ba291a0a1 [shape=box, label="php", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_477fd26297398ec82096eb4ba291a0a1.html"];
-  }
-}

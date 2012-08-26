@@ -1,9 +1,0 @@
-digraph "packages/jquery/packages/jquery_markup/" {
-  compound=true
-  node [ fontsize="10", fontname="FreeSans.ttf"];
-  edge [ labelfontsize="10", labelfontname="FreeSans.ttf"];
-  subgraph clusterdir_99f760642289980198ccec00c959708e {
-    graph [ bgcolor="#ddddee", pencolor="black", label="packages" fontname="FreeSans.ttf", fontsize="10", URL="dir_99f760642289980198ccec00c959708e.html"]
-  dir_7712e39cc73181b7ff0ffcc6ca3242db [shape=box, label="jquery_markup", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_7712e39cc73181b7ff0ffcc6ca3242db.html"];
-  }
-}

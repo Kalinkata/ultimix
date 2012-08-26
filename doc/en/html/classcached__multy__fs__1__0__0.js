@@ -16,7 +16,6 @@ var classcached__multy__fs__1__0__0 =
     [ "get_template", "classcached__multy__fs__1__0__0.html#abeeac0314409b7175dbc6bbe0ffcae40", null ],
     [ "load_mounted_storages_from_file", "classcached__multy__fs__1__0__0.html#afc430982c741219a42093acc9aeced19", null ],
     [ "load_mounted_storages_if_necessary", "classcached__multy__fs__1__0__0.html#aef8da9f499e5c90e9e7cbaf0529e8c45", null ],
-    [ "process_file_was_not_found_error", "classcached__multy__fs__1__0__0.html#a8d6d70bcb36cb507da10902413774d87", null ],
     [ "reset", "classcached__multy__fs__1__0__0.html#a4a20559544fdf4dcb457e258dc976cf8", null ],
     [ "transform_file_contents", "classcached__multy__fs__1__0__0.html#a987b537a60ec67eba1b724099c531743", null ],
     [ "$Cache", "classcached__multy__fs__1__0__0.html#a3d8adebf449f020eb1c7d05ea2b0a55e", null ],
