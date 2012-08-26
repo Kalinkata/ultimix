@@ -94,3 +94,34 @@ ultimix.package_manager.get_custom_list_form = function( Fuctions , Header , Ite
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
+
+/**
+*	Function deletes package.
+*
+*	@param Package - Package id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.package_manager.delete = function( Package , DataSelector )
+{
+	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
+		function( Result )
+		{
+			if( Result == ultimix.std_dialogs.MB_YES )
+			{
+				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+
+				ultimix.ajax_gate.direct_controller( 
+					{ 
+						'package_name' : 'core::package_manager' , 'package_context_action' : 'delete_record' , 
+						'comment_action' : 'delete_record' , 'package_record_id' : Package , 
+						'meta' : 'meta_delete_package'
+					} , 
+					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
+				);
+			}
+		}
+	)
+}

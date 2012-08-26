@@ -13,9 +13,9 @@ if( !ultimix )
 *
 *	@author Dodonov A.A.
 */
-if( !ultimix.comment )
+if( !ultimix.content )
 {
-	ultimix.comment = {};
+	ultimix.content = {};
 }
 
 /**
@@ -27,15 +27,15 @@ if( !ultimix.comment )
 *
 *	@author Dodonov A.A.
 */
-ultimix.comment.set_default_options = function( ViewOptions )
+ultimix.content.set_default_options = function( ViewOptions )
 {
 	if( !ViewOptions )
 	{
 		ViewOptions = {};
 	}
 
-	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_comment_list';
-	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'comment::comment_view';
+	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_content_list';
+	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'content::content_view';
 	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
 	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
 
@@ -51,14 +51,14 @@ ultimix.comment.set_default_options = function( ViewOptions )
 *
 *	@author Dodonov A.A.
 */
-ultimix.comment.get_list_form = function( Fuctions , ViewOptions )
+ultimix.content.get_list_form = function( Fuctions , ViewOptions )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
-	ViewOptions = ultimix.comment.set_default_options( ViewOptions );
+	ViewOptions = ultimix.content.set_default_options( ViewOptions );
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
@@ -78,32 +78,32 @@ ultimix.comment.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@author Dodonov A.A.
 */
-ultimix.comment.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
+ultimix.content.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
-	ViewOptions = ultimix.comment.set_default_options( ViewOptions );
+	ViewOptions = ultimix.content.set_default_options( ViewOptions );
 
-	ViewOptions.header = Header ? Header : 'comment_header.tpl';
-	ViewOptions.item = Item ? Item : 'comment_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'comment_footer.tpl';
+	ViewOptions.header = Header ? Header : 'content_header.tpl';
+	ViewOptions.item = Item ? Item : 'content_item.tpl';
+	ViewOptions.footer = Footer ? Footer : 'content_footer.tpl';
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
 
 /**
-*	Function deletes comment.
+*	Function deletes content.
 *
-*	@param CommentId - Comment id.
+*	@param Id - id of the entity.
 *
 *	@param DataSelector - Data selector.
 *
 *	@author Dodonov A.A.
 */
-ultimix.comment.delete = function( CommentId , DataSelector )
+ultimix.content.delete = function( Id , DataSelector )
 {
 	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
 		function( Result )
@@ -114,9 +114,9 @@ ultimix.comment.delete = function( CommentId , DataSelector )
 
 				ultimix.ajax_gate.direct_controller( 
 					{ 
-						'package_name' : 'comment::comment_controller' , 'comment_context_action' : 'delete_record' , 
-						'comment_action' : 'delete_record' , 'comment_record_id' : CommentId , 
-						'meta' : 'meta_delete_comment'
+						'package_name' : 'content::content_controller' , 
+						'content_context_action' : 'delete_record' , 'content_action' : 'delete_record' , 
+						'content_record_id' : Id , 'meta' : 'meta_delete_content'
 					} , 
 					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
 				);

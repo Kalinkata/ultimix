@@ -1,7 +1,7 @@
 				<form method="post" id="{prefix}_create_form" class="form_650">
 					<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="create_record_form">
 					<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="create_record">
-					{composer:condition={neq:value1={options:name=category_name};value2=}}
+					{composer:condition={neq:value1={options:name=category_name;default=0};value2=0}}
 					<input type="hidden" name="category" value="{category_id:names={options:name=category_name}}">
 {~composer}<center>
 						<table>
@@ -27,13 +27,12 @@
 									<input class="width_640 flat" type="text" name="title" value="{http_param:post=1;name=title}">
 								</td>
 							</tr>
-							{composer:condition={eq:value1={options:name=category_name};value2=}}<tr>
+							{composer:condition={eq:value1={options:name=category_name;default=0};value2=0}}<tr>
 								<td valign="top">
 									{lang:{prefix}_category}
 								</td>
 							</tr>
 							<tr>
-
 								<td valign="top">
 									{category:direct_category=9}
 								</td>

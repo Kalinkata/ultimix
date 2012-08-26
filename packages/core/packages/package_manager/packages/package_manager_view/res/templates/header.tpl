@@ -21,5 +21,5 @@
 							</td>{permit:package_manager}
 							<td align="left" width="0%" class="table_header">
 								{lang:package_actions}
-							</td>{permit:~package_manager}
+							</td>{~permit}
 						</tr>

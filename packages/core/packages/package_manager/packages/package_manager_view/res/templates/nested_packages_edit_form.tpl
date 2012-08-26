@@ -14,4 +14,4 @@
 										</td>
 									</tr>
 								</table>
-							</form>{permit:~edit_nested}{auth:~logged_in}
+							</form>{~permit}{~auth}

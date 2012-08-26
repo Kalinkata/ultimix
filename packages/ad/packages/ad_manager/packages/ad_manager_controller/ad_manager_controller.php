@@ -12,7 +12,10 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-		
+	
+	//TODO: move it to class ad_manager
+	//TODO: move all *_manager_controller classes to *_manager
+	
 	/**
 	*	\~russian Класс для управления компонентом.
 	*
