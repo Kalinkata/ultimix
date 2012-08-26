@@ -1,6 +1,0 @@
-$(
-	function ()
-	{
-		$( "{selector}" ).tree();
-	}
-);

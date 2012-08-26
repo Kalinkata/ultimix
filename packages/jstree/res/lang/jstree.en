@@ -1,7 +1,0 @@
-shure_to_delete_tree_item=Are you shure that you want to delete the selected element?
-nothing_was_selected=At least one element must be selected.
-select_tree_node_first=Select an item first
-cant_delete_this_item=Can't delete this element
-cant_edit_this_item=Can't update this element
-tree_new_item=New item
-cant_delete_root_node=Can't delete root node
