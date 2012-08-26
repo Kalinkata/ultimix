@@ -40,6 +40,7 @@
 		var					$CachedMultyFS = false;
 		var					$PageJS = false;
 		var					$String = false;
+		var					$Utilities = false;
 		
 		/**
 		*	\~russian Конструктор.
@@ -59,6 +60,7 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -134,11 +136,10 @@
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'component_button.tpl' );
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 
-				$Path = _get_package_relative_path_ex( 
-					$Settings->get_setting( 'package_name' ) , $Settings->get_setting( 'package_version' , 'last' )
-				);
+				$Path = $this->Utilities->get_package_path( $Settings );
+
 				$Icon = $Settings->get_setting( 'icon' );
-				$Code = str_replace( '{path_to_image}' , $Path."/res/images/$Icon" , $Code );
+				$Code = str_replace( '{path_to_image}' , "$Path/res/images/$Icon" , $Code );
 
 				return( $Code );
 			}
@@ -222,16 +223,13 @@
 
 				$Icon = $Settings->get_setting( 'icon' );
 
-				$PackageName = $Settings->get_setting( 'package_name' );
-				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
-
-				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
+				$Path = $this->Utilities->get_package_path( $Settings );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'menu_button.tpl' );
 
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 
-				return( str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code ) );
+				return( str_replace( '{path_to_image}' , "$Path/res/images/$Icon" , $Code ) );
 			}
 			catch( Exception $e )
 			{
@@ -268,13 +266,12 @@
 				$this->set_default_data_for_toolbar_button( $Settings );
 
 				$Icon = $Settings->get_setting( 'icon' );
-				$PackageName = $Settings->get_setting( 'package_name' );
-				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
-				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
+
+				$Path = $this->Utilities->get_package_path( $Settings );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'toolbar_button.tpl' );
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
-				$Code = str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code );
+				$Code = str_replace( '{path_to_image}' , "$Path/res/images/$Icon" , $Code );
 
 				return( $Code );
 			}
@@ -310,64 +307,22 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_toggle_button_icons( &$Settings )
-		{
-			try
-			{
-				$Value = $Settings->get_setting( 'value' , 0 );
-				$Icon = $Settings->get_setting( $Value ? 'icon' : 'icon_toggle' );
-				$IconToggle = $Settings->get_setting( $Value ? 'icon_toggle' : 'icon' );
-
-				return( array( $Icon , $IconToggle ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция компиляции кнопки.
-		*
-		*	@param $Code - Код кнопки.
-		*
-		*	@param $Settings - Параметры.
-		*
-		*	@return Скомпилированная кнопка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function compiles button.
-		*
-		*	@param $Code - Button code.
-		*
-		*	@param $Settings - Parameters.
-		*
-		*	@return Compiled button.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
 		private function	set_toggle_button_icons( $Code , &$Settings )
 		{
 			try
 			{
-				$PathToPackage = _get_package_relative_path_ex( 
-					$Settings->get_setting( 'package_name' ) , $Settings->get_setting( 'package_version' , 'last' )
-				);
+				$Path = $this->Utilities->get_package_path( $Settings );
 
-				list( $Icon , $IconToggle ) = $this->get_toggle_button_icons( $Settings );
+				$Value = $Settings->get_setting( 'value' , 0 );
+				$Icon = $Settings->get_setting( $Value ? 'icon' : 'icon_toggle' );
+				$IconToggle = $Settings->get_setting( $Value ? 'icon_toggle' : 'icon' );
 
 				$ToggleFunc = $Settings->get_setting( 'toggle_func' );
 
 				$Func = "ultimix.button_markup.ToggleButton( this , '$Icon' , '$IconToggle' , $ToggleFunc );";
 				$Code = str_replace( 
 					array( '{path_to_image}' , '{func}' , '{icon}' , '{icon_toggle}' ) , 
-					array( $PathToPackage."/res/images/$Icon" , $Func , $Icon , $IconToggle ) , $Code
+					array( "$Path/res/images/$Icon" , $Func , $Icon , $IconToggle ) , $Code
 				);
 
 				return( $Code );
@@ -419,7 +374,6 @@
 			}
 		}
 
-		//TODO: remove duplicate code - get_path_to_image method
 		//TODO: use run_controller_and_remove_dom_button macro anywhere
 		/**
 		*	\~russian Функция компиляции кнопки 'run_controller_and_remove_dom_button'.
@@ -450,12 +404,12 @@
 				$this->set_default_data_for_toolbar_button( $Settings );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'run_controller_and_remove_dom_button.tpl' );
+
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 
-				$PackageName = $Settings->get_setting( 'package_name' );
-				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
-				$PathToPackage = _get_package_relative_path_ex( $PackageName , $PackageVersion );
-				$Code = str_replace( '{path_to_image}' , $PathToPackage."/res/images/$Icon" , $Code );
+				$Path = $this->Utilities->get_package_path( $Settings );
+
+				$Code = str_replace( '{path_to_image}' , $Path."/res/images/$Icon" , $Code );
 
 				return( $Code );
 			}

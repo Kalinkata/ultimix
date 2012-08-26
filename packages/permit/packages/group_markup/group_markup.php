@@ -70,7 +70,7 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->GroupAccess = get_package( 'permit::group_access' , 'last' , __FILE__ );
-				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ ););
+				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )

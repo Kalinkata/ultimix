@@ -35,7 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$PageComposer = false;
+		var					$AutoMarkup = false;
 		var					$Security = false;
 		var					$Tags = false;
 	
@@ -111,7 +111,8 @@
 			try
 			{
 				$this->LastCallTime = microtime( true ) - $this->Timeout / 1000000;
-				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
+
+				$this->AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
 			}
@@ -205,7 +206,7 @@
 			{
 				$Str = $this->Tags->compile_ultimix_tags( $Str );
 
-				$this->PageComposer->execute_processors( $Str , 'post_process' );
+				$this->AutoMarkup->compile_string( $Str );
 
 				return( $Str );
 			}

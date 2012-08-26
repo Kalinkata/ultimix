@@ -39,10 +39,6 @@ ultimix.iterator = function( IteratingElements , BeforeNext , EndIteration )
 	return( this );
 }
 
-// TODO persistent cheñkbox
-// TODO persistent input
-// TODO persistent radiobutton
-
 /**
 *	Function moves to next element.
 *

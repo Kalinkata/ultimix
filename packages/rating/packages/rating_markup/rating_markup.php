@@ -85,7 +85,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	compile_rating( &Settings )
+		function	compile_rating( &$Settings )
 		{
 			try
 			{

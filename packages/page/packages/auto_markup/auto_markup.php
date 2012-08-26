@@ -40,6 +40,7 @@
 		var					$Options = false;
 		var					$Settings = false;
 		var					$StaticContentAccess = false;
+		var					$ConfigLines = false;
 		var					$String = false;
 		var					$Utilities = false;
 
@@ -111,6 +112,14 @@
 				{
 					$this->StaticContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_template_contents' );
 					$this->StaticContentConfigs = explode( "\n" , $this->StaticContentConfigs );
+
+					$this->ConfigLines = array();
+					foreach( $this->StaticContentConfigs as $k => $v )
+					{
+						$ConfigLine = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+						$ConfigLine->load_settings( $v );
+						$this->ConfigLines [] = $ConfigLine;
+					}
 				}
 			}
 			catch( Exception $e )
@@ -230,7 +239,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки простых макросов.
 		*
@@ -265,10 +274,9 @@
 		{
 			try
 			{
-				foreach( $this->StaticContentConfigs as $k => $v )
+				foreach( $this->ConfigLines as $k => $ConfigLine )
 				{
-					$this->Config->load_settings( $v );
-					if( ( $Name = $this->Config->get_setting( 'macro_name' , false ) ) === false )
+					if( ( $Name = $ConfigLine->get_setting( 'macro_name' , false ) ) === false )
 					{
 						continue;
 					}
@@ -276,8 +284,8 @@
 					if( strpos( $Str , '{'.$Name.'}' ) !== false )
 					{
 						$this->Settings->clear();
-						$this->set_default_values( $this->Settings , $this->Config );
-						$Content = $this->compile_macro( $this->Config , $this->Settings );
+						$this->set_default_values( $this->Settings , $ConfigLine );
+						$Content = $this->compile_macro( $ConfigLine , $this->Settings );
 						$Str = str_replace( '{'.$Name.'}' , $Content , $Str );
 						$Changed = true;
 					}
@@ -389,6 +397,8 @@
 		*
 		*	@param $Params - Параметры макроса.
 		*
+		*	@param $Config - Конфиг.
+		*
 		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
@@ -404,20 +414,22 @@
 		*
 		*	@param $Params - Macro parameters.
 		*
+		*	@param $Config - Config.
+		*
 		*	@return array( Processed string , Was the string changed ).
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_parametrized_macro( $Str , $Name , $Params )
+		private function	compile_parametrized_macro( $Str , $Name , $Params , &$Config )
 		{
 			try
 			{
 				$this->Settings->load_settings( $Params );
-				$this->set_default_values( $this->Settings , $this->Config );
+				$this->set_default_values( $this->Settings , $Config );
 
-				$Content = $this->compile_macro( $this->Config , $this->Settings );
+				$Content = $this->compile_macro( $Config , $this->Settings );
 
 				return( array( str_replace( '{'."$Name:$Params".'}' , $Content , $Str ) , true ) );
 			}
@@ -461,18 +473,19 @@
 		{
 			try
 			{
-				foreach( $this->StaticContentConfigs as $k => $v )
+				foreach( $this->ConfigLines as $k => $ConfigLine )
 				{
-					$this->Config->load_settings( $v );
-					if( ( $Name = $this->Config->get_setting( 'macro_name' , false ) ) === false )
+					if( ( $Name = $ConfigLine->get_setting( 'macro_name' , false ) ) === false )
 					{
 						continue;
 					}
-					$Rules = $this->get_rules( $this->Config );
+					$Rules = $this->get_rules( $ConfigLine );
 
 					for( ; $Params = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
 					{
-						list( $Str , $Changed ) = $this->compile_parametrized_macro( $Str , $Name , $Params );
+						list( $Str , $Changed ) = $this->compile_parametrized_macro( 
+							$Str , $Name , $Params , $ConfigLine
+						);
 					}
 				}
 
@@ -493,6 +506,8 @@
 		*
 		*	@param $Params - Параметры макроса.
 		*
+		*	@param $Config - Конфиг.
+		*
 		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
@@ -508,25 +523,28 @@
 		*
 		*	@param $Params - Macro params.
 		*
+		*	@param $Config - Config.
+		*
 		*	@return array( Processed string , Was the string changed ).
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_single_type_single_block( $Name , $Str , $Params )
+		private function	compile_single_type_single_block( $Name , $Str , $Params , &$Config )
 		{
 			try
 			{
 				$this->Settings->load_settings( $Params );
-				$this->set_default_values( $this->Settings , $this->Config );
+				$this->set_default_values( $this->Settings , $Config );
 
 				$Data = $this->String->get_block_data( $Str , "$Name:$Params" , "~$Name" );
 
-				$Content = $this->compile_block( $this->Config , $this->Settings , $Data );
+				$Content = $this->compile_block( $Config , $this->Settings , $Data );
 
-				$Str = str_replace( 
-					'{'."$Name:$Params".'}' , $Content.'{'."$Name:$Params".'}' , $Str
+				$Str = substr_replace( 
+					$Str , $Content.'{'."$Name:$Params".'}' , 
+					strpos( $Str , '{'."$Name:$Params".'}' ) , strlen( '{'."$Name:$Params".'}' )
 				);
 				$Changed = false;
 
@@ -537,7 +555,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки параметризованных блоков.
 		*
@@ -546,6 +564,8 @@
 		*	@param $Str - Строка требующая обработки.
 		*
 		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
+		*
+		*	@param $Config - Конфиг.
 		*
 		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
 		*
@@ -562,21 +582,25 @@
 		*
 		*	@param $Changed - true if any of the page's elements was compiled.
 		*
+		*	@param $Config - Config.
+		*
 		*	@return array( Processed string , Was the string changed ).
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_single_type_blocks( $Name , $Str , $Changed )
+		private function	compile_single_type_blocks( $Name , $Str , $Changed , &$Config )
 		{
 			try
 			{
-				$Rules = $this->get_rules( $this->Config );
+				$Rules = $this->get_rules( $Config );
 
 				for( ; $Params = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
 				{
-					list( $Str , $Changed ) = $this->compile_single_type_single_block( $Name , $Str , $Params );
+					list( $Str , $Changed ) = $this->compile_single_type_single_block(
+						$Name , $Str , $Params , $Config
+					);
 				}
 
 				return( array( $Str , $Changed ) );
@@ -621,15 +645,16 @@
 		{
 			try
 			{
-				foreach( $this->StaticContentConfigs as $k => $v )
+				foreach( $this->ConfigLines as $k => $ConfigLine )
 				{
-					$this->Config->load_settings( $v );
-					if( ( $Name = $this->Config->get_setting( 'block_name' , false ) ) === false )
+					if( ( $Name = $ConfigLine->get_setting( 'block_name' , false ) ) === false )
 					{
 						continue;
 					}
 
-					list( $Str , $Changed ) = $this->compile_single_type_blocks( $Name , $Str , $Changed );
+					list( $Str , $Changed ) = $this->compile_single_type_blocks( 
+						$Name , $Str , $Changed , $ConfigLine
+					);
 				}
 
 				return( array( $Str , $Changed ) );
@@ -686,50 +711,6 @@
 				}
 
 				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требующая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( &$Options , $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->compile_all_macroes( $Options , $Str , $Changed );
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

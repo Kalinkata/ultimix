@@ -147,17 +147,19 @@
 		{
 			try
 			{
+				$AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
+
 				if( $this->Security->get_gp( 'trace' , 'integer' , 0 ) )
 				{
 					$String = $PageComposer->Template->get_template();
 					$String = str_replace( '{trace}' , $this->Trace->compile_trace() , $String );
-					$String = $PageComposer->execute_processors( $String , 'post_process' );
+					$String = $AutoMarkup->compile_string( $String );
 					$PageComposer->Template->set_template( $String );
 				}
 				elseif( $this->Security->get_gp( 'trace_only' , 'integer' , 0 ) )
 				{
 					$String = $this->Trace->compile_trace();
-					$String = $PageComposer->execute_processors( $String , 'post_process' );
+					$String = $AutoMarkup->compile_string( $String );
 					print( $String );
 					exit( 0 );
 				}

@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс обработки макросов страницы.
 	*
@@ -37,7 +37,6 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$PageMarkupUtilities = false;
-		var					$PageParts = false;
 		var					$Security = false;
 
 		/**
@@ -91,9 +90,9 @@
 		{
 			try
 			{
-				if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
+				if( $Settings->get_setting( 'need_run' , 1 ) == 1 )
 				{
-					$this->PageMarkupUtilities->direct_controller( $this->Settings );
+					$this->PageMarkupUtilities->direct_controller( $Settings );
 				}
 
 				return( '' );
@@ -132,12 +131,12 @@
 			{
 				$this->Security->reset_s( 'direct_view' , true );
 
-				$this->Settings->set_undefined( 'view' , 1 );
+				$Settings->set_undefined( 'view' , 1 );
 
 				$Code = '';
-				if( $this->Settings->get_setting( 'need_run' , 1 ) == 1 )
+				if( $Settings->get_setting( 'need_run' , 1 ) == 1 )
 				{
-					$Code = $this->PageMarkupUtilities->direct_view( $this->Settings );
+					$Code = $this->PageMarkupUtilities->direct_view( $Settings );
 				}
 
 				$this->Security->reset_s( 'direct_view' , false );
@@ -229,7 +228,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макросов.
 		*
@@ -269,12 +268,12 @@
 					if( strpos( $Str , '{'.$Name.'}' ) !== false )
 					{
 						$Code = "{settings:package_name=page::page_composer;name=$Name;config_file_name=cf_site}";
-						
+
 						$Str = str_replace( '{'.$Name.'}' , $Code , $Str );
 						$Changed = true;
 					}
 				}
-				
+
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -282,7 +281,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макросов.
 		*
@@ -321,7 +320,7 @@
 				{
 					return( array( $Str , $Changed ) );
 				}
-				
+
 				foreach( $Names as $i => $Name )
 				{
 					if( strpos( $Str , '{'.$Name.'}' ) !== false )
@@ -333,7 +332,7 @@
 						$Changed = true;
 					}
 				}
-				
+
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -388,7 +387,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'for_pages'.
 		*
@@ -474,8 +473,8 @@
 				}
 				elseif( $MetaSettings->get_setting( 'post_process' , '0' ) != '0' )
 				{
-					$PageParts = get_package( 'page::page_parts' , 'last' , __FILE__ );
-					$Str = $PageParts->execute_processors( $Str , 'post_process' );
+					$AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
+					$Str = $AutoMarkup->compile_string( $Str );
 				}
 				$Str = str_replace( "{meta:$Parameters}" , $Code , $Str );
 				return( $Str );
@@ -514,12 +513,12 @@
 			{
 				$PackageName = $MacroSettings->get_setting( 'package_name' );
 				$PackageVersion = $MacroSettings->get_setting( 'package_version' , 'last' );
-				
+
 				$MetaFile = _get_package_relative_path_ex( $PackageName , $PackageVersion );
 				$MeatFile .= '/meta/'.$MacroSettings->get_setting( 'name' );
 
 				$MetaSettings->load_file( $MetaFile );
-				
+
 				$MetaSettings->set_setting( 'package_name' , $PackageName );
 				$MetaSettings->set_setting( 'package_version' , $PackageVersion );
 			}
@@ -557,7 +556,7 @@
 			{
 				$MetaSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->load_meta_settings( $Settings , $MetaSettings );
-				
+
 				$Str = $this->run_meta_settings( $MetaSettings , $Str );
 			}
 			catch( Exception $e )

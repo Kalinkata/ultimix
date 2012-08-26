@@ -60,6 +60,56 @@
 		}
 
 		/**
+		*	\~russian Компиляция макроса.
+		*
+		*	@param $Settings - Параметры выборки.
+		*
+		*	@param $TemplateName - Название шаблона.
+		*
+		*	@return HTML код.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compile macro.
+		**
+		*	@param $Settings - Fetch settings.
+		*
+		*	@param $TemplateName - Template name.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	compile_template( &$Settings , $TemplateName )
+		{
+			try
+			{
+				$Hash = $Settings->get_setting( 'hash' );
+				$Width = $Settings->get_setting( 'width' , '640' );
+				$Height = $Settings->get_setting( 'height' , '480' );
+				$Autoplay = $Settings->get_setting( 'autoplay' , '0' );
+
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , $TemplateName );
+
+				$Code = str_replace( 
+					array( '{hash}' , '{width}' , '{height}' , '{autoplay}' ) , 
+					array( $Hash , $Width , $Height , $Autoplay ) , $Code
+				);
+
+				return( $Code );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Компиляция макроса 'rutube'.
 		*
 		*	@param $Settings - Параметры выборки.
@@ -85,20 +135,7 @@
 		{
 			try
 			{
-				//TODO: remove duplicate code
-				$Hash = $Settings->get_setting( 'hash' );
-				$Width = $Settings->get_setting( 'width' , '640' );
-				$Height = $Settings->get_setting( 'height' , '480' );
-				$Autoplay = $Settings->get_setting( 'autoplay' , '0' );
-
-				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'rutube.tpl' );
-
-				$Code = str_replace( 
-					array( '{hash}' , '{width}' , '{height}' , '{autoplay}' ) , 
-					array( $Hash , $Width , $Height , $Autoplay ) , $Code
-				);
-
-				return( $Code );
+				return( $this->compile_template( &$Settings , 'rutube.tpl' ) );
 			}
 			catch( Exception $e )
 			{
@@ -132,19 +169,7 @@
 		{
 			try
 			{
-				$Hash = $Settings->get_setting( 'hash' );
-				$Width = $Settings->get_setting( 'width' , '640' );
-				$Height = $Settings->get_setting( 'height' , '480' );
-				$Autoplay = $Settings->get_setting( 'autoplay' , '0' );
-
-				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'youtube.tpl' );
-
-				$Code = str_replace( 
-					array( '{hash}' , '{width}' , '{height}' , '{autoplay}' ) , 
-					array( $Hash , $Width , $Height , $Autoplay ) , $Code
-				);
-
-				return( $Code );
+				return( $this->compile_template( &$Settings , 'youtube.tpl' ) );
 			}
 			catch( Exception $e )
 			{

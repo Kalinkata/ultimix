@@ -133,11 +133,11 @@ ultimix.ReSetRecordsPerPage = function( Prefix , Page , FormId , FieldName , Aja
 	{
 		if( Page )
 		{
-			ultimix.data_form.SubmitDataForm0( false , Page );
+			ultimix.data_form.submit_data( {} , false , Page );
 		}
 		else
 		{
-			ultimix.data_form.SubmitDataForm0( false , location.href );
+			ultimix.data_form.submit_data( {} , false , location.href );
 		}
 	}
 }

@@ -26,18 +26,6 @@
 	class	math_markup_1_0_0
 	{
 		/**
-		*	\~russian Закешированные объекты.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Cached objects.
-		*
-		*	@author Dodonov A.A.
-		*/
-		var					$String = false;
-
-		/**
 		*	\~russian Конструктор.
 		*
 		*	@author Додонов А.А.
@@ -51,7 +39,6 @@
 		{
 			try
 			{
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -62,11 +49,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'eq'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -75,34 +60,21 @@
 		/**
 		*	\~english Function processes macro 'eq'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_eq( $Str , $Changed )
+		function			compile_eq( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value1' => TERMINAL_VALUE , 'value2' => TERMINAL_VALUE );
+				list( $Val1 , $Val2 ) = $Settings->get_settings( 'value1,value2' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'eq' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					list( $Val1 , $Val2 ) = $this->MacroSettings->get_settings( 'value1,value2' );
-
-					$Str = str_replace( "{eq:$Parameters}" , $Val1 == $Val2 ? 1 : 0 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Val1 == $Val2 ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -113,11 +85,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'neq'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -126,34 +96,21 @@
 		/**
 		*	\~english Function processes macro 'neq'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_neq( $Str , $Changed )
+		function			compile_neq( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value1' => TERMINAL_VALUE , 'value2' => TERMINAL_VALUE );
+				list( $Val1 , $Val2 ) = $Settings->get_settings( 'value1,value2' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'neq' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					list( $Val1 , $Val2 ) = $this->MacroSettings->get_settings( 'value1,value2' );
-
-					$Str = str_replace( "{neq:$Parameters}" , $Val1 == $Val2 ? 0 : 1 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Val1 != $Val2 ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -164,11 +121,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'not'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -177,34 +132,21 @@
 		/**
 		*	\~english Function processes macro 'not'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_not( $Str , $Changed )
+		function			compile_not( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value' => TERMINAL_VALUE );
+				$Value = $Settings->get_setting( 'value' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'not' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					$Value = $this->MacroSettings->get_setting( 'value' );
-
-					$Str = str_replace( "{not:$Parameters}" , !$Value ? 1 : 0 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( !$Value ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -215,11 +157,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'gt'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -228,34 +168,21 @@
 		/**
 		*	\~english Function processes macro 'gt'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_gt( $Str , $Changed )
+		function			compile_gt( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value1' => TERMINAL_VALUE , 'value2' => TERMINAL_VALUE );
+				list( $Val1 , $Val2 ) = $Settings->get_settings( 'value1,value2' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'gt' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					list( $Val1 , $Val2 ) = $this->MacroSettings->get_settings( 'value1,value2' );
-
-					$Str = str_replace( "{gt:$Parameters}" , $Val1 > $Val2 ? 1 : 0 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Val1 > $Val2 ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -266,11 +193,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'lt'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -279,34 +204,21 @@
 		/**
 		*	\~english Function processes macro 'lt'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_lt( $Str , $Changed )
+		function			compile_lt( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value1' => TERMINAL_VALUE , 'value2' => TERMINAL_VALUE );
+				list( $Val1 , $Val2 ) = $Settings->get_settings( 'value1,value2' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'lt' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					list( $Val1 , $Val2 ) = $this->MacroSettings->get_settings( 'value1,value2' );
-
-					$Str = str_replace( "{lt:$Parameters}" , $Val1 < $Val2 ? 1 : 0 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Val1 < $Val2 ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -317,11 +229,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'gte'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -330,34 +240,21 @@
 		/**
 		*	\~english Function processes macro 'gte'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_gte( $Str , $Changed )
+		function			compile_gte( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value1' => TERMINAL_VALUE , 'value2' => TERMINAL_VALUE );
+				list( $Val1 , $Val2 ) = $Settings->get_settings( 'value1,value2' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'gte' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					list( $Val1 , $Val2 ) = $this->MacroSettings->get_settings( 'value1,value2' );
-
-					$Str = str_replace( "{gte:$Parameters}" , $Val1 >= $Val2 ? 1 : 0 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Val1 >= $Val2 ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -368,11 +265,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'lte'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -381,34 +276,21 @@
 		/**
 		*	\~english Function processes macro 'lte'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_lte( $Str , $Changed )
+		function			compile_lte( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'value1' => TERMINAL_VALUE , 'value2' => TERMINAL_VALUE );
+				list( $Val1 , $Val2 ) = $Settings->get_settings( 'value1,value2' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'lte' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					list( $Val1 , $Val2 ) = $this->MacroSettings->get_settings( 'value1,value2' );
-
-					$Str = str_replace( "{lte:$Parameters}" , $Val1 <= $Val2 ? 1 : 0 , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Val1 <= $Val2 ? 1 : 0 );
 			}
 			catch( Exception $e )
 			{
@@ -419,11 +301,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'odd'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -432,39 +312,21 @@
 		/**
 		*	\~english Function processes macro 'odd'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_odd( $Str , $Changed )
+		function			compile_odd( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'odd' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
+				$Settings->load_settings( $Parameters );
 
-					if( intval( $this->MacroSettings->get_setting( 'value' ) ) % 2 == 1 )
-					{
-						$Str = str_replace( 
-							"{odd:$Parameters}" , $this->MacroSettings->get_setting( 'content' ) , $Str 
-						);
-					}
-					else
-					{
-						$Str = str_replace( "{odd:$Parameters}" , '' , $Str );
-					}
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( intval( $Settings->get_setting( 'value' ) ) % 2 == 1 );
 			}
 			catch( Exception $e )
 			{
@@ -475,11 +337,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'even'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -488,39 +348,21 @@
 		/**
 		*	\~english Function processes macro 'even'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_even( $Str , $Changed )
+		function			compile_even( &$Settings )
 		{
 			try
 			{
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'even' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
+				$Settings->load_settings( $Parameters );
 
-					if( intval( $this->MacroSettings->get_setting( 'value' ) ) % 2 == 0 )
-					{
-						$Str = str_replace( 
-							"{even:$Parameters}" , $this->MacroSettings->get_setting( 'content' ) , $Str 
-						);
-					}
-					else
-					{
-						$Str = str_replace( "{even:$Parameters}" , '' , $Str );
-					}
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( intval( $Settings->get_setting( 'value' ) ) % 2 == 0 );
 			}
 			catch( Exception $e )
 			{
@@ -531,11 +373,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'if'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Результат.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -544,36 +384,23 @@
 		/**
 		*	\~english Function processes macro 'if'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Settings.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Result.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_if( $Str , $Changed )
+		function			compile_if( &$Settings )
 		{
 			try
 			{
-				$Limitations = array( 'cond' => TERMINAL_VALUE , 'condition' => TERMINAL_VALUE );
+				$Cond = $Settings->get_setting( 'condition' , false );
+				$Then = $Settings->get_setting( 'then' , '' );
+				$Else = $Settings->get_setting( 'else' , '' );
 
-				for( ; $Parameters = $this->String->get_macro_parameters( $Str , 'if' , $Limitations ) ; )
-				{
-					$this->MacroSettings->load_settings( $Parameters );
-
-					$Cond = $this->MacroSettings->get_setting( 'condition' , false );
-					$Then = $this->MacroSettings->get_setting( 'then' , '' );
-					$Else = $this->MacroSettings->get_setting( 'else' , '' );
-
-					$Str = str_replace( "{if:$Parameters}" , $Cond == 0 ? $Else : $Then , $Str );
-
-					$Changed = true;
-				}
-
-				return( array( $Str , $Changed ) );
+				return( $Cond == 0 ? $Else : $Then );
 			}
 			catch( Exception $e )
 			{
@@ -624,99 +451,6 @@
 				}
 
 				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	compile_compare( $Str , &$Changed )
-		{
-			try
-			{
-				list( $Str , $Changed ) = $this->compile_lte( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_gte( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_gt( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_lt( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_eq( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_neq( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_not( $Str , $Changed );
-				return( array( $Str , $Changed ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция обработки строки.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@param $Str - Строка требуюшщая обработки.
-		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes string.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			process_string( $Options , $Str , &$Changed )
-		{
-			try
-			{
-				/* TODO: move it to auto_markup */
-				list( $Str , $Changed ) = $this->compile_odd( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_even( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_compare( $Str , $Changed );
-				list( $Str , $Changed ) = $this->compile_if( $Str , $Changed );
-
-				return( $Str );
 			}
 			catch( Exception $e )
 			{

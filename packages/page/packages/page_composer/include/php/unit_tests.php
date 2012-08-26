@@ -491,38 +491,6 @@
 		}
 
 		/**
-		*	\~russian Проверка наличия функций process_string в не markup пакетах.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing process_string in the non markup packages.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_process_string()
-		{
-			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
-			{
-				if( strpos( $Files[ $i ] , 'unit_tests.php' ) === false )
-				{
-					$Bodies = get_function_bodies( file_get_contents( $Files[ $i ] ) );
-					foreach( $Bodies as $FunctionName => $Body )
-					{
-						if( in_array( $FunctionName , array( 'process_string' , 'post_process' , 'pre_process' ) ) && 
-							strpos( $Files[ $i ] , 'markup.php' ) === false )
-						{
-							$Errors++;
-							print( "<nobr>".$Files[ $i ]."</nobr><br>" );
-						}
-					}
-				}
-			}
-			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
-		}
-
-		/**
 		*	\~russian Проверка наличия функций process_*.
 		*
 		*	@author Додонов А.А.
@@ -601,9 +569,11 @@
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
+				$FileName = basename( $Files[ $i ] , '.php' );
+				if( strpos( $Files[ $i ] , '_view.php' ) !== false && $FileName !== 'lang_view' && 
+					$FileName !== 'graph_view' && $FileName !== 'json_view' )
 				{
-					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
+					$Path = dirname( $Files[ $i ] )."/include/js/$FileName.js";
 					if( file_exists( $Path ) === false )
 					{
 						$Errors++;

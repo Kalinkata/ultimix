@@ -9,6 +9,5 @@ user::user_controller#last#controller=1;login=1;context=cfcx_login#
 user::user_controller#last#controller=1;logout=1;context=cfcx_logout#
 user::user_view#last#view=1;login_form=1;context=cfcx_login_form;cached=1#menu
 user::user_view#last#view=1;logout_form=1;context=cfcx_logout_form;cached=1#menu
-user::user_markup#last#post_process=1#
 page::page_composer#last#post_generation=1#
 page::auto_markup#last#post_process=1#

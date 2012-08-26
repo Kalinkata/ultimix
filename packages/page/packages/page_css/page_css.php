@@ -398,9 +398,7 @@
 		/**
 		*	\~russian Компиляция стилей.
 		*
-		*	@param $Str - Контент страницы.
-		*
-		*	@return Страница со стилями.
+		*	@return Стили.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
@@ -409,15 +407,13 @@
 		/**
 		*	\~english Function commpiles style sheets.
 		*
-		*	@param $Str - Page content.
-		*
-		*	@return Page with style sheets.
+		*	@return Stylesheets.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_stylesheets( $Str )
+		private function	get_stylesheets_content()
 		{
 			try
 			{
@@ -425,18 +421,7 @@
 				$Start = $this->CachedMultyFS->get_template( __FILE__ , 'stylesheet_link_start.tpl' );
 				$End = $this->CachedMultyFS->get_template( __FILE__ , 'stylesheet_link_end.tpl' );
 
-				$HeaderContent = $Start.implode_ex( $End.$Start , $this->CSSFiles , 'path' ).$End;
-				
-				if( strpos( $Str , '{header}' ) !== false )
-				{
-					$Str = str_replace( '{header}' , $HeaderContent.'{header}' , $Str );
-				}
-				else
-				{
-					$Str = str_replace( '</head>' , $HeaderContent.'</head>' , $Str );
-				}
-
-				return( $Str );
+				return( $Start.implode_ex( $End.$Start , $this->CSSFiles , 'path' ).$End );
 			}
 			catch( Exception $e )
 			{
@@ -447,9 +432,9 @@
 		/**
 		*	\~russian Вывод стилей.
 		*
-		*	@param $Str - Контент страницы.
+		*	@param $Settings - Параметры.
 		*
-		*	@return Страница со стилями.
+		*	@return Стили.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
@@ -458,26 +443,28 @@
 		/**
 		*	\~english Function outputs style sheets.
 		*
-		*	@param $Str - Page content.
+		*	@param $Settings - Settings.
 		*
-		*	@return Page with style sheets.
+		*	@return Stylesheets.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			output_stylesheets( $Str )
+		function			compile_stylesheets( &$Settings )
 		{
 			try
 			{
+				$Content = '';
+
 				if( is_array( $this->CSSFiles ) && count( $this->CSSFiles ) )
 				{
-					$Str = $this->compile_stylesheets( $Str );
+					$Content = $this->get_stylesheets_content();
 				}
 
 				$this->CSSFiles = array();
 
-				return( $Str );
+				return( $Content );
 			}
 			catch( Exception $e )
 			{

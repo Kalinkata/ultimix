@@ -102,6 +102,7 @@
 			try
 			{
 				$Parameters = '';
+				//TODO: mpve to auto_markup
 				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'template_content' ) ; )
 				{
 					$this->BlockSettings->load_settings( $Parameters );

@@ -69,7 +69,7 @@
 		/**
 		*	\~russian Функция компиляции макроса 'textarea'.
 		*
-		*	@param $Setings - Параметры.
+		*	@param $Settings - Параметры.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -78,13 +78,13 @@
 		/**
 		*	\~english Function compiles macro 'textarea'.
 		*
-		*	@param $Setings - Parameters.
+		*	@param $Settings - Parameters.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	prepare_textarea_settings( &$Setings )
+		private function	prepare_textarea_settings( &$Settings )
 		{
 			try
 			{

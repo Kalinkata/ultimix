@@ -208,60 +208,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция запуска стейта удаления.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts delete sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			delete_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$ContextSet->Trace->start_group( "{lang:delete_state}" );
-				
-				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				
-				if( $Action == 'delete_record' )
-				{
-					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'delete' );
-					$ContextSet->Trace->end_group();
-					return( $Result );
-				}
-				else
-				{
-					$this->not_processed( $ContextSet , 'delete' , 'delete_record' );
-					$ContextSet->Trace->end_group();
-					return( false );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция запуска стейта формы создания.
 		*
@@ -296,6 +243,8 @@
 
 				$ContextAction = $this->Security->get_gp( $this->Prefix.'_context_action' , 'command' , '' );
 
+				//TODO: store page permits in db
+
 				if( $ContextAction == 'create_record_form' || $Options->get_setting( 'direct_create' , 0 ) != 0 )
 				{
 					$Result = $this->StartupUtilities->try_run_view_state( $ContextSet , $Options , 'create' );
@@ -314,7 +263,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция запуска стейта формы редактирвоания.
 		*
@@ -368,61 +317,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция запуска стейта редактирования.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts update sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			update_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$ContextSet->Trace->start_group( "{lang:update_state}" );
-				
-				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				$Direct = $Options->get_setting( 'direct_update' , 0 );
-				
-				if( $Action == 'update_record' || $Direct != 0 )
-				{
-					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'update' );
-					$ContextSet->Trace->end_group();
-					return( $Result );
-				}
-				else
-				{
-					$this->not_processed( $ContextSet , 'update' , 'update_record' );
-					$ContextSet->Trace->end_group();
-					return( false );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция запуска стейта формы копирования.
 		*
@@ -476,13 +371,15 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция запуска стейта копирования.
+		*	\~russian Функция запуска контроллера.
 		*
 		*	@param $ContextSet - Набор контекстов.
 		*
 		*	@param $Options - Параметры выполнения.
+		*
+		*	@param $State - Название стейта.
 		*
 		*	@return true если стейт был обработан.
 		*
@@ -491,11 +388,13 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function starts copy sate.
+		*	\~english Function starts controller.
 		*
 		*	@param $ContextSet - Set of contexts.
 		*
 		*	@param $Options - Execution parameters.
+		*
+		*	@param $State - State name.
 		*
 		*	@return true if the state was processed.
 		*
@@ -503,78 +402,24 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			copy_state_startup( &$ContextSet , &$Options )
+		private function	controller_state_startup( &$ContextSet , &$Options , $State )
 		{
 			try
 			{
-				$ContextSet->Trace->start_group( "{lang:copy_state}" );
+				$ContextSet->Trace->start_group( '{lang:'.$State.'_state}' );
 
 				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				$Direct = $Options->get_setting( 'direct_copy' , 0 );
+				$Direct = $Options->get_setting( 'direct_'.$State , 0 );
 
-				if( $Action == 'copy_record' || $Direct != 0 )
+				if( $Action == $State.'_record' || $Direct != 0 )
 				{
-					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'copy' );
+					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , $State );
 					$ContextSet->Trace->end_group();
 					return( $Result );
 				}
 				else
 				{
-					$this->not_processed( $ContextSet , 'copy' , 'copy_record' );
-					$ContextSet->Trace->end_group();
-					return( false );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция запуска стейта создания.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return true если стейт был обработан.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function starts create sate.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return true if the state was processed.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			create_state_startup( &$ContextSet , &$Options )
-		{
-			try
-			{
-				$ContextSet->Trace->start_group( "{lang:create_state}");
-
-				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
-				$Direct = $Options->get_setting( 'direct_create' , 0 );
-
-				if( $Action == 'create_record' || $Direct != 0 )
-				{
-					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , 'create' );
-					$ContextSet->Trace->end_group();
-					return( $Result );
-				}
-				else
-				{
-					$this->not_processed( $ContextSet , 'create' , 'create_record' );
+					$this->not_processed( $ContextSet , $State , $State.'_record' );
 					$ContextSet->Trace->end_group();
 					return( false );
 				}
@@ -664,19 +509,19 @@
 
 				if( $Next && $this->run_it( $Options , 'delete' ) )
 				{
-					$Next = $this->delete_state_startup( $ContextSet , $Options ) === false;
+					$Next = $this->controller_state_startup( $ContextSet , $Options , 'delete' ) === false;
 				}
 				if( $Next && $this->run_it( $Options , 'create' ) )
 				{
-					$Next = $this->create_state_startup( $ContextSet , $Options ) === false;
+					$Next = $this->controller_state_startup( $ContextSet , $Options , 'create' ) === false;
 				}
 				if( $Next && $this->run_it( $Options , 'update' ) )
 				{
-					$Next = $this->update_state_startup( $ContextSet , $Options ) === false;
+					$Next = $this->controller_state_startup( $ContextSet , $Options , 'update' ) === false;
 				}
 				if( $Next && $this->run_it( $Options , 'copy' ) )
 				{
-					$Next = $this->copy_state_startup( $ContextSet , $Options ) === false;
+					$Next = $this->controller_state_startup( $ContextSet , $Options , 'copy' ) === false;
 				}
 
 				return( !$Next );

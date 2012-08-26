@@ -306,7 +306,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_header_content()
+		private function	get_scripts_content()
 		{
 			try
 			{
@@ -337,9 +337,9 @@
 		/**
 		*	\~russian Вывод скриптов.
 		*
-		*	@param $Str - Контент страницы.
+		*	@param $Settings - Параметры.
 		*
-		*	@return Страница со скриптами.
+		*	@return Скрипты.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
@@ -348,35 +348,28 @@
 		/**
 		*	\~english Function outputs scripts.
 		*
-		*	@param $Str - Page content.
+		*	@param $Settings - Settings.
 		*
-		*	@return Page with scripts.
+		*	@return Scripts.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			output_scripts( $Str )
+		function			compile_scripts( &$Settings )
 		{
 			try
 			{
+				$Content = '';
+
 				if( is_array( $this->JSFiles ) && count( $this->JSFiles ) )
 				{
-					$Content = $this->get_header_content();
-
-					if( strpos( $Str , '{header}' ) !== false )
-					{
-						$Str = str_replace( '{header}' , $Content.'{header}' , $Str );
-					}
-					else
-					{
-						$Str = str_replace( '</head>' , $Content.'</head>' , $Str );
-					}
+					$Content = $this->get_scripts_content();
 				}
 
 				$this->JSFiles = array();
 
-				return( $Str );
+				return( $Content );
 			}
 			catch( Exception $e )
 			{

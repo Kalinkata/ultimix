@@ -35,10 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$AutoMarkup = false;
 		var					$CachedMultyFS = false;
 		var					$ContextSetUtilities = false;
 		var					$DefaultViewsUtilities = false;
-		var					$PageComposer = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$UserAlgorithms = false;
@@ -97,6 +97,7 @@
 		{
 			try
 			{
+				$this->AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->ContextSetUtilities = get_package( 
 					'gui::context_set::context_set_utilities' , 'last' , __FILE__
@@ -104,7 +105,6 @@
 				$this->DefaultViewsUtilities = get_package( 
 					'gui::context_set::default_views::default_views_utilities' , 'last' , __FILE__
 				);
-				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
@@ -184,9 +184,7 @@
 					$Options , $this->Provider->Output
 				);
 
-				$this->Provider->Output = $this->PageComposer->execute_processors( 
-					$this->Provider->Output , 'process_string'
-				);
+				$this->Provider->Output = $this->AutoMarkup->compile_string( $this->Provider->Output );
 			}
 			catch( Exception $e )
 			{

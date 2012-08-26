@@ -48,7 +48,6 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Settings = false;
-		var					$PageParser = false;
 		var					$String = false;
 
 		/**
@@ -66,7 +65,6 @@
 			try
 			{
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->PageParser = get_package( 'page::page_parser' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -178,7 +176,7 @@
 		}
 
 		/**
-		*	\~russian Функция обработки макроса 'set_var'.
+		*	\~russian Функция обработки макроса 'get_var'.
 		*
 		*	@param $Settings - Настройки.
 		*
@@ -189,7 +187,7 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes macro 'set_var'.
+		*	\~english Function processes macro 'get_var'.
 		*
 		*	@param $Settings - Settings.
 		*

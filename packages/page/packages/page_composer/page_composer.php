@@ -13,8 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	//TODO: remove page_parts::execute_processors and replace with auto_markup::sprocess_string
-
 	/**
 	*	\~russian Компоновщик страниц.
 	*
@@ -101,6 +99,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$AutoMarkup = false;
 		var					$Messages = false;
 		var					$PageAccess = false;
 		var					$PageComposerUtilities = false;
@@ -131,6 +130,7 @@
 		{
 			try
 			{
+				$this->AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
 				$this->PageAccess = get_package( 'page::page_access' , 'last' , __FILE__ );
 				$this->PageComposerUtilities = get_package( 'page::page_composer_utilities' , 'last' , __FILE__ );
 				$this->PageCSS = get_package( 'page::page_css' , 'last' , __FILE__ );
@@ -212,39 +212,6 @@
 		}
 
 		/**
-		*	\~russian Функция постгенерационных действий.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function executes after any page generating actions took place.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			post_generation( $Options )
-		{
-			try
-			{
-				$Str = $this->Template->get_template();
-				$Str = $this->PageCSS->output_stylesheets( $Str );
-				$Str = $this->PageJS->output_scripts( $Str );
-				$this->Template->set_template( $Str );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-	
-		/**
 		*	\~russian Действия, предшествующие генерации страницы.
 		*
 		*	@param $PageName - Имя компонуемой страницы.
@@ -286,7 +253,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Установка метаданных для страницы.
 		*
@@ -318,7 +285,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка раскладки шаблона.
 		*
@@ -350,7 +317,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка данных для генерации страницы.
 		*
@@ -440,7 +407,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Генерация страницы.
 		*
@@ -475,8 +442,10 @@
 					$Str = str_replace( '{layout}' , '{include:'.$this->Layout.'}' , $Str );
 				}
 
-				$Str = $this->PageParts->execute_processors( $this->Packages , $Str , 'pre_process' );
+				//$Str = $this->AutoMarkup->compile_string( $Str , 'before' );
+
 				$Str = $this->apply_options( $Str , $PageDescription[ 'options' ] );
+
 				$Template->set_template( $Str );
 			}
 			catch( Exception $e )
@@ -484,45 +453,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Обработка постпроцессинга.
-		*
-		*	@param $Str - Строка для обработки.
-		*
-		*	@param $Type - Тип процессора для запуска.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function runs postprocessing.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Type - Processor type.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			execute_processors( $Str , $Type )
-		{
-			try
-			{
-				return( $this->PageParts->execute_processors( $this->Packages , $Str , $Type ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Генерация страницы.
 		*
@@ -550,10 +481,10 @@
 			try
 			{
 				$Str = $Template->get_template();
-				$Str = $this->execute_processors( $Str , 'post_process' );
-				$Template->set_template( $Str );
 
-				$this->PageParts->execute_generators( $this->Packages , 'post_generation' , $Template );
+				$Str = $this->AutoMarkup->compile_string( $Str );
+
+				$Template->set_template( $Str );
 
 				$this->PageComposerUtilities->output_trace_if_necessary( $this );
 			}

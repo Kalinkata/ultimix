@@ -36,8 +36,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$PageParser = false;
-		var					$Security = false;
 		var					$Utilities = false;
 
 		/**
@@ -54,8 +52,6 @@
 		{
 			try
 			{
-				$this->PageParser = get_package( 'page::page_parser' , 'last' , __FILE__ );
-				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -90,7 +86,7 @@
 		{
 			try
 			{
-				return( $this->Utilities->detect_browser() , $Str ) );
+				return( $this->Utilities->detect_browser() );
 			}
 			catch( Exception $e )
 			{
@@ -143,5 +139,5 @@
 			}
 		}
 	}
-	
+
 ?>

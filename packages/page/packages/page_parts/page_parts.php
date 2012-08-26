@@ -73,57 +73,6 @@
 		}
 
 		/**
-		*	\~russian Функция поиска обработчика.
-		*
-		*	@param $PackageObject - Объект пакета.
-		*
-		*	@param $RequestionFunction - Тип процессора для запуска.
-		*
-		*	@return Название реального обработчика.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function searches processor.
-		*
-		*	@param $PackageObject - Package object.
-		*
-		*	@param $RequestionFunction - Processor type to run.
-		*
-		*	@return Name of the real processor.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_function_name( $PackageObject , $RequestionFunction )
-		{
-			try
-			{
-				if( $RequestionFunction == 'post_process' || $RequestionFunction == 'pre_process' )
-				{
-					if( method_exists( $PackageObject , $RequestionFunction ) )
-					{
-						return( $RequestionFunction );
-					}
-				}
-
-				if( method_exists( $PackageObject , 'process_string' ) )
-				{
-					return( 'process_string' );
-				}
-
-				return( false );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Выбрасывание исключения о ненайденном методе.
 		*
 		*	@param $p - Информация о пакете.
@@ -540,69 +489,6 @@
 		}
 
 		/**
-		*	\~russian Функция вызова обработчика.
-		*
-		*	@param $p - Объект пакета.
-		*
-		*	@param $String - Строка для обработки.
-		*
-		*	@param $Changed - Была ли обработана строка.
-		*
-		*	@param $Type - Тип процессора.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function calls processor.
-		*
-		*	@param $p - Fetched object.
-		*
-		*	@param $String - String to process.
-		*
-		*	@param $Changed - Was the string processed.
-		*
-		*	@param $Type - Processor's type.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			call_processor_function( &$p , $String , &$Changed , $Type )
-		{
-			try
-			{
-				$RealType = $this->get_function_name( $p[ 'fetched_package' ] , $Type );
-
-				if( $RealType === false && $Type == 'process_string' )
-				{
-					/* nop */
-				}
-				elseif( $RealType === false  )
-				{
-					$this->throw_method_was_not_found_exception( $p , $Type );
-				}
-				else
-				{
-					$Caller = array( $p[ 'fetched_package' ] , $RealType );
-					$CallParameters = array( $p[ 'settings' ] , $String , &$Changed );
-					$String = call_user_func_array( $Caller , $CallParameters );
-				}
-
-				return( $String );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Обработка генераторов.
 		*
 		*	@param $Packages - Пакеты.
@@ -653,66 +539,6 @@
 					}
 				}
 				$this->Trace->end_group();
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Обработка постпроцессинга.
-		*
-		*	@param $Packages - Пакеты.
-		*
-		*	@param $String - Строка для обработки.
-		*
-		*	@param $Type - Тип процессора для запуска.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function runs postprocessing.
-		*
-		*	@param $Packages - Packages.
-		*
-		*	@param $String - String to process.
-		*
-		*	@param $Type - Processor type.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			execute_processors( &$Packages , $String , $Type )
-		{
-			try
-			{
-				$this->Trace->start_group( "$Type" );
-
-				do
-				{
-					$Changed = false;
-
-					foreach( $Packages as $i => $p )
-					{
-						if( $Type == 'process_string' || $p[ 'settings' ]->get_setting( $Type , false ) )
-						{
-							$String = $this->call_processor_function( $p , $String , $Changed , $Type );
-						}
-					}
-				}
-				while( $Changed );
-
-				$this->Trace->end_group();
-
-				return( $String );
 			}
 			catch( Exception $e )
 			{

@@ -210,6 +210,80 @@ ultimix.std_dialogs.message_box_create = function( id , DialogData , Class , Tex
 }
 
 /**
+*	Function returns caption.
+*
+*	@param Caption - Caption.
+*
+*	@return Caption.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.get_caption = function( Caption )
+{
+	if( !Caption )
+	{
+		Caption = 'MessageBox';
+	}
+	
+	return( Caption );
+}
+
+/**
+*	Function returns style.
+*
+*	@param Style - Style.
+*
+*	@return Style.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.get_style = function( Style )
+{
+	if( !Style )
+	{
+		Style = ultimix.std_dialogs.MB_OK;
+	}
+	
+	return( Style );
+}
+
+/**
+*	Function returns modal.
+*
+*	@param Style - Style.
+*
+*	@return Style.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.get_modal = function( Style )
+{
+	var			Modal = false;
+
+	if( Style & ultimix.std_dialogs.MB_MODAL )
+	{
+		Modal = true;
+	}
+	
+	return( Modal );
+}
+
+/**
+*	Function adds dialog span.
+*
+*	@param id - Id of the creating control.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.add_span_div_if_necessary = function( id )
+{
+	if( !jQuery( "#" + id ).length )
+	{
+		jQuery( "body" ).append( '<span id="' + id + '" style="display:none"></span>' );
+	}
+}
+
+/**
 *	Function cerates message box.
 *
 *	@param Text - Dialog message.
@@ -226,32 +300,18 @@ ultimix.std_dialogs.message_box_create = function( id , DialogData , Class , Tex
 */
 ultimix.std_dialogs.MessageBox = function( Text , Caption , Style , AcceptResult )
 {
-	if( !Caption )
-	{
-		Caption = 'MessageBox';
-	}
-	if( !Style )
-	{
-		Style = ultimix.std_dialogs.MB_OK;
-	}
-
+	Caption = ultimix.std_dialogs.get_caption( Caption );
+	Style = ultimix.std_dialogs.get_style( Style );
 	var			Class = ultimix.std_dialogs.get_class_name( Style );
-
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
-
-	var			Modal = false;
-	if( Style & ultimix.std_dialogs.MB_MODAL )
-	{
-		Modal = true;
-	}
-
-	if( !jQuery( "#" + id ).length )
-	{
-		jQuery( "body" ).append( '<span id="' + id + '" style="display:none"></span>' );
-	}
+	var			Modal = ultimix.std_dialogs.get_modal( Style )
+	ultimix.std_dialogs.add_span_div_if_necessary( id );
 
 	var			ExitOnEscape = true;
-	if( Style & ultimix.std_dialogs.MB_ICONLOADING ) ExitOnEscape = false;
+	if( Style & ultimix.std_dialogs.MB_ICONLOADING )
+	{
+		ExitOnEscape = false;
+	}
 
 	var			Buttons = ultimix.std_dialogs.get_buttons( Style , AcceptResult , id );
 	var			DialogData = {
@@ -465,7 +525,7 @@ ultimix.std_dialogs.common_ok_button = function( id , OkProcessor , AfterOkProce
 *
 *	@author Dodonov A.A.
 */
-ultimix.std_dialogs.textarea_dialog_buttons = function( id , OkProcessor , AfterOkProcessor , CancelProcessor )
+ultimix.std_dialogs.dialog_buttons = function( id , OkProcessor , AfterOkProcessor , CancelProcessor )
 {
 	var			Buttons = {};
 
@@ -485,6 +545,41 @@ ultimix.std_dialogs.textarea_dialog_buttons = function( id , OkProcessor , After
 	Buttons[ ultimix.get_string( 'OK' ) ] = ultimix.std_dialogs.common_ok_button( id , OkProcessor , AfterOkProcessor );
 
 	return( Buttons );
+}
+
+/**
+*	Function adds dialog div.
+*
+*	@param id - Id of the creating control.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.add_textarea_div_if_necessary = function( id )
+{
+	if( !jQuery( "#" + id ).length )
+	{
+		jQuery( "body" ).append( 
+			'<span id="' + id + '" style="display:none">' + 
+			'<textarea style="width: 480px; height: 360px; margin: 10px;" class="flat"></textarea></span>'
+		);
+	}
+}
+
+/**
+*	Function adds dialog div.
+*
+*	@param id - Id of the creating control.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.std_dialogs.add_input_div_if_necessary = function( id )
+{
+	if( !jQuery( "#" + id ).length )
+	{
+		jQuery( "body" ).append( 
+			'<span id="' + id + '" style="display:none"><input class="width_480 flat" style="margin: 10px;"></span>'
+		);
+	}
 }
 
 /**
@@ -505,56 +600,12 @@ ultimix.std_dialogs.textarea_dialog_buttons = function( id , OkProcessor , After
 ultimix.std_dialogs.textarea_dialog = function( Caption , OkProcessor , AfterOkProcessor , CancelProcessor )
 {
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
-	var			Buttons = ultimix.std_dialogs.textarea_dialog_buttons( 
-		id , OkProcessor , AfterOkProcessor , CancelProcessor
-	);
 
-	if( !jQuery( "#" + id ).length )
-	{
-		jQuery( "body" ).append( 
-			'<span id="' + id + '" style="display:none">' + 
-			'<textarea style="width: 480px; height: 360px; margin: 10px;"></textarea></span>'
-		);
-	}
+	var			Buttons = ultimix.std_dialogs.dialog_buttons( id , OkProcessor , AfterOkProcessor , CancelProcessor );
+
+	ultimix.std_dialogs.add_textarea_div_if_necessary( id );
 
 	return( ultimix.std_dialogs.construct_common_dialog( id , Caption , Buttons ) );
-}
-
-/**
-*	Function creates buttons.
-*
-*	@param id - Dialog id.
-*
-*	@param OkProcessor - Processor of the OK button.
-*
-*	@param AfterOkProcessor - Processor of the closing dialog after OK button.
-*
-*	@param CancelProcessor - Processor of the Cancel button.
-*
-*	@return Buttons.
-*
-*	@author Dodonov A.A.
-*/
-ultimix.std_dialogs.input_dialog_buttons = function( id , OkProcessor , AfterOkProcessor , CancelProcessor )
-{
-	var			Buttons = {};
-
-	if( CancelProcessor == 'no button' )
-	{
-		/* no button*/
-	}
-	else
-	{
-		Buttons[ ultimix.get_string( 'Cancel' ) ] = function()
-		{
-			jQuery( "#" + id ).dialog( "close" );
-			jQuery( "#" + id ).remove();
-		}
-	}
-
-	Buttons[ ultimix.get_string( 'OK' ) ] = ultimix.std_dialogs.common_ok_button( id , OkProcessor , AfterOkProcessor );
-
-	return( Buttons );
 }
 
 /**
@@ -575,18 +626,10 @@ ultimix.std_dialogs.input_dialog_buttons = function( id , OkProcessor , AfterOkP
 ultimix.std_dialogs.input_dialog = function( Caption , OkProcessor , AfterOkProcessor , CancelProcessor )
 {
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
-	var			Buttons = ultimix.std_dialogs.input_dialog_buttons( 
-		id , OkProcessor , AfterOkProcessor , CancelProcessor
-	);
 
-	/* TODO: remove duplicate code */
-	if( !jQuery( "#" + id ).length )
-	{
-		jQuery( "body" ).append( 
-			'<span id="' + id + '" style="display:none">' + 
-			'<input sype="text" style="width: 150px; margin: 10px;" value=""></span>'
-		);
-	}
+	var			Buttons = ultimix.std_dialogs.dialog_buttons( id , OkProcessor , AfterOkProcessor , CancelProcessor );
+
+	ultimix.std_dialogs.add_input_div_if_necessary( id );
 
 	return( ultimix.std_dialogs.construct_common_dialog( id , Caption , Buttons ) );
 }
