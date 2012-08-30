@@ -91,6 +91,48 @@
 		}
 
 		/**
+		*	\~russian Получение курсора для хэша.
+		*
+		*	@param $Config - Конфиг.
+		*
+		*	@return Курсор.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns hash cursor.
+		*
+		*	@param $Config - Config.
+		*
+		*	@return Cursor.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_name( &$Config )
+		{
+			try
+			{
+				if( ( $Name = $Config->get_setting( 'macro_name' , false ) ) !== false )
+				{
+					return( $Name );
+				}
+				elseif( ( $Name = $Config->get_setting( 'block_name' , false ) ) !== false )
+				{
+					return( $Name );
+				}
+				throw( new Exception( 'Macro name was not found' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Загрузка конфигов.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
@@ -116,9 +158,9 @@
 					$this->ConfigLines = array();
 					foreach( $this->StaticContentConfigs as $k => $v )
 					{
-						$ConfigLine = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-						$ConfigLine->load_settings( $v );
-						$this->ConfigLines [] = $ConfigLine;
+						$Config = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+						$Config->load_settings( $v );
+						$this->ConfigLines[ $this->get_name( $Config ) ] = $Config;
 					}
 				}
 			}
@@ -241,9 +283,9 @@
 		}
 
 		/**
-		*	\~russian Функция обработки простых макросов.
+		*	\~russian Функция обработки простого макроса.
 		*
-		*	@param $Options - Настройки работы модуля.
+		*	@param $Config - Конфиг.
 		*
 		*	@param $Str - Строка требующая обработки.
 		*
@@ -256,9 +298,9 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes simple macroes.
+		*	\~english Function processes simple macro.
 		*
-		*	@param $Options - Settings.
+		*	@param $Config - Config.
 		*
 		*	@param $Str - String to process.
 		*
@@ -270,25 +312,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_simple_macroes( &$Options , $Str , $Changed )
+		private function	compile_simple_macro( &$Config , $Str , $Changed )
 		{
 			try
 			{
-				foreach( $this->ConfigLines as $k => $ConfigLine )
-				{
-					if( ( $Name = $ConfigLine->get_setting( 'macro_name' , false ) ) === false )
-					{
-						continue;
-					}
+				$Name = $this->get_name( $Config );
 
-					if( strpos( $Str , '{'.$Name.'}' ) !== false )
-					{
-						$this->Settings->clear();
-						$this->set_default_values( $this->Settings , $ConfigLine );
-						$Content = $this->compile_macro( $ConfigLine , $this->Settings );
-						$Str = str_replace( '{'.$Name.'}' , $Content , $Str );
-						$Changed = true;
-					}
+				if( strpos( $Str , '{'.$Name.'}' ) !== false )
+				{
+					$this->Settings->clear();
+					$this->set_default_values( $this->Settings , $Config );
+					$Content = $this->compile_macro( $Config , $this->Settings );
+					$Str = str_replace( '{'.$Name.'}' , $Content , $Str );
+					$Changed = true;
 				}
 
 				return( array( $Str , $Changed ) );
@@ -389,60 +425,9 @@
 		}
 
 		/**
-		*	\~russian Функция обработки параметризованных макросов.
+		*	\~russian Функция обработки макросов.
 		*
-		*	@param $Str - Строка требующая обработки.
-		*
-		*	@param $Name - Название макроса.
-		*
-		*	@param $Params - Параметры макроса.
-		*
-		*	@param $Config - Конфиг.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes parametrized macroes.
-		*
-		*	@param $Str - String to process.
-		*
-		*	@param $Name - Macro name.
-		*
-		*	@param $Params - Macro parameters.
-		*
-		*	@param $Config - Config.
-		*
-		*	@return array( Processed string , Was the string changed ).
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	compile_parametrized_macro( $Str , $Name , $Params , &$Config )
-		{
-			try
-			{
-				$this->Settings->load_settings( $Params );
-				$this->set_default_values( $this->Settings , $Config );
-
-				$Content = $this->compile_macro( $Config , $this->Settings );
-
-				return( array( str_replace( '{'."$Name:$Params".'}' , $Content , $Str ) , true ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция обработки параметризованных макросов.
-		*
-		*	@param $Options - Настройки работы модуля.
+		*	@param $Config - Настройки работы модуля.
 		*
 		*	@param $Str - Строка требующая обработки.
 		*
@@ -455,9 +440,9 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes parametrized macroes.
+		*	\~english Function processes macroes.
 		*
-		*	@param $Options - Settings.
+		*	@param $Config - Settings.
 		*
 		*	@param $Str - String to process.
 		*
@@ -469,24 +454,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_parametrized_macroes( &$Options , $Str , $Changed )
+		private function	compile_parametrized_macro( &$Config , $Str , $Changed )
 		{
 			try
 			{
-				foreach( $this->ConfigLines as $k => $ConfigLine )
-				{
-					if( ( $Name = $ConfigLine->get_setting( 'macro_name' , false ) ) === false )
-					{
-						continue;
-					}
-					$Rules = $this->get_rules( $ConfigLine );
+				$Name = $this->get_name( $Config );
 
-					for( ; $Params = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
-					{
-						list( $Str , $Changed ) = $this->compile_parametrized_macro( 
-							$Str , $Name , $Params , $ConfigLine
-						);
-					}
+				$Rules = $this->get_rules( $Config );
+
+				for( ; $Params = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
+				{
+					$this->Settings->load_settings( $Params );
+					$this->set_default_values( $this->Settings , $Config );
+					$Content = $this->compile_macro( $Config , $this->Settings );
+					$Str = str_replace( '{'."$Name:$Params".'}' , $Content , $Str );
+					$Changed = true;
 				}
 
 				return( array( $Str , $Changed ) );
@@ -557,15 +539,13 @@
 		}
 
 		/**
-		*	\~russian Функция обработки параметризованных блоков.
+		*	\~russian Функция обработки параметризованного блока.
 		*
-		*	@param $Name - Название блока.
+		*	@param $Config - Настройки работы модуля.
 		*
 		*	@param $Str - Строка требующая обработки.
 		*
 		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@param $Config - Конфиг.
 		*
 		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
 		*
@@ -574,15 +554,13 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes parametrized blocks.
+		*	\~english Function processes parametrized block.
 		*
-		*	@param $Name - Block name.
+		*	@param $Config - Settings.
 		*
 		*	@param $Str - String to process.
 		*
 		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@param $Config - Config.
 		*
 		*	@return array( Processed string , Was the string changed ).
 		*
@@ -590,10 +568,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_single_type_blocks( $Name , $Str , $Changed , &$Config )
+		private function	compile_parametrized_block( &$Config , $Str , $Changed )
 		{
 			try
 			{
+				$Name = $this->get_name( $Config );
+
 				$Rules = $this->get_rules( $Config );
 
 				for( ; $Params = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
@@ -612,9 +592,53 @@
 		}
 
 		/**
-		*	\~russian Функция обработки параметризованных блоков.
+		*	\~russian Блок или макрос.
 		*
-		*	@param $Options - Настройки работы модуля.
+		*	@param $Config - Конфиг.
+		*
+		*	@return true/false.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Is it block or macro.
+		*
+		*	@param $Config - Config.
+		*
+		*	@return true/false.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	is_macro( &$Config )
+		{
+			try
+			{
+				//TODO: split $this->ConfigLines into 2 arrays for macro and blocks
+
+				if( ( $Name = $Config->get_setting( 'macro_name' , false ) ) !== false )
+				{
+					return( true );
+				}
+				elseif( ( $Name = $Config->get_setting( 'block_name' , false ) ) !== false )
+				{
+					return( false );
+				}
+				throw( new Exception( 'Undefined entity type' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция обработки макросов.
+		*
+		*	@param $Name - Название макроса.
 		*
 		*	@param $Str - Строка требующая обработки.
 		*
@@ -627,9 +651,9 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function processes parametrized blocks.
+		*	\~english Function processes macroes.
 		*
-		*	@param $Options - Settings.
+		*	@param $Name - Name.
 		*
 		*	@param $Str - String to process.
 		*
@@ -641,22 +665,30 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_parametrized_blocks( &$Options , $Str , $Changed )
+		private function	compile_named_macro( $Name , $Str , $Changed )
 		{
 			try
 			{
-				foreach( $this->ConfigLines as $k => $ConfigLine )
+				if( isset( $this->ConfigLines[ $Name ] ) )
 				{
-					if( ( $Name = $ConfigLine->get_setting( 'block_name' , false ) ) === false )
+					if( $this->is_macro( $this->ConfigLines[ $Name ] ) )
 					{
-						continue;
+						list( $Str , $Changed ) = $this->compile_simple_macro( 
+							$this->ConfigLines[ $Name ] , $Str , $Changed
+						);
+
+						list( $Str , $Changed ) = $this->compile_parametrized_macro( 
+							$this->ConfigLines[ $Name ] , $Str , $Changed
+						);
 					}
-
-					list( $Str , $Changed ) = $this->compile_single_type_blocks( 
-						$Name , $Str , $Changed , $ConfigLine
-					);
+					else
+					{
+						list( $Str , $Changed ) = $this->compile_parametrized_block(
+							$this->ConfigLines[ $Name ] , $Str , $Changed
+						);
+					}
 				}
-
+				
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -664,7 +696,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-
+		
 		/**
 		*	\~russian Функция обработки макросов.
 		*
@@ -703,11 +735,17 @@
 
 				if( $this->StaticContentConfigs != '' )
 				{
-					list( $Str , $Changed ) = $this->compile_simple_macroes( $Options , $Str , $Changed );
+					$Macroes = $this->String->find_all_macro( $Str );
 
-					list( $Str , $Changed ) = $this->compile_parametrized_macroes( $Options , $Str , $Changed );
-
-					list( $Str , $Changed ) = $this->compile_parametrized_blocks( $Options , $Str , $Changed );
+					/*if( in_array( 'lang_file' , $Macroes ) )
+					{
+						list( $Str , $Changed ) = $this->compile_macro( 'lang_file' , $Str , $Changed );
+					}
+					*/
+					foreach( $Macroes as $i => $Name )
+					{
+						list( $Str , $Changed ) = $this->compile_named_macro( $Name , $Str , $Changed );
+					}
 				}
 
 				return( array( $Str , $Changed ) );

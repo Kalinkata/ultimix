@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-		
+
 	/**
 	*	\~russian Класс для управления компонентом.
 	*

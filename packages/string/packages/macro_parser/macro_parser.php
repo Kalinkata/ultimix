@@ -82,5 +82,182 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+		
+		/**
+		*	\~russian Начало макроса.
+		*
+		*	@param $TmpStartPos - Начало макроса.
+		*
+		*	@param $TmpEndPos - Конец макроса.
+		*
+		*	@param $StartPos - Начало макроса.
+		*
+		*	@param $Counter - Счетчик.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Macro start.
+		*
+		*	@param $TmpStartPos - Macro start.
+		*
+		*	@param $TmpEndPos - Macro end.
+		*
+		*	@param $StartPos - Macro start.
+		*
+		*	@param $Counter - Counter.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			handle_macro_start( $TmpStartPos , $TmpEndPos , &$StartPos , &$Counter )
+		{
+			try
+			{
+				if( $TmpStartPos !== false && $TmpEndPos !== false )
+				{
+					if( $TmpStartPos < $TmpEndPos )
+					{
+						$StartPos = $TmpEndPos;
+					}
+					if( $TmpEndPos < $TmpStartPos )
+					{
+						$Counter--;
+						if( $Counter )
+						{
+							$Counter++;
+						}
+						$StartPos = $TmpStartPos;
+					}
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Конец макроса.
+		*
+		*	@param $TmpStartPos - Начало макроса.
+		*
+		*	@param $TmpEndPos - Конец макроса.
+		*
+		*	@param $StartPos - Начало макроса.
+		*
+		*	@param $Counter - Счетчик.
+		*
+		*	@param $MacroStartPos - Начало макроса.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Macro end.
+		*
+		*	@param $TmpStartPos - Macro start.
+		*
+		*	@param $TmpEndPos - Macro end.
+		*
+		*	@param $StartPos - Macro start.
+		*
+		*	@param $Counter - Counter.
+		*
+		*	@param $MacroStartPos - Macro start.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			handle_macro_end( $TmpStartPos , $TmpEndPos , &$StartPos , &$Counter , $MacroStartPos )
+		{
+			try
+			{
+				if( $TmpStartPos !== false && $TmpEndPos === false )
+				{
+					$Counter++;
+					$StartPos = $TmpStartPos;
+				}
+
+				if( $TmpStartPos === false && $TmpEndPos !== false )
+				{
+					$Counter--;
+					$StartPos = $TmpEndPos;
+				}
+
+				if( $TmpStartPos === false && $TmpEndPos === false )
+				{
+					/* ничего не найдено, поэтому внешний цикл закончен, да и внутренний тоже
+					   $StartPos = strlen( $StringData ); */
+					$StartPos = $MacroStartPos;
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Конец макроса.
+		*
+		*	@param $StringData - Строка.
+		*
+		*	@param $TmpStartPos - Начало макроса.
+		*
+		*	@param $TmpEndPos - Конец макроса.
+		*
+		*	@param $StartPos - Начало макроса.
+		*
+		*	@param $Counter - Счетчик.
+		*
+		*	@param $MacroStartPos - Начало макроса.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Macro end.
+		*
+		*	@param $StringData - String data.
+		*
+		*	@param $TmpStartPos - Macro start.
+		*
+		*	@param $TmpEndPos - Macro end.
+		*
+		*	@param $StartPos - Macro start.
+		*
+		*	@param $Counter - Counter.
+		*
+		*	@param $MacroStartPos - Macro start.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			handle_macro_start_end( &$StringData , &$TmpStartPos , &$TmpEndPos , &$StartPos , &$Counter , $MacroStartPos )
+		{
+			try
+			{
+				$TmpStartPos = strpos( $StringData , chr( 123 ) , $StartPos + 1 );
+				$TmpEndPos = strpos( $StringData , chr( 125 ) , $StartPos + 1 );
+
+				$this->handle_macro_start( $TmpStartPos , $TmpEndPos , $StartPos , $Counter );
+
+				$this->handle_macro_start( 
+					$TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos
+				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
 ?>

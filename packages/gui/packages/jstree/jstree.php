@@ -89,7 +89,8 @@
 		{
 			try
 			{
-				$Path = '{http_host}/'._get_package_relative_path_ex( 'jstree' , get_package_version_s( __CLASS__ ) );
+				$Path = _get_package_relative_path_ex( 'gui::jstree' , get_package_version_s( __CLASS__ ) );
+				$Path = "{http_host}/$Path";
 
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.buttons.js" );
@@ -97,7 +98,7 @@
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.extractor.js" );
 
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
-				$Lang->include_strings_js( 'jstree' );
+				$Lang->include_strings_js( 'gui::jstree' );
 			}
 			catch( Exception $e )
 			{

@@ -438,6 +438,7 @@
 		{
 			try
 			{
+				//TODO: move this function to page::page_markup as it does not work now
 				for( ; $Params = $this->String->get_macro_parameters( $Str , 'color_scheme' ) ; )
 				{
 					$this->BlockSettings->load_settings( $Params );

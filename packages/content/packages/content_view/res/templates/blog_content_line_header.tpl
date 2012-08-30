@@ -1,0 +1,1 @@
+{href:page=./post_blog.html;text=add_blog_entry}<br><br>

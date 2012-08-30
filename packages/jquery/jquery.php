@@ -191,7 +191,7 @@
 			try
 			{
 				$this->PageCSS->add_stylesheet( 
-					"$Path/res/css/jquery-ui-1.8.{color_scheme:available=red,green,black,default,custom}.css"
+					"$Path/res/css/jquery-ui-1.8.default.css"
 				);
 				$this->PageCSS->add_stylesheet( "$Path/res/css/jquery-ui-1.8.patch.css" );
 

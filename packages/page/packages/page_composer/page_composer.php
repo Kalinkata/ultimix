@@ -442,8 +442,6 @@
 					$Str = str_replace( '{layout}' , '{include:'.$this->Layout.'}' , $Str );
 				}
 
-				//$Str = $this->AutoMarkup->compile_string( $Str , 'before' );
-
 				$Str = $this->apply_options( $Str , $PageDescription[ 'options' ] );
 
 				$Template->set_template( $Str );

@@ -601,7 +601,9 @@ ultimix.std_dialogs.textarea_dialog = function( Caption , OkProcessor , AfterOkP
 {
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
 
-	var			Buttons = ultimix.std_dialogs.dialog_buttons( id , OkProcessor , AfterOkProcessor , CancelProcessor );
+	var			Buttons = ultimix.std_dialogs.dialog_buttons(
+		id , OkProcessor , AfterOkProcessor , CancelProcessor
+	);
 
 	ultimix.std_dialogs.add_textarea_div_if_necessary( id );
 
@@ -627,7 +629,9 @@ ultimix.std_dialogs.input_dialog = function( Caption , OkProcessor , AfterOkProc
 {
 	var 		id = "ultimix-MessageBox-span-" + ultimix.std_dialogs.MessageBoxCounter++;
 
-	var			Buttons = ultimix.std_dialogs.dialog_buttons( id , OkProcessor , AfterOkProcessor , CancelProcessor );
+	var			Buttons = ultimix.std_dialogs.dialog_buttons(
+		id , OkProcessor , AfterOkProcessor , CancelProcessor
+	);
 
 	ultimix.std_dialogs.add_input_div_if_necessary( id );
 

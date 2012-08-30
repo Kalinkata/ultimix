@@ -507,31 +507,27 @@
 			{
 				$Next = true;
 
-				if( $Next && $this->run_it( $Options , 'delete' ) )
+				$States = array( 'delete' , 'create' , 'update' , 'copy' );
+
+				foreach( $States as $i => $State )
 				{
-					$Next = $this->controller_state_startup( $ContextSet , $Options , 'delete' ) === false;
-				}
-				if( $Next && $this->run_it( $Options , 'create' ) )
-				{
-					$Next = $this->controller_state_startup( $ContextSet , $Options , 'create' ) === false;
-				}
-				if( $Next && $this->run_it( $Options , 'update' ) )
-				{
-					$Next = $this->controller_state_startup( $ContextSet , $Options , 'update' ) === false;
-				}
-				if( $Next && $this->run_it( $Options , 'copy' ) )
-				{
-					$Next = $this->controller_state_startup( $ContextSet , $Options , 'copy' ) === false;
+					if( $this->run_it( $Options , $State ) )
+					{
+						if( $this->controller_state_startup( $ContextSet , $Options , $State ) )
+						{
+							return( true );
+						}
+					}
 				}
 
-				return( !$Next );
+				return( false );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Запуск всех стандартных стейтов видов.
 		*
@@ -639,5 +635,5 @@
 			}
 		}
 	}
-	
+
 ?>

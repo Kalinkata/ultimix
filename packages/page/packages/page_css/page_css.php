@@ -270,7 +270,7 @@
 		{
 			try
 			{	
-				$FilesHash = implode( '' , $Files );
+				$FilesHash = md5( implode( '' , $Files ) );
 				$UnionFilePath = "$Path/$FilesHash.css";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 
@@ -418,6 +418,7 @@
 			try
 			{
 				$this->CSSFiles = $this->join_stylesheets( $this->CSSFiles , 'css' );
+
 				$Start = $this->CachedMultyFS->get_template( __FILE__ , 'stylesheet_link_start.tpl' );
 				$End = $this->CachedMultyFS->get_template( __FILE__ , 'stylesheet_link_end.tpl' );
 

@@ -405,63 +405,6 @@
 		}
 
 		/**
-		*	\~russian Начало макроса.
-		*
-		*	@param $TmpStartPos - Начало макроса.
-		*
-		*	@param $TmpEndPos - Конец макроса.
-		*
-		*	@param $StartPos - Начало макроса.
-		*
-		*	@param $Counter - Счетчик.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Macro start.
-		*
-		*	@param $TmpStartPos - Macro start.
-		*
-		*	@param $TmpEndPos - Macro end.
-		*
-		*	@param $StartPos - Macro start.
-		*
-		*	@param $Counter - Counter.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	handle_macro_start( $TmpStartPos , $TmpEndPos , &$StartPos , &$Counter )
-		{
-			try
-			{
-				if( $TmpStartPos !== false && $TmpEndPos !== false )
-				{
-					if( $TmpStartPos < $TmpEndPos )
-					{
-						$StartPos = $TmpEndPos;
-					}
-					if( $TmpEndPos < $TmpStartPos )
-					{
-						$Counter--;
-						if( $Counter )
-						{
-							$Counter++;
-						}
-						$StartPos = $TmpStartPos;
-					}
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Функция выборки параметров макроса.
 		*
 		*	@param $StringData - Строковые данные, подвергаемые обработке.
@@ -491,60 +434,35 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_macro_parameters( &$StringData , $Name , $RegExValidators = array() )
+		function			get_macro_parameters( $StringData , $Name , $RegExValidators = array() )
 		{
 			try
 			{
-				$Matches = array();
-
 				$StartPos = -1;
 
 				for( ; ( $TmpStartPos = strpos( $StringData , chr( 123 ).$Name.':' , $StartPos + 1 ) ) !== false ; )
 				{
 					$Counter = 1;
-					$StartPos = $TmpStartPos;
+					$StartPos = $TmpEndPos = $TmpStartPos;
 
 					$MacroStartPos = $StartPos;
 					$ParamStartPos = $MacroStartPos + strlen( chr( 123 ).$Name.':' );
 
 					do
 					{
-						$TmpStartPos = strpos( $StringData , chr( 123 ) , $StartPos + 1 );
-						$TmpEndPos = strpos( $StringData , chr( 125 ) , $StartPos + 1 );
-
-						$this->handle_macro_start( $TmpStartPos , $TmpEndPos , $StartPos , $Counter );
-
-						if( $TmpStartPos !== false && $TmpEndPos === false )
-						{
-							$Counter++;
-							$StartPos = $TmpStartPos;
-						}
-
-						if( $TmpStartPos === false && $TmpEndPos !== false )
-						{
-							$Counter--;
-							$StartPos = $TmpEndPos;
-						}
-
-						if( $TmpStartPos === false && $TmpEndPos === false )
-						{
-							/* ничего не найдено, поэтому внешний цикл закончен, да и внутренний тоже
-							   $StartPos = strlen( $StringData ); */
-							$StartPos = $MacroStartPos;
-						}
+						$this->MacroParser->handle_macro_start_end( 
+							$StringData , $TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos
+						);
 
 						if( $Counter == 0 )
 						{
-							/* нашли закрывающую скобку для макроса... */
 							$Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );
 
 							if( $this->MacroParser->is_params_valid( $Params , $RegExValidators ) )
 							{
-								/* валидные параметры */
 								return( $Params );
 							}
 
-							/* поэтому вываливаемся из внутреннего цикла */
 							$TmpStartPos = false;
 							$StartPos = $MacroStartPos;
 						}
@@ -878,6 +796,44 @@
 				$Data[ 'path' ] = $this->Tags->compile_ultimix_tags( $Data[ 'path' ] );
 
 				return( $Data );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Получение списка макросов.
+		*
+		*	@param $Data - Данные для обработки.
+		*
+		*	@return Список макросов.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns a list of macro.
+		*
+		*	@param $Data - Data to process.
+		*
+		*	@return A list of macro.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			find_all_macro( &$Data )
+		{
+			try
+			{
+				$Matches = array();
+
+				preg_match_all( '/\{([a-zA-Z0-9_]+)/' , $Data , $Matches );
+
+				return( array_unique( $Matches[ 1 ] ) );
 			}
 			catch( Exception $e )
 			{

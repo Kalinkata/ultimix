@@ -44,3 +44,5 @@ content_copy_was_completed=Копирование контента было за
 content_print=Текст для печати
 latest_contents=Последние материалы
 blogs=Блоги
+post_blog=Постинг в блог
+add_blog_entry=Добавить запись в блог

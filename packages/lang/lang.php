@@ -644,6 +644,7 @@
 			try
 			{
 				$Paths = _get_loaded_packages_paths();
+
 				$Paths [] = array( 'directory' => '.' , 'package_name' => 'lang' );
 				$Key = implode_ex( '' , $Paths , 'directory' );
 				if( $this->Cache->data_exists( $Key ) === true )

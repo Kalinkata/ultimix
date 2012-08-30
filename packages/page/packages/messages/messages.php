@@ -317,7 +317,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_success_messages( &$Settings )
+		function			compile_success_message( &$Settings )
 		{
 			try
 			{
@@ -326,7 +326,6 @@
 				if( isset( $this->SuccessMessages[ 0 ] ) )
 				{
 					$StartingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'success_start.tpl' );
-
 					$ClosingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'success_end.tpl' );
 
 					$Messages = implode( '}'.$ClosingDiv.$StartingDiv.'{lang:' , $this->SuccessMessages );
@@ -335,7 +334,7 @@
 
 					$this->SuccessMessages = array();
 				}
-
+				
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -366,7 +365,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_error_messages( &$Settings )
+		function			compile_error_message( &$Settings )
 		{
 			try
 			{
@@ -377,7 +376,7 @@
 					$StartingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'error_start.tpl' );
 					$ClosingDiv = $this->CachedMultyFS->get_template( __FILE__ , 'error_end.tpl' );
 
-					$Code = implode( '}'.$ClosingDiv.$StartingDiv.'{lang:' , $this->ErrorMessages );
+					$Messages = implode( '}'.$ClosingDiv.$StartingDiv.'{lang:' , $this->ErrorMessages );
 
 					$Code = $StartingDiv."{lang:$Messages}".$ClosingDiv;
 

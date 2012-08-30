@@ -18,7 +18,7 @@
 		require_once( './include/php/startup.php' );
 
 		//TODO: setup svn on source forge
-		
+
 		index_main();
 	}
 	catch( Exception $e )
