@@ -97,30 +97,20 @@ ultimix.error_log.get_custom_list_form = function( Fuctions , Header , Item , Fo
 /**
 *	Function deletes error_log.
 *
-*	@param BannerId - Banner id.
+*	@param Id - Record id.
 *
 *	@param DataSelector - Data selector.
 *
 *	@author Dodonov A.A.
 */
-ultimix.error_log.delete = function( BannerId , DataSelector )
+ultimix.error_log.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'error_log::error_log_controller' , 
-						'error_log_context_action' : 'delete_record' , 'error_log_action' : 'delete_record' , 
-						'error_log_record_id' : BannerId , 'meta' : 'meta_delete_error_log'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'error_log::error_log_controller' , 
+			'error_log_context_action' : 'delete_record' , 'error_log_action' : 'delete_record' , 
+			'error_log_record_id' : Id , 'meta' : 'meta_delete_error_log'
 		}
-	)
+	);
 }

@@ -202,7 +202,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Конец макроса.
 		*
@@ -241,7 +241,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			handle_macro_start_end( &$StringData , &$TmpStartPos , &$TmpEndPos , &$StartPos , &$Counter , $MacroStartPos )
+		function			handle_macro_start_end( &$StringData , &$TmpStartPos , &$TmpEndPos , 
+																		&$StartPos , &$Counter , $MacroStartPos )
 		{
 			try
 			{
@@ -253,6 +254,76 @@
 				$this->handle_macro_start( 
 					$TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos
 				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Конец макроса.
+		*
+		*	@param $StringData - Строка.
+		*
+		*	@param $TmpStartPos - Начало макроса.
+		*
+		*	@param $TmpEndPos - Конец макроса.
+		*
+		*	@param $StartPos - Начало макроса.
+		*
+		*	@param $Counter - Счетчик.
+		*
+		*	@param $MacroStartPos - Начало макроса.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Macro end.
+		*
+		*	@param $StringData - String data.
+		*
+		*	@param $TmpStartPos - Macro start.
+		*
+		*	@param $TmpEndPos - Macro end.
+		*
+		*	@param $StartPos - Macro start.
+		*
+		*	@param $Counter - Counter.
+		*
+		*	@param $MacroStartPos - Macro start.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			find_macro( &$StringData , &$TmpStartPos , &$TmpEndPos , 
+										&$StartPos , &$Counter , $MacroStartPos , $ParamStartPos , $RegExValidators )
+		{
+			try
+			{
+				do
+				{
+					$this->handle_macro_start_end( 
+						$StringData , $TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos
+					);
+
+					if( $Counter == 0 )
+					{
+						$Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );
+						if( $this->is_params_valid( $Params , $RegExValidators ) )
+						{
+							return( $Params );
+						}
+						$TmpStartPos = false;
+						$StartPos = $MacroStartPos;
+					}
+				}
+				while( $TmpStartPos );
+
+				return( false );
 			}
 			catch( Exception $e )
 			{

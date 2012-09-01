@@ -105,23 +105,13 @@ ultimix.menu.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 */
 ultimix.menu.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'menu::menu_controller' , 
-						'menu_context_action' : 'delete_record' , 
-						'menu_action' : 'delete_record' , 'menu_record_id' : Id , 
-						'meta' : 'meta_delete_menu'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'menu::menu_controller' , 
+			'menu_context_action' : 'delete_record' , 
+			'menu_action' : 'delete_record' , 'menu_record_id' : Id , 
+			'meta' : 'meta_delete_menu'
 		}
-	)
+	);
 }

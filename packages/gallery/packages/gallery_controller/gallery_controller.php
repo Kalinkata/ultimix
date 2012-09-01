@@ -127,8 +127,9 @@
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_gallery_attach_file' );
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_gallery_detach_file' );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}
 			catch( Exception $e )

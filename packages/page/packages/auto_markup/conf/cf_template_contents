@@ -147,3 +147,4 @@ macro_name=user_login;package_name=user::user_markup;compilation_func=compile_us
 macro_name=http_param;package_name=security::security_markup;compilation_func=compile_http_param;terminal_values=default
 macro_name=scripts;package_name=page::page_js;compilation_func=compile_scripts
 macro_name=stylesheets;package_name=page::page_css;compilation_func=compile_stylesheets
+macro_name=paginator;package_name=gui::paginator;compilation_func=compile_paginator;terminal_values=count_query

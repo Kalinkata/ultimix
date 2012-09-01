@@ -12,7 +12,9 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-		
+
+	//TODO: join with page::page_manager::page_manager_controller
+
 	/**
 	*	\~russian Класс для управления страницами.
 	*

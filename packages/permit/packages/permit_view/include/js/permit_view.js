@@ -105,24 +105,13 @@ ultimix.permit.get_custom_list_form = function( Fuctions , Header , Item , Foote
 */
 ultimix.permit.delete = function( Id , DataSelector )
 {
-	//TODO: refactor all delete functions with a single method
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'permit::permit_controller' , 
-						'permit_context_action' : 'delete_record' , 
-						'permit_action' : 'delete_record' , 'permit_record_id' : Id , 
-						'meta' : 'meta_delete_permit'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'permit::permit_controller' , 
+			'permit_context_action' : 'delete_record' , 
+			'permit_action' : 'delete_record' , 'permit_record_id' : Id , 
+			'meta' : 'meta_delete_permit'
 		}
-	)
+	);
 }

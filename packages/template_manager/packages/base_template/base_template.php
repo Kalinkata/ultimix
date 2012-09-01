@@ -47,7 +47,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
+		var					$MacroSettings = false;
 		var					$CachedMultyFS = false;
 		var					$Lang = false;
 		var					$Security = false;
@@ -69,7 +69,7 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->MacroSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
@@ -434,15 +434,14 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	handle_color_scheme( $File , $Str )
+		private function	handle_color_scheme( $File , $Str )//TODO: move this function to page::page_markup as it does not work now
 		{
 			try
 			{
-				//TODO: move this function to page::page_markup as it does not work now
 				for( ; $Params = $this->String->get_macro_parameters( $Str , 'color_scheme' ) ; )
 				{
-					$this->BlockSettings->load_settings( $Params );
-					$Available = explode( ',' , $this->BlockSettings->get_setting( 'available' , 'default' ) );
+					$this->MacroSettings->load_settings( $Params );
+					$Available = explode( ',' , $this->MacroSettings->get_setting( 'available' , 'default' ) );
 
 					$ColorScheme = $this->Settings->get_setting( 'color_scheme' , 'default' );
 

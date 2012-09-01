@@ -157,23 +157,13 @@ ultimix.file_input.get_custom_list_form = function( Fuctions , Header , Item , F
 */
 ultimix.file_input.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'file_input::file_input_controller' , 
-						'file_input_context_action' : 'delete_record' , 
-						'file_input_action' : 'delete_record' , 'file_input_record_id' : Id , 
-						'meta' : 'meta_delete_file_input'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'file_input::file_input_controller' , 
+			'file_input_context_action' : 'delete_record' , 
+			'file_input_action' : 'delete_record' , 'file_input_record_id' : Id , 
+			'meta' : 'meta_delete_file_input'
 		}
-	)
+	);
 }

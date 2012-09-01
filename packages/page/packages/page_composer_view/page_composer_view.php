@@ -13,6 +13,8 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: move it to page_composer
+	
 	/**
 	*	\~russian Компоновщик страниц.
 	*

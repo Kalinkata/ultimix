@@ -129,23 +129,13 @@ ultimix.pmsg.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 */
 ultimix.pmsg.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'pmsg::pmsg_controller' , 
-						'pmsg_context_action' : 'delete_record' , 
-						'pmsg_action' : 'delete_record' , 'pmsg_record_id' : Id , 
-						'meta' : 'meta_delete_pmsg'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'pmsg::pmsg_controller' , 
+			'pmsg_context_action' : 'delete_record' , 
+			'pmsg_action' : 'delete_record' , 'pmsg_record_id' : Id , 
+			'meta' : 'meta_delete_pmsg'
 		}
-	)
+	);
 }

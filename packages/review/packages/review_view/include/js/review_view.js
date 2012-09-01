@@ -105,24 +105,13 @@ ultimix.review.get_custom_list_form = function( Fuctions , Header , Item , Foote
 */
 ultimix.review.delete = function( Id , DataSelector )
 {
-	//TODO: refactor all delete functions with a single method
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'review::review_controller' , 
-						'review_context_action' : 'delete_record' , 
-						'review_action' : 'delete_record' , 'review_record_id' : Id , 
-						'meta' : 'meta_delete_review'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
-		}
-	)
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'review::review_controller' , 
+			'review_context_action' : 'delete_record' , 
+			'review_action' : 'delete_record' , 'review_record_id' : Id , 
+			'meta' : 'meta_delete_review'
+		} 
+	);
 }

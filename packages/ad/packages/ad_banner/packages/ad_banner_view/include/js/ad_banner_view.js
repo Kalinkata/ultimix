@@ -97,30 +97,20 @@ ultimix.ad_banner.get_custom_list_form = function( Fuctions , Header , Item , Fo
 /**
 *	Function deletes ad_banner.
 *
-*	@param BannerId - Banner id.
+*	@param Id - Record id.
 *
 *	@param DataSelector - Data selector.
 *
 *	@author Dodonov A.A.
 */
-ultimix.ad_banner.delete = function( BannerId , DataSelector )
+ultimix.ad_banner.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'ad::ad_banner::ad_banner_controller' , 
-						'ad_banner_context_action' : 'delete_record' , 'ad_banner_action' : 'delete_record' , 
-						'ad_banner_record_id' : BannerId , 'meta' : 'meta_delete_ad_banner'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'ad::ad_banner::ad_banner_controller' , 
+			'ad_banner_context_action' : 'delete_record' , 'ad_banner_action' : 'delete_record' , 
+			'ad_banner_record_id' : Id , 'meta' : 'meta_delete_ad_banner'
 		}
-	)
+	);
 }

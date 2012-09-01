@@ -12,7 +12,9 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
+	//TODO: move to user::user_manager
+
 	/**
 	*	\~russian Работа с аккаунтами пользователей.
 	*

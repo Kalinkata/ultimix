@@ -96,9 +96,11 @@ ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 *
 *	@param DataSelector - Data selector.
 *
+*	@param Settings - Request settings.
+*
 *	@author Dodonov A.A.
 */
-ultimix.auto.delete = function( Id , DataSelector )
+ultimix.auto.delete = function( Id , DataSelector , Settings )
 {
 	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
 		function( Result )
@@ -108,12 +110,7 @@ ultimix.auto.delete = function( Id , DataSelector )
 				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
 
 				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'page::auto_controller' , 
-						'auto_context_action' : 'delete_record' , 
-						'auto_action' : 'delete_record' , 'auto_record_id' : Id , 
-						'meta' : 'meta_delete_auto'
-					} , 
+					Settings , 
 					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
 				);
 			}

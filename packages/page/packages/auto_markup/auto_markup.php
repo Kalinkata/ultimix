@@ -79,7 +79,7 @@
 				$this->Options = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->TemplateContentAccess = get_package( 
-					'page::template_content::template_content_access' , 'last' , __FILE__
+					'page::template_content::template_content_access' , 'last' , __FILE__ 
 				);
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );

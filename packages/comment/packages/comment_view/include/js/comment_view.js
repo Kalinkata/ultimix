@@ -97,30 +97,20 @@ ultimix.comment.get_custom_list_form = function( Fuctions , Header , Item , Foot
 /**
 *	Function deletes comment.
 *
-*	@param CommentId - Comment id.
+*	@param Id - Record id.
 *
 *	@param DataSelector - Data selector.
 *
 *	@author Dodonov A.A.
 */
-ultimix.comment.delete = function( CommentId , DataSelector )
+ultimix.comment.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'comment::comment_controller' , 'comment_context_action' : 'delete_record' , 
-						'comment_action' : 'delete_record' , 'comment_record_id' : CommentId , 
-						'meta' : 'meta_delete_comment'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'comment::comment_controller' , 'comment_context_action' : 'delete_record' , 
+			'comment_action' : 'delete_record' , 'comment_record_id' : Id , 
+			'meta' : 'meta_delete_comment'
 		}
-	)
+	);
 }

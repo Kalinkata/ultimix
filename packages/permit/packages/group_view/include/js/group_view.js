@@ -105,23 +105,13 @@ ultimix.group.get_custom_list_form = function( Fuctions , Header , Item , Footer
 */
 ultimix.group.delete = function( Id , DataSelector )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				ultimix.ajax_gate.direct_controller( 
-					{ 
-						'package_name' : 'permit::group_controller' , 
-						'group_context_action' : 'delete_record' , 
-						'group_action' : 'delete_record' , 'group_record_id' : Id , 
-						'meta' : 'meta_delete_group'
-					} , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
-			}
-		}
-	)
+	ultimix.auto.delete( 
+		Id , DataSelector , 
+		{ 
+			'package_name' : 'permit::group_controller' , 
+			'group_context_action' : 'delete_record' , 
+			'group_action' : 'delete_record' , 'group_record_id' : Id , 
+			'meta' : 'meta_delete_group'
+		} 
+	);
 }

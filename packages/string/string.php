@@ -448,26 +448,13 @@
 					$MacroStartPos = $StartPos;
 					$ParamStartPos = $MacroStartPos + strlen( chr( 123 ).$Name.':' );
 
-					do
+					$Result = $this->MacroParser->find_macro( $StringData , $TmpStartPos , $TmpEndPos , 
+										$StartPos , $Counter , $MacroStartPos , $ParamStartPos , $RegExValidators );
+
+					if( $Result !== false )
 					{
-						$this->MacroParser->handle_macro_start_end( 
-							$StringData , $TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos
-						);
-
-						if( $Counter == 0 )
-						{
-							$Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );
-
-							if( $this->MacroParser->is_params_valid( $Params , $RegExValidators ) )
-							{
-								return( $Params );
-							}
-
-							$TmpStartPos = false;
-							$StartPos = $MacroStartPos;
-						}
+						return( $Result );
 					}
-					while( $TmpStartPos );
 				}
 
 				return( false );
