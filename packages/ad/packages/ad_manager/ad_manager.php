@@ -12,10 +12,9 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
-	//TODO: move it to class ad_manager
+
 	//TODO: move all *_manager_view classes to *_manager
-	
+
 	/**
 	*	\~russian Класс для управления отображением компонента.
 	*
@@ -26,8 +25,8 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	ad_manager_view_1_0_0{
-		
+	class	ad_manager_1_0_0{
+
 		/**
 		*	\~russian Результат работы функций отображения.
 		*
@@ -39,7 +38,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output;
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -52,7 +51,7 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -69,17 +68,17 @@
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				
+
 				$PageCSS = get_package( 'page::page_css' , 'last' , __FILE__ );
-				$Path = _get_package_relative_path_ex( 'ad::ad_manager::ad_manager_view' , 'last' );
-				$PageCSS->add_stylesheet( "{http_host}/$Path/res/css/ad_manager_view.css" );
+				$Path = _get_package_relative_path_ex( 'ad::ad_manager' , 'last' );
+				$PageCSS->add_stylesheet( "{http_host}/$Path/res/css/ad_manager.css" );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения кампаний и баннеров.
 		*
@@ -105,13 +104,13 @@
 				$UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 				$AdCampaignAccess = get_package( 'ad::ad_campaign_access' , 'last' , __FILE__ );
 				$AdBannerAccess = get_package( 'ad::ad_banner_access' , 'last' , __FILE__ );
-				
+
 				$id = $UserAlgorithms->get_id();
 				$Campaigns = $AdCampaignAccess->unsafe_select( "archived = 0 AND creator = $id" );
-				
+
 				$ids = implode_ex( ',' , $Campaigns , 'id' );
 				$Banners = $AdBannerAccess->unsafe_select( "archived = 0 AND campaign_id IN ( $ids )" );
-				
+
 				return( array( $Campaigns , $Banners ) );
 			}
 			catch( Exception $e )
@@ -119,7 +118,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки одной кампании.
 		*
@@ -148,7 +147,7 @@
 			{
 				$CompanyTemplate = $this->CachedMultyFS->get_template( __FILE__ , 'campaign.tpl' );
 				$CompanyTemplate = $this->String->print_record( $CompanyTemplate , $Campaign );
-				
+
 				foreach( $Banners as $j => $Banner )
 				{
 					if( $Campaign->id == $Banner->campaign_id )
@@ -158,7 +157,7 @@
 						$CompanyTemplate = str_replace( '{banners}' , $Template2.'{banners}' , $CompanyTemplate );
 					}
 				}
-				
+
 				$this->Output .= $CompanyTemplate;
 			}
 			catch( Exception $e )
@@ -166,7 +165,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -199,9 +198,9 @@
 				{
 					$this->compile_campaign( $Campaign , $Banners );
 				}
-				
+
 				$Template = $this->CachedMultyFS->get_template( __FILE__ , 'campaigns_list.tpl' );
-				
+
 				$this->Output = str_replace( '{output}' , $this->Output , $Template );
 			}
 			catch( Exception $e )
@@ -209,7 +208,39 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Функция управления компонентом.
+		*
+		*	@param $Options - настройки работы модуля.
+		*
+		*	@exception Exception - кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function controls component.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			controller( $Options )
+		{
+			try
+			{
+				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
+
+				$ContextSet->execute( $Options , $this , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -238,7 +269,7 @@
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_ad_manager_view_common_view' );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_ad_manager_common_view' );
 
 				$ContextSet->execute( $Options , $this , __FILE__ );
 
