@@ -1,4 +1,4 @@
 call_params_filter=update_category:integer,value_1
-permits_validation=edit_{prefix}
+permits_validation=update_{prefix}
 form_template={prefix}_update_form
 access_package_name={prefix}::{prefix}_access

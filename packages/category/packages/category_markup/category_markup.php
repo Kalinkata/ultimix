@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
 		var					$CategoryAccess = false;
 		var					$CategoryAlgorithms = false;
@@ -56,7 +55,6 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->CategoryAccess = get_package( 'category::category_access' , 'last' , __FILE__ );
 				$this->CategoryAlgorithms = get_package( 'category::category_algorithms' , 'last' , __FILE__ );
@@ -117,7 +115,7 @@
 		/**
 		*	\~russian Функция получения кода селекта.
 		*
-		*	@param $BlockSettings - Параметры генерации.
+		*	@param $Settings - Параметры генерации.
 		*
 		*	@return Код селекта.
 		*
@@ -128,7 +126,7 @@
 		/**
 		*	\~english Function returns select code.
 		*
-		*	@param $BlockSettings - Parameters.
+		*	@param $Settings - Parameters.
 		*
 		*	@return Code of the select.
 		*
@@ -136,18 +134,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_category( &$BlockSettings )
+		function			compile_category( &$Settings )
 		{
 			try
 			{
-				list( $Name , $Default , $Class ) = $BlockSettings->get_settings( 
+				list( $Name , $Default , $Class ) = $Settings->get_settings( 
 					'name,default,class' , 'category,0,width_160 flat'
 				);
 
 				$Default = $Default == 0 ? '' : "default=$Default;";
-				$NullCategory = $this->get_null_category( $BlockSettings );
-				$Id = $this->CategoryView->get_category_id( $BlockSettings );
-				$Value = $BlockSettings->get_setting( 'value' , false );
+				$NullCategory = $this->get_null_category( $Settings );
+				$Id = $this->CategoryView->get_category_id( $Settings );
+				$Value = $Settings->get_setting( 'value' , false );
 
 				$Code = "{select:$Default"."class=$Class;name=$Name;query=$NullCategory SELECT id , title as ".
 						"`value` FROM umx_category WHERE direct_category![eq]id AND direct_category IN ( $Id )".
@@ -164,7 +162,7 @@
 		/**
 		*	\~russian Функция обработки макроса 'category_id'.
 		*
-		*	@param $BlockSettings - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
 		*	@return Список идентификаторов.
 		*
@@ -175,7 +173,7 @@
 		/**
 		*	\~english Function processes macro 'category_id'.
 		*
-		*	@param $BlockSettings - Options of processing.
+		*	@param $Settings - Options of processing.
 		*
 		*	@return List of ids.
 		*
@@ -183,13 +181,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_category_id( &$BlockSettings )
+		function			compile_category_id( &$Settings )
 		{
 			try
 			{
-				$Names = $BlockSettings->get_setting( 'names' , '' );
+				$Names = $Settings->get_setting( 'names' , '' );
 
-				$Names = $BlockSettings->get_setting( 'name' , $Names );
+				$Names = $Settings->get_setting( 'name' , $Names );
 
 				$Ids = implode( ',' , $this->CategoryAlgorithms->get_category_ids( $Names ) );
 
@@ -204,7 +202,7 @@
 		/**
 		*	\~russian Функция обработки макроса 'category_siblings_ids'.
 		*
-		*	@param $BlockSettings - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
 		*	@return Идентификаторы.
 		*
@@ -215,7 +213,7 @@
 		/**
 		*	\~english Function processes macro 'category_siblings_ids'.
 		*
-		*	@param $BlockSettings - Options of processing.
+		*	@param $Settings - Options of processing.
 		*
 		*	@return Ids.
 		*
@@ -223,11 +221,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_category_siblings_ids( &$BlockSettings )
+		function			compile_category_siblings_ids( &$Settings )
 		{
 			try
 			{
-				$CategoryId = $BlockSettings->get_setting( 'id' );
+				$CategoryId = $Settings->get_setting( 'id' );
 
 				$SiblingsIds = implode( ',' , $this->CategoryAccess->get_siblings_ids( $CategoryId ) );
 
@@ -242,7 +240,7 @@
 		/**
 		*	\~russian Функция обработки макроса 'category_name'.
 		*
-		*	@param $BlockSettings - Параметры обработки.
+		*	@param $Settings - Параметры обработки.
 		*
 		*	@return Название категории.
 		*
@@ -253,7 +251,7 @@
 		/**
 		*	\~english Function processes macro 'category_name'.
 		*
-		*	@param $BlockSettings - Options of processing.
+		*	@param $Settings - Options of processing.
 		*
 		*	@return Category name.
 		*
@@ -261,11 +259,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_category_name( &$BlockSettings )
+		function			compile_category_name( &$Settings )
 		{
 			try
 			{
-				$Category = $this->CategoryAlgorithms->get_by_id( $BlockSettings->get_setting( 'id' ) );
+				$Category = $this->CategoryAlgorithms->get_by_id( $Settings->get_setting( 'id' ) );
 
 				$Title = get_field( $Category , 'title' );
 

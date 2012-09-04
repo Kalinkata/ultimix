@@ -6,7 +6,7 @@
 											{left_slide}
 										</td>
 										<td align="center" width="0px" class="table_footer">
-											{records_per_page}
+											{records_per_page_control}
 										</td>
 										<td align="right" class="table_footer" width="50%">
 											{right_slide}
