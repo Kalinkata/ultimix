@@ -114,48 +114,6 @@
 		}
 
 		/**
-		*	\~russian Функция копиляции макроса 'set_group_button'.
-		*
-		*	@param $Parameters - Параметры обработки.
-		*
-		*	@return Виджет.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function compiles macro 'set_group_button'.
-		*
-		*	@param $Parameters - Processing options.
-		*
-		*	@return Widget.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			compile_set_group_button( &$Settings )
-		{
-			try
-			{
-				list( $Text , $Group , $MasterId ) = $Settings->get_settings( 'text,group,master_id' );
-				$MasterType = $Settings->get_setting( 'master_type' , 'user' );
-				$CheckBoxes = $Settings->get_setting( 'checkboxes' , 'user' );
-
-				$Code = $this->get_controller();
-				$Code .= "{href:text=$Text;page=javascript:ultimix.permit.SetGroupButton".
-					"( '$Group' , $MasterId , '$MasterType' , '$CheckBoxes' )}";
-
-				return( $Code );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Компиляция кнопки.
 		*
 		*	@param $Settings - Параметры обработки.
@@ -223,7 +181,7 @@
 		{
 			try
 			{
-				return( $this->compile_set_group_button( &$Settings , 'Set' ) );
+				return( $this->compile_group_button( $Settings , 'Set' ) );
 			}
 			catch( Exception $e )
 			{
@@ -257,7 +215,7 @@
 		{
 			try
 			{
-				return( $this->compile_set_group_button( &$Settings , 'Delete' ) );
+				return( $this->compile_group_button( $Settings , 'Delete' ) );
 			}
 			catch( Exception $e )
 			{
@@ -291,7 +249,7 @@
 		{
 			try
 			{
-				return( $this->compile_set_group_button( &$Settings , 'Toggle' ) );
+				return( $this->compile_group_button( $Settings , 'Toggle' ) );
 			}
 			catch( Exception $e )
 			{

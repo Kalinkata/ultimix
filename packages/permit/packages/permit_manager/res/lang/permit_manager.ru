@@ -1,7 +1,7 @@
 permit_manager=Управление доступами
 create_permit=создать
 delete_permit=удалить
-edit_permit=редактировать
+update_permit=редактировать
 save_permit=сохранить
 permit_permit=Доступ
 permit_comment=Комментарий

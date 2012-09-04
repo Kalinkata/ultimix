@@ -1,7 +1,7 @@
 group_manager=Управление группами
 create_group=создать
 delete_group=удалить
-edit_group=редактировать
+update_group=редактировать
 save_group=сохранить
 group_group=Группа
 group_comment=Комментарий

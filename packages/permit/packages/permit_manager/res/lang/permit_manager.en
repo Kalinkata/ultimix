@@ -1,7 +1,7 @@
 permit_manager=Permit manager
 create_permit=create
 delete_permit=delete
-edit_permit=edit
+update_permit=update
 save_permit=save
 permit_permit=Permit
 permit_comment=Comment

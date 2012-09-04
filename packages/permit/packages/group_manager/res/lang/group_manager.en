@@ -1,7 +1,7 @@
 group_manager=Group manager
 create_group=create
 delete_group=delete
-edit_group=edit
+update_group=edit
 save_group=save
 group_group=Group
 group_comment=Comment
