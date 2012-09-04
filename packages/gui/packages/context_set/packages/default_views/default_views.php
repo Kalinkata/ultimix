@@ -638,17 +638,15 @@
 			try
 			{
 				$TemplateName = $Options->get_setting( 'form_template' , $this->ContextSet->Prefix.'_view_form.tpl' );
-				$ComponentPath = dirname( $Options->get_setting( 'file_path' ) );
+				$ComponentPath = dirname( $Options->get_setting( 'file_path' ) ).'/unexisting_script';
 				$Template = $this->CachedMultyFS->get_template( $ComponentPath , $TemplateName );
 
 				$Provider = $this->ContextSetUtilities->get_data_provider( $Options , $this->Provider );
 
-				$id = $this->Security->get_gp( $this->Prefix.'_id' , 'integer' );
+				$id = $this->Security->get_gp( $this->Prefix.'_record_id' , 'integer' );
 				$Records = call_user_func( array( $Provider , 'select_list' ) , $id );
 
-				$r = $Records[ 0 ];
-
-				$Template = $this->String->print_record( $Template , $r );
+				$Template = $this->String->print_record( $Template , $Records[ 0 ] );
 				$this->Provider->Output = $Template;
 			}
 			catch( Exception $e )

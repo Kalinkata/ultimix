@@ -161,12 +161,15 @@
 				$Field = $Prefix.'_context_action';
 				$Message = $Prefix.'_context_action: "'.$this->Security->get_gp( $Field , 'command' , 'not set' ).'"';
 				$this->Trace->add_trace_string( $Message );
-
 				$this->Trace->add_trace_string( "required_context_action : \"$ContextAction\"" );
 
-				$ContextAction = $this->Security->get_gp( $Prefix.'_action' , 'command' , 'not set' );
-				$Message = $Prefix.'_action: "'.$ContextAction.'"';
-				$this->Trace->add_trace_string( $Message );
+				if( strpos( $ContextAction , '_form' ) !== false )
+				{
+					$ContextAction = $this->Security->get_gp( $Prefix.'_action' , 'command' , 'not set' );
+					$Message = $Prefix.'_action: "'.$ContextAction.'"';
+					$this->Trace->add_trace_string( $Message );
+					$this->Trace->add_trace_string( "required_action : \"$StateName\"" );
+				}
 			}
 			catch( Exception $e )
 			{

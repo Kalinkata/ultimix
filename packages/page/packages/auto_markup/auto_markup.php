@@ -688,7 +688,7 @@
 						);
 					}
 				}
-				
+
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -737,11 +737,6 @@
 				{
 					$Macroes = $this->String->find_all_macro( $Str );
 
-					/*if( in_array( 'lang_file' , $Macroes ) )
-					{
-						list( $Str , $Changed ) = $this->compile_macro( 'lang_file' , $Str , $Changed );
-					}
-					*/
 					foreach( $Macroes as $i => $Name )
 					{
 						list( $Str , $Changed ) = $this->compile_named_macro( $Name , $Str , $Changed );

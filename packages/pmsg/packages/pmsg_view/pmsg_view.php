@@ -219,6 +219,7 @@
 		{
 			try
 			{
+				//TODO: extract in pmsg::pmsg_markup
 				return( $this->PmsgAlgorithms->get_not_read_messages_count() );
 			}
 			catch( Exception $e )

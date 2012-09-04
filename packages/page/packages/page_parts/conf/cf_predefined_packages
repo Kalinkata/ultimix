@@ -2,6 +2,9 @@ lang#last#pre_generation=1#
 page::page_composer#last#pre_generation=1;page_permit_validation=1#
 content::content_view#last#pre_generation=1#
 jquery#last#pre_generation=1#
+page::auto_view#last#pre_generation=1#
+permit::permit_view#last#pre_generation=1#
+permit::group_view#last#pre_generation=1#
 data_form#last#pre_generation=1#
 jsdialogs#last#pre_generation=1#
 jslib#last#pre_generation=1#

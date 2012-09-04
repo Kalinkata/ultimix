@@ -145,7 +145,7 @@ ultimix.permit.DeletePermitButton = function( Permit , MasterId , MasterType , C
 *	
 *	@author Dodonov A.A.
 */
-function	AddPermit( PermitName )
+ultimix.permit.add_permit = function( PermitName )
 {
 	if( PermitName != '' )
 	{

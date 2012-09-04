@@ -1,6 +1,6 @@
 menu::menu_item_manager#last#controller=1;delete_menu_item=1#
 menu::menu_item_manager#last#controller=1;create_menu_item=1#
-menu::menu_item_manager#last#controller=1;edit_menu_item=1#
+menu::menu_item_manager#last#controller=1;update_menu_item=1#
 menu::menu_item_manager#last#view=1;show_menu_item_list=1#main
 menu::menu_item_manager#last#view=1;show_create_menu_item_form=1#main
-menu::menu_item_manager#last#view=1;show_edit_menu_item_form=1#main
+menu::menu_item_manager#last#view=1;show_update_menu_item_form=1#main

@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс вида.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class		permit_view_1_0_0{
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Добавлен ли контроллер.
 		*
@@ -48,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ControllerWasAdded = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -94,11 +94,11 @@
 			try
 			{
 				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
-				
+
 				$Version = get_package_version_s( __CLASS__ );
-				
+
 				$PackagePath = _get_package_relative_path_ex( 'permit::permit_view' , $Version );
-				
+
 				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/permits.js" );
 			}
 			catch( Exception $e )

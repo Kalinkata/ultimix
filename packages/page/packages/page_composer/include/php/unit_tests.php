@@ -647,7 +647,7 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка наличия функции.
 		*
@@ -673,6 +673,39 @@
 						{
 							$Errors++;
 							print( "<nobr>".$Path." : no get_custom_list_form found</nobr><br>" );
+						}
+					}
+				}
+			}
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+		
+		
+		/**
+		*	\~russian Проверка наличия функции.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing searches for function.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_record_view_form_js()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
+				{
+					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
+					if( file_exists( $Path ) )
+					{
+						$Content = file_get_contents( $Path );
+						if( strpos( $Content , '.record_view_form = function(' ) === false )
+						{
+							$Errors++;
+							print( "<nobr>".$Path." : no record_view_form found</nobr><br>" );
 						}
 					}
 				}

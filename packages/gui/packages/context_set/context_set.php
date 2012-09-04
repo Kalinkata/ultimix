@@ -46,7 +46,6 @@
 		var					$CustomSettings = false;
 		var					$Messages = false;
 		var					$PageJS = false;
-		var					$PublicCommonStateStartup = false;
 		var					$Security = false;
 		var					$String = false;
 		var					$Trace = false;
@@ -169,8 +168,6 @@
 				$this->CommonStateStartup = get_package( 'gui::context_set::common_state_startup' , 'last' , __FILE__ );
 				$this->ContextSetConfigs = get_package( 'gui::context_set::context_set_configs' , 'last' , __FILE__ );
 				$this->CustomStateStartup = get_package( 'gui::context_set::custom_state_startup' , 'last' , __FILE__ );
-				$PackageName = 'gui::context_set::public_common_state_startup';
-				$this->PublicCommonStateStartup = get_package( $PackageName , 'last' , __FILE__ );
 				$this->get_main_packages();
 				$this->get_additional_packages();
 			}
@@ -591,7 +588,7 @@
 		{
 			try
 			{
-				$this->Trace->start_group( "custom configs processing" , COMMON );
+				$this->Trace->start_group( "custom_configs_processing" , COMMON );
 
 				foreach( $this->Contexts as $i => $ContextPath )
 				{
@@ -654,44 +651,6 @@
 		}
 
 		/**
-		*	\~russian Функция запуска стандартных стейтов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Method runs common states.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	run_common_states( &$Options )
-		{
-			try
-			{
-				if( $this->CommonStateStartup->run_common_states( $this , $Options ) !== false )
-				{
-					return;
-				}
-
-				if( $this->PublicCommonStateStartup->run_public_commmon_states( $this , $Options ) !== false )
-				{
-					return;
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-	
-		/**
 		*	\~russian Функция запуска контроллера/вида.
 		*
 		*	@param $Options - Параметры выполнения.
@@ -724,20 +683,24 @@
 				$this->ContextSetConfigs->load_context_set_config( $this->ContextSetSettings , $Options , $FilePath );
 				$this->load_context_set_data( $this->ContextSetSettings );
 
-				$this->run_common_states( $Options );
+				if( $this->CommonStateStartup->run_common_states( $this , $Options ) === false )
+				{
+					$this->run_custom_states( $Options );
+				}
 
-				$this->run_custom_states( $Options );
-
-				$this->Provider->Output = $this->ContextSetMarkup->compile_view( 
-					$Options , $this->ContextSetSettings , $this->Provider->Output
-				);
+				if( $this->Provider->Output !== false && $this->Provider->Output !== '' )
+				{
+					$this->Provider->Output = $this->ContextSetMarkup->compile_view( 
+						$Options , $this->ContextSetSettings , $this->Provider->Output
+					);
+				}
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция запуска контроллера/вида.
 		*

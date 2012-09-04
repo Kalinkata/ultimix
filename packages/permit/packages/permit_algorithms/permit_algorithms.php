@@ -232,7 +232,7 @@
 				}
 			
 				$Permits = $this->fetch_permits_for_object( $Object , $ObjectType , $AddGroupPermits );
-
+				
 				$this->PermitAccess->PermitsCache[ $Key ] = $Permits;
 				
 				return( $this->PermitAccess->PermitsCache[ $Key ] );

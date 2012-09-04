@@ -71,6 +71,38 @@
 		}
 		
 		/**
+		*	\~russian Функция предгенерационных действий.
+		*
+		*	@param $Options - настройки работы модуля.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function executes before any page generating actions took place.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			pre_generation( &$Options )
+		{
+			try
+			{
+				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
+				$PackagePath = _get_package_relative_path_ex( 'page::auto_view' , '1.0.0' );
+				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/auto_view.js" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Сохранение пути к заменяемому пакету.
 		*
 		*	@param $thePackagePath - путь к пакету.

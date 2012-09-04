@@ -89,7 +89,7 @@ macro_name=delete_group_button;package_name=permit::group_buttons;compilation_fu
 macro_name=set_permit_button;package_name=permit::group_buttons;compilation_func=compile_set_permit_button;terminal_values=group,master_id,master_type
 macro_name=toggle_permit_button;package_name=permit::group_buttons;compilation_func=compile_toggle_permit_button;terminal_values=group,master_id,master_type
 macro_name=delete_permit_button;package_name=permit::group_buttons;compilation_func=compile_delete_permit_button;terminal_values=group,master_id,master_type
-macro_name=not_read_messages_count;package_name=permit::group_buttons;compilation_func=compile_not_read_messages_count
+macro_name=not_read_messages_count;package_name=pmsg::pmsg_view;compilation_func=compile_not_read_messages_count
 macro_name=print_content_url;package_name=content::content_markup;compilation_func=compile_print_content_url;terminal_values=content_id
 macro_name=package_dialog;package_name=core::package_markup;compilation_func=compile_package_dialog
 macro_name=record_field;package_name=gui::db_markup;compilation_func=compile_record_field
@@ -105,7 +105,7 @@ macro_name=rutube;package_name=gui::video_markup;compilation_func=compile_rutube
 block_name=lang_block;package_name=lang::lang_markup;compilation_func=compile_lang_block
 macro_name=lang_file;package_name=lang::lang_markup;compilation_func=compile_lang_file
 macro_name=lang_file_js;package_name=lang::lang_markup;compilation_func=compile_lang_file_js
-macro_name=lang;package_name=lang::lang_markup;compilation_func=compile_lang;post_process=1
+macro_name=lang;package_name=lang::lang_markup;compilation_func=compile_lang
 macro_name=locale;package_name=lang::lang_markup;compilation_func=compile_locale
 macro_name=eq;package_name=gui::math_markup;compilation_func=compile_eq;terminal_values=value1,value2
 macro_name=neq;package_name=gui::math_markup;compilation_func=compile_neq;terminal_values=value1,value2
@@ -127,12 +127,13 @@ block_name=not_for_pages;package_name=page::page_markup;compilation_func=compile
 macro_name=group_list;package_name=permit::group_markup;compilation_func=compile_group_list
 macro_name=group_list_widget;package_name=permit::group_markup;compilation_func=compile_group_list_widget;terminal_values=object_groups
 macro_name=group_select;package_name=permit::group_markup;compilation_func=compile_group_select;terminal_values=name
+macro_name=group_list_for_object;package_name=permit::group_markup;compilation_func=compile_group_list_for_object;terminal_values=object,type
 block_name=permit;package_name=permit::permit_markup;compilation_func=compile_permit
 block_name=no_permit;package_name=permit::permit_markup;compilation_func=compile_no_permit
-macro_name=permit_list;package_name=permit::group_markup;compilation_func=compile_permit_list
-macro_name=permit_list_for_object;package_name=permit::group_markup;compilation_func=compile_permit_list_for_object
-macro_name=permit_list_widget;package_name=permit::group_markup;compilation_func=compile_permit_list_widget
-macro_name=permit_select;package_name=permit::group_markup;compilation_func=compile_permit_select
+macro_name=permit_list;package_name=permit::permit_markup;compilation_func=compile_permit_list
+macro_name=permit_list_for_object;package_name=permit::permit_markup;compilation_func=compile_permit_list_for_object;terminal_values=object,type
+macro_name=permit_list_widget;package_name=permit::permit_markup;compilation_func=compile_permit_list_widget;terminal_values=object,all,object_permits
+macro_name=permit_select;package_name=permit::permit_markup;compilation_func=compile_permit_select
 macro_name=rating;package_name=rating::rating_markup;compilation_func=compile_rating;terminal_values=master_id,master_type
 macro_name=search_form;package_name=search::search_markup;compilation_func=compile_search_form
 macro_name=public_search_form;package_name=search::search_markup;compilation_func=compile_search_form;default_values=prefix,custom
@@ -148,3 +149,4 @@ macro_name=http_param;package_name=security::security_markup;compilation_func=co
 macro_name=scripts;package_name=page::page_js;compilation_func=compile_scripts
 macro_name=stylesheets;package_name=page::page_css;compilation_func=compile_stylesheets
 macro_name=paginator;package_name=gui::paginator;compilation_func=compile_paginator;terminal_values=count_query
+macro_name=template_content;package_name=page::template_content::template_content_markup;compilation_func=compile_template_content

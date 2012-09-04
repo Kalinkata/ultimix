@@ -83,7 +83,7 @@
 			try
 			{
 				$UserId = $this->UserAlgorithms->get_id();
-				
+
 				if( isset( $this->Permits[ $UserId ] ) === false )
 				{
 					$this->Permits[ $UserId ] = $this->PermitAlgorithms->get_permits_for_object( $UserId , 'user' );
@@ -112,7 +112,6 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 				$this->load_permits();
 			}
@@ -258,9 +257,8 @@
 						$AllPermits .= ', ';
 					}
 				}
-				$Str = str_replace( '{permit_list}' , $AllPermits , $Str );
 
-				return( $Str );
+				return( $AllPermits );
 			}
 			catch( Exception $e )
 			{
@@ -341,14 +339,16 @@
 			try
 			{
 				sort( $ObjectPermitList );
-				
+
 				foreach( $ObjectPermitList as $key => $p )
 				{
 					$Template = $this->CachedMultyFS->get_template( __FILE__ , 'delete_permit_item.tpl' );
 					$Template = str_replace( '{permit}' , $p , $Template );
 					$PermitListWidget = str_replace( '{object_permits}' , $Template , $PermitListWidget );
 				}
-				
+
+				$PermitListWidget = str_replace( '{object_permits}' , '' , $PermitListWidget );
+
 				return( $PermitListWidget );
 			}
 			catch( Exception $e )
@@ -356,7 +356,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции списка доступов.
 		*
@@ -388,7 +388,7 @@
 			try
 			{
 				sort( $AllPermitList );
-				
+
 				foreach( $AllPermitList as $key => $p )
 				{
 					if( in_array( $p , $ObjectPermitList ) === false )
@@ -398,7 +398,7 @@
 						$PermitListWidget = str_replace( '{rest_permits}' , $Template , $PermitListWidget );
 					}
 				}
-				
+
 				return( $PermitListWidget );
 			}
 			catch( Exception $e )
@@ -442,11 +442,11 @@
 				{
 					$AllPermitList = explode( ', ' , $AllPermitList );
 				}
-				
-				$ObjectPermitList = $this->Settings->get_setting( 'object_permits' , 'public' );
+
+				$ObjectPermitList = $Settings->get_setting( 'object_permits' , '' );
 				$ObjectPermitList = strlen( $ObjectPermitList ) == 0 ? array() : 
 										explode( ', ' , $ObjectPermitList );
-										
+
 				return( array( $ObjectPermitList , $AllPermitList ) );
 			}
 			catch( Exception $e )
@@ -524,7 +524,7 @@
 			try
 			{
 
-				list( $Name , $Class ) = $this->Settings->get_settings( 'name,class',  'permit,flat width_160' );
+				list( $Name , $Class ) = $Settings->get_settings( 'name,class',  'permit,flat width_160' );
 
 				$Code = "{select:name=$Name;class=$Class;".
 						"query=SELECT id , title AS value FROM `umx_permit` ORDER BY title}";

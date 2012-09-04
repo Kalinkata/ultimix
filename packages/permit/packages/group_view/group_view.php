@@ -64,6 +64,42 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция предгенерационных действий.
+		*
+		*	@param $Options - Настройки работы модуля.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function executes before any page generating actions took place.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			pre_generation()
+		{
+			try
+			{
+				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
+
+				$Version = get_package_version_s( __CLASS__ );
+
+				$PackagePath = _get_package_relative_path_ex( 'permit::group_view' , $Version );
+
+				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/groups.js" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
 
 ?>

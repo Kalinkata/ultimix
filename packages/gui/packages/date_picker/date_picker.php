@@ -136,7 +136,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	compile_date_picker( &$Settings )
+		function			compile_date_picker( &$Settings )
 		{
 			try
 			{
@@ -162,5 +162,5 @@
 			}
 		}
 	}
-	
+
 ?>

@@ -122,7 +122,7 @@ ultimix.permit.DeleteGroupButton = function( Group , MasterId , MasterType , Che
 *	
 *	@author Dodonov A.A.
 */
-function	AddGroup( GroupName )
+ultimix.permit.add_group = function( GroupName )
 {
 	if( GroupName != '' )
 	{

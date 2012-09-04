@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для управления компонентом.
 	*
@@ -45,7 +45,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция управлением компонентом.
 		*
@@ -76,7 +76,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -104,8 +104,9 @@
 			try
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )

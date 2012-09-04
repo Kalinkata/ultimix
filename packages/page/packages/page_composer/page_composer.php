@@ -588,6 +588,57 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция отрисовки компонента.
+		*
+		*	@param $Options - Настройки работы модуля.
+		*
+		*	@return HTML код компонента.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function draws component.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@return HTML code of the компонента.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			view( &$Options )
+		{
+			try
+			{
+				$PageMarkupUtilities = get_package( 
+					'page::page_markup::page_markup_utilities' , 'last' , __FILE__ 
+				);
+
+				if( $Options->get_setting( 'direct_view' , false ) )
+				{
+					$Options->load_from_http();
+
+					return( $PageMarkupUtilities->direct_view( $Options ) );
+				}
+				if( $Options->get_setting( 'direct_controller' , false ) )
+				{
+					$Options->load_from_http();
+
+					$PageMarkupUtilities->direct_controller( $Options );
+
+					return;
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
 
 ?>

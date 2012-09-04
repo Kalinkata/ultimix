@@ -35,11 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
-		var					$CachedMultyFS = false;
-		var					$Security = false;
 		var					$TemplateContentAccess = false;
-		var					$String = false;
 		
 		/**
 		*	\~russian Конструктор.
@@ -55,11 +51,7 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->TemplateContentAccess = get_package( 'page::template_content::template_content_access' );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -72,7 +64,7 @@
 		*
 		*	@param $Options - Параметры отображения.
 		*
-		*	@param $ProcessingString - Обрабатывемая строка.
+		*	@param $Str - Обрабатывемая строка.
 		*
 		*	@param $Changed - Была ли осуществлена обработка.
 		*
@@ -87,7 +79,7 @@
 		*
 		*	@param $Options - Options of drawing.
 		*
-		*	@param $ProcessingString - Processing string.
+		*	@param $Str - Processing string.
 		*
 		*	@param $Changed - Was the processing completed.
 		*
@@ -97,23 +89,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			process_string( $Options , $ProcessingString , &$Changed )
+		function			compile_template_content( &$Settings )
 		{
 			try
 			{
-				$Parameters = '';
-				//TODO: mpve to auto_markup
-				for( ; $Parameters = $this->String->get_macro_parameters( $ProcessingString , 'template_content' ) ; )
-				{
-					$this->BlockSettings->load_settings( $Parameters );
-					$Content = $this->TemplateContentAccess->get_content_ex( $this->BlockSettings );
-					$ProcessingString = str_replace( 
-						"{template_content:$Parameters}" , $Content , $ProcessingString
-					);
-					$Changed = true;
-				}
-				
-				return( $ProcessingString );
+				return( $this->TemplateContentAccess->get_content_ex( $Settings ) );
 			}
 			catch( Exception $e )
 			{

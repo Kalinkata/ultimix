@@ -35,6 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Cache = false;
 		var					$DefaultControllers = false;
 		var					$DefaultViews = false;
 		var					$Security = false;
@@ -58,6 +59,7 @@
 		{
 			try
 			{
+				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' , 'last' , __FILE__ );
 				$this->DefaultViews = get_package( 'gui::context_set::default_views' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
@@ -133,6 +135,8 @@
 		*
 		*	@param $CustomSettings - Параметры выполнения.
 		*
+		*	@param $Options - Параметры выполнения.
+		*
 		*	@return true/false
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
@@ -148,25 +152,35 @@
 		*
 		*	@param $CustomSettings - Execution parameters.
 		*
+		*	@param $Options - Параметры выполнения.
+		*
 		*	@return true/false
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	run_simple_form( &$ContextSet , $Config , &$CustomSettings )
+		private function	run_simple_form( &$ContextSet , $Config , &$CustomSettings , &$Options )
 		{
 			try
 			{
+				$FileName = $CustomSettings->get_setting( 'form_template' );
+				if( $this->Cache->data_exists( $FileName ) )
+				{
+					$this->DefaultViews->Provider->Output = $this->Cache->get_data( $FileName );
+					return( true );
+				}
+
 				$ContextSet->Context->load_raw_config( $Config );
 
 				$this->DefaultViews->set_constants( $ContextSet , $Options );
 				if( $ContextSet->run_execution( $CustomSettings , $this->DefaultViews , 0 ) )
 				{
+					$this->Cache->add_data( $FileName , $this->DefaultViews->Provider->Output );
 					$ContextSet->clear();
 					return( true );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -216,57 +230,6 @@
 				}
 
 				$ContextSet->Context->load_config_from_object( $CustomSettings );
-
-				$this->DefaultViews->set_constants( $ContextSet , $Options );
-				if( $ContextSet->Context->execute( $CustomSettings , $this->DefaultViews ) )
-				{
-					$ContextSet->clear();
-					return( true );
-				}
-
-				return( false );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Обработка нестандартных конфигов.
-		*
-		*	@param $ContextSet - Набор контекстов.
-		*
-		*	@param $Config - Конфиг.
-		*
-		*	@param $CustomSettings - Параметры выполнения.
-		*
-		*	@return true/false
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Method starts controller/view.
-		*
-		*	@param $ContextSet - Set of contexts.
-		*
-		*	@param $Config - Config.
-		*
-		*	@param $CustomSettings - Execution parameters.
-		*
-		*	@return true/false
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	run_record_view_form( &$ContextSet , $Config , &$CustomSettings )
-		{
-			try
-			{
-				$ContextSet->Context->load_raw_config( $Config );
 
 				$this->DefaultViews->set_constants( $ContextSet , $Options );
 				if( $ContextSet->Context->execute( $CustomSettings , $this->DefaultViews ) )
@@ -382,15 +345,17 @@
 				switch( $Settings->get_setting( 'success_func' , false ) )
 				{
 					case( 'multy_call' ):
-						$Res = $this->run_multy_call( $ContextSet , $Config , $Settings , $Options );break;
+						$Res = $this->run_multy_call( $ContextSet , $Config , $Settings , $Options );
+					break;
 					case( 'simple_form' ):
-						$Res = $this->run_simple_form( $ContextSet , $Config , $Settings );break;
+						$Res = $this->run_simple_form( $ContextSet , $Config , $Settings , $Options );
+					break;
 					case( 'list_view' ):
-						$Res = $this->run_list_view( $ContextSet , $Config , $Settings );break;
-					case( 'record_view_form' ):
-						$Res = $this->run_record_view_form( $ContextSet , $Config , $Settings );break;
+						$Res = $this->run_list_view( $ContextSet , $Config , $Settings );
+					break;
 					default:
-						$Res = $this->run_custom_config( $ContextSet , $Config , $Settings );break;
+						$Res = $this->run_custom_config( $ContextSet , $Config , $Settings );
+					break;
 				}
 				return( $Res );
 			}

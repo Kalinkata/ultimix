@@ -223,7 +223,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции списка групп.
 		*
@@ -263,6 +263,8 @@
 					$GroupListWidget = str_replace( '{object_groups}' , $Template , $GroupListWidget );
 				}
 
+				$GroupListWidget = str_replace( '{object_groups}' , '' , $GroupListWidget );
+
 				return( $GroupListWidget );
 			}
 			catch( Exception $e )
@@ -270,7 +272,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции списка групп.
 		*

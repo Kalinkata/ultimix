@@ -514,7 +514,7 @@ ultimix.tab_control.get_tab_content_acceptor_success = function( TabId , Data )
 }
 
 /**
-*	Function creates add tab from content delegate.
+*	Function creates tab from content delegate.
 *
 *	@param ParentSelector - Selector of the tab parent.
 *
@@ -550,4 +550,41 @@ ultimix.tab_control.get_tab_content_acceptor = function( ControlId , Title , Ind
 			success : ultimix.tab_control.get_tab_content_acceptor_success( TabId , Data )
 		}
 	);
+}
+
+/**
+*	Function creates tab from content delegate.
+*
+*	@param ParentSelector - Selector of the tab parent.
+*
+*	@param ControlId - id of the tab control.
+*
+*	@param Title - Title of the additing tab.
+*
+*	@param Index - Index of the additing tab.
+*
+*	@param Closable - Should be the creating tab closable.
+*
+*	@param Selected - Should this tab be selected.
+*
+*	@param RecordId - Should this tab be selected.
+*
+*	@param ContentProvider - Should this tab be selected.
+*
+*	@return Function.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.tab_control.open_record_in_tab = function( ControlId , Title , Index , 
+																	Closable , Selected , ContentProvider , RecordId )
+{
+	var			TabId = 'tabs' + ultimix.tab_control.TabCounter;
+	
+	ultimix.tab_control.add_tab_from_content( 
+		ControlId , Title , Index , ultimix.std_dialogs.loading_img_widget() , Closable , Selected
+	);
+
+	Index = Index == -1 ? ultimix.tab_control.count_of_tabs( ControlId ) - 1 : Index;
+
+	ContentProvider( RecordId , jQuery( '#' + ControlId ).children( 'div' ).eq( Index ) );
 }

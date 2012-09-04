@@ -1,4 +1,4 @@
-call_params_filter=edit_{prefix}:integer,value_1
+call_params_filter=update_{prefix}:integer,value_1
 custom_get_post_validation=title:string,err_msg_group_must_be_filled#comment:string
 permits_validation=update_{prefix}
 get_post_extraction_script=title:string#comment:string,allow_not_set,default_

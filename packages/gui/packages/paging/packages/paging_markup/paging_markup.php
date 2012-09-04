@@ -364,15 +364,16 @@
 		{
 			try
 			{
-				$Control = str_replace( '{records_per_page}' , '{records_per_page:type=default}' , $Control );
+				$Control = str_replace( '{records_per_page_control}' , '{records_per_page_control:type=default}' , $Control );
 
-				for( ; $Parameters = $Paging->String->get_macro_parameters( $Control , 'records_per_page' ) ; )
+				for( ; $Parameters = $Paging->String->get_macro_parameters( $Control , 'records_per_page_control' ) ; )
 				{
 					$this->Settings->load_settings( $Parameters );
 
 					$Code = $this->get_records_per_page_control( $Paging , $this->Settings );
 
-					$Control = str_replace( "{records_per_page:$Parameters}" , $Code , $Control );
+					//TODO: move it to auto_markup
+					$Control = str_replace( "{records_per_page_control:$Parameters}" , $Code , $Control );
 				}
 
 				return( $Control );

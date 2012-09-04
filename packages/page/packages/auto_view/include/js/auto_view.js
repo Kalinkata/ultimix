@@ -85,6 +85,8 @@ ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 	ViewOptions.header = Header ? Header : 'auto_header.tpl';
 	ViewOptions.item = Item ? Item : 'auto_item.tpl';
 	ViewOptions.footer = Footer ? Footer : 'auto_footer.tpl';
+	//TODO: add {prefix}_no_data_found parameter to pass "no data found" form
+	//TODO: use this function in all get_custom_list_form API methods
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
@@ -116,4 +118,30 @@ ultimix.auto.delete = function( Id , DataSelector , Settings )
 			}
 		}
 	)
+}
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param Settings - Request settings.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.auto.record_view_form = function( Id , DataSelector , Settings )
+{
+	ultimix.ajax_gate.direct_view( 
+		Settings , 
+		{ 
+			'success' : function( Result )
+			{
+				jQuery( DataSelector ).html( Result );
+			}
+		} , {}
+	);
 }
