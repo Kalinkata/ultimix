@@ -1,3 +1,11 @@
+Ultimix v. 1.5.251
+-----------------------------------------
+1. Performance was improved.
+2. JavaScript API was extended.
+3. Installation script was fixed.
+4. Advert manager was refactored.
+5. 
+
 Ultimix v. 1.5.250
 -----------------------------------------
 1. An error in the 'user::user_markup' package was fixed.
@@ -5,6 +13,8 @@ Ultimix v. 1.5.250
 3. JavaScript API was added to the 'ad::ad_banner::ad_banner_view' package.
 4. Performance was improved.
 5. CSS minification script was fixed.
+6. JavaScript API was extended with delete functions.
+7. Documentation was improved.
 
 Ultimix v. 1.5.249
 -----------------------------------------

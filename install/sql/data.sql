@@ -112,7 +112,7 @@ CREATE TABLE `{prefix}gallery` (
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{prefix}graph_data`;
-CREATE TABLE `m_graph_data` (
+CREATE TABLE `{prefix}graph_data` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `author` int(10) unsigned NOT NULL default '0',
   `graph_type` int(10) unsigned NOT NULL default '1',
@@ -297,7 +297,7 @@ INSERT INTO `{prefix}permit` ( `id` , `permit` , `comment` ) VALUES
 ( '11' , 'delete_permit' , 'permit deletion permit' ),
 ( '12' , 'group_manager' , 'group manager permit' ),
 ( '13' , 'create_group' , 'group creation permit' ),
-( '14' , 'updating_group' , 'group updating permition' ),
+( '14' , 'update_group' , 'group updating permition' ),
 ( '15' , 'delete_group' , 'group deletion permit' ),
 ( '16' , 'update_system_structure' , 'system structure updating permit' ),
 ( '17' , 'delete_system_structure' , 'system structure deleting permit' ),

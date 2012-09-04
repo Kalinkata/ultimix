@@ -13,8 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	// TODO cache all simple_form states
-
 	/**
 	*	\~russian Работа с аккаунтами пользователей.
 	*

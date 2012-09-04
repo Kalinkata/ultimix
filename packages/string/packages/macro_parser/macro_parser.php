@@ -251,7 +251,7 @@
 
 				$this->handle_macro_start( $TmpStartPos , $TmpEndPos , $StartPos , $Counter );
 
-				$this->handle_macro_start( 
+				$this->handle_macro_end( 
 					$TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos
 				);
 			}

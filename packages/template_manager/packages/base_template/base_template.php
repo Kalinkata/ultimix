@@ -434,20 +434,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	handle_color_scheme( $File , $Str )//TODO: move this function to page::page_markup as it does not work now
+		private function	handle_color_scheme( $File , $Str )
 		{
 			try
 			{
+				//TODO: move this function to page::page_markup
 				for( ; $Params = $this->String->get_macro_parameters( $Str , 'color_scheme' ) ; )
 				{
 					$this->MacroSettings->load_settings( $Params );
 					$Available = explode( ',' , $this->MacroSettings->get_setting( 'available' , 'default' ) );
 
-					$ColorScheme = $this->Settings->get_setting( 'color_scheme' , 'default' );
+					$Sheme = $this->Settings->get_setting( 'color_scheme' , 'default' );
 
-					if( array_search( $ColorScheme , $Available ) !== false )
+					if( array_search( $Sheme , $Available ) !== false )
 					{
-						$Str = str_replace( "{color_scheme:$Params}" , $ColorScheme , $Str );
+						$Str = str_replace( "{color_scheme:$Params}" , $Sheme , $Str );
 					}
 					else
 					{
