@@ -125,3 +125,27 @@ ultimix.change_history_view.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.change_history_view.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'database::change_history_view::change_history_view_view' , 
+			'change_history_view_context_action' : 'record_view_form' , 
+			'change_history_view_action' : 'record_view_form' , 'change_history_view_record_id' : Id , 
+			'meta' : 'meta_record_view_change_history_view_form'
+		}
+	);
+}

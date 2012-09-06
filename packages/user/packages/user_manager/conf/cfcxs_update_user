@@ -1,0 +1,8 @@
+call_params_filter=update_{prefix}:integer,value_1
+get_post_validation=name:string,err_msg_name_must_be_filled#sex:integer,err_msg_sex_must_be_filled#email:email,err_msg_email_must_be_filled#current_password:string,err_msg_current_password_must_be_filled#password:same_as_password_confirmation,err_msg_password_must_be_same_as_password_confirmation
+custom_get_post_validation=email:email#password:string#name:string#sex:integer#password_confirmation:string#active:command,allow_not_set,default_0#active_to:string:allow_not_set#banned_to:string:allow_not_set#site:string#about:string
+permits_validation=update_{prefix}
+access_package_name={prefix}::{prefix}_access
+custom_validation_func=validate_account_fields
+custom_validation_package_name={prefix}::{prefix}_manager
+cleanup_fields={prefix}_action,{prefix}_context_action

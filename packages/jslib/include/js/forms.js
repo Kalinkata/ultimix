@@ -442,7 +442,7 @@ ultimix.forms.ExtractFormData = function( Selector )
 }
 
 /**
-*	Function opens edit record form.
+*	Function opens update record form.
 *
 *	@param id - Id of the editing record.
 *
@@ -452,7 +452,7 @@ ultimix.forms.ExtractFormData = function( Selector )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.EditRecord = function( id , Prefix , Method )
+ultimix.forms.update_record = function( id , Prefix , Method )
 {
 	ultimix.forms.SubmitForm2( 
 		Prefix + '_form' , Prefix + '_context_action' , 'update_record_form' , Prefix + '_record_id' , 

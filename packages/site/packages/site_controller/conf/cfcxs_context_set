@@ -1,5 +1,4 @@
 prefix=site
-version=1
 common_state_config_create=cfcxs_create_site
 common_state_config_update=cfcxs_update_site
 common_state_config_delete=cfcxs_delete_site

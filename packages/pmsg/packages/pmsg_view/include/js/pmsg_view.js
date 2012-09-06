@@ -139,3 +139,26 @@ ultimix.pmsg.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.pmsg.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'pmsg::pmsg_view' , 'pmsg_context_action' : 'record_view_form' , 
+			'pmsg_action' : 'record_view_form' , 'pmsg_record_id' : Id , 
+			'meta' : 'meta_record_view_pmsg_form'
+		}
+	);
+}

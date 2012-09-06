@@ -115,3 +115,26 @@ ultimix.subscription.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.subscription.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'subscription::subscription_view' , 'subscription_context_action' : 'record_view_form' , 
+			'subscription_action' : 'record_view_form' , 'subscription_record_id' : Id , 
+			'meta' : 'meta_record_view_subscription_form'
+		}
+	);
+}

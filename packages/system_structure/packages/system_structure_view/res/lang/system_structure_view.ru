@@ -1,4 +1,4 @@
-edit_system_structure=редактировать
+update_system_structure=редактировать
 create_system_structure=создать
 delete_system_structure=удалить
 save_system_structure=сохранить

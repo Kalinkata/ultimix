@@ -13,6 +13,9 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: use it somewere, in the gui::context package for example
+	//TODO: remove validation from gui::context (filters are enough)
+
 	/**
 	*	\~russian Класс для работы с отношениями владениями.
 	*
@@ -189,7 +192,7 @@
 				{
 					$this->Owners = array();
 				}
-				
+
 				foreach( $this->Owners as $i => $Owner )
 				{
 					if( $Owner[ 'id' ] == $OwnerId && $Owner[ 'type' ] == $OwnerType )
@@ -197,7 +200,7 @@
 						return;
 					}
 				}
-				
+
 				$this->Owners [] = array( 'id' => $OwnerId , 'type' => $OwnerType );
 			}
 			catch( Exception $e )
@@ -236,7 +239,7 @@
 				{
 					throw( new Exception( "No owners were registered" ) );
 				}
-				
+
 				foreach( $this->Owners as $i => $Owner )
 				{
 					if( $this->Link->link_exists( $Owner[ 'id' ] , $ObjectId , $Owner[ 'type' ] , $ObjectType ) )
@@ -244,7 +247,7 @@
 						return( true );
 					}
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -287,7 +290,7 @@
 				{
 					return( false );
 				}
-				
+
 				foreach( $this->Owners as $i => $Owner )
 				{
 					if( $Owner[ 'id' ] == $ObjectId && $Owner[ 'type' ] == $ObjectType )
@@ -295,7 +298,7 @@
 						return( true );
 					}
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )

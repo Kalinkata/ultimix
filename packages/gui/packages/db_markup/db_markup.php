@@ -38,6 +38,7 @@
 		*/
 		var					$Database = false;
 		var					$String = false;
+		var					$Utilities = false;
 		
 		/**
 		*	\~russian Конструктор.
@@ -55,6 +56,7 @@
 			{
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -136,18 +138,23 @@
 			{
 				$Value = '';
 				$id = $Settings->get_setting( 'id' );
+
 				if( $id != '0' )
 				{
-					$PackageName = $Settings->get_setting( 'access_package_name' );
-					$PackageVersion = $Settings->get_setting( 'access_package_version' , 'last' );
-					$PackageObject = get_package( $PackageName , $PackageVersion , __FILE__ );
-				
+					$PackageObject = $this->Utilities->get_package( $Settings , __FILE__ , 'access_' );
+
+					if( method_exists( $PackageObject , 'get_by_id' ) == false )
+					{
+						$Message = 'The method "get_by_id" was not found in class '.get_class( $PackageObject );
+						throw( new Exception( $Message ) );
+					}
+
 					$Record = call_user_func( array( $PackageObject , 'get_by_id' ) , $id );
-					
+
 					$Field = $Settings->get_setting( 'field' );
 					$Value = get_field( $Record , $Field );
 				}
-				
+
 				return( $Value );
 			}
 			catch( Exception $e )

@@ -77,7 +77,7 @@
 				$Prefix = $Settings->get_setting( 'prefix' );
 				$Method = $Settings->get_setting( 'method' , 'post' );
 
-				$Code  = "onclick=\"ultimix.forms.EditRecord( $id , '$Prefix' , '$Method' )\"";
+				$Code  = "onclick=\"ultimix.forms.update_record( $id , '$Prefix' , '$Method' )\"";
 				$Code .= " onmousemove=\"jQuery( this ).css( 'cursor' , 'pointer' );\"";
 
 				return( $Code );

@@ -83,9 +83,9 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function edits record.
+		*	\~english Function updates record.
 		*
-		*	@param $id - id of the editing record.
+		*	@param $id - id of the updates record.
 		*
 		*	@param $Params - record creation parameters.
 		*
@@ -95,7 +95,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			edit( $id , $Params , $Options )
+		function			update( $id , $Params , $Options )
 		{
 			try
 			{

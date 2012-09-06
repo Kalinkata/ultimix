@@ -457,7 +457,7 @@
 				$Ids = $this->ContextSetUtilities->get_posted_ids( $this->Prefix );
 				
 				/** \~russian если массовое редактирование отключено, то здесь по-любому будет один идентификатор
-					\~english if massive editing is switched off thet only on id will be in this variable*/
+					\~english if massive updating is switched off thet only on id will be in this variable*/
 				$RecordOriginal = $this->ContextSetUtilities->get_data_record( $Options , $Ids );
 				
 				$UpdateRecord = $this->get_update_record( $Options , $Ids , $RecordOriginal );
@@ -527,7 +527,7 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function edits records (public).
+		*	\~english Function updates records (public).
 		*
 		*	@param $Options - Execution parameters.
 		*
@@ -539,7 +539,8 @@
 		{
 			try
 			{
-				$this->edit( $Options );
+				//TODO: remove public functions
+				$this->update( $Options );
 			}
 			catch( Exception $e )
 			{

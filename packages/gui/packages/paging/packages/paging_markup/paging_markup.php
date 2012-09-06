@@ -364,7 +364,9 @@
 		{
 			try
 			{
-				$Control = str_replace( '{records_per_page_control}' , '{records_per_page_control:type=default}' , $Control );
+				$Control = str_replace( 
+					'{records_per_page_control}' , '{records_per_page_control:type=default}' , $Control
+				);
 
 				for( ; $Parameters = $Paging->String->get_macro_parameters( $Control , 'records_per_page_control' ) ; )
 				{

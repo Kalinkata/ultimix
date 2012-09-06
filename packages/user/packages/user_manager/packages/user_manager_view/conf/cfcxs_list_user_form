@@ -1,6 +1,0 @@
-call_params_filter={prefix}_list:integer,value_1
-permits_validation={prefix}_manager
-access_package_name={prefix}::{prefix}_access
-header={prefix}_header.tpl
-item={prefix}_item.tpl
-footer={prefix}_footer.tpl

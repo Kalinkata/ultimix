@@ -18,8 +18,6 @@
 	DEFINE( 'COMMON' , 'common' );
 	DEFINE( 'QUERY' , 'query' );
 
-	// TODO remove empty tags from trace
-
 	/**
 	*	\~russian Трассировка.
 	*
@@ -43,7 +41,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$StoreTrace = true;
-	
+
 		/**
 		*	\~russian Трассировка.
 		*
@@ -103,7 +101,7 @@
 					NOTIFICATION => 'trace_line_notification.tpl' , QUERY => 'trace_line_query.tpl' , 
 					'start_group' => 'trace_start_group.tpl' , 'end_group' => 'trace_end_group.tpl'
 				);
-				
+
 				foreach( $Data as $Key => $Value )
 				{
 					$this->Templates[ $Key ] = $this->CachedMultyFS->get_template( __FILE__ , $Value );
@@ -145,7 +143,7 @@
 				{
 					$Template = str_replace( '{string}' , $Str , $this->Templates[ $Type ] );
 
-					$this->TraceStrings [] = $Template;
+					$this->TraceStrings [] = array( 'name' => 'string' , 'content' => $Template );
 				}
 			}
 			catch( Exception $e )
@@ -181,7 +179,7 @@
 					$Template = str_replace( '{string}' , $Str , $this->Templates[ 'start_group' ] );
 					$Template = str_replace( '{i}' , count( $this->TraceStrings ) , $Template );
 
-					$this->TraceStrings [] = $Template;
+					$this->TraceStrings [] = array( 'name' => 'start_group' , 'content' => $Template );
 				}
 			}
 			catch( Exception $e )
@@ -216,7 +214,9 @@
 				{
 					for( $i = 0 ; $i < $Count ; $i++ )
 					{
-						$this->TraceStrings [] = $this->Templates[ 'end_group' ];
+						$this->TraceStrings [] = array( 
+							'name' => 'end_group' , 'content' => $this->Templates[ 'end_group' ]
+						);
 					}
 				}
 			}
@@ -265,7 +265,119 @@
 		}
 
 		/**
+		*	\~russian Функция удаляет пустые листовые тэги.
+		*
+		*	@return Количество удалённых тэгов.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method removes empty leaf tags.
+		*
+		*	@return Count of the removed tags.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	remove_empty_leaves()
+		{
+			try
+			{
+				$Counter = 0;
+
+				for( $i = 0 ; $i < count( $this->TraceStrings ) ; )
+				{
+					if( get_field( $this->TraceStrings[ $i ] , 'name' ) == 'start_group' &&
+						get_field( $this->TraceStrings[ $i + 1 ] , 'name' ) == 'end_group' )
+					{
+						$this->TraceStrings = array_splice( $this->TraceStrings , $i , 2 );
+					}
+					else
+					{
+						$i++;
+					}
+				}
+
+				return( $Counter );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция удаляет все пустые тэги.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method removes all empty tags.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	remove_empty_tags()
+		{
+			try
+			{
+				for( ; $this->remove_empty_leaves() ; );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Функция компиляции трассировки.
+		*
+		*	@return HTML код.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method compiles trace.
+		*
+		*	@return HTML code.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	compile_trace_items()
+		{
+			try
+			{
+				$this-remove_empty_tags();
+
+				$Output  = $this->CachedMultyFS->get_template( __FILE__ , 'trace_start.tpl' );
+				$Output .= implode_ex( '' , $this->TraceStrings , 'content' );
+				$Output .= $this->CachedMultyFS->get_template( __FILE__ , 'trace_end.tpl' );
+				$Output = str_replace( 
+					'{output}' , $Output , $this->CachedMultyFS->get_template( __FILE__ , 'trace.tpl' )
+				);
+
+				return( $Output );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции трассировки.
+		*
+		*	@return HTML код.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
@@ -286,12 +398,7 @@
 			{
 				if( $this->StoreTrace )
 				{
-					$Output  = $this->CachedMultyFS->get_template( __FILE__ , 'trace_start.tpl' );
-					$Output .= implode( '' , $this->TraceStrings );
-					$Output .= $this->CachedMultyFS->get_template( __FILE__ , 'trace_end.tpl' );
-					$Output = str_replace( 
-						'{output}' , $Output , $this->CachedMultyFS->get_template( __FILE__ , 'trace.tpl' )
-					);
+					$Output = $this->compile_trace_items();
 
 					$TraceBlock = $this->CachedMultyFS->get_template( __FILE__ , 'trace_block.tpl' );
 					$TraceBlock = str_replace( '{output}' , $Output , $TraceBlock );
@@ -308,7 +415,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция конвертации объекта в строку.
 		*

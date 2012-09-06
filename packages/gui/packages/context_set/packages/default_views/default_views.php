@@ -277,7 +277,7 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function draws record editing form.
+		*	\~english Function draws record update form.
 		*
 		*	@param $Options - Execution parameters.
 		*
@@ -322,7 +322,7 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function draws record editing form (public).
+		*	\~english Function draws record update form (public).
 		*
 		*	@param $Options - Execution parameters.
 		*
@@ -334,6 +334,7 @@
 		{
 			try
 			{
+				//TODO: remove public functions
 				$this->update_form( $Options );
 			}
 			catch( Exception $e )

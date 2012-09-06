@@ -6,7 +6,7 @@ jQuery(
 				"plugins" : [ "themes" , "html_data" , "types" , "ui" , "crrm" , "cookies" , "types" ] , 
 				"themes" : {
 					"theme" : "classic" , 
-					"url" : './packages/jstree/res/themes/classic/style.css'
+					"url" : './packages/gui/packages/jstree/res/themes/classic/style.css' //TODO: calculate this path
 				} , 
 				"types" : 
 				{

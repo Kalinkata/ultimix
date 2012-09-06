@@ -1,0 +1,4 @@
+call_params_filter=update_{prefix}:integer,value_1
+custom_get_post_validation=name:string,err_msg_name_must_be_filled
+permits_validation=update_{prefix}
+cleanup_fields={prefix}_action,{prefix}_context_action

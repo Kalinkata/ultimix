@@ -116,3 +116,27 @@ ultimix.template_content.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.template_content.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'page::template_content::template_content_view' , 
+			'template_content_context_action' : 'record_view_form' , 
+			'template_content_action' : 'record_view_form' , 'template_content_record_id' : Id , 
+			'meta' : 'meta_record_view_template_content_form'
+		}
+	);
+}

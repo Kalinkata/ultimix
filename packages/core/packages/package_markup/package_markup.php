@@ -91,7 +91,7 @@
 			{
 				$Settings->set_setting( 'id' , 'package_dialog' );
 				$Settings->set_setting( 'title' , 'package_dialog' );
-				$PackageName = 'core::package_manager::package_manager_view';
+				$PackageName = 'core::package_manager';
 				$Settings->set_setting( 'package_name' , $PackageName );
 				$Settings->set_setting( 'show_package_tree' , '1' );
 				

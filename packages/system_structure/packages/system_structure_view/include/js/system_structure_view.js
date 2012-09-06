@@ -116,3 +116,27 @@ ultimix.system_structure.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.system_structure.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'system_structure::system_structure_view' , 
+			'system_structure_context_action' : 'record_view_form' , 
+			'system_structure_action' : 'record_view_form' , 'system_structure_record_id' : Id , 
+			'meta' : 'meta_record_view_system_structure_form'
+		}
+	);
+}

@@ -1,5 +1,4 @@
 prefix=comment
-version=1
 common_state_config_create=cfcxs_create_comment
 common_state_config_update=cfcxs_update_comment
 common_state_config_delete=cfcxs_delete_comment

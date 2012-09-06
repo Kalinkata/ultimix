@@ -161,7 +161,7 @@
 			{
 				if( strpos( $Str , '{save}' ) !== false )
 				{
-					$Str = str_replace( '{save}' , '{href:tpl=submit0;form_id={prefix}_edit_form;text=save}' ,$Str );
+					$Str = str_replace( '{save}' , '{href:tpl=submit0;form_id={prefix}_update_form;text=save}' ,$Str );
 				}
 				
 				return( $Str );

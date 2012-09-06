@@ -1,4 +1,3 @@
 prefix=pmsg
-version=1
 common_state_config_create=cfcxs_pmsg_create
 common_state_config_delete=cfcxs_pmsg_delete

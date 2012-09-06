@@ -224,7 +224,7 @@
 		{
 			try
 			{
-				if( strpos( $Code , '{search_button' ) === false )
+				if( strpos( $Code , chr( 123 ).'search_button' ) === false )
 				{
 					return( $Code );
 				}
@@ -336,7 +336,7 @@
 		{
 			try
 			{
-				if( strpos( $Code , '{create_button' ) === false )
+				if( strpos( $Code , chr( 123 ).'create_button' ) === false )
 				{
 					return( $Code );
 				}
@@ -385,7 +385,7 @@
 		{
 			try
 			{
-				if( strpos( $Code , '{update_button' ) === false )
+				if( strpos( $Code , chr( 123 ).'update_button' ) === false )
 				{
 					return( $Code );
 				}
@@ -434,7 +434,7 @@
 		{
 			try
 			{
-				if( strpos( $Code , '{copy_button' ) === false )
+				if( strpos( $Code , chr( 123 ).'copy_button' ) === false )
 				{
 					return( $Code );
 				}
@@ -483,7 +483,7 @@
 		{
 			try
 			{
-				if( strpos( $Code , '{delete_button' ) === false )
+				if( strpos( $Code , chr( 123 ).'delete_button' ) === false )
 				{
 					return( $Code );
 				}

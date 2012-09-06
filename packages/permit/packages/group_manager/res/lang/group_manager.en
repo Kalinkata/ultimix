@@ -1,7 +1,7 @@
 group_manager=Group manager
 create_group=create
 delete_group=delete
-update_group=edit
+update_group=update
 save_group=save
 group_group=Group
 group_comment=Comment
@@ -9,7 +9,7 @@ group_must_be_filled=Field '{lang:group_group}' must be filled
 group_was_created=Group was created
 group_was_deleted=Selected records were deleted
 no_selected_group=At least one record must be selected
-group_update_was_completed=Editing was finished
+group_update_was_completed=Group was updated
 permits=Permits
 change=change
 group_title=Group title

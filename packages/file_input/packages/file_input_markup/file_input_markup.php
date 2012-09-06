@@ -216,49 +216,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Получение данных и статуса.
-		*
-		*	@param $Settings - Параметры компиляции.
-		*
-		*	@return Данные и статус.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns data and status.
-		*
-		*	@param $Settings - Compilation parameters.
-		*
-		*	@return Data and status.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	get_data_and_status( &$Settings )
-		{
-			try
-			{
-				$Name = $Settings->get_setting( 'name' , 'file_input' );
 
-				$Data = $this->Security->get_gp( "$Name" , 'string' , $Settings->get_setting( 'value' , '' ) );
-
-				$Status = $this->Security->get_gp(
-					"visible_$Name" , 'string' , $Settings->get_setting( 'visible_value' , '' )
-				);
-				
-				return( array( $Data , $Status ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
 		/**
 		*	\~russian Компиляция формы отображения загруженного файла.
 		*
@@ -285,12 +243,11 @@
 		{
 			try
 			{
-				list( $Data , $Status ) = $this->get_data_and_status( $Settings );
-
 				$TemplatePath = dirname( __FILE__ ).'/res/templates/file_field.tpl';
+
 				$UploadedFileCode = $this->CachedMultyFS->file_get_contents( $TemplatePath );			
-				$UploadedFileCode = str_replace( "{data}" , $Data , $UploadedFileCode );
-				$UploadedFileCode = str_replace( "{status}" , $Status , $UploadedFileCode );
+
+				$UploadedFileCode = $this->String->print_record( $UploadedFileCode , $Settings->get_raw_settings() );
 
 				return( $UploadedFileCode );
 			}

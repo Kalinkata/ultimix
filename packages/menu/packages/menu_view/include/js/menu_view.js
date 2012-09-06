@@ -115,3 +115,26 @@ ultimix.menu.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.menu.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'menu::menu_view' , 'menu_context_action' : 'record_view_form' , 
+			'menu_action' : 'record_view_form' , 'menu_record_id' : Id , 
+			'meta' : 'meta_record_view_menu_form'
+		}
+	);
+}

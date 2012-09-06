@@ -1,4 +1,4 @@
-edit_system_structure=edit
+update_system_structure=update
 create_system_structure=create
 delete_system_structure=delete
 save_system_structure=save
@@ -12,5 +12,5 @@ root_page_must_be_filled=Field '{lang:system_structure_root_page}' must be fille
 navigation_must_be_filled=Field '{lang:system_structure_navigation}' must be filled
 system_structure_was_deleted=All selected records were deleted
 no_selected_system_structure=At least one record must be selected
-system_structure_update_was_completed=Editing was finished
+system_structure_update_was_completed=Brunch was updated
 shure_to_delete_all_system_structure=Are you shure that you want to delete all selected records?

@@ -2,6 +2,3 @@ call_params_filter=show_{prefix}_list:integer,value_1
 permits_validation={prefix}_manager
 access_package_name={prefix}::{prefix}_view
 select_func=select_{prefix}_line_items
-header={prefix}_header.tpl
-item={prefix}_item.tpl
-footer={prefix}_footer.tpl

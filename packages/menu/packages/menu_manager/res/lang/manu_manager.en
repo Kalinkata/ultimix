@@ -2,6 +2,6 @@ menu_name=Name
 menu_manager=Menu manager
 menu_was_created=Menu was created
 name_must_be_filled=Field '{lang:menu_name}' must be filled
-menu_update_was_completed=Editing was finished
+menu_update_was_completed=Menu was updated
 shure_to_delete_all_menu=Are you shure that you want to delete all selected menues?
 menu_was_deleted=Selected menues were deleted

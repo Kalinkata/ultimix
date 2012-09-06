@@ -211,3 +211,26 @@ ultimix.gallery.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.gallery.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'gallery::gallery_view' , 'gallery_context_action' : 'record_view_form' , 
+			'gallery_action' : 'record_view_form' , 'gallery_record_id' : Id , 
+			'meta' : 'meta_record_view_gallery_form'
+		}
+	);
+}

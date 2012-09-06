@@ -1,0 +1,4 @@
+call_params_filter=update_profile_button:integer,value_1
+permit_filter=registered
+success_func=simple_form
+form_template=update_profile_button

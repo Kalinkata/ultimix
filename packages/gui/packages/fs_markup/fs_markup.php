@@ -143,7 +143,7 @@
 		/**
 		*	\~russian Функция компиляции макроса 'image_path'.
 		*
-		*	@param $MacroSettings - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return HTML код.
 		*
@@ -154,9 +154,9 @@
 		/**
 		*	\~english Function compiles macro 'image_path'.
 		*
-		*	@param $MacroSettings - Compilation parameters.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@return HTML код.
+		*	@return HTML ccode.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -195,11 +195,9 @@
 		/**
 		*	\~russian Функция обработки макроса 'package_path'.
 		*
-		*	@param $Str - Строка требуюшщая обработки.
+		*	@param $Settings - Параметры компиляции.
 		*
-		*	@param $Changed - true если какой-то из элементов страницы был скомпилирован.
-		*
-		*	@return array( Обрабатываемая строка , Была ли строка обработана ).
+		*	@return Путь.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -208,17 +206,15 @@
 		/**
 		*	\~english Function processes macro 'package_path'.
 		*
-		*	@param $Str - String to process.
+		*	@param $Settings - Compilation parameters.
 		*
-		*	@param $Changed - true if any of the page's elements was compiled.
-		*
-		*	@return array( Processed string , Was the string changed ).
+		*	@return Path.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_package_path( $Str , $Changed )
+		function			compile_package_path( &$Settings )
 		{
 			try
 			{
@@ -235,5 +231,5 @@
 			}
 		}
 	}
-	
+
 ?>

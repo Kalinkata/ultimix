@@ -129,6 +129,52 @@
 		/**
 		*	\~russian Функция трассировки.
 		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@param $FieldSuffix - Суффикс поля.
+		*
+		*	@param $RequiredValue - Необходимое значение.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Trace function.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@param $FieldSuffix - Field name suffix.
+		*
+		*	@param $RequiredValue - Required value.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	trace_field( $Prefix , $FieldSuffix , $RequiredValue )
+		{
+			try
+			{
+				$Field = $Prefix.'_'.$FieldSuffix;
+
+				$PostedValue = $this->Security->get_gp( $Field , 'command' , 'not set' );
+
+				$Message = $Prefix.'_'.$FieldSuffix.': "'.$PostedValue.'"';
+
+				$this->Trace->add_trace_string( $Message );
+
+				$this->Trace->add_trace_string( "required_".$FieldSuffix." : \"$RequiredValue\"" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция трассировки.
+		*
 		*	@param $StateName - Название стейта.
 		*
 		*	@param $Prefix - Префикс.
@@ -158,17 +204,11 @@
 			{
 				$this->Trace->add_trace_string( '{lang:no_need_to_run_trace_message}' , COMMON );
 
-				$Field = $Prefix.'_context_action';
-				$Message = $Prefix.'_context_action: "'.$this->Security->get_gp( $Field , 'command' , 'not set' ).'"';
-				$this->Trace->add_trace_string( $Message );
-				$this->Trace->add_trace_string( "required_context_action : \"$ContextAction\"" );
+				$this->trace_field( $Prefix , 'context_action' , $ContextAction );
 
 				if( strpos( $ContextAction , '_form' ) !== false )
 				{
-					$ContextAction = $this->Security->get_gp( $Prefix.'_action' , 'command' , 'not set' );
-					$Message = $Prefix.'_action: "'.$ContextAction.'"';
-					$this->Trace->add_trace_string( $Message );
-					$this->Trace->add_trace_string( "required_action : \"$StateName\"" );
+					$this->trace_field( $Prefix , 'action' , $StateName );
 				}
 			}
 			catch( Exception $e )

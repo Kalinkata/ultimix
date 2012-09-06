@@ -13,6 +13,8 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: create default page for file uploads with name 'upload_file.html' with public permit
+
 	/**
 	*	\~russian Класс обработки загрузок файлов.
 	*
@@ -36,7 +38,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$UploadedFile = false;
-	
+
 		/**
 		*	\~russian Закэшированные пакеты.
 		*

@@ -67,6 +67,8 @@
 		/**
 		*	\~russian Функция загрузки доступов.
 		*
+		*	@param $UserId - Идентификатор пользователя.
+		*
 		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
@@ -74,15 +76,20 @@
 		/**
 		*	\~english Function loads permits.
 		*
+		*	@param $UserId - User id.
+		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	load_permits()
+		private function	load_permits_for_user( $UserId = false )
 		{
 			try
 			{
-				$UserId = $this->UserAlgorithms->get_id();
+				if( $UserId === false )
+				{
+					$UserId = $this->UserAlgorithms->get_id();
+				}
 
 				if( isset( $this->Permits[ $UserId ] ) === false )
 				{
@@ -113,7 +120,46 @@
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
-				$this->load_permits();
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+//TODO: add scrolls to the panels of permit/group add/remove
+		/**
+		*	\~russian Есть ли доступ у пользователя.
+		*
+		*	@param $Settings - Параметры.
+		*
+		*	@return true/false.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Does user have permit.
+		*
+		*	@param $Settings - Parameters.
+		*
+		*	@return true/false.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	has_premits( &$Settings )
+		{
+			try
+			{
+				$RawSettings = $Settings->get_raw_settings();
+				$Parmit = array_shift( array_keys( $RawSettings ) );
+
+				$UserId = $this->UserAlgorithms->get_id();
+				$this->load_permits_for_user( $UserId );
+
+				return( in_array( $Parmit , $this->Permits[ $UserId ] ) );
 			}
 			catch( Exception $e )
 			{
@@ -151,11 +197,9 @@
 		{
 			try
 			{
-				$RawSettings = $Settings->get_raw_settings();
-				$Parmit = array_shift( array_keys( $RawSettings ) );
-				$UserId = $this->UserAlgorithms->get_id();
+				$Flag = $this->has_premits( $Settings , $Data );
 
-				if( in_array( $Parmit , $this->Permits[ $UserId ] ) )
+				if( $Flag )
 				{
 					return( $Data );
 				}
@@ -200,17 +244,15 @@
 		{
 			try
 			{
-				$RawSettings = $Settings->get_raw_settings();
-				$Parmit = array_shift( array_keys( $RawSettings ) );
-				$UserId = $this->UserAlgorithms->get_id();
+				$Flag = $this->has_premits( $Settings , $Data );
 
-				if( in_array( $Parmit , $this->Permits[ $UserId ] ) )
+				if( $Flag )
 				{
-					return( $Data );
+					return( '' );
 				}
 				else
 				{
-					return( '' );
+					return( $Data );
 				}
 			}
 			catch( Exception $e )

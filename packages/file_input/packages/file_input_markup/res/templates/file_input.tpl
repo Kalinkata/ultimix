@@ -43,7 +43,7 @@
 				button_height: 24,
 				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
 				button_cursor: SWFUpload.CURSOR.HAND,
-				
+
 				// The event handler functions are defined in handlers.js
 				file_queued_handler : fileQueued,
 				file_queue_error_handler : fileQueueError,
@@ -57,6 +57,11 @@
 			};
 
 			{name}_swfu = new SWFUpload( settings );
+
+			if( {upload_success_handler}.store_file_info )
+			{
+				{upload_success_handler}.store_file_info( {name}_swfu , '{file_name}' , '{file_path}' , '{file_id}' )
+			}
 		}
 	)
 </script>

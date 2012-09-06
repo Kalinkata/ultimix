@@ -1,7 +1,7 @@
 user_permit_manager=Управление доступами пользователей
 permit_manager=Управление доступами
 user_groups=Группы
-user_permits=Доступы
+user_permit=Доступы
 change=изменить
 already_added_permits=Уже добавленные доступы
 permit_to_add=Доступы, которые можно добавить

@@ -1,7 +1,7 @@
 user_permit_manager=User permit manager
 permit_manager=Permit manager
 user_groups=Groups
-user_permits=Permits
+user_permit=Permits
 change=change
 already_added_permits=Already added permits
 permit_to_add=Permits to add

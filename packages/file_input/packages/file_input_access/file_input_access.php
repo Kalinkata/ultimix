@@ -13,6 +13,10 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: add field 'attached' wich is 0 by default
+	//TODO: add field 'upload_date' wich is 0 by default
+	//TODO: add method delete_unattached_files, so we'll delete unattached files wich were loaded more than 1 hour ago
+
 	/**
 	*	\~russian Класс для работы с файлами.
 	*
@@ -24,7 +28,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	file_input_access_1_0_0{
-	
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +40,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_uploaded_file`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -51,7 +55,7 @@
 		var					$DatabaseAlgorithms = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -76,7 +80,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -88,7 +92,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -125,7 +129,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка сообщений.
 		*
@@ -153,7 +157,7 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				return( 
 					$this->Database->select( '*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition" )
 				);
@@ -163,7 +167,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -210,7 +214,7 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -218,7 +222,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записей.
 		*
@@ -253,7 +257,7 @@
 					{
 						@unlink( get_field( $File , 'file_path' ) );
 					}
-					
+
 					/* deleting file record */
 					$id = $this->Security->get( $id , 'integer_list' );
 					$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
@@ -265,7 +269,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -295,14 +299,14 @@
 				$Record = $this->SecurityParser->parse_parameters( 
 					$Record , 'file_path:string;original_file_name:string;preview_image:string,allow_not_set'
 				);
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
-				
+
 				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$EventManager->trigger_event( 'on_after_create_uploaded_file' , array( 'id' => $id ) );
-				
+
 				return( $id );
 			}
 			catch( Exception $e )
@@ -310,7 +314,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Редактирование записи.
 		*
@@ -343,7 +347,7 @@
 				);
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$this->Database->update( 
@@ -357,7 +361,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*

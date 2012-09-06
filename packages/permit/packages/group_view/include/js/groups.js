@@ -151,3 +151,5 @@ function	DeleteGroup( GroupName )
 			GroupName + "' );\">" + GroupName + "</a><br>";
 	}
 }
+
+//TODO: move it to group_view.js

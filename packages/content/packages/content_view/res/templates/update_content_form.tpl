@@ -1,4 +1,4 @@
-				<form method="post" id="{prefix}_edit_form" class="form_650">
+				<form method="post" id="{prefix}_update_form" class="form_650">
 					<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="update_record_form">
 					<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="update_record">
 					<input type="hidden" name="{prefix}_record_id" id="{prefix}_record_id" value="{ids}">

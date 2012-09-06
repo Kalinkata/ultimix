@@ -1,8 +1,0 @@
-Code=Banner's code
-Preview=Preview
-ad_banner_manager=Ad banner manager
-shure_to_delete_all_ad_banner=Are you shure that you want to delete all selected banners?
-ad_banner_deletion_was_completed=Record deletion was completed.
-code_must_be_set=Field "{lang:Code}" must be set
-ad_banner_update_was_completed=Editing was completed
-ad_banner_creation_was_completed=Banner creation was completed

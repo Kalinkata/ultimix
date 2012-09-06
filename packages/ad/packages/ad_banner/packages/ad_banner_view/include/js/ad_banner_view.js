@@ -114,3 +114,26 @@ ultimix.ad_banner.delete = function( Id , DataSelector )
 		}
 	);
 }
+
+/**
+*	Function shows record.
+*
+*	@param Id - Record id.
+*
+*	@param DataSelector - Data selector.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.ad_banner.record_view_form = function( Id , DataSelector )
+{
+	ultimix.auto.record_view_form( 
+		Id , DataSelector , 
+		{
+			'package_name' : 'ad::ad_banner::ad_banner_view' , 'ad_banner_context_action' : 'record_view_form' , 
+			'task_action' : 'record_view_form' , 'ad_banner_record_id' : Id , 
+			'meta' : 'meta_record_view_ad_banner_form'
+		}
+	);
+}

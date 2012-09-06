@@ -478,7 +478,7 @@
 		{
 			try
 			{
-				$Path = _get_package_relative_path_ex( 'user::user_manager::user_manager_view' , 'last' );
+				$Path = _get_package_relative_path_ex( 'user::user_manager' , 'last' );
 				$Template = $this->CachedMultyFS->get_template( "$Path/unexisting.php" , 'update_user_form.tpl' );
 				
 				$User = $this->UserAlgorithms->get_user();
@@ -573,7 +573,7 @@
 						'cfcx_switch_user_form' , 'cfcx_registration_form' , 'cfcx_update_user_form' , 
 						'cfcx_short_profile' , 'cfcx_full_profile' , 'cfcx_activate_user_form' , 
 						'cfcx_restore_password_form' , 'cfcx_login_button' , 'cfcx_logout_button' , 
-						'cfcx_logout_img_button' , 'cfcx_switch_user_button' , 'cfcx_edit_profile_button'
+						'cfcx_logout_img_button' , 'cfcx_switch_user_button' , 'cfcx_update_profile_button'
 					)
 				);
 			}

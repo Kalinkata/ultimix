@@ -9,5 +9,5 @@ permit_must_be_filled=Field '{lang:permit_permit}' must be filled
 permit_was_created=Permit was created
 permit_was_deleted=Selected records were deleted
 no_selected_permit=At least one record must be selected
-permit_update_was_completed=Editing was finished
+permit_update_was_completed=Permit was updated
 shure_to_delete_all_permit=Are you shure that you want to delete all selected permits?

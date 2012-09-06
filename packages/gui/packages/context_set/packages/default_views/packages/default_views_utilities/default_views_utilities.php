@@ -379,10 +379,10 @@
 		{
 			try
 			{
-				$this->ContextSetUtilities->set_header_template( $Options , $Paging );
-				$this->ContextSetUtilities->set_item_template( $Options , $Paging );
+				$this->ContextSetUtilities->set_header_template( $Options , $Paging , $this->Prefix );
+				$this->ContextSetUtilities->set_item_template( $Options , $Paging , $this->Prefix );
 				$this->ContextSetUtilities->set_no_data_found_message( $Options , $Paging );
-				$this->ContextSetUtilities->set_footer_template( $Options , $Paging );
+				$this->ContextSetUtilities->set_footer_template( $Options , $Paging , $this->Prefix );
 				$this->ContextSetUtilities->set_main_settings( $Options , $Paging );
 				$this->ContextSetUtilities->set_grid_data( $Options , $Paging , $this->QueryString );
 			}

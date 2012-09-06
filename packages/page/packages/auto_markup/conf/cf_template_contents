@@ -92,7 +92,7 @@ macro_name=delete_permit_button;package_name=permit::group_buttons;compilation_f
 macro_name=not_read_messages_count;package_name=pmsg::pmsg_view;compilation_func=compile_not_read_messages_count
 macro_name=print_content_url;package_name=content::content_markup;compilation_func=compile_print_content_url;terminal_values=content_id
 macro_name=package_dialog;package_name=core::package_markup;compilation_func=compile_package_dialog
-macro_name=record_field;package_name=gui::db_markup;compilation_func=compile_record_field
+macro_name=record_field;package_name=gui::db_markup;compilation_func=compile_record_field;terminal_values=id,access_package_name,access_package_version,field
 macro_name=query_field;package_name=gui::db_markup;compilation_func=compile_query_field;terminal_values=field,query
 macro_name=basename;package_name=gui::fs_markup;compilation_func=compile_basename
 macro_name=image_path;package_name=gui::fs_markup;compilation_func=compile_image_path;terminal_values=file_name

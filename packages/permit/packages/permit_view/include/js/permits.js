@@ -176,3 +176,5 @@ function	DeletePermit( PermitName )
 			PermitName + "' );\">" + PermitName + "</a><br>";
 	}
 }
+
+//TODO: move to permit_view.js

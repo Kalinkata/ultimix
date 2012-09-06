@@ -9,4 +9,4 @@ menu_item_was_deleted=Menu items were deleted
 name_must_be_filled=Field '{lang:menu_item_name}' must be filled
 menu_must_be_filled=Field '{lang:menu_item_menu}' must be filled
 href_must_be_filled=Field '{lang:menu_item_href}' must be filled
-menu_item_update_was_completed=Editing was finished
+menu_item_update_was_completed=Menu item was updated

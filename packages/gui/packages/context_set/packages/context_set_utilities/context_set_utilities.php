@@ -43,7 +43,7 @@
 		var					$SecurityUtilities = false;
 		var					$String = false;
 		var					$Trace = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -76,7 +76,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция инициализации шаблона грида.
 		*
@@ -99,14 +99,14 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			set_header_template( $Options , &$Paging )
+		function			set_header_template( $Options , &$Paging , $Prefix )
 		{
 			try
 			{
-				$FileName = $Options->get_setting( 'header' , 'header.tpl' );
+				$FileName = $Options->get_setting( 'header' , $Prefix.'_header.tpl' );
 				$Path = dirname( $Options->get_setting( 'file_path' ) )."/res/templates/$FileName";
 				$Header = $this->CachedMultyFS->file_get_contents( $Path );
-				
+
 				$Paging->set( 'Header' , $Header );
 			}
 			catch( Exception $e )
@@ -114,7 +114,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция инициализации шаблона грида.
 		*
@@ -137,11 +137,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			set_item_template( $Options , &$Paging )
+		function			set_item_template( $Options , &$Paging , $Prefix )
 		{
 			try
 			{
-				$FileName = $Options->get_setting( 'item' , 'item.tpl' );
+				$FileName = $Options->get_setting( 'item' , $Prefix.'_item.tpl' );
 				$Path = dirname( $Options->get_setting( 'file_path' ) )."/res/templates/$FileName";
 				$Item = $this->CachedMultyFS->file_get_contents( $Path );
 				
@@ -220,11 +220,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			set_footer_template( $Options , &$Paging )
+		function			set_footer_template( $Options , &$Paging , $Prefix )
 		{
 			try
 			{
-				$FileName = $Options->get_setting( 'footer' , 'footer.tpl' );
+				$FileName = $Options->get_setting( 'footer' , $Prefix.'_footer.tpl' );
 				$Path = dirname( $Options->get_setting( 'file_path' ) )."/res/templates/$FileName";
 				$Footer = $this->CachedMultyFS->file_get_contents( $Path );
 

@@ -1,5 +1,0 @@
-call_params_filter=edit_{prefix}:integer,value_1
-get_post_filter=page_action:string,value_update_record
-permits_validation=edit_{prefix}
-get_post_extraction_script={prefix}_title_original:string#{prefix}_template_name_original:string#{prefix}_template_version_original:command#{prefix}_predefined_packages_original:command,allow_not_set
-success_func=edit
