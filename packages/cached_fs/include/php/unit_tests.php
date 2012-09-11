@@ -96,34 +96,6 @@
 		}
 
 		/**
-		*	\~russian Файл не существует, в кэше этой информации нет.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english File does not exist but this information is not in the cache.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function	test_file_not_exists_put_in_cache()
-		{
-			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
-			$CachedFS->Cache->delete_data( './unexisting' );
-
-			$FileExists = $CachedFS->file_exists( './unexisting' );
-			$DataExists = $CachedFS->Cache->data_exists( './unexisting' );
-			
-			if( $FileExists === false && $DataExists === false )
-			{
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR: File exists : '.( $DataExists ? 1 : 0 ).', Data exists : '.( $DataExists ? 1 : 0 ) );
-			}
-		}
-
-		/**
 		*	\~russian Файл не существует и в кэше эта информация есть.
 		*
 		*	@author Додонов А.А.
@@ -159,21 +131,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	test_file_exists_data_in_cache()
+		function	test_file_exists_data_not_in_cache()
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->file_exists( './packages/index.html' );
 
 			$DataExists = $CachedFS->Cache->data_exists( './packages/index.html' );
-			$Content = $CachedFS->Cache->get_data( './packages/index.html' );
+			$Data = $CachedFS->Cache->get_data( './packages/index.html' );
 
-			if( $DataExists === true && $Content == '<html><head></head><body></body></html>' )
+			if( $DataExists === false && $Data === false )
 			{
 				return( 'TEST PASSED' );
 			}
 			else
 			{
-				return( 'ERROR : Data exists : '.( $DataExists ? 1 : 0 ).' Content : '.htmlspecialchars( $Content ) );
+				return( 'ERROR : Data exists : '.( $DataExists ? 1 : 0 ).' Data : '.htmlspecialchars( $Data ) );
 			}
 		}
 
@@ -225,7 +197,7 @@
 
 			file_put_contents( './packages/index.html' , '<html><head></head><body></body></html>' );
 
-			if( $Result == '<html><head><head><body></body></html>' )
+			if( $Result == '<html><head></head><body></body></html>' )
 			{
 				return( 'TEST PASSED' );
 			}

@@ -169,7 +169,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	filter_data( $Data , $FiltrationScript , &$Settings )
+		private function	filter_data_by_keys( $Data , $FiltrationScript , &$Settings )
 		{
 			try
 			{
@@ -179,10 +179,10 @@
 					if( $this->skip_element( $Settings , $k ) )
 					{
 						continue;
-					}					
+					}
 					if( is_array( $v ) || is_object( $v ) )
 					{
-						if( ( $Tmp = $this->filter_data( $v , $FiltrationScript ) ) !== false )
+						if( ( $Tmp = $this->filter_data_by_keys( $v , $FiltrationScript , $Settings ) ) !== false )
 						{
 							$Ret[ $k ] = $Tmp;
 						}
@@ -238,7 +238,7 @@
 					$Settings->set_setting( 'keys' , explode( ',' , $Settings->get_setting( 'keys' ) ) );
 				}
 
-				$Ret = filter_data( $Data , $FiltrationScript , $Settings );
+				$Ret = $this->filter_data_by_keys( $Data , $FiltrationScript , $Settings );
 
 				return( count( $Ret ) ? $Ret : false );
 			}

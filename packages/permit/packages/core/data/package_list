@@ -4,7 +4,7 @@ permit_controller.1.0.0#permit_controller
 permit_view.1.0.0#permit_view
 permit_markup.1.0.0#permit_markup
 permit_manager.1.0.0#permit_manager
-user_permit_manager.1.0.0#user_permit_manager
+permit_buttons.1.0.0#permit_buttons
 group_access.1.0.0#group_access
 group_controller.1.0.0#group_controller
 group_view.1.0.0#group_view
@@ -12,3 +12,4 @@ group_markup.1.0.0#group_markup
 group_manager.1.0.0#group_manager
 group_buttons.1.0.0#group_buttons
 ownership.1.0.0#ownership
+user_permit_manager.1.0.0#user_permit_manager

@@ -25,6 +25,8 @@
 	*/
 	class	unit_tests{
 
+		var				$CacheSwitch;
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -65,7 +67,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'graph::graph_core' , 'last' , __FILE__ );
+			get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

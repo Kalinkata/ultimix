@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
+
 		/**
 		*	\~russian Функция эмулирующая поведение адаптера.
 		*
@@ -39,13 +39,14 @@
 		{
 			if( $ConfigRow == '1' )
 			{
+				return( true );
 			}
 			else
 			{
 				throw( new Exception( 'Connection failed' ) );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция эмулирующая поведение адаптера.
 		*
@@ -60,7 +61,7 @@
 		{
 			return( true );
 		}
-		
+
 		/**
 		*	\~russian Проверка.
 		*
@@ -77,27 +78,18 @@
 		*/
 		function		validate_test_connection_without_errors( $MTime )
 		{
-			try
+			if( filemtime( dirname( __FILE__ ).'/cf_config' ) != $MTime )
 			{
-				if( filemtime( dirname( __FILE__ ).'/cf_config' ) != $MTime )
-				{
-					unlink( dirname( __FILE__ ).'/cf_config' );
-					return( 'ERROR: file was changed' );
-				}
-				else
-				{
-					/* $DBConfigSet->connect эксепшена не кинула и файл конфига не изменился */
-					unlink( dirname( __FILE__ ).'/cf_config' );
-					return( 'TEST PASSED' );
-				}
+				return( 'ERROR: file was changed' );
 			}
-			catch( Exception $e )
+			else
 			{
-				unlink( dirname( __FILE__ ).'/cf_config' );
-				return( 'ERROR: exception was thrown' );
+				return( 'TEST PASSED' );
 			}
+
+			unlink( dirname( __FILE__ ).'/cf_config' );
 		}
-		
+
 		/**
 		*	\~russian Подключение с первого раза.
 		*
@@ -113,15 +105,15 @@
 			try
 			{
 				$CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$CachedMultyFS->file_put_contents( dirname( __FILE__ ).'/cf_config' , "1\r\n2\r\n" );
-				
+				$CachedMultyFS->file_put_contents( dirname( __FILE__ ).'/cf_config' , "1\r\n2" );
+
 				$MTime = filemtime( dirname( __FILE__ ).'/cf_config' );
-				
+
 				$DBConfigSet = get_package( 'database::db_config_set' , 'last' , __FILE__ );
 				$DBConfigSet->load_config( dirname( __FILE__ ).'/cf_config' );
-				
+
 				$Connection = $DBConfigSet->connect( $this );
-				
+
 				return( $this->validate_test_connection_without_errors( $MTime ) );
 			}
 			catch( Exception $e )
@@ -130,7 +122,7 @@
 				return( 'ERROR: exception was thrown' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка.
 		*
@@ -146,10 +138,11 @@
 			try
 			{
 				$CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				if( $CachedMultyFS->file_get_contents( dirname( __FILE__ ).'/cf_config' ) != "1\r\n2\r\n" )
+				$Content = $CachedMultyFS->file_get_contents( dirname( __FILE__ ).'/cf_config' );
+				if( $Content != "1\r\n2\r\n" )
 				{
 					unlink( dirname( __FILE__ ).'/cf_config' );
-					return( 'ERROR: illegal config content ' );
+					return( "ERROR: illegal config content : $Content" );
 				}
 				else
 				{
@@ -164,7 +157,7 @@
 				return( 'ERROR: exception was thrown' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подключение не с первого раза.
 		*
@@ -180,7 +173,7 @@
 			try
 			{
 				$CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$CachedMultyFS->file_put_contents( dirname( __FILE__ ).'/cf_config' , "2\r\n1\r\n" );
+				$CachedMultyFS->file_put_contents( dirname( __FILE__ ).'/cf_config' , "2\r\n1" );
 
 				$DBConfigSet = get_package( 'database::db_config_set' , 'last' , __FILE__ );
 
@@ -196,7 +189,7 @@
 				return( 'ERROR: exception was thrown' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подключение не удалось.
 		*
@@ -213,20 +206,20 @@
 			try
 			{
 				$CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$CachedMultyFS->file_put_contents( $Path.'/cf_config' , "2\r\n3\r\n" );
-				
+				$CachedMultyFS->file_put_contents( $Path.'/cf_config' , "2\r\n3" );
+
 				$DBConfigSet = get_package( 'database::db_config_set' , 'last' , __FILE__ );
-				
+
 				$DBConfigSet->load_config( $Path.'/cf_config' );
-				
+
 				$Connection = $DBConfigSet->connect( $this );
-				
+
 				unlink( $Path.'/cf_config' );
 				return( 'ERROR: exception must be thrown' );
 			}
 			catch( Exception $e )
 			{
-				if( $CachedMultyFS->get_config( __FILE__ , 'cf_config' ) != "2\r\n3\r\n" )
+				if( $CachedMultyFS->file_get_contents( $Path.'/cf_config' ) != "2\r\n3" )
 				{
 					unlink( $Path.'/cf_config' );
 					return( 'ERROR: illegal config content' );
@@ -236,5 +229,5 @@
 			}
 		}
 	}
-	
+
 ?>

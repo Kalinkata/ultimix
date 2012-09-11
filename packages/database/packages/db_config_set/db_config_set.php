@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для коннекта к базе.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	db_config_set_1_0_0{
-		
+
 		/**
 		*	\~russian Загруженный конфиг.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Config = false;
-		
+
 		/**
 		*	\~russian Путь к загруженному конфигу.
 		*
@@ -48,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ConfigPath = false;
-		
+
 		/**
 		*	\~russian Объект доступа к ФС.
 		*
@@ -60,7 +60,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -86,7 +86,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция загрузки конфига.
 		*
@@ -111,6 +111,8 @@
 			{
 				$this->Config = $this->CachedMultyFS->file_get_contents( $ConfigPath );
 
+				$this->Config = str_replace( "\r" , "\n" , $this->Config );
+				$this->Config = str_replace( "\n\n" , "\n" , $this->Config );
 				$this->Config = explode( "\n" , $this->Config );
 
 				$this->ConfigPath = $ConfigPath;
@@ -120,7 +122,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Оптимизация конфига.
 		*
@@ -150,7 +152,7 @@
 				if( $i != 0 )
 				{
 					$Content = $ConfigLine."\r\n";
-					
+
 					foreach( $this->Config as $j => $ConfigLine2 )
 					{
 						if( $i != $j && $ConfigLine2 != '' )
@@ -166,7 +168,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки строки конфига.
 		*
@@ -197,25 +199,27 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_config_line( $DBAdapter , $i , $ConfigLine )
+		function			get_connection_for_config_line( $DBAdapter , $i , $ConfigLine )
 		{
 			try
 			{
 				if( $ConfigLine != '' )
 				{
 					$DBAdapter->connect( $ConfigLine );
-					
+
 					$this->optimize_config_file( $i , $ConfigLine );
-					
+
 					return( $DBAdapter->get_connection() );
 				}
+
+				return( false );
 			}
 			catch( Exception $e )
 			{
 				return( false );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция коннекта к базе.
 		*
@@ -242,17 +246,17 @@
 				{
 					throw( new Exception( 'Config was not loaded' ) );
 				}
-				
+
 				foreach( $this->Config as $i => $ConfigLine )
 				{
-					$Connection = $this->compile_config_line( $DBAdapter , $i , $ConfigLine );
-					
+					$Connection = $this->get_connection_for_config_line( $DBAdapter , $i , $ConfigLine );
+
 					if( $Connection !== false )
 					{
 						return( $Connection );
 					}
 				}
-				
+
 				throw( new Exception( "Unable to connect to the database" ) );
 			}
 			catch( Exception $e )
