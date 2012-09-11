@@ -55,50 +55,8 @@
 			$this->ErrorLogView = get_package( 'error_log::error_log_view' , 'last' , __FILE__ );
 			$this->Options = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 		}
-	
-		/**
-		*	\~russian Тестирование генерации страницы и вывода списка записей.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing page generation with list of records.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author  Dodonov A.A.
-		*/
-		function			test_simple_view()
-		{
-			try
-			{
-				//TODO: copy this unit-test to all *_view packages and test simple view
-				$this->ErrorLogAccess->add_message_to_log( 1 , 'title_of_testing_record' , 'description' );
 
-				$this->Options->load_settings( 'view=1;list_of_messages=1' );
-				$Page = $this->ErrorLogView->view( $this->Options );
-
-				if( strpos( $Page , 'title_of_testing_record' ) !== false )
-				{
-					$Result = 'TEST PASSED';
-				}
-				else
-				{
-					$Result = 'ERROR';
-				}
-
-				$Messages = $this->ErrorLogAccess->unsafe_select_messages( '1 ORDER BY id DESC LIMIT 0 , 1' );
-				$this->ErrorLogAccess->delete_error_log( $Messages[ 0 ]->id );
-
-				return( $Result );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
+		//TODO: create unit-test with simple list view testing for all *_view packages
 	}
 
 ?>

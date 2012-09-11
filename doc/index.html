@@ -75,6 +75,20 @@
 						<li>Simple and effective tools help identify and solve performance issues quickly</li>
 						<li>Ultimix provides support for writing and running unit tests as well as functionality tests, campatible with PHPUnit</li>
 					</ul>
+					<h4 class="header">&nbsp;&nbsp;Installation</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;All versions of the Ultimix distributives can be found <a href="http://sourceforge.net/projects/ultimix/files/">here</a> Download distributive and install it in any directory on your server. Then install database support <a href="installation.html">as described in this very simple manual</a>.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;You can also download the latest sources from Git:</p>
+					<div class="code"><pre>
+
+	https://github.com/gdever/ultimix.git
+
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;SVN repository is also available:</p>
+					<div class="code"><pre>
+
+	https://ultimix.svn.sourceforge.net/svnroot/ultimix
+
+</pre></div>
 					<h4 class="header">&nbsp;&nbsp;First 'Hello world' application</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo1.php' file. It is simple and obvious like all 'hello world' applations.</p>
 					<div class="code"><strong>Code:</strong><pre>
@@ -340,7 +354,7 @@ key3=Third localized string
 	print( 'Hello from '.$Lang->get_string( 'ultimix' ) );
 ?&gt;
 </pre></div>
-					<h4 class="header">&nbsp;&nbsp;Internationalization (I18N) and localization (L10N)</h4>
+					<h4 class="header">&nbsp;&nbsp;Logging and tracing</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultimix provides API for tracing and logging. It can be found in the 'trace' package. To switch this API on you should set trace_x_y_z->StoreTrace variable to true. This package has a very simple API wich is described below:
 					<div class="code"><strong>Code:</strong><pre>
 &lt;?php

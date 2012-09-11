@@ -70,7 +70,8 @@ ultimix.ajax_gate.direct_controller = function( Data , Functions , Options )
 
 	var			Request = {
 		async : Options.async , type : 'POST' , url : 'direct_controller.html?' + ( new Date() ).getTime() , 
-		data : Data , success : Functions ? Functions.success : false , error : Functions ? Functions.error : false , dataType : Options.data_type
+		data : Data , success : Functions ? Functions.success : false , 
+		error : Functions ? Functions.error : false , dataType : Options.data_type
 	};
 
 	jQuery.ajax( Request );
@@ -104,7 +105,8 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 	}
 	var			Request = {
 		async : Options.async , type : 'POST' , url : 'direct_view.html?' + ( new Date() ).getTime() , 
-		data : Data , success : Functions ? Functions.success : false , error : Functions ? Functions.error : false , dataType : Options.data_type
+		data : Data , success : Functions ? Functions.success : false , 
+		error : Functions ? Functions.error : false , dataType : Options.data_type
 	};
 	jQuery.ajax( Request );
 }

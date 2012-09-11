@@ -67,10 +67,8 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'database::event_manager' , 'last' , __FILE__ );
+			get_package( 'event_manager' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 	}

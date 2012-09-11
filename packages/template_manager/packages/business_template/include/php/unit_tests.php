@@ -67,7 +67,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'template_manager::busines_template' , 'last' , __FILE__ );
+			get_package( 'template_manager::business_template' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

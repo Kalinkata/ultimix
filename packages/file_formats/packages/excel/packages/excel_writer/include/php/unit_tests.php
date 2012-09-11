@@ -67,10 +67,8 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'file_format::excel::excel_writer' , 'last' , __FILE__ );
+			get_package( 'file_formats::excel::excel_writer' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 	}

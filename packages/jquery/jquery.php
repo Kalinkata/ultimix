@@ -13,6 +13,8 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: move jslib, jquery, jsdialogs and json packages to the new js package
+
 	/**
 	*	\~russian Класс для подключения библиотеки jquery.
 	*

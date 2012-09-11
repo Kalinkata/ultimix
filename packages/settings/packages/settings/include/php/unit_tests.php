@@ -67,7 +67,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'settings::settings' , 'last' , __FILE__ );
+			get_package_object( 'settings::settings' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

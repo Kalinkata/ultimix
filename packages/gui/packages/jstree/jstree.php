@@ -90,13 +90,13 @@
 			try
 			{
 				$Path = _get_package_relative_path_ex( 'gui::jstree' , get_package_version_s( __CLASS__ ) );
-				$Path = "{http_host}/$Path";
+				$Path = "{http_host}/$Path/include/js";
 
-				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.js" );
-				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.buttons.js" );
-				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.autorun.default.js" );
-				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.extractor.js" );
-				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.autorun.default.js" );
+				$this->PageJS->add_javascript( "$Path/jquery.jstree.js" );
+				$this->PageJS->add_javascript( "$Path/jquery.jstree.buttons.js" );
+				$this->PageJS->add_javascript( "$Path/jquery.jstree.autorun.default.js" );
+				$this->PageJS->add_javascript( "$Path/jquery.jstree.extractor.js" );
+				$this->PageJS->add_javascript( "$Path/jquery.jstree.autorun.default.js" );
 
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$Lang->include_strings_js( 'gui::jstree' );

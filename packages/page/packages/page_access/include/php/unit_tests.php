@@ -93,12 +93,12 @@
 
 				if( stripos( $PageContent , 'error' ) !== false )
 				{
-					return( 'ERROR' );
+					return( 'ERROR: Error page is '.get_field( $Page , 'alias' ) );
 				}
 
 				if( stripos( $PageContent , 'warning' ) !== false )
 				{
-					return( 'ERROR' );
+					return( 'ERROR: Warning page is '.get_field( $Page , 'alias' ) );
 				}
 			}
 

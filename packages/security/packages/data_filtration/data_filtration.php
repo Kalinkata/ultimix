@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс с описанием, поддерживаемых данных.
 	*
@@ -58,7 +58,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция фильтрации http данных.
 		*
@@ -92,7 +92,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция пропуска элемента.
 		*
@@ -127,10 +127,10 @@
 				{
 					if( array_search( $k ,  $Settings->get_setting( 'keys' ) ) === false )
 					{
-						return( true )
+						return( true );
 					}
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -138,7 +138,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция фильтрации данных.
 		*
@@ -199,7 +199,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция фильтрации данных.
 		*

@@ -1,13 +1,15 @@
 Ultimix v. 1.5.251
 -----------------------------------------
-1. Performance was improved.
-2. JavaScript API was extended.
-3. Installation script was fixed.
-4. Advert manager was refactored.
-5. Entity managers were refactored.
-6. 15 unit-tests were added.
-7. 
-8. 
+1.  Performance was improved.
+2.  JavaScript API was extended.
+3.  Installation script was fixed.
+4.  Advert manager was refactored.
+5.  Entity managers were refactored.
+6.  15 unit-tests were added.
+7.  SVN repository was added.
+8.  
+9.  
+10. 
 
 Ultimix v. 1.5.250
 -----------------------------------------

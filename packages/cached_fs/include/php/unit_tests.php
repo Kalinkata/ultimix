@@ -110,14 +110,16 @@
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->Cache->delete_data( './unexisting' );
 
-			if( $CachedFS->file_exists( './unexisting' ) === false && 
-				$CachedFS->Cache->data_exists( './unexisting' ) === false )
+			$FileExists = $CachedFS->file_exists( './unexisting' );
+			$DataExists = $CachedFS->Cache->data_exists( './unexisting' );
+			
+			if( $FileExists === false && $DataExists === false )
 			{
 				return( 'TEST PASSED' );
 			}
 			else
 			{
-				return( 'ERROR' );
+				return( 'ERROR: File exists : '.( $DataExists ? 1 : 0 ).', Data exists : '.( $DataExists ? 1 : 0 ) );
 			}
 		}
 
@@ -162,14 +164,16 @@
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->file_exists( './packages/index.html' );
 
-			if( $CachedFS->Cache->data_exists( './packages/index.html' ) === true && 
-				$CachedFS->Cache->get_data( './packages/index.html' ) == '<html><head></head><body></body></html>' )
+			$DataExists = $CachedFS->Cache->data_exists( './packages/index.html' );
+			$Content = $CachedFS->Cache->get_data( './packages/index.html' );
+
+			if( $DataExists === true && $Content == '<html><head></head><body></body></html>' )
 			{
 				return( 'TEST PASSED' );
 			}
 			else
 			{
-				return( 'ERROR' );
+				return( 'ERROR : Data exists : '.( $DataExists ? 1 : 0 ).' Content : '.htmlspecialchars( $Content ) );
 			}
 		}
 
@@ -227,7 +231,7 @@
 			}
 			else
 			{
-				return( 'ERROR' );
+				return( 'ERROR : Content : '.htmlspecialchars( $Result ) );
 			}
 		}
 

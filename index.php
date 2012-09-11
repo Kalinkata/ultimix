@@ -12,12 +12,10 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	try
 	{
 		require_once( './include/php/startup.php' );
-
-		//TODO: setup svn on source forge
 
 		index_main();
 	}

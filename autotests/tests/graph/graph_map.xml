@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 	<author name="Dodonov.A.A." email="dodonov_a_a@inbox.ru" />
-	<label value="data_form" />
+	<label value="graph" />
 	<timeout value="60" />
 	<type value="http" />
 	<host value="{host}" />
