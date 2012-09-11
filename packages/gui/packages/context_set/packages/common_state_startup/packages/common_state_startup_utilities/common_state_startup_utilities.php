@@ -204,9 +204,12 @@
 			{
 				$this->Trace->add_trace_string( '{lang:no_need_to_run_trace_message}' , COMMON );
 
-				$this->trace_field( $Prefix , 'context_action' , $ContextAction );
-
 				if( strpos( $ContextAction , '_form' ) !== false )
+				{
+					$this->trace_field( $Prefix , 'context_action' , $ContextAction );
+				}
+
+				if( strpos( $ContextAction , '_form' ) === false )
 				{
 					$this->trace_field( $Prefix , 'action' , $StateName );
 				}

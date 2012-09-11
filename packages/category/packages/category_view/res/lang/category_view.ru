@@ -21,3 +21,4 @@ category_create_was_completed=Запись была создана
 category_update_was_completed=Редактирование было успешно завершено
 category_selection=Выбор категории
 category_name=Локатор
+catalogue_manager=Каталог

@@ -203,7 +203,7 @@
 			{
 				$Name = $Settings->get_setting( 'name' );
 
-				return( $this->Vars[ $Name ] );
+				return( isset( $this->Vars[ $Name ] ) ? $this->Vars[ $Name ] : '' );
 			}
 			catch( Exception $e )
 			{

@@ -27,24 +27,26 @@ if( !ultimix.jstree )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.CreateNodeEventHandler = function( e , Data )
+ultimix.jstree.create_node_event_handler = function( e , Data )
 {
 	var			RootId = jQuery( Data.rslt.parent ).attr( 'id' ).replace( 'phtml_' , '' );
-	
-	ultimix.ajax_gate.DirectController(
+
+	ultimix.ajax_gate.direct_controller(
 		{
 			'package_name' : 'category::category_controller' , 
-			'create_category' : 1 , 
+			'meta' : 'meta_create_category' , 
 			'category_action' : 'create_record' , 
 			'root_id' : RootId , 
 			'title' : Data.rslt.name , 
 			'category_name' : 'category_name'
 		} , 
-		function( Result )
 		{
-			/* parsing result */
-			eval( "Result = " + Result + ";" );
-			jQuery( Data.rslt.obj ).attr( 'id' , 'phtml_' + Result.id );
+			'after_request' : function( Result )
+			{
+				/* parsing result */
+				eval( "Result = " + Result + ";" );
+				jQuery( Data.rslt.obj ).attr( 'id' , 'phtml_' + Result.id );
+			}
 		}
 	);
 }
@@ -58,14 +60,14 @@ ultimix.jstree.CreateNodeEventHandler = function( e , Data )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.RenameNodeEventHandler = function( e , Data )
+ultimix.jstree.rename_node_event_handler = function( e , Data )
 {
 	var			NodeId = jQuery( Data.rslt.obj ).attr( 'id' ).replace( 'phtml_' , '' );
-	
-	ultimix.ajax_gate.DirectController(
+
+	ultimix.ajax_gate.direct_controller(
 		{
 			'package_name' : 'category::category_controller' , 
-			'update_category' : 1 , 
+			'meta' : 'meta_update_category' , 
 			'category_action' : 'update_category_title' , 
 			'category_id' : NodeId , 
 			'title' : Data.rslt.new_name
@@ -82,20 +84,20 @@ ultimix.jstree.RenameNodeEventHandler = function( e , Data )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.RemoveNodeEventHandler = function( e , Data )
+ultimix.jstree.remove_node_event_handler = function( e , Data )
 {
 	for( var i = 0 ; i < Data.rslt.obj.length ; i++ )
 	{
 		var			NodeId = jQuery( Data.rslt.obj[ i ] ).attr( 'id' ).replace( 'phtml_' , '' );
-		
-		ultimix.ajax_gate.DirectController(
+
+		/*ultimix.ajax_gate.direct_controller(
 			{
 				'package_name' : 'category::category_controller' , 
-				'delete_category' : 1 , 
+				'meta' : 'meta_delete_category' , 
 				'category_action' : 'delete_record' , 
 				'category_record_id' : NodeId
 			}
-		);
+		);*/
 	}
 }
 
@@ -104,11 +106,11 @@ ultimix.jstree.RemoveNodeEventHandler = function( e , Data )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.CreateItem = function()
+ultimix.jstree.create_item = function()
 {
 	var 		Tree = jQuery.jstree._focused();
 	var			Node = Tree.get_selected();
-	
+
 	if( Node.length )
 	{
 		Tree.create( Node , 'last' , ultimix.get_string( 'tree_new_item' ) );
@@ -127,7 +129,7 @@ ultimix.jstree.CreateItem = function()
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.RenameItem = function()
+ultimix.jstree.rename_item = function()
 {
 	var 		Tree = jQuery.jstree._focused();
 	var			Node = Tree.get_selected();
@@ -152,15 +154,14 @@ ultimix.jstree.RenameItem = function()
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.MoveUpForSelected = function( Tree )
+ultimix.jstree.move_up_for_selected = function( Tree )
 {
-	/* move children elements upper */
 	var			SelectedNodes = Tree.get_selected();
-	
+
 	for( var i = 0 ; i < SelectedNodes.length ; i++ )
 	{
 		var			Children = Tree._get_children( SelectedNodes[ i ] );
-		
+
 		if( Children.length )
 		{
 			Tree.move_node( Children , SelectedNodes[ i ] , 'after' );
@@ -175,13 +176,13 @@ ultimix.jstree.MoveUpForSelected = function( Tree )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.ShowRemoveItemDialog = function( ConfirmString )
+ultimix.jstree.show_remove_item_dialog = function( ConfirmString )
 {
 	if( ConfirmString == '' )
 	{
 		ConfirmString = 'shure_to_delete_tree_item';
 	}
-	
+
 	ultimix.std_dialogs.MessageBox( 
 		ultimix.get_string( ConfirmString ) , 
 		ultimix.get_string( 'Question' ) , 
@@ -192,7 +193,7 @@ ultimix.jstree.ShowRemoveItemDialog = function( ConfirmString )
 			{
 				var 		Tree = jQuery.jstree._focused();
 				
-				ultimix.jstree.MoveUpForSelected( Tree );
+				ultimix.jstree.move_up_for_selected( Tree );
 				
 				Tree.remove();
 			}
@@ -207,7 +208,7 @@ ultimix.jstree.ShowRemoveItemDialog = function( ConfirmString )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.RemoveItem = function( ConfirmString )
+ultimix.jstree.remove_item = function( ConfirmString )
 {
 	var 		Tree = jQuery.jstree._focused();
 	var			Node = Tree.get_selected();
@@ -228,6 +229,6 @@ ultimix.jstree.RemoveItem = function( ConfirmString )
 		);
 		return;
 	}
-	
-	ultimix.jstree.ShowRemoveItemDialog( ConfirmString );
+
+	ultimix.jstree.show_remove_item_dialog( ConfirmString );
 }

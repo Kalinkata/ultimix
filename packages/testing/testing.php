@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	testing_1_0_0{
-		
+
 		/**
 		*	\~russian Объект с юнит-тестами.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$TestingObject = false;
-		
+
 		/**
 		*	\~russian Получение директории пакета.
 		*
@@ -60,12 +60,12 @@
 			try
 			{
 				$Security = get_package( 'security' , 'last' );
-				
+
 				$PackageDirectory = _get_package_relative_path_ex( 
 					$Security->get_gp( 'testing_package_name' , 'command' ) , 
 					$Security->get_gp( 'testing_package_version' , 'command' , 'last' )
 				);
-				
+
 				return( $PackageDirectory );
 			}
 			catch( Exception $e )
@@ -73,7 +73,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение объекта с тестами.
 		*
@@ -99,7 +99,7 @@
 				if( $this->TestingObject === false )
 				{
 					$PackageDirectory = $this->get_package_directory();
-					
+
 					if( file_exists( "$PackageDirectory/include/php/unit_tests.php" ) === false )
 					{
 						return( false );
@@ -108,7 +108,7 @@
 					require_once( "$PackageDirectory/include/php/unit_tests.php" );
 					$this->TestingObject = new unit_tests();
 				}
-				
+
 				if( $this->TestingObject === false )
 				{
 					throw( new Exception( "Testing class was not found" ) );
@@ -119,7 +119,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Безопасность запуска вида.
 		*
@@ -148,7 +148,7 @@
 			{
 				$UserController = get_package( 'user::user_controller' , 'last' , __FILE__ );
 				$UserController->login( $Options );
-				
+
 				$Permits = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 				if( $Permits->object_has_permit( false , 'user' , 'tester' ) === false )
 				{
@@ -156,7 +156,7 @@
 					print( $UserAlgorithms->get_login() );
 					return( 'No permits' );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -164,7 +164,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение количества подтестов.
 		*
@@ -191,7 +191,7 @@
 				$this->get_testing_object();
 
 				$Methods = get_class_methods( get_class( $this->TestingObject ) );
-				
+
 				$Counter = 0;
 				foreach( $Methods as $key => $m )
 				{
@@ -200,7 +200,7 @@
 						$Counter++;
 					}
 				}
-				
+
 				return( $Counter );
 			}
 			catch( Exception $e )
@@ -208,7 +208,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение названия подтеста.
 		*
@@ -232,9 +232,9 @@
 			try
 			{
 				$this->get_testing_object();
-				
+
 				$Methods = get_class_methods( get_class( $this->TestingObject ) );
-				
+
 				$Counter = 0;
 				$Security = get_package( 'security' , 'last' );
 				foreach( $Methods as $key => $m )
@@ -258,7 +258,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Запуск конкретного теста.
 		*
@@ -287,12 +287,12 @@
 				}
 
 				$Result = call_user_func_array( array( $this->TestingObject , $m ) , array() );
-				
+
 				if( in_array( 'tear_down' , $Methods ) )
 				{
 					call_user_func_array( array( $this->TestingObject , 'tear_down' ) , array() );
 				}
-				
+
 				return( $Result );
 			}
 			catch( Exception $e )
@@ -300,7 +300,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Поиск нового теста и запуск.
 		*
@@ -329,7 +329,7 @@
 			{
 				$Counter = 0;
 				$Security = get_package( 'security' , 'last' );
-				
+
 				foreach( $Methods as $key => $m )
 				{
 					if( strpos( $m , 'test' ) === 0 && $Counter++ == $Security->get_gp( 'test_id' , 'integer' ) )
@@ -337,7 +337,7 @@
 						return( $this->run_exact_test( $Methods , $m ) );
 					}
 				}
-				
+
 				if( $Security->get_gp( 'test_id' , 'integer' , 0 ) >= $Counter )
 				{
 					return( 'Value test_id is too big. It mast be less than '.$Counter );
@@ -352,7 +352,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Запуск теста.
 		*
@@ -378,12 +378,12 @@
 				/* running subtest */
 				$this->get_testing_object();
 				$Methods = get_class_methods( get_class( $this->TestingObject ) );
-				
+
 				if( isset( $Methods[ 0 ] ) == false )
 				{
 					return( 'No test were found' );
 				}
-				
+
 				return( $this->find_test_and_run( $Methods ) );
 			}
 			catch( Exception $e )
@@ -391,7 +391,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Запуск функций вида.
 		*
@@ -415,22 +415,22 @@
 			try
 			{
 				$Security = get_package( 'security' , 'last' );
-				
+
 				if( $Security->get_gp( 'action' , 'command' , 'none' ) === 'get_sub_test_count' )
 				{					
 					return( $this->get_sub_test_count() );
 				}
-				
+
 				if( $Security->get_gp( 'action' , 'command' , 'none' ) === 'get_sub_test_name' )
 				{
 					return( $this->get_sub_test_name() );
 				}
-				
+
 				if( $Security->get_gp( 'action' , 'command' , 'none' ) === 'run_sub_test' )
 				{
 					return( $this->run_sub_test() );
 				}
-				
+
 				return( 'Illegal request parameters' );
 			}
 			catch( Exception $e )
@@ -438,7 +438,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Вид компонента.
 		*
@@ -469,7 +469,7 @@
 				{
 					return( $Result );
 				}
-				
+
 				return( $this->run_views() );
 			}
 			catch( Exception $e )

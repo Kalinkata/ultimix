@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -38,7 +38,7 @@
 		function			set_up()
 		{
 		}
-		
+
 		/**
 		*	\~russian Возвращаем тестовый стенд в исходное положение.
 		*
@@ -52,7 +52,7 @@
 		function			tear_down()
 		{
 		}
-		
+
 		/**
 		*	\~russian Обработка некорректных макросов.
 		*
@@ -66,7 +66,7 @@
 		function			test_load_package()
 		{
 			get_package( 'page::page_access' , 'last' , __FILE__ );
-			
+
 			return( 'TEST PASSED' );
 		}
 
@@ -82,27 +82,28 @@
 		*/
 		function			test_gen_pages()
 		{
+			//TODO: add select_list method unit-test to all *_access packages
 			$PageAccess = get_package( 'page::page_access' , 'last' , __FILE__ );
-			
+
 			$Pages = $PageAccess->get_list_of_pages();
-			
+
 			foreach( $Pages as $i => $Page )
 			{
 				$PageContent = file_get_contents( HTTP_HOST.'/'.get_field( $Page , 'alias' ).'.html' );
-			
+
 				if( stripos( $PageContent , 'error' ) !== false )
 				{
 					return( 'ERROR' );
 				}
-				
-				if( stripos( $Page , 'warning' ) !== false )
+
+				if( stripos( $PageContent , 'warning' ) !== false )
 				{
 					return( 'ERROR' );
 				}
 			}
-			
+
 			return( 'TEST PASSED' );
 		}
 	}
-	
+
 ?>

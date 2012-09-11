@@ -39,6 +39,7 @@
 		var					$PermitAlgorithms = false;
 		var					$Security = false;
 		var					$StartupUtilities = false;
+		var					$Trace = false;
 		
 		/**
 		*	\~russian Префикс.
@@ -75,13 +76,14 @@
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$PackageName = 'gui::context_set::common_state_startup::common_state_startup_utilities';
 				$this->StartupUtilities = get_package( $PackageName , 'last' , __FILE__ );
+				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Установка параметров работы.
 		*
@@ -457,25 +459,27 @@
 		{
 			try
 			{
+				$this->Trace->start_group( "common_configs_processing" , COMMON );
+				$Result = false;
 				$this->set_constants( $ContextSet , $Options );
-
 				if( $Options->get_setting( 'controller' , 0 ) != 0 )
 				{
-					if( $this->run_controller_states( $ContextSet , $Options ) )
-					{
-						return( true );
-					}
+					$Result = $this->run_controller_states( $ContextSet , $Options );
 				}
-
+				else
+				{
+					$this->Trace->add_trace_string( "no_controllers" , COMMON );
+				}
 				if( $Options->get_setting( 'view' , 0 ) != 0 )
 				{
-					if( $this->run_view_states( $ContextSet , $Options ) )
-					{
-						return( true );
-					}
+					$Result = $this->run_view_states( $ContextSet , $Options );
 				}
-
-				return( false );
+				else
+				{
+					$this->Trace->add_trace_string( "no_views" , COMMON );
+				}
+				$this->Trace->end_group();
+				return( $Result );
 			}
 			catch( Exception $e )
 			{

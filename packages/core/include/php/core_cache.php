@@ -178,17 +178,20 @@
 		function			drop_core_cache()
 		{
 			$Dirname = dirname( __FILE__ );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_root_dir_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_package_real_version_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_rewrited_package_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_rewrites_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_package_path_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_package_relative_path_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_top_package_name_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_make_full_version_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_full_class_name_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_get_package_cache' );
-			@unlink( $Dirname.'/../../data/'.$this->FilePrefix.'_package_script_paths_cache' );
+
+			$Files = array( 
+				$this->FilePrefix.'_root_dir_cache' , $this->FilePrefix.'_package_real_version_cache' , 
+				$this->FilePrefix.'_rewrited_package_cache' , $this->FilePrefix.'_rewrites_cache' , 
+				$this->FilePrefix.'_package_path_cache' , $this->FilePrefix.'_package_relative_path_cache' , 
+				$this->FilePrefix.'_top_package_name_cache' , $this->FilePrefix.'_make_full_version_cache' , 
+				$this->FilePrefix.'_full_class_name_cache' , $this->FilePrefix.'_get_package_cache' , 
+				$this->FilePrefix.'_package_script_paths_cache' 
+			);
+
+			foreach( $Files as $i => $File )
+			{
+				@unlink( $Dirname.'/../../data/'.$File );
+			}
 		}
 
 		function			_save_root_dir_cache( $Dirname )

@@ -42,8 +42,8 @@ jQuery(
 			}
 		);
 		
-		jQuery( '.tree_control' ).bind( "create.jstree" , ultimix.jstree.CreateNodeEventHandler );
-		jQuery( '.tree_control' ).bind( "rename.jstree" , ultimix.jstree.RenameNodeEventHandler );
-		jQuery( '.tree_control' ).bind( "remove.jstree" , ultimix.jstree.RemoveNodeEventHandler );
+		jQuery( '.tree_control' ).bind( "create.jstree" , ultimix.jstree.create_node_event_handler );
+		jQuery( '.tree_control' ).bind( "rename.jstree" , ultimix.jstree.rename_node_event_handler );
+		jQuery( '.tree_control' ).bind( "remove.jstree" , ultimix.jstree.remove_node_event_handler );
 	}
 );

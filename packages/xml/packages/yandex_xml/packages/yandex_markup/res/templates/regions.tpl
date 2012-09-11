@@ -7,6 +7,7 @@
 	<option value="183">Азия</option>
 	<option value="241">Африка</option>
 	<option value="111">Европа</option>
+	<option value="54">Екатеринбург</option>
 	<option value="44">Ижевск</option>
 	<option value="63">Иркутск</option>
 	<option value="22">Калининград</option>
@@ -20,7 +21,9 @@
 	<option value="10174">Санкт-Петербург и Ленинградская область</option>
 	<option value="10002">Северная Америка</option>
 	<option value="166">СНГ</option>
+	<option value="55">Тюмень</option>
 	<option value="187">Украина</option>
 	<option value="147">Харьков</option>
+	<option value="56">Челябинск</option>
 	<option value="10003">Южная Америка</option>
 </select>

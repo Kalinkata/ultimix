@@ -293,7 +293,8 @@
 					if( get_field( $this->TraceStrings[ $i ] , 'name' ) == 'start_group' &&
 						get_field( $this->TraceStrings[ $i + 1 ] , 'name' ) == 'end_group' )
 					{
-						$this->TraceStrings = array_splice( $this->TraceStrings , $i , 2 );
+						$Counter++;
+						array_splice( $this->TraceStrings , $i , 2 );
 					}
 					else
 					{
@@ -357,7 +358,7 @@
 		{
 			try
 			{
-				$this-remove_empty_tags();
+				$this->remove_empty_tags();
 
 				$Output  = $this->CachedMultyFS->get_template( __FILE__ , 'trace_start.tpl' );
 				$Output .= implode_ex( '' , $this->TraceStrings , 'content' );

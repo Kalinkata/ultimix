@@ -12,11 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
-	define( 'DB_ASSOC_ARRAY' , 1 );
-	define( 'DB_OBJECT' , 2 );
-	define( 'DB_ARRAY' , 3 );
-	
+
 	/**
 	*	\~russian Класс для работы с базой данных.
 	*
@@ -85,7 +81,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса добавления столбца в таблицу.
 		*
@@ -129,7 +125,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления столбца из таблицы.
 		*

@@ -74,6 +74,7 @@
 		{
 			try
 			{
+				//TODO: copy this unit-test to all *_view packages and test simple view
 				$this->ErrorLogAccess->add_message_to_log( 1 , 'title_of_testing_record' , 'description' );
 
 				$this->Options->load_settings( 'view=1;list_of_messages=1' );

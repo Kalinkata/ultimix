@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,9 +24,9 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
+
 		var					$ContentMarkup = false;
-		
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -41,7 +41,7 @@
 		{
 			$this->ContentMarkup = get_package( 'content::content_markup' , 'last' , __FILE__ );
 		}
-		
+
 		/**
 		*	\~russian Возвращаем тестовый стенд в исходное положение.
 		*
@@ -55,7 +55,26 @@
 		function			tear_down()
 		{
 		}
-		
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_load_package()
+		{
+			get_package( 'content::content_markup' , 'last' , __FILE__ );
+
+			//TODO: create simple unit-tests for database package and others
+
+			return( 'TEST PASSED' );
+		}
+
 		/**
 		*	\~russian Тестирование макроса content_links.
 		*
@@ -72,9 +91,9 @@
 			{
 				$Changed = false;
 				$Str = '{content_links:category=news}';
-				
+
 				list( $Str , $Changed ) = this->ContentMarkup->process_content_links( $Str , $Changed );
-				
+
 				if( strpos( $Str , 'Welcome' ) === false )
 				{
 					print( 'ERROR' );
@@ -90,5 +109,5 @@
 			}
 		}
 	}
-	
+
 ?>

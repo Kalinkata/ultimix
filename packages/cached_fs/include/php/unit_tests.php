@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,9 +24,9 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
+
 		var				$CacheSwitch;
-		
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -49,7 +49,7 @@
 			$Cache->flush();
 			$Cache->reset();
 		}
-		
+
 		/**
 		*	\~russian Возвращаем тестовый стенд в исходное положение.
 		*
@@ -64,11 +64,11 @@
 		{
 			$Settings = get_package_object( 'settings::package_settings' , 'last' , __FILE__ );
 			$Settings->set_package_setting( 'cache' , 'last' , 'cf_cache' , 'cache_switch' , $this->CacheSwitch );
-			
+
 			$Cache = get_package_object( 'cache' , 'last' , __FILE__ );
 			$Cache->drop_cache();
 		}
-		
+
 		/**
 		*	\~russian Файл существует но в кэше его нет.
 		*
@@ -83,9 +83,9 @@
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->Cache->delete_data( './packages/index.html' );
-			
+
 			if( $CachedFS->file_exists( './packages/index.html' ) === true && 
-				$CachedFS->Cache->data_exists( './packages/index.html' ) === true )
+				$CachedFS->Cache->data_exists( './packages/index.html' ) === false )
 			{
 				return( 'TEST PASSED' );
 			}
@@ -94,9 +94,9 @@
 				return( 'ERROR' );
 			}
 		}
-		
+
 		/**
-		*	\~russian Файл не существует но в кэше этой информации нет.
+		*	\~russian Файл не существует, в кэше этой информации нет.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -109,9 +109,9 @@
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->Cache->delete_data( './unexisting' );
-			
+
 			if( $CachedFS->file_exists( './unexisting' ) === false && 
-				$CachedFS->Cache->data_exists( './packages/index.html' ) === true )
+				$CachedFS->Cache->data_exists( './unexisting' ) === false )
 			{
 				return( 'TEST PASSED' );
 			}
@@ -120,7 +120,7 @@
 				return( 'ERROR' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Файл не существует и в кэше эта информация есть.
 		*
@@ -135,7 +135,7 @@
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->file_exists( './unexisting' );
-			
+
 			if( $CachedFS->Cache->data_exists( './unexisting' ) === true && 
 				$CachedFS->Cache->get_data( './unexisting' ) == '_file_was_not_found' )
 			{
@@ -146,7 +146,7 @@
 				return( 'ERROR' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Файл существует и в кэше эта информация есть.
 		*
@@ -161,9 +161,9 @@
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->file_exists( './packages/index.html' );
-			
+
 			if( $CachedFS->Cache->data_exists( './packages/index.html' ) === true && 
-				$CachedFS->Cache->get_data( './packages/index.html' ) == '<html><head><head><body></body></html>' )
+				$CachedFS->Cache->get_data( './packages/index.html' ) == '<html><head></head><body></body></html>' )
 			{
 				return( 'TEST PASSED' );
 			}
@@ -172,7 +172,7 @@
 				return( 'ERROR' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение файла с диска.
 		*
@@ -188,8 +188,8 @@
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 			$CachedFS->Cache->delete_data( './packages/index.html' );
 			$Result = $CachedFS->file_get_contents( './packages/index.html' );
-			
-			if( $Result == '<html><head><head><body></body></html>' )
+
+			if( $Result == '<html><head></head><body></body></html>' )
 			{
 				return( 'TEST PASSED' );
 			}
@@ -198,7 +198,7 @@
 				return( 'ERROR' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение файла из кэша.
 		*
@@ -212,9 +212,15 @@
 		function	test_file_get_contents_from_cache()
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
+
 			$CachedFS->file_get_contents( './packages/index.html' );
+
+			file_put_contents( './packages/index.html' , '' );
+
 			$Result = $CachedFS->file_get_contents( './packages/index.html' );
-			
+
+			file_put_contents( './packages/index.html' , '<html><head></head><body></body></html>' );
+
 			if( $Result == '<html><head><head><body></body></html>' )
 			{
 				return( 'TEST PASSED' );
@@ -224,7 +230,7 @@
 				return( 'ERROR' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обновление несуществующих данных.
 		*
@@ -242,7 +248,7 @@
 				$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 				$CachedFS->Cache->delete_data( './unexisting' );
 				$CachedFS->file_get_contents( './unexisting' );
-				
+
 				return( 'ERROR' );
 			}
 			catch( Exception $e )
@@ -250,7 +256,7 @@
 				return( 'TEST PASSED' );
 			}
 		}
-		
+
 		/**
 		*	\~russian Запись в файл.
 		*
@@ -264,24 +270,24 @@
 		function	test_file_put_contents()
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
-			
+
 			$CachedFS->file_put_contents( './exception.log' , '' );
-			
+
 			// проверим что информация сохранилась в кэше
 			if( $CachedFS->file_exists( './exception.log' ) === false )
 			{
 				return( 'ERROR' );
 			}
-			
+
 			// проверим что информация сохранилась на диске
 			$CachedFS->Cache->delete_data( './packages/index.html' );
 			if( $CachedFS->file_exists( './exception.log' ) === false )
 			{
 				return( 'ERROR' );
 			}
-			
+
 			return( 'TEST PASSED' );
 		}
 	}
-	
+
 ?>

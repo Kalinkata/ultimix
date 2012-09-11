@@ -96,6 +96,7 @@
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.buttons.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.autorun.default.js" );
 				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.extractor.js" );
+				$this->PageJS->add_javascript( "$Path/include/js/jquery.jstree.autorun.default.js" );
 
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$Lang->include_strings_js( 'gui::jstree' );
@@ -105,55 +106,6 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-
-		/**
-		*	\~russian Функция компиляции макроса 'tree_control'.
-		*
-		*	@param $Settings - Настройки.
-		*
-		*	@return HTML код.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function compiles macro 'tree_control'.
-		*
-		*	@param $Settings - Options.
-		*
-		*	@return HTML code.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			compile_tree_control( &$Settings )
-		{
-			try
-			{
-				$Selector = $Settings->get_setting( 'selector' , false );
-				if( $Selector === false )
-				{
-					$Path = _get_package_relative_path_ex( 'jstree' , get_package_version_s( __CLASS__ ) );
-					$Path = "{http_host}/$Path/include/js";
-					$this->PageJS->add_javascript( "$Path/jquery.jstree.autorun.default.js" );
-					$Control = '';
-				}
-				else
-				{
-					$Control = $this->CachedMultyFS->get_template( __FILE__ , 'tree_control.tpl' );
-					$Control = str_replace( '{selector}' , $Selector );
-				}
-				return( $Control );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		//TODO move this package to the GUI package
 
 		/**
 		*	\~russian Функция компиляции макроса 'tree_control_buttons'.

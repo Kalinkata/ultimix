@@ -5,7 +5,7 @@ Ultimix v. 1.5.251
 3. Installation script was fixed.
 4. Advert manager was refactored.
 5. Entity managers were refactored.
-6. 
+6. 15 unit-tests were added.
 7. 
 8. 
 

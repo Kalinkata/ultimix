@@ -12,10 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
-	define( 'DB_ASSOC_ARRAY' , 1 );
-	define( 'DB_OBJECT' , 2 );
-	
+
 	/**
 	*	\~russian Класс для работы с базой данных.
 	*
@@ -27,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	mssql_database_1_0_0{
-		
+
 		/**
 		*	\~russian Объект соединения.
 		*
@@ -39,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var				$Connection = false;
-		
+
 		/**
 		*	\~russian Список заблокированных таблиц.
 		*
@@ -51,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		static			$LockedTables = false;
-		
+
 		/**
 		*	\~russian Режимы блокировок таблиц.
 		*
@@ -63,7 +60,7 @@
 		*	@author Dodonov A.A.
 		*/
 		static 			$LockModes = false;
-		
+
 		/**
 		*	\~russian Режим выборки данных. Либо DB_ASSOC_ARRAY (запись представлена в виде 
 		*	ассоциативного массива) либо DB_OBJECT (запись представлена в виде объекта).
@@ -77,7 +74,7 @@
 		*	@author Dodonov A.A.
 		*/
 		static 			$QueryMode = DB_ASSOC_ARRAY;
-		
+
 		/**
 		*	\~russian Конфиг.
 		*
@@ -89,7 +86,7 @@
 		*	@author Додонов А.А.
 		*/
 		var				$Config = false;
-		
+
 		/**
 		*	\~russian Параметры подключения к базе.
 		*
@@ -106,7 +103,7 @@
 		var				$Database;
 		var				$TablenamePrefix;
 		var				$DBLogging;
-		
+
 		/**
 		*	\~russian Функция коннекта к базе.
 		*
@@ -135,7 +132,7 @@
 				$this->Password = $Config[ 2 ];
 				$this->Database = $Config[ 3 ];
 				$this->TablenamePrefix = $Config[ 4 ];
-				
+
 				$this->Connection = mssql_pconnect( $this->Host , $this->Username , $this->Password );
 				mssql_select_db( $this->Database , $this->Connection );
 			}
@@ -144,7 +141,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения соединения с базой данных.
 		*
@@ -192,7 +189,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выполнения запроса.
 		*
@@ -216,16 +213,16 @@
 			try
 			{
 				$Connection = $this->get_connection();
-				
+
 				$Query = str_replace( 'umx_' , $this->TablenamePrefix , $Query );
-			
+
 				$Result = $Connection->query( $Query );
-				
+
 				if( $Connection->errno !== 0 )
 				{
 					throw( new Exception( 'An error occured while query execution '.$Connection->error ) );
 				}
-				
+
 				return( $Result );
 			}
 			catch( Exception $e )
@@ -233,7 +230,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Режим выборки данных из таблицы.
 		*
@@ -263,7 +260,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса к БД.
 		*
@@ -307,7 +304,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение выборки результатов запроса.
 		*
@@ -335,7 +332,7 @@
 			try
 			{				
 				$RetValues = array();
-					
+
 				for( $i = 0; $i < $Result->num_rows ; $i++ )
 				{
 					if( self::$QueryMode == DB_ASSOC_ARRAY )
@@ -347,7 +344,7 @@
 						$RetValues [] = $Result->fetch_object();
 					}
 				}
-					
+
 				$Result->close();
 
 				return( $RetValues );
@@ -357,7 +354,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса вставки записи к БД.
 		*
@@ -395,7 +392,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления записи из БД.
 		*
@@ -429,7 +426,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса редактирования записи в БД.
 		*
@@ -465,13 +462,13 @@
 			try
 			{
 				$SubQuery = '';
-				
+
 				for( $i = 0 ; $i < count( $Fields ) - 1 ; $i++ )
 				{
 					$SubQuery .= $Fields[ $i ].' = '.$Values[ $i ].' , ';
 				}
 				$SubQuery .= $Fields[ count( $Fields ) - 1 ].' = '.$Values[ count( $Fields ) - 1 ];
-				
+
 				$this->query( "UPDATE $Table SET $SubQuery WHERE $Condition" );
 			}
 			catch( Exception $e )
@@ -479,7 +476,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса создания таблицы в БД.
 		*
@@ -516,7 +513,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления таблицы в БД.
 		*
@@ -546,7 +543,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса добавления столбца в таблицу.
 		*
@@ -588,7 +585,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления столбца из таблицы.
 		*
@@ -622,7 +619,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Блокирование таблиц.
 		*
@@ -656,7 +653,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция снятия блокировок с таблиц.
 		*
@@ -682,7 +679,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Установка точки сохранения.
 		*
@@ -712,7 +709,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Откат до точки сохранения.
 		*
@@ -742,7 +739,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция начала транзакции.
 		*
@@ -768,7 +765,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Закоммитить транзакцию.
 		*
