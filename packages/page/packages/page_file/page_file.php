@@ -79,6 +79,8 @@
 					$FilesHash .= $v2;
 				}
 
+				//TODO: remove this package if it is not used anywere
+				
 				return( md5( implode( '' , $Files ) ) );
 			}
 			catch( Exception $e )

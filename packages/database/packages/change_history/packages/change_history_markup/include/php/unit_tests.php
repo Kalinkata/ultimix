@@ -69,8 +69,6 @@
 		{
 			get_package( 'database::change_history::change_history_markup' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 	}

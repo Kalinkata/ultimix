@@ -69,8 +69,6 @@
 		{
 			get_package( 'content::content_controller' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 	}

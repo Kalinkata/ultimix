@@ -3472,21 +3472,17 @@ ultimix.ajax_gate.direct_controller = function( Data , Functions , Options )
 	{
 		Options = {};
 	}
-
 	jQuery.extend( Options , { 'async' : true , 'dataType' : 'text' } );
 	jQuery.extend( Data , { 'auto_redirect' : 0 , 'template' : 'ajax_result_template' } );
-
 	if( Functions && Functions.before_request )
 	{
 		Functions.before_request();
 	}
-
 	var			Request = {
 		async : Options.async , type : 'POST' , url : 'direct_controller.html?' + ( new Date() ).getTime() , 
 		data : Data , success : Functions ? Functions.success : false , 
 		error : Functions ? Functions.error : false , dataType : Options.data_type
 	};
-
 	jQuery.ajax( Request );
 }
 

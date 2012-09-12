@@ -69,8 +69,6 @@
 		{
 			get_package( 'database::table' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 	}

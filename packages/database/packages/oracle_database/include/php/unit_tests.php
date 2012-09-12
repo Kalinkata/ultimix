@@ -69,8 +69,6 @@
 		{
 			get_package( 'database::oracle_database' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 	}

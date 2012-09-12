@@ -90,11 +90,9 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 	{
 		return;
 	}
-
 	Options = !Options ? {} : Options;
 	jQuery.extend( { 'async' : true , 'data_type' : 'html' } , Options );
 	jQuery.extend( { 'auto_redirect' : 0 , 'template' : 'ajax_result_template' } , Data );
-
 	if( Functions && Functions.before_request )
 	{
 		Functions.before_request();
