@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<author name="Dodonov.A.A." email="dodonov_a_a@inbox.ru" />
+	<label value="gui" />
+	<timeout value="60" />
+	<type value="http" />
+	<host value="{host}" />
+	<url value="{path}direct_view.html?testing_package_name=gui::timer_widget{amp}package_name=testing{amp}package_version=last{amp}login={login}{amp}password={password}{amp}testing_package_version=last" />
+	<method value="POST" />
+	<description value="Unit-testing" />
+</root>

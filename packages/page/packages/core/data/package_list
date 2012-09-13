@@ -4,6 +4,7 @@ auto_view.1.0.0#auto_view
 browser_markup.1.0.0#browser_markup
 messages.1.0.0#messages
 page_access.1.0.0#page_access
+page_db_access.1.0.0#page_db_access
 page_composer.1.0.0#page_composer
 page_composer_utilities.1.0.0#page_composer_utilities
 page_css.1.0.0#page_css

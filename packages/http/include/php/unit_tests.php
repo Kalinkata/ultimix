@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -39,8 +39,6 @@
 		{
 			get_package( 'content::content_controller' , 'last' , __FILE__ );
 
-			//TODO: create simple unit-tests for database package and others
-			
 			return( 'TEST PASSED' );
 		}
 
@@ -63,9 +61,9 @@
 			try
 			{
 				$http = get_package( 'http' , 'last' , __FILE__ );
-				
+
 				$Response = $http->http_request( 'google.com' );
-				
+
 				if( strpos( $Response , 'google' ) !== false )
 				{
 					return( 'TEST PASSED' );
