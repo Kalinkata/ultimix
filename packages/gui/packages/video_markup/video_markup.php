@@ -135,7 +135,7 @@
 		{
 			try
 			{
-				return( $this->compile_template( &$Settings , 'rutube.tpl' ) );
+				return( $this->compile_template( $Settings , 'rutube.tpl' ) );
 			}
 			catch( Exception $e )
 			{
@@ -169,7 +169,7 @@
 		{
 			try
 			{
-				return( $this->compile_template( &$Settings , 'youtube.tpl' ) );
+				return( $this->compile_template( $Settings , 'youtube.tpl' ) );
 			}
 			catch( Exception $e )
 			{

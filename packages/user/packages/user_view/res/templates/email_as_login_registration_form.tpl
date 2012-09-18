@@ -43,7 +43,7 @@
 											</td>
 											<td align="left">
 												<input class="flat width_240" type="hidden" id="login_as_email" name="login" value="{login}">
-												<input class="flat width_240" type="text" name="email" value="{email}" onkeyup="ultimix.forms.MoveValueTo( this , 'login_as_email' );">
+												<input class="flat width_240" type="text" name="email" value="{email}" onkeyup="ultimix.forms.move_value_to( this , 'login_as_email' );">
 											</td>
 										</tr>
 										<tr>

@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Trace = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -108,7 +108,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки компонента.
 		*
@@ -141,7 +141,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -168,6 +168,7 @@
 		{
 			try
 			{
+				//TODO:: what is all that for?
 				if( intval( $Options->get_setting( 'compile_exact_config' , 0 ) ) )
 				{
 					return( $this->compile_exact_config( $Options ) );
@@ -178,7 +179,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция конвертации объекта в строку.
 		*
@@ -209,4 +210,5 @@
 			}
 		}
 	}
+
 ?>

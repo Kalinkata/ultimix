@@ -752,56 +752,6 @@
 		}
 
 		/**
-		*	\~russian Функция изменения пользователя.
-		*
-		*	@param $Login - логин (не изменяется ни при каких обстоятельствах).
-		*
-		*	@param $Email - новый email.
-		*
-		*	@param $Site - Сайт.
-		*
-		*	@param $About - Информация о себе.
-		*
-		*	@note Пароль с помощью этой функции изменить нельзя. Для этого нужно использовать reset_password.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function updates user info.
-		*
-		*	@param $Login - login (login cann not be changed).
-		*
-		*	@param $Email - new email.
-		*
-		*	@param $Site - User site.
-		*
-		*	@param $About - Information about user.
-		*
-		*	@note Password can not be reset by this method. To do this use reset_password method.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			update_user( $Login , $Email , $Site , $About )
-		{
-			try
-			{
-				$User = $this->get_user( $Login );
-				$id = get_field( $User , 'id' );
-				$Record = array( 'login' => $Login , 'email' => $Email , 'site' => $Site , 'about' => $About );
-
-				$this->update( $id , $Record );// TODO remove this function
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Выборка массива объектов.
 		*
 		*	@return Массив записей.

@@ -353,7 +353,6 @@
 		{
 			try
 			{
-				//TODO: add auto_macro wich outputs object field
 				return( $this->Lang->Language );
 			}
 			catch( Exception $e )

@@ -38,6 +38,18 @@
 		var					$Cache;
 
 		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Security = false;
+		
+		/**
 		*	\~russian Признак обновленного кэша.
 		*
 		*	@author Додонов А.А.
@@ -103,12 +115,12 @@
 		{
 			try
 			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$PageName = $Security->get_gp( 'page_name' , 'command' , 'default' );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$PageName = $this->Security->get_gp( 'page_name' , 'command' , 'default' );
 
 				$this->Cache = @file_get_contents( dirname( __FILE__ ).'/data/'.$PageName.'.cache' );
 
-				$this->TableOfContents = @file_get_contents( dirname( __FILE__ ).'/data/'.$PageName.'table' );
+				$this->TableOfContents = @file_get_contents( dirname( __FILE__ ).'/data/'.$PageName.'.table' );
 
 				if( $this->TableOfContents !== false )
 				{
@@ -153,7 +165,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения параметров заголовка.
 		*
@@ -181,11 +193,11 @@
 			try
 			{
 				$HeaderSize = 32 + 1 + 32 + 1;
-				
+
 				$ReadCursor = $this->TableOfContents[ $md5SectionOriginName ][ 'read_cursor' ];
-				
+
 				$SectionSize = $this->TableOfContents[ $md5SectionOriginName ][ 'section_size' ];
-				
+
 				return( array( $HeaderSize , $ReadCursor , $SectionSize ) );
 			}
 			catch( Exception $e )
@@ -193,7 +205,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка содержимого кэша.
 		*
@@ -221,7 +233,7 @@
 			try
 			{
 				list( $HeaderSize , $Cursor , $SectionSize ) = $this->get_header_parameters( $md5SectionOriginName );
-				
+
 				return( substr( $this->Cache , $Cursor + $HeaderSize , $SectionSize - $HeaderSize ) );
 			}
 			catch( Exception $e )
@@ -229,7 +241,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка содержимого кэша.
 		*
@@ -281,7 +293,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обовления кэша.
 		*
@@ -309,9 +321,9 @@
 			try
 			{
 				list( $HeaderSize , $Cursor , $SectionSize ) = $this->get_header_parameters( $md5SectionOriginName );
-				
+
 				$NewDataSize = strlen( $Data );
-				
+
 				$this->Cache = substr_replace( 
 					$this->Cache , 
 					$md5SectionOriginName.':'.sprintf( "%032d" , $NewDataSize + $HeaderSize ).':'.$Data , 
@@ -324,7 +336,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обовления содержания.
 		*
@@ -352,9 +364,9 @@
 			try
 			{
 				list( $HeaderSize , $Cursor , $SectionSize ) = $this->get_header_parameters( $md5SectionOriginName );
-				
+
 				$NewDataSize = strlen( $Data );
-				
+
 				$NewTable = array();
 				foreach( $this->TableOfContents as $Key => $Value )
 				{
@@ -376,7 +388,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция установки данных.
 		*
@@ -411,9 +423,9 @@
 				if( isset( $this->TableOfContents[ $md5SectionOriginName ] ) )
 				{
 					$this->update_cache( $md5SectionOriginName , $Data );
-					
+
 					$this->update_table( $md5SectionOriginName , $Data );
-					
+
 					if( $this->CacheSwitch === true )
 					{
 						$this->CacheWasUpdated = true;
@@ -429,7 +441,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Добавление данных в кэш.
 		*
@@ -474,7 +486,7 @@
 				$this->TableOfContents[ $md5SectionOriginName ][ 'tags' ] = array_merge( 
 					$Tags , array( '_cache_sys' , '_timeout' => time() )
 				);
-				
+
 				if( $this->CacheSwitch === true )
 				{
 					$this->CacheWasUpdated = true;
@@ -485,7 +497,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление данных из кэша.
 		*
@@ -519,7 +531,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка, существуют ли данные в кэше.
 		*
@@ -563,7 +575,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание нового оглавления кэша.
 		*
@@ -595,7 +607,7 @@
 			try
 			{
 				$NewTable = array();
-				
+
 				foreach( $this->TableOfContents as $Key => $Value )
 				{
 					if( $Value[ 'read_cursor' ] === $ReadCursor )
@@ -611,7 +623,7 @@
 						$NewTable[ $Key ] = $Value;
 					}
 				}
-				
+
 				return( $NewTable );
 			}
 			catch( Exception $e )
@@ -619,7 +631,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление данных из кэша.
 		*
@@ -647,13 +659,12 @@
 					$ReadCursor = $this->TableOfContents[ $SectionName ][ 'read_cursor' ];
 					$SectionSize = $this->TableOfContents[ $SectionName ][ 'section_size' ];
 					$this->Cache = substr_replace( $this->Cache , '' , $ReadCursor , $SectionSize );
-					
+
 					/** \~russian Обновляем содержимое оглавления
 						\~english Updating table of content*/
-				
-					
+
 					$this->TableOfContents = $this->compile_new_table_of_contents( $ReadCursor , $SectionSize );
-					
+
 					$this->CacheWasUpdated = true;
 				}
 			}
@@ -662,7 +673,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление данных из кэша по тэгу.
 		*
@@ -690,7 +701,7 @@
 					return;
 				}
 				$Sections = array();
-				
+
 				foreach( $this->TableOfContents as $Key => $Value )
 				{
 					if( array_search( $Tag , $Value[ 'tags' ] ) !== false )
@@ -698,7 +709,7 @@
 						$Sections [] = $Key;
 					}
 				}
-				
+
 				foreach( $Sections as $Key => $Value )
 				{
 					$this->delete_section( $Value );
@@ -709,7 +720,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция сохраняет все данные на диск.
 		*
@@ -730,14 +741,19 @@
 			{
 				if( $this->CacheWasUpdated && $this->CacheSwitch === true )
 				{
-					@unlink( dirname( __FILE__ ).'./data/cache' );
+					$this->drop_cache();
+
+					$PageName = $this->Security->get_gp( 'page_name' , 'command' , 'default' );
+
 					/** \~russian сохранение обновленного кэша
 						\~english save updated cache*/
-					file_put_contents( dirname( __FILE__ ).'/data/cache' , $this->Cache );
-					
+					file_put_contents( dirname( __FILE__ ).'/data/'.$PageName.'.cache' , $this->Cache );
+
 					/** \~russian сохранение описания кэша
 						\~english save cache's table of content*/
-					file_put_contents( dirname( __FILE__ ).'/data/table' , serialize( $this->TableOfContents ) );
+					file_put_contents( 
+						dirname( __FILE__ ).'/data/'.$PageName.'.table' , serialize( $this->TableOfContents )
+					);
 				}
 			}
 			catch( Exception $e )
@@ -745,7 +761,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Очистка кэша.
 		*
@@ -764,15 +780,17 @@
 		{
 			try
 			{
-				@unlink( dirname( __FILE__ ).'./data/cache' );
-				@unlink( dirname( __FILE__ ).'./data/table' );
+				$PageName = $this->Security->get_gp( 'page_name' , 'command' , 'default' );
+
+				@unlink( dirname( __FILE__ ).'./data/'.$PageName.'.cache' );
+				@unlink( dirname( __FILE__ ).'./data/'.$PageName.'.table' );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Конструктор загружает хранилище с кэшем.
 		*
@@ -795,7 +813,7 @@
 				{
 					return;
 				}
-				
+
 				$this->flush();
 			}
 			catch( Exception $e )

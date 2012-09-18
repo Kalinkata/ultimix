@@ -679,8 +679,7 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
-		
+
 		/**
 		*	\~russian Проверка наличия функции.
 		*
@@ -693,23 +692,17 @@
 		*/
 		function			test_record_view_form_js()
 		{
-			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			$Packages = _get_packages_list();
+
+			for( $i = 0 ; $i < count( $Packages ) ; $i++ )
 			{
-				if( strpos( $Files[ $i ] , '_view.php' ) !== false )
+				if( file_exists( $Packages[ $i ].'/include/php/unit_tests.php' ) === false )
 				{
-					$Path = dirname( $Files[ $i ] ).'/include/js/'.basename( $Files[ $i ] , '.php' ).'.js';
-					if( file_exists( $Path ) )
-					{
-						$Content = file_get_contents( $Path );
-						if( strpos( $Content , '.record_view_form = function(' ) === false )
-						{
-							$Errors++;
-							print( "<nobr>".$Path." : no record_view_form found</nobr><br>" );
-						}
-					}
+					$Errors++;
+					print( "<nobr>".$Packages[ $i ]." : no unit tests were found found</nobr><br>" );
 				}
 			}
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
 	}

@@ -26,6 +26,40 @@
 	class	graph_view_1_0_0{
 
 		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Graph = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->Graph = get_package( 'graph' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Функция отрисовки компонента.
 		*
 		*	@param $Options - Настройки работы модуля.
@@ -47,9 +81,7 @@
 		{
 			try
 			{
-				$this->prepare_graph_area();
-
-				$this->draw_graph_data( $Options );
+				$this->Graph->draw_graph_data( $Options );
 			}
 			catch( Exception $e )
 			{

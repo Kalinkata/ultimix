@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс обработки форм.
 	*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output = false;
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -52,7 +52,7 @@
 		var					$PackageSettings = false;
 		var					$String = false;
 		var					$SecurityUtilities = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -78,7 +78,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отправки формы.
 		*
@@ -104,15 +104,15 @@
 				$From = $this->PackageSettings->get_package_setting( 
 					'gui::forms' , 'last' , 'cf_forms' , 'from_email' , 'no_answer@localhost'
 				);
-				
+
 				$To = $this->PackageSettings->get_package_setting( 
 					'gui::forms' , 'last' , 'cf_forms' , 'to_email' , 'admin@localhost'
 				);
-				
+
 				$Subject = $this->PackageSettings->get_package_setting( 
 					'gui::forms' , 'last' , 'cf_forms' , 'subject' , 'New message'
 				);
-				
+
 				$this->Mail->send_email( $From , $To , $Subject , $Email );
 			}
 			catch( Exception $e )
@@ -120,7 +120,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки формы.
 		*
@@ -158,7 +158,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -182,7 +182,7 @@
 			try
 			{
 				$FormFile = $Options->get_setting( 'form_template' );
-					
+
 				$this->Output = $this->CachedMultyFS->get_template( __FILE__ , "$FormFile.tpl" );
 			}
 			catch( Exception $e )
@@ -190,7 +190,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса 'form'.
 		*
@@ -220,7 +220,7 @@
 				//TODO: create view macro to auto_markup
 				//TODO: to trait view as a macro
 				$this->draw_form( $Settings );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )
@@ -252,9 +252,9 @@
 			try
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_send_form' );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}
 			catch( Exception $e )
@@ -262,7 +262,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -290,11 +290,11 @@
 			try
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_draw_form' );
 
 				$ContextSet->execute( $Options , $this , __FILE__ );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )
@@ -303,5 +303,5 @@
 			}
 		}
 	}
-	
+
 ?>

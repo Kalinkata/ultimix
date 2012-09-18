@@ -67,7 +67,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'gui:colorbox' , 'last' , __FILE__ );
+			get_package( 'gui::colorbox' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

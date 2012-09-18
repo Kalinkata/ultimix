@@ -99,7 +99,7 @@
 
 				$PackagePath = _get_package_relative_path_ex( 'permit::permit_view' , $Version );
 
-				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/permits.js" );
+				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/permit_view.js" );
 			}
 			catch( Exception $e )
 			{

@@ -635,7 +635,7 @@
 		{
 			try
 			{
-				$this->Prefix = $ContextSetSettings->get_setting( 'prefix' );
+				$this->Prefix = $ContextSetSettings->get_setting( 'prefix' , '' );
 				$this->Prefix = str_replace( 
 					'{functionality}' , $ContextSetSettings->get_setting( 'functionality' , '' ) , 
 					$this->Prefix

@@ -71,22 +71,26 @@ ultimix.auto.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@param ViewOptions - Extra view generation options.
 *
+*	@param Prefix - Prefix.
+*
 *	@author Dodonov A.A.
 */
-ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
+ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer , NoDataFound , ViewOptions , Prefix )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
+	//TODO: replace *.get_list_form methods everywhere
+	//TODO: remove *.set_default_options methods everywhere
+
 	ViewOptions = ultimix.auto.set_default_options( ViewOptions );
 
-	ViewOptions.header = Header ? Header : 'auto_header.tpl';
-	ViewOptions.item = Item ? Item : 'auto_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'auto_footer.tpl';
-	//TODO: add {prefix}_no_data_found parameter to pass "no data found" form
-	//TODO: use this function in all get_custom_list_form API methods
+	ViewOptions.header = Header ? Header : Prefix + '_header.tpl';
+	ViewOptions.item = Item ? Item : Prefix + '_item.tpl';
+	ViewOptions.footer = Footer ? Footer : Prefix + '_footer.tpl';
+	ViewOptions.NoDataFound = NoDataFound ? NoDataFound : Prefix + '_no_data_found.tpl';
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }

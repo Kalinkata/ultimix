@@ -145,7 +145,7 @@
 				$Package = get_package( $Name , $Version , __FILE__ );
 				$FunctionName = $Options->get_setting( 'select_func_name' , 'select' );
 
-				$Records = call_user_func( array( $Object , $FunctionName ) , 0 , 1000000 , false , false )
+				$Records = call_user_func( array( $Object , $FunctionName ) , 0 , 1000000 , false , false );
 
 				list( $Header , $Item , $Footer ) = $this->get_templates( $Options );
 

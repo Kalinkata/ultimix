@@ -25,8 +25,6 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
-
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -67,9 +65,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 
-				'gui::context_set::common_state_startup::common_state_startup_utilities' , 'last' , __FILE__
-			);
+			get_package( 'graph::graph_utilities' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

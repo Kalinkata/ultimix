@@ -90,18 +90,7 @@ ultimix.change_history_view.get_list_form = function( ResultAcceptor , ViewOptio
 */
 ultimix.change_history_view.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.change_history_view.set_default_options( ViewOptions );
-
-	ViewOptions.header = Header ? Header : 'change_history_header.tpl';
-	ViewOptions.item = Item ? Item : 'change_history_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'change_history_footer.tpl';
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
 }
 
 /**

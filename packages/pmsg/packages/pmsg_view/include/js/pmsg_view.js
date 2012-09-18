@@ -104,18 +104,7 @@ ultimix.pmsg.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.pmsg.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.pmsg.set_default_options( ViewOptions );
-
-	ViewOptions.header = Header ? Header : 'pmsg_header.tpl';
-	ViewOptions.item = Item ? Item : 'pmsg_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'pmsg_footer.tpl';
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
 }
 
 /**

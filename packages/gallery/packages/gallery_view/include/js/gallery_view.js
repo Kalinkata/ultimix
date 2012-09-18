@@ -176,18 +176,7 @@ ultimix.gallery.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.gallery.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.gallery.set_default_options( ViewOptions );
-
-	ViewOptions.header = Header ? Header : 'gallery_header.tpl';
-	ViewOptions.item = Item ? Item : 'gallery_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'gallery_footer.tpl';
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
 }
 
 /**

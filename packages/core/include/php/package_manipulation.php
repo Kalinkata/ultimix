@@ -124,7 +124,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция возвращает список пакетов.
 	*
@@ -173,7 +173,7 @@
 				'package_name' => $PackageNamePrefix.$InfoParts[ 0 ] , 
 				'package_version' => $PackageVersionPrefix.$InfoParts[ 1 ].'.'.$InfoParts[ 2 ].'.'.$InfoParts[ 3 ]
 			);
-			
+
 			if( file_exists( $ROOT_DIR.'/packages/'.$p[ 1 ].'/packages/core/data/package_list' ) )
 			{
 				$Name = $PackageNamePrefix.$InfoParts[ 0 ];
@@ -182,7 +182,7 @@
 					$RetArray , _get_packages_list( $ROOT_DIR.'/packages/'.$p[ 1 ] , $Name , $Version )
 				);
 			}
-			
+
 			return( $RetArray );
 		}
 		catch( Exception $e )
@@ -190,7 +190,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция возвращает список пакетов.
 	*
@@ -226,18 +226,18 @@
 		try
 		{
 			$PackageList = _load_packages_list( $ROOT_DIR );
-			
+
 			list( $PackageNamePrefix , $PackageVersionPrefix ) = _get_name_and_version( $RootPackage , $RootVersion );
-			
+
 			$RetArray = array();
-			
+
 			foreach( $PackageList as $p )
 			{
 				$RetArray = _fetch_subpackages_list( 
 					$RetArray , $ROOT_DIR , $p ,  $PackageNamePrefix , $PackageVersionPrefix
 				);
 			}
-			
+
 			return( $RetArray );
 		}
 		catch( Exception $e )
@@ -245,7 +245,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция возвращает список пакетов.
 	*

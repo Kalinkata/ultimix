@@ -591,7 +591,6 @@
 
 				if( $ObjectType == 'user' || $ObjectType == 'group' || $ObjectType == 'page' )
 				{
-					//TODO: add umx_page table
 					$Permit = $this->unsafe_select( "permit LIKE '$Permit'" );
 					$Permit = $Permit[ 0 ];
 					$this->Link->create_link( $Object , $Permit->id , $ObjectType , 'permit' , true );

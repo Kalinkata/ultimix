@@ -274,7 +274,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			add_settings_from_object( $Settings )
+		function			add_settings_from_object( &$Settings )
 		{
 			try
 			{
@@ -304,7 +304,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			load_raw_settings( $Settings )
+		function			load_raw_settings( &$Settings )
 		{
 			try
 			{
@@ -334,7 +334,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			append_raw_settings( $Settings )
+		function			append_raw_settings( &$Settings )
 		{
 			try
 			{

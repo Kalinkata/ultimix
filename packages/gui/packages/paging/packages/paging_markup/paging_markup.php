@@ -374,7 +374,6 @@
 
 					$Code = $this->get_records_per_page_control( $Paging , $this->Settings );
 
-					//TODO: move it to auto_markup
 					$Control = str_replace( "{records_per_page_control:$Parameters}" , $Code , $Control );
 				}
 

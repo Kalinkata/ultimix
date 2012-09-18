@@ -566,11 +566,11 @@
 			try
 			{
 				$User = $this->UserAlgorithms->get_user();
-				$Login = get_field( $User , 'login' );
 
 				list( $UserEmail , $Site , $About ) = $this->get_update_data();
 
-				$this->UserAccess->update_user( $Login , $UserEmail , $Site , $About );
+				$Record = array( 'email' => $UserEmail , 'site' => $Site , 'about' => $About );
+				$this->update( get_field( $User , 'id' ) , $Record );
 
 				$ChangePassword = $this->need_reset_password( $Login );
 

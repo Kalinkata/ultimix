@@ -149,7 +149,7 @@ ultimix.report.on_run_report_generation = function( DataAcceptor , StatusAccepto
 	var			PackageName = jQuery( DataSource ).find( 'span.package_name' ).html();
 	var			PackageVersion = jQuery( DataSource ).find( 'span.package_version' ).html();
 	var			ReportName = jQuery( DataSource ).find( 'span.report_name' ).html();
-	var			Data = ultimix.forms.ExtractFormData( DataSource );
+	var			Data = ultimix.forms.extract_form_data( DataSource );
 	
 	ultimix.report.generate_report( PackageName , PackageVersion , ReportName , Data , false , true );
 }

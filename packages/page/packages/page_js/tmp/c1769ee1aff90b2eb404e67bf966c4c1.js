@@ -2653,7 +2653,7 @@ ultimix.data_form.append_data = function( Data )
 */
 ultimix.data_form.move_form_data = function( SourceFormSelector )
 {
-	var					Data = ultimix.forms.ExtractFormData( SourceFormSelector );
+	var					Data = ultimix.forms.extract_form_data( SourceFormSelector );
 
 	ultimix.data_form.append_data( Data );
 }
@@ -3503,11 +3503,9 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 	{
 		return;
 	}
-
 	Options = !Options ? {} : Options;
 	jQuery.extend( { 'async' : true , 'data_type' : 'html' } , Options );
 	jQuery.extend( { 'auto_redirect' : 0 , 'template' : 'ajax_result_template' } , Data );
-
 	if( Functions && Functions.before_request )
 	{
 		Functions.before_request();
@@ -3762,9 +3760,6 @@ if( !ultimix )
 	ultimix = {};
 }
 
-// TODO: move to gui::href_markup
-// TODO: convert to lower case
-
 /**
 *	Local namespace.
 *
@@ -3805,8 +3800,6 @@ ultimix.forms.enter_was_pressed = function( e )
 	
 }
 
-// TODO convert to lower case notation
-
 /**
 *	Function processes triple state checkbox.
 *
@@ -3816,7 +3809,7 @@ ultimix.forms.enter_was_pressed = function( e )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.TripleSetCheckboxClick = function( Id , Name )
+ultimix.forms.triple_set_checkbox_click = function( Id , Name )
 {
 	var			Checkbox = document.getElementById( '_checkbox_' + Id );
 	var			Value = document.getElementById( Id );
@@ -3855,7 +3848,7 @@ ultimix.forms.TripleSetCheckboxClick = function( Id , Name )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.DoubleSetCheckboxClick = function( Id , Name )
+ultimix.forms.double_set_checkbox_click = function( Id , Name )
 {
 	var			Checkbox = document.getElementById( '_checkbox_' + Id );
 	var			Value = document.getElementById( Id );
@@ -3977,7 +3970,7 @@ ultimix.forms.form_exists = function( FormId )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.SubmitForm0 = function( FormId , ConfirmString , Action , Waiting , Method )
+ultimix.forms.submit_form_0 = function( FormId , ConfirmString , Action , Waiting , Method )
 {
 	if( !ultimix.forms.form_exists( FormId ) )
 	{
@@ -4031,7 +4024,7 @@ ultimix.forms.item_exists = function( Name )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.SubmitForm1 = function( FormId , Param1 , Value1 , ConfirmString , Action , Waiting , Method )
+ultimix.forms.submit_form_1 = function( FormId , Param1 , Value1 , ConfirmString , Action , Waiting , Method )
 {
 	if( !ultimix.forms.form_exists( FormId ) || !ultimix.forms.item_exists( Param1 ) )
 	{
@@ -4071,7 +4064,7 @@ ultimix.forms.SubmitForm1 = function( FormId , Param1 , Value1 , ConfirmString ,
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.SubmitForm2 = function( FormId , Param1 , Value1 , Param2 , Value2 , 
+ultimix.forms.submit_form_2 = function( FormId , Param1 , Value1 , Param2 , Value2 , 
 																			ConfirmString , Action , Waiting , Method )
 {	
 	if( !ultimix.forms.form_exists( FormId ) || !ultimix.forms.item_exists( Param1 ) || 
@@ -4118,7 +4111,7 @@ ultimix.forms.SubmitForm2 = function( FormId , Param1 , Value1 , Param2 , Value2
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.SubmitForm3 = function( FormId , Param1 , Value1 , Param2 , Value2 , Param3 , Value3 , 
+ultimix.forms.submit_form_3 = function( FormId , Param1 , Value1 , Param2 , Value2 , Param3 , Value3 , 
 																			ConfirmString , Action , Waiting , Method )
 {
 	if( !ultimix.forms.form_exists( FormId ) || !ultimix.forms.item_exists( Param1 ) || 
@@ -4179,7 +4172,7 @@ ultimix.forms.get_item_value = function( Item )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.ExtractFormData = function( Selector )
+ultimix.forms.extract_form_data = function( Selector )
 {
 	var			Items = jQuery( Selector ).find( '*' ).andSelf();
 	var			Data = new Object();
@@ -4208,7 +4201,7 @@ ultimix.forms.ExtractFormData = function( Selector )
 */
 ultimix.forms.update_record = function( id , Prefix , Method )
 {
-	ultimix.forms.SubmitForm2( 
+	ultimix.forms.submit_form_2( 
 		Prefix + '_form' , Prefix + '_context_action' , 'update_record_form' , Prefix + '_record_id' , 
 		id , '' , '' , false , Method
 	);
@@ -4223,7 +4216,7 @@ ultimix.forms.update_record = function( id , Prefix , Method )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.CancelSearch = function( ElementId , Speed )
+ultimix.forms.cancel_search = function( ElementId , Speed )
 {
 	if( document.getElementById( 'search_string' ).value == '' )
 	{
@@ -4245,7 +4238,7 @@ ultimix.forms.CancelSearch = function( ElementId , Speed )
 *
 *	@author Dodonov A.A.
 */
-ultimix.forms.MoveValueTo = function( Obj , DestinationObjectId )
+ultimix.forms.move_value_to = function( Obj , DestinationObjectId )
 {
 	document.getElementById( DestinationObjectId ).value = Obj.value;
 }
@@ -4259,8 +4252,6 @@ if( !ultimix )
 {
 	ultimix = {};
 }
-
-// TODO: move to gui::href_markup
 
 /**
 *	Local namespace.
@@ -4494,7 +4485,7 @@ ultimix.grids.SubmitForm0Mass = function( FormId , ConfirmString , Action , Name
 		return;
 	}
 
-	ultimix.forms.SubmitForm0( FormId , ConfirmString , Action , Waiting , Method );
+	ultimix.forms.submit_form_0( FormId , ConfirmString , Action , Waiting , Method );
 }
 
 /**
@@ -4529,7 +4520,7 @@ ultimix.grids.SubmitForm1Mass = function( FormId , Param1, Value1 , ConfirmStrin
 		return;
 	}
 
-	ultimix.forms.SubmitForm1( FormId , Param1, Value1 , ConfirmString , Action , Waiting , Method );
+	ultimix.forms.submit_form_1( FormId , Param1, Value1 , ConfirmString , Action , Waiting , Method );
 }
 
 /**
@@ -4568,7 +4559,7 @@ ultimix.grids.SubmitForm2Mass = function( FormId , Param1, Value1 , Param2, Valu
 		return;
 	}
 	
-	ultimix.forms.SubmitForm2( FormId , Param1, Value1 , Param2, Value2 , ConfirmString , Action , Waiting );
+	ultimix.forms.submit_form_2( FormId , Param1, Value1 , Param2, Value2 , ConfirmString , Action , Waiting );
 }
 
 /**
@@ -4611,7 +4602,7 @@ ultimix.grids.SubmitForm3Mass = function( FormId , Param1, Value1 , Param2, Valu
 		return;
 	}
 	
-	ultimix.forms.SubmitForm3( 
+	ultimix.forms.submit_form_3( 
 		FormId , Param1, Value1 , Param2, Value2 , Param3, Value3 , ConfirmString , Action , Waiting
 	);
 }

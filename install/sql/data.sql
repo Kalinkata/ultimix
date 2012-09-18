@@ -278,6 +278,15 @@ CREATE TABLE `{prefix}message` (
 	PRIMARY KEY  ( `id` )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `{prefix}page` (
+  `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` TEXT,
+  `template_package_name` TEXT,
+  `template_package_version` TEXT,
+  `options` TEXT,
+  PRIMARY KEY (`id`)
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{prefix}permit`;
 CREATE TABLE `{prefix}permit` (
 	`id` int(10) unsigned NOT NULL auto_increment ,

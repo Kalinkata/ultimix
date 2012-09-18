@@ -8,8 +8,6 @@ if( !ultimix )
 	ultimix = {};
 }
 
-// TODO: move to gui::href_markup
-
 /**
 *	Local namespace.
 *
@@ -150,8 +148,6 @@ ultimix.grids.ToggleChildrenCheckboxes = function( Checkbox )
 	);
 }
 
-// TODO convert to lowercase
-
 /**
 *	Function processes clicks on the parent checkboxes.
 *
@@ -242,7 +238,7 @@ ultimix.grids.SubmitForm0Mass = function( FormId , ConfirmString , Action , Name
 		return;
 	}
 
-	ultimix.forms.SubmitForm0( FormId , ConfirmString , Action , Waiting , Method );
+	ultimix.forms.submit_form_0( FormId , ConfirmString , Action , Waiting , Method );
 }
 
 /**
@@ -277,7 +273,7 @@ ultimix.grids.SubmitForm1Mass = function( FormId , Param1, Value1 , ConfirmStrin
 		return;
 	}
 
-	ultimix.forms.SubmitForm1( FormId , Param1, Value1 , ConfirmString , Action , Waiting , Method );
+	ultimix.forms.submit_form_1( FormId , Param1, Value1 , ConfirmString , Action , Waiting , Method );
 }
 
 /**
@@ -316,7 +312,7 @@ ultimix.grids.SubmitForm2Mass = function( FormId , Param1, Value1 , Param2, Valu
 		return;
 	}
 	
-	ultimix.forms.SubmitForm2( FormId , Param1, Value1 , Param2, Value2 , ConfirmString , Action , Waiting );
+	ultimix.forms.submit_form_2( FormId , Param1, Value1 , Param2, Value2 , ConfirmString , Action , Waiting );
 }
 
 /**
@@ -359,7 +355,7 @@ ultimix.grids.SubmitForm3Mass = function( FormId , Param1, Value1 , Param2, Valu
 		return;
 	}
 	
-	ultimix.forms.SubmitForm3( 
+	ultimix.forms.submit_form_3( 
 		FormId , Param1, Value1 , Param2, Value2 , Param3, Value3 , ConfirmString , Action , Waiting
 	);
 }

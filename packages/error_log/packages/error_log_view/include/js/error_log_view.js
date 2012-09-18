@@ -80,18 +80,7 @@ ultimix.error_log.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.error_log.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.error_log.set_default_options( ViewOptions );
-
-	ViewOptions.header = Header ? Header : 'error_log_header.tpl';
-	ViewOptions.item = Item ? Item : 'error_log_item.tpl';
-	ViewOptions.footer = Footer ? Footer : 'error_log_footer.tpl';
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
 }
 
 /**

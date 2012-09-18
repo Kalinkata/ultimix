@@ -7,5 +7,5 @@
 	<host value="{host}" />
 	<url value="{path}direct_view.html?testing_package_name=user::user_access{amp}package_name=testing{amp}package_version=last{amp}login={login}{amp}password={password}{amp}testing_package_version=last" />
 	<method value="POST" />
-	<description value="Unit-тестирование пользователей" />
+	<description value="Ultimix unit-test" />
 </root>

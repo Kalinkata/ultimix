@@ -5,6 +5,6 @@
 		<input type="hidden" id="{id}" name="{name}" value="{http_param:name={name};type=integer;post=1;default={default}}">
 	</div>
 	<div class="triple_checkbox_style_1">
-		<img onclick="ultimix.forms.TripleSetCheckboxClick( '{id}' , '{name}' );" width="16px" height="16px" src="./packages/_core_data/res/images/transparent.gif">
+		<img onclick="ultimix.forms.triple_set_checkbox_click( '{id}' , '{name}' );" width="16px" height="16px" src="./packages/_core_data/res/images/transparent.gif">
 	</div>
 </div>

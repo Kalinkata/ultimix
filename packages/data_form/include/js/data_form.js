@@ -71,7 +71,7 @@ ultimix.data_form.append_data = function( Data )
 */
 ultimix.data_form.move_form_data = function( SourceFormSelector )
 {
-	var					Data = ultimix.forms.ExtractFormData( SourceFormSelector );
+	var					Data = ultimix.forms.extract_form_data( SourceFormSelector );
 
 	ultimix.data_form.append_data( Data );
 }

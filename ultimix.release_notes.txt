@@ -7,9 +7,14 @@ Ultimix v. 1.5.251
 5.  Entity managers were refactored.
 6.  15 unit-tests were added.
 7.  SVN repository was added.
-8.  
-9.  
+8.  An error in the caching system was fixed.
+9.  Unit tests were added to all packages (about 300 unit tests were created).
 10. 
+11. 
+12. 
+13. 
+14. 
+15. 
 
 Ultimix v. 1.5.250
 -----------------------------------------

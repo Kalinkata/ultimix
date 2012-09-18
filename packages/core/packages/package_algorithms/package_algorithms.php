@@ -472,7 +472,7 @@
 					$List[ $i ][ 'meta' ] = $this->get_meta_files( $List[ $i ] );
 					$List[ $i ][ 'conf' ] = $this->get_config_files( $List[ $i ] );
 				}
-				
+
 				return( $List );
 			}
 			catch( Exception $e )
@@ -480,7 +480,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -530,7 +530,7 @@
 					);
 					usort( $List , $SortFunc );
 				}
-				
+
 				$Ret = array();
 				foreach( $List as $i => $l )
 				{

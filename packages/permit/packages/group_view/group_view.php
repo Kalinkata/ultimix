@@ -93,7 +93,7 @@
 
 				$PackagePath = _get_package_relative_path_ex( 'permit::group_view' , $Version );
 
-				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/groups.js" );
+				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/group_view.js" );
 			}
 			catch( Exception $e )
 			{

@@ -35,12 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Cache = false;
 		var					$CachedMultyFS = false;
-		var					$Config = false;
-		var					$Options = false;
+		var					$ConfigSettings = false;
 		var					$Settings = false;
-		var					$StaticContentAccess = false;
-		var					$ConfigLines = false;
 		var					$String = false;
 		var					$Utilities = false;
 
@@ -54,7 +52,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$StaticContentConfigs = false;
+		var					$TemplateContentConfigs = false;
+		
+		/**
+		*	\~russian Распарсеный конфиг.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Parsed config.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$ParsedConfig = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -74,15 +84,16 @@
 		{
 			try
 			{
+				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->Config = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->Options = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->ConfigSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->TemplateContentAccess = get_package( 
 					'page::template_content::template_content_access' , 'last' , __FILE__ 
 				);
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
+				$this->ParsedConfig = array();
 			}
 			catch( Exception $e )
 			{
@@ -131,7 +142,45 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Загрузка конфигов.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function loads configs.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	load_template_contents_configs_from_file()
+		{
+			try
+			{
+				$this->TemplateContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_template_contents' );
+				$this->TemplateContentConfigs = explode( "\n" , $this->TemplateContentConfigs );
+
+				foreach( $this->TemplateContentConfigs as $k => $v )
+				{
+					$this->ConfigSettings->load_settings( $v );
+
+					$Name = $this->get_name( $this->ConfigSettings );
+
+					$this->ParsedConfig[ $Name ] = $this->ConfigSettings->get_raw_settings();
+				}
+
+				$this->Cache->add_data( 'parsed_macro_config' , serialize( $this->ParsedConfig ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Загрузка конфигов.
 		*
@@ -150,17 +199,15 @@
 		{
 			try
 			{
-				if( $this->StaticContentConfigs === false )
+				if( count( $this->ParsedConfig ) == 0 )
 				{
-					$this->StaticContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_template_contents' );
-					$this->StaticContentConfigs = explode( "\n" , $this->StaticContentConfigs );
-
-					$this->ConfigLines = array();
-					foreach( $this->StaticContentConfigs as $k => $v )
+					if( $this->Cache->data_exists( 'parsed_macro_config' ) )
 					{
-						$Config = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-						$Config->load_settings( $v );
-						$this->ConfigLines[ $this->get_name( $Config ) ] = $Config;
+						$this->ParsedConfig = unserialize( $this->Cache->get_data( 'parsed_macro_config' ) );
+					}
+					else
+					{
+						$this->load_template_contents_configs_from_file();
 					}
 				}
 			}
@@ -617,8 +664,6 @@
 		{
 			try
 			{
-				//TODO: split $this->ConfigLines into 2 arrays for macro and blocks
-
 				if( ( $Name = $Config->get_setting( 'macro_name' , false ) ) !== false )
 				{
 					return( true );
@@ -627,6 +672,7 @@
 				{
 					return( false );
 				}
+
 				throw( new Exception( 'Undefined entity type' ) );
 			}
 			catch( Exception $e )
@@ -669,26 +715,26 @@
 		{
 			try
 			{
-				if( isset( $this->ConfigLines[ $Name ] ) )
+				if( isset( $this->ParsedConfig[ $Name ] ) )
 				{
-					if( $this->is_macro( $this->ConfigLines[ $Name ] ) )
+					$this->ConfigSettings->load_raw_settings( $this->ParsedConfig[ $Name ] );
+					if( $this->is_macro( $this->ConfigSettings ) )
 					{
 						list( $Str , $Changed ) = $this->compile_simple_macro( 
-							$this->ConfigLines[ $Name ] , $Str , $Changed
+							$this->ConfigSettings , $Str , $Changed
 						);
 
 						list( $Str , $Changed ) = $this->compile_parametrized_macro( 
-							$this->ConfigLines[ $Name ] , $Str , $Changed
+							$this->ConfigSettings , $Str , $Changed
 						);
 					}
 					else
 					{
 						list( $Str , $Changed ) = $this->compile_parametrized_block(
-							$this->ConfigLines[ $Name ] , $Str , $Changed
+							$this->ConfigSettings , $Str , $Changed
 						);
 					}
 				}
-
 				return( array( $Str , $Changed ) );
 			}
 			catch( Exception $e )
@@ -696,7 +742,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макросов.
 		*
@@ -733,14 +779,11 @@
 			{
 				$this->load_template_contents_configs();
 
-				if( $this->StaticContentConfigs != '' )
-				{
-					$Macroes = $this->String->find_all_macro( $Str );
+				$Macroes = $this->String->find_all_macro( $Str );
 
-					foreach( $Macroes as $i => $Name )
-					{
-						list( $Str , $Changed ) = $this->compile_named_macro( $Name , $Str , $Changed );
-					}
+				foreach( $Macroes as $i => $Name )
+				{
+					list( $Str , $Changed ) = $this->compile_named_macro( $Name , $Str , $Changed );
 				}
 
 				return( array( $Str , $Changed ) );
@@ -783,7 +826,7 @@
 				{
 					$Changed = false;
 
-					list( $Str , $Changed ) = $this->compile_all_macroes( $this->Options , $Str , $Changed );
+					list( $Str , $Changed ) = $this->compile_all_macroes( $this->Settings , $Str , $Changed );
 				}
 
 				return( $Str );

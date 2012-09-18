@@ -1,2 +1,2 @@
 <form id="logout_form" method="post"><input type="hidden" value="logout" name="action"></form>
-{component_button:package_name=user::user_view;label=bleave;page=javascript:ultimix.forms.SubmitForm0( 'logout_form' , '{lang:are_you_shure_to_logout}' , '' , false , 'post' )[dot_comma];size=100;icon=logout_064.gif;permit=registered}
+{component_button:package_name=user::user_view;label=bleave;page=javascript:ultimix.forms.submit_form_0( 'logout_form' , '{lang:are_you_shure_to_logout}' , '' , false , 'post' )[dot_comma];size=100;icon=logout_064.gif;permit=registered}

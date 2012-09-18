@@ -13,8 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	//TODO: add unit-test wich checks for unit-test file existence in each package
-
 	/**
 	*	\~russian Работа с аккаунтами пользователей.
 	*

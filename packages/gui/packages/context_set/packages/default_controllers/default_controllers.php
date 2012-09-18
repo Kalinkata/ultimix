@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	default_controllers_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -38,7 +38,7 @@
 		var					$ContextSetUtilities = false;
 		var					$GUI = false;
 		var					$SecurityParser = false;
-	
+
 		/**
 		*	\~russian Префикс.
 		*
@@ -50,7 +50,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Prefix = false;
-		
+
 		/**
 		*	\~russian Объект класса представляющего функции-обработчики.
 		*
@@ -62,7 +62,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Provider = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -92,7 +92,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Установка параметров работы.
 		*
@@ -127,7 +127,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция удаления записи.
 		*
@@ -153,7 +153,7 @@
 				$Provider = $this->ContextSetUtilities->get_data_provider( $Options , $this->Provider );
 				$FunctionName = $Options->get_setting( 'delete_func' , 'delete' );
 				$Ids = $this->ContextSetUtilities->get_posted_ids( $this->Prefix );
-				
+
 				if( method_exists( $Provider , $FunctionName ) === true )
 				{
 					call_user_func( array( $Provider , $FunctionName ) , implode( ',' , $Ids ) , $Options );
@@ -169,7 +169,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция масовой обработки записей.
 		*
@@ -214,7 +214,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки данных создания.
 		*
@@ -243,10 +243,10 @@
 			{
 				$ExtractionScript = $Options->get_setting( 'get_post_extraction_script' );
 				$Record = $this->SecurityParser->parse_http_parameters( $ExtractionScript );
-				
+
 				$FunctionName = $Options->get_setting( 'create_func' , 'create' );
 				$Provider = $this->ContextSetUtilities->get_data_provider( $Options , $this->Provider );
-				
+
 				return( array( $Record , $FunctionName , $Provider ) );
 			}
 			catch( Exception $e )
@@ -254,7 +254,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция создания записи.
 		*
@@ -295,37 +295,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция публичного создания записи.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function creates record (public).
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_create( &$Options )
-		{
-			try
-			{
-				$this->Create( $Options );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Компиляция записи.
 		*
@@ -357,17 +327,17 @@
 			try
 			{
 				$UpdateRecord = array();
-				
+
 				foreach( $RecordNew as $Field => $NewValue )
 				{
 					$Field = str_replace( $this->Prefix.'_' , '' , $Field );
-					
+
 					if( @$RecordOriginal->$Field != $NewValue )
 					{
 						@$UpdateRecord[ $Field ] = $NewValue;
 					}
 				}
-				
+
 				return( $UpdateRecord );
 			}
 			catch( Exception $e )
@@ -375,7 +345,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение полей для обновления.
 		*
@@ -412,12 +382,12 @@
 			{
 				$GetPostValidation = $Options->get_setting( 'get_post_validation' , false );
 				$ValidationScript = $Options->get_setting( 'custom_get_post_validation' , $GetPostValidation );
-				
+
 				if( $ValidationScript === false )
 				{
 					throw( new Exception( 'There is no script to extract data from http headers' ) );
 				}
-				
+
 				$RecordNew = $this->SecurityParser->parse_http_parameters( $ValidationScript );
 
 				return( $this->compile_update_record( $RecordNew , $RecordOriginal ) );
@@ -427,7 +397,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения параметров обновления записей.
 		*
@@ -455,13 +425,13 @@
 			try
 			{
 				$Ids = $this->ContextSetUtilities->get_posted_ids( $this->Prefix );
-				
+
 				/** \~russian если массовое редактирование отключено, то здесь по-любому будет один идентификатор
 					\~english if massive updating is switched off thet only on id will be in this variable*/
 				$RecordOriginal = $this->ContextSetUtilities->get_data_record( $Options , $Ids );
-				
+
 				$UpdateRecord = $this->get_update_record( $Options , $Ids , $RecordOriginal );
-				
+
 				return( array( $Ids , $UpdateRecord ) );
 			}
 			catch( Exception $e )
@@ -469,7 +439,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция редактирования записей.
 		*
@@ -516,38 +486,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция публичного редактирования записей.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function updates records (public).
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_update( &$Options )
-		{
-			try
-			{
-				//TODO: remove public functions
-				$this->update( $Options );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция копирования записи.
 		*

@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/*
 	*	w3captcha - php-скрипт для генерации изображений CAPTCHA
 	*	версия: 1.0 от 01.02.2008
@@ -20,7 +20,7 @@
 	*	тип лицензии: freeware
 	*	w3box.ru © 2008
 	*/
-	
+
 	/**
 	*	\~russian Каптча.
 	*
@@ -32,7 +32,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	captcha_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -44,7 +44,19 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Security = false;
-	
+		
+		/**
+		*	\~russian Алфавит.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Chars for captcha.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Chars = false;
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -60,13 +72,14 @@
 			try
 			{
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Chars = '0123456789';
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Подготовка изображения.
 		*
@@ -94,9 +107,9 @@
 				$Image = imagecreatetruecolor( $Width , $Height );
 
 				$BackgroundColor = imagecolorallocate( $Image , 255 , 255 , 255 ); /* rbg-цвет фона */
-				
+
 				imagefill( $Image , 0 , 0 , $BackgroundColor);
-				
+
 				return( $Image );
 			}
 			catch( Exception $e )
@@ -104,9 +117,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Получение параметров текста.
+		*
+		*	@param $Image - Объект изображения.
 		*
 		*	@return array( $FontFile , $CharAlign , $Start , $Interval , $Color , $NumChars ).
 		*
@@ -117,7 +132,7 @@
 		/**
 		*	\~english Function returns text parameters.
 		*
-		*	@param $Options - Settings.
+		*	@param $Image - Image.
 		*
 		*	@return array( $FontFile , $CharAlign , $Start , $Interval , $Color , $NumChars ).
 		*
@@ -125,7 +140,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_font_settings()
+		function			get_font_settings( $Image )
 		{
 			try
 			{
@@ -134,8 +149,8 @@
 				$Start = 5; /* позиция первого символа по-горизонтали */
 				$Interval = 16; /* интервал между началами символов */
 				$Color = imagecolorallocate( $Image , 255 , 0 , 0 ); /* rbg-цвет тени */
-				$NumChars = strlen( $Chars = "0123456789" );
-				
+				$NumChars = strlen( $this->Chars );
+
 				return( array( $FontFile , $CharAlign , $Start , $Interval , $Color , $NumChars ) );
 			}
 			catch( Exception $e )
@@ -143,7 +158,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция создания капчи.
 		*
@@ -172,21 +187,21 @@
 			{
 				$Image = $this->prepare_image();
 				$Str = "";
-				
-				list( $FontFile , $CharAlign , $Start , $Interval , $Color , $NumChars ) = $this->get_font_settings();
-				
+
+				list( $FontFile , $Align , $Start , $Interval , $Color , $Count ) = $this->get_font_settings( $Image );
+
 				for( $i = 0 ; $i < 5 ; $i++ )
 				{
-					$Char = $Chars[ rand( 0 , $NumChars - 1 ) ];
+					$Char = $this->Chars[ rand( 0 , $Count - 1 ) ];
 					$FontSize = rand( 15 , 25 );
 					$CharAngle = rand( -10 , 10 );
 					imagettftext( 
-						$Image , $FontSize , $CharAngle , $Start , $CharAlign , $Color , $FontFile , $Char
+						$Image , $FontSize , $CharAngle , $Start , $Align , $Color , $FontFile , $Char
 					);
 					$Start += $Interval;
 					$Str .= $Char;
 				}
-				
+
 				return( array( $Image , $Str ) );
 			}
 			catch( Exception $e )
@@ -194,7 +209,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция получения названия капчи.
 		*
@@ -222,7 +237,7 @@
 			try
 			{
 				$SessionName = 'captcha';
-				
+
 				if( $Options->get_setting( 'captcha_name' , false ) !== false )
 				{
 					if( $Options->get_setting( 'captcha_name' ) == 'auto' )
@@ -237,7 +252,7 @@
 						);
 					}
 				}
-				
+
 				return( $SessionName );
 			}
 			catch( Exception $e )
@@ -245,7 +260,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция проверки каптчи.
 		*
@@ -283,7 +298,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Вывод капчи.
 		*
@@ -321,7 +336,7 @@
 					header( "Content-type: image/jpeg" );
 					imagejpeg( $Image );
 				}
-				
+
 				imagedestroy( $Image ); 
 			}
 			catch( Exception $e )
@@ -329,7 +344,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки каптчи.
 		*
@@ -359,11 +374,11 @@
 				@session_start();
 
 				list( $Image , $Str ) = $this->create_captcha( $Options );
-				
+
 				$_SESSION[ $this->get_sesion_name( $Options ) ] = $Str;
 
 				$this->output_image( $Image );
-				
+
 				return( '' );
 			}
 			catch( Exception $e )
@@ -372,5 +387,5 @@
 			}
 		}
 	}
-	
+
 ?>

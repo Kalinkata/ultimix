@@ -1,2 +1,2 @@
 <form id="logout_form" method="post"><input type="hidden" value="logout" name="action"></form>
-{menu_button:package_name=user::user_view;icon=logout_024.gif;label=logout;page=javascript:ultimix.forms.SubmitForm0( 'logout_form' , '{lang:are_you_shure_to_logout}' , '' , false , 'post' )[dot_comma]}
+{menu_button:package_name=user::user_view;icon=logout_024.gif;label=logout;page=javascript:ultimix.forms.submit_form_0( 'logout_form' , '{lang:are_you_shure_to_logout}' , '' , false , 'post' )[dot_comma]}

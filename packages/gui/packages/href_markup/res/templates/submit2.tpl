@@ -1,1 +1,1 @@
-<a id="{id}" class="{class}" href="javascript:ultimix.forms.SubmitForm2( '{form_id}' , '{param1}' , '{value1}' , '{param2}' , '{value2}' , '{lang:{confirm_string}}' , '{action}' , {waiting} , 'post' );">{lang:{text}}{raw_text}</a>
+<a id="{id}" class="{class}" href="javascript:ultimix.forms.submit_form_2( '{form_id}' , '{param1}' , '{value1}' , '{param2}' , '{value2}' , '{lang:{confirm_string}}' , '{action}' , {waiting} , 'post' );">{lang:{text}}{raw_text}</a>

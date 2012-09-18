@@ -250,8 +250,6 @@
 			}
 		}
 
-		// TODO fix permit manager
-		
 		/**
 		*	\~russian Конструктор.
 		*

@@ -113,7 +113,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Установка параметров работы.
 		*
@@ -191,7 +191,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки формы создания записи.
 		*
@@ -224,11 +224,11 @@
 						$Options , array() , 'create_form' , $this->Prefix , 'create_record'
 					);
 				}
-				
+
 				$this->Provider->Output = $this->DefaultViewsUtilities->apply_posted_data_for_create_form( 
 					$Options , $this->Provider->Output
 				);
-				
+
 				$this->DefaultViewsUtilities->compile_form( $Options , $this->Provider->Output );
 			}
 			catch( Exception $e )
@@ -236,37 +236,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция отрисовки формы создания записи.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws record creation form.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_create_form( &$Options )
-		{
-			try
-			{
-				$this->create_form( $Options );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-	
+
 		/**
 		*	\~russian Функция отрисоки формы редактирования записей.
 		*
@@ -311,38 +281,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция отрисоки публичной формы редактирования записей.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws record update form (public).
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			public_update_form( &$Options )
-		{
-			try
-			{
-				//TODO: remove public functions
-				$this->update_form( $Options );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция комплияции формы редактирования записей.
 		*
@@ -762,10 +701,10 @@
 			try
 			{
 				$this->set_list_view_custom_buttons( $Options , $Paging );
-				$this->ContextSetUtilities->set_header_template( $Options , $Paging );
-				$this->ContextSetUtilities->set_item_template( $Options , $Paging );
-				$this->ContextSetUtilities->set_no_data_found_message( $Options , $Paging );
-				$this->ContextSetUtilities->set_footer_template( $Options , $Paging );
+				$this->ContextSetUtilities->set_header_template( $Options , $Paging , $this->Prefix );
+				$this->ContextSetUtilities->set_item_template( $Options , $Paging , $this->Prefix );
+				$this->ContextSetUtilities->set_no_data_found_message( $Options , $Paging , $this->Prefix );
+				$this->ContextSetUtilities->set_footer_template( $Options , $Paging , $this->Prefix );
 				$this->ContextSetUtilities->set_main_settings( $Options , $Paging );
 				$this->ContextSetUtilities->set_grid_data( $Options , $Paging );
 			}
