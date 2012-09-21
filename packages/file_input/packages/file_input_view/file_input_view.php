@@ -66,7 +66,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Загрузка плагинов.
 		*
@@ -100,7 +100,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
@@ -161,26 +161,31 @@
 		{
 			try
 			{
-				$FileInputAlgorithms = get_package( 'file_input::file_input_algorithms' , 'last' , __FILE__ );
-				$File = $FileInputAlgorithms->get_by_id( $this->Security->get_gp( 'fid' , 'integer' ) );
+				$Fid = $this->Security->get_gp( 'fid' , 'integer' , false );
 
-				$FileSize = filesize( get_field( $File , 'file_path' ) );
-				$FileName = get_field( $File , 'original_file_name' );
+				if( $Fid !== false )
+				{
+					$FileInputAlgorithms = get_package( 'file_input::file_input_algorithms' , 'last' , __FILE__ );
+					$File = $FileInputAlgorithms->get_by_id(  );
 
-				header( 'HTTP/1.0 200 OK' );
-				header( 'Content-type: application/octet-stream' );
-				header( "Content-Length: $FileSize" );
-				header( "Content-Disposition: attachment; filename=\"$FileName\"" );
-				header( 'Connection: close' );
+					$FileSize = filesize( get_field( $File , 'file_path' ) );
+					$FileName = get_field( $File , 'original_file_name' );
 
-				readfile( get_field( $File , 'file_path' ) );
+					header( 'HTTP/1.0 200 OK' );
+					header( 'Content-type: application/octet-stream' );
+					header( "Content-Length: $FileSize" );
+					header( "Content-Disposition: attachment; filename=\"$FileName\"" );
+					header( 'Connection: close' );
+
+					readfile( get_field( $File , 'file_path' ) );
+				}
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображения компонента.
 		*
@@ -207,7 +212,7 @@
 				{
 					$this->download( $Options );
 				}
-				
+
 				return( '' );
 			}
 			catch( Exception $e )

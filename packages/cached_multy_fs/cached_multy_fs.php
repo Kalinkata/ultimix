@@ -511,19 +511,19 @@
 				if( $Data === false )
 				{
 					$FileName = basename( $OriginalFilePath );
-					$FileContent = '';
+					$Content = '';
 					if( file_exists( $OriginalFilePath ) )
 					{
-						$FileContent .= file_get_contents( $OriginalFilePath );
+						$Content .= file_get_contents( $OriginalFilePath );
 					}
 					foreach( $this->MountedStorages as $ms )
 					{
 						if( file_exists( $ms.'/'.$FileName ) )
 						{
-							$FileContent .= file_get_contents( $ms.'/'.$FileName );
+							$Content .= file_get_contents( $ms.'/'.$FileName );
 						}
 					}
-					$this->Cache->add_data( $OriginalFilePath , $FileContent );
+					$this->Cache->add_data( $OriginalFilePath , $Content );
 				}
 				$Data = $Mode !== 'none' ? $this->transform_file_contents( $Data , $Mode ) : $Data;
 

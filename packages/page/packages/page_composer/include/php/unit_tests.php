@@ -710,6 +710,34 @@
 
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
+
+		/**
+		*	\~russian Проверка налиция теста на отображение списка сущностей.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing unit_tests for test_display_list test.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_list()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				if( strpos( $Files[ $i ] , '_manager.php' ) !== false )
+				{
+					$Content = file_get_contents( dirname( $Files[ $i ] )."/include/php/unit_tests.php" );
+					if( strpos( $Content , 'test_display_list' ) === false )
+					{
+						$Errors++;
+						print( "<nobr>".$Files[ $i ]."</nobr><br>" );
+					}
+				}
+			}
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
 	}
 
 ?>

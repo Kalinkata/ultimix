@@ -37,7 +37,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
+		function			set_up()
 		{
 		}
 
@@ -51,7 +51,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	tear_down()
+		function			tear_down()
 		{
 		}
 
@@ -84,8 +84,8 @@
 		*/
 		function			test_display_list()
 		{
-			//TODO: add test_display_list unit-test to all managers
-			$PageContent = file_get_contents( HTTP_HOST.'/'.get_field( $Page , 'alias' ).'.html' );
+			$PageComposer = get_package( 'page::page_composer' );
+			$PageContent = $PageComposer->get_page( 'user_manager' );
 
 			if( stripos( $PageContent , 'admin' ) === false )
 			{
@@ -95,5 +95,5 @@
 			return( 'TEST PASSED' );
 		}
 	}
-	
+
 ?>

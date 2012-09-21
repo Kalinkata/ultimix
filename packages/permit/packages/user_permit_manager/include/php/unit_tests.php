@@ -71,6 +71,31 @@
 
 			return( 'TEST PASSED' );
 		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			$PageComposer = get_package( 'page::page_composer' );
+			$PageContent = $PageComposer->get_page( 'user_manager' );
+
+			//TODO: add bread crumbs to all admin pages
+
+			if( stripos( $PageContent , 'admin' ) === false )
+			{
+				return( 'ERROR: user list with permits and group was not displayed' );
+			}
+
+			return( 'TEST PASSED' );
+		}
 	}
 
 ?>

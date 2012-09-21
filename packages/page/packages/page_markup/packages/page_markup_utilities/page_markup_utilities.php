@@ -278,10 +278,10 @@
 			try
 			{
 				$PackageName = $Options->get_setting( 'package_name' , false );
+				$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
 
 				if( $PackageName !== false )
 				{
-					$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
 					$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
 
 					$this->add_meta_parameters( $Options );
@@ -293,8 +293,7 @@
 					else
 					{
 						$ControlView = $Package->view( $Options );
-						$ControlView = $this->wrap_control_view( $Options , $ControlView );
-						return( $ControlView );
+						return( $this->wrap_control_view( $Options , $ControlView ) );
 					}
 				}
 			}
