@@ -217,8 +217,6 @@
 		{
 			try
 			{
-				//TODO: create view macro to auto_markup
-				//TODO: to trait view as a macro
 				$this->draw_form( $Settings );
 
 				return( $this->Output );

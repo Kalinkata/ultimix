@@ -480,7 +480,10 @@
 			{
 				$Str = $Template->get_template();
 
-				$Str = $this->AutoMarkup->compile_string( $Str );
+				if( strpos( $PageDescription[ 'options' ] , 'process_macro=0' ) === false )
+				{
+					$Str = $this->AutoMarkup->compile_string( $Str );
+				}
 
 				$Template->set_template( $Str );
 

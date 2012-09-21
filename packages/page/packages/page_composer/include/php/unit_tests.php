@@ -692,14 +692,19 @@
 		*/
 		function			test_record_view_form_js()
 		{
+			$Errors = 0;
+
 			$Packages = _get_packages_list();
 
 			for( $i = 0 ; $i < count( $Packages ) ; $i++ )
 			{
-				if( file_exists( $Packages[ $i ].'/include/php/unit_tests.php' ) === false )
+				$Path = _get_package_relative_path_ex( 
+					$Packages[ $i ][ 'package_name' ] , $Packages[ $i ][ 'package_version' ]
+				);
+				if( file_exists( $Path.'/include/php/unit_tests.php' ) === false )
 				{
 					$Errors++;
-					print( "<nobr>".$Packages[ $i ]." : no unit tests were found found</nobr><br>" );
+					print( "<nobr>".$Path." : no unit tests were found</nobr><br>" );
 				}
 			}
 

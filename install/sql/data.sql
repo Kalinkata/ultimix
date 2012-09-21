@@ -445,7 +445,7 @@ INSERT INTO `{prefix}system_structure` ( `id` , `page` , `root_page` , `navigati
 ( '19' , 'registration' , 'index' , '' ),
 ( '20' , 'system_settings' , 'admin' , '' ),
 ( '21' , 'tree_category_manager' , 'admin' , '' ),
-( '22' , 'admin_registration' , 'user_manager' , '<a href="admin_registration.html?back_page=user_manager">{lang:registration}</a>{lang_file:package_name=user::user_manager::user_manager_view}' ),
+( '22' , 'admin_registration' , 'user_manager' , '<a href="admin_registration.html?back_page=user_manager">{lang:registration}</a>{lang_file:package_name=user::user_manager}' ),
 ( '23' , 'page_manager' , 'admin' , '' ),
 ( '24' , 'package_manager' , 'admin' , '' ),
 ( '25' , 'static_content_manager' , 'admin' , '' ),

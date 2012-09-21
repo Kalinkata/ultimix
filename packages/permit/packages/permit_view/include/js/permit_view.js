@@ -29,7 +29,7 @@ if( !ultimix.permit )
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.SuccessFunction = function( Data , Waiting )
+ultimix.permit.success_function = function( Data , Waiting )
 {
 	return(
 		function( Result )
@@ -65,7 +65,7 @@ ultimix.permit.SuccessFunction = function( Data , Waiting )
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.SubmitPermitButton = function( Permit , MasterId , MasterType , Checkboxes , Action )
+ultimix.permit.submit_permit_button = function( Permit , MasterId , MasterType , Checkboxes , Action )
 {
 	ultimix.data_form.CreateForm();
 
@@ -84,7 +84,7 @@ ultimix.permit.SubmitPermitButton = function( Permit , MasterId , MasterType , C
 	}
 	Data[ Action ] = 1;
 
-	var			Success = ultimix.permit.SuccessFunction( Data , true );
+	var			Success = ultimix.permit.success_function( Data , true );
 	ultimix.std_dialogs.QuestionMessageBox( ultimix.get_string( 'are_you_shure' ) , Success )
 }
 
@@ -101,9 +101,9 @@ ultimix.permit.SubmitPermitButton = function( Permit , MasterId , MasterType , C
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.SetPermitButton = function( Permit , MasterId , MasterType , Checkboxes )
+ultimix.permit.set_permit_button = function( Permit , MasterId , MasterType , Checkboxes )
 {
-	ultimix.permit.SubmitPermitButton( Permit , MasterId , MasterType , Checkboxes , 'set_permit' );
+	ultimix.permit.submit_permit_button( Permit , MasterId , MasterType , Checkboxes , 'set_permit' );
 }
 
 /**
@@ -119,9 +119,9 @@ ultimix.permit.SetPermitButton = function( Permit , MasterId , MasterType , Chec
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.TogglePermitButton = function( Permit , MasterId , MasterType , Checkboxes )
+ultimix.permit.toggle_permit_button = function( Permit , MasterId , MasterType , Checkboxes )
 {
-	ultimix.permit.SubmitPermitButton( Permit , MasterId , MasterType , Checkboxes , 'toggle_permit' );
+	ultimix.permit.submit_permit_button( Permit , MasterId , MasterType , Checkboxes , 'toggle_permit' );
 }
 
 /**
@@ -137,9 +137,9 @@ ultimix.permit.TogglePermitButton = function( Permit , MasterId , MasterType , C
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.DeletePermitButton = function( Permit , MasterId , MasterType , Checkboxes )
+ultimix.permit.delete_permit_button = function( Permit , MasterId , MasterType , Checkboxes )
 {
-	ultimix.permit.SubmitPermitButton( Permit , MasterId , MasterType , Checkboxes , 'delete_permit' );
+	ultimix.permit.submit_permit_button( Permit , MasterId , MasterType , Checkboxes , 'delete_permit' );
 }
 
 /**
@@ -155,7 +155,8 @@ ultimix.permit.add_permit = function( PermitName )
 		document.getElementById( 'all_permits_div_id' ).innerHTML += 
 			"<div class='double_panel_row no_selection_text' id='" + PermitName + "_div_id'></div>";
 		document.getElementById( PermitName + '_div_id' ).innerHTML += "<input type='hidden' id='" + PermitName + 
-			"_field_id' name='permits[]' value='" + PermitName + "'><a href=\"javascript:DeletePermit( '" + 
+			"_field_id' name='permits[]' value='" + PermitName + 
+			"'><a href=\"javascript:ultimix.permit.delete_permit( '" + 
 			PermitName + "' );\">" + PermitName + "</a><br>";
 	}
 }
@@ -165,7 +166,7 @@ ultimix.permit.add_permit = function( PermitName )
 *	
 *	@author Dodonov A.A.
 */
-function	DeletePermit( PermitName )
+ultimix.permit.delete_permit = function( PermitName )
 {
 	if( PermitName != '' )
 	{

@@ -55,7 +55,6 @@
 		{
 			try
 			{
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -159,6 +158,11 @@
 				$S->set_setting( $SettingName , $Value );
 
 				$PackagePath = _get_package_path_ex( $PackageName , $PackageVersion );
+
+				if( $this->CachedMultyFS === false )
+				{
+					$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				}
 
 				$this->CachedMultyFS->file_put_contents( "$PackagePath/conf/$FileName" , $S->get_all_settings() );
 			}

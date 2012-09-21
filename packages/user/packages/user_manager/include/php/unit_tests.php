@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,9 +24,9 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
+
 		var				$CacheSwitch;
-		
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -40,7 +40,7 @@
 		function	set_up()
 		{
 		}
-		
+
 		/**
 		*	\~russian Возвращаем тестовый стенд в исходное положение.
 		*
@@ -54,7 +54,7 @@
 		function	tear_down()
 		{
 		}
-		
+
 		/**
 		*	\~russian Обработка некорректных макросов.
 		*
@@ -68,7 +68,30 @@
 		function			test_load_package()
 		{
 			get_package( 'user::user_manager' , 'last' , __FILE__ );
-			
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			//TODO: add test_display_list unit-test to all managers
+			$PageContent = file_get_contents( HTTP_HOST.'/'.get_field( $Page , 'alias' ).'.html' );
+
+			if( stripos( $PageContent , 'admin' ) === false )
+			{
+				return( 'ERROR: user list with permits and group was not displayed' );
+			}
+
 			return( 'TEST PASSED' );
 		}
 	}

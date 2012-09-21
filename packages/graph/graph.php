@@ -132,212 +132,6 @@
 		}
 
 		/**
-		*	\~russian Заливка клиентской области графика.
-		*
-		*	@param $GraphAreaColor - Шестнадцатеричное представление цвета.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function fills graph's client area.
-		*
-		*	@param $GraphAreaColor - Hexadecimal representation of the color.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			fill_graph_area( $GraphAreaColor )
-		{
-			try
-			{
-				$GraphAreaColor = intval( $GraphAreaColor );
-
-				$GraphAreaColor = $this->GraphCore->get_color_from_hex( $this->Img , $GraphAreaColor );
-
-				$Res = imagefilledrectangle( 
-					$this->Img , $this->ClientX , $this->Height - $this->ClientY , 
-					$this->ClientX + $this->ClientWidth , $this->Height - $this->ClientHeight - $this->ClientY , 
-					$GraphAreaColor
-				);
-
-				if( $Res === false )
-				{
-					throw( new Exception( 'An error occured while filling client area' ) );
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция рисует координатные оси.
-		*
-		*	@param $X - Начало координат.
-		*
-		*	@param $Y - Начало координат.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws coordinate grid.
-		*
-		*	@param $X - Start of the cordinates system.
-		*
-		*	@param $Y - Start of the cordinates system.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			draw_coordinates( $X = 0 , $Y = 0 )
-		{
-			try
-			{
-				if( $this->Img === false )
-				{
-					$this->draw_client_area();
-				}
-
-				$this->CoordX = intval( $X );
-				$this->CoordY = intval( $Y );
-
-				$BlackColor = imagecolorallocate( $this->Img , 0 , 0 , 0 );
-
-				$Y = intval( $Y );
-				imageline( 
-					$this->Img , $this->ClientX ,  $this->Height - $this->ClientY - $Y , 
-					$this->ClientX + $this->ClientWidth , $this->Height - $this->ClientY - $Y , $BlackColor
-				);
-
-				$X = intval( $X );
-				imageline( 
-					$this->Img , $this->ClientX + $X , $this->Height - $this->ClientY  , $this->ClientX + $X , 
-					$this->Height - $this->ClientY - $this->ClientHeight , $BlackColor
-				);
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция рисует сетку.
-		*
-		*	@param $Color - Цвет сетки.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws grid.
-		*
-		*	@param $Color - Grid color.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	draw_vertical_grid_lines( $Color )
-		{
-			try
-			{
-				$dx = ( $this->ClientWidth - $this->MarginLeft - $this->MarginRight ) / $this->StepsX;
-				for( $i = 0 ; $i <= $this->StepsX ; $i++ )
-				{
-					imageline( 
-						$this->Img , $this->ClientX + $dx * $i + $this->MarginLeft , $this->Height - $this->ClientY  , 
-						$this->MarginLeft + $this->ClientX + $dx * $i , 
-						$this->Height - $this->ClientY - $this->ClientHeight , $Color
-					);
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция рисует сетку.
-		*
-		*	@param $Color - Цвет сетки.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws grid.
-		*
-		*	@param $Color - Grid color.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	draw_horizontal_grid_lines( $Color )
-		{
-			try
-			{
-				$dy = ( $this->ClientHeight - $this->MarginTop - $this->MarginBottom ) / $this->StepsY;
-				for( $i = 0 ; $i <= $this->StepsY ; $i++ )
-				{
-					imageline(
-						$this->Img , $this->ClientX , $this->MarginTop + $this->ClientY + $dy * $i , 
-						$this->ClientX + $this->ClientWidth , $this->MarginTop + $this->ClientY + $dy * $i , $Color
-					);
-				}
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция рисует сетку.
-		*
-		*	@param $Color - Цвет сетки.
-		*
-		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function draws grid.
-		*
-		*	@param $Color - Grid color.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			draw_grid( $Color = 0xeeeeee )
-		{
-			try
-			{
-				$Color = $this->GraphCore->get_color_from_hex( $this->Img , $Color );
-
-				$this->draw_vertical_grid_lines( $Color );
-
-				$this->draw_horizontal_grid_lines( $Color );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Параметры отрисоки подписей.
 		*
 		*	@return array( $GlobalCenterY , $dy )
@@ -710,14 +504,14 @@
 
 				list( $dX , $dY ) = $this->get_scales( $DataX , $DataY );
 
+				$OX = $this->ClientX + $this->CoordX - min( $DataX ) * $dX + $this->MarginLeft;
+				$OY = $this->Height - $this->ClientY - $this->CoordY + min( $DataY ) * $dY - $this->MarginBottom;
+
 				for( $i = 0 ; $i < count( $DataX ) - 1 ; $i++ )
 				{
-					$OX = $this->ClientX + $this->CoordX - min( $DataX ) * $dX + $this->MarginLeft;
 					$x1 = $OX + $DataX[ $i + 0 ] * $dX;
 					$x2 = $OX + $DataX[ $i + 1 ] * $dX;
 
-					$OY = $this->Height - $this->ClientY - $this->CoordY 
-						- min( $DataY ) * $dY - $this->MarginBottom;
 					$y1 = $OY - $DataY[ $i + 0 ] * $dY;
 					$y2 = $OY - $DataY[ $i + 1 ] * $dY;
 
@@ -741,6 +535,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$GraphCore = false;
+		var					$GraphUtilities = false;
 		var					$Security = false;
 
 		/**
@@ -758,6 +553,7 @@
 			try
 			{
 				$this->GraphCore = get_package( 'graph::graph_core' , 'last' , __FILE__ );
+				$this->GraphUtilities = get_package( 'graph::graph_utilities' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -790,8 +586,8 @@
 			{
 				return(
 					array( 
-						explode( ',' , $this->Security->get_gp( 'data_x' , 'string' ) ) , 
-						explode( ',' , $this->Security->get_gp( 'data_y' , 'string' ) )
+						explode( ',' , $this->Security->get_gp( 'data_x' , 'string' , '1,2' ) ) , 
+						explode( ',' , $this->Security->get_gp( 'data_y' , 'string' , '1,2' ) )
 					)
 				);
 			}
@@ -823,7 +619,7 @@
 		{
 			try
 			{
-				$this->Graph->prepare_graph_area();
+				$this->GraphUtilities->prepare_graph_area( $this );
 
 				list( $DataX , $DataY ) = $this->get_graph_data();
 				$Color = $this->Security->get_gp( 'color' , 'integer' , 0xff0000 );

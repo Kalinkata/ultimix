@@ -91,14 +91,10 @@
 			{
 				$PageContent = file_get_contents( HTTP_HOST.'/'.get_field( $Page , 'alias' ).'.html' );
 
-				if( stripos( $PageContent , 'error' ) !== false )
+				if( stripos( $PageContent , ' error:' ) !== false || stripos( $PageContent , 'Notice:' ) !== false || 
+					stripos( $PageContent , 'Warning:' ) !== false || stripos( $PageContent , 'exception' ) !== false )
 				{
 					return( 'ERROR: Error page is '.get_field( $Page , 'alias' ) );
-				}
-
-				if( stripos( $PageContent , 'warning' ) !== false )
-				{
-					return( 'ERROR: Warning page is '.get_field( $Page , 'alias' ) );
 				}
 			}
 

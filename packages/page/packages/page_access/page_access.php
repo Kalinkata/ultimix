@@ -622,8 +622,6 @@
 				$Template = $this->Security->get( get_field( $Record , 'page_template' ) , 'string' );
 				$TemplateVersion = get_field( $Record , 'page_template_version' , 'last' );
 				$TemplateVersion = $this->Security->get( $TemplateVersion , 'string' );
-				$Settings = $this->Security->get( get_field( $Record , 'page_predefined_packages',  '' ) , 'command' );
-				$Settings = $Settings == 'on' ? 'predefined_packages=1' : 'predefined_packages=0';
 
 				return( "$Title#$Template#$TemplateVersion#$Settings" );
 			}

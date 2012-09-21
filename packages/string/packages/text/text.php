@@ -335,8 +335,6 @@
 		{
 			try
 			{
-				// TODO move here other patterns
-
 				$this->Patterns[ 'search_l_k' ] = $this->KOIPatternL;
 				$this->Patterns[ 'search_U_k' ] = $this->KOIPatternU;
 				$this->Patterns[ 'search_l_w' ] = $this->WINPatternL;

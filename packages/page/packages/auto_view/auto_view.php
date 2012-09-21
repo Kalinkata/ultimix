@@ -69,7 +69,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
@@ -131,7 +131,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисоки компонента.
 		*
@@ -155,9 +155,9 @@
 			try
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , $this->PackagePath );
-				
+
 				$ContextSet->execute( $Options , $this , $this->PackagePath );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )

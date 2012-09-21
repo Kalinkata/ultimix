@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Обработка страницы.
 	*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Security = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -106,7 +106,7 @@
 				{
 					return( $_COOKIE );
 				}
-				
+
 				return( false );
 			}
 			catch( Exception $e )
@@ -114,6 +114,8 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		//TODO: cache content line for the main page
 
 		/**
 		*	\~russian Функция получения значения.
@@ -204,7 +206,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отвечающая за обработку строки.
 		*

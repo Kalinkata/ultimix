@@ -85,7 +85,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_exact_config( $Options )
+		function			compile_exact_config( &$Options )
 		{
 			try
 			{
@@ -101,7 +101,7 @@
 				$Object = get_package( $PackageName , $PackageVersion , __FILE__ );
 				$ContextSet->execute( $Options , $Object , __FILE__ );
 
-				return( get_field( $Object , 'Output' , false ) );
+				return( get_field( $Object , 'Output' , '' ) );
 			}
 			catch( Exception $e )
 			{
@@ -127,7 +127,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
@@ -164,11 +164,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
-				//TODO:: what is all that for?
 				if( intval( $Options->get_setting( 'compile_exact_config' , 0 ) ) )
 				{
 					return( $this->compile_exact_config( $Options ) );

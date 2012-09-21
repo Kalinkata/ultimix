@@ -175,13 +175,16 @@
 
 				$this->Trace->add_trace_string( '{lang:processing_direct_controller}' , COMMON );
 
-				$PackageName = $Options->get_setting( 'package_name' );
-				$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
-				$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
+				$PackageName = $Options->get_setting( 'package_name' , false );
+				if( $PackageName !== false )
+				{
+					$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
+					$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
 
-				$this->add_meta_parameters( $Options );
+					$this->add_meta_parameters( $Options );
 
-				$this->call_controller( $Package , $Options );
+					$this->call_controller( $Package , $Options );
+				}
 
 				$this->Security->reset_s( 'direct_controller' , 0 );
 			}
@@ -274,21 +277,25 @@
 		{
 			try
 			{
-				$PackageName = $Options->get_setting( 'package_name' );
-				$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
-				$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
+				$PackageName = $Options->get_setting( 'package_name' , false );
 
-				$this->add_meta_parameters( $Options );
+				if( $PackageName !== false )
+				{
+					$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
+					$Package = get_package( $PackageName , $PackageVersion , __FILE__ );
 
-				if( method_exists( $Package , 'view' ) === false )
-				{
-					throw( new Exception( 'Function "view" was not found for class '.get_class( $Package ) ) );
-				}
-				else
-				{
-					$ControlView = $Package->view( $Options );
-					$ControlView = $this->wrap_control_view( $Options , $ControlView );
-					return( $ControlView );
+					$this->add_meta_parameters( $Options );
+
+					if( method_exists( $Package , 'view' ) === false )
+					{
+						throw( new Exception( 'Function "view" was not found for class '.get_class( $Package ) ) );
+					}
+					else
+					{
+						$ControlView = $Package->view( $Options );
+						$ControlView = $this->wrap_control_view( $Options , $ControlView );
+						return( $ControlView );
+					}
 				}
 			}
 			catch( Exception $e )

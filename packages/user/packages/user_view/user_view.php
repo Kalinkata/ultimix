@@ -41,7 +41,6 @@
 		var					$String = false;
 		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
-		var					$UserController = false;
 
 		/**
 		*	\~russian Результат работы функций отображения.
@@ -140,12 +139,10 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );;
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
-				$this->UserController = get_package( 'user::user_controller' , 'last' , __FILE__ );
 
 				$this->load_settings();
 			}
@@ -173,7 +170,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			pre_generation( $Options )
+		function			pre_generation( &$Options )
 		{
 			try
 			{
@@ -210,7 +207,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			login_form( $Options )
+		function			login_form( &$Options )
 		{
 			try
 			{
@@ -294,7 +291,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -313,7 +310,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_registration_form( $Options )
+		function			show_registration_form( &$Options )
 		{
 			try
 			{
@@ -325,7 +322,8 @@
 					return;
 				}
 
-				if( $this->Security->get_gp( 'user_action' ) && $this->UserController->RegistrationWasPassed )
+				$UserController = get_package( 'user::user_controller' , 'last' , __FILE__ );
+				if( $this->Security->get_gp( 'user_action' ) && $UserController->RegistrationWasPassed )
 				{
 					$this->show_registration_confirm_form();
 				}
@@ -358,7 +356,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			short_profile( $Options )
+		function			short_profile( &$Options )
 		{
 			try
 			{
@@ -375,7 +373,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -394,7 +392,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			full_profile( $Options )
+		function			full_profile( &$Options )
 		{
 			try
 			{
@@ -422,7 +420,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -455,7 +453,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -474,17 +472,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			update_user_form( $Options )
+		function			update_user_form( &$Options )
 		{
 			try
 			{
 				$Path = _get_package_relative_path_ex( 'user::user_manager' , 'last' );
 				$Template = $this->CachedMultyFS->get_template( "$Path/unexisting.php" , 'update_user_form.tpl' );
-				
+
 				$User = $this->UserAlgorithms->get_user();
 				$this->Output = $this->String->print_record( $Template , $User );
 				$this->Output = str_replace( '{prefix}' , 'user' , $this->Output );
-				
+
 				$this->compile_update_user_form();
 			}
 			catch( Exception $e )
@@ -609,6 +607,11 @@
 		{
 			try
 			{
+				if( $this->ContextSet === false )
+				{
+					$this->ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
+				}
+
 				$this->ContextSet->add_contexts( $Options , dirname( __FILE__ ) , $this->get_contexts() );
 
 				$this->ContextSet->execute( $Options , $this , __FILE__ );
@@ -621,4 +624,5 @@
 			}
 		}
 	}
+
 ?>

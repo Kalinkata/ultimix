@@ -551,7 +551,7 @@
 			$RootDirectory = _get_root_dir( $PackageName , $PackageVersion , INSTALL_DIR );
 			$PackageDirectory = _get_package_path( $PackageName , $PackageVersion , $RootDirectory );
 			$TopPackageName = _get_top_package_name( $PackageName );
-			
+
 			return( $PackageDirectory );
 		}
 		catch( Exception $e )

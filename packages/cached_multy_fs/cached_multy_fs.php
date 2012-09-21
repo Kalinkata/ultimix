@@ -49,7 +49,6 @@
 		*/
 		var					$Cache = false;
 		var					$CachedFS = false;
-		var					$String = false;
 		var					$Text = false;
 
 		/**
@@ -71,9 +70,6 @@
 			try
 			{
 				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
-				$this->CachedFS = get_package( 'cached_fs' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				$this->Text = get_package( 'string::text' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -353,6 +349,11 @@
 				{
 					$FilePath = $this->get_file_path( $OriginalFilePath , false );
 
+					if( $this->CachedFS === false )
+					{
+						$this->CachedFS = get_package( 'cached_fs' , 'last' , __FILE__ );
+					}
+
 					return( $this->CachedFS->store_file_exists_info( $OriginalFilePath , $FilePath ) );
 				}
 				else
@@ -400,6 +401,10 @@
 				{
 					$Data = str_replace( "\r" , "\n" , $Data );
 					$Data = str_replace( "\n\n" , "\n" , $Data );
+					if( $this->Text === false )
+					{
+						$this->Text = get_package( 'string::text' , 'last' , __FILE__ );
+					}
 					$Data = $this->Text->remove_bom( $Data );
 				}
 
@@ -520,7 +525,7 @@
 					}
 					$this->Cache->add_data( $OriginalFilePath , $FileContent );
 				}
-				$Data = $this->transform_file_contents( $Data , $Mode );
+				$Data = $Mode !== 'none' ? $this->transform_file_contents( $Data , $Mode ) : $Data;
 
 				return( $Data );
 			}

@@ -1,2 +1,0 @@
-permit::permit_manager#last#controller=1;create_group=1#
-permit::permit_manager#last#view=1;create_group=1#main

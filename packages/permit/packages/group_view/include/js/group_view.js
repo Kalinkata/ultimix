@@ -18,8 +18,6 @@ if( !ultimix.group )
 	ultimix.group = {};
 }
 
-//TODO: convert to lower case
-
 /**
 *	Function processes group manipulations.
 *
@@ -35,7 +33,7 @@ if( !ultimix.group )
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.SubmitGroupButton = function( Group , MasterId , MasterType , Checkboxes , Action )
+ultimix.permit.submit_group_button = function( Group , MasterId , MasterType , Checkboxes , Action )
 {
 	ultimix.data_form.CreateForm();
 	
@@ -56,7 +54,7 @@ ultimix.permit.SubmitGroupButton = function( Group , MasterId , MasterType , Che
 	
 	Data[ Action ] = 1;
 	
-	var			Success = ultimix.permit.SuccessFunction( Data , true );
+	var			Success = ultimix.permit.success_function( Data , true );
 	
 	ultimix.std_dialogs.MessageBox( ultimix.get_string( 'are_you_shure' ) , ultimix.get_string( 'Question' ) , 
 	ultimix.std_dialogs.MB_YESNO | ultimix.std_dialogs.MB_ICONQUESTION | ultimix.std_dialogs.MB_MODAL , Success );
@@ -78,9 +76,9 @@ ultimix.permit.SubmitGroupButton = function( Group , MasterId , MasterType , Che
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.SetGroupButton = function( Group , MasterId , MasterType , Checkboxes )
+ultimix.permit.set_group_button = function( Group , MasterId , MasterType , Checkboxes )
 {
-	ultimix.permit.SubmitGroupButton( Group , MasterId , MasterType , Checkboxes , 'set_group' );
+	ultimix.permit.submit_group_button( Group , MasterId , MasterType , Checkboxes , 'set_group' );
 }
 
 /**
@@ -96,9 +94,9 @@ ultimix.permit.SetGroupButton = function( Group , MasterId , MasterType , Checkb
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.ToggleGroupButton = function( Group , MasterId , MasterType , Checkboxes )
+ultimix.permit.toggle_group_button = function( Group , MasterId , MasterType , Checkboxes )
 {
-	ultimix.permit.SubmitGroupButton( Group , MasterId , MasterType , Checkboxes , 'toggle_group' );
+	ultimix.permit.submit_group_button( Group , MasterId , MasterType , Checkboxes , 'toggle_group' );
 }
 
 /**
@@ -114,9 +112,9 @@ ultimix.permit.ToggleGroupButton = function( Group , MasterId , MasterType , Che
 *
 *	@author Dodonov A.A.
 */
-ultimix.permit.DeleteGroupButton = function( Group , MasterId , MasterType , Checkboxes )
+ultimix.permit.delete_group_button = function( Group , MasterId , MasterType , Checkboxes )
 {
-	ultimix.permit.SubmitGroupButton( Group , MasterId , MasterType , Checkboxes , 'delete_group' );
+	ultimix.permit.submit_group_button( Group , MasterId , MasterType , Checkboxes , 'delete_group' );
 }
 
 /**
@@ -132,7 +130,8 @@ ultimix.permit.add_group = function( GroupName )
 		document.getElementById( 'all_groups_div_id' ).innerHTML += 
 				"<div class='double_panel_row no_selection_text' id='" + GroupName + "_div_id'></div>";
 		document.getElementById( GroupName + '_div_id' ).innerHTML += "<input type='hidden' id='" + GroupName + 
-			"_field_id' name='groups[]' value='" + GroupName + "'><a href=\"javascript:DeleteGroup( '" + GroupName + 
+			"_field_id' name='groups[]' value='" + GroupName + 
+			"'><a href=\"javascript:ultimix.permit.delete_group( '" + GroupName + 
 			"' );\">" + GroupName + "</a><br>";
 	}
 }
@@ -142,7 +141,7 @@ ultimix.permit.add_group = function( GroupName )
 *	
 *	@author Dodonov A.A.
 */
-function	DeleteGroup( GroupName )
+ultimix.permit.delete_group = function( GroupName )
 {
 	if( GroupName != '' )
 	{
