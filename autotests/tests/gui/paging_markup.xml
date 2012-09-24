@@ -5,7 +5,7 @@
 	<timeout value="60" />
 	<type value="http" />
 	<host value="{host}" />
-	<url value="{path}direct_view.html?testing_package_name=gui::paging::pagin_markup{amp}package_name=testing{amp}package_version=last{amp}login={login}{amp}password={password}{amp}testing_package_version=last" />
+	<url value="{path}direct_view.html?testing_package_name=gui::paging::paging_markup{amp}package_name=testing{amp}package_version=last{amp}login={login}{amp}password={password}{amp}testing_package_version=last" />
 	<method value="POST" />
 	<description value="Unit-testing" />
 </root>

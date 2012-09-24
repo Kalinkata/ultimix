@@ -724,9 +724,11 @@
 		function			test_smth_display_list()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				if( strpos( $Files[ $i ] , '_manager.php' ) !== false )
+				if( strpos( $Files[ $i ] , '_manager.php' ) !== false && 
+					strpos( $Files[ $i ] , 'event_manager.php' ) === false )
 				{
 					$Content = file_get_contents( dirname( $Files[ $i ] )."/include/php/unit_tests.php" );
 					if( strpos( $Content , 'test_display_list' ) === false )
@@ -736,6 +738,7 @@
 					}
 				}
 			}
+
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
 	}

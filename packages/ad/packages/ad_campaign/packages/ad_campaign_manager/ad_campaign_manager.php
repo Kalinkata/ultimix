@@ -23,7 +23,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	ad_manager_1_0_0{
+	class	ad_campaign_manager_1_0_0{
 
 		/**
 		*	\~russian Результат работы функций отображения.

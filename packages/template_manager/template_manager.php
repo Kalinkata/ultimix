@@ -99,21 +99,21 @@
 				$RawTemplateList = $this->CachedMultyFS->file_get_contents( 
 					dirname( __FILE__ ).'/data/template_list' , 'exploded'
 				);
-				
+
 				$TemplateList = array();
-				
+
 				foreach( $RawTemplateList as $rtl )
 				{
 					$rtl = str_replace( "\r" , '' , $rtl );
 					$rtl = str_replace( "\n" , '' , $rtl );
-					
+
 					$Trinity = explode( '#' , $rtl );
-					
+
 					$TemplateList [] = array( 
 						'name' => $Trinity[ 0 ] , 'version' => $Trinity[ 1 ] , 'default' => $Trinity[ 2 ]
 					);
 				}
-				
+
 				return( $TemplateList );
 			}
 			catch( Exception $e )
@@ -347,14 +347,14 @@
 			try
 			{
 				$Template = get_package( "$TemplateName" , "$TemplateVersion" , __FILE__ );
-				
+
 				if( $Template === false )
 				{
 					$PackageDirectory = $this->get_template_path( $TemplateName , $TemplateVersion );
-					
-					$Template = get_package( 'template_manager::default_template_script' , 'last' , __FILE__ );
+
+					$Template = get_package_object( 'template_manager::default_template_script' , 'last' , __FILE__ );
 					$Template->set_template_path( $PackageDirectory."/unexisting_script.php" );
-					
+
 					return( $Template );
 				}
 				else

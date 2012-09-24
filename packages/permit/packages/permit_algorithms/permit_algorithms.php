@@ -117,7 +117,7 @@
 						$Permits , $this->PermitAccess->get_permits_for_user_group( $Object )
 					);
 				}
-				
+
 				return( $Permits );
 			}
 			catch( Exception $e )

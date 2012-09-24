@@ -498,8 +498,6 @@
 		/**
 		*	\~russian Генерация страницы.
 		*
-		*	@param $Page - Объект страницы.
-		*
 		*	@param $PageName - имя компонуемой страницы.
 		*
 		*	@param $PageDescription - Описание страницы.
@@ -511,8 +509,6 @@
 		/**
 		*	\~english Function generates page.
 		*
-		*	@param $Page - Page object.
-		*
 		*	@param $PageName - Name of the composing page.
 		*
 		*	@param $PageDescription - Page description.
@@ -521,7 +517,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			generation_loop( &$Page , $PageName , $PageDescription )
+		function			generation_loop( $PageName , $PageDescription )
 		{
 			try
 			{
@@ -577,7 +573,7 @@
 					$this->Trace->add_trace_string( "{lang:page_generation_start} : $PageName" , COMMON );
 					$this->fetch_page_data( $this->PageAccess , $PageName , $PageDescription );
 
-					$this->generation_loop( $this->PageAccess , $PageName , $PageDescription );
+					$this->generation_loop( $PageName , $PageDescription );
 
 					return( $this->Template->get_template() );
 				}

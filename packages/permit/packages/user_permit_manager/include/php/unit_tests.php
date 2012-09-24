@@ -69,7 +69,7 @@
 		{
 			get_package( 'permit::user_permit_manager' , 'last' , __FILE__ );
 
-			return( 'TEST PASSED' );
+			print( 'TEST PASSED' );
 		}
 
 		/**
@@ -84,14 +84,15 @@
 		*/
 		function			test_display_list()
 		{
-			$PageComposer = get_package( 'page::page_composer' );
-			$PageContent = $PageComposer->get_page( 'user_manager' );
+			$PageComposer = get_package_object( 'page::page_composer' );
+			$PageContent = $PageComposer->get_page( 'user_permit_manager' );
 
 			//TODO: add bread crumbs to all admin pages
 
 			if( stripos( $PageContent , 'admin' ) === false )
 			{
-				return( 'ERROR: user list with permits and group was not displayed' );
+				print( 'ERROR: user list with permits and group was not displayed' );
+				return;
 			}
 
 			return( 'TEST PASSED' );

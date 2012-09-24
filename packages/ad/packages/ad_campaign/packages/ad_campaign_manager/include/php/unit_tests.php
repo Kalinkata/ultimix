@@ -67,7 +67,31 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'ad::ad_manager' , 'last' , __FILE__ );
+			get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			$PageComposer = get_package_object( 'page::page_composer' );
+			$PageContent = $PageComposer->get_page( 'ad_campaign_manager' );
+
+			if( stripos( $PageContent , 'test_ad' ) === false )
+			{
+				print( 'ERROR: ad list was not displayed' );
+				return;
+			}
 
 			return( 'TEST PASSED' );
 		}

@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Вид, отдающий данные в json формате.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	json_view_1_0_0{
-	
+
 		/**
 		*	\~russian Результат работы функций отображения.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output = false;
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -49,7 +49,8 @@
 		*/
 		var					$Security = false;
 		var					$Settings = false;
-	
+		var					$Utilities = false;
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -65,15 +66,15 @@
 			try
 			{
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Utilities = get_package_object( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки данных.
 		*
@@ -119,7 +120,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -142,13 +143,16 @@
 		{
 			try
 			{
-				$FileName = $this->Security->get_gp( 'data' , 'command' );				
+				$FileName = $this->Security->get_gp( 'data' , 'command' , false );
+				
+				if( $FileName === false )
+				{
+					return;
+				}
+
 				$this->Settings->load_file( dirname( __FILE__ )."/conf/cf_$FileName" );
 
-				$PackageName = $this->Settings->get_setting( 'access_package_name' );
-				$PackageVersion = $this->Settings->get_setting( 'access_package_version' , 'last' );
-
-				$Provider = get_package( $PackageName , $PackageVersion , __FILE__ );
+				$Provider = $this->Utilities->get_package( $this->Settings , __FILE__ , 'access_' );
 
 				$FunctionName = $this->Settings->get_setting( 'select_func' , 'select' );
 
@@ -163,7 +167,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*

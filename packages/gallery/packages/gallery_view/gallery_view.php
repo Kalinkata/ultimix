@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	gallery_view_1_0_0{
-	
+
 		/**
 		*	\~russian Переменная в которой будет храниться вывод.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output;
-	
+
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
@@ -62,7 +62,7 @@
 				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$PackagePath = _get_package_relative_path_ex( 'gallery::gallery_view' , '1.0.0::1.0.0' );
 				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/gallery_view.js" );
-				
+
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$Lang->include_strings_js( 'gallery::gallery_view' );
 			}
@@ -71,7 +71,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -99,9 +99,9 @@
 			try
 			{			
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )
@@ -110,5 +110,5 @@
 			}
 		}
 	}
-	
+
 ?>

@@ -67,7 +67,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'databse::change_history' , 'last' , __FILE__ );
+			get_package( 'database::change_history' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

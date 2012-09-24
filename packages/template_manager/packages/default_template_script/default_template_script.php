@@ -166,7 +166,7 @@
 		{
 			try
 			{
-				$this->TemplateParser = get_package( 'template_manager::base_template' , 'last' , __FILE__ );
+				$this->TemplateParser = get_package_object( 'template_manager::base_template' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{

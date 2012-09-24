@@ -84,12 +84,13 @@
 		*/
 		function			test_display_list()
 		{
-			$PageComposer = get_package( 'page::page_composer' );
+			$PageComposer = get_package_object( 'page::page_composer' );
 			$PageContent = $PageComposer->get_page( 'user_manager' );
 
 			if( stripos( $PageContent , 'admin' ) === false )
 			{
-				return( 'ERROR: user list with permits and group was not displayed' );
+				print( 'ERROR: user list was not displayed' );
+				return;
 			}
 
 			return( 'TEST PASSED' );

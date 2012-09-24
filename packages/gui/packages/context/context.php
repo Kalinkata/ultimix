@@ -311,7 +311,7 @@
 				{
 					$Filter = $this->ContextUtilities->get_section( $this->Config ,  'permits_filter' );
 
-					if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , $Filter ) === false )
+					if( $this->PermitAlgorithms->fetch_permits_for_object( false , 'user' , $Filter ) === false )
 					{
 						$this->Trace->add_trace_string( "{lang:permits_filter_not_passed} : $Filter" , COMMON );
 						return( false );
@@ -356,11 +356,12 @@
 				{
 					$Validation = $this->ContextUtilities->get_section( $this->Config ,  'permits_validation' );
 
-					if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , $Validation ) === false )
+					if( $this->PermitAlgorithms->fetch_permits_for_object( false , 'user' , $Validation ) === false )
 					{
 						$this->Trace->add_trace_string( 
 							"{lang:permits_validation_was_not_passed} : $Validation" , COMMON
 						);
+
 						$this->ContextUtilities->compile_no_permits( $Validation );
 						return( false );
 					}

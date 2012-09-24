@@ -114,17 +114,17 @@
 			try
 			{
 				$FileInputAccess = get_package( 'file_input::file_input_access' , 'last' , __FILE__ );
-				
+
 				$Record = array( 'file_path' => $SavePath.$FileName , 'original_file_name' => $OriginalFileName );
 				$id = $FileInputAccess->create( $Record );
-				
+
 				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$EventManager->trigger_event( 'on_load_file' , array( 'id' => $id ) );
-				
+
 				$Record[ 'id' ] = $id;
 				$FileInputAlgorithms = get_package( 'file_input::file_input_algorithms' , 'last' , __FILE__ );
 				$this->UploadedFile = $Record;
-				
+
 				return( $id );
 			}
 			catch( Exception $e )
@@ -132,7 +132,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображения информации для клиента.
 		*
@@ -167,7 +167,7 @@
 				set_field( $ServerData , 'href' , $SavePath );
 				set_field( $ServerData , 'id' , $FileId );
 				set_field( $ServerData , 'original_file_name' , $OriginalFileName );
-				
+
 				$JSON = get_package( 'json' , 'last' , __FILE__ );
 				print_r( $JSON->encode( $ServerData ) );
 			}
@@ -176,7 +176,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка запроса.
 		*
@@ -226,7 +226,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Загрузка файлов.
 		*
@@ -250,9 +250,9 @@
 			try
 			{
 				list( $save_path , $file_name , $original_file_name ) = $this->handle_request( $Options );
-				
+
 				$id = $this->save_uploaded_file( $save_path , $file_name , $original_file_name );
-				
+
 				$VarName = $this->Security->get_gp( 'page_name' , 'command' ).'_file';
 				if( $Options->get_setting( 'var_name' , false ) !== false )
 				{
@@ -260,7 +260,7 @@
 				}
 				/* saving info in the session */
 				$this->Security->set_s( $VarName , $id );
-				
+
 				$this->display_file_info( $save_path."$file_name" , $id , $original_file_name );
 			}
 			catch( Exception $e )
@@ -268,7 +268,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция управления компонентом.
 		*
@@ -294,7 +294,7 @@
 				$UploadFile = $Options->get_setting( 'upload_file' , false );
 				$NotDirectControllerCall = $this->Security->get_s( 'direct_controller' , 'integer' , 0 ) == 0;
 
-				if( $UploadFile && $NotDirectControllerCall )
+				if( $UploadFile && $NotDirectControllerCall && count( $_FILES ) )
 				{
 					$this->upload_file( $Options );
 				}

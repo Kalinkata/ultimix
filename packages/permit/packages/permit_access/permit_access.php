@@ -491,7 +491,7 @@
 					$ids = get_field_ex( $Links , 'object2_id' );
 
 					$Permits = $this->select_list( implode( ',' , $ids ) );
-
+					
 					return( get_field_ex( $Permits , 'permit' ) );
 				}
 			}

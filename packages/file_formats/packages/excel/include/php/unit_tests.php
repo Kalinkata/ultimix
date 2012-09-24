@@ -67,7 +67,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'file_format::excel' , 'last' , __FILE__ );
+			get_package( 'file_formats::excel' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

@@ -140,6 +140,44 @@
 		}
 
 		/**
+		*	\~russian Функция определения заголовков.
+		*
+		*	@param $FileSize - Размер файла.
+		*
+		*	@param $FileName - Название файла.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function outputs headers.
+		*
+		*	@param $FileSize - File size.
+		*
+		*	@param $FileName - File name.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	file_headers( $FileSize , $FileName )
+		{
+			try
+			{
+				header( 'HTTP/1.0 200 OK' );
+				header( 'Content-type: application/octet-stream' );
+				header( "Content-Length: $FileSize" );
+				header( "Content-Disposition: attachment; filename=\"$FileName\"" );
+				header( 'Connection: close' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Функция запуска загрузки файла.
 		*
 		*	@param $Options - Настройки работы модуля.
@@ -171,11 +209,7 @@
 					$FileSize = filesize( get_field( $File , 'file_path' ) );
 					$FileName = get_field( $File , 'original_file_name' );
 
-					header( 'HTTP/1.0 200 OK' );
-					header( 'Content-type: application/octet-stream' );
-					header( "Content-Length: $FileSize" );
-					header( "Content-Disposition: attachment; filename=\"$FileName\"" );
-					header( 'Connection: close' );
+					$this->file_headers( $FileSize , $FileName );
 
 					readfile( get_field( $File , 'file_path' ) );
 				}
