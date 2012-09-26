@@ -13,14 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	//TODO: rename cfcxs_create in cfcxs_create_{prefix} (or something like this)
-	//TODO: rename cfcxs_edit in cfcxs_update_{prefix} (or something like this)
-	//TODO: rename cfcxs_delete in cfcxs_delete_{prefix} (or something like this)
-	//TODO: rename cfcxs_copy in cfcxs_copy_{prefix} (or something like this)
-	//TODO: rename cfcxs_create_form in cfcxs_create_{prefix}_form (or something like this)
-	//TODO: rename cfcxs_edit_form in cfcxs_update_{prefix}_form (or something like this)
-	//TODO: rename cfcxs_delete_button in cfcxs_delete_{prefix}_button (or something like this)
-
 	/**
 	*	\~russian Работа с аккаунтами пользователей.
 	*
@@ -70,6 +62,37 @@
 				$this->SecurityUtilities = get_package( 'security::security_utilities' , 'last' , __FILE__ );
 				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция предгенерационных действий.
+		*
+		*	@param $Options - настройки работы модуля.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method executes before any page generating actions took place.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			pre_generation( &$Options )
+		{
+			try
+			{
+				$Lang = get_package( 'lang' , 'last' , __FILE__ );
+				$Lang->include_strings_js( 'user::user_manager' );
 			}
 			catch( Exception $e )
 			{

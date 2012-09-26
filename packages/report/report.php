@@ -56,6 +56,18 @@
 		var					$Templates = array();
 
 		/**
+		*	\~russian Сгенерированный отчет.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Generated reports.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Output = '';
+
+		/**
 		*	\~russian Конструктор.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
@@ -532,6 +544,11 @@
 				$PackageName = $this->Security->get_gp( 'report_package_name' , 'string' , false );
 				$PackageName = $Options->get_setting( 'report_package_name' , $PackageName );
 
+				if( $PackageName === false )
+				{
+					return( false );
+				}
+
 				$PackageVersion = $this->Security->get_gp( 'report_package_version' , 'string' , 'last' );
 				$PackageVersion = $Options->get_setting( 'report_package_version' , $PackageVersion );
 
@@ -568,6 +585,11 @@
 			try
 			{
 				$Package = $this->get_report_generator( $Options );
+
+				if( $Package === false )
+				{
+					return;
+				}
 
 				// TODO close reports with permits
 

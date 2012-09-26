@@ -99,7 +99,7 @@
 			{
 				if( $this->Security->get_gp( 'feed' , 'set' ) === false )
 				{
-					throw( new Exception( 'No feed was defined' ) );
+					return( false );
 				}
 				
 				$Feed = $this->Security->get_gp( 'feed' , 'command' );
@@ -232,12 +232,17 @@
 			{
 				$Records = $this->get_feed_records();
 
+				if( $Records === false )
+				{
+					return( false );
+				}
+
 				$Feed = $this->compile_feed( $Records );
-				
+
 				$Feed = $this->Security->get( $Feed , 'unsafe_string' );
-				
+
 				header( "Content-Type: application/rss+xml" );
-				
+
 				return( $Feed );
 			}
 			catch( Exception $e )
@@ -245,7 +250,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса 'rss_button'.
 		*

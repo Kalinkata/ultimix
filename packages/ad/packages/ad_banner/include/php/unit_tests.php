@@ -71,30 +71,6 @@
 
 			return( 'TEST PASSED' );
 		}
-
-		/**
-		*	\~russian Обработка некорректных макросов.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Processing illegal macro.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_display_list()
-		{
-			$PageComposer = get_package_object( 'page::page_composer' );
-			$PageContent = $PageComposer->get_page( 'ad_banner_manager' );
-
-			if( stripos( $PageContent , 'test_ad_banner' ) === false )
-			{
-				print( 'ERROR: ad banners list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
 	}
 
 ?>

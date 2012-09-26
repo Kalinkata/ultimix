@@ -1,4 +1,6 @@
-						{search_form}{create_button}{search_button}{update_button}{delete_button}
+						<div class="toolbar">
+							{search_form}{create_button}{search_button}{update_button}{delete_button}
+						</div>
 						<table border="0" width="100%">
 							<tr>
 								<td width="0%" class="table_header">

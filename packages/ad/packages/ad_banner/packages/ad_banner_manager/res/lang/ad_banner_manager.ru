@@ -1,0 +1,7 @@
+ad_banner_manager=Баннеры
+ad_banner_code=Код
+ad_banner_archived=В архиве
+ad_banner_shows=Показы
+ad_banner_clicks=Клики
+ad_banner_yes=да
+ad_banner_no=нет

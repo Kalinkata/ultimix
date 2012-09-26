@@ -87,8 +87,6 @@
 			$PageComposer = get_package_object( 'page::page_composer' );
 			$PageContent = $PageComposer->get_page( 'user_permit_manager' );
 
-			//TODO: add bread crumbs to all admin pages
-
 			if( stripos( $PageContent , 'admin' ) === false )
 			{
 				print( 'ERROR: user list with permits and group was not displayed' );

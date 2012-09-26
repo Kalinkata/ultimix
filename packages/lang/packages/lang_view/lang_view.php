@@ -150,10 +150,11 @@
 					return( '' );
 				}
 
-				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
+				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_set_locale_form' );
-				if( $Context->execute( $Options , $this ) )return( $this->Output );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_set_locale_form' );
+
+				if( $ContextSet->execute( $Options , $this ) )return( $this->Output );
 			}
 			catch( Exception $e )
 			{

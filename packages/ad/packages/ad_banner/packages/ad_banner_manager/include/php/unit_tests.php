@@ -25,7 +25,7 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
+		var					$CacheSwitch;
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -37,7 +37,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
+		function			set_up()
 		{
 		}
 
@@ -51,7 +51,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	tear_down()
+		function			tear_down()
 		{
 		}
 
@@ -68,6 +68,30 @@
 		function			test_load_package()
 		{
 			get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			$PageComposer = get_package_object( 'page::page_composer' );
+			$PageContent = $PageComposer->get_page( 'ad_banner_manager' );
+
+			if( stripos( $PageContent , 'Ultimix Project' ) === false )
+			{
+				print( 'ERROR: ad banners list was not displayed' );
+				return;
+			}
 
 			return( 'TEST PASSED' );
 		}

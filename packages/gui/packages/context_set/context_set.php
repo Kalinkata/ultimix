@@ -13,8 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	// TODO session_cache
-
 	/**
 	*	\~russian Класс для быстрого создания контроллеров и видов.
 	*

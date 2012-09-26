@@ -1,3 +1,4 @@
+system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
 ad::ad_banner::ad_banner_manager#last#create_ad_banner=1;controller=1#
 ad::ad_banner::ad_banner_manager#last#update_ad_banner=1;controller=1#
 ad::ad_banner::ad_banner_manager#last#delete_ad_banner=1;controller=1#

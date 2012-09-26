@@ -169,13 +169,15 @@
 		{
 			try
 			{
-				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
+				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_delete_package' );
-				if( $Context->execute( $Options , $this ) )return;
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_delete_package' );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_install_package' );
 
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_install_package' );
-				if( $Context->execute( $Options , $this ) )return;
+				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
+				{
+					return;
+				}
 			}
 			catch( Exception $e )
 			{
@@ -203,7 +205,7 @@
 		*
 		*	@param $Package - Package.
 		*
-		*	@return HTML code of the tree brunch.
+		*	@return HTML code of the tree branch.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -215,13 +217,13 @@
 			{
 				$Title = $Package[ 'package_name' ].'.'.$Package[ 'package_version' ];
 
-				$Brunch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_item_start.tpl' );
+				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_item_start.tpl' );
 
-				$Brunch = str_replace( '{title}' , $Title , $Brunch );
+				$Branch = str_replace( '{title}' , $Title , $Branch );
 
-				$Brunch .= $this->show_package_tree_rec( $Package[ 'subpackages' ] );
+				$Branch .= $this->show_package_tree_rec( $Package[ 'subpackages' ] );
 
-				$Brunch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_item_end.tpl' );
+				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_item_end.tpl' );
 			}
 			catch( Exception $e )
 			{
@@ -245,7 +247,7 @@
 		*
 		*	@param $Packages - Packages.
 		*
-		*	@return HTML code of the tree brunch.
+		*	@return HTML code of the tree branch.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -260,14 +262,14 @@
 					return( '' );
 				}
 
-				$Brunch = $this->CachedMultyFS->get_template( __FILE__ , 'package_branch_start.tpl' );
+				$Branch = $this->CachedMultyFS->get_template( __FILE__ , 'package_branch_start.tpl' );
 
 				foreach( $Packages as $i => $Package )
 				{
 					$Branch = $this->compile_package_tree_branch( $Branch , $Package );
 				}
 
-				return( $Brunch.$this->CachedMultyFS->get_template( __FILE__ , 'package_branch_end.tpl' ) );
+				return( $Branch.$this->CachedMultyFS->get_template( __FILE__ , 'package_branch_end.tpl' ) );
 			}
 			catch( Exception $e )
 			{
@@ -304,7 +306,7 @@
 
 				foreach( $Packages as $i => $Package )
 				{
-					$this->Output = $this->compile_package_tree_brunch( $this->Output , $Package );
+					$this->Output = $this->compile_package_tree_branch( $this->Output , $Package );
 				}
 
 				$this->Output .= $this->CachedMultyFS->get_template( __FILE__ , 'package_end.tpl' );
@@ -331,7 +333,7 @@
 		*
 		*	@param $MetaFiles - Meta-files.
 		*
-		*	@return HTML code of the tree brunch.
+		*	@return HTML code of the tree branch.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -346,18 +348,18 @@
 					return( '' );
 				}
 
-				$Brunch = $this->CachedMultyFS->get_template( __FILE__ , 'package_meta_start.tpl' );
+				$Branch = $this->CachedMultyFS->get_template( __FILE__ , 'package_meta_start.tpl' );
 
 				foreach( $MetaFiles as $i => $File )
 				{
 					$Title = basename( $File );
 
-					$Brunch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_meta_item.tpl' );
+					$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_meta_item.tpl' );
 
-					$Brunch = str_replace( '{title}' , $Title , $Brunch );
+					$Branch = str_replace( '{title}' , $Title , $Branch );
 				}
 
-				return( $Brunch.$this->CachedMultyFS->get_template( __FILE__ , 'package_meta_end.tpl' ) );
+				return( $Branch.$this->CachedMultyFS->get_template( __FILE__ , 'package_meta_end.tpl' ) );
 			}
 			catch( Exception $e )
 			{
@@ -381,7 +383,7 @@
 		*
 		*	@param $MetaFiles - Config files.
 		*
-		*	@return HTML code of the tree brunch.
+		*	@return HTML code of the tree branch.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -396,18 +398,18 @@
 					return( '' );
 				}
 
-				$Brunch = $this->CachedMultyFS->get_template( __FILE__ , 'package_conf_start.tpl' );
+				$Branch = $this->CachedMultyFS->get_template( __FILE__ , 'package_conf_start.tpl' );
 
 				foreach( $ConfigFiles as $i => $File )
 				{
 					$Title = basename( $File );
 
-					$Brunch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_conf_item.tpl' );
+					$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_conf_item.tpl' );
 
-					$Brunch = str_replace( '{title}' , $Title , $Brunch );
+					$Branch = str_replace( '{title}' , $Title , $Branch );
 				}
 
-				return( $Brunch.$this->CachedMultyFS->get_template( __FILE__ , 'package_conf_end.tpl' ) );
+				return( $Branch.$this->CachedMultyFS->get_template( __FILE__ , 'package_conf_end.tpl' ) );
 			}
 			catch( Exception $e )
 			{
@@ -435,7 +437,7 @@
 		*
 		*	@param $Package - Package.
 		*
-		*	@return HTML code of the tree brunch.
+		*	@return HTML code of the tree branch.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -447,24 +449,24 @@
 			{
 				$Title = $Package[ 'package_name' ].'.'.$Package[ 'package_version' ];
 
-				$Brunch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_start.tpl' );
+				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_start.tpl' );
 
-				$Brunch  = str_replace( '{title}' , $Title , $Brunch );
+				$Branch  = str_replace( '{title}' , $Title , $Branch );
 
-				$Brunch .= $this->show_system_tree_rec( $Package[ 'subpackages' ] );
+				$Branch .= $this->show_system_tree_rec( $Package[ 'subpackages' ] );
 
-				$Brunch .= $this->show_system_tree_meta_rec( $Package[ 'meta' ] );
+				$Branch .= $this->show_system_tree_meta_rec( $Package[ 'meta' ] );
 
-				$Brunch .= $this->show_system_tree_conf_rec( $Package[ 'conf' ] );
+				$Branch .= $this->show_system_tree_conf_rec( $Package[ 'conf' ] );
 
-				$Brunch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_end.tpl' );
+				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_end.tpl' );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -481,7 +483,7 @@
 		*
 		*	@param $Packages - Packages.
 		*
-		*	@return HTML code of the tree brunch.
+		*	@return HTML code of the tree branch.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
@@ -495,22 +497,22 @@
 				{
 					return( '' );
 				}
-				
-				$Brunch = $this->CachedMultyFS->get_template( __FILE__ , 'package_system_start.tpl' );
-				
+
+				$Branch = $this->CachedMultyFS->get_template( __FILE__ , 'package_system_start.tpl' );
+
 				foreach( $Packages as $i => $Package )
 				{
-					$Brunch = $this->compile_system_tree_branch( $Branch , $Package );
+					$Branch = $this->compile_system_tree_branch( $Branch , $Package );
 				}
-				
-				return( $Brunch.$this->CachedMultyFS->get_template( __FILE__ , 'package_system_end.tpl' ) );
+
+				return( $Branch.$this->CachedMultyFS->get_template( __FILE__ , 'package_system_end.tpl' ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -537,12 +539,12 @@
 				$Packages = $PackageAlgorithms->get_packages_tree();
 
 				$this->Output = $this->CachedMultyFS->get_template( __FILE__ , 'system_start.tpl' );
-				
+
 				foreach( $Packages as $i => $Package )
 				{
 					$this->Output = $this->compile_system_tree_branch( $this->Output , $Package );
 				}
-				
+
 				$this->Output .= $this->CachedMultyFS->get_template( __FILE__ , 'system_end.tpl' );
 			}
 			catch( Exception $e )
@@ -550,7 +552,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -577,13 +579,15 @@
 		{
 			try
 			{				
-				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
-				
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_show_package_tree' );
-				if( $Context->execute( $Options , $this ) )return( $this->Output );
-				
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_show_system_tree' );
-				if( $Context->execute( $Options , $this ) )return( $this->Output );
+				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
+
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_show_package_tree' );				
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_show_system_tree' );
+
+				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
+				{
+					return( $this->Output );
+				}
 			}
 			catch( Exception $e )
 			{
@@ -591,5 +595,5 @@
 			}
 		}
 	}
-	
+
 ?>

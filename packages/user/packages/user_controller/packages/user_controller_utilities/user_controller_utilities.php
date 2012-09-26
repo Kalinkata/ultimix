@@ -204,7 +204,7 @@
 		}
 		
 		/**
-		*	\~russian Добавление дефолтовых доступов
+		*	\~russian Добавление дефолтовых доступов.
 		*
 		*	@param $id - id пользователя.
 		*
@@ -230,6 +230,42 @@
 				$PermitAccess = get_package( 'permit::permit_access' , 'last' , __FILE__ );
 				$PermitAccess->add_permit_for_object( 'public' , $id , 'user' );
 				$PermitAccess->add_permit_for_object( 'registered' , $id , 'user' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian список конфигов.
+		*
+		*	@return Список конфигов.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns a list of configs.
+		*
+		*	@return List of configs.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_configs()
+		{
+			try
+			{
+				return(
+					array( 
+						'cfcx_update_user' , 'cfcx_activate_user' , 'cfcx_admin_activate_user' , 
+						'cfcx_admin_deactivate_user' , 'cfcx_restore_password' , 'cfcx_registration' , 
+						'cfcx_user_set_avatar' , 'cfcx_login' , 'cfcx_logout'
+					)
+				);
 			}
 			catch( Exception $e )
 			{

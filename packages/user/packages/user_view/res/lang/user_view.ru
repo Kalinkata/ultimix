@@ -58,3 +58,4 @@ password_restoration_complete=Восстановление пароля заве
 new_password=Новый пароль
 change_password=Смена пароля
 users_were_activated=Выбранные пользователи были активированы
+users_were_deactivated=Выбранные пользователи были деактивированы

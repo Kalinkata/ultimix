@@ -151,7 +151,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
@@ -188,7 +188,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки формы залогинивания.
 		*

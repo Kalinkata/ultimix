@@ -35,11 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Context = false;
+		var					$ContextSet = false;
 		var					$EventManager = false;
 		var					$Messages = false;
 		var					$PageComposerUtilities = false;
-		var					$PermitAlgorithms = false;
 		var					$Security = false;
 		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
@@ -150,7 +149,7 @@
 		{
 			try
 			{
-				$this->Context = get_package( 'gui::context' , 'last' , __FILE__ );
+				$this->ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$this->Messages = get_package( 'page::messages' , 'last' , __FILE__ );
 				$this->PageComposerUtilities = get_package( 'page::page_composer_utilities' , 'last' , __FILE__ );
@@ -161,7 +160,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -193,7 +192,7 @@
 		/**
 		*	\~russian Вход в систему.
 		*
-		*	@param $UserLogin - Логин.
+		*	@param $Login - Логин.
 		*
 		*	@param $Options - Настройки работы модуля.
 		*
@@ -204,7 +203,7 @@
 		/**
 		*	\~english Login.
 		*
-		*	@param $UserLogin - Login.
+		*	@param $Login - Login.
 		*
 		*	@param $Options - Settings.
 		*
@@ -212,13 +211,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			do_login( $UserLogin , &$Options )
+		function			do_login( $Login , &$Options )
 		{
 			try
 			{
-				$User = $this->UserAccess->get_user( $UserLogin );
+				$User = $this->UserAccess->get_user( $Login );
 
-				if( $this->UserAlgorithms->user_banned( $UserLogin ) )
+				if( $this->UserAlgorithms->user_banned( $Login ) )
 				{
 					$this->Messages->add_error_message( 'user_is_banned_to '.$User->banned_to );
 					return;
@@ -226,7 +225,7 @@
 
 				$id = get_field( $User , 'id' );
 				$this->EventManager->trigger_event( 'on_before_login' , array( 'id' => $id ) );
-				$this->UserAlgorithms->login( $UserLogin , $id );
+				$this->UserAlgorithms->login( $Login , $id );
 				$this->EventManager->trigger_event( 'on_after_login' , array( 'id' => $id ) );
 
 				$this->PageComposerUtilities->redirect_using_map( $Options );
@@ -259,23 +258,23 @@
 		{
 			try
 			{
-				$UserLogin = $this->Security->get_gp( 'login' , 'string' );
+				$Login = $this->Security->get_gp( 'login' , 'string' );
 				$UserPassword = $this->Security->get_gp( 'password' , 'string' );
-				
-				$UserExists = $this->UserAlgorithms->user_exists( $UserLogin );
+
+				$UserExists = $this->UserAlgorithms->user_exists( $Login );
 				$UserActive = $AuthValid = true;
-				
+
 				if( $UserExists )
 				{
-					if( $UserActive = $this->UserAlgorithms->user_active( $UserLogin ) )
+					if( $UserActive = $this->UserAlgorithms->user_active( $Login ) )
 					{
-						if( $AuthValid = $this->UserAlgorithms->validate_auth( $UserLogin , $UserPassword ) )
+						if( $AuthValid = $this->UserAlgorithms->validate_auth( $Login , $UserPassword ) )
 						{
-							$this->do_login( $UserLogin , $Options );
+							$this->do_login( $Login , $Options );
 						}
 					}
 				}
-				
+
 				$this->UserControllerUtilities->handle_login_errors( $UserExists , $UserActive , $AuthValid );
 			}
 			catch( Exception $e )
@@ -283,7 +282,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отлогинивания.
 		*
@@ -313,7 +312,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция активации пользователя.
 		*
@@ -382,6 +381,43 @@
 				}
 
 				$this->UserAccess->activate_users( $Ids );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция активации пользователя.
+		*
+		*	@param $Options - Настройки работы модуля.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function activates user.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			admin_deactivate_user( &$Options )
+		{
+			try
+			{
+				$Ids = $this->Security->get_gp( 'ids' , 'integer' );
+
+				if( is_array( $Ids ) === false )
+				{
+					$Ids = array( $Ids );
+				}
+
+				$this->UserAccess->deactivate_users( $Ids );
 			}
 			catch( Exception $e )
 			{
@@ -529,8 +565,8 @@
 		{
 			try
 			{
-				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$HasPermit = $this->PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
+				$PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
+				$HasPermit = $PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
 				$ChangePassword = $HasPermit || ( $this->Security->get_gp( 'current_password' , 'set' ) && 
 					strlen( $CurrentPassword = $this->Security->get_gp( 'current_password' , 'string' ) ) && 
 					$this->UserAlgorithms->validate_auth( $Login , $CurrentPassword ) );
@@ -720,15 +756,15 @@
 		{
 			try
 			{
-				$ActivationHash = $this->create_user_object_and_permits();
+				$Hash = $this->create_user_object_and_permits();
 
-				$this->send_confirmation_if_necessary( $ActivationHash );
+				$this->send_confirmation_if_necessary( $Hash );
 
 				$this->RegistrationWasPassed = true;
 
-				$UserLogin = $this->Security->get_gp( 'login' , 'string' );
+				$Login = $this->Security->get_gp( 'login' , 'string' );
 
-				$this->EventManager->trigger_event( 'on_after_registration' , array( 'login' => $UserLogin ) );
+				$this->EventManager->trigger_event( 'on_after_registration' , array( 'login' => $Login ) );
 			}
 			catch( Exception $e )
 			{
@@ -758,8 +794,8 @@
 		{
 			try
 			{
-				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$HasPermit = $this->PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
+				$PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
+				$HasPermit = $PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
 
 				if( $this->EnableRegistration === 1 || $HasPermit )
 				{
@@ -845,16 +881,11 @@
 		{
 			try
 			{
-				$this->Context->load_hinted_config( 
-					$Options , dirname( __FILE__ ) , 
-					array( 
-						'cfcx_update_user' , 'cfcx_activate_user' , 'cfcx_admin_activate_user' , 
-						'cfcx_restore_password' , 'cfcx_registration' , 'cfcx_user_set_avatar' , 'cfcx_login' , 
-						'cfcx_logout'
-					)
+				$this->ContextSet->add_contexts( 
+					$Options , dirname( __FILE__ ) , $this->UserControllerUtilities->get_configs()
 				);
 
-				if( $this->Context->execute( $Options , $this , __FILE__ ) )
+				if( $this->ContextSet->execute( $Options , $this , __FILE__ ) )
 				{
 					return;
 				}

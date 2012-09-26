@@ -1,0 +1,7 @@
+system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
+ad::ad_campaign::ad_campaign_manager#last#create_ad_campaign=1;controller=1#
+ad::ad_campaign::ad_campaign_manager#last#update_ad_campaign=1;controller=1#
+ad::ad_campaign::ad_campaign_manager#last#delete_ad_campaign=1;controller=1#
+ad::ad_campaign::ad_campaign_manager#last#show_ad_campaign_list=1;view=1#main
+ad::ad_campaign::ad_campaign_manager#last#show_create_ad_campaign_form=1;view=1#main
+ad::ad_campaign::ad_campaign_manager#last#show_update_ad_campaign_form=1;view=1#main

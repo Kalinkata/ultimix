@@ -1,4 +1,5 @@
 user::user_view#last#pre_generation=1#
+user::user_manager#last#pre_generation=1#
 user::user_manager#last#controller=1;update_user=1#
 user::user_manager#last#controller=1;delete_user=1#
 user::user_manager#last#controller=1;copy_user=1#

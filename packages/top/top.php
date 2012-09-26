@@ -163,6 +163,9 @@
 			}
 		}
 
+		//TODO: filter 'literal' in the {lang:literal} macro for figure braces
+		//TODO: add banners display view
+
 		/**
 		*	\~russian Функция отрисовки конкретного топа.
 		*
@@ -181,14 +184,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			draw_top( $Options )
+		function			draw_top( &$Options )
 		{
 			try
 			{
 				$this->Output = '';
 				$TopName = $this->Security->get_gp( 
-					'top_name' , 'command' , $Options->get_setting( 'top_name' , 'undefined' )
+					'top_name' , 'command' , $Options->get_setting( 'top_name' , false )
 				);
+				if( $TopName === false )
+				{
+					return;
+				}
 
 				$Options->append_file( dirname( __FILE__ )."/conf/cf_$TopName" );
 
@@ -235,12 +242,14 @@
 		{
 			try
 			{
-				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
+				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_top' );
-				if( $Context->execute( $Options , $this ) )return( $this->Output );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_top' );
 
-				return( $this->Output );
+				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
+				{
+					return( $this->Output );
+				}
 			}
 			catch( Exception $e )
 			{

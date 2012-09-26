@@ -1,3 +1,4 @@
+system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
 content::content_controller#last#controller=1;create_content=1#
 content::content_controller#last#controller=1;update_content=1#
 content::content_controller#last#controller=1;delete_content=1#

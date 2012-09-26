@@ -188,7 +188,7 @@
 			try
 			{
 				$User = $this->UserAlgorithms->get_by_id( 
-					$this->Security->get_p( 'user_permits_record_id' , 'integer' )
+					$this->Security->get_p( 'user_permit_record_id' , 'integer' )
 				);
 				$this->Output = $this->CachedMultyFS->get_template( __FILE__ , 'permits_view.tpl' );
 				$this->Output = str_replace( '{path}' , dirname( __FILE__ ) , $this->Output );
@@ -223,7 +223,7 @@
 			try
 			{
 				$User = $this->UserAlgorithms->get_by_id( 
-					$this->Security->get_p( 'user_permits_record_id' , 'integer' )
+					$this->Security->get_p( 'user_permit_record_id' , 'integer' )
 				);
 				$this->Output = $this->CachedMultyFS->get_template( __FILE__ , 'groups_view.tpl' );
 				$this->Output = str_replace( '{path}' , dirname( __FILE__ ) , $this->Output );

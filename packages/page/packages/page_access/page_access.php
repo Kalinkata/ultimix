@@ -448,6 +448,8 @@
 		*
 		*	@param $ListOfPages - Список страниц.
 		*
+		*	@param $Limit - Ограничение на количество записей.
+		*
 		*	@return Список страниц.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
@@ -459,13 +461,15 @@
 		*
 		*	@param $ListOfPages - List of pages.
 		*
+		*	@param $Limit - Count of records limitation.
+		*
 		*	@return List of pages.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	filter_pages( &$ListOfPages )
+		private function	filter_pages( &$ListOfPages , $Limit )
 		{
 			try
 			{
@@ -500,7 +504,7 @@
 		*
 		*	@param $Start - Номер первой записи.
 		*
-		*	@param $Limit - Ограничение на количество записей
+		*	@param $Limit - Ограничение на количество записей.
 		*
 		*	@param $Field - Поле, по которому будет осуществляться сортировка.
 		*
@@ -535,9 +539,6 @@
 			{
 				$ListOfPages = $this->get_list_of_pages();
 
-				$Lang = get_package( 'lang' , 'last' , __FILE__ );
-				$ListOfPages = $Lang->process_object( $ListOfPages );
-
 				if( $Order !== false )
 				{
 					$SortSign = $Order === 'ascending' ? '<' : '>';
@@ -548,14 +549,14 @@
 					usort( $ListOfPages , $SortFunc );
 				}
 
-				return( $this->filter_pages( $ListOfPages ) );
+				return( $this->filter_pages( $ListOfPages , $Limit ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Существует ли страница.
 		*

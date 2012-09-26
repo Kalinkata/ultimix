@@ -11,3 +11,4 @@ permit_changes_were_saved=Доступы были изменены
 already_added_groups=Уже добавленные группы
 groups_to_add=Группы, которые можно добавить
 group_changes_were_saved=Группы были изменены
+user_permits=Доступы

@@ -6,7 +6,8 @@
 {component_button:package_name=permit;label=groups_label;page=./group_manager.html;size=100;icon=groups_064.gif;permit=group_manager}
 {component_button:package_name=permit;label=user_permits_label;page=./user_permit_manager.html;size=100;icon=user_permits_064.gif;permit=permit_manager}
 {component_button:package_name=system_structure;label=system_structure_label;page=./system_structure_manager.html;size=100;icon=system_structure_064.gif;permit=system_structure_manager}
-{component_button:package_name=ad::ad_view;label=advertisement;page=./ad_banner_manager.html;size=100;icon=a_064.gif;permit=ad_banner_manager}
+{component_button:package_name=ad::ad_campaign::ad_campaign_manager;label=ad_campaign_manager;page=./ad_campaign_manager.html;size=100;icon=ad_campaign_064.gif;permit=ad_campaign_manager}
+{component_button:package_name=ad::ad_banner::ad_banner_manager;label=ad_banner_manager;page=./ad_banner_manager.html;size=100;icon=ad_banner_064.gif;permit=ad_banner_manager}
 {component_button:package_name=content::content_view;label=content_manager;page=./content_manager.html;size=100;icon=content_064.gif;permit=content_manager}
 {component_button:package_name=content::content_view;label=news_manager;page=./news_manager.html;size=100;icon=news_064.gif;permit=news_manager}
 {component_button:package_name=content::content_view;label=article_manager;page=./article_manager.html;size=100;icon=article_064.gif;permit=article_manager}

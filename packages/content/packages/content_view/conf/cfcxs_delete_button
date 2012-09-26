@@ -1,3 +1,0 @@
-call_params_filter=delete_{prefix}:integer,value_1
-permits_validation=delete_{prefix}
-success_func=delete

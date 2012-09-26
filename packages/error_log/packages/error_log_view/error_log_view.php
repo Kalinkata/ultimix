@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Подключение error log'а.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	error_log_view_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -101,12 +101,11 @@
 		{
 			try
 			{
-				//TODO: replace all contexts with context_sets
-				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
+				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_list_of_messages' );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_list_of_messages' );
 
-				if( $Context->execute( $Options , $this ) )return( $this->Output );
+				if( $ContextSet->execute( $Options , $this ) )return( $this->Output );
 			}
 			catch( Exception $e )
 			{
@@ -114,5 +113,5 @@
 			}
 		}
 	}
-	
+
 ?>

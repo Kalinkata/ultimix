@@ -9,12 +9,11 @@ Ultimix v. 1.5.251
 7.  SVN repository was added.
 8.  An error in the caching system was fixed.
 9.  Unit tests were added to all packages (about 300 unit tests were created).
-10. 
-11. 
-12. 
+10. Activate/deactivate buttons were added to the user manager.
+11. Advertising subsystem was added.
+12. The count of unit-tests has reached 350 ones.
 13. 
-14. 
-15. 
+14. Documentation was improved.
 
 Ultimix v. 1.5.250
 -----------------------------------------

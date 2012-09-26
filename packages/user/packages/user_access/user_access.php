@@ -506,6 +506,44 @@
 		}
 
 		/**
+		*	\~russian Функция активации пользователей.
+		*
+		*	@param $Ids - id пользователей.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function activates users.
+		*
+		*	@param $Ids - id of the activating users.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			deactivate_users( $Ids )
+		{
+			try
+			{
+				$Ids = $this->Security->get( $Ids , 'integer' );
+
+				$Record = array( 'active' => 'inactive' );
+				$this->update( implode( ',' , $Ids ) , $Record );
+
+				foreach( $Ids as $id )
+				{
+					$this->UserAccessUtilities->rise_activate_event( '' , $id );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Функция активации пользователя.
 		*
 		*	@param $Hash - Хэш уктивации.

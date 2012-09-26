@@ -118,13 +118,15 @@
 		{
 			try
 			{
-				$Context = get_package( 'gui::context' , 'last' , __FILE__ );
-				
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_404' );
-				if( $Context->execute( $Options , $this ) )return;
-				
-				$Context->load_config( dirname( __FILE__ ).'/conf/cfcx_massive_delete' );
-				if( $Context->execute( $Options , $this ) )return;
+				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
+
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_404' );			
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_massive_delete' );
+
+				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
+				{
+					return;
+				}
 			}
 			catch( Exception $e )
 			{
