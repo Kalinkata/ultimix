@@ -144,6 +144,11 @@ macro_name=user_id;package_name=user::user_markup;compilation_func=compile_user_
 macro_name=user_list;package_name=user::user_markup;compilation_func=compile_user_list
 macro_name=months_on_site;package_name=user::user_markup;compilation_func=compile_months_on_site
 macro_name=user_login;package_name=user::user_markup;compilation_func=compile_user_login;terminal_values=user_id
+macro_name=login_img_button;template=login_img_button.tpl;package_name=user::user_view
+macro_name=logout_button;template=logout_button.tpl;package_name=user::user_view
+macro_name=logout_img_button;template=logout_img_button.tpl;package_name=user::user_view
+macro_name=logout_menu_button;template=logout_menu_button.tpl;package_name=user::user_view
+macro_name=switch_user_button;template=switch_user_button.tpl;package_name=user::user_view
 macro_name=http_param;package_name=security::security_markup;compilation_func=compile_http_param;terminal_values=default
 macro_name=scripts;package_name=page::page_js;compilation_func=compile_scripts
 macro_name=stylesheets;package_name=page::page_css;compilation_func=compile_stylesheets

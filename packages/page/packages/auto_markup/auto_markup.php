@@ -52,8 +52,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$TemplateContentConfigs = false;
-		
+		var					$MacroScripts = false;
+
 		/**
 		*	\~russian Распарсеный конфиг.
 		*
@@ -161,10 +161,10 @@
 		{
 			try
 			{
-				$this->TemplateContentConfigs = $this->CachedMultyFS->get_config( __FILE__ , 'cf_template_contents' );
-				$this->TemplateContentConfigs = explode( "\n" , $this->TemplateContentConfigs );
+				$this->MacroScripts = $this->CachedMultyFS->get_config( __FILE__ , 'cf_macro_scripts' );
+				$this->MacroScripts = explode( "\n" , $this->MacroScripts );
 
-				foreach( $this->TemplateContentConfigs as $k => $v )
+				foreach( $this->MacroScripts as $k => $v )
 				{
 					$this->ConfigSettings->load_settings( $v );
 

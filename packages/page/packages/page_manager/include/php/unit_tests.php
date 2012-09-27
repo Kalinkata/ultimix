@@ -87,7 +87,7 @@
 			$PageComposer = get_package_object( 'page::page_composer' );
 			$PageContent = $PageComposer->get_page( 'page_manager' );
 
-			if( stripos( $PageContent , 'admin' ) === false )
+			if( stripos( $PageContent , 'ad_banner_manager' ) === false )
 			{
 				print( 'ERROR: page list was not displayed' );
 				return;

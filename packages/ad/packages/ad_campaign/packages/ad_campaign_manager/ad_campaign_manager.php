@@ -47,8 +47,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$AdCampaignAccess = false;
+		var					$AdBannerAccess = false;
 		var					$CachedMultyFS = false;
 		var					$String = false;
+		var					$UserAlgorithms = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -64,12 +67,11 @@
 		{
 			try
 			{
+				$this->AdCampaignAccess = get_package( 'ad::ad_campaign::ad_campaign_access' , 'last' , __FILE__ );
+				$this->AdBannerAccess = get_package( 'ad::ad_banner::ad_banner_access' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
-
-				$PageCSS = get_package( 'page::page_css' , 'last' , __FILE__ );
-				$Path = _get_package_relative_path_ex( 'ad::ad_manager' , 'last' );
-				$PageCSS->add_stylesheet( "{http_host}/$Path/res/css/ad_manager.css" );
+				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -99,15 +101,18 @@
 		{
 			try
 			{
-				$UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
-				$AdCampaignAccess = get_package( 'ad::ad_campaign_access' , 'last' , __FILE__ );
-				$AdBannerAccess = get_package( 'ad::ad_banner_access' , 'last' , __FILE__ );
+				$id = $this->UserAlgorithms->get_id();
+				$Campaigns = $this->AdCampaignAccess->unsafe_select( "archived = 0 AND creator = $id" );
 
-				$id = $UserAlgorithms->get_id();
-				$Campaigns = $AdCampaignAccess->unsafe_select( "archived = 0 AND creator = $id" );
-
-				$ids = implode_ex( ',' , $Campaigns , 'id' );
-				$Banners = $AdBannerAccess->unsafe_select( "archived = 0 AND campaign_id IN ( $ids )" );
+				if( isset( $Campaigns[ 0 ] ) )
+				{
+					$ids = implode_ex( ',' , $Campaigns , 'id' );
+					$Banners = $this->AdBannerAccess->unsafe_select( "archived = 0 AND campaign_id IN ( $ids )" );
+				}
+				else
+				{
+					$Campaigns = $Banners = array();
+				}
 
 				return( array( $Campaigns , $Banners ) );
 			}
@@ -186,20 +191,27 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			common_view( $Options )
+		function			common_view( &$Options )
 		{
 			try
 			{
 				list( $Campaigns , $Banners ) = $this->get_campaigns_and_banners();
 
-				foreach( $Campaigns as $i => $Campaign )
+				if( isset( $Campaigns[ 0 ] ) )
 				{
-					$this->compile_campaign( $Campaign , $Banners );
+					foreach( $Campaigns as $i => $Campaign )
+					{
+						$this->compile_campaign( $Campaign , $Banners );
+					}
+
+					$Template = $this->CachedMultyFS->get_template( __FILE__ , 'campaigns_list.tpl' );
+
+					$this->Output = str_replace( '{output}' , $this->Output , $Template );
 				}
-
-				$Template = $this->CachedMultyFS->get_template( __FILE__ , 'campaigns_list.tpl' );
-
-				$this->Output = str_replace( '{output}' , $this->Output , $Template );
+				else
+				{
+					$this->Output = $this->CachedMultyFS->get_template( __FILE__ , 'ad_campaign_no_data_found.tpl' );
+				}
 			}
 			catch( Exception $e )
 			{
@@ -225,7 +237,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
@@ -261,14 +273,14 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_ad_manager_common_view' );
-
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_list_ad_campaign_form' );
+				
 				$ContextSet->execute( $Options , $this , __FILE__ );
 
 				return( $this->Output );

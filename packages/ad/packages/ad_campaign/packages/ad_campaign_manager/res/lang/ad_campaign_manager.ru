@@ -1,1 +1,2 @@
 ad_campaign_manager=Кампании
+ad_campaign_title=Название

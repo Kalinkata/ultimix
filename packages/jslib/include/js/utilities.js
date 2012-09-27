@@ -18,8 +18,6 @@ if( !ultimix.utilities )
 	ultimix.utilities = {};
 }
 
-//TODO: create vertical aligned 'no_data_found' message
-
 /**
 *	Method remmoves duplicate elements from array.
 *

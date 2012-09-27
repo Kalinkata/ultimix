@@ -126,7 +126,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-//TODO: add scrolls to the panels of permit/group add/remove
+
 		/**
 		*	\~russian Есть ли доступ у пользователя.
 		*

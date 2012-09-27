@@ -23,7 +23,7 @@ CREATE TABLE `{prefix}ad_banner` (
 ) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}ad_banner` ( `id` , `campaign_id` , `code` , `archived` , `shows` , `clicks` ) VALUES 
-( '1' , '0' , '&lt;a href="http://ultimix.sf.net"&gt;Ultimix Project&lt;/a&gt;' , '0' , '0' , '0' );
+( '1' , '1' , '&lt;a href="http://ultimix.sf.net"&gt;Ultimix Project&lt;/a&gt;' , '0' , '0' , '0' );
 
 DROP TABLE IF EXISTS `{prefix}ad_campaign`;
 CREATE TABLE `{prefix}ad_campaign` (
@@ -32,7 +32,10 @@ CREATE TABLE `{prefix}ad_campaign` (
 	`creator` int(10) unsigned NOT NULL default '1' ,
 	`archived` int(10) unsigned NOT NULL default '0' ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `{prefix}ad_campaign` ( `id` , `title` , `creator` , `archived` ) VALUES 
+( '1' , 'Ultimix Project AD campaign' , '1' , '0' );
 
 DROP TABLE IF EXISTS `{prefix}category`;
 CREATE TABLE `{prefix}category` (
@@ -73,7 +76,10 @@ CREATE TABLE `{prefix}comment` (
 	`creation_date` datetime NOT NULL ,
 	`page` text NOT NULL ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `{prefix}comment` ( `id` , `author` , `comment` , `creation_date` , `page` ) VALUES 
+( '1' , '1' , 'Welcome comment' , '2012-09-27 23:59:59' , 'index.html' );
 
 DROP TABLE IF EXISTS `{prefix}content`;
 CREATE TABLE `{prefix}content` (
@@ -269,12 +275,13 @@ CREATE TABLE `{prefix}link_dictionary` (
 	`object1_type` text NOT NULL ,
 	`object2_type` text NOT NULL ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}link_dictionary` ( `id` , `object1_type` , `object2_type` ) VALUES 
 ( '1' , 'user' , 'permit' ),
 ( '2' , 'user' , 'group' ),
-( '3' , 'group' , 'permit' );
+( '3' , 'group' , 'permit' ),
+( '4' , 'user' , 'review' );
 
 DROP TABLE IF EXISTS `{prefix}menu`;
 CREATE TABLE `{prefix}menu` (
@@ -447,7 +454,7 @@ CREATE TABLE `{prefix}system_structure` (
 	`root_page` text NOT NULL ,
 	`navigation` text ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}system_structure` ( `id` , `page` , `root_page` , `navigation` ) VALUES 
 ( '1' , 'index' , 'index' , '' ),
@@ -475,7 +482,9 @@ INSERT INTO `{prefix}system_structure` ( `id` , `page` , `root_page` , `navigati
 ( '23' , 'page_manager' , 'admin' , '' ),
 ( '24' , 'package_manager' , 'admin' , '' ),
 ( '25' , 'static_content_manager' , 'admin' , '' ),
-( '26' , 'ad_banner_manager' , 'admin' , '' );
+( '26' , 'ad_banner_manager' , 'admin' , '' ),
+( '27' , 'ad_campaign_manager' , 'admin' , '' ),
+( '28' , 'page_manager' , 'admin' , '' );
 
 DROP TABLE IF EXISTS `{prefix}uploaded_file`;
 CREATE TABLE `{prefix}uploaded_file` (

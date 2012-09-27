@@ -185,7 +185,7 @@
 				}
 				
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
-					$Start , $Limit , $Field , $Order , $Condition
+					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
 				
 				return( $this->unsafe_select( $Condition ) );

@@ -85,10 +85,14 @@
 		{
 			try
 			{
-				$UserId = $this->Security->get_gp( 'user_id' , 'integer' );
-				$Hash = $this->Security->get_gp( 'hash' , 'string' );
-				
-				$this->SubscriptionAlgorithms->unsubscribe_user( $UserId , $Hash );
+				$UserId = $this->Security->get_gp( 'user_id' , 'integer' , false );
+
+				if( $UserId !== false )
+				{
+					$Hash = $this->Security->get_gp( 'hash' , 'string' );
+
+					$this->SubscriptionAlgorithms->unsubscribe_user( $UserId , $Hash );
+				}
 			}
 			catch( Exception $e )
 			{

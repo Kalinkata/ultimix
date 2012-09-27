@@ -1,3 +1,4 @@
+data_for_grid_was_not_found=Данные не найдены
 main_page=Главная[nbsp]страница
 menu_main_admin_page=Главная[nbsp]страница
 menu_user_management=Управление[nbsp]пользователями

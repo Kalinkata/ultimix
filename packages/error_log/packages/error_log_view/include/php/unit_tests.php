@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс, отвечающий за тестирование компонентов системы.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-	
+
 		/**
 		*	\~russian Закэшированный объект.
 		*
@@ -38,7 +38,7 @@
 		var					$ErrorLogAccess = false;
 		var					$ErrorLogView = false;
 		var					$Options = false;
-		
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -56,7 +56,13 @@
 			$this->Options = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 		}
 
-		//TODO: create unit-test with simple list view testing for all *_view packages
+		//TODO: create unit-test with simple create form view
+		//TODO: create unit-test with simple update form view
+		//TODO: create unit-test with simple copy form view
+
+		//TODO: create unit-test with simple create controller
+		//TODO: create unit-test with simple update controller
+		//TODO: create unit-test with simple delete controller
 	}
 
 ?>

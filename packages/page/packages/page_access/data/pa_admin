@@ -1,3 +1,4 @@
+jquery::dialog_markup#last#pre_generation=1#
 page::template_content::template_content_view#last#view=1;template=admin_page.tpl#main
 user::user_view#last#view=1;login_form=1;wrapper_class=centered;context=cfcx_login_form#main
 pmsg::pmsg_view#last#post_process=1#

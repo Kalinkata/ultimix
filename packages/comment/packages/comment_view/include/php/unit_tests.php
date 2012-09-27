@@ -69,6 +69,30 @@
 
 			return( 'TEST PASSED' );
 		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			$PageComposer = get_package_object( 'page::page_composer' );
+			$PageContent = $PageComposer->get_page( 'comment_manager' );
+
+			if( stripos( $PageContent , 'comment' ) === false )
+			{
+				print( 'ERROR: comment list was not displayed' );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
 	}
 
 ?>

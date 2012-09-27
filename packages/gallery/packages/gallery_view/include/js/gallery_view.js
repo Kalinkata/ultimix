@@ -30,7 +30,7 @@ ultimix.gallery.add_item_to_gallery = function( ServerData )
 	eval( "var			ServerDataObject=" + ServerData );
 	
 	var			ItemTemplate = jQuery( '.gallery>.gallery_template' ).html();
-	ItemTemplate = ultimix.string_utilities.PrintRecord( ItemTemplate , ServerDataObject );
+	ItemTemplate = ultimix.string_utilities.print_record( ItemTemplate , ServerDataObject );
 	
 	jQuery( '.gallery>.gallery_items' ).append( ItemTemplate );
 }

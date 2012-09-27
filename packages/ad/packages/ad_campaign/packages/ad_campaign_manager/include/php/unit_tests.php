@@ -87,7 +87,7 @@
 			$PageComposer = get_package_object( 'page::page_composer' );
 			$PageContent = $PageComposer->get_page( 'ad_campaign_manager' );
 
-			if( stripos( $PageContent , 'test_ad' ) === false )
+			if( stripos( $PageContent , 'Ultimix Project AD campaign' ) === false )
 			{
 				print( 'ERROR: ad list was not displayed' );
 				return;

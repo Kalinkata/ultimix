@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	review_view_1_0_0{
-	
+
 		/**
 		*	\~russian Закэшированные пакеты.
 		*
@@ -36,7 +36,8 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Security = false;
-	
+		var					$UserAlgorithms = false;
+
 		/**
 		*	\~russian Переменная в которой будет храниться вывод.
 		*
@@ -48,7 +49,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -68,13 +69,14 @@
 			try
 			{
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
@@ -100,7 +102,7 @@
 				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$PackagePath = _get_package_relative_path_ex( 'review::review_view' , '1.0.0::1.0.0' );
 				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/review_view.js" );
-				
+
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
 				$Lang->include_strings_js( 'review::review_view' );
 			}
@@ -109,7 +111,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки списка отзывов с формой ввода нового отзыва.
 		*
@@ -132,9 +134,9 @@
 		{
 			try
 			{
-				$MasterId = $this->Security->get_gp( 'master_id' , 'integer' );
-				$MasterType = $Options->get_setting( 'master_type' , 'command' );
-				
+				$MasterId = $this->Security->get_gp( 'master_id' , 'integer' , $this->UserAlgorithms->get_id() );
+				$MasterType = $Options->get_setting( 'master_type' , 'command' , 'user' );
+
 				$this->Output  = '';
 				$this->Output .= "{review_line:master_id=$MasterId;master_type=$MasterType}";
 				$this->Output .= "{permit:registered}{review_form:master_id=$MasterId;".
@@ -145,7 +147,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -173,11 +175,11 @@
 			try
 			{			
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_public_review_list' );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )
@@ -186,5 +188,5 @@
 			}
 		}
 	}
-	
+
 ?>

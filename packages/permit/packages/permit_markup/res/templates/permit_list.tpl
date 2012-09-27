@@ -1,24 +1,24 @@
-					<form method="post" id="permit_form_id" class="form_600">
+					<form method="post" id="permit_form_id" class="form_640">
 						<input type="hidden" name="context_action" value="change_permits">
 						<input type="hidden" name="action" value="save_permits">
 						<input type="hidden" name="record_id" value="{object}">
 						<table border="0">
 							<tr>
-								<td width="300px" valign="top" class="table_header">
+								<td valign="top" class="table_header">
 									{lang:already_added_permits}
 								</td>
-								<td width="300px" valign="top" class="table_header"">
+								<td valign="top" class="table_header"">
 									{lang:permit_to_add}
 								</td>
 							</tr>
-							<tr height="250px">
-								<td width="300px" valign="top" class="table_row_even padding_10">
-									<div id='all_permits_div_id'>
+							<tr>
+								<td valign="top" class="table_row_even padding_10">
+									<div id="all_permits_div_id" class="panel_250 width_300">
 										{object_permits}
 									</div>
 								</td>
-								<td width="300px" valign="top" class="table_row_even padding_10">
-									<div id='permit_list'>
+								<td valign="top" class="table_row_even padding_10">
+									<div id="permit_list" class="panel_250 width_300">
 										{rest_permits}
 									</div>
 								</td>

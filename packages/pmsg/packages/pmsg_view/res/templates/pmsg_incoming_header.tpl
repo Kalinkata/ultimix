@@ -1,4 +1,6 @@
-					{search_form}{create_button:text=create_message}{search_button}{delete_button:name=pmsg_i}
+					<div class="toolbar">
+						{search_form}{create_button:text=create_message}{search_button}{delete_button:name=pmsg_i}
+					</div>
 					<input type="hidden" name="message_action" id="message_action" value="no_action">
 					<input type="hidden" name="message_id" id="message_id" value="-1">
 					<table border="0" width="100%">

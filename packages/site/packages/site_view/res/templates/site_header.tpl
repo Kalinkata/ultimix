@@ -1,5 +1,5 @@
 					<div class="toolbar">
-						{create_form}{copy_form}{search_form}{search_button}{delete_button}
+						{search_form}{create_form}{copy_form}{search_button}{update_button}{delete_button}
 					</div>
 					<table border="0" width="100%">
 						<tr>

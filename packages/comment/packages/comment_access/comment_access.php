@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	comment_access_1_0_0{
-	
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_comment`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -53,7 +53,7 @@
 		var					$SecurityParser = false;
 		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -80,7 +80,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -92,7 +92,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -129,7 +129,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -157,7 +157,7 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				return( 
 					$this->Database->select( 
 						$this->UserAccess->NativeTable.'.* , '.$this->NativeTable.'.*' , 
@@ -172,7 +172,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -217,9 +217,9 @@
 			try
 			{
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
-					$Start , $Limit , $Field , $Order , $Condition
+					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -227,7 +227,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записей.
 		*
@@ -266,7 +266,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Процессинг записи.
 		*
@@ -300,7 +300,7 @@
 				$Record = $this->SecurityParser->parse_parameters( $Record , 'comment:string' );
 				set_field( $Record , 'author' , $this->UserAlgorithms->get_id() );
 				set_field( $Record , 'page' , $this->Security->get_srv( 'REQUEST_URI' , 'string' , './index.html' ) );
-				
+
 				return( $Record );
 			}
 			catch( Exception $e )
@@ -308,7 +308,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -336,20 +336,20 @@
 			try
 			{
 				$Record = $this->compile_record( $Record );
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record , CREATION_DATE );
-				
+
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
-				
+
 				$Link = get_package( 'link' , 'last' , __FILE__ );
 				$Link->create_link( 
 					get_field( $MasterLink , 'master_id' ) , $id , 
 					get_field( $MasterLink , 'master_type' ) , 'comment'
 				);
-				
+
 				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$EventManager->trigger_event( 'on_after_create_comment' , array( 'id' => $id ) );
-				
+
 				return( $id );
 			}
 			catch( Exception $e )
@@ -357,7 +357,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Редактирование записи.
 		*
@@ -388,7 +388,7 @@
 				$Record = $this->SecurityParser->parse_parameters( $Record , 'comment:string' , 'allow_not_set' );
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$this->Database->update( 
@@ -402,7 +402,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*

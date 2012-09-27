@@ -47,7 +47,7 @@ ultimix.multiple_line.GetElementCode = function( Control , Object )
 	if( Object )
 	{
 		eval( 'var Data = ' + jQuery( Object ).html() );
-		Template = ultimix.string_utilities.PrintRecord( Template , Data );
+		Template = ultimix.string_utilities.print_record( Template , Data );
 	}
 	
 	return( Template );

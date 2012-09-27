@@ -1,5 +1,5 @@
 					<div class="toolbar">
-						{search_form}{create_button}{search_button}{delete_button}{update_button}
+						{search_form}{create_button}{copy_button}{search_button}{delete_button}{update_button}
 					</div>
 					<input type="hidden" name="category_id" id="category_id" value="">
 					<table border="0" width="100%">

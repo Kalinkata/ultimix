@@ -140,7 +140,6 @@
 			// TODO ... (add multylanguage demo script)
 			// TODO database support (add demo)
 			// TODO caching demo
-			// TODO database support (add demo)
 
 			$_GET[ 'page_name' ] = basename( $_SERVER[ 'SCRIPT_NAME' ] , ".php" );
 		}

@@ -47,7 +47,7 @@ ultimix.string_utilities.str_replace = function( Search , Replace , Subject )
 *
 * 	@author Dodonov A.A.
 */
-ultimix.string_utilities.PrintRecord = function( Format , Record )
+ultimix.string_utilities.print_record = function( Format , Record )
 {
 	for( i in Record )
 	{
@@ -203,8 +203,8 @@ ultimix.string_utilities.valign_block = function( Content )
 ultimix.string_utilities.halign_block = function( Content , Width )
 {
 	return( 
-		"<div class=\"margin_0_auto\" style=\"display: block; width: " + Width + "px; height: 100%;\">" + 
-		Content + "</div>"
+		"<div class=\"margin_0_auto\" style=\"display: block; width: " + 
+		Width + "px; height: 100%;\">" + Content + "</div>"
 	);
 }
 

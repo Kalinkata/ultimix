@@ -31,7 +31,7 @@ ultimix.user.add_avatar = function( ServerData )
 	eval( "ServerDataObject=" + ServerData );
 	
 	ItemTemplate = jQuery( '.avatar>.avatar_template' ).html();
-	ItemTemplate = ultimix.string_utilities.PrintRecord( ItemTemplate , ServerDataObject );
+	ItemTemplate = ultimix.string_utilities.print_record( ItemTemplate , ServerDataObject );
 	
 	jQuery( '.avatar>.avatar_item' ).html( ItemTemplate );
 }

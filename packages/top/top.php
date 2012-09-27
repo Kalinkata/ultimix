@@ -164,7 +164,6 @@
 		}
 
 		//TODO: filter 'literal' in the {lang:literal} macro for figure braces
-		//TODO: add banners display view
 
 		/**
 		*	\~russian Функция отрисовки конкретного топа.
