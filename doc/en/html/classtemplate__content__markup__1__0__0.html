@@ -73,15 +73,11 @@ $(document).ready(function(){initNavTree('classtemplate__content__markup__1__0__
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:ad8bcfb9f89cf1229657f0aa70f9f6107"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#ad8bcfb9f89cf1229657f0aa70f9f6107">process_string</a> ($Options, $ProcessingString, &amp;$Changed)</td></tr>
+<tr class="memitem:a3ffa97ff34cdf53a7189e4e8d461235a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#a3ffa97ff34cdf53a7189e4e8d461235a">compile_template_content</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a42734c34e5429a8ec8d5dc3ff7331492"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> = false</td></tr>
-<tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
-<tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:afe387d853715d0fbdff1a94524ab5c9f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#afe387d853715d0fbdff1a94524ab5c9f">$TemplateContentAccess</a> = false</td></tr>
-<tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemplate__content__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Displaying template content.</p>
@@ -104,15 +100,11 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00054">54</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00050">50</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;BlockSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;TemplateContentAccess = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::template_content::template_content_access&#39;</span> );</div>
-<div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -123,32 +115,16 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ad8bcfb9f89cf1229657f0aa70f9f6107"></a>
+<a class="anchor" id="a3ffa97ff34cdf53a7189e4e8d461235a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">process_string </td>
+          <td class="memname">compile_template_content </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$ProcessingString</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -156,7 +132,7 @@ Data Fields</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$Options</td><td>- Options of drawing.</td></tr>
-    <tr><td class="paramname">$ProcessingString</td><td>- Processing string.</td></tr>
+    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
     <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
   </table>
   </dd>
@@ -170,22 +146,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00100">100</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00092">92</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $Parameters = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $ProcessingString , <span class="stringliteral">&#39;template_content&#39;</span> ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;BlockSettings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              $Content = $this-&gt;TemplateContentAccess-&gt;get_content_ex( $this-&gt;BlockSettings );</div>
-<div class="line">                              $ProcessingString = str_replace( </div>
-<div class="line">                                    <span class="stringliteral">&quot;{template_content:$Parameters}&quot;</span> , $Content , $ProcessingString</div>
-<div class="line">                              );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">return</span>( $ProcessingString );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;TemplateContentAccess-&gt;get_content_ex( $Settings ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -196,64 +161,6 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
-<a class="anchor" id="a42734c34e5429a8ec8d5dc3ff7331492"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$BlockSettings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Cached objects.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00038">38</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1b21a3420462aafbfb9e6420c224452d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$CachedMultyFS = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00039">39</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aaae5f70ebc2b60f22e8159944cd2d518"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$Security = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00040">40</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a541f49d5b9cf7bae2f91f639abcf3458"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$String = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00042">42</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="afe387d853715d0fbdff1a94524ab5c9f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -263,8 +170,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cached objects.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00041">41</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="template__content__markup_8php_source.html#l00038">38</a> of file <a class="el" href="template__content__markup_8php_source.html">template_content_markup.php</a>.</p>
 
 </div>
 </div>
@@ -277,7 +186,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classtemplate__content__markup__1__0__0.html">template_content_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:47 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:58 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

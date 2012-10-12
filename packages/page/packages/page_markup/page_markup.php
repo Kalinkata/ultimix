@@ -36,6 +36,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$PageComposer = false;
 		var					$PageMarkupUtilities = false;
 		var					$Security = false;
 
@@ -558,6 +559,56 @@
 				$this->load_meta_settings( $Settings , $MetaSettings );
 
 				$Str = $this->run_meta_settings( $MetaSettings , $Str );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'color_scheme'.
+		*
+		*	@param $Settings - Параметры компиляции.
+		*
+		*	@return Widget.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'color_scheme'.
+		*
+		*	@param $Settings - Compilation parameters.
+		*
+		*	@return Widget.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_color_scheme( &$Settings )
+		{
+			try
+			{
+				if( $this->PageComposer === false )
+				{
+					$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
+				}
+
+				$Available = explode( ',' , $Settings->get_setting( 'available' , 'default' ) );
+
+				$Sheme = $this->PageComposer->Template->get_color_scheme();
+
+				if( array_search( $Sheme , $Available ) !== false )
+				{
+					return( $Sheme );
+				}
+				else
+				{
+					return( 'default' );
+				}
 			}
 			catch( Exception $e )
 			{

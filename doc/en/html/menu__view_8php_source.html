@@ -138,28 +138,29 @@ $(document).ready(function(){initNavTree('menu__view_8php_source.html','');});
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            {</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                  {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        $Context = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        $ContextSet = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                        </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        $Context-&gt;load_config( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/show_menu&#39;</span> );</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        <span class="keywordflow">if</span>( $Context-&gt;execute( $Options , $this ) )<span class="keywordflow">return</span>( $this-&gt;Output );</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                  }</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                  {</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                  }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            }</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;      }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;?&gt;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/show_menu&#39;</span> );</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        <span class="keywordflow">if</span>( $ContextSet-&gt;execute( $Options , $this ) )<span class="keywordflow">return</span>( $this-&gt;Output );</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                  }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                  {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                  }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_87711905662b8a72ff742dfd2b6f7d00.html">menu</a></li><li class="navelem"><a class="el" href="dir_da6343c1e136b7d2ff4343f1820af44c.html">packages</a></li><li class="navelem"><a class="el" href="dir_05d6b315a477fd93a2b01c5de3b498e0.html">menu_view</a></li><li class="navelem"><a class="el" href="menu__view_8php.html">menu_view.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:08 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:02 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

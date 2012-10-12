@@ -6,8 +6,6 @@ var classdefault__controllers__1__0__0 =
     [ "delete", "classdefault__controllers__1__0__0.html#af9d5396ae00e865192b892d2889896ab", null ],
     [ "get_update_record", "classdefault__controllers__1__0__0.html#a3c0809d303f9935da7ccbbe59ef220b9", null ],
     [ "multy_call", "classdefault__controllers__1__0__0.html#afd0553badf3c8d73b42aa29d1abd0064", null ],
-    [ "public_create", "classdefault__controllers__1__0__0.html#a7d32bd4bf4e3e1af86efa8c5b4a3f968", null ],
-    [ "public_update", "classdefault__controllers__1__0__0.html#a4426ba3226a4e5a92fd429d7f72b1df9", null ],
     [ "set_constants", "classdefault__controllers__1__0__0.html#aaa568f71166437da42c87a999fea2f82", null ],
     [ "update", "classdefault__controllers__1__0__0.html#aceb5ec26421f99393bee1b810412047b", null ],
     [ "$ContextSetUtilities", "classdefault__controllers__1__0__0.html#a8407724e7a8e1d13b6de552766fa25a5", null ],

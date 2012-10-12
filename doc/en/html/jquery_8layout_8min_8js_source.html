@@ -721,7 +721,7 @@ $(document).ready(function(){initNavTree('jquery_8layout_8min_8js_source.html','
 <div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;            sizeContent(<span class="stringliteral">&quot;all&quot;</span>);     <span class="comment">// AFTER panes &amp; handles have been initialized, size &#39;content&#39; divs</span></div>
 <div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;</div>
 <div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;            <span class="keywordflow">if</span> (options.scrollToBookmarkOnLoad)</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                  with (<span class="keyword">self</span>.location) <a class="code" href="category__view_8en_8js.html#aa2f6f6130733a1e96a8b9c4d1d22b7fa">if</a> (hash) replace( hash ); <span class="comment">// scrollTo Bookmark</span></div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;                  with (<span class="keyword">self</span>.location) <a class="code" href="ad__banner__view_8js.html#aca6096cc954ccbf840baf7740c11170f">if</a> (hash) replace( hash ); <span class="comment">// scrollTo Bookmark</span></div>
 <div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;</div>
 <div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;            <span class="comment">// bind hotkey function - keyDown - if required</span></div>
 <div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;            initHotkeys();</div>
@@ -764,7 +764,7 @@ $(document).ready(function(){initNavTree('jquery_8layout_8min_8js_source.html','
 <div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;                        <span class="keywordflow">if</span> (!$Container.hasClass(<span class="stringliteral">&quot;ui-layout-pane&quot;</span>)) {</div>
 <div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;                              <span class="keywordflow">if</span> (!p || <span class="stringliteral">&quot;fixed,absolute,relative&quot;</span>.indexOf(p) &lt; 0)</div>
 <div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;                                    CSS.position = <span class="stringliteral">&quot;relative&quot;</span>; <span class="comment">// container MUST have a &#39;position&#39;</span></div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;                              <a class="code" href="category__view_8en_8js.html#aa2f6f6130733a1e96a8b9c4d1d22b7fa">if</a> (!h || h==<span class="stringliteral">&quot;auto&quot;</span>)</div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;                              <a class="code" href="ad__banner__view_8js.html#aca6096cc954ccbf840baf7740c11170f">if</a> (!h || h==<span class="stringliteral">&quot;auto&quot;</span>)</div>
 <div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;                                    CSS.height = <span class="stringliteral">&quot;100%&quot;</span>; <span class="comment">// container MUST have a &#39;height&#39;</span></div>
 <div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;                        }</div>
 <div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;                        $Container.css( CSS );</div>
@@ -1360,7 +1360,7 @@ $(document).ready(function(){initNavTree('jquery_8layout_8min_8js_source.html','
 <div class="line"><a name="l01465"></a><span class="lineno"> 1465</span>&#160;            <span class="keyword">delete</span> s.isShowing;</div>
 <div class="line"><a name="l01466"></a><span class="lineno"> 1466</span>&#160;            <span class="keyword">delete</span> s.isHiding;</div>
 <div class="line"><a name="l01467"></a><span class="lineno"> 1467</span>&#160;</div>
-<div class="line"><a name="l01468"></a><span class="lineno"> 1468</span>&#160;            <a class="code" href="category__view_8en_8js.html#aa2f6f6130733a1e96a8b9c4d1d22b7fa">if</a> (!$P || (!o.resizable &amp;&amp; !o.closable)) <span class="keywordflow">return</span>; <span class="comment">// invalid request</span></div>
+<div class="line"><a name="l01468"></a><span class="lineno"> 1468</span>&#160;            <a class="code" href="ad__banner__view_8js.html#aca6096cc954ccbf840baf7740c11170f">if</a> (!$P || (!o.resizable &amp;&amp; !o.closable)) <span class="keywordflow">return</span>; <span class="comment">// invalid request</span></div>
 <div class="line"><a name="l01469"></a><span class="lineno"> 1469</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!force &amp;&amp; s.isClosed &amp;&amp; !isShowing) <span class="keywordflow">return</span>; <span class="comment">// already closed</span></div>
 <div class="line"><a name="l01470"></a><span class="lineno"> 1470</span>&#160;</div>
 <div class="line"><a name="l01471"></a><span class="lineno"> 1471</span>&#160;            <span class="keywordflow">if</span> (c.isLayoutBusy) { <span class="comment">// layout is &#39;busy&#39; - probably with an animation</span></div>
@@ -1463,7 +1463,7 @@ $(document).ready(function(){initNavTree('jquery_8layout_8min_8js_source.html','
 <div class="line"><a name="l01575"></a><span class="lineno"> 1575</span>&#160;            <span class="comment">// now clear the logic var</span></div>
 <div class="line"><a name="l01576"></a><span class="lineno"> 1576</span>&#160;            <span class="keyword">delete</span> s.isShowing;</div>
 <div class="line"><a name="l01577"></a><span class="lineno"> 1577</span>&#160;</div>
-<div class="line"><a name="l01578"></a><span class="lineno"> 1578</span>&#160;            <a class="code" href="category__view_8en_8js.html#aa2f6f6130733a1e96a8b9c4d1d22b7fa">if</a> (!$P || (!o.resizable &amp;&amp; !o.closable)) <span class="keywordflow">return</span>; <span class="comment">// invalid request</span></div>
+<div class="line"><a name="l01578"></a><span class="lineno"> 1578</span>&#160;            <a class="code" href="ad__banner__view_8js.html#aca6096cc954ccbf840baf7740c11170f">if</a> (!$P || (!o.resizable &amp;&amp; !o.closable)) <span class="keywordflow">return</span>; <span class="comment">// invalid request</span></div>
 <div class="line"><a name="l01579"></a><span class="lineno"> 1579</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!s.isClosed &amp;&amp; !s.isSliding) <span class="keywordflow">return</span>; <span class="comment">// already open</span></div>
 <div class="line"><a name="l01580"></a><span class="lineno"> 1580</span>&#160;</div>
 <div class="line"><a name="l01581"></a><span class="lineno"> 1581</span>&#160;            <span class="comment">// pane can ALSO be unhidden by just calling show(), so handle this scenario</span></div>
@@ -1984,7 +1984,7 @@ $(document).ready(function(){initNavTree('jquery_8layout_8min_8js_source.html','
 <div class="line"><a name="l02155"></a><span class="lineno"> 2155</span>&#160;            ,     s, o, k, m, el</div>
 <div class="line"><a name="l02156"></a><span class="lineno"> 2156</span>&#160;            ;</div>
 <div class="line"><a name="l02157"></a><span class="lineno"> 2157</span>&#160;</div>
-<div class="line"><a name="l02158"></a><span class="lineno"> 2158</span>&#160;            <a class="code" href="category__view_8en_8js.html#aa2f6f6130733a1e96a8b9c4d1d22b7fa">if</a> (!CTRL &amp;&amp; !SHIFT)</div>
+<div class="line"><a name="l02158"></a><span class="lineno"> 2158</span>&#160;            <a class="code" href="ad__banner__view_8js.html#aca6096cc954ccbf840baf7740c11170f">if</a> (!CTRL &amp;&amp; !SHIFT)</div>
 <div class="line"><a name="l02159"></a><span class="lineno"> 2159</span>&#160;                  <span class="keywordflow">return</span> <span class="keyword">true</span>; <span class="comment">// no modifier key - abort</span></div>
 <div class="line"><a name="l02160"></a><span class="lineno"> 2160</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isCursorKey &amp;&amp; options[PANE[code]].enableCursorHotkey) <span class="comment">// valid cursor-hotkey</span></div>
 <div class="line"><a name="l02161"></a><span class="lineno"> 2161</span>&#160;                  pane = PANE[code];</div>
@@ -2272,7 +2272,7 @@ $(document).ready(function(){initNavTree('jquery_8layout_8min_8js_source.html','
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_2fdead99e173199c795f6f76807a3239.html">template_manager</a></li><li class="navelem"><a class="el" href="dir_68b7963e76b00f34f05640e22569d3fd.html">packages</a></li><li class="navelem"><a class="el" href="dir_f4f8fe19c0fee66b0aa3d3156b8bd82f.html">business_template</a></li><li class="navelem"><a class="el" href="dir_106810f961f70f4e99724c05e2ade9dd.html">include</a></li><li class="navelem"><a class="el" href="dir_6ed1ddb7112936c371e737af8e4b2f0e.html">js</a></li><li class="navelem"><a class="el" href="jquery_8layout_8min_8js.html">jquery.layout.min.js</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:17 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:09 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

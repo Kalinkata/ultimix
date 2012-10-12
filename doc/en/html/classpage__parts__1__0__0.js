@@ -1,14 +1,11 @@
 var classpage__parts__1__0__0 =
 [
     [ "__construct", "classpage__parts__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
-    [ "call_processor_function", "classpage__parts__1__0__0.html#ac268113a385ddc41ec8b05cf9d0bd90a", null ],
     [ "compile_controllers", "classpage__parts__1__0__0.html#ad396ac9149e5e4555cf04292c86ef654", null ],
     [ "compile_views", "classpage__parts__1__0__0.html#a5207ba92168b244231bcd15d4be5320f", null ],
     [ "execute_generators", "classpage__parts__1__0__0.html#a2caab490039794be4c3435941e6f716e", null ],
-    [ "execute_processors", "classpage__parts__1__0__0.html#ab346b44cd7dc1b263c7f5f08a55e50ef", null ],
     [ "fetch_packages", "classpage__parts__1__0__0.html#a8b13a411bcd497089035955c81658a14", null ],
     [ "get_controller", "classpage__parts__1__0__0.html#a0476df89ae1a8d26d962dbb18f0a6260", null ],
-    [ "get_function_name", "classpage__parts__1__0__0.html#a74edd219d2d75cab2fba0e65829bcbee", null ],
     [ "get_package_appliance", "classpage__parts__1__0__0.html#a174d0ffb08a28da8f181a058e0aa5999", null ],
     [ "get_settings_for_package", "classpage__parts__1__0__0.html#a123ce0e3bc971df9a294936c9083d9aa", null ],
     [ "get_view", "classpage__parts__1__0__0.html#a0c3e7f65fbf61a7e48307959112ae2f7", null ],

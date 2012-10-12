@@ -111,7 +111,6 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -182,7 +181,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="package__settings_8php_source.html#l00100">100</a> of file <a class="el" href="package__settings_8php_source.html">package_settings.php</a>.</p>
+<p>Definition at line <a class="el" href="package__settings_8php_source.html#l00099">99</a> of file <a class="el" href="package__settings_8php_source.html">package_settings.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -260,7 +259,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="package__settings_8php_source.html#l00151">151</a> of file <a class="el" href="package__settings_8php_source.html">package_settings.php</a>.</p>
+<p>Definition at line <a class="el" href="package__settings_8php_source.html#l00150">150</a> of file <a class="el" href="package__settings_8php_source.html">package_settings.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -271,6 +270,11 @@ Data Fields</h2></td></tr>
 <div class="line">                        $S-&gt;set_setting( $SettingName , $Value );</div>
 <div class="line"></div>
 <div class="line">                        $PackagePath = <a class="code" href="core_8php.html#a1ea4fe90b349e48a58c207ebc3be5a1d">_get_package_path_ex</a>( $PackageName , $PackageVersion );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( $this-&gt;CachedMultyFS === <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        $this-&gt;CachedMultyFS-&gt;file_put_contents( <span class="stringliteral">&quot;$PackagePath/conf/$FileName&quot;</span> , $S-&gt;get_all_settings() );</div>
 <div class="line">                  }</div>
@@ -308,7 +312,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpackage__settings__1__0__0.html">package_settings_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:39 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:50 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

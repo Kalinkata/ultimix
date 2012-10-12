@@ -82,10 +82,10 @@ $(document).ready(function(){initNavTree('rss_8php_source.html','');});
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      </div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html">   26</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classrss__2__0__0.html">rss_2_0_0</a>{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a1b21a3420462aafbfb9e6420c224452d">   38</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#ae10cc045c1502f148d1aa728183898e7">   39</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#ae10cc045c1502f148d1aa728183898e7">$Database</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a524e5510549d6b36c3f6a9e025faca4e">   40</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a524e5510549d6b36c3f6a9e025faca4e">$PageComposer</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a53cd29da1b62d8d5aa05e4718293d77d">   41</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a53cd29da1b62d8d5aa05e4718293d77d">$PageParts</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#addbfa184c2bd1dc56d347b2a7e86ea43">   38</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#addbfa184c2bd1dc56d347b2a7e86ea43">$AutoMarkup</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a1b21a3420462aafbfb9e6420c224452d">   39</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#ae10cc045c1502f148d1aa728183898e7">   40</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#ae10cc045c1502f148d1aa728183898e7">$Database</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a524e5510549d6b36c3f6a9e025faca4e">   41</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a524e5510549d6b36c3f6a9e025faca4e">$PageComposer</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">   42</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">   43</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">   44</a></span>&#160;            var                           <a class="code" href="classrss__2__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = <span class="keyword">false</span>;</div>
@@ -94,10 +94,10 @@ $(document).ready(function(){initNavTree('rss_8php_source.html','');});
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                  {</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        $this-&gt;Database = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;database&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        $this-&gt;PageComposer = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_composer&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        $this-&gt;PageParts = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_parts&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        $this-&gt;AutoMarkup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_parts&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        $this-&gt;Database = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;database&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        $this-&gt;PageComposer = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_composer&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        $this-&gt;Settings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
@@ -114,13 +114,13 @@ $(document).ready(function(){initNavTree('rss_8php_source.html','');});
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                  {</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        <span class="keywordflow">if</span>( $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;feed&#39;</span> , <span class="stringliteral">&#39;set&#39;</span> ) === false )</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&#39;No feed was defined&#39;</span> ) );</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                              <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                        }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        </div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        $Feed = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;feed&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> );</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        </div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        $FeedScript = $this-&gt;CachedMultyFS-&gt;get_data( __FILE__ , <span class="stringliteral">&quot;$Feed.sql&quot;</span> );</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        $FeedScript = $this-&gt;PageParts-&gt;execute_processors( $FeedScript , <span class="stringliteral">&#39;post_process&#39;</span> );</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        $FeedScript = $this-&gt;AutoMarkup-&gt;compile_string( $FeedScript );</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        </div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                        $this-&gt;Database-&gt;query_as( <a class="code" href="database_8php.html#a1b72226638a2b68c4d481c0bebca0063">DB_OBJECT</a> );</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        </div>
@@ -169,7 +169,7 @@ $(document).ready(function(){initNavTree('rss_8php_source.html','');});
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                        $this-&gt;Settings-&gt;load_file( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cf_default&#39;</span> );</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                        $FeedXml = $this-&gt;String-&gt;print_record( $FeedXml , $this-&gt;Settings-&gt;get_raw_settings() );</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                        $FeedXml = $this-&gt;PageParts-&gt;execute_processors( $FeedXml , <span class="stringliteral">&#39;post_process&#39;</span> );</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                        $FeedXml = $this-&gt;AutoMarkup-&gt;compile_string( $FeedXml );</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                        <span class="keywordflow">return</span>( $FeedXml );</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                  }</div>
@@ -185,49 +185,54 @@ $(document).ready(function(){initNavTree('rss_8php_source.html','');});
 <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                  {</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                        $Records = $this-&gt;<a class="code" href="classrss__2__0__0.html#a3fe904bcffc11b3d6dfff1a8e91c674c">get_feed_records</a>();</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                        $Feed = $this-&gt;<a class="code" href="classrss__2__0__0.html#aefa074f3a161c89195d80d7a217a7288">compile_feed</a>( $Records );</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                        </div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                        $Feed = $this-&gt;Security-&gt;get( $Feed , <span class="stringliteral">&#39;unsafe_string&#39;</span> );</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                        </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                        header( <span class="stringliteral">&quot;Content-Type: application/rss+xml&quot;</span> );</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                        </div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                        <span class="keywordflow">return</span>( $Feed );</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                  }</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                  {</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                  }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            }</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            </div>
-<div class="line"><a name="l00275"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#ac59450f2bcf13172f2bcc54e537b4abe">  275</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classrss__2__0__0.html#ac59450f2bcf13172f2bcc54e537b4abe">compile_rss_button</a>( &amp;<a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            {</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;                  {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                        $Type = <a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;type&#39;</span> , <span class="stringliteral">&#39;small&#39;</span> );</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , $Type.<span class="stringliteral">&#39;_rss_button.tpl&#39;</span> );</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                        $Code = $this-&gt;String-&gt;print_record( $Code , <a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                        $Code = str_replace( <span class="stringliteral">&#39;{package_path}&#39;</span> , <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;rss&#39;</span> , <span class="stringliteral">&#39;2.0.0&#39;</span> ) , $Code );</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                  }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                  {</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                  }</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      }</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;?&gt;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                        <span class="keywordflow">if</span>( $Records === <span class="keyword">false</span> )</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                        {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                              <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                        }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                        $Feed = $this-&gt;<a class="code" href="classrss__2__0__0.html#aefa074f3a161c89195d80d7a217a7288">compile_feed</a>( $Records );</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                        $Feed = $this-&gt;Security-&gt;get( $Feed , <span class="stringliteral">&#39;unsafe_string&#39;</span> );</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                        header( <span class="stringliteral">&quot;Content-Type: application/rss+xml&quot;</span> );</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                        <span class="keywordflow">return</span>( $Feed );</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                  }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                  {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                  }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00280"></a><span class="lineno"><a class="code" href="classrss__2__0__0.html#ac59450f2bcf13172f2bcc54e537b4abe">  280</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classrss__2__0__0.html#ac59450f2bcf13172f2bcc54e537b4abe">compile_rss_button</a>( &amp;<a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            {</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                  {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                        $Type = <a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;type&#39;</span> , <span class="stringliteral">&#39;small&#39;</span> );</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , $Type.<span class="stringliteral">&#39;_rss_button.tpl&#39;</span> );</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                        $Code = $this-&gt;String-&gt;print_record( $Code , <a class="code" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                        $Code = str_replace( <span class="stringliteral">&#39;{package_path}&#39;</span> , <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;rss&#39;</span> , <span class="stringliteral">&#39;2.0.0&#39;</span> ) , $Code );</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                  }</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                  {</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                  }</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            }</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_7d763a0696bcb65aee14c2d638123062.html">rss</a></li><li class="navelem"><a class="el" href="rss_8php.html">rss.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:13 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:06 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

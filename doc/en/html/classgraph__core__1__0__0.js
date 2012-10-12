@@ -8,5 +8,5 @@ var classgraph__core__1__0__0 =
     [ "output", "classgraph__core__1__0__0.html#aa0e1b9e68cb761c30c0a313f107d0408", null ],
     [ "string_height", "classgraph__core__1__0__0.html#a2debc842d0794e5ebb74f687fbcefd3e", null ],
     [ "string_width", "classgraph__core__1__0__0.html#a760c4f1788a984f6e310595d9cd66716", null ],
-    [ "string_width_height", "classgraph__core__1__0__0.html#a6544c68d4dbe07e6bbdaaf2479dc8327", null ]
+    [ "string_width_height", "classgraph__core__1__0__0.html#a458683ff0b53631f5ae411faa173c122", null ]
 ];

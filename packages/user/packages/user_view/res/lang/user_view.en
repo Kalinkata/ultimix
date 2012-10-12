@@ -60,3 +60,4 @@ change_password=Change password
 users_were_activated=All selected users were activated
 users_were_deactivated=All selected users were deactivated
 bleave=Logout
+switch_user_dialog=Switch user

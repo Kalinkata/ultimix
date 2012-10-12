@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	permit_algorithms_1_0_0{
-	
+
 		/**
 		*	\~russian Закэшированные пакеты.
 		*
@@ -41,7 +41,7 @@
 		var					$Security = false;
 		var					$String = false;
 		var					$UserAlgorithms = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -71,7 +71,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian ДОступы для пользователя.
 		*
@@ -107,8 +107,6 @@
 		{
 			try
 			{
-				$SessionId = $this->UserAlgorithms->get_id();
-				$Object = ( $Object === false ) ? $SessionId : $this->Security->get( $Object , 'integer' );
 				$Permits = $this->PermitAccess->get_permits_for_object( $Object , 'user' , array( 'public' ) );
 
 				if( $AddGroupPermits )
@@ -125,7 +123,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Получение доступов для объекта минуя кэш.
 		*
@@ -161,7 +159,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			fetch_permits_for_object( $Object , $ObjectType = 'page' , $AddGroupPermits = true )
+		private function	fetch_permits_for_object( $Object , $ObjectType = 'page' , $AddGroupPermits = true )
 		{
 			try
 			{
@@ -170,8 +168,11 @@
 					case( 'group' ):
 						$Permits = $this->PermitAccess->get_permits_for_object( $Object , 'group' , array() );
 					break;
+					case( 'report' ):
 					case( 'menu' ):
-						$Permits = $this->PermitAccess->get_permits_for_object( $Object , 'menu' , array( 'admin' ) );
+						$Permits = $this->PermitAccess->get_permits_for_object( 
+							$Object , $ObjectType , array( 'admin' )
+						);
 					break;
 					case( 'page' ):$Permits = $this->PermitAccess->get_permits_for_page( $Object );break;
 					case( 'user' ):$Permits = $this->get_permits_for_user( $Object , $AddGroupPermits );break;
@@ -184,7 +185,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Получение доступов для объекта.
 		*
@@ -224,17 +225,22 @@
 		{
 			try
 			{
+				if( $Object === false && $ObjectType == 'user' )
+				{
+					$Object = $this->UserAlgorithms->get_id();
+				}
+
 				$Key = md5( $Object.$ObjectType.$AddGroupPermits );
-				
+
 				if( isset( $this->PermitAccess->PermitsCache[ $Key ] ) )
 				{
 					return( $this->PermitAccess->PermitsCache[ $Key ] );
 				}
-			
+
 				$Permits = $this->fetch_permits_for_object( $Object , $ObjectType , $AddGroupPermits );
-				
+
 				$this->PermitAccess->PermitsCache[ $Key ] = $Permits;
-				
+
 				return( $this->PermitAccess->PermitsCache[ $Key ] );
 			}
 			catch( Exception $e )
@@ -242,7 +248,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Проверка есть ли у пользователя доступы.
 		*
@@ -277,13 +283,9 @@
 		{
 			try
 			{
-				if( $Object === false && $ObjectType == 'user' )
-				{
-					$Object = $this->UserAlgorithms->get_id();
-				}
-				
+				//TODO: remove this function
 				$ObjectsPermits = $this->get_permits_for_object( $Object , $ObjectType );
-				
+
 				return( in_array( $Permit , $ObjectsPermits ) );
 			}
 			catch( Exception $e )
@@ -291,7 +293,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка есть ли у пользователя доступы.
 		*
@@ -347,7 +349,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Имет ли первый объект необходимые права для доступа ко второму объекту.
 		*
@@ -382,7 +384,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			validate_permits_ex( $Object1 , $ObjectType1 , $Object2 , $ObjectType2 )
+		function			validate_permits( $Object1 , $ObjectType1 , $Object2 , $ObjectType2 )
 		{
 			try
 			{
@@ -404,7 +406,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка всех пользователей с указанным доступом.
 		*
@@ -450,4 +452,5 @@
 			}
 		}
 	}
+
 ?>

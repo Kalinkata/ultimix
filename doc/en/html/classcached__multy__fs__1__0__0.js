@@ -21,6 +21,5 @@ var classcached__multy__fs__1__0__0 =
     [ "$Cache", "classcached__multy__fs__1__0__0.html#a3d8adebf449f020eb1c7d05ea2b0a55e", null ],
     [ "$CachedFS", "classcached__multy__fs__1__0__0.html#ae6d19df8a3ae8cdbb62ce6ce91f8715f", null ],
     [ "$MountedStorages", "classcached__multy__fs__1__0__0.html#a8a4590f1099684ab2351959a0ea76e45", null ],
-    [ "$String", "classcached__multy__fs__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ],
     [ "$Text", "classcached__multy__fs__1__0__0.html#a3e73f152d944154bb11e4385f088ccfb", null ]
 ];

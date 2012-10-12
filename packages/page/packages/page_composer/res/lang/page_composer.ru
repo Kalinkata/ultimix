@@ -120,3 +120,5 @@ the_setting_package_name_was_not_found=Параметр 'package_name' не бы
 all_selected_records_were_deleted=Все выбранные записи были удалены
 refresh_form_content=Обновить содержимое формы
 rename=переименовать
+master_id=id мастер-объекта
+master_type=Тип мастер-объекта

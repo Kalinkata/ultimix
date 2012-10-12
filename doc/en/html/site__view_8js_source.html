@@ -105,47 +105,39 @@ $(document).ready(function(){initNavTree('site__view_8js_source.html','');});
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.site.get_custom_list_form = <span class="keyword">function</span>( Fuctions , Header , Item , Footer , ViewOptions )</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;{</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <span class="keywordflow">if</span>( !Fuctions )</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            Fuctions = {};</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      ViewOptions = <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.site.set_default_options( ViewOptions );</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      ViewOptions.header = Header ? Header : <span class="stringliteral">&#39;site_header.tpl&#39;</span>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      ViewOptions.item = Item ? Item : <span class="stringliteral">&#39;site_item.tpl&#39;</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      ViewOptions.footer = Footer ? Footer : <span class="stringliteral">&#39;site_footer.tpl&#39;</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.ajax_gate.direct_view( ViewOptions , Fuctions );</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.site.delete = <span class="keyword">function</span>( SiteId , DataSelector )</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.std_dialogs.QuestionMessageBox( <span class="stringliteral">&#39;are_you_shure&#39;</span> , </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keyword">function</span>( Result )</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                  <span class="keywordflow">if</span>( Result == <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.std_dialogs.MB_YES )</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                  {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                        var               ProgressDialogId = <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.std_dialogs.SimpleWaitingMessageBox();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                        <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.ajax_gate.direct_controller( </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                              { </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                                    <span class="stringliteral">&#39;package_name&#39;</span> : <span class="stringliteral">&#39;site::site_controller&#39;</span> , <span class="stringliteral">&#39;site_context_action&#39;</span> : <span class="stringliteral">&#39;delete_record&#39;</span> , </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                                    <span class="stringliteral">&#39;site_action&#39;</span> : <span class="stringliteral">&#39;delete_record&#39;</span> , <span class="stringliteral">&#39;site_record_id&#39;</span> : SiteId , <span class="stringliteral">&#39;meta&#39;</span> : <span class="stringliteral">&#39;meta_delete_site&#39;</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                              } , </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                              { <span class="stringliteral">&#39;success&#39;</span> :  <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        );</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                  }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      )</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.auto.get_custom_list_form( Fuctions , Header , Item , Footer , <span class="keyword">false</span> , ViewOptions , <span class="stringliteral">&#39;ad_banner&#39;</span> );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.site.delete = <span class="keyword">function</span>( Id , DataSelector )</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.auto.delete( </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            Id , DataSelector , </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            { </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                  <span class="stringliteral">&#39;package_name&#39;</span> : <span class="stringliteral">&#39;site::site_controller&#39;</span> , <span class="stringliteral">&#39;site_context_action&#39;</span> : <span class="stringliteral">&#39;delete_record&#39;</span> , </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                  <span class="stringliteral">&#39;site_action&#39;</span> : <span class="stringliteral">&#39;delete_record&#39;</span> , <span class="stringliteral">&#39;site_record_id&#39;</span> : Id , </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                  <span class="stringliteral">&#39;meta&#39;</span> : <span class="stringliteral">&#39;meta_delete_site&#39;</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;      );</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.site.record_view_form = <span class="keyword">function</span>( Id , DataSelector )</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.auto.record_view_form( </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            Id , DataSelector , </div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                  <span class="stringliteral">&#39;package_name&#39;</span> : <span class="stringliteral">&#39;site::site_view&#39;</span> , <span class="stringliteral">&#39;site_context_action&#39;</span> : <span class="stringliteral">&#39;record_view_form&#39;</span> , </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                  <span class="stringliteral">&#39;site_action&#39;</span> : <span class="stringliteral">&#39;record_view_form&#39;</span> , <span class="stringliteral">&#39;site_record_id&#39;</span> : Id , </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                  <span class="stringliteral">&#39;meta&#39;</span> : <span class="stringliteral">&#39;meta_record_view_site_form&#39;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;      );</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_9b6d61107eaa38680c83bd21664ddb88.html">site</a></li><li class="navelem"><a class="el" href="dir_4a1aec504d74f97d981a0722faa8dfd1.html">packages</a></li><li class="navelem"><a class="el" href="dir_4a1aaec4b267f033144332d38d338f50.html">site_view</a></li><li class="navelem"><a class="el" href="dir_d059b070209542bbc37aa8b194bfded3.html">include</a></li><li class="navelem"><a class="el" href="dir_e8cf15c2c14a562ef30fc7773f38e200.html">js</a></li><li class="navelem"><a class="el" href="site__view_8js.html">site_view.js</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:15 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:08 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

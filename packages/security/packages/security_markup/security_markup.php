@@ -115,8 +115,6 @@
 			}
 		}
 
-		//TODO: cache content line for the main page
-
 		/**
 		*	\~russian Функция получения значения.
 		*

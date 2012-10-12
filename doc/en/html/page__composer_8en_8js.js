@@ -1,5 +1,6 @@
 var page__composer_8en_8js =
 [
+    [ "if", "page__composer_8en_8js.html#a798408cfed3b8e967aff85d78953b65d", null ],
     [ "if", "page__composer_8en_8js.html#aef4d3cae285749dd6e90f1d77d7ae628", null ],
     [ "if", "page__composer_8en_8js.html#a46191ca8231fb87baed49acec8f4e2f2", null ],
     [ "if", "page__composer_8en_8js.html#af44b128a5b03a6bb64ae256e62bbf143", null ],
@@ -17,7 +18,7 @@ var page__composer_8en_8js =
     [ "if", "page__composer_8en_8js.html#a8fb9206c02da971789f8538c5359537d", null ],
     [ "if", "page__composer_8en_8js.html#ae433b9680ad1b3dd4322b260124a9270", null ],
     [ "if", "page__composer_8en_8js.html#a5bc13c6cd1326cf9d8362db0ad13a273", null ],
-    [ "if", "page__composer_8en_8js.html#ade05f6a91055bb27752538b2267a7e58", null ],
+    [ "if", "page__composer_8en_8js.html#abaacef11bbd7f0b6c59aa7c6bba3ddae", null ],
     [ "if", "page__composer_8en_8js.html#a12b8509d7c43b4f8b6b9bf1951272396", null ],
     [ "if", "page__composer_8en_8js.html#a2453bc55454452d8cc4abcee21091f9b", null ],
     [ "if", "page__composer_8en_8js.html#a71bbbdad528877196e853a9cae26d153", null ],
@@ -87,7 +88,6 @@ var page__composer_8en_8js =
     [ "if", "page__composer_8en_8js.html#a39dbeb5bb16ba10541af8c80c1b970a1", null ],
     [ "if", "page__composer_8en_8js.html#af37a78ccf1c1eb14e81c5487dec8c361", null ],
     [ "if", "page__composer_8en_8js.html#a680253cdd23b0bddcc4f5a3579c8e3e7", null ],
-    [ "if", "page__composer_8en_8js.html#abaacef11bbd7f0b6c59aa7c6bba3ddae", null ],
     [ "if", "page__composer_8en_8js.html#adf9923208b56fe315f3c6684892585b0", null ],
     [ "if", "page__composer_8en_8js.html#a3fca037000918f2a0387802bcd37c040", null ],
     [ "if", "page__composer_8en_8js.html#acc0e7f5fbc03c7cffc9799f547983e39", null ],
@@ -119,8 +119,9 @@ var page__composer_8en_8js =
     [ "if", "page__composer_8en_8js.html#af53ea2ed7ce94b91b617f933907209f5", null ],
     [ "if", "page__composer_8en_8js.html#a41dfc261b7d3c9869dca11293d47c203", null ],
     [ "if", "page__composer_8en_8js.html#aab66e181e06a5820a0a7f168663f1a5a", null ],
+    [ "if", "page__composer_8en_8js.html#a2c0e42595c105894784f24ca122b3a0f", null ],
     [ "image", "page__composer_8en_8js.html#a42cb5f5737262947250c709931232c69", null ],
     [ "nbsp", "page__composer_8en_8js.html#a5c78f4aaef6aea52a7f5c57be6063df2", null ],
     [ "protection", "page__composer_8en_8js.html#acd7fa2a9eca741d678e5dd4a03a50fdc", null ],
-    [ "Strings", "page__composer_8en_8js.html#ae6e941072585469da9235dc65eb3a0d9", null ]
+    [ "Strings", "page__composer_8en_8js.html#acb72981481133ac449d3d73bb6af8354", null ]
 ];

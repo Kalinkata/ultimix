@@ -82,136 +82,134 @@ $(document).ready(function(){initNavTree('category__markup_8php_source.html','')
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html">   26</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classcategory__markup__1__0__0.html">category_markup_1_0_0</a>{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">   38</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">   39</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a1c7520329d8a550e04d39a14534d5882">   40</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a1c7520329d8a550e04d39a14534d5882">$CategoryAccess</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#ac25e46d83bbaf71d2fbc89041ad75929">   41</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#ac25e46d83bbaf71d2fbc89041ad75929">$CategoryAlgorithms</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a9b5e5e2dfc589bd67e5950244e1de251">   42</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a9b5e5e2dfc589bd67e5950244e1de251">$CategoryView</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">   43</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">   55</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                  {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        $this-&gt;BlockSettings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        $this-&gt;CategoryAccess = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_access&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        $this-&gt;CategoryAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                        $this-&gt;CategoryView = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_view&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                  }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                  {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                  }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_null_category( &amp;$Settings )</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        $NullCategory = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        <span class="keywordflow">if</span>( $Settings-&gt;get_setting( <span class="stringliteral">&#39;null_category&#39;</span> , <span class="keyword">false</span> ) !== false )</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        {</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                              $Id = $Settings-&gt;get_setting( <span class="stringliteral">&#39;null_category&#39;</span> );</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">   38</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a1c7520329d8a550e04d39a14534d5882">   39</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a1c7520329d8a550e04d39a14534d5882">$CategoryAccess</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#ac25e46d83bbaf71d2fbc89041ad75929">   40</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#ac25e46d83bbaf71d2fbc89041ad75929">$CategoryAlgorithms</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a9b5e5e2dfc589bd67e5950244e1de251">   41</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a9b5e5e2dfc589bd67e5950244e1de251">$CategoryView</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">   42</a></span>&#160;            var                           <a class="code" href="classcategory__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">   54</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                  {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                        $this-&gt;CategoryAccess = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_access&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                        $this-&gt;CategoryAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        $this-&gt;CategoryView = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;category::category_view&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                  }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                  {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                  }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_null_category( &amp;$Settings )</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        $NullCategory = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        <span class="keywordflow">if</span>( $Settings-&gt;get_setting( <span class="stringliteral">&#39;null_category&#39;</span> , <span class="keyword">false</span> ) !== false )</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                              $Id = $Settings-&gt;get_setting( <span class="stringliteral">&#39;null_category&#39;</span> );</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                              $Title = $Settings-&gt;get_setting( <span class="stringliteral">&#39;null_category_title&#39;</span> , <span class="stringliteral">&#39;&#39;</span> );</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                              $Title = $Settings-&gt;get_setting( <span class="stringliteral">&#39;null_category_title&#39;</span> , <span class="stringliteral">&#39;&#39;</span> );</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                              $NullCategory = <span class="stringliteral">&quot;SELECT $Id AS id , &#39;{lang:$Title}&#39; AS value UNION &quot;</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        <span class="keywordflow">return</span>( $NullCategory );</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                  {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                  }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a3281baca831f43d6c35d3265027de911">  139</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a3281baca831f43d6c35d3265027de911">compile_category</a>( &amp;<a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> )</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                  {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                        list( $Name , $Default , $Class ) = <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a>-&gt;get_settings( </div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                              <span class="stringliteral">&#39;name,default,class&#39;</span> , <span class="stringliteral">&#39;category,0,width_160 flat&#39;</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                        );</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                        $Default = $Default == 0 ? <span class="stringliteral">&#39;&#39;</span> : <span class="stringliteral">&quot;default=$Default;&quot;</span>;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                        $NullCategory = $this-&gt;get_null_category( <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> );</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                        $Id = $this-&gt;CategoryView-&gt;get_category_id( <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> );</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        $Value = <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;value&#39;</span> , <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                        $Code = <span class="stringliteral">&quot;{select:$Default&quot;</span>.<span class="stringliteral">&quot;class=$Class;name=$Name;query=$NullCategory SELECT id , title as &quot;</span>.</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                                    <span class="stringliteral">&quot;`value` FROM umx_category WHERE direct_category![eq]id AND direct_category IN ( $Id )&quot;</span>.</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                                    ( $Value ? <span class="stringliteral">&quot;;value=$Value&quot;</span> : <span class="stringliteral">&#39;&#39;</span> ).<span class="stringliteral">&quot;}&quot;</span>;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                  }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                  {</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                  }</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a25becd5c7a21de0e361dafbe38712388">  186</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a25becd5c7a21de0e361dafbe38712388">compile_category_id</a>( &amp;<a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> )</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            {</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                  {</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                        $Names = <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;names&#39;</span> , <span class="stringliteral">&#39;&#39;</span> );</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                              $NullCategory = <span class="stringliteral">&quot;SELECT $Id AS id , &#39;{lang:$Title}&#39; AS value UNION &quot;</span>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        <span class="keywordflow">return</span>( $NullCategory );</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                  }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                  }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#abcdd640366731ec47a636e593694ec76">  137</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#abcdd640366731ec47a636e593694ec76">compile_category</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                  {</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                        list( $Name , $Default , $Class ) = $Settings-&gt;get_settings( </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                              <span class="stringliteral">&#39;name,default,class&#39;</span> , <span class="stringliteral">&#39;category,0,width_160 flat&#39;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                        );</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                        $Default = $Default == 0 ? <span class="stringliteral">&#39;&#39;</span> : <span class="stringliteral">&quot;default=$Default;&quot;</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                        $NullCategory = $this-&gt;get_null_category( $Settings );</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                        $Id = $this-&gt;CategoryView-&gt;get_category_id( $Settings );</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                        $Value = $Settings-&gt;get_setting( <span class="stringliteral">&#39;value&#39;</span> , <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        $Code = <span class="stringliteral">&quot;{select:$Default&quot;</span>.<span class="stringliteral">&quot;class=$Class;name=$Name;query=$NullCategory SELECT id , title as &quot;</span>.</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                                    <span class="stringliteral">&quot;`value` FROM umx_category WHERE direct_category![eq]id AND direct_category IN ( $Id )&quot;</span>.</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                                    ( $Value ? <span class="stringliteral">&quot;;value=$Value&quot;</span> : <span class="stringliteral">&#39;&#39;</span> ).<span class="stringliteral">&quot;}&quot;</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                  }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                  {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                  }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a9a9417d2ec503387f103f02b9429f3a1">  184</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a9a9417d2ec503387f103f02b9429f3a1">compile_category_id</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                  {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                        $Names = $Settings-&gt;get_setting( <span class="stringliteral">&#39;names&#39;</span> , <span class="stringliteral">&#39;&#39;</span> );</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                        $Names = $Settings-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> , $Names );</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                        $Names = <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> , $Names );</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                        $Ids = implode( <span class="charliteral">&#39;,&#39;</span> , $this-&gt;CategoryAlgorithms-&gt;get_category_ids( $Names ) );</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                        $Ids = implode( <span class="charliteral">&#39;,&#39;</span> , $this-&gt;CategoryAlgorithms-&gt;get_category_ids( $Names ) );</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                        <span class="keywordflow">return</span>( $Ids );</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                  }</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                  {</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                  }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;      </div>
-<div class="line"><a name="l00226"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a76cf200bf5782f7454546fb6db9c8501">  226</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a76cf200bf5782f7454546fb6db9c8501">compile_category_siblings_ids</a>( &amp;<a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> )</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            {</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                  {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                        $CategoryId = <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;id&#39;</span> );</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                        <span class="keywordflow">return</span>( $Ids );</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                  }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                  {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                  }</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            }</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;      </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#a7b7724648a6846b7777dc4e0eb1429f3">  224</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#a7b7724648a6846b7777dc4e0eb1429f3">compile_category_siblings_ids</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            {</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                  {</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                        $CategoryId = $Settings-&gt;get_setting( <span class="stringliteral">&#39;id&#39;</span> );</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                        $SiblingsIds = implode( <span class="charliteral">&#39;,&#39;</span> , $this-&gt;CategoryAccess-&gt;get_siblings_ids( $CategoryId ) );</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                        $SiblingsIds = implode( <span class="charliteral">&#39;,&#39;</span> , $this-&gt;CategoryAccess-&gt;get_siblings_ids( $CategoryId ) );</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                        <span class="keywordflow">return</span>( $SiblingsIds );</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                  }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                  {</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                  }</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            }</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#ac4cde7a99e36a9e637dd0f9336e7ae73">  264</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#ac4cde7a99e36a9e637dd0f9336e7ae73">compile_category_name</a>( &amp;<a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a> )</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            {</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                  {</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        $Category = $this-&gt;CategoryAlgorithms-&gt;get_by_id( <a class="code" href="classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492">$BlockSettings</a>-&gt;get_setting( <span class="stringliteral">&#39;id&#39;</span> ) );</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                        <span class="keywordflow">return</span>( $SiblingsIds );</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                  }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                  {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                  }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;            }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno"><a class="code" href="classcategory__markup__1__0__0.html#aab78325f06ddc430d5ed2ba2960fa330">  262</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classcategory__markup__1__0__0.html#aab78325f06ddc430d5ed2ba2960fa330">compile_category_name</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            {</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                  {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                        $Category = $this-&gt;CategoryAlgorithms-&gt;get_by_id( $Settings-&gt;get_setting( <span class="stringliteral">&#39;id&#39;</span> ) );</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        $Title = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Category , <span class="stringliteral">&#39;title&#39;</span> );</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        $Title = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Category , <span class="stringliteral">&#39;title&#39;</span> );</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                        <span class="keywordflow">return</span>( $Title );</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                  }</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                  {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                  }</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            }</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;?&gt;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        <span class="keywordflow">return</span>( $Title );</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                  }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                  {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                  }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      }</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_6cc60e1fc7fc5e294f1f68cd2201c0f3.html">category</a></li><li class="navelem"><a class="el" href="dir_1a442f41f4975b0d66f7b20f1e8d85dd.html">packages</a></li><li class="navelem"><a class="el" href="dir_2ef499e41f0d1c1835d203a73cddb68d.html">category_markup</a></li><li class="navelem"><a class="el" href="category__markup_8php.html">category_markup.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:47 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:38 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

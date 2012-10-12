@@ -26,6 +26,40 @@
 	class	testing_1_0_0{
 
 		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Security = false;
+	
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+	
+		/**
 		*	\~russian Объект с юнит-тестами.
 		*
 		*	@author Додонов А.А.
@@ -37,6 +71,44 @@
 		*/
 		var					$TestingObject = false;
 
+		/**
+		*	\~russian Подготовка среды к запуску контроллера.
+		*
+		*	@param $Settings - Параметры запуска.
+		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Prepearing environment for controller startup.
+		*
+		*	@param $Settings - Settings.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			setup_controller( &$Settings , $Prefix )
+		{
+			try
+			{
+				$this->Security->set_g( $Prefix.'_context_action' , 'create_record_form' );
+				$this->Security->set_g( $Prefix.'_action' , 'create_record' );
+
+				$Settings->set_setting( 'create_'.$Prefix , 1 );
+				$Settings->set_setting( 'controller' , 1 );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
 		/**
 		*	\~russian Получение директории пакета.
 		*
@@ -142,7 +214,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			security( $Options )
+		function			security_check( &$Options )
 		{
 			try
 			{
@@ -465,7 +537,7 @@
 		{
 			try
 			{
-				if( ( $Result = $this->security( $Options ) ) !== false )
+				if( ( $Result = $this->security_check( $Options ) ) !== false )
 				{
 					return( $Result );
 				}

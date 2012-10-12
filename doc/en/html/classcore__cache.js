@@ -24,5 +24,6 @@ var classcore__cache =
     [ "_save_rewrites_cache", "classcore__cache.html#a5881deb469006c2fa3298e7e93bc6da3", null ],
     [ "_save_root_dir_cache", "classcore__cache.html#a6c76cece81bbeff81e0f6095bcfe7b2f", null ],
     [ "_save_top_package_name_cache", "classcore__cache.html#ad58d1375308e2f1a3950581b1847f367", null ],
-    [ "drop_core_cache", "classcore__cache.html#ac2248b743e95ef9ddb3ce440b19db500", null ]
+    [ "drop_core_cache", "classcore__cache.html#ac2248b743e95ef9ddb3ce440b19db500", null ],
+    [ "$FilePrefix", "classcore__cache.html#a54bc207a412475d63caf5333e006d01e", null ]
 ];

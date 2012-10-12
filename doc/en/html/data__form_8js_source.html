@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('data__form_8js_source.html','');});
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.move_form_data = <span class="keyword">function</span>( SourceFormSelector )</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      var                           Data = <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.forms.ExtractFormData( SourceFormSelector );</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      var                           Data = <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.forms.extract_form_data( SourceFormSelector );</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.append_data( Data );</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
@@ -177,54 +177,13 @@ $(document).ready(function(){initNavTree('data__form_8js_source.html','');});
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;      Success( <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.std_dialogs.MB_YES );</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.SubmitDataForm0 = <span class="keyword">function</span>( ConfirmString , Action , Waiting , Method )</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;{</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      <span class="comment">// TODO replace this method everywere with ultimix.data_form.submit_data</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.submit_data( {} , ConfirmString , Action , Waiting , Method );</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;}</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.SubmitDataForm1 = <span class="keyword">function</span>( Param1 , Value1 , ConfirmString , Action , Waiting , Method )</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;{</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;      <span class="comment">// TODO replace this method everywere with ultimix.data_form.submit_data</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;      var               Data = {};</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;      Data[ Param1 ] = Value1;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.submit_data( Data , ConfirmString , Action , Waiting , Method );</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;}</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.SubmitDataForm2 = <span class="keyword">function</span>( Param1 , Value1 , Param2, Value2 , </div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                                                                                                                  ConfirmString , Action , Waiting , Method )</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;{</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      <span class="comment">// TODO replace this method everywere with ultimix.data_form.submit_data</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      var               Data = {};</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      Data[ Param1 ] = Value1;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      Data[ Param2 ] = Value2;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.submit_data( Data , ConfirmString , Action , Waiting , Method );</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;}</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.SubmitDataForm3 = <span class="keyword">function</span>( Param1 , Value1 , Param2 , Value2 , Param3 , Value3 , </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                                                                                                                  ConfirmString , Action , Waiting , Method )</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;{</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      <span class="comment">// TODO replace this method everywere with ultimix.data_form.submit_data</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      var               Data = {};</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      Data[ Param1 ] = Value1;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      Data[ Param2 ] = Value2;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      Data[ Param3 ] = Value3;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.data_form.submit_data( Data , ConfirmString , Action , Waiting , Method );</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_e400177cb9e9b1c8ecf8878d2d35b4e9.html">data_form</a></li><li class="navelem"><a class="el" href="dir_cc10dae2b8a4872fe79c8c5f2dbb3a72.html">include</a></li><li class="navelem"><a class="el" href="dir_7efeeff4aa7857b9e3f573231307c47d.html">js</a></li><li class="navelem"><a class="el" href="data__form_8js.html">data_form.js</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:48 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

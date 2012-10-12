@@ -78,8 +78,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a7e28e2905b2da2c61a9bc2346b34e7f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbrowser__markup__1__0__0.html#a7e28e2905b2da2c61a9bc2346b34e7f5">$PageParser</a> = false</td></tr>
-<tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbrowser__markup__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:ade0c6ab7d75ab44172bff178ff7c34f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbrowser__markup__1__0__0.html#ade0c6ab7d75ab44172bff178ff7c34f9">$Utilities</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -103,12 +101,10 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00053">53</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00051">51</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;PageParser = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_parser&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Utilities = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;utilities&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -149,11 +145,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00089">89</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00085">85</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Utilities-&gt;detect_browser() , $Str ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Utilities-&gt;detect_browser() );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -203,7 +199,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00127">127</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00123">123</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -225,36 +221,6 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
-<a class="anchor" id="a7e28e2905b2da2c61a9bc2346b34e7f5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$PageParser = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Cached objects.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00039">39</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aaae5f70ebc2b60f22e8159944cd2d518"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$Security = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00040">40</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ade0c6ab7d75ab44172bff178ff7c34f9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -264,8 +230,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cached objects.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00041">41</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="browser__markup_8php_source.html#l00039">39</a> of file <a class="el" href="browser__markup_8php_source.html">browser_markup.php</a>.</p>
 
 </div>
 </div>
@@ -278,7 +246,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classbrowser__markup__1__0__0.html">browser_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:28 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:36 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

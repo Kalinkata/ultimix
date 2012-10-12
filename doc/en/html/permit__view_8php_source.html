@@ -79,13 +79,13 @@ $(document).ready(function(){initNavTree('permit__view_8php_source.html','');});
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">      *</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">      *     @author Alexey &quot;gdever&quot; Dodonov</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">      */</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classpermit__view__1__0__0.html">   26</a></span>&#160;      <span class="keyword">class       </span><a class="code" href="classpermit__view__1__0__0.html">permit_view_1_0_0</a>{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classpermit__view__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">   38</a></span>&#160;            var                           <a class="code" href="classpermit__view__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classpermit__view__1__0__0.html#a2852e6ae822d9ccea3f735ab80774e2b">   50</a></span>&#160;            var                           <a class="code" href="classpermit__view__1__0__0.html#a2852e6ae822d9ccea3f735ab80774e2b">$ControllerWasAdded</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classpermit__view__1__0__0.html#a095c5d389db211932136b53f25f39685">   62</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpermit__view__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            {</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                  <span class="keywordflow">try</span></div>
@@ -103,12 +103,12 @@ $(document).ready(function(){initNavTree('permit__view_8php_source.html','');});
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  {</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        $PageJS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_js&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        $Version = <a class="code" href="core__public__api_8php.html#ad87b539c3272be8d867b44d7d0e4b9aa">get_package_version_s</a>( __CLASS__ );</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        $PackagePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;permit::permit_view&#39;</span> , $Version );</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        $PageJS-&gt;add_javascript( <span class="stringliteral">&quot;{http_host}/$PackagePath/include/js/permits.js&quot;</span> );</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        $PageJS-&gt;add_javascript( <span class="stringliteral">&quot;{http_host}/$PackagePath/include/js/permit_view.js&quot;</span> );</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                  }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                  {</div>
@@ -124,7 +124,7 @@ $(document).ready(function(){initNavTree('permit__view_8php_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_5f88a6a098a3b1e62a848fb3343d29dd.html">permit</a></li><li class="navelem"><a class="el" href="dir_ba817ab0780f95827f843ef49f61c250.html">packages</a></li><li class="navelem"><a class="el" href="dir_ad5c2e474be5f2a7177e449d77c91f4f.html">permit_view</a></li><li class="navelem"><a class="el" href="permit__view_8php.html">permit_view.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:12 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:05 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -8,7 +8,6 @@ var classgui__1__0__0 =
     [ "compile_set_var", "classgui__1__0__0.html#a6f906320a47c646421875699f8a4be70", null ],
     [ "pre_generation", "classgui__1__0__0.html#aa7a7e021f2db6a6fc6c2fd16be9330f1", null ],
     [ "set_var", "classgui__1__0__0.html#ae52a5b2001bead258a1a9313827fc083", null ],
-    [ "$PageParser", "classgui__1__0__0.html#a7e28e2905b2da2c61a9bc2346b34e7f5", null ],
     [ "$Settings", "classgui__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d", null ],
     [ "$String", "classgui__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ],
     [ "$Vars", "classgui__1__0__0.html#accfc22a89999eb8c925cb9b7f896df4f", null ]

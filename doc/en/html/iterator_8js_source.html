@@ -86,49 +86,45 @@ $(document).ready(function(){initNavTree('iterator_8js_source.html','');});
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;      <span class="keywordflow">return</span>( <span class="keyword">this</span> );</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// TODO persistent cheñkbox</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// TODO persistent input</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// TODO persistent radiobutton</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.iterator.prototype.next = <span class="keyword">function</span>()</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      <span class="keywordflow">if</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position ).length )</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            this.before_next();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            this.current_position++;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.iterator.prototype.next = <span class="keyword">function</span>()</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keywordflow">if</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position ).length )</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            this.before_next();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            this.current_position++;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;      }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;      {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            this.end_iteration();</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;      }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            this.end_iteration();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.iterator.prototype.current_element = <span class="keyword">function</span>()</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;{</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      <span class="keywordflow">if</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position ).length )</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">return</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position ) );</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.iterator.prototype.prev_element = <span class="keyword">function</span>()</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordflow">if</span>( this.current_position - 1 &gt;= 0 &amp;&amp; <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position - 1 ).length )</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">return</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position - 1 ) );</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.iterator.prototype.current_element = <span class="keyword">function</span>()</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;      <span class="keywordflow">if</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position ).length )</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">return</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position ) );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;      </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;}</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.iterator.prototype.prev_element = <span class="keyword">function</span>()</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keywordflow">if</span>( this.current_position - 1 &gt;= 0 &amp;&amp; <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position - 1 ).length )</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">return</span>( <a class="code" href="jquery-ui-1_88_817_8custom_8min_8js.html#a2b1d6f9c448e3ce72f4e1865d6e38d2c">jQuery</a>( this.elements ).eq( this.current_position - 1 ) );</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_926aaad51c53394a4fdd3a21be52ba76.html">jslib</a></li><li class="navelem"><a class="el" href="dir_7352d4db107d32563d92f4a3c1ad7939.html">include</a></li><li class="navelem"><a class="el" href="dir_877e498009db05dad971fab25139168a.html">js</a></li><li class="navelem"><a class="el" href="iterator_8js.html">iterator.js</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:07 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:01 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

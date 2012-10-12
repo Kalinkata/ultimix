@@ -80,10 +80,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:addbfa184c2bd1dc56d347b2a7e86ea43"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#addbfa184c2bd1dc56d347b2a7e86ea43">$AutoMarkup</a> = false</td></tr>
 <tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
 <tr class="memitem:ae10cc045c1502f148d1aa728183898e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#ae10cc045c1502f148d1aa728183898e7">$Database</a> = false</td></tr>
 <tr class="memitem:a524e5510549d6b36c3f6a9e025faca4e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#a524e5510549d6b36c3f6a9e025faca4e">$PageComposer</a> = false</td></tr>
-<tr class="memitem:a53cd29da1b62d8d5aa05e4718293d77d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#a53cd29da1b62d8d5aa05e4718293d77d">$PageParts</a> = false</td></tr>
 <tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:a2c1da60c6cd872abbb042bcd58b7c10d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> = false</td></tr>
 <tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrss__2__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
@@ -119,10 +119,10 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
+<div class="line">                        $this-&gt;AutoMarkup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_parts&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Database = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;database&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;PageComposer = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_composer&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;PageParts = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_parts&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Settings = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
@@ -177,7 +177,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        $this-&gt;Settings-&gt;load_file( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cf_default&#39;</span> );</div>
 <div class="line">                        $FeedXml = $this-&gt;String-&gt;print_record( $FeedXml , $this-&gt;Settings-&gt;get_raw_settings() );</div>
 <div class="line"></div>
-<div class="line">                        $FeedXml = $this-&gt;PageParts-&gt;execute_processors( $FeedXml , <span class="stringliteral">&#39;post_process&#39;</span> );</div>
+<div class="line">                        $FeedXml = $this-&gt;AutoMarkup-&gt;compile_string( $FeedXml );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $FeedXml );</div>
 <div class="line">                  }</div>
@@ -219,7 +219,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="rss_8php_source.html#l00275">275</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
+<p>Definition at line <a class="el" href="rss_8php_source.html#l00280">280</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -269,13 +269,13 @@ Data Fields</h2></td></tr>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">if</span>( $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;feed&#39;</span> , <span class="stringliteral">&#39;set&#39;</span> ) === false )</div>
 <div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&#39;No feed was defined&#39;</span> ) );</div>
+<div class="line">                              <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
 <div class="line">                        }</div>
 <div class="line">                        </div>
 <div class="line">                        $Feed = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;feed&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> );</div>
 <div class="line">                        </div>
 <div class="line">                        $FeedScript = $this-&gt;CachedMultyFS-&gt;get_data( __FILE__ , <span class="stringliteral">&quot;$Feed.sql&quot;</span> );</div>
-<div class="line">                        $FeedScript = $this-&gt;PageParts-&gt;execute_processors( $FeedScript , <span class="stringliteral">&#39;post_process&#39;</span> );</div>
+<div class="line">                        $FeedScript = $this-&gt;AutoMarkup-&gt;compile_string( $FeedScript );</div>
 <div class="line">                        </div>
 <div class="line">                        $this-&gt;Database-&gt;query_as( <a class="code" href="database_8php.html#a1b72226638a2b68c4d481c0bebca0063">DB_OBJECT</a> );</div>
 <div class="line">                        </div>
@@ -325,12 +325,17 @@ Data Fields</h2></td></tr>
 <div class="line">                  {</div>
 <div class="line">                        $Records = $this-&gt;<a class="code" href="classrss__2__0__0.html#a3fe904bcffc11b3d6dfff1a8e91c674c">get_feed_records</a>();</div>
 <div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( $Records === <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
+<div class="line">                        }</div>
+<div class="line"></div>
 <div class="line">                        $Feed = $this-&gt;<a class="code" href="classrss__2__0__0.html#aefa074f3a161c89195d80d7a217a7288">compile_feed</a>( $Records );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Feed = $this-&gt;Security-&gt;get( $Feed , <span class="stringliteral">&#39;unsafe_string&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        header( <span class="stringliteral">&quot;Content-Type: application/rss+xml&quot;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Feed );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -342,6 +347,22 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
+<a class="anchor" id="addbfa184c2bd1dc56d347b2a7e86ea43"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$AutoMarkup = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cached objects.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="rss_8php_source.html#l00038">38</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1b21a3420462aafbfb9e6420c224452d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -351,10 +372,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Cached objects.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="rss_8php_source.html#l00038">38</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
+<p>Definition at line <a class="el" href="rss_8php_source.html#l00039">39</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
 
 </div>
 </div>
@@ -368,7 +387,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="rss_8php_source.html#l00039">39</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
+<p>Definition at line <a class="el" href="rss_8php_source.html#l00040">40</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
 
 </div>
 </div>
@@ -378,20 +397,6 @@ Data Fields</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">$PageComposer = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="rss_8php_source.html#l00040">40</a> of file <a class="el" href="rss_8php_source.html">rss.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a53cd29da1b62d8d5aa05e4718293d77d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$PageParts = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -451,7 +456,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classrss__2__0__0.html">rss_2_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:43 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:54 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

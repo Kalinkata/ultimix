@@ -73,10 +73,10 @@ $(document).ready(function(){initNavTree('classcontext__set__utilities__1__0__0.
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a9c0f71280d9a8edfb884c1d8e8ad21bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a9c0f71280d9a8edfb884c1d8e8ad21bb">set_header_template</a> ($Options, &amp;$Paging)</td></tr>
-<tr class="memitem:a1d3815f7100cded65b1519414760839b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a1d3815f7100cded65b1519414760839b">set_item_template</a> ($Options, &amp;$Paging)</td></tr>
+<tr class="memitem:a50059710cf3f47b5f3d4a57ab531697a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a50059710cf3f47b5f3d4a57ab531697a">set_header_template</a> ($Options, &amp;$Paging, $Prefix)</td></tr>
+<tr class="memitem:a64f823bc096ce8607d92f7861a8fc73f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a64f823bc096ce8607d92f7861a8fc73f">set_item_template</a> ($Options, &amp;$Paging, $Prefix)</td></tr>
 <tr class="memitem:afe702da7071ccf72cf8e16ac7bd91874"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#afe702da7071ccf72cf8e16ac7bd91874">set_no_data_found_message</a> ($Options, &amp;$Paging)</td></tr>
-<tr class="memitem:ac82715abe648e20c2cc5a5c8e7455189"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#ac82715abe648e20c2cc5a5c8e7455189">set_footer_template</a> ($Options, &amp;$Paging)</td></tr>
+<tr class="memitem:acc7d8c968cd51da121c408bd570be068"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#acc7d8c968cd51da121c408bd570be068">set_footer_template</a> ($Options, &amp;$Paging, $Prefix)</td></tr>
 <tr class="memitem:a5be84375b0a55ded7f5adf3735b08e67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a5be84375b0a55ded7f5adf3735b08e67">set_main_settings</a> ($Options, &amp;$Paging)</td></tr>
 <tr class="memitem:a9fea23a40bcc90e270cea9bd5512f011"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#a9fea23a40bcc90e270cea9bd5512f011">get_original_records</a> (&amp;$Options, $IdList)</td></tr>
 <tr class="memitem:ae290f29c9fac5bf08b414d211841693e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__utilities__1__0__0.html#ae290f29c9fac5bf08b414d211841693e">get_data_record</a> (&amp;$Options, $IdList)</td></tr>
@@ -567,7 +567,7 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="ac82715abe648e20c2cc5a5c8e7455189"></a>
+<a class="anchor" id="acc7d8c968cd51da121c408bd570be068"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -581,7 +581,13 @@ Data Fields</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Paging</em>&#160;</td>
+          <td class="paramname"><em>$Paging</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$Prefix</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -610,7 +616,7 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $FileName = $Options-&gt;get_setting( <span class="stringliteral">&#39;footer&#39;</span> , <span class="stringliteral">&#39;footer.tpl&#39;</span> );</div>
+<div class="line">                        $FileName = $Options-&gt;get_setting( <span class="stringliteral">&#39;footer&#39;</span> , $Prefix.<span class="stringliteral">&#39;_footer.tpl&#39;</span> );</div>
 <div class="line">                        $Path = dirname( $Options-&gt;get_setting( <span class="stringliteral">&#39;file_path&#39;</span> ) ).<span class="stringliteral">&quot;/res/templates/$FileName&quot;</span>;</div>
 <div class="line">                        $Footer = $this-&gt;CachedMultyFS-&gt;file_get_contents( $Path );</div>
 <div class="line"></div>
@@ -765,7 +771,7 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a9c0f71280d9a8edfb884c1d8e8ad21bb"></a>
+<a class="anchor" id="a50059710cf3f47b5f3d4a57ab531697a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -779,7 +785,13 @@ Data Fields</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Paging</em>&#160;</td>
+          <td class="paramname"><em>$Paging</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$Prefix</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -808,10 +820,10 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $FileName = $Options-&gt;get_setting( <span class="stringliteral">&#39;header&#39;</span> , <span class="stringliteral">&#39;header.tpl&#39;</span> );</div>
+<div class="line">                        $FileName = $Options-&gt;get_setting( <span class="stringliteral">&#39;header&#39;</span> , $Prefix.<span class="stringliteral">&#39;_header.tpl&#39;</span> );</div>
 <div class="line">                        $Path = dirname( $Options-&gt;get_setting( <span class="stringliteral">&#39;file_path&#39;</span> ) ).<span class="stringliteral">&quot;/res/templates/$FileName&quot;</span>;</div>
 <div class="line">                        $Header = $this-&gt;CachedMultyFS-&gt;file_get_contents( $Path );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Paging-&gt;set( <span class="stringliteral">&#39;Header&#39;</span> , $Header );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -822,7 +834,7 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a1d3815f7100cded65b1519414760839b"></a>
+<a class="anchor" id="a64f823bc096ce8607d92f7861a8fc73f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -836,7 +848,13 @@ Data Fields</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Paging</em>&#160;</td>
+          <td class="paramname"><em>$Paging</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$Prefix</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -865,7 +883,7 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $FileName = $Options-&gt;get_setting( <span class="stringliteral">&#39;item&#39;</span> , <span class="stringliteral">&#39;item.tpl&#39;</span> );</div>
+<div class="line">                        $FileName = $Options-&gt;get_setting( <span class="stringliteral">&#39;item&#39;</span> , $Prefix.<span class="stringliteral">&#39;_item.tpl&#39;</span> );</div>
 <div class="line">                        $Path = dirname( $Options-&gt;get_setting( <span class="stringliteral">&#39;file_path&#39;</span> ) ).<span class="stringliteral">&quot;/res/templates/$FileName&quot;</span>;</div>
 <div class="line">                        $Item = $this-&gt;CachedMultyFS-&gt;file_get_contents( $Path );</div>
 <div class="line">                        </div>
@@ -1122,7 +1140,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcontext__set__utilities__1__0__0.html">context_set_utilities_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:31 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

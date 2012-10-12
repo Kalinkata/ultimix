@@ -312,160 +312,164 @@ $(document).ready(function(){initNavTree('user__access_8php_source.html','');});
 <div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;                  }</div>
 <div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;            }</div>
 <div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;</div>
-<div class="line"><a name="l00526"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a9714ff1ebcc55b34b535a2caa621a164">  526</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a9714ff1ebcc55b34b535a2caa621a164">activate_user</a>( $Hash )</div>
+<div class="line"><a name="l00526"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a80981e36bc0379affa608b1ec8933605">  526</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a80981e36bc0379affa608b1ec8933605">deactivate_users</a>( $Ids )</div>
 <div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;            {</div>
 <div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;                  {</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;                        $Hash = $this-&gt;Security-&gt;get( $Hash , <span class="stringliteral">&#39;command&#39;</span> );</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;                        $Ids = $this-&gt;Security-&gt;get( $Ids , <span class="stringliteral">&#39;integer&#39;</span> );</div>
 <div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;                        $Users = $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( <span class="stringliteral">&quot;active LIKE &#39;$Hash&#39;&quot;</span> );</div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;                        <span class="keywordflow">if</span>( isset( $Users[ 0 ] ) )</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;                        {</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;                              $Ids = <a class="code" href="functional__programming_8php.html#a9c56c5cb857578644fdd5deaba4cd63f">get_field_ex</a>( $Users , <span class="stringliteral">&#39;id&#39;</span> );</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;                              $this-&gt;<a class="code" href="classuser__access__1__0__0.html#ae9da968d3503ba21d2d435ac338b5f3c">activate_users</a>( $Ids );</div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;                        }</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;                  }</div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;                  {</div>
-<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;                  }</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            }</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;</div>
-<div class="line"><a name="l00565"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a09ef180faa5aa49b47d08475191c32f2">  565</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a09ef180faa5aa49b47d08475191c32f2">deactivate_user</a>( $id )</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;            {</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                  {</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;                        $id = $this-&gt;Security-&gt;get( $id , <span class="stringliteral">&#39;integer&#39;</span> );</div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;</div>
-<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;                        $Record = array( <span class="stringliteral">&#39;active&#39;</span> =&gt; <span class="charliteral">&#39;0&#39;</span> );</div>
-<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;                        $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a18d1ae4bd64d7770302e4e2147715c5e">update</a>( $id , $Record );</div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;                        $this-&gt;UserAccessUtilities-&gt;rise_deactivate_event( $id );</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;                  }</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                  {</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                  }</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;            }</div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;</div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  set_fields( &amp;$Record )</div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;            {</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                  {</div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                        $Record = <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Record , <span class="stringliteral">&#39;active&#39;</span> , md5( microtime() ) );</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                        $Record = <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Record , <span class="stringliteral">&#39;password&#39;</span> , md5( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , <span class="stringliteral">&#39;password&#39;</span> ) ) );</div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                  }</div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;                  {</div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                  }</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;            }</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;</div>
-<div class="line"><a name="l00635"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#ac1cabbba085c14178e840bf25a574163">  635</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#ac1cabbba085c14178e840bf25a574163">create</a>( $Record )</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;            {</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                  {</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                        $Record = $this-&gt;SecurityParser-&gt;parse_parameters( </div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                              $Record , </div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                              <span class="stringliteral">&#39;login:string;password:string;email:email;name:string;sex:integer;site:string;about:string&#39;</span></div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                        );</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                        $this-&gt;set_fields( $Record );</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                        list( $Fields , $Values ) = $this-&gt;DatabaseAlgorithms-&gt;compile_fields_values( $Record );</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                        $Fields [] = <span class="stringliteral">&#39;registered&#39;</span>;</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                        $Values [] = <span class="stringliteral">&#39;NOW()&#39;</span>;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;                        $Record = array( <span class="stringliteral">&#39;active&#39;</span> =&gt; <span class="stringliteral">&#39;inactive&#39;</span> );</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;                        $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a18d1ae4bd64d7770302e4e2147715c5e">update</a>( implode( <span class="charliteral">&#39;,&#39;</span> , $Ids ) , $Record );</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;                        <span class="keywordflow">foreach</span>( $Ids as $id )</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;                        {</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;                              $this-&gt;UserAccessUtilities-&gt;rise_activate_event( <span class="stringliteral">&#39;&#39;</span> , $id );</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;                        }</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;                  }</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;                  {</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;                  }</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            }</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;</div>
+<div class="line"><a name="l00564"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a9714ff1ebcc55b34b535a2caa621a164">  564</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a9714ff1ebcc55b34b535a2caa621a164">activate_user</a>( $Hash )</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;            {</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;                  {</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;                        $Hash = $this-&gt;Security-&gt;get( $Hash , <span class="stringliteral">&#39;command&#39;</span> );</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;                        $Users = $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( <span class="stringliteral">&quot;active LIKE &#39;$Hash&#39;&quot;</span> );</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;                        <span class="keywordflow">if</span>( isset( $Users[ 0 ] ) )</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;                        {</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;                              $Ids = <a class="code" href="functional__programming_8php.html#a9c56c5cb857578644fdd5deaba4cd63f">get_field_ex</a>( $Users , <span class="stringliteral">&#39;id&#39;</span> );</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;                              $this-&gt;<a class="code" href="classuser__access__1__0__0.html#ae9da968d3503ba21d2d435ac338b5f3c">activate_users</a>( $Ids );</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;                        }</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;                  }</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                  {</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                  }</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;            }</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;</div>
+<div class="line"><a name="l00603"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a09ef180faa5aa49b47d08475191c32f2">  603</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a09ef180faa5aa49b47d08475191c32f2">deactivate_user</a>( $id )</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;            {</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                  {</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                        $id = $this-&gt;Security-&gt;get( $id , <span class="stringliteral">&#39;integer&#39;</span> );</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                        $Record = array( <span class="stringliteral">&#39;active&#39;</span> =&gt; <span class="charliteral">&#39;0&#39;</span> );</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                        $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a18d1ae4bd64d7770302e4e2147715c5e">update</a>( $id , $Record );</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                        $this-&gt;UserAccessUtilities-&gt;rise_deactivate_event( $id );</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                  }</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                  {</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                  }</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;            }</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  set_fields( &amp;$Record )</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;            {</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                  {</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                        $Record = <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Record , <span class="stringliteral">&#39;active&#39;</span> , md5( microtime() ) );</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                        $Record = <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Record , <span class="stringliteral">&#39;password&#39;</span> , md5( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , <span class="stringliteral">&#39;password&#39;</span> ) ) );</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                  }</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                  {</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                  }</div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;            }</div>
 <div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;</div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;                        $id = $this-&gt;DatabaseAlgorithms-&gt;create( $this-&gt;NativeTable , $Fields , $Values );</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;                        $this-&gt;UserAccessUtilities-&gt;rise_create_event( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , <span class="stringliteral">&#39;login&#39;</span> ) , $id );</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                        <span class="keywordflow">return</span>( array( $id , <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , <span class="stringliteral">&#39;active&#39;</span> ) ) );</div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                  }</div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                  {</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;                  }</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;            }</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;</div>
-<div class="line"><a name="l00685"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f">  685</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f">select_list</a>( $id )</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;            {</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;                  {</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;                        $id = $this-&gt;Security-&gt;get( $id , <span class="stringliteral">&#39;integer_list&#39;</span> );</div>
+<div class="line"><a name="l00673"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#ac1cabbba085c14178e840bf25a574163">  673</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#ac1cabbba085c14178e840bf25a574163">create</a>( $Record )</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;            {</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;                  {</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;                        $Record = $this-&gt;SecurityParser-&gt;parse_parameters( </div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;                              $Record , </div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;                              <span class="stringliteral">&#39;login:string;password:string;email:email;name:string;sex:integer;site:string;about:string&#39;</span></div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;                        );</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;                        $this-&gt;set_fields( $Record );</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;                        list( $Fields , $Values ) = $this-&gt;DatabaseAlgorithms-&gt;compile_fields_values( $Record );</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;                        $Fields [] = <span class="stringliteral">&#39;registered&#39;</span>;</div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;                        $Values [] = <span class="stringliteral">&#39;NOW()&#39;</span>;</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;                        $id = $this-&gt;DatabaseAlgorithms-&gt;create( $this-&gt;NativeTable , $Fields , $Values );</div>
 <div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( $this-&gt;NativeTable.<span class="stringliteral">&quot;.id IN ( $id )&quot;</span> ) );</div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;                  }</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                  {</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;                  }</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;            }</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;</div>
-<div class="line"><a name="l00737"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#add7fea3c4c0e5ad2e51ea1d2d6e7cb57">  737</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#add7fea3c4c0e5ad2e51ea1d2d6e7cb57">select</a>( $Start = <span class="keyword">false</span> , $Limit = <span class="keyword">false</span> , $Field = <span class="keyword">false</span> , </div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;                                                                                                                        $Order = <span class="keyword">false</span> , $Condition = <span class="stringliteral">&#39;1 = 1&#39;</span> )</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;            {</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;                  {</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;                        $Condition = $this-&gt;DatabaseAlgorithms-&gt;select_condition( </div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;                              $Start , $Limit , $Field , $Order , $Condition</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;                        );</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( $Condition ) );</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;                  }</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                  {</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;                  }</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;            }</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;</div>
-<div class="line"><a name="l00788"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a211b61efdf0d46b0a4fc610b2beb1654">  788</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a211b61efdf0d46b0a4fc610b2beb1654">update_user</a>( $Login , $Email , $Site , $About )</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;            {</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;                  {</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;                        $User = $this-&gt;<a class="code" href="classuser__access__1__0__0.html#abe83ed68d0e9c9dfda799ccfae94433b">get_user</a>( $Login );</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;                        $id = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $User , <span class="stringliteral">&#39;id&#39;</span> );</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;                        $Record = array( <span class="stringliteral">&#39;login&#39;</span> =&gt; $Login , <span class="stringliteral">&#39;email&#39;</span> =&gt; $Email , <span class="stringliteral">&#39;site&#39;</span> =&gt; $Site , <span class="stringliteral">&#39;about&#39;</span> =&gt; $About );</div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;                        $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a18d1ae4bd64d7770302e4e2147715c5e">update</a>( $id , $Record );<span class="comment">// TODO remove this function</span></div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;                  }</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;                  {</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;                  }</div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;            }</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;</div>
-<div class="line"><a name="l00822"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a2f7e0a5ad03312d5de7301891a2b4b5d">  822</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a2f7e0a5ad03312d5de7301891a2b4b5d">simple_select</a>()</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;            {</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                  {</div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                        $Records = $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( <span class="stringliteral">&#39;1 = 1&#39;</span> );</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;                        <span class="keywordflow">foreach</span>( $Records as $k =&gt; $v )</div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;                        {</div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;                              $Records[ $k ]-&gt;title = $v-&gt;id ? $v-&gt;login : <span class="stringliteral">&#39;{lang:not_defined}&#39;</span>;</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;                        }</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;                        <span class="keywordflow">return</span>( $Records );</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;                  }</div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;                  {</div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;                  }</div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;            }</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;      }</div>
-<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;</div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;?&gt;</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;                        $this-&gt;UserAccessUtilities-&gt;rise_create_event( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , <span class="stringliteral">&#39;login&#39;</span> ) , $id );</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;                        <span class="keywordflow">return</span>( array( $id , <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Record , <span class="stringliteral">&#39;active&#39;</span> ) ) );</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                  }</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;                  {</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;                  }</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;            }</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;</div>
+<div class="line"><a name="l00723"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f">  723</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f">select_list</a>( $id )</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;            {</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;                  {</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;                        $id = $this-&gt;Security-&gt;get( $id , <span class="stringliteral">&#39;integer_list&#39;</span> );</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( $this-&gt;NativeTable.<span class="stringliteral">&quot;.id IN ( $id )&quot;</span> ) );</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;                  }</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;                  {</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;                  }</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;            }</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;</div>
+<div class="line"><a name="l00775"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#add7fea3c4c0e5ad2e51ea1d2d6e7cb57">  775</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#add7fea3c4c0e5ad2e51ea1d2d6e7cb57">select</a>( $Start = <span class="keyword">false</span> , $Limit = <span class="keyword">false</span> , $Field = <span class="keyword">false</span> , </div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;                                                                                                                        $Order = <span class="keyword">false</span> , $Condition = <span class="stringliteral">&#39;1 = 1&#39;</span> )</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;            {</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;                  {</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;                        $Condition = $this-&gt;DatabaseAlgorithms-&gt;select_condition( </div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;                              $Start , $Limit , $Field , $Order , $Condition , $this-&gt;NativeTable</div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;                        );</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( $Condition ) );</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;                  }</div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;                  {</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;                  }</div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;            }</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;</div>
+<div class="line"><a name="l00810"></a><span class="lineno"><a class="code" href="classuser__access__1__0__0.html#a2f7e0a5ad03312d5de7301891a2b4b5d">  810</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classuser__access__1__0__0.html#a2f7e0a5ad03312d5de7301891a2b4b5d">simple_select</a>()</div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;            {</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;                  {</div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;                        $Records = $this-&gt;<a class="code" href="classuser__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( <span class="stringliteral">&#39;1 = 1&#39;</span> );</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;                        <span class="keywordflow">foreach</span>( $Records as $k =&gt; $v )</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;                        {</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;                              $Records[ $k ]-&gt;title = $v-&gt;id ? $v-&gt;login : <span class="stringliteral">&#39;{lang:not_defined}&#39;</span>;</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;                        }</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;                        <span class="keywordflow">return</span>( $Records );</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;                  }</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                  {</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                  }</div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;            }</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;      }</div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_0c02ad2f6a1c5cbd18402f39ace85698.html">user</a></li><li class="navelem"><a class="el" href="dir_e6123e1b43fc815b1b375645a517ba88.html">packages</a></li><li class="navelem"><a class="el" href="dir_5e858277ae1559007f2bca39ccc6d005.html">user_access</a></li><li class="navelem"><a class="el" href="user__access_8php.html">user_access.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:17 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:09 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

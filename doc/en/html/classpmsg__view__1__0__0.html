@@ -76,12 +76,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa7a7e021f2db6a6fc6c2fd16be9330f1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#aa7a7e021f2db6a6fc6c2fd16be9330f1">pre_generation</a> ($Options)</td></tr>
 <tr class="memitem:a6a6b09033ebbe67cd54b50dc93e65460"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#a6a6b09033ebbe67cd54b50dc93e65460">show_feedback_form</a> ()</td></tr>
 <tr class="memitem:a43074158f41bf195878c903457afa35f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#a43074158f41bf195878c903457afa35f">view</a> ($Options)</td></tr>
-<tr class="memitem:ada58696af80878b186be65cd41de3176"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#ada58696af80878b186be65cd41de3176">compile_not_read_messages_count</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a80083fc060d4a57b680a8ee768472563"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#a80083fc060d4a57b680a8ee768472563">$PageCSS</a> = false</td></tr>
-<tr class="memitem:ac0325d9a25b91dd7f2ae29e560f5d9bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#ac0325d9a25b91dd7f2ae29e560f5d9bf">$PmsgAlgorithms</a> = false</td></tr>
 <tr class="memitem:a8a55ddd2b83051d9d86510dcd04f9f4c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpmsg__view__1__0__0.html#a8a55ddd2b83051d9d86510dcd04f9f4c">$Output</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -111,12 +109,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00055">55</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
+<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00054">54</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;PageCSS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_css&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;PmsgAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;pmsg::pmsg_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -127,49 +124,6 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ada58696af80878b186be65cd41de3176"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">compile_not_read_messages_count </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Settings</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes string.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Settings</td><td>- Options of drawing.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>HTML code to display.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00218">218</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;PmsgAlgorithms-&gt;get_not_read_messages_count() );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="aa7a7e021f2db6a6fc6c2fd16be9330f1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -198,14 +152,14 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00098">98</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
+<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00096">96</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $Path = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;pmsg::pmsg_view&#39;</span> , <span class="stringliteral">&#39;1.0.0&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $this-&gt;PageCSS-&gt;add_stylesheet( <span class="stringliteral">&quot;{http_host}/$Path/res/css/pmsg.css&quot;</span> , <span class="keyword">true</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $this-&gt;PageCSS-&gt;add_javascript( <span class="stringliteral">&quot;{http_host}/$Path/include/js/pmsg.js&quot;</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -237,20 +191,20 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00128">128</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
+<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00126">126</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $CachedFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $SecurityParser = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security::security_parser&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Form = $CachedFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;feedback.tpl&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Record = $SecurityParser-&gt;parse_http_parameters( <span class="stringliteral">&#39;message:string,allow_not_set&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Form = $String-&gt;print_record( $Form , $Record );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $this-&gt;Output = $Form;</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -290,22 +244,22 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00172">172</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
+<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00170">170</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {                 </div>
+<div class="line">                  {</div>
 <div class="line">                        $ContextSet = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cfcx_list_outgoing&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cfcx_list_deleted&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cfcx_feedback&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cfcx_solid_control&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;execute( $Options , $this , __FILE__ );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -329,7 +283,7 @@ Data Fields</h2></td></tr>
 <p>Variable stores generated HTML.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00078">78</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
+<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00076">76</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
 
 </div>
 </div>
@@ -349,20 +303,6 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac0325d9a25b91dd7f2ae29e560f5d9bf"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$PmsgAlgorithms = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="pmsg__view_8php_source.html#l00039">39</a> of file <a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>packages/pmsg/packages/pmsg_view/<a class="el" href="pmsg__view_8php_source.html">pmsg_view.php</a></li>
 </ul>
@@ -372,7 +312,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpmsg__view__1__0__0.html">pmsg_view_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:41 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:53 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

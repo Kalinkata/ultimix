@@ -25,7 +25,41 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
+		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var				$PageComposer = false;
+		var				$Security = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -37,7 +71,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
+		function			set_up()
 		{
 		}
 
@@ -51,23 +85,71 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	tear_down()
+		function			tear_down()
 		{
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package loading.
 		*
 		*	@author Dodonov A.A.
 		*/
 		function			test_load_package()
 		{
 			get_package( 'system_structure::system_structure_view' , 'last' , __FILE__ );
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Тестирование вида.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing view.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
+
+			if( stripos( $PageContent , 'site_manager' ) === false )
+			{
+				print( 'ERROR: system structure list was not displayed' );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Тестирование вида.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing view.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record_form()
+		{
+			$this->Security->set_g( 'system_structure_context_action' , 'create_record_form' );
+
+			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
+
+			if( stripos( $PageContent , '_record_id' ) === false )
+			{
+				print( 'ERROR: system structure create form was not displayed'.$PageContent );
+				return;
+			}
 
 			return( 'TEST PASSED' );
 		}

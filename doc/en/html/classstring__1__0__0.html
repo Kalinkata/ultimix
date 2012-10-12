@@ -78,13 +78,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab76f614097eecb19a9cc1a29d0726eae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#ab76f614097eecb19a9cc1a29d0726eae">compile_foreach</a> ($Str, &amp;$Record)</td></tr>
 <tr class="memitem:a78a1799b953f30cb9831d44e2c229348"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a78a1799b953f30cb9831d44e2c229348">print_record</a> ($Str, &amp;$Record)</td></tr>
 <tr class="memitem:a6e43c2b24ac8d85514bac601c555e24e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a6e43c2b24ac8d85514bac601c555e24e">block_exists</a> ($StringData, $BlockStart, $BlockEnd=false)</td></tr>
-<tr class="memitem:a6dbe6f1a214870b83ee59eb261d6b64f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a6dbe6f1a214870b83ee59eb261d6b64f">get_macro_parameters</a> (&amp;$StringData, $MacroName, $RegExValidators=array())</td></tr>
+<tr class="memitem:a5766a74534d2a25f5ca5c6a7cc709312"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a5766a74534d2a25f5ca5c6a7cc709312">get_macro_parameters</a> ($StringData, $Name, $RegExValidators=array())</td></tr>
 <tr class="memitem:a035e2b998db813711e1fad4a8fbc7a24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a035e2b998db813711e1fad4a8fbc7a24">get_block_data</a> ($StringData, $BlockStart, $BlockEnd)</td></tr>
 <tr class="memitem:ae24bb070c0255937a34ccc0d876b4cf3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#ae24bb070c0255937a34ccc0d876b4cf3">hide_unprocessed_blocks</a> ($StringData, $BlockType, &amp;$Changed)</td></tr>
 <tr class="memitem:ab6d1a435cb21f5afa400f359e17b074e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#ab6d1a435cb21f5afa400f359e17b074e">get_all_block_positions</a> ($StringData, $BlockStart, $BlockEnd)</td></tr>
 <tr class="memitem:a25eef2e09155b45945dfe4a10c10443b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a25eef2e09155b45945dfe4a10c10443b">get_possible_block_positions</a> (&amp;$Positions)</td></tr>
 <tr class="memitem:ad9fb810dc00b4da7871100d4425ac1ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#ad9fb810dc00b4da7871100d4425ac1ca">get_block_positions</a> ($StringData, $BlockStart, $BlockEnd)</td></tr>
 <tr class="memitem:a1261c8b05bfe860f4abf8bbfe0627aa3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a1261c8b05bfe860f4abf8bbfe0627aa3">clear_ultimix_tags</a> ($Data)</td></tr>
+<tr class="memitem:a1631473e49c62cbf8b64b4cc446a70be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstring__1__0__0.html#a1631473e49c62cbf8b64b4cc446a70be">find_all_macro</a> (&amp;$Data)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -177,11 +178,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00386">386</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00380">380</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $StartPos = strpos( $StringData , <span class="charliteral">&#39;{&#39;</span>.$BlockStart.<span class="charliteral">&#39;}&#39;</span> );</div>
+<div class="line">                        $StartPos = strpos( $StringData , chr( 123 ).$BlockStart.chr( 125 ) );</div>
 <div class="line">                        <span class="keywordflow">if</span>( $StartPos == <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
@@ -189,7 +190,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        </div>
 <div class="line">                        <span class="keywordflow">if</span>( $BlockEnd !== <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
-<div class="line">                              $EndPos = strpos( $StringData , <span class="charliteral">&#39;{&#39;</span>.$BlockEnd.<span class="charliteral">&#39;}&#39;</span> );</div>
+<div class="line">                              $EndPos = strpos( $StringData , chr( 123 ).$BlockEnd.chr( 125 ) );</div>
 <div class="line">                              <span class="keywordflow">if</span>( $EndPos == <span class="keyword">false</span> )</div>
 <div class="line">                              {</div>
 <div class="line">                                    <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
@@ -235,7 +236,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00831">831</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00774">774</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -296,11 +297,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00275">275</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00269">269</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;<a class="code" href="classstring__1__0__0.html#a6dbe6f1a214870b83ee59eb261d6b64f">get_macro_parameters</a>( $Str , <span class="stringliteral">&#39;foreach&#39;</span> ) ; )</div>
+<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;<a class="code" href="classstring__1__0__0.html#a5766a74534d2a25f5ca5c6a7cc709312">get_macro_parameters</a>( $Str , <span class="stringliteral">&#39;foreach&#39;</span> ) ; )</div>
 <div class="line">                        {</div>
 <div class="line">                              $this-&gt;Settings-&gt;load_settings( $Parameters );</div>
 <div class="line">                              $Var = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;var&#39;</span> );</div>
@@ -313,6 +314,53 @@ Data Fields</h2></td></tr>
 <div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a1631473e49c62cbf8b64b4cc446a70be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">find_all_macro </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function returns a list of macro.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Data</td><td>- Data to process.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of macro.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="string_8php_source.html#l00815">815</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Matches = array();</div>
+<div class="line"></div>
+<div class="line">                        preg_match_all( <span class="stringliteral">&#39;/\{([a-zA-Z0-9_]+)/&#39;</span> , $Data , $Matches );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( array_unique( $Matches[ 1 ] ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -369,7 +417,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00673">673</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00616">616</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -378,11 +426,11 @@ Data Fields</h2></td></tr>
 <div class="line">                        $StartPos = -1;</div>
 <div class="line">                        $EndPos = -1;</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $StartPos = strpos( $StringData , <span class="charliteral">&#39;{&#39;</span>.$BlockStart.<span class="charliteral">&#39;}&#39;</span> , $StartPos + 1 ) ; )</div>
+<div class="line">                        <span class="keywordflow">for</span>( ; $StartPos = strpos( $StringData , chr( 123 ).$BlockStart.chr( 125 ) , $StartPos + 1 ) ; )</div>
 <div class="line">                        {</div>
 <div class="line">                              $Positions [ $StartPos ] = <span class="charliteral">&#39;s&#39;</span>;</div>
 <div class="line">                        }</div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $EndPos = strpos( $StringData , <span class="charliteral">&#39;{&#39;</span>.$BlockEnd.<span class="charliteral">&#39;}&#39;</span> , $EndPos + 1 ) ; )</div>
+<div class="line">                        <span class="keywordflow">for</span>( ; $EndPos = strpos( $StringData , chr( 123 ).$BlockEnd.chr( 125 ) , $EndPos + 1 ) ; )</div>
 <div class="line">                        {</div>
 <div class="line">                              $Positions [ $EndPos ] = <span class="charliteral">&#39;e&#39;</span>;</div>
 <div class="line">                        }</div>
@@ -445,7 +493,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00555">555</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00498">498</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -455,8 +503,8 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              $BlockData = substr( </div>
 <div class="line">                                    $StringData , </div>
-<div class="line">                                    $StartPos + strlen( <span class="charliteral">&#39;{&#39;</span>.$BlockStart.<span class="charliteral">&#39;}&#39;</span> ) , </div>
-<div class="line">                                    $EndPos - $StartPos - strlen( <span class="charliteral">&#39;{&#39;</span>.$BlockStart.<span class="charliteral">&#39;}&#39;</span> )</div>
+<div class="line">                                    $StartPos + strlen( chr( 123 ).$BlockStart.chr( 125 ) ) , </div>
+<div class="line">                                    $EndPos - $StartPos - strlen( chr( 123 ).$BlockStart.chr( 125 ) )</div>
 <div class="line">                              );</div>
 <div class="line"></div>
 <div class="line">                              <span class="keywordflow">return</span>( $BlockData );</div>
@@ -521,7 +569,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00784">784</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00727">727</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -548,21 +596,21 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a6dbe6f1a214870b83ee59eb261d6b64f"></a>
+<a class="anchor" id="a5766a74534d2a25f5ca5c6a7cc709312"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">get_macro_parameters </td>
           <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$StringData</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$MacroName</em>, </td>
+          <td class="paramname"><em>$Name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -581,7 +629,7 @@ Data Fields</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">$StringData</td><td>- Data to be parsed.</td></tr>
-    <tr><td class="paramname">$MacroName</td><td>- Macro's parameters.</td></tr>
+    <tr><td class="paramname">$Name</td><td>- Macro's parameters.</td></tr>
     <tr><td class="paramname">$RegExValidators</td><td>- Regular expressions for parameters validation.</td></tr>
   </table>
   </dd>
@@ -595,78 +643,27 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00443">443</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00437">437</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $Matches = array();</div>
-<div class="line"></div>
 <div class="line">                        $StartPos = -1;</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; ( $TmpStartPos = strpos( $StringData , <span class="charliteral">&#39;{&#39;</span>.$MacroName.<span class="charliteral">&#39;:&#39;</span> , $StartPos + 1 ) ) !== <span class="keyword">false</span> ; )</div>
+<div class="line">                        <span class="keywordflow">for</span>( ; ( $TmpStartPos = strpos( $StringData , chr( 123 ).$Name.<span class="charliteral">&#39;:&#39;</span> , $StartPos + 1 ) ) !== <span class="keyword">false</span> ; )</div>
 <div class="line">                        {</div>
 <div class="line">                              $Counter = 1;</div>
-<div class="line">                              $StartPos = $TmpStartPos;</div>
-<div class="line">                              </div>
+<div class="line">                              $StartPos = $TmpEndPos = $TmpStartPos;</div>
+<div class="line"></div>
 <div class="line">                              $MacroStartPos = $StartPos;</div>
-<div class="line">                              $ParamStartPos = $MacroStartPos + strlen( <span class="charliteral">&#39;{&#39;</span>.$MacroName.<span class="charliteral">&#39;:&#39;</span> );</div>
-<div class="line">                              </div>
-<div class="line">                              <span class="keywordflow">do</span></div>
+<div class="line">                              $ParamStartPos = $MacroStartPos + strlen( chr( 123 ).$Name.<span class="charliteral">&#39;:&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                              $Result = $this-&gt;MacroParser-&gt;find_macro( $StringData , $TmpStartPos , $TmpEndPos , </div>
+<div class="line">                                                            $StartPos , $Counter , $MacroStartPos , $ParamStartPos , $RegExValidators );</div>
+<div class="line"></div>
+<div class="line">                              <span class="keywordflow">if</span>( $Result !== <span class="keyword">false</span> )</div>
 <div class="line">                              {</div>
-<div class="line">                                    $TmpStartPos = strpos( $StringData , <span class="charliteral">&#39;{&#39;</span> , $StartPos + 1 );</div>
-<div class="line">                                    $TmpEndPos = strpos( $StringData , <span class="charliteral">&#39;}&#39;</span> , $StartPos + 1 );</div>
-<div class="line">                                    </div>
-<div class="line">                                    <span class="keywordflow">if</span>( $TmpStartPos !== <span class="keyword">false</span> &amp;&amp; $TmpEndPos !== <span class="keyword">false</span> )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          <span class="keywordflow">if</span>( $TmpStartPos &lt; $TmpEndPos )</div>
-<div class="line">                                          {</div>
-<div class="line">                                                $StartPos = $TmpEndPos;</div>
-<div class="line">                                          }</div>
-<div class="line">                                          <span class="keywordflow">if</span>( $TmpEndPos &lt; $TmpStartPos )</div>
-<div class="line">                                          {</div>
-<div class="line">                                                $Counter--;</div>
-<div class="line">                                                <span class="keywordflow">if</span>( $Counter )$Counter++;</div>
-<div class="line">                                                $StartPos = $TmpStartPos;</div>
-<div class="line">                                          }</div>
-<div class="line">                                    }</div>
-<div class="line"></div>
-<div class="line">                                    <span class="keywordflow">if</span>( $TmpStartPos !== <span class="keyword">false</span> &amp;&amp; $TmpEndPos === <span class="keyword">false</span> )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          $Counter++;</div>
-<div class="line">                                          $StartPos = $TmpStartPos;</div>
-<div class="line">                                    }</div>
-<div class="line"></div>
-<div class="line">                                    <span class="keywordflow">if</span>( $TmpStartPos === <span class="keyword">false</span> &amp;&amp; $TmpEndPos !== <span class="keyword">false</span> )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          $Counter--;</div>
-<div class="line">                                          $StartPos = $TmpEndPos;</div>
-<div class="line">                                    }</div>
-<div class="line"></div>
-<div class="line">                                    <span class="keywordflow">if</span>( $TmpStartPos === <span class="keyword">false</span> &amp;&amp; $TmpEndPos === <span class="keyword">false</span> )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          <span class="comment">/* ничего не найдено, поэтому внешний цикл закончен, да и внутренний тоже</span></div>
-<div class="line"><span class="comment">                                             $StartPos = strlen( $StringData ); */</span></div>
-<div class="line">                                          $StartPos = $MacroStartPos;</div>
-<div class="line">                                    }</div>
-<div class="line"></div>
-<div class="line">                                    <span class="keywordflow">if</span>( $Counter == 0 )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          <span class="comment">/* нашли закрывающую скобку для макроса... */</span></div>
-<div class="line">                                          $Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );</div>
-<div class="line"></div>
-<div class="line">                                          <span class="keywordflow">if</span>( $this-&gt;MacroParser-&gt;is_params_valid( $Params , $RegExValidators ) )</div>
-<div class="line">                                          {</div>
-<div class="line">                                                <span class="comment">/* валидные параметры */</span></div>
-<div class="line">                                                <span class="keywordflow">return</span>( $Params );</div>
-<div class="line">                                          }</div>
-<div class="line"></div>
-<div class="line">                                          <span class="comment">//TODO: refactor this function!</span></div>
-<div class="line">                                          <span class="comment">/* поэтому вываливаемся из внутреннего цикла */</span></div>
-<div class="line">                                          $TmpStartPos = <span class="keyword">false</span>;</div>
-<div class="line">                                          $StartPos = $MacroStartPos;</div>
-<div class="line">                                    }</div>
+<div class="line">                                    <span class="keywordflow">return</span>( $Result );</div>
 <div class="line">                              }</div>
-<div class="line">                              <span class="keywordflow">while</span>( $TmpStartPos );</div>
 <div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
@@ -708,7 +705,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00722">722</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00665">665</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -801,26 +798,20 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">do</span></div>
+<div class="line">                        list( $StartPos , $EndPos ) = $this-&gt;<a class="code" href="classstring__1__0__0.html#ad9fb810dc00b4da7871100d4425ac1ca">get_block_positions</a>( $StringData , $BlockStart , $BlockEnd );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( $StartPos !== <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
-<div class="line">                              list( $StartPos , $EndPos ) = $this-&gt;<a class="code" href="classstring__1__0__0.html#ad9fb810dc00b4da7871100d4425ac1ca">get_block_positions</a>( $StringData , $BlockStart , $BlockEnd );</div>
-<div class="line">                              </div>
-<div class="line">                              <span class="keywordflow">if</span>( $StartPos !== <span class="keyword">false</span> )</div>
-<div class="line">                              {</div>
-<div class="line">                                    $StringData = substr_replace( $StringData , </div>
-<div class="line">                                          <span class="stringliteral">&#39;&#39;</span> , </div>
-<div class="line">                                          $StartPos , </div>
-<div class="line">                                          $EndPos - $StartPos + strlen( <span class="charliteral">&#39;{&#39;</span>.$BlockEnd.<span class="charliteral">&#39;}&#39;</span> ) </div>
-<div class="line">                                    );</div>
-<div class="line">                                    </div>
-<div class="line">                                    $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                              }</div>
-<div class="line">                              <span class="keywordflow">else</span></div>
-<div class="line">                              {</div>
-<div class="line">                                    <span class="keywordflow">return</span>( $StringData );</div>
-<div class="line">                              }</div>
+<div class="line">                              $StringData = substr_replace( $StringData , </div>
+<div class="line">                                    <span class="stringliteral">&#39;&#39;</span> , </div>
+<div class="line">                                    $StartPos , </div>
+<div class="line">                                    $EndPos - $StartPos + strlen( chr( 123 ).$BlockEnd.chr( 125 ) ) </div>
+<div class="line">                              );</div>
+<div class="line"></div>
+<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
 <div class="line">                        }</div>
-<div class="line">                        <span class="keywordflow">while</span>( <span class="keyword">true</span> );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $StringData );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -878,7 +869,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00616">616</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00559">559</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -947,7 +938,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00325">325</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00319">319</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -966,7 +957,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              }</div>
 <div class="line">                              <span class="keywordflow">else</span></div>
 <div class="line">                              {</div>
-<div class="line">                                    $Str = str_replace( <span class="charliteral">&#39;{&#39;</span>.$Field.<span class="charliteral">&#39;}&#39;</span> , $Value , $Str );</div>
+<div class="line">                                    $Str = str_replace( chr( 123 ).$Field.chr( 125 ) , $Value , $Str );</div>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
 <div class="line"></div>
@@ -1034,7 +1025,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="string_8php_source.html#l00171">171</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
+<p>Definition at line <a class="el" href="string_8php_source.html#l00165">165</a> of file <a class="el" href="string_8php_source.html">string.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -1046,9 +1037,9 @@ Data Fields</h2></td></tr>
 <div class="line">                              $StringData = substr_replace( $StringData , </div>
 <div class="line">                                    $BlockData , </div>
 <div class="line">                                    $StartPos , </div>
-<div class="line">                                    $EndPos - $StartPos + strlen( <span class="charliteral">&#39;{&#39;</span>.$BlockEnd.<span class="charliteral">&#39;}&#39;</span> ) </div>
+<div class="line">                                    $EndPos - $StartPos + strlen( chr( 123 ).$BlockEnd.chr( 125 ) ) </div>
 <div class="line">                              );</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              $Changed = <span class="keyword">true</span>;</div>
 <div class="line">                        }</div>
 <div class="line"></div>
@@ -1116,7 +1107,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classstring__1__0__0.html">string_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:46 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:57 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

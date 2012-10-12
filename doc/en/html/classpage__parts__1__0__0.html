@@ -73,7 +73,6 @@ $(document).ready(function(){initNavTree('classpage__parts__1__0__0.html','');})
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
-<tr class="memitem:a74edd219d2d75cab2fba0e65829bcbee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a74edd219d2d75cab2fba0e65829bcbee">get_function_name</a> ($PackageObject, $RequestionFunction)</td></tr>
 <tr class="memitem:a05c2bc0b01d881aed3c090ac3b39fce8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a05c2bc0b01d881aed3c090ac3b39fce8">throw_method_was_not_found_exception</a> ($p, $FunctionName)</td></tr>
 <tr class="memitem:a123ce0e3bc971df9a294936c9083d9aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a123ce0e3bc971df9a294936c9083d9aa">get_settings_for_package</a> ($PackageName, $PackageVersion)</td></tr>
 <tr class="memitem:a0476df89ae1a8d26d962dbb18f0a6260"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a0476df89ae1a8d26d962dbb18f0a6260">get_controller</a> ($PackageName, $PackageVersion)</td></tr>
@@ -81,9 +80,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a174d0ffb08a28da8f181a058e0aa5999"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a174d0ffb08a28da8f181a058e0aa5999">get_package_appliance</a> ($Page, $PageName, $PageOptions)</td></tr>
 <tr class="memitem:ab9d9440ccc2c259d374516340f40bc26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ab9d9440ccc2c259d374516340f40bc26">load_settings_for_package</a> (&amp;$Package, &amp;$Template)</td></tr>
 <tr class="memitem:a8b13a411bcd497089035955c81658a14"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a8b13a411bcd497089035955c81658a14">fetch_packages</a> (&amp;$Packages, &amp;$Template)</td></tr>
-<tr class="memitem:ac268113a385ddc41ec8b05cf9d0bd90a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ac268113a385ddc41ec8b05cf9d0bd90a">call_processor_function</a> (&amp;$p, $String, &amp;$Changed, $Type)</td></tr>
 <tr class="memitem:a2caab490039794be4c3435941e6f716e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a2caab490039794be4c3435941e6f716e">execute_generators</a> (&amp;$Packages, $Type, &amp;$Template)</td></tr>
-<tr class="memitem:ab346b44cd7dc1b263c7f5f08a55e50ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ab346b44cd7dc1b263c7f5f08a55e50ef">execute_processors</a> (&amp;$Packages, $String, $Type)</td></tr>
 <tr class="memitem:ad396ac9149e5e4555cf04292c86ef654"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#ad396ac9149e5e4555cf04292c86ef654">compile_controllers</a> (&amp;$Packages)</td></tr>
 <tr class="memitem:a5207ba92168b244231bcd15d4be5320f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__parts__1__0__0.html#a5207ba92168b244231bcd15d4be5320f">compile_views</a> (&amp;$Packages, &amp;$Template)</td></tr>
 </table><table class="memberdecls">
@@ -140,91 +137,6 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="ac268113a385ddc41ec8b05cf9d0bd90a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">call_processor_function </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$p</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$String</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function calls processor.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$p</td><td>- Fetched object.</td></tr>
-    <tr><td class="paramname">$String</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the string processed.</td></tr>
-    <tr><td class="paramname">$Type</td><td>- Processor's type.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00576">576</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $RealType = $this-&gt;<a class="code" href="classpage__parts__1__0__0.html#a74edd219d2d75cab2fba0e65829bcbee">get_function_name</a>( $p[ <span class="stringliteral">&#39;fetched_package&#39;</span> ] , $Type );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">if</span>( $RealType === <span class="keyword">false</span> &amp;&amp; $Type == <span class="stringliteral">&#39;process_string&#39;</span> )</div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="comment">/* nop */</span></div>
-<div class="line">                        }</div>
-<div class="line">                        elseif( $RealType === <span class="keyword">false</span>  )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;<a class="code" href="classpage__parts__1__0__0.html#a05c2bc0b01d881aed3c090ac3b39fce8">throw_method_was_not_found_exception</a>( $p , $Type );</div>
-<div class="line">                        }</div>
-<div class="line">                        <span class="keywordflow">else</span></div>
-<div class="line">                        {</div>
-<div class="line">                              $Caller = array( $p[ <span class="stringliteral">&#39;fetched_package&#39;</span> ] , $RealType );</div>
-<div class="line">                              $CallParameters = array( $p[ <span class="stringliteral">&#39;settings&#39;</span> ] , <a class="code" href="classpage__parts__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> , &amp;$Changed );</div>
-<div class="line">                              <a class="code" href="classpage__parts__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = call_user_func_array( $Caller , $CallParameters );</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( <a class="code" href="classpage__parts__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a class="anchor" id="ad396ac9149e5e4555cf04292c86ef654"></a>
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +165,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00777">777</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00603">603</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -323,7 +235,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00882">882</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00708">708</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -403,7 +315,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00631">631</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00517">517</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -428,85 +340,6 @@ Data Fields</h2></td></tr>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
 <div class="line">                        $this-&gt;Trace-&gt;end_group();</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="ab346b44cd7dc1b263c7f5f08a55e50ef"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">execute_processors </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Packages</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$String</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function runs postprocessing.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Packages</td><td>- Packages.</td></tr>
-    <tr><td class="paramname">$String</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Type</td><td>- Processor type.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00693">693</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $this-&gt;Trace-&gt;start_group( <span class="stringliteral">&quot;$Type&quot;</span> );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">do</span></div>
-<div class="line">                        {</div>
-<div class="line">                              $Changed = <span class="keyword">false</span>;</div>
-<div class="line"></div>
-<div class="line">                              <span class="keywordflow">foreach</span>( $Packages as $i =&gt; $p )</div>
-<div class="line">                              {</div>
-<div class="line">                                    <span class="keywordflow">if</span>( $Type == <span class="stringliteral">&#39;process_string&#39;</span> || $p[ <span class="stringliteral">&#39;settings&#39;</span> ]-&gt;get_setting( $Type , <span class="keyword">false</span> ) )</div>
-<div class="line">                                    {</div>
-<div class="line">                                          <a class="code" href="classpage__parts__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = $this-&gt;<a class="code" href="classpage__parts__1__0__0.html#ac268113a385ddc41ec8b05cf9d0bd90a">call_processor_function</a>( $p , <a class="code" href="classpage__parts__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> , $Changed , $Type );</div>
-<div class="line">                                    }</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line">                        <span class="keywordflow">while</span>( $Changed );</div>
-<div class="line"></div>
-<div class="line">                        $this-&gt;Trace-&gt;end_group();</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( <a class="code" href="classpage__parts__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -555,7 +388,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00517">517</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00466">466</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -622,7 +455,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00235">235</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00184">184</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -637,73 +470,6 @@ Data Fields</h2></td></tr>
 <div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Package );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a74edd219d2d75cab2fba0e65829bcbee"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">get_function_name </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$PackageObject</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$RequestionFunction</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function searches processor.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$PackageObject</td><td>- Package object.</td></tr>
-    <tr><td class="paramname">$RequestionFunction</td><td>- Processor type to run.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Name of the real processor.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00101">101</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( $RequestionFunction == <span class="stringliteral">&#39;post_process&#39;</span> || $RequestionFunction == <span class="stringliteral">&#39;pre_process&#39;</span> )</div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">if</span>( method_exists( $PackageObject , $RequestionFunction ) )</div>
-<div class="line">                              {</div>
-<div class="line">                                    <span class="keywordflow">return</span>( $RequestionFunction );</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">if</span>( method_exists( $PackageObject , <span class="stringliteral">&#39;process_string&#39;</span> ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">return</span>( <span class="stringliteral">&#39;process_string&#39;</span> );</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -760,7 +526,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00391">391</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00340">340</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -817,7 +583,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00188">188</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00137">137</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -880,7 +646,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00283">283</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00232">232</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -941,7 +707,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00428">428</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00377">377</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -1008,7 +774,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00148">148</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
+<p>Definition at line <a class="el" href="page__parts_8php_source.html#l00097">97</a> of file <a class="el" href="page__parts_8php_source.html">page_parts.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  $ClassName = $p[ <span class="stringliteral">&#39;fetched_package&#39;</span> ] !== <span class="keyword">false</span> ? get_class( $p[ <span class="stringliteral">&#39;fetched_package&#39;</span> ] ) : <span class="stringliteral">&#39;false&#39;</span>;</div>
 <div class="line"></div>
@@ -1134,7 +900,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpage__parts__1__0__0.html">page_parts_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:40 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:51 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

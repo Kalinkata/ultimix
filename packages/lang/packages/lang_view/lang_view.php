@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для обработки строк с учетом языка.
 	*
@@ -37,7 +37,7 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$Lang = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -64,7 +64,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian HTML код компонента.
 		*
@@ -76,7 +76,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output;
-		
+
 		/**
 		*	\~russian Функция отрисовки формы смены языка.
 		*
@@ -100,16 +100,16 @@
 			try
 			{
 				$LangList = $this->Lang->get_list_of_languages();
-				
+
 				$Form = $this->CachedMultyFS->get_template( __FILE__ , 'lang_form.tpl' );
 				$this->Output = $Form;
-				
+
 				foreach( $LangList as $Lang )
 				{
 					$LangFlag = $Lang === $this->Lang->get_locale() ? 'active' : 'inactive';
-					
+
 					$Template = $this->CachedMultyFS->get_template( __FILE__ , $LangFlag.'_lang.tpl' );
-					
+
 					$Template = str_replace( '{client_lang}' , $Lang , $Template );
 					$this->Output = str_replace( '{lang_list}' , "$Template{lang_list}" , $this->Output );
 				}
@@ -119,7 +119,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция управления компонентом.
 		*
@@ -154,7 +154,9 @@
 
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_set_locale_form' );
 
-				if( $ContextSet->execute( $Options , $this ) )return( $this->Output );
+				$ContextSet->execute( $Options , $this , __FILE__ );
+
+				return( $this->Output );
 			}
 			catch( Exception $e )
 			{

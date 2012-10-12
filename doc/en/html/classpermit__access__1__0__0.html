@@ -212,7 +212,6 @@ Data Fields</h2></td></tr>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $ObjectType == <span class="stringliteral">&#39;user&#39;</span> || $ObjectType == <span class="stringliteral">&#39;group&#39;</span> || $ObjectType == <span class="stringliteral">&#39;page&#39;</span> )</div>
 <div class="line">                        {</div>
-<div class="line">                              <span class="comment">//TODO: add umx_page table</span></div>
 <div class="line">                              $Permit = $this-&gt;<a class="code" href="classpermit__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( <span class="stringliteral">&quot;permit LIKE &#39;$Permit&#39;&quot;</span> );</div>
 <div class="line">                              $Permit = $Permit[ 0 ];</div>
 <div class="line">                              $this-&gt;Link-&gt;create_link( $Object , $Permit-&gt;id , $ObjectType , <span class="stringliteral">&#39;permit&#39;</span> , <span class="keyword">true</span> );</div>
@@ -367,7 +366,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00742">742</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
+<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00741">741</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -512,7 +511,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              $ids = <a class="code" href="functional__programming_8php.html#a9c56c5cb857578644fdd5deaba4cd63f">get_field_ex</a>( $Links , <span class="stringliteral">&#39;object2_id&#39;</span> );</div>
 <div class="line"></div>
 <div class="line">                              $Permits = $this-&gt;<a class="code" href="classpermit__access__1__0__0.html#aa55100a506c6c0f59ece407e220b332f">select_list</a>( implode( <span class="charliteral">&#39;,&#39;</span> , $ids ) );</div>
-<div class="line"></div>
+<div class="line">                              </div>
 <div class="line">                              <span class="keywordflow">return</span>( <a class="code" href="functional__programming_8php.html#a9c56c5cb857578644fdd5deaba4cd63f">get_field_ex</a>( $Permits , <span class="stringliteral">&#39;permit&#39;</span> ) );</div>
 <div class="line">                        }</div>
 <div class="line">                  }</div>
@@ -553,7 +552,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00789">789</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
+<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00788">788</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -702,7 +701,7 @@ Data Fields</h2></td></tr>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $Condition = $this-&gt;DatabaseAlgorithms-&gt;select_condition( </div>
-<div class="line">                              $Start , $Limit , $Field , $Order , $Condition</div>
+<div class="line">                              $Start , $Limit , $Field , $Order , $Condition , $this-&gt;NativeTable</div>
 <div class="line">                        );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classpermit__access__1__0__0.html#a43bcb1bbf7b5be538c27b03543c63208">unsafe_select</a>( $Condition ) );</div>
@@ -843,7 +842,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00635">635</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
+<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00634">634</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -916,7 +915,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00686">686</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
+<p>Definition at line <a class="el" href="permit__access_8php_source.html#l00685">685</a> of file <a class="el" href="permit__access_8php_source.html">permit_access.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -1240,7 +1239,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpermit__access__1__0__0.html">permit_access_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:40 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:52 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

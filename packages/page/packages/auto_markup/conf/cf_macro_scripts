@@ -77,6 +77,7 @@ macro_name=error_message;package_name=page::messages;compilation_func=compile_er
 macro_name=success_message;package_name=page::messages;compilation_func=compile_success_message
 block_name=composer;package_name=gui;compilation_func=compile_composer;terminal_values=condition
 macro_name=meta;package_name=page::page_markup;compilation_func=compile_meta
+macro_name=color_scheme;package_name=page::page_markup;compilation_func=compile_color_scheme
 macro_name=direct_controller;package_name=page::page_markup;compilation_func=compile_direct_controller;terminal_values=need_run
 macro_name=direct_view;package_name=page::page_markup;compilation_func=compile_direct_view;terminal_values=need_run
 macro_name=title;package_name=page::page_meta;compilation_func=compile_title

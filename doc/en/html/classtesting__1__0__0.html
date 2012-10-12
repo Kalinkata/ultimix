@@ -128,7 +128,7 @@ Data Fields</h2></td></tr>
 <div class="line">                  {</div>
 <div class="line">                        $Counter = 0;</div>
 <div class="line">                        $Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Methods as $key =&gt; $m )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">if</span>( strpos( $m , <span class="stringliteral">&#39;test&#39;</span> ) === 0 &amp;&amp; $Counter++ == $Security-&gt;get_gp( <span class="stringliteral">&#39;test_id&#39;</span> , <span class="stringliteral">&#39;integer&#39;</span> ) )</div>
@@ -136,7 +136,7 @@ Data Fields</h2></td></tr>
 <div class="line">                                    <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classtesting__1__0__0.html#a483f6640b372967ca0c97dd6a21f4392">run_exact_test</a>( $Methods , $m ) );</div>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $Security-&gt;get_gp( <span class="stringliteral">&#39;test_id&#39;</span> , <span class="stringliteral">&#39;integer&#39;</span> , 0 ) &gt;= $Counter )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( <span class="stringliteral">&#39;Value test_id is too big. It mast be less than &#39;</span>.$Counter );</div>
@@ -181,12 +181,12 @@ Data Fields</h2></td></tr>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $PackageDirectory = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
 <div class="line">                              $Security-&gt;get_gp( <span class="stringliteral">&#39;testing_package_name&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> ) , </div>
 <div class="line">                              $Security-&gt;get_gp( <span class="stringliteral">&#39;testing_package_version&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
 <div class="line">                        );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $PackageDirectory );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -227,7 +227,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        $this-&gt;<a class="code" href="classtesting__1__0__0.html#ae6e73fb68246cc7b03a9b114b5942872">get_testing_object</a>();</div>
 <div class="line"></div>
 <div class="line">                        $Methods = get_class_methods( get_class( $this-&gt;TestingObject ) );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Counter = 0;</div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Methods as $key =&gt; $m )</div>
 <div class="line">                        {</div>
@@ -236,7 +236,7 @@ Data Fields</h2></td></tr>
 <div class="line">                                    $Counter++;</div>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Counter );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -274,9 +274,9 @@ Data Fields</h2></td></tr>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;<a class="code" href="classtesting__1__0__0.html#ae6e73fb68246cc7b03a9b114b5942872">get_testing_object</a>();</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Methods = get_class_methods( get_class( $this-&gt;TestingObject ) );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Counter = 0;</div>
 <div class="line">                        $Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Methods as $key =&gt; $m )</div>
@@ -332,7 +332,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        <span class="keywordflow">if</span>( $this-&gt;TestingObject === <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              $PackageDirectory = $this-&gt;<a class="code" href="classtesting__1__0__0.html#a7e5a94539de2a6145c3404c1de16173c">get_package_directory</a>();</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              <span class="keywordflow">if</span>( file_exists( <span class="stringliteral">&quot;$PackageDirectory/include/php/unit_tests.php&quot;</span> ) === <span class="keyword">false</span> )</div>
 <div class="line">                              {</div>
 <div class="line">                                    <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
@@ -341,7 +341,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              require_once( <span class="stringliteral">&quot;$PackageDirectory/include/php/unit_tests.php&quot;</span> );</div>
 <div class="line">                              $this-&gt;TestingObject = <span class="keyword">new</span> <a class="code" href="classunit__tests.html">unit_tests</a>();</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $this-&gt;TestingObject === <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&quot;Testing class was not found&quot;</span> ) );</div>
@@ -398,12 +398,12 @@ Data Fields</h2></td></tr>
 <div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        $Result = call_user_func_array( array( $this-&gt;TestingObject , $m ) , array() );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( <a class="code" href="core_8js.html#adb09d82f65db48187736ab317d74c67d">in_array</a>( <span class="stringliteral">&#39;tear_down&#39;</span> , $Methods ) )</div>
 <div class="line">                        {</div>
 <div class="line">                              call_user_func_array( array( $this-&gt;TestingObject , <span class="stringliteral">&#39;tear_down&#39;</span> ) , array() );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Result );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -443,12 +443,12 @@ Data Fields</h2></td></tr>
 <div class="line">                        <span class="comment">/* running subtest */</span></div>
 <div class="line">                        $this-&gt;<a class="code" href="classtesting__1__0__0.html#ae6e73fb68246cc7b03a9b114b5942872">get_testing_object</a>();</div>
 <div class="line">                        $Methods = get_class_methods( get_class( $this-&gt;TestingObject ) );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( isset( $Methods[ 0 ] ) == <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( <span class="stringliteral">&#39;No test were found&#39;</span> );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classtesting__1__0__0.html#a1d40f408aa3eaff210dea04fb1a8c16c">find_test_and_run</a>( $Methods ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -486,22 +486,22 @@ Data Fields</h2></td></tr>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $Security-&gt;get_gp( <span class="stringliteral">&#39;action&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;none&#39;</span> ) === <span class="stringliteral">&#39;get_sub_test_count&#39;</span> )</div>
 <div class="line">                        {                             </div>
 <div class="line">                              <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classtesting__1__0__0.html#a1771a66f3f5806661ecf7c3dac4bfd5a">get_sub_test_count</a>() );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $Security-&gt;get_gp( <span class="stringliteral">&#39;action&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;none&#39;</span> ) === <span class="stringliteral">&#39;get_sub_test_name&#39;</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classtesting__1__0__0.html#ae080fa1c9f26f9ee04c4eb7bc6943802">get_sub_test_name</a>() );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $Security-&gt;get_gp( <span class="stringliteral">&#39;action&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;none&#39;</span> ) === <span class="stringliteral">&#39;run_sub_test&#39;</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classtesting__1__0__0.html#a0a5d6ca6d72a8dd4c599612b3034912c">run_sub_test</a>() );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( <span class="stringliteral">&#39;Illegal request parameters&#39;</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -547,7 +547,7 @@ Data Fields</h2></td></tr>
 <div class="line">                  {</div>
 <div class="line">                        $UserController = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;user::user_controller&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $UserController-&gt;login( $Options );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $Permits = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;permit::permit_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        <span class="keywordflow">if</span>( $Permits-&gt;object_has_permit( <span class="keyword">false</span> , <span class="stringliteral">&#39;user&#39;</span> , <span class="stringliteral">&#39;tester&#39;</span> ) === false )</div>
 <div class="line">                        {</div>
@@ -555,7 +555,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              print( $UserAlgorithms-&gt;get_login() );</div>
 <div class="line">                              <span class="keywordflow">return</span>( <span class="stringliteral">&#39;No permits&#39;</span> );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -603,7 +603,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( $Result );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classtesting__1__0__0.html#a3bbabf1b332579ffcce51a4b2624849e">run_views</a>() );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -640,7 +640,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classtesting__1__0__0.html">testing_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:47 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:58 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

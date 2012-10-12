@@ -72,6 +72,10 @@ $(document).ready(function(){initNavTree('classmacro__parser__1__0__0.html','');
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae2e10ac54b499d74794d3c6e1b063600"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmacro__parser__1__0__0.html#ae2e10ac54b499d74794d3c6e1b063600">is_params_valid</a> (&amp;$Params, &amp;$RegExValidators)</td></tr>
+<tr class="memitem:aa0e8667c1b08ff506dc375b1813efc2c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmacro__parser__1__0__0.html#aa0e8667c1b08ff506dc375b1813efc2c">handle_macro_start</a> ($TmpStartPos, $TmpEndPos, &amp;$StartPos, &amp;$Counter)</td></tr>
+<tr class="memitem:a5f231504577a1b45c9459693280d80c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmacro__parser__1__0__0.html#a5f231504577a1b45c9459693280d80c3">handle_macro_end</a> ($TmpStartPos, $TmpEndPos, &amp;$StartPos, &amp;$Counter, $MacroStartPos)</td></tr>
+<tr class="memitem:adfd855d8a488ae95d232a3a9ca713c71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmacro__parser__1__0__0.html#adfd855d8a488ae95d232a3a9ca713c71">handle_macro_start_end</a> (&amp;$StringData, &amp;$TmpStartPos, &amp;$TmpEndPos, &amp;$StartPos, &amp;$Counter, $MacroStartPos)</td></tr>
+<tr class="memitem:ac072847184920314362a5bf4cf6eefbe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmacro__parser__1__0__0.html#ac072847184920314362a5bf4cf6eefbe">find_macro</a> (&amp;$StringData, &amp;$TmpStartPos, &amp;$TmpEndPos, &amp;$StartPos, &amp;$Counter, $MacroStartPos, $ParamStartPos, $RegExValidators)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>String utilities.</p>
@@ -79,6 +83,379 @@ Public Member Functions</h2></td></tr>
 
 <p>Definition at line <a class="el" href="macro__parser_8php_source.html#l00026">26</a> of file <a class="el" href="macro__parser_8php_source.html">macro_parser.php</a>.</p>
 </div><h2>Member Function Documentation</h2>
+<a class="anchor" id="ac072847184920314362a5bf4cf6eefbe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">find_macro </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$StringData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$TmpStartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$TmpEndPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$StartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Counter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$MacroStartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$ParamStartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$RegExValidators</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro end.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$StringData</td><td>- String data.</td></tr>
+    <tr><td class="paramname">$TmpStartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$TmpEndPos</td><td>- Macro end.</td></tr>
+    <tr><td class="paramname">$StartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$Counter</td><td>- Counter.</td></tr>
+    <tr><td class="paramname">$MacroStartPos</td><td>- Macro start.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="macro__parser_8php_source.html#l00302">302</a> of file <a class="el" href="macro__parser_8php_source.html">macro_parser.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">do</span></div>
+<div class="line">                        {</div>
+<div class="line">                              $this-&gt;<a class="code" href="classmacro__parser__1__0__0.html#adfd855d8a488ae95d232a3a9ca713c71">handle_macro_start_end</a>( </div>
+<div class="line">                                    $StringData , $TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos</div>
+<div class="line">                              );</div>
+<div class="line"></div>
+<div class="line">                              <span class="keywordflow">if</span>( $Counter == 0 )</div>
+<div class="line">                              {</div>
+<div class="line">                                    $Params = substr( $StringData , $ParamStartPos , $TmpEndPos - $ParamStartPos );</div>
+<div class="line">                                    <span class="keywordflow">if</span>( $this-&gt;<a class="code" href="classmacro__parser__1__0__0.html#ae2e10ac54b499d74794d3c6e1b063600">is_params_valid</a>( $Params , $RegExValidators ) )</div>
+<div class="line">                                    {</div>
+<div class="line">                                          <span class="keywordflow">return</span>( $Params );</div>
+<div class="line">                                    }</div>
+<div class="line">                                    $TmpStartPos = <span class="keyword">false</span>;</div>
+<div class="line">                                    $StartPos = $MacroStartPos;</div>
+<div class="line">                              }</div>
+<div class="line">                        }</div>
+<div class="line">                        <span class="keywordflow">while</span>( $TmpStartPos );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a5f231504577a1b45c9459693280d80c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handle_macro_end </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$TmpStartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$TmpEndPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$StartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Counter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$MacroStartPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro end.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$TmpStartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$TmpEndPos</td><td>- Macro end.</td></tr>
+    <tr><td class="paramname">$StartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$Counter</td><td>- Counter.</td></tr>
+    <tr><td class="paramname">$MacroStartPos</td><td>- Macro start.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="macro__parser_8php_source.html#l00177">177</a> of file <a class="el" href="macro__parser_8php_source.html">macro_parser.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">if</span>( $TmpStartPos !== <span class="keyword">false</span> &amp;&amp; $TmpEndPos === <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              $Counter++;</div>
+<div class="line">                              $StartPos = $TmpStartPos;</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( $TmpStartPos === <span class="keyword">false</span> &amp;&amp; $TmpEndPos !== <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              $Counter--;</div>
+<div class="line">                              $StartPos = $TmpEndPos;</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( $TmpStartPos === <span class="keyword">false</span> &amp;&amp; $TmpEndPos === <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="comment">/* ничего не найдено, поэтому внешний цикл закончен, да и внутренний тоже</span></div>
+<div class="line"><span class="comment">                                 $StartPos = strlen( $StringData ); */</span></div>
+<div class="line">                              $StartPos = $MacroStartPos;</div>
+<div class="line">                        }</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aa0e8667c1b08ff506dc375b1813efc2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handle_macro_start </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$TmpStartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$TmpEndPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$StartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Counter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro start.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$TmpStartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$TmpEndPos</td><td>- Macro end.</td></tr>
+    <tr><td class="paramname">$StartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$Counter</td><td>- Counter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="macro__parser_8php_source.html#l00116">116</a> of file <a class="el" href="macro__parser_8php_source.html">macro_parser.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">if</span>( $TmpStartPos !== <span class="keyword">false</span> &amp;&amp; $TmpEndPos !== <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="keywordflow">if</span>( $TmpStartPos &lt; $TmpEndPos )</div>
+<div class="line">                              {</div>
+<div class="line">                                    $StartPos = $TmpEndPos;</div>
+<div class="line">                              }</div>
+<div class="line">                              <span class="keywordflow">if</span>( $TmpEndPos &lt; $TmpStartPos )</div>
+<div class="line">                              {</div>
+<div class="line">                                    $Counter--;</div>
+<div class="line">                                    <span class="keywordflow">if</span>( $Counter )</div>
+<div class="line">                                    {</div>
+<div class="line">                                          $Counter++;</div>
+<div class="line">                                    }</div>
+<div class="line">                                    $StartPos = $TmpStartPos;</div>
+<div class="line">                              }</div>
+<div class="line">                        }</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="adfd855d8a488ae95d232a3a9ca713c71"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">handle_macro_start_end </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$StringData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$TmpStartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$TmpEndPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$StartPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Counter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$MacroStartPos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro end.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$StringData</td><td>- String data.</td></tr>
+    <tr><td class="paramname">$TmpStartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$TmpEndPos</td><td>- Macro end.</td></tr>
+    <tr><td class="paramname">$StartPos</td><td>- Macro start.</td></tr>
+    <tr><td class="paramname">$Counter</td><td>- Counter.</td></tr>
+    <tr><td class="paramname">$MacroStartPos</td><td>- Macro start.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="macro__parser_8php_source.html#l00244">244</a> of file <a class="el" href="macro__parser_8php_source.html">macro_parser.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $TmpStartPos = strpos( $StringData , chr( 123 ) , $StartPos + 1 );</div>
+<div class="line">                        $TmpEndPos = strpos( $StringData , chr( 125 ) , $StartPos + 1 );</div>
+<div class="line"></div>
+<div class="line">                        $this-&gt;<a class="code" href="classmacro__parser__1__0__0.html#aa0e8667c1b08ff506dc375b1813efc2c">handle_macro_start</a>( $TmpStartPos , $TmpEndPos , $StartPos , $Counter );</div>
+<div class="line"></div>
+<div class="line">                        $this-&gt;<a class="code" href="classmacro__parser__1__0__0.html#a5f231504577a1b45c9459693280d80c3">handle_macro_end</a>( </div>
+<div class="line">                              $TmpStartPos , $TmpEndPos , $StartPos , $Counter , $MacroStartPos</div>
+<div class="line">                        );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="ae2e10ac54b499d74794d3c6e1b063600"></a>
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +539,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classmacro__parser__1__0__0.html">macro_parser_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:36 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:47 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

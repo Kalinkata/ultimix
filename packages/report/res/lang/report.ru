@@ -1,2 +1,3 @@
 report_templates=Шаблоны
 report_dialog=Диалог генерации очета
+report_manager=Менеджер отчетов

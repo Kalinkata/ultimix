@@ -218,7 +218,8 @@
 			try
 			{
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
-					$Start , $Limit , $Field === false ? $this->NativeTable.'.id' : $Field , $Order , $Condition , $this->NativeTable
+					$Start , $Limit , $Field === false ? $this->NativeTable.'.id' : $Field , 
+					$Order , $Condition , $this->NativeTable
 				);
 
 				return( $this->unsafe_select( $Condition ) );

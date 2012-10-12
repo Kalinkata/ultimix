@@ -1,0 +1,4 @@
+site_manager=Sites
+domain=Domain
+comment=Comment
+site_delete=Delete site

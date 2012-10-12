@@ -1,3 +1,24 @@
+Ultimix v. 1.5.252
+-----------------------------------------
+1.  Switch user button was fixed.
+2.  {lang} macro was fixed.
+3.  32 unit-tests were added.
+4.  Site manager was added.
+5.  Template manager was added.
+6.  System structure manager was fixed, refactored and improved.
+7.  The entity 'report' was added.
+8.  All reports have been closed with permits.
+9.  Report manager was added.
+10. Comment manager was fixed.
+14. 
+15. 
+16. 
+17. 
+18. 
+19. The macro 'color_scheme' was added.
+20. Other refactorings and improvements.
+21. Documentation was updated.
+
 Ultimix v. 1.5.251
 -----------------------------------------
 1.  Performance was improved.
@@ -12,7 +33,7 @@ Ultimix v. 1.5.251
 10. Activate/deactivate buttons were added to the user manager.
 11. Advertising subsystem was added.
 12. The count of unit-tests has reached 350 ones.
-13. 
+13. Numerous bugfixes.
 14. Documentation was improved.
 
 Ultimix v. 1.5.250

@@ -1,6 +1,7 @@
 var globals_vars =
 [
     [ "$", "globals_vars.html", null ],
+    [ "_", "globals_vars_0x5f.html", null ],
     [ "a", "globals_vars_0x61.html", null ],
     [ "b", "globals_vars_0x62.html", null ],
     [ "c", "globals_vars_0x63.html", null ],
@@ -22,5 +23,6 @@ var globals_vars =
     [ "t", "globals_vars_0x74.html", null ],
     [ "u", "globals_vars_0x75.html", null ],
     [ "v", "globals_vars_0x76.html", null ],
-    [ "w", "globals_vars_0x77.html", null ]
+    [ "w", "globals_vars_0x77.html", null ],
+    [ "x", "globals_vars_0x78.html", null ]
 ];

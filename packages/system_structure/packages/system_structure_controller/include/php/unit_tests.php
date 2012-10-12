@@ -25,7 +25,53 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
+		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$DatabaseAlgorithms = false;
+		var					$DefaultControllers = false;
+		var					$PageComposer = false;
+		var					$Security = false;
+		var					$Settings = false;
+		var					$SystemStructureAccess = false;
+		var					$Testing = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
+				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
+				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->SystemStructureAccess = get_package( 
+					'system_structure::system_structure_access' , 'last' , __FILE__
+				);
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -37,8 +83,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
+		function			set_up()
 		{
+			$this->Settings->clear();
 		}
 
 		/**
@@ -51,17 +98,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	tear_down()
+		function			tear_down()
 		{
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package loading.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -70,6 +117,40 @@
 			get_package( 'system_structure::system_structure_controller' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Тестирование вида.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing view.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'page' , 'test_page' );
+			$this->Security->set_g( 'root_page' , 'test_root_page' );
+			$this->Security->set_g( 'navigation' , 'test_navigation' );
+			$this->Security->set_g( 'auto_redirect' , 0 );
+
+			$Controller = get_package( 'system_structure::system_structure_controller' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'system_structure' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_system_structure' , 'page LIKE "test_page"' ) )
+			{
+				$this->SystemStructureAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
 		}
 	}
 

@@ -60,3 +60,4 @@ change_password=Смена пароля
 users_were_activated=Выбранные пользователи были активированы
 users_were_deactivated=Выбранные пользователи были деактивированы
 bleave=Выход
+switch_user_dialog=Смена пользователя

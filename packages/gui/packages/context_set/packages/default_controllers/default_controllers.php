@@ -52,6 +52,18 @@
 		var					$Prefix = false;
 
 		/**
+		*	\~russian Идентификатор созданной записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Created record's id.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$id = false;
+
+		/**
 		*	\~russian Объект класса представляющего функции-обработчики.
 		*
 		*	@author Додонов А.А.
@@ -281,8 +293,9 @@
 
 				if( method_exists( $Provider , $FunctionName ) === true )
 				{
-					$id = call_user_func( array( $Provider , $FunctionName ) , $Record , $Options );
-					$this->GUI->set_var( 'record_id' , $id );
+					$this->id = call_user_func( array( $Provider , $FunctionName ) , $Record , $Options );
+
+					$this->GUI->set_var( 'record_id' , $this->id );
 				}
 				else
 				{

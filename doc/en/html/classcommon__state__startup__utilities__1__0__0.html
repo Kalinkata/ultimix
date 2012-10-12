@@ -261,7 +261,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00237">237</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00283">283</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -336,7 +336,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00353">353</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00399">399</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -416,7 +416,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00297">297</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00343">343</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -498,7 +498,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00411">411</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00457">457</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -553,7 +553,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00195">195</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00241">241</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -613,21 +613,21 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00155">155</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00201">201</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;Trace-&gt;add_trace_string( <span class="stringliteral">&#39;{lang:no_need_to_run_trace_message}&#39;</span> , COMMON );</div>
 <div class="line"></div>
-<div class="line">                        $Field = $Prefix.<span class="stringliteral">&#39;_context_action&#39;</span>;</div>
-<div class="line">                        $Message = $Prefix.<span class="stringliteral">&#39;_context_action: &quot;&#39;</span>.$this-&gt;Security-&gt;get_gp( $Field , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;not set&#39;</span> ).<span class="charliteral">&#39;&quot;&#39;</span>;</div>
-<div class="line">                        $this-&gt;Trace-&gt;add_trace_string( $Message );</div>
+<div class="line">                        <span class="keywordflow">if</span>( strpos( $ContextAction , <span class="stringliteral">&#39;_form&#39;</span> ) !== <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              $this-&gt;trace_field( $Prefix , <span class="stringliteral">&#39;context_action&#39;</span> , $ContextAction );</div>
+<div class="line">                        }</div>
 <div class="line"></div>
-<div class="line">                        $this-&gt;Trace-&gt;add_trace_string( <span class="stringliteral">&quot;required_context_action : \&quot;$ContextAction\&quot;&quot;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $ContextAction = $this-&gt;Security-&gt;get_gp( $Prefix.<span class="stringliteral">&#39;_action&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;not set&#39;</span> );</div>
-<div class="line">                        $Message = $Prefix.<span class="stringliteral">&#39;_action: &quot;&#39;</span>.$ContextAction.<span class="charliteral">&#39;&quot;&#39;</span>;</div>
-<div class="line">                        $this-&gt;Trace-&gt;add_trace_string( $Message );</div>
+<div class="line">                        <span class="keywordflow">if</span>( strpos( $ContextAction , <span class="stringliteral">&#39;_form&#39;</span> ) === <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              $this-&gt;trace_field( $Prefix , <span class="stringliteral">&#39;action&#39;</span> , $StateName );</div>
+<div class="line">                        }</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -684,7 +684,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00466">466</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00512">512</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -756,7 +756,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00519">519</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
+<p>Definition at line <a class="el" href="common__state__startup__utilities_8php_source.html#l00565">565</a> of file <a class="el" href="common__state__startup__utilities_8php_source.html">common_state_startup_utilities.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -877,7 +877,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcommon__state__startup__utilities__1__0__0.html">common_state_startup_utilities_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:30 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:39 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

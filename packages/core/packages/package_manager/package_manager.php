@@ -93,7 +93,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			install_package( $Options )
+		function			install_package( &$Options )
 		{
 			try
 			{
@@ -128,7 +128,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			delete_package( $Options )
+		function			delete_package( &$Options )
 		{
 			try
 			{
@@ -165,19 +165,15 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_delete_package' );
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_install_package' );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_install_package' );
 
-				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
-				{
-					return;
-				}
+				$ContextSet->execute( $Options , $this , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -187,8 +183,6 @@
 
 		/**
 		*	\~russian Компиляция ветки.
-		*	
-		*	@param $Branch - Код ветки.
 		*
 		*	@param $Package - Пакет.
 		*
@@ -200,8 +194,6 @@
 		*/
 		/**
 		*	\~english Function compiles branch.
-		*	
-		*	@param $Branch - Branch code.
 		*
 		*	@param $Package - Package.
 		*
@@ -211,19 +203,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_package_tree_branch( $Branch , $Package )
+		function			compile_package_tree_branch( &$Package )
 		{
 			try
 			{
 				$Title = $Package[ 'package_name' ].'.'.$Package[ 'package_version' ];
 
-				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_item_start.tpl' );
+				$Branch = $this->CachedMultyFS->get_template( __FILE__ , 'package_item_start.tpl' );
 
 				$Branch = str_replace( '{title}' , $Title , $Branch );
 
 				$Branch .= $this->show_package_tree_rec( $Package[ 'subpackages' ] );
 
 				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_item_end.tpl' );
+
+				return( $Branch );
 			}
 			catch( Exception $e )
 			{
@@ -253,7 +247,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_package_tree_rec( $Packages )
+		function			show_package_tree_rec( &$Packages )
 		{
 			try
 			{
@@ -266,7 +260,7 @@
 
 				foreach( $Packages as $i => $Package )
 				{
-					$Branch = $this->compile_package_tree_branch( $Branch , $Package );
+					$Branch .= $this->compile_package_tree_branch( $Package );
 				}
 
 				return( $Branch.$this->CachedMultyFS->get_template( __FILE__ , 'package_branch_end.tpl' ) );
@@ -295,7 +289,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_package_tree( $Options )
+		function			show_package_tree( &$Options )
 		{
 			try
 			{
@@ -306,7 +300,7 @@
 
 				foreach( $Packages as $i => $Package )
 				{
-					$this->Output = $this->compile_package_tree_branch( $this->Output , $Package );
+					$this->Output .= $this->compile_package_tree_branch( $Package );
 				}
 
 				$this->Output .= $this->CachedMultyFS->get_template( __FILE__ , 'package_end.tpl' );
@@ -339,7 +333,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_system_tree_meta_rec( $MetaFiles )
+		function			show_system_tree_meta_rec( &$MetaFiles )
 		{
 			try
 			{
@@ -389,7 +383,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_system_tree_conf_rec( $ConfigFiles )
+		function			show_system_tree_conf_rec( &$ConfigFiles )
 		{
 			try
 			{
@@ -419,8 +413,6 @@
 
 		/**
 		*	\~russian Компиляция ветки.
-		*	
-		*	@param $Branch - Код ветки.
 		*
 		*	@param $Package - Пакет.
 		*
@@ -432,8 +424,6 @@
 		*/
 		/**
 		*	\~english Function compiles branch.
-		*	
-		*	@param $Branch - Branch code.
 		*
 		*	@param $Package - Package.
 		*
@@ -443,13 +433,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_system_tree_branch( $Branch , $Package )
+		function			compile_system_tree_branch( &$Package )
 		{
 			try
 			{
 				$Title = $Package[ 'package_name' ].'.'.$Package[ 'package_version' ];
 
-				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_start.tpl' );
+				$Branch = $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_start.tpl' );
 
 				$Branch  = str_replace( '{title}' , $Title , $Branch );
 
@@ -460,6 +450,8 @@
 				$Branch .= $this->show_system_tree_conf_rec( $Package[ 'conf' ] );
 
 				$Branch .= $this->CachedMultyFS->get_template( __FILE__ , 'package_system_item_end.tpl' );
+				
+				return( $Branch );
 			}
 			catch( Exception $e )
 			{
@@ -489,7 +481,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_system_tree_rec( $Packages )
+		function			show_system_tree_rec( &$Packages )
 		{
 			try
 			{
@@ -502,7 +494,7 @@
 
 				foreach( $Packages as $i => $Package )
 				{
-					$Branch = $this->compile_system_tree_branch( $Branch , $Package );
+					$Branch .= $this->compile_system_tree_branch( $Package );
 				}
 
 				return( $Branch.$this->CachedMultyFS->get_template( __FILE__ , 'package_system_end.tpl' ) );
@@ -531,7 +523,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_system_tree( $Options )
+		function			show_system_tree( &$Options )
 		{
 			try
 			{
@@ -542,7 +534,7 @@
 
 				foreach( $Packages as $i => $Package )
 				{
-					$this->Output = $this->compile_system_tree_branch( $this->Output , $Package );
+					$this->Output .= $this->compile_system_tree_branch( $Package );
 				}
 
 				$this->Output .= $this->CachedMultyFS->get_template( __FILE__ , 'system_end.tpl' );
@@ -575,19 +567,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
-			{				
+			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_show_package_tree' );				
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_show_system_tree' );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_show_package_tree' );
+				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_show_system_tree' );
 
-				if( $ContextSet->execute( $Options , $this , __FILE__ ) )
-				{
-					return( $this->Output );
-				}
+				$ContextSet->execute( $Options , $this , __FILE__ );
+
+				return( $this->Output );
 			}
 			catch( Exception $e )
 			{

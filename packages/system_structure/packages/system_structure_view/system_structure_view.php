@@ -652,7 +652,7 @@
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
 
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_map' );
-
+//TODO: create system_structure_manager package
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_bread_crumbs' );
 
 				$ContextSet->execute( $Options , $this , __FILE__ );

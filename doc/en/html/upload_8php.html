@@ -74,8 +74,8 @@ $(document).ready(function(){initNavTree('upload_8php.html','');});
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a6fddc5dab24f258872e6982f47a1f458"><td class="memItemLeft" align="right" valign="top">foreach($extension_whitelist <br class="typebreak"/>
-as $extension) <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(!$is_valid_extension) <br class="typebreak"/>
-<a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(!@move_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;], <br class="typebreak"/>
+as $extension) <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(!$is_valid_extension) <br class="typebreak"/>
+<a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(!@move_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;], <br class="typebreak"/>
 $save_path.$file_name))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a6fddc5dab24f258872e6982f47a1f458">HandleError</a> ($message)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="var-members"></a>
@@ -83,7 +83,7 @@ Variables</h2></td></tr>
 <tr class="memitem:ae96afdfcb97405a4bda9dfc74196d33f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#ae96afdfcb97405a4bda9dfc74196d33f">$POST_MAX_SIZE</a> = ini_get('post_max_size')</td></tr>
 <tr class="memitem:a1e32431b9d521850ce2aa78bc3af0040"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a1e32431b9d521850ce2aa78bc3af0040">$unit</a> = strtoupper(substr($POST_MAX_SIZE, -1))</td></tr>
 <tr class="memitem:a53a5233bf0d290406930f901bda9a9ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a53a5233bf0d290406930f901bda9a9ed">$multiplier</a> = ($unit == 'M' ? 1048576 : ($unit == 'K' ? 1024 : ($unit == 'G' ? 1073741824 : 1)))</td></tr>
-<tr class="memitem:a0ae0505b9844c778b6cb02cfb7d900dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>((int)@$_SERVER['CONTENT_LENGTH'] &gt;<br class="typebreak"/>
+<tr class="memitem:a0ae0505b9844c778b6cb02cfb7d900dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>((int)@$_SERVER['CONTENT_LENGTH'] &gt;<br class="typebreak"/>
  $multiplier *(int)$POST_MAX_SIZE <br class="typebreak"/>
 &amp;&amp;$POST_MAX_SIZE) global&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a0ae0505b9844c778b6cb02cfb7d900dc">$save_path</a></td></tr>
 <tr class="memitem:aa13c88ed7d5d0bdb4aec6672633de3df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#aa13c88ed7d5d0bdb4aec6672633de3df">$upload_name</a> = &quot;Filedata&quot;</td></tr>
@@ -94,12 +94,12 @@ Variables</h2></td></tr>
 <tr class="memitem:a59bf132c77b5bee5adff2098cc2a6fbc"><td class="memItemLeft" align="right" valign="top">global&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a59bf132c77b5bee5adff2098cc2a6fbc">$file_name</a> = &quot;&quot;</td></tr>
 <tr class="memitem:a9476eda25f1e206bae360c2068ae2d68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a9476eda25f1e206bae360c2068ae2d68">$file_extension</a> = &quot;&quot;</td></tr>
 <tr class="memitem:afa553a406fac00cf8e758750d37686a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#afa553a406fac00cf8e758750d37686a7">$uploadErrors</a></td></tr>
-<tr class="memitem:acd6fe7cca3f1c66196142f2dc4d5effb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(!isset($_FILES[$upload_name])) <br class="typebreak"/>
-else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(isset($_FILES[$upload_name][&quot;error&quot;])&amp;&amp;$_FILES[$upload_name][&quot;error&quot;]!=0) <br class="typebreak"/>
-else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(!isset($_FILES[$upload_name][&quot;tmp_name&quot;])||!@is_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;])) <br class="typebreak"/>
-else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(!isset($_FILES[$upload_name]['name']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#acd6fe7cca3f1c66196142f2dc4d5effb">$file_size</a> = @filesize($_FILES[$upload_name][&quot;tmp_name&quot;])</td></tr>
+<tr class="memitem:acd6fe7cca3f1c66196142f2dc4d5effb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(!isset($_FILES[$upload_name])) <br class="typebreak"/>
+else <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(isset($_FILES[$upload_name][&quot;error&quot;])&amp;&amp;$_FILES[$upload_name][&quot;error&quot;]!=0) <br class="typebreak"/>
+else <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(!isset($_FILES[$upload_name][&quot;tmp_name&quot;])||!@is_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;])) <br class="typebreak"/>
+else <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(!isset($_FILES[$upload_name]['name']))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#acd6fe7cca3f1c66196142f2dc4d5effb">$file_size</a> = @filesize($_FILES[$upload_name][&quot;tmp_name&quot;])</td></tr>
 <tr class="memitem:ac2710ed6aebd5c7798f625b731148131"><td class="memItemLeft" align="right" valign="top">global&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#ac2710ed6aebd5c7798f625b731148131">$original_file_name</a> = $file_name</td></tr>
-<tr class="memitem:a9e3f99453c1b97b789abd83188bf2703"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a>(strlen($file_name)==0||strlen($file_name) &gt;<br class="typebreak"/>
+<tr class="memitem:a9e3f99453c1b97b789abd83188bf2703"><td class="memItemLeft" align="right" valign="top"><a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a>(strlen($file_name)==0||strlen($file_name) &gt;<br class="typebreak"/>
  $MAX_FILENAME_LENGTH)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#a9e3f99453c1b97b789abd83188bf2703">$path_info</a> = pathinfo($_FILES[$upload_name]['name'])</td></tr>
 <tr class="memitem:abc8216e4ebf345ceb9e7ffaa396a0281"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="upload_8php.html#abc8216e4ebf345ceb9e7ffaa396a0281">$is_valid_extension</a> = false</td></tr>
 </table>
@@ -109,7 +109,7 @@ else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c4
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">foreach ($extension_whitelist as $extension) <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (!$is_valid_extension) <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (!@move_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;], $save_path.$file_name)) HandleError </td>
+          <td class="memname">foreach ($extension_whitelist as $extension) <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (!$is_valid_extension) <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (!@move_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;], $save_path.$file_name)) HandleError </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$message</em></td><td>)</td>
@@ -173,7 +173,7 @@ else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c4
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (!isset($_FILES[$upload_name])) else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (isset($_FILES[$upload_name][&quot;error&quot;])&amp;&amp;$_FILES[$upload_name][&quot;error&quot;]!=0) else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (!isset($_FILES[$upload_name][&quot;tmp_name&quot;])||!@is_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;])) else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (!isset($_FILES[$upload_name]['name'])) $file_size = @filesize($_FILES[$upload_name][&quot;tmp_name&quot;])</td>
+          <td class="memname"><a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (!isset($_FILES[$upload_name])) else <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (isset($_FILES[$upload_name][&quot;error&quot;])&amp;&amp;$_FILES[$upload_name][&quot;error&quot;]!=0) else <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (!isset($_FILES[$upload_name][&quot;tmp_name&quot;])||!@is_uploaded_file($_FILES[$upload_name][&quot;tmp_name&quot;])) else <a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (!isset($_FILES[$upload_name]['name'])) $file_size = @filesize($_FILES[$upload_name][&quot;tmp_name&quot;])</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -257,7 +257,7 @@ else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c4
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> (strlen($file_name)==0||strlen($file_name) &gt; $MAX_FILENAME_LENGTH) $path_info = pathinfo($_FILES[$upload_name]['name'])</td>
+          <td class="memname"><a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> (strlen($file_name)==0||strlen($file_name) &gt; $MAX_FILENAME_LENGTH) $path_info = pathinfo($_FILES[$upload_name]['name'])</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -285,7 +285,7 @@ else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c4
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c40f">if</a> ((int)@$_SERVER['CONTENT_LENGTH'] &gt; $multiplier *(int)$POST_MAX_SIZE &amp;&amp;$POST_MAX_SIZE) global $save_path</td>
+          <td class="memname"><a class="el" href="user__view_8ru_8js.html#a36ae42af6287abab4cb431d47221815a">if</a> ((int)@$_SERVER['CONTENT_LENGTH'] &gt; $multiplier *(int)$POST_MAX_SIZE &amp;&amp;$POST_MAX_SIZE) global $save_path</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -364,7 +364,7 @@ else <a class="el" href="user__view_8ru_8js.html#ae12695f566d31c1b2c1a051e9f73c4
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_28364750a72fad1195852335c7d5ff35.html">file_input</a></li><li class="navelem"><a class="el" href="dir_60c19322799d1756e1c4f3d5f73e1234.html">packages</a></li><li class="navelem"><a class="el" href="dir_28e35c4243e275e0937c207119612d95.html">file_input_controller</a></li><li class="navelem"><a class="el" href="dir_813876ed17d4efa675b5cde9cb8763e4.html">include</a></li><li class="navelem"><a class="el" href="dir_3a92a5a613b47e646ddbbfd1e44be906.html">php</a></li><li class="navelem"><a class="el" href="upload_8php.html">upload.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:22 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:23 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

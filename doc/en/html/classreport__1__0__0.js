@@ -11,6 +11,7 @@ var classreport__1__0__0 =
     [ "view", "classreport__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663", null ],
     [ "$CachedMultyFS", "classreport__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d", null ],
     [ "$Database", "classreport__1__0__0.html#ae10cc045c1502f148d1aa728183898e7", null ],
+    [ "$Output", "classreport__1__0__0.html#a8a55ddd2b83051d9d86510dcd04f9f4c", null ],
     [ "$PageJS", "classreport__1__0__0.html#a156f7b55298bd183fd8358f4ef136990", null ],
     [ "$ReportUtilities", "classreport__1__0__0.html#a853b699aa3f0f7d90e3e1b882fc71ebc", null ],
     [ "$Security", "classreport__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ],

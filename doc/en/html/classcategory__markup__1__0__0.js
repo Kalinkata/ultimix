@@ -1,11 +1,10 @@
 var classcategory__markup__1__0__0 =
 [
     [ "__construct", "classcategory__markup__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
-    [ "compile_category", "classcategory__markup__1__0__0.html#a3281baca831f43d6c35d3265027de911", null ],
-    [ "compile_category_id", "classcategory__markup__1__0__0.html#a25becd5c7a21de0e361dafbe38712388", null ],
-    [ "compile_category_name", "classcategory__markup__1__0__0.html#ac4cde7a99e36a9e637dd0f9336e7ae73", null ],
-    [ "compile_category_siblings_ids", "classcategory__markup__1__0__0.html#a76cf200bf5782f7454546fb6db9c8501", null ],
-    [ "$BlockSettings", "classcategory__markup__1__0__0.html#a42734c34e5429a8ec8d5dc3ff7331492", null ],
+    [ "compile_category", "classcategory__markup__1__0__0.html#abcdd640366731ec47a636e593694ec76", null ],
+    [ "compile_category_id", "classcategory__markup__1__0__0.html#a9a9417d2ec503387f103f02b9429f3a1", null ],
+    [ "compile_category_name", "classcategory__markup__1__0__0.html#aab78325f06ddc430d5ed2ba2960fa330", null ],
+    [ "compile_category_siblings_ids", "classcategory__markup__1__0__0.html#a7b7724648a6846b7777dc4e0eb1429f3", null ],
     [ "$CachedMultyFS", "classcategory__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d", null ],
     [ "$CategoryAccess", "classcategory__markup__1__0__0.html#a1c7520329d8a550e04d39a14534d5882", null ],
     [ "$CategoryAlgorithms", "classcategory__markup__1__0__0.html#ac25e46d83bbaf71d2fbc89041ad75929", null ],

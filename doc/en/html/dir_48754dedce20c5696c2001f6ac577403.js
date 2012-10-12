@@ -9,5 +9,8 @@ var dir_48754dedce20c5696c2001f6ac577403 =
     [ "package_paths.php", "package__paths_8php.html", "package__paths_8php" ],
     [ "package_version.php", "package__version_8php.html", "package__version_8php" ],
     [ "rewrites.php", "rewrites_8php.html", "rewrites_8php" ],
-    [ "settings.php", "packages_2core_2include_2php_2settings_8php.html", "packages_2core_2include_2php_2settings_8php" ]
+    [ "settings.php", "packages_2core_2include_2php_2settings_8php.html", "packages_2core_2include_2php_2settings_8php" ],
+    [ "unit_tests.php", "core_2include_2php_2unit__tests_8php.html", [
+      [ "unit_tests", "classunit__tests.html", "classunit__tests" ]
+    ] ]
 ];

@@ -97,7 +97,6 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a49ce30e231126f168267a48801829bed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#a49ce30e231126f168267a48801829bed">$CustomSettings</a> = false</td></tr>
 <tr class="memitem:aae046bbb8c846e4d0a266db8991fa7a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#aae046bbb8c846e4d0a266db8991fa7a7">$Messages</a> = false</td></tr>
 <tr class="memitem:a156f7b55298bd183fd8358f4ef136990"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#a156f7b55298bd183fd8358f4ef136990">$PageJS</a> = false</td></tr>
-<tr class="memitem:ab6b348cec17ccb2c6288d8a750cac795"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#ab6b348cec17ccb2c6288d8a750cac795">$PublicCommonStateStartup</a> = false</td></tr>
 <tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 <tr class="memitem:aa66e1702635ad53ae24145742ea0b45a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcontext__set__1__0__0.html#aa66e1702635ad53ae24145742ea0b45a">$Trace</a> = false</td></tr>
@@ -109,7 +108,7 @@ Data Fields</h2></td></tr>
 <div class="textblock"><p>Class for rapid controllers and viewes development.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00028">28</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00026">26</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a095c5d389db211932136b53f25f39685"></a>
 <div class="memitem">
@@ -132,15 +131,13 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00165">165</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00162">162</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;CommonStateStartup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set::common_state_startup&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;ContextSetConfigs = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set::context_set_configs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;CustomStateStartup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set::custom_state_startup&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $PackageName = <span class="stringliteral">&#39;gui::context_set::public_common_state_startup&#39;</span>;</div>
-<div class="line">                        $this-&gt;PublicCommonStateStartup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( $PackageName , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;get_main_packages();</div>
 <div class="line">                        $this-&gt;get_additional_packages();</div>
 <div class="line">                  }</div>
@@ -175,7 +172,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00852">852</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00813">813</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -217,7 +214,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00258">258</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00253">253</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -277,7 +274,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00296">296</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00291">291</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -326,7 +323,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00228">228</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00223">223</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -380,7 +377,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00403">403</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00398">398</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -447,7 +444,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00818">818</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00779">779</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -511,7 +508,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00767">767</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00728">728</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -574,7 +571,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00348">348</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00343">343</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -633,7 +630,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00201">201</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00196">196</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -676,11 +673,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00590">590</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00585">585</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;Trace-&gt;start_group( <span class="stringliteral">&quot;custom configs processing&quot;</span> , COMMON );</div>
+<div class="line">                        $this-&gt;Trace-&gt;start_group( <span class="stringliteral">&quot;custom_configs_processing&quot;</span> , COMMON );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $this-&gt;Contexts as $i =&gt; $ContextPath )</div>
 <div class="line">                        {</div>
@@ -754,7 +751,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00499">499</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00494">494</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -826,7 +823,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00443">443</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00438">438</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -867,7 +864,7 @@ Data Fields</h2></td></tr>
 <p>Cached packages.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00040">40</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00038">38</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -881,7 +878,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00041">41</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00039">39</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -895,7 +892,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00044">44</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00042">42</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -911,7 +908,7 @@ Data Fields</h2></td></tr>
 <p>Paths to the non-standart contexts.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00088">88</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00085">85</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -925,7 +922,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00042">42</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00040">40</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -939,7 +936,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00045">45</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00043">43</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -953,7 +950,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00046">46</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00044">44</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -967,7 +964,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00043">43</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00041">41</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -981,7 +978,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00047">47</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00045">45</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -995,7 +992,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00048">48</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00046">46</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -1011,7 +1008,7 @@ Data Fields</h2></td></tr>
 <p>Prefix.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00064">64</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00061">61</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -1027,21 +1024,7 @@ Data Fields</h2></td></tr>
 <p>Class'es object wich provides methods.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00076">76</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab6b348cec17ccb2c6288d8a750cac795"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$PublicCommonStateStartup = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00049">49</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00073">73</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -1055,7 +1038,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00050">50</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00047">47</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -1069,7 +1052,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00051">51</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00048">48</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -1083,7 +1066,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="context__set_8php_source.html#l00052">52</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
+<p>Definition at line <a class="el" href="context__set_8php_source.html#l00049">49</a> of file <a class="el" href="context__set_8php_source.html">context_set.php</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1079,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcontext__set__1__0__0.html">context_set_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:31 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

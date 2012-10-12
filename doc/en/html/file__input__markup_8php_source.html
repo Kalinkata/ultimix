@@ -167,81 +167,60 @@ $(document).ready(function(){initNavTree('file__input__markup_8php_source.html',
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                  }</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            }</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_data_and_status( &amp;<a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_uploaded_file_code( &amp;<a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            {</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                  {</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                        $Name = <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> , <span class="stringliteral">&#39;file_input&#39;</span> );</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                        $TemplatePath = dirname( __FILE__ ).<span class="stringliteral">&#39;/res/templates/file_field.tpl&#39;</span>;</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                        $Data = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&quot;$Name&quot;</span> , <span class="stringliteral">&#39;string&#39;</span> , <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;value&#39;</span> , <span class="stringliteral">&#39;&#39;</span> ) );</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                        $UploadedFileCode = $this-&gt;CachedMultyFS-&gt;file_get_contents( $TemplatePath );             </div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                        $Status = $this-&gt;Security-&gt;get_gp(</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                              <span class="stringliteral">&quot;visible_$Name&quot;</span> , <span class="stringliteral">&#39;string&#39;</span> , <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;visible_value&#39;</span> , <span class="stringliteral">&#39;&#39;</span> )</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                        );</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                        </div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                        <span class="keywordflow">return</span>( array( $Data , $Status ) );</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                  }</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                  {</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;                  }</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;            }</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            </div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_uploaded_file_code( &amp;<a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            {</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                  {</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                        list( $Data , $Status ) = $this-&gt;get_data_and_status( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                        $TemplatePath = dirname( __FILE__ ).<span class="stringliteral">&#39;/res/templates/file_field.tpl&#39;</span>;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                        $UploadedFileCode = $this-&gt;CachedMultyFS-&gt;file_get_contents( $TemplatePath );             </div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                        $UploadedFileCode = str_replace( <span class="stringliteral">&quot;{data}&quot;</span> , $Data , $UploadedFileCode );</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                        $UploadedFileCode = str_replace( <span class="stringliteral">&quot;{status}&quot;</span> , $Status , $UploadedFileCode );</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                        $UploadedFileCode = $this-&gt;String-&gt;print_record( $UploadedFileCode , <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_raw_settings() );</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                        <span class="keywordflow">return</span>( $UploadedFileCode );</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                  }</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;                  {</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;                  }</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;            }</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno"><a class="code" href="classfile__input__markup__1__0__0.html#aa39d39c38d7bd7d070a411be07a03848">  282</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classfile__input__markup__1__0__0.html#aa39d39c38d7bd7d070a411be07a03848">compile_file_input</a>( &amp;<a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                  {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        $TemplatePath = dirname( __FILE__ ).<span class="stringliteral">&#39;/res/templates/file_input.tpl&#39;</span>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                        $Code = $this-&gt;CachedMultyFS-&gt;file_get_contents( $TemplatePath );</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                        $Code = str_replace( </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                              <span class="stringliteral">&#39;{uploaded_file_code}&#39;</span> , $this-&gt;get_uploaded_file_code( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> ) , $Code</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                        );</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                        $Url = <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;upload_url&#39;</span> );</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                        <span class="keywordflow">return</span>( $UploadedFileCode );</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                  }</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                  {</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                  }</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            }</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00325"></a><span class="lineno"><a class="code" href="classfile__input__markup__1__0__0.html#aa39d39c38d7bd7d070a411be07a03848">  325</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classfile__input__markup__1__0__0.html#aa39d39c38d7bd7d070a411be07a03848">compile_file_input</a>( &amp;<a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> )</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            {</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                  {</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                        $TemplatePath = dirname( __FILE__ ).<span class="stringliteral">&#39;/res/templates/file_input.tpl&#39;</span>;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                        $Code = $this-&gt;CachedMultyFS-&gt;file_get_contents( $TemplatePath );</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                        $Code = str_replace( </div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                              <span class="stringliteral">&#39;{uploaded_file_code}&#39;</span> , $this-&gt;get_uploaded_file_code( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> ) , $Code</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                        );</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                        $Url = <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;upload_url&#39;</span> );</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                        $Name = <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> , <span class="stringliteral">&#39;file_input&#39;</span> );</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                        $Code = $this-&gt;apply_upload_limitations( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> , $Code , $Name );</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                        $Code = $this-&gt;set_event_handlers( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> , $Code );</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                        $Code = str_replace( array( <span class="stringliteral">&#39;{name}&#39;</span> , <span class="stringliteral">&#39;{upload_url}&#39;</span> ) , array( $Name , $Url ) , $Code );</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                  }</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;                  {</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;                  }</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;            }</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;      }</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;?&gt;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                        $Name = <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> , <span class="stringliteral">&#39;file_input&#39;</span> );</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                        $Code = $this-&gt;apply_upload_limitations( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> , $Code , $Name );</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                        $Code = $this-&gt;set_event_handlers( <a class="code" href="classfile__input__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> , $Code );</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                        $Code = str_replace( array( <span class="stringliteral">&#39;{name}&#39;</span> , <span class="stringliteral">&#39;{upload_url}&#39;</span> ) , array( $Name , $Url ) , $Code );</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                  }</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                  {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                  }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_28364750a72fad1195852335c7d5ff35.html">file_input</a></li><li class="navelem"><a class="el" href="dir_60c19322799d1756e1c4f3d5f73e1234.html">packages</a></li><li class="navelem"><a class="el" href="dir_ae8f6fec1e17ea4aa3e9bcda7e6a92ff.html">file_input_markup</a></li><li class="navelem"><a class="el" href="file__input__markup_8php.html">file_input_markup.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:50 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:41 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

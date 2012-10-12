@@ -25,7 +25,41 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
+		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var				$PageComposer = false;
+		var				$Security = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -68,6 +102,54 @@
 		function			test_load_package()
 		{
 			get_package( 'category::category_view' , 'last' , __FILE__ );
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list()
+		{
+			$PageContent = $this->PageComposer->get_page( 'category_manager' );
+
+			if( stripos( $PageContent , 'category' ) === false )
+			{
+				print( 'ERROR: category list was not displayed' );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record_form()
+		{
+			$this->Security->set_g( 'category_context_action' , 'create_record_form' );
+
+			$PageContent = $this->PageComposer->get_page( 'category_manager' );
+
+			if( stripos( $PageContent , 'category_create_form' ) === false )
+			{
+				print( 'ERROR: category create form was not displayed'.$PageContent );
+				return;
+			}
 
 			return( 'TEST PASSED' );
 		}

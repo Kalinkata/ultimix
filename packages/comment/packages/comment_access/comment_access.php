@@ -297,11 +297,19 @@
 					$Record , 'master_type:command;master_id:integer'
 				);
 
-				$Record = $this->SecurityParser->parse_parameters( $Record , 'comment:string' );
-				set_field( $Record , 'author' , $this->UserAlgorithms->get_id() );
-				set_field( $Record , 'page' , $this->Security->get_srv( 'REQUEST_URI' , 'string' , './index.html' ) );
+				$Record = $this->SecurityParser->parse_parameters( 
+					$Record , 'comment:string;page:string,allow_not_set,default_'
+				);
 
-				return( $Record );
+				set_field( $Record , 'author' , $this->UserAlgorithms->get_id() );
+				if( get_field( $Record , 'page' ) === '' )
+				{
+					set_field( 
+						$Record , 'page' , $this->Security->get_srv( 'REQUEST_URI' , 'string' , './index.html' )
+					);
+				}
+
+				return( array( $Record , $MasterLink ) );
 			}
 			catch( Exception $e )
 			{
@@ -331,11 +339,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			create( $Record )
+		function			create( &$Record )
 		{
 			try
 			{
-				$Record = $this->compile_record( $Record );
+				list( $Record , $MasterLink ) = $this->compile_record( $Record );
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record , CREATION_DATE );
 
@@ -380,7 +388,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			update( $id , $Record )
+		function			update( $id , &$Record )
 		{
 			try
 			{

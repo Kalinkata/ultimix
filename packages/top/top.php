@@ -163,8 +163,6 @@
 			}
 		}
 
-		//TODO: filter 'literal' in the {lang:literal} macro for figure braces
-
 		/**
 		*	\~russian Функция отрисовки конкретного топа.
 		*

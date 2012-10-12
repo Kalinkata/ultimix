@@ -25,7 +25,41 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
+		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var				$PageComposer = false;
+		var				$Security = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -84,8 +118,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageComposer = get_package_object( 'page::page_composer' );
-			$PageContent = $PageComposer->get_page( 'user_permit_manager' );
+			$PageContent = $this->PageComposer->get_page( 'user_permit_manager' );
 
 			if( stripos( $PageContent , 'admin' ) === false )
 			{
@@ -93,6 +126,21 @@
 				return;
 			}
 
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record_form()
+		{
 			return( 'TEST PASSED' );
 		}
 	}

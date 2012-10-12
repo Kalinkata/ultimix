@@ -76,10 +76,13 @@ CREATE TABLE `{prefix}comment` (
 	`creation_date` datetime NOT NULL ,
 	`page` text NOT NULL ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}comment` ( `id` , `author` , `comment` , `creation_date` , `page` ) VALUES 
-( '1' , '1' , 'Welcome comment' , '2012-09-27 23:59:59' , 'index.html' );
+( '1' , '1' , 'Welcome comment' , '2012-09-27 23:59:59' , 'index.html' ),
+( '2' , '1' , 'test_comment' , '2012-10-12 10:46:39' , '/ultimix/direct_view.html?testing_package_name=comment::comment_controller&amp;package_name=testing&amp;package_version=last&amp;login=admin&amp;password=root&amp;testing_package_version=last' ),
+( '3' , '1' , 'test_comment' , '2012-10-12 10:48:33' , '/ultimix/direct_view.html?testing_package_name=comment::comment_controller&amp;package_name=testing&amp;package_version=last&amp;login=admin&amp;password=root&amp;testing_package_version=last' ),
+( '4' , '1' , 'test_comment' , '2012-10-12 10:50:08' , '/ultimix/direct_view.html?testing_package_name=comment::comment_controller&amp;package_name=testing&amp;package_version=last&amp;login=admin&amp;password=root&amp;testing_package_version=last' );
 
 DROP TABLE IF EXISTS `{prefix}content`;
 CREATE TABLE `{prefix}content` (
@@ -155,7 +158,7 @@ CREATE TABLE `{prefix}group` (
 	`title` text NOT NULL ,
 	`comment` text ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}group` ( `id` , `title` , `comment` ) VALUES 
 ( '11' , 'user_manager' , 'group of permits for user managers' ),
@@ -172,7 +175,11 @@ INSERT INTO `{prefix}group` ( `id` , `title` , `comment` ) VALUES
 ( '20' , 'package_manager' , 'group of permits for package management' ),
 ( '21' , 'static_content_manager' , 'group of permits for static content management' ),
 ( '23' , 'ad_banner_manager' , 'group of permits for banner management' ),
-( '24' , 'ad_campaign_manager' , 'group of permits for campaign management' );
+( '24' , 'ad_campaign_manager' , 'group of permits for campaign management' ),
+( '25' , 'subscription_manager' , 'group of permits for subscription management' ),
+( '26' , 'site_manager' , 'group of permits for site management' ),
+( '27' , 'template_manager' , 'group of permits for template management' ),
+( '28' , 'report_manager' , 'group of permits for report management' );
 
 DROP TABLE IF EXISTS `{prefix}link`;
 CREATE TABLE `{prefix}link` (
@@ -181,7 +188,7 @@ CREATE TABLE `{prefix}link` (
 	`object2_id` int(10) unsigned NOT NULL ,
 	`type` int(10) unsigned NOT NULL ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}link` ( `id` , `object1_id` , `object2_id` , `type` ) VALUES 
 ( '14' , '1' , '3' , '1' ),
@@ -267,7 +274,29 @@ INSERT INTO `{prefix}link` ( `id` , `object1_id` , `object2_id` , `type` ) VALUE
 ( '136' , '24' , '64' , '3' ),
 ( '137' , '24' , '66' , '3' ),
 ( '138' , '24' , '65' , '3' ),
-( '139' , '1' , '24' , '2' );
+( '139' , '1' , '24' , '2' ),
+( '140' , '1' , '25' , '2' ),
+( '141' , '25' , '68' , '3' ),
+( '142' , '25' , '69' , '3' ),
+( '143' , '25' , '70' , '3' ),
+( '144' , '25' , '67' , '3' ),
+( '145' , '1' , '26' , '2' ),
+( '146' , '26' , '71' , '3' ),
+( '147' , '26' , '74' , '3' ),
+( '148' , '26' , '73' , '3' ),
+( '149' , '26' , '72' , '3' ),
+( '150' , '1' , '27' , '2' ),
+( '151' , '27' , '76' , '3' ),
+( '152' , '27' , '77' , '3' ),
+( '153' , '27' , '75' , '3' ),
+( '154' , '27' , '78' , '3' ),
+( '155' , '1' , '28' , '2' ),
+( '156' , '28' , '80' , '3' ),
+( '157' , '28' , '81' , '3' ),
+( '158' , '28' , '82' , '3' ),
+( '159' , '28' , '79' , '3' ),
+( '160' , '0' , '3' , '5' ),
+( '161' , '0' , '4' , '5' );
 
 DROP TABLE IF EXISTS `{prefix}link_dictionary`;
 CREATE TABLE `{prefix}link_dictionary` (
@@ -275,13 +304,14 @@ CREATE TABLE `{prefix}link_dictionary` (
 	`object1_type` text NOT NULL ,
 	`object2_type` text NOT NULL ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}link_dictionary` ( `id` , `object1_type` , `object2_type` ) VALUES 
 ( '1' , 'user' , 'permit' ),
 ( '2' , 'user' , 'group' ),
 ( '3' , 'group' , 'permit' ),
-( '4' , 'user' , 'review' );
+( '4' , 'user' , 'review' ),
+( '5' , '0' , 'comment' );
 
 DROP TABLE IF EXISTS `{prefix}menu`;
 CREATE TABLE `{prefix}menu` (
@@ -336,7 +366,7 @@ CREATE TABLE `{prefix}permit` (
 	`permit` text NOT NULL ,
 	`comment` text ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}permit` ( `id` , `permit` , `comment` ) VALUES 
 ( '1' , 'admin' , 'admin permit' ),
@@ -359,11 +389,11 @@ INSERT INTO `{prefix}permit` ( `id` , `permit` , `comment` ) VALUES
 ( '21' , 'update_user' , 'update user permit' ),
 ( '22' , 'menu_manager' , 'menu manager permit' ),
 ( '23' , 'create_menu' , 'create menu permit' ),
-( '24' , 'edit_menu' , 'edit menu permit' ),
+( '24' , 'update_menu' , 'menu updating permit' ),
 ( '25' , 'delete_menu' , 'delete menu permit' ),
 ( '26' , 'menu_item_manager' , 'menu item manager permit' ),
 ( '27' , 'create_menu_item' , 'create menu item permit' ),
-( '28' , 'edit_menu_item' , 'edit menu item permit' ),
+( '28' , 'update_menu_item' , 'menu item updating permit' ),
 ( '29' , 'delete_menu_item' , 'delete menu item permit' ),
 ( '30' , 'review_manager' , 'review manager permit' ),
 ( '31' , 'delete_review' , 'delete review permit' ),
@@ -399,12 +429,37 @@ INSERT INTO `{prefix}permit` ( `id` , `permit` , `comment` ) VALUES
 ( '63' , 'ad_campaign_manager' , 'ad campaign manager permit' ),
 ( '64' , 'create_ad_campaign' , 'ad campaign creation permit' ),
 ( '65' , 'update_ad_campaign' , 'ad campaign updating permit' ),
-( '66' , 'delete_ad_campaign' , 'ad campaign deleting permit' );
+( '66' , 'delete_ad_campaign' , 'ad campaign deleting permit' ),
+( '67' , 'subscription_manager' , 'subscription manager permit' ),
+( '68' , 'create_subscription' , 'subscription creation permit' ),
+( '69' , 'delete_subscription' , 'subscription deleting permit' ),
+( '70' , 'update_subscription' , 'subscription updating permit' ),
+( '71' , 'site_manager' , 'site manager permit' ),
+( '72' , 'create_site' , 'site creation permit' ),
+( '73' , 'delete_site' , 'site deleting permit' ),
+( '74' , 'update_site' , 'site updating permit' ),
+( '75' , 'template_manager' , 'template manager permit' ),
+( '76' , 'create_template' , 'template creation permit' ),
+( '77' , 'delete_template' , 'template deleting permit' ),
+( '78' , 'update_template' , 'template updating permit' ),
+( '79' , 'report_manager' , 'report manager permit' ),
+( '80' , 'create_report' , 'report creation permit' ),
+( '81' , 'delete_report' , 'report deleting permit' ),
+( '82' , 'update_report' , 'report updating permit' );
 
 DROP TABLE IF EXISTS `{prefix}rating`;
 CREATE TABLE `{prefix}rating` (
 	`id` int(10) unsigned NOT NULL auto_increment ,
 	`value` float NOT NULL default '0' ,
+	PRIMARY KEY  ( `id` )
+) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{prefix}report`;
+CREATE TABLE `{prefix}report` (
+	`id` int(10) unsigned NOT NULL auto_increment ,
+	`name` text NOT NULL ,
+	`package_name` text NOT NULL ,
+	`package_version` text NOT NULL ,
 	PRIMARY KEY  ( `id` )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -447,6 +502,30 @@ CREATE TABLE `{prefix}setting` (
 	PRIMARY KEY  ( `id` )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{prefix}site`;
+CREATE TABLE `{prefix}site` (
+	`id` int(10) unsigned NOT NULL auto_increment ,
+	`domain` text ,
+	`comment` text ,
+	`creation_date` datetime NOT NULL ,
+	PRIMARY KEY  ( `id` )
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `{prefix}site` ( `id` , `domain` , `comment` , `creation_date` ) VALUES 
+( '1' , 'ultimix.sf.net' , 'Ultimix Project&#039;s site' , '2012-10-12 19:02:16' );
+
+DROP TABLE IF EXISTS `{prefix}subscription`;
+CREATE TABLE `{prefix}subscription` (
+	`id` int(10) unsigned NOT NULL auto_increment ,
+	`title` text ,
+	`description` text ,
+	`template` text ,
+	PRIMARY KEY  ( `id` )
+) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+INSERT INTO `{prefix}subscription` ( `id` , `title` , `description` , `template` ) VALUES 
+( '1' , 'Main Subscription Title' , 'Main Subscription Description' , 'main_template.tpl' );
+
 DROP TABLE IF EXISTS `{prefix}system_structure`;
 CREATE TABLE `{prefix}system_structure` (
 	`id` int(10) unsigned NOT NULL auto_increment ,
@@ -454,13 +533,11 @@ CREATE TABLE `{prefix}system_structure` (
 	`root_page` text NOT NULL ,
 	`navigation` text ,
 	PRIMARY KEY  ( `id` )
-) AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 INSERT INTO `{prefix}system_structure` ( `id` , `page` , `root_page` , `navigation` ) VALUES 
 ( '1' , 'index' , 'index' , '' ),
 ( '2' , 'admin' , 'admin' , '' ),
-( '3' , 'system_structure_manager' , 'admin' , '' ),
-( '4' , 'auth' , 'index' , '' ),
 ( '5' , 'map' , 'index' , '' ),
 ( '6' , 'user_manager' , 'admin' , '' ),
 ( '7' , 'group_manager' , 'admin' , '' ),
@@ -484,7 +561,11 @@ INSERT INTO `{prefix}system_structure` ( `id` , `page` , `root_page` , `navigati
 ( '25' , 'static_content_manager' , 'admin' , '' ),
 ( '26' , 'ad_banner_manager' , 'admin' , '' ),
 ( '27' , 'ad_campaign_manager' , 'admin' , '' ),
-( '28' , 'page_manager' , 'admin' , '' );
+( '28' , 'page_manager' , 'admin' , '' ),
+( '29' , 'menu_manager' , 'admin' , '' ),
+( '30' , 'menu_item_manager' , 'admin' , '' ),
+( '31' , 'subscription_manager' , 'admin' , '' ),
+( '32' , 'site_manager' , 'admin' , '' );
 
 DROP TABLE IF EXISTS `{prefix}uploaded_file`;
 CREATE TABLE `{prefix}uploaded_file` (

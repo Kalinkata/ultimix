@@ -15,5 +15,6 @@ var classcache__1__0__0 =
     [ "$CacheSwitch", "classcache__1__0__0.html#a5066d64f10e68f2640372497dec35a63", null ],
     [ "$CacheTimeout", "classcache__1__0__0.html#a9c0fbcd80bd8db9333dc54f3ec18e8c1", null ],
     [ "$CacheWasUpdated", "classcache__1__0__0.html#af9d4b230b961a54d62c3a6cf18fa0fa3", null ],
+    [ "$Security", "classcache__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ],
     [ "$TableOfContents", "classcache__1__0__0.html#ac668e4b309f70857cd38d83da5328dde", null ]
 ];

@@ -104,44 +104,48 @@ $(document).ready(function(){initNavTree('subscription__controller_8php_source.h
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            {</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                  {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        $UserId = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;user_id&#39;</span> , <span class="stringliteral">&#39;integer&#39;</span> );</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        $Hash = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;hash&#39;</span> , <span class="stringliteral">&#39;string&#39;</span> );</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        $this-&gt;SubscriptionAlgorithms-&gt;unsubscribe_user( $UserId , $Hash );</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                  }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                  {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        $UserId = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;user_id&#39;</span> , <span class="stringliteral">&#39;integer&#39;</span> , <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        <span class="keywordflow">if</span>( $UserId !== <span class="keyword">false</span> )</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                              $Hash = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;hash&#39;</span> , <span class="stringliteral">&#39;string&#39;</span> );</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                              $this-&gt;SubscriptionAlgorithms-&gt;unsubscribe_user( $UserId , $Hash );</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        }</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            </div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="code" href="classsubscription__controller__1__0__0.html#a3dcd9567cfb61306ea71a6fdae753bd1">  117</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classsubscription__controller__1__0__0.html#a3dcd9567cfb61306ea71a6fdae753bd1">controller</a>( $Options )</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                  {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        $ContextSet = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        $Path = dirname( __FILE__ );</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        $ContextSet-&gt;add_context( <span class="stringliteral">&quot;$Path/conf/cfcxs_unsubscribe&quot;</span> );</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                  {</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                  }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="code" href="classsubscription__controller__1__0__0.html#a3dcd9567cfb61306ea71a6fdae753bd1">  121</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classsubscription__controller__1__0__0.html#a3dcd9567cfb61306ea71a6fdae753bd1">controller</a>( $Options )</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                  {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        $ContextSet = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        $ContextSet-&gt;execute( $Options , $this , __FILE__ );</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                  }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                  {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        $Path = dirname( __FILE__ );</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        $ContextSet-&gt;add_context( <span class="stringliteral">&quot;$Path/conf/cfcxs_unsubscribe&quot;</span> );</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        $ContextSet-&gt;execute( $Options , $this , __FILE__ );</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                  }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;?&gt;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                  {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                  }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_8c2b4372fd6ef5b459e04177ebc44e88.html">subscription</a></li><li class="navelem"><a class="el" href="dir_4e43235ce4c355b9c29ba3af03fa2331.html">packages</a></li><li class="navelem"><a class="el" href="dir_9da64d335e1d6fd45394bffffbe67b49.html">subscription_controller</a></li><li class="navelem"><a class="el" href="subscription__controller_8php.html">subscription_controller.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:15 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:08 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

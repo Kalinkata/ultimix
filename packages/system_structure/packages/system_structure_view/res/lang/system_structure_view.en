@@ -14,3 +14,4 @@ system_structure_was_deleted=All selected records were deleted
 no_selected_system_structure=At least one record must be selected
 system_structure_update_was_completed=Brunch was updated
 shure_to_delete_all_system_structure=Are you shure that you want to delete all selected records?
+system_structure_create_was_completed=Record was created

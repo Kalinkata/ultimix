@@ -167,32 +167,32 @@ $(document).ready(function(){initNavTree('fs__markup_8php_source.html','');});
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                  }</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            }</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno"><a class="code" href="classfs__markup__1__0__0.html#a6355827e26b1a9c55baad179483a23d6">  221</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classfs__markup__1__0__0.html#a6355827e26b1a9c55baad179483a23d6">compile_package_path</a>( $Str , $Changed )</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                  {</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                        $RealPackagePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                              $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> ) , </div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                              $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                        );</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                        <span class="keywordflow">return</span>( $RealPackagePath );</div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="code" href="classfs__markup__1__0__0.html#ac4aaee25a591af49750c0fc7a3df67d8">  217</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classfs__markup__1__0__0.html#ac4aaee25a591af49750c0fc7a3df67d8">compile_package_path</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                  {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                        $RealPackagePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                              $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> ) , </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                              $Settings-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                        );</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                        <span class="keywordflow">return</span>( $RealPackagePath );</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                  }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                  {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                  }</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                  {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                  }</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;      }</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;      </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;?&gt;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            }</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;      }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_6e11b47f71b207b27145207ea75fef9e.html">gui</a></li><li class="navelem"><a class="el" href="dir_22da140b0ceba9af8df63b75c08d8cba.html">packages</a></li><li class="navelem"><a class="el" href="dir_17474f9d10817f7867aa497007fb78cf.html">fs_markup</a></li><li class="navelem"><a class="el" href="fs__markup_8php.html">fs_markup.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:55 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:44 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

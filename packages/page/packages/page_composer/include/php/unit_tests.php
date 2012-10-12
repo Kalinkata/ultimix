@@ -741,6 +741,62 @@
 
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
+
+		/**
+		*	\~russian Проверка налиция теста на отображение формы создания сущностей.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing unit_tests for test_create_record_form test.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_create_record_form()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_display_list' ) !== false && 
+					strpos( $Content , 'test_create_record_form' ) === false )
+				{
+					$Errors++;
+					print( "<nobr>".$Files[ $i ]."</nobr><br>" );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка налиция теста на отображение формы создания сущностей.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing unit_tests for test_create_record_form test.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_create_record()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_create_record_form' ) !== false && 
+					strpos( $Content , 'test_create_record' ) === false )
+				{
+					$Errors++;
+					print( "<nobr>".$Files[ $i ]."</nobr><br>" );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
 	}
 
 ?>

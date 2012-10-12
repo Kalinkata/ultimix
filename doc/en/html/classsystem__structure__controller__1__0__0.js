@@ -3,7 +3,7 @@ var classsystem__structure__controller__1__0__0 =
     [ "__construct", "classsystem__structure__controller__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
     [ "controller", "classsystem__structure__controller__1__0__0.html#a3dcd9567cfb61306ea71a6fdae753bd1", null ],
     [ "create", "classsystem__structure__controller__1__0__0.html#aa371e5c8c8f4e78b01fda3c304ac2c47", null ],
-    [ "edit", "classsystem__structure__controller__1__0__0.html#a69d9e1d04655f37c06e1b7a77728b18a", null ],
+    [ "update", "classsystem__structure__controller__1__0__0.html#a28d72111b41c2be19f4b9212e1cae2ea", null ],
     [ "$CachedFS", "classsystem__structure__controller__1__0__0.html#ae6d19df8a3ae8cdbb62ce6ce91f8715f", null ],
     [ "$PageComposer", "classsystem__structure__controller__1__0__0.html#a524e5510549d6b36c3f6a9e025faca4e", null ],
     [ "$Security", "classsystem__structure__controller__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ],

@@ -51,15 +51,62 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		private	function	validate_all( &$Params , &$RegExValidators )
+		{
+			try
+			{
+				$Valid = true;
+				$Matches = array();
+
+				if( isset( $RegExValidators[ '_all' ] ) )
+				{
+					$Result = preg_match( $RegExValidators[ '_all' ] , $Params , $Matches );
+					$Valid = count( $Matches ) == 0 ? false : $Valid;
+				}
+
+				return( $Valid );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+	
+		/**
+		*	\~russian Функция проверки параметров макроса.
+		*
+		*	@param $Params - Параметры макроса.
+		*
+		*	@param $RegExValidators - Регулярные выражения для проверки выбираемых параметров.
+		*
+		*	@return true/false.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function validates macro's parameters.
+		*
+		*	@param $Params - Macro's parameters.
+		*
+		*	@param $RegExValidators - Regular expressions for parameters validation.
+		*
+		*	@return true/false.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			is_params_valid( &$Params , &$RegExValidators )
 		{
 			try
 			{
 				$Valid = true;
 				$Matches = array();
-				/* проверяем валидность параметров если надо */
 				if( count( $RegExValidators ) )
 				{
+					$Valid = $this->validate_all( $Params , $RegExValidators );
 					$ParamsList = explode( ';' , $Params );
 					foreach( $ParamsList as $key1 => $p )
 					{

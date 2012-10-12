@@ -79,8 +79,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d6c46ea48ba52de9e19839351b338a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#a9d6c46ea48ba52de9e19839351b338a6">get_last_success_message</a> ()</td></tr>
 <tr class="memitem:a2446e81e02e044c5309e4819ce901222"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#a2446e81e02e044c5309e4819ce901222">get_success_message_from_session</a> ()</td></tr>
 <tr class="memitem:a8939674ecdedc30cbc4b317003041eac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#a8939674ecdedc30cbc4b317003041eac">clear_messages</a> ()</td></tr>
-<tr class="memitem:a33dd5d24b189e61d6203ab796bc3f3d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#a33dd5d24b189e61d6203ab796bc3f3d6">compile_success_messages</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:a7b49f0d9710887c6b5487833e4953e99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#a7b49f0d9710887c6b5487833e4953e99">compile_error_messages</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:a4c12ea23fcb07079578d8bcec37f73e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#a4c12ea23fcb07079578d8bcec37f73e9">compile_success_message</a> (&amp;$Settings)</td></tr>
+<tr class="memitem:ab6537fdf491a81fe60e7b132fc643efe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmessages__1__0__0.html#ab6537fdf491a81fe60e7b132fc643efe">compile_error_message</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -258,12 +258,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a7b49f0d9710887c6b5487833e4953e99"></a>
+<a class="anchor" id="ab6537fdf491a81fe60e7b132fc643efe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">compile_error_messages </td>
+          <td class="memname">compile_error_message </td>
           <td>(</td>
           <td class="paramtype">&amp;&#160;</td>
           <td class="paramname"><em>$Settings</em></td><td>)</td>
@@ -287,7 +287,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="messages_8php_source.html#l00369">369</a> of file <a class="el" href="messages_8php_source.html">messages.php</a>.</p>
+<p>Definition at line <a class="el" href="messages_8php_source.html#l00368">368</a> of file <a class="el" href="messages_8php_source.html">messages.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -298,7 +298,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              $StartingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;error_start.tpl&#39;</span> );</div>
 <div class="line">                              $ClosingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;error_end.tpl&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                              $Code = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;ErrorMessages );</div>
+<div class="line">                              $Messages = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;ErrorMessages );</div>
 <div class="line"></div>
 <div class="line">                              $Code = $StartingDiv.<span class="stringliteral">&quot;{lang:$Messages}&quot;</span>.$ClosingDiv;</div>
 <div class="line"></div>
@@ -315,12 +315,12 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a33dd5d24b189e61d6203ab796bc3f3d6"></a>
+<a class="anchor" id="a4c12ea23fcb07079578d8bcec37f73e9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">compile_success_messages </td>
+          <td class="memname">compile_success_message </td>
           <td>(</td>
           <td class="paramtype">&amp;&#160;</td>
           <td class="paramname"><em>$Settings</em></td><td>)</td>
@@ -353,7 +353,6 @@ Data Fields</h2></td></tr>
 <div class="line">                        <span class="keywordflow">if</span>( isset( $this-&gt;SuccessMessages[ 0 ] ) )</div>
 <div class="line">                        {</div>
 <div class="line">                              $StartingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;success_start.tpl&#39;</span> );</div>
-<div class="line"></div>
 <div class="line">                              $ClosingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;success_end.tpl&#39;</span> );</div>
 <div class="line"></div>
 <div class="line">                              $Messages = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;SuccessMessages );</div>
@@ -362,7 +361,7 @@ Data Fields</h2></td></tr>
 <div class="line"></div>
 <div class="line">                              $this-&gt;SuccessMessages = array();</div>
 <div class="line">                        }</div>
-<div class="line"></div>
+<div class="line">                        </div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -579,7 +578,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classmessages__1__0__0.html">messages_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:37 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:48 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

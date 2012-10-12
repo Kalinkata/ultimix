@@ -77,10 +77,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9d5396ae00e865192b892d2889896ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#af9d5396ae00e865192b892d2889896ab">delete</a> (&amp;$Options)</td></tr>
 <tr class="memitem:afd0553badf3c8d73b42aa29d1abd0064"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#afd0553badf3c8d73b42aa29d1abd0064">multy_call</a> (&amp;$Options)</td></tr>
 <tr class="memitem:a2dd1e7f3f425d97549939421273d986f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#a2dd1e7f3f425d97549939421273d986f">create</a> (&amp;$Options)</td></tr>
-<tr class="memitem:a7d32bd4bf4e3e1af86efa8c5b4a3f968"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#a7d32bd4bf4e3e1af86efa8c5b4a3f968">public_create</a> (&amp;$Options)</td></tr>
 <tr class="memitem:a3c0809d303f9935da7ccbbe59ef220b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#a3c0809d303f9935da7ccbbe59ef220b9">get_update_record</a> (&amp;$Options, $Ids, $RecordOriginal)</td></tr>
 <tr class="memitem:aceb5ec26421f99393bee1b810412047b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#aceb5ec26421f99393bee1b810412047b">update</a> (&amp;$Options)</td></tr>
-<tr class="memitem:a4426ba3226a4e5a92fd429d7f72b1df9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#a4426ba3226a4e5a92fd429d7f72b1df9">public_update</a> (&amp;$Options)</td></tr>
 <tr class="memitem:a80240489dcea694f4437e1fac8c3c0e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdefault__controllers__1__0__0.html#a80240489dcea694f4437e1fac8c3c0e9">copy</a> (&amp;$Options)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -165,7 +163,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00568">568</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
+<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00508">508</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -268,7 +266,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        <a class="code" href="classdefault__controllers__1__0__0.html#a8e0c307212540098e20cd27014f9f1a7">$Provider</a> = $this-&gt;ContextSetUtilities-&gt;get_data_provider( $Options , $this-&gt;Provider );</div>
 <div class="line">                        $FunctionName = $Options-&gt;get_setting( <span class="stringliteral">&#39;delete_func&#39;</span> , <span class="stringliteral">&#39;delete&#39;</span> );</div>
 <div class="line">                        $Ids = $this-&gt;ContextSetUtilities-&gt;get_posted_ids( $this-&gt;Prefix );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( method_exists( <a class="code" href="classdefault__controllers__1__0__0.html#a8e0c307212540098e20cd27014f9f1a7">$Provider</a> , $FunctionName ) === <span class="keyword">true</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              call_user_func( array( <a class="code" href="classdefault__controllers__1__0__0.html#a8e0c307212540098e20cd27014f9f1a7">$Provider</a> , $FunctionName ) , implode( <span class="charliteral">&#39;,&#39;</span> , $Ids ) , $Options );</div>
@@ -334,18 +332,18 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00409">409</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
+<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00379">379</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $GetPostValidation = $Options-&gt;get_setting( <span class="stringliteral">&#39;get_post_validation&#39;</span> , <span class="keyword">false</span> );</div>
 <div class="line">                        $ValidationScript = $Options-&gt;get_setting( <span class="stringliteral">&#39;custom_get_post_validation&#39;</span> , $GetPostValidation );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $ValidationScript === <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&#39;There is no script to extract data from http headers&#39;</span> ) );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $RecordNew = $this-&gt;SecurityParser-&gt;parse_http_parameters( $ValidationScript );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;compile_update_record( $RecordNew , $RecordOriginal ) );</div>
@@ -406,90 +404,6 @@ Data Fields</h2></td></tr>
 <div class="line">                                    call_user_func( array( <a class="code" href="classdefault__controllers__1__0__0.html#a8e0c307212540098e20cd27014f9f1a7">$Provider</a> , $Options-&gt;get_setting( <span class="stringliteral">&#39;func_name&#39;</span> ) ) , $id , $Options );</div>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a7d32bd4bf4e3e1af86efa8c5b4a3f968"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">public_create </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Options</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function creates record (public).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Execution parameters.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00317">317</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $this-&gt;Create( $Options );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a4426ba3226a4e5a92fd429d7f72b1df9"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">public_update </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Options</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function edits records (public).</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Execution parameters.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00538">538</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $this-&gt;edit( $Options );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -581,7 +495,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00491">491</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
+<p>Definition at line <a class="el" href="default__controllers_8php_source.html#l00461">461</a> of file <a class="el" href="default__controllers_8php_source.html">default_controllers.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -698,7 +612,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classdefault__controllers__1__0__0.html">default_controllers_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:33 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:42 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

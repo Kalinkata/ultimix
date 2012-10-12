@@ -82,9 +82,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:addbfa184c2bd1dc56d347b2a7e86ea43"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#addbfa184c2bd1dc56d347b2a7e86ea43">$AutoMarkup</a> = false</td></tr>
 <tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
 <tr class="memitem:aeabe0ef548439095080c9a173b3a609d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#aeabe0ef548439095080c9a173b3a609d">$Link</a> = false</td></tr>
-<tr class="memitem:a53cd29da1b62d8d5aa05e4718293d77d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#a53cd29da1b62d8d5aa05e4718293d77d">$PageParts</a> = false</td></tr>
 <tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:a9e817b32b3d2966b645153144cada577"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#a9e817b32b3d2966b645153144cada577">$SecurityParser</a> = false</td></tr>
 <tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsubscription__algorithms__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
@@ -115,9 +115,9 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
+<div class="line">                        $this-&gt;AutoMarkup = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::auto_markup&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Link = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;link&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $this-&gt;PageParts = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_parts&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;SecurityParser = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security::security_parser&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
@@ -250,7 +250,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        $Subscription = <a class="code" href="functional__programming_8php.html#aeb504a5f142413c2643d5e8f315978e5">set_field</a>( $Subscription , <span class="stringliteral">&#39;subscription_id&#39;</span> , <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $Subscription , <span class="stringliteral">&#39;id&#39;</span> ) );</div>
 <div class="line">                        $Code = $this-&gt;String-&gt;print_record( $Code , $Subscription );</div>
 <div class="line"></div>
-<div class="line">                        $Code = $this-&gt;PageParts-&gt;execute_processors( $Code , <span class="stringliteral">&#39;post_process&#39;</span> );</div>
+<div class="line">                        $Code = $this-&gt;AutoMarkup-&gt;compile_string( $Code );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
@@ -509,12 +509,12 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
-<a class="anchor" id="a1b21a3420462aafbfb9e6420c224452d"></a>
+<a class="anchor" id="addbfa184c2bd1dc56d347b2a7e86ea43"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$CachedMultyFS = false</td>
+          <td class="memname">$AutoMarkup = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -525,12 +525,12 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aeabe0ef548439095080c9a173b3a609d"></a>
+<a class="anchor" id="a1b21a3420462aafbfb9e6420c224452d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$Link = false</td>
+          <td class="memname">$CachedMultyFS = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -539,12 +539,12 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a53cd29da1b62d8d5aa05e4718293d77d"></a>
+<a class="anchor" id="aeabe0ef548439095080c9a173b3a609d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">$PageParts = false</td>
+          <td class="memname">$Link = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -618,7 +618,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classsubscription__algorithms__1__0__0.html">subscription_algorithms_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:46 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:57 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

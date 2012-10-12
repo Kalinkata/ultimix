@@ -1,8 +1,7 @@
 var classuser__markup__1__0__0 =
 [
     [ "__construct", "classuser__markup__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
-    [ "compile_guest", "classuser__markup__1__0__0.html#a0caebf38b013c270a4a83165e0a77054", null ],
-    [ "compile_logged_in", "classuser__markup__1__0__0.html#ac8a9ce09c6b9c2feb7a0a39d7501a4f5", null ],
+    [ "compile_auth", "classuser__markup__1__0__0.html#a95a2924edd35e0298160e7d59e92585f", null ],
     [ "compile_months_on_site", "classuser__markup__1__0__0.html#af67e68f960bfb16a4c112c2b3782483e", null ],
     [ "compile_session_login", "classuser__markup__1__0__0.html#adbf7054dd2ba4cf0f270998186fc8354", null ],
     [ "compile_user_id", "classuser__markup__1__0__0.html#a4d535006ad09cd3069b2aab9f6e7571f", null ],

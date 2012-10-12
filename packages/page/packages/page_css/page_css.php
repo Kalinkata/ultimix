@@ -208,8 +208,9 @@
 		private function	stylesheets_join1( $Files , $RetFiles )
 		{
 			try
-			{	
-				$FilesHash = md5( implode_ex( '' , $Files , 'path' ) );
+			{
+				$FilesHash = md5( implode( '' , $Files ) );
+
 				$UnionFilePath = dirname( __FILE__ )."/tmp/$FilesHash.css";
 
 				if( $this->CachedMultyFS->file_exists( $UnionFilePath ) === false || 

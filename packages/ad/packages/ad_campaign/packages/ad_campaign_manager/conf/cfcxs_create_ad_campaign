@@ -1,6 +1,4 @@
-call_params_filter=create_{prefix}:filled_integer,value_1
-get_post_filter={prefix}_action:string,value_create_record
-get_post_validation=city:filled_string,err_msg_city_must_be_set#street:filled_string,err_msg_street_must_be_set#house:filled_integer,err_msg_house_must_be_set#building:integer,err_msg_building_must_be_set#flat:filled_integer,err_msg_flat_must_be_set#zip_code:filled_string,err_msg_zip_code_must_be_set
-permits_validation=create_{prefix}
-get_post_extraction_script=city:string#street:string#house:integer#building:integer#flat:integer#zip_code:string
-access_package_name=enterprise::{prefix}::{prefix}_access
+call_params_filter=create_{prefix}:integer,value_1
+permits_filter=create_{prefix}
+access_package_name=ad::{prefix}::{prefix}_access
+get_post_extraction_script=title:string,err_msg_ad_campaign_field_must_be_set

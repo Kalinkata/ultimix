@@ -11,22 +11,18 @@
 /**
  * Create a cookie with the given name and value and other optional parameters.
  *
- * @author Klaus Hartl/klaus.hartl@stilbuero.de
+ * @author Klaus Hartl/klaus.hartl(at)stilbuero.de
  */
 
 /**
  * Get the value of a cookie with the given name.
  *
- * @example $.cookie('the_cookie');
- * @desc Get the value of a cookie.
- *
  * @param String name The name of the cookie.
  * @return The value of the cookie.
- * @type String
  *
  * @name $.cookie
  * @cat Plugins/Cookie
- * @author Klaus Hartl/klaus.hartl@stilbuero.de
+ * @author Klaus Hartl/klaus.hartl(at)stilbuero.de
  */
 jQuery.cookie = function(name, value, options) {
     if (typeof value != 'undefined') { // name and value given, set cookie

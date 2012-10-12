@@ -1,13 +1,13 @@
 var classpage__composer__1__0__0 =
 [
     [ "__construct", "classpage__composer__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
-    [ "execute_processors", "classpage__composer__1__0__0.html#a8c860cf34965562e2f88d72323200d7e", null ],
     [ "fetch_page_data", "classpage__composer__1__0__0.html#a32e6ab6ff48ff07a1bdd09e80f55f31f", null ],
-    [ "generation_loop", "classpage__composer__1__0__0.html#ac05e709935011e5c4ff2dc1201122a47", null ],
+    [ "generation_loop", "classpage__composer__1__0__0.html#a56323c50ad7c50d2d128a78fbef05917", null ],
     [ "get_page", "classpage__composer__1__0__0.html#ac7f53a8dc01af28a9c712528a0d7761d", null ],
-    [ "post_generation", "classpage__composer__1__0__0.html#afa85ff3c99ff925b09f0e86cfd4af1ed", null ],
     [ "pre_generation", "classpage__composer__1__0__0.html#af43f781a948dc753c7fe55bb38bbc07e", null ],
     [ "prepare_page_generation", "classpage__composer__1__0__0.html#a5eb3f874b04e148775798d51fdaa892f", null ],
+    [ "view", "classpage__composer__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663", null ],
+    [ "$AutoMarkup", "classpage__composer__1__0__0.html#addbfa184c2bd1dc56d347b2a7e86ea43", null ],
     [ "$Layout", "classpage__composer__1__0__0.html#aa82afad3a1e5359b526e325dfbb3c894", null ],
     [ "$Messages", "classpage__composer__1__0__0.html#aae046bbb8c846e4d0a266db8991fa7a7", null ],
     [ "$Packages", "classpage__composer__1__0__0.html#a5fa4b22e65129cdb9ae1b1f004212dc4", null ],

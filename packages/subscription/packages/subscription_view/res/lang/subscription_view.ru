@@ -1,2 +1,6 @@
 you_were_unsibscribed=Вы успешно отписались от рассылки
 unsubscribe=Отписаться от рассылки
+subscription_manager=Менеджер рассылок
+subscription_title=Название
+subscription_description=Описание
+subscription_template=Шаблон

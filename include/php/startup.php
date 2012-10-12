@@ -134,12 +134,9 @@
 		{
 			start_script_settings();
 
-			// TODO function register_view(function|package->method)
-			// TODO function register_controller(function|package->method)
 			// TODO add markup demo
 			// TODO ... (add multylanguage demo script)
 			// TODO database support (add demo)
-			// TODO caching demo
 
 			$_GET[ 'page_name' ] = basename( $_SERVER[ 'SCRIPT_NAME' ] , ".php" );
 		}

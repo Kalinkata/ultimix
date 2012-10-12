@@ -2,6 +2,7 @@ var classuser__controller__utilities__1__0__0 =
 [
     [ "__construct", "classuser__controller__utilities__1__0__0.html#a095c5d389db211932136b53f25f39685", null ],
     [ "add_default_permits", "classuser__controller__utilities__1__0__0.html#a7ad68378ce4d7ed24c64e2401f842707", null ],
+    [ "get_configs", "classuser__controller__utilities__1__0__0.html#ade22f37e91414442096d2eee125760bb", null ],
     [ "handle_login_errors", "classuser__controller__utilities__1__0__0.html#a0091aa5eaef20f6e0b77080adf57624d", null ],
     [ "handle_register_errors", "classuser__controller__utilities__1__0__0.html#ab434b85d2c69482c0560c162be3e2d2f", null ],
     [ "send_email", "classuser__controller__utilities__1__0__0.html#a1ddf1750857b2af5ac90311f938c316b", null ],

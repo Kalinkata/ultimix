@@ -186,7 +186,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context_8php_source.html#l00545">545</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
+<p>Definition at line <a class="el" href="context_8php_source.html#l00546">546</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -288,7 +288,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context_8php_source.html#l00399">399</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
+<p>Definition at line <a class="el" href="context_8php_source.html#l00400">400</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -355,7 +355,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context_8php_source.html#l00497">497</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
+<p>Definition at line <a class="el" href="context_8php_source.html#l00498">498</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -429,7 +429,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context_8php_source.html#l00621">621</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
+<p>Definition at line <a class="el" href="context_8php_source.html#l00622">622</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -492,7 +492,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              $Filter = $this-&gt;ContextUtilities-&gt;get_section( $this-&gt;Config ,  <span class="stringliteral">&#39;permits_filter&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                              <span class="keywordflow">if</span>( $this-&gt;PermitAlgorithms-&gt;object_has_all_permits( <span class="keyword">false</span> , <span class="stringliteral">&#39;user&#39;</span> , $Filter ) === false )</div>
+<div class="line">                              <span class="keywordflow">if</span>( $this-&gt;PermitAlgorithms-&gt;fetch_permits_for_object( <span class="keyword">false</span> , <span class="stringliteral">&#39;user&#39;</span> , $Filter ) === false )</div>
 <div class="line">                              {</div>
 <div class="line">                                    $this-&gt;Trace-&gt;add_trace_string( <span class="stringliteral">&quot;{lang:permits_filter_not_passed} : $Filter&quot;</span> , COMMON );</div>
 <div class="line">                                    <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
@@ -546,11 +546,12 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              $Validation = $this-&gt;ContextUtilities-&gt;get_section( $this-&gt;Config ,  <span class="stringliteral">&#39;permits_validation&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                              <span class="keywordflow">if</span>( $this-&gt;PermitAlgorithms-&gt;object_has_all_permits( <span class="keyword">false</span> , <span class="stringliteral">&#39;user&#39;</span> , $Validation ) === false )</div>
+<div class="line">                              <span class="keywordflow">if</span>( $this-&gt;PermitAlgorithms-&gt;fetch_permits_for_object( <span class="keyword">false</span> , <span class="stringliteral">&#39;user&#39;</span> , $Validation ) === false )</div>
 <div class="line">                              {</div>
 <div class="line">                                    $this-&gt;Trace-&gt;add_trace_string( </div>
 <div class="line">                                          <span class="stringliteral">&quot;{lang:permits_validation_was_not_passed} : $Validation&quot;</span> , COMMON</div>
 <div class="line">                                    );</div>
+<div class="line"></div>
 <div class="line">                                    $this-&gt;ContextUtilities-&gt;compile_no_permits( $Validation );</div>
 <div class="line">                                    <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
 <div class="line">                              }</div>
@@ -606,7 +607,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="context_8php_source.html#l00833">833</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
+<p>Definition at line <a class="el" href="context_8php_source.html#l00834">834</a> of file <a class="el" href="context_8php_source.html">context.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -981,7 +982,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcontext__1__0__0.html">context_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:31 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:39 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

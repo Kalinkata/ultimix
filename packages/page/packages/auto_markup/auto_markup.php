@@ -508,6 +508,10 @@
 				$Name = $this->get_name( $Config );
 
 				$Rules = $this->get_rules( $Config );
+				if( $Name == 'lang' )
+				{
+					$Rules[ '_all' ] = TERMINAL_VALUE;
+				}
 
 				for( ; $Params = $this->String->get_macro_parameters( $Str , $Name , $Rules ) ; )
 				{

@@ -74,12 +74,10 @@ $(document).ready(function(){initNavTree('classsecurity__markup__1__0__0.html','
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:a0661e50f79be652a2cffd68a8ba4f259"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#a0661e50f79be652a2cffd68a8ba4f259">compile_page_parameters</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:a19e4020eef3ee72db80f07869a5d299e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#a19e4020eef3ee72db80f07869a5d299e">process_string</a> ($Options, $Str, &amp;$Changed)</td></tr>
+<tr class="memitem:a7a445e794a76c1107106031129b71b54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#a7a445e794a76c1107106031129b71b54">compile_http_param</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a2c1da60c6cd872abbb042bcd58b7c10d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> = false</td></tr>
-<tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
 <tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsecurity__markup__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -103,11 +101,11 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00052">52</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00050">50</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -118,6 +116,56 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
+<a class="anchor" id="a7a445e794a76c1107106031129b71b54"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_http_param </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function processes strings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Options</td><td>- Processing options.</td></tr>
+    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
+    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00240">240</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Name = $Settings-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> );</div>
+<div class="line">                        $Type = $Settings-&gt;get_setting( <span class="stringliteral">&#39;type&#39;</span> , <span class="stringliteral">&#39;string&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                        $Value = $this-&gt;get_value( $Name , $Type , $Settings );</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Value );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a0661e50f79be652a2cffd68a8ba4f259"></a>
 <div class="memitem">
 <div class="memproto">
@@ -147,7 +195,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00230">230</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00193">193</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -157,85 +205,6 @@ Data Fields</h2></td></tr>
 <div class="line">                        $Code =     str_replace( <span class="stringliteral">&quot;&#39;&quot;</span> , <span class="stringliteral">&#39;&amp;#039;&#39;</span> , $Code );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a19e4020eef3ee72db80f07869a5d299e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">process_string </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Options</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function processes strings.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Options</td><td>- Processing options.</td></tr>
-    <tr><td class="paramname">$Str</td><td>- Processing string.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- Was the processing completed.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Processed string.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00277">277</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        $this-&gt;load_packages();</div>
-<div class="line"></div>
-<div class="line">                        <span class="comment">//TODO: move it to auto_markup</span></div>
-<div class="line">                        </div>
-<div class="line">                        $Limitations = array( <span class="stringliteral">&#39;default&#39;</span> =&gt; TERMINAL_VALUE );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $this-&gt;String-&gt;get_macro_parameters( $Str , <span class="stringliteral">&#39;http_param&#39;</span> , $Limitations ) ; )</div>
-<div class="line">                        {</div>
-<div class="line">                              $this-&gt;Settings-&gt;load_settings( $Parameters );</div>
-<div class="line">                              $Name = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;name&#39;</span> );</div>
-<div class="line">                              $Type = $this-&gt;Settings-&gt;get_setting( <span class="stringliteral">&#39;type&#39;</span> , <span class="stringliteral">&#39;string&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                              $Value = $this-&gt;get_value( $Name , $Type , $this-&gt;Settings );</div>
-<div class="line"></div>
-<div class="line">                              $Str = str_replace( <span class="stringliteral">&quot;{http_param:$Parameters}&quot;</span> , $Value , $Str );</div>
-<div class="line">                              $Changed = <span class="keyword">true</span>;</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -255,38 +224,10 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00040">40</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2c1da60c6cd872abbb042bcd58b7c10d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$Settings = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 <p>Cached objects.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
 <p>Definition at line <a class="el" href="security__markup_8php_source.html#l00038">38</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a541f49d5b9cf7bae2f91f639abcf3458"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$String = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="security__markup_8php_source.html#l00039">39</a> of file <a class="el" href="security__markup_8php_source.html">security_markup.php</a>.</p>
 
 </div>
 </div>
@@ -299,7 +240,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classsecurity__markup__1__0__0.html">security_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:44 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:56 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

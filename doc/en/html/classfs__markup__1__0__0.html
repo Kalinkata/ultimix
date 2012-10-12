@@ -75,7 +75,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:a41e8a54691ba48d53717d72a6abaa208"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a41e8a54691ba48d53717d72a6abaa208">compile_basename</a> (&amp;$Settings)</td></tr>
 <tr class="memitem:a3709b8bd506a49648afdaa6cb66c0d46"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a3709b8bd506a49648afdaa6cb66c0d46">compile_image_path</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:a6355827e26b1a9c55baad179483a23d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#a6355827e26b1a9c55baad179483a23d6">compile_package_path</a> ($Str, $Changed)</td></tr>
+<tr class="memitem:ac4aaee25a591af49750c0fc7a3df67d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfs__markup__1__0__0.html#ac4aaee25a591af49750c0fc7a3df67d8">compile_package_path</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -178,11 +178,11 @@ Data Fields</h2></td></tr>
 <p>Function compiles macro 'image_path'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$MacroSettings</td><td>- Compilation parameters.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>HTML код.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>HTML ccode.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
@@ -223,38 +223,27 @@ Data Fields</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a6355827e26b1a9c55baad179483a23d6"></a>
+<a class="anchor" id="ac4aaee25a591af49750c0fc7a3df67d8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">compile_package_path </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Changed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Function processes macro 'package_path'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$Str</td><td>- String to process.</td></tr>
-    <tr><td class="paramname">$Changed</td><td>- true if any of the page's elements was compiled.</td></tr>
+    <tr><td class="paramname">$Settings</td><td>- Compilation parameters.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>array( Processed string , Was the string changed ).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Path.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
@@ -263,7 +252,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00221">221</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="fs__markup_8php_source.html#l00217">217</a> of file <a class="el" href="fs__markup_8php_source.html">fs_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -322,7 +311,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classfs__markup__1__0__0.html">fs_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:44 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

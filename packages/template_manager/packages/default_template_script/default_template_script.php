@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс манипулирования пакетами.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	default_template_script_1_0_0{
-	
+
 		/**
 		*	\~russian Путь к пакету шаблона.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var				$TemplatePackagePath = false;
-	
+
 		/**
 		*	\~russian Функция установки пути к шаблону.
 		*
@@ -66,7 +66,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция осуществляет предкомпиляцию шаблона.
 		*
@@ -97,7 +97,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает реальное имя плэйсхолдера вместе с параметрами.
 		*
@@ -135,7 +135,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Парсер шаблонов.
 		*
@@ -147,7 +147,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$TemplateParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -173,7 +173,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция парсит в шаблоне переменную $Variable.
 		*
@@ -207,7 +207,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция добавляет стили шаблона.
 		*
@@ -233,7 +233,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки строки.
 		*
@@ -263,7 +263,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция зачищает HTML код шаблона от плэйсхолдеров.
 		*
@@ -293,7 +293,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция возвращает HTML код шаблона.
 		*
@@ -323,7 +323,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция устанавливает HTML код шаблона.
 		*
@@ -347,6 +347,36 @@
 			try
 			{
 				return( $this->TemplateParser->set_template( $Template ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция получения цветовой схемы.
+		*
+		*	@return Цветовая схема.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns color scheme.
+		*
+		*	@return Color scheme.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_color_scheme()
+		{
+			try
+			{
+				return( $this->TemplateParser->get_color_scheme() );
 			}
 			catch( Exception $e )
 			{

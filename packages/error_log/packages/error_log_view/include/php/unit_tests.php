@@ -56,11 +56,8 @@
 			$this->Options = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 		}
 
-		//TODO: create unit-test with simple create form view
 		//TODO: create unit-test with simple update form view
 		//TODO: create unit-test with simple copy form view
-
-		//TODO: create unit-test with simple create controller
 		//TODO: create unit-test with simple update controller
 		//TODO: create unit-test with simple delete controller
 	}

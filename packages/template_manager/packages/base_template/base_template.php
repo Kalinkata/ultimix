@@ -209,7 +209,7 @@
 						throw( new Exception( "Template \"$TemplateName\" was not found" ) );
 					}
 				}
-				
+
 				return( 'template' );
 			}
 			catch( Exception $e )
@@ -268,7 +268,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция осуществляет предкомпиляцию шаблона.
 		*
@@ -308,7 +308,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция осуществляет предкомпиляцию шаблона.
 		*
@@ -356,7 +356,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает реальное имя плэйсхолдера вместе с параметрами.
 		*
@@ -409,62 +409,6 @@
 		}
 
 		/**
-		*	\~russian Функция макрос 'color_scheme'.
-		*
-		*	@param $File - Реальный путь к скрипту шаблона.
-		*
-		*	@param $Str - Обрабатываемая строка.
-		*
-		*	@return Обработанная строка.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function processes macro 'color_scheme'.
-		*
-		*	@param $File - Real path to the template script.
-		*
-		*	@param $Str - Processing string.
-		*
-		*	@return Processed string.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	handle_color_scheme( $File , $Str )
-		{
-			try
-			{
-				//TODO: move this function to page::page_markup
-				for( ; $Params = $this->String->get_macro_parameters( $Str , 'color_scheme' ) ; )
-				{
-					$this->MacroSettings->load_settings( $Params );
-					$Available = explode( ',' , $this->MacroSettings->get_setting( 'available' , 'default' ) );
-
-					$Sheme = $this->Settings->get_setting( 'color_scheme' , 'default' );
-
-					if( array_search( $Sheme , $Available ) !== false )
-					{
-						$Str = str_replace( "{color_scheme:$Params}" , $Sheme , $Str );
-					}
-					else
-					{
-						$Str = str_replace( "{color_scheme:$Params}" , 'default' , $Str );
-					}
-				}
-
-				return( $Str );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
 		*	\~russian Функция зачищает HTML код шаблона от плэйсхолдеров.
 		*
 		*	@param $File - Реальный путь к скрипту шаблона.
@@ -505,8 +449,6 @@
 					$Str
 				);
 
-				$Str = $this->handle_color_scheme( $File , $Str );
-
 				return( $Str );
 			}
 			catch( Exception $e )
@@ -514,7 +456,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подстановки капчи.
 		*
@@ -542,13 +484,13 @@
 			try
 			{
 				$PlaceHolders = array( '{captcha_image}' , '{captcha_field}' );
-				
+
 				$Subs = array( 
 					'<img src="./captcha.html" align="top">' , 
 					'<input type="text" class="flat width_100" size="25" name="captcha" value="" '.
 						'style="text-align: center;">'
 				);
-				
+
 				$this->Template = str_replace( $PlaceHolders , $Subs , $this->Template );
 			}
 			catch( Exception $e )
@@ -556,7 +498,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Стандартные подстановки.
 		*
@@ -604,7 +546,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Зачистка плэйсхолдеров.
 		*
@@ -650,7 +592,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция зачищает HTML код шаблона от плэйсхолдеров.
 		*
@@ -757,6 +699,36 @@
 		function			set_template( $theTemplate )
 		{
 			$this->Template = $theTemplate;
+		}
+
+		/**
+		*	\~russian Функция получения цветовой схемы.
+		*
+		*	@return Цветовая схема.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns color scheme.
+		*
+		*	@return Color scheme.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_color_scheme()
+		{
+			try
+			{
+				return( $this->Settings->get_setting( 'color_scheme' , 'default' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
 		}
 	};
 

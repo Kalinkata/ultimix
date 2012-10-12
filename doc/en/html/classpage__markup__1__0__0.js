@@ -11,6 +11,5 @@ var classpage__markup__1__0__0 =
     [ "compile_redirect", "classpage__markup__1__0__0.html#a51c611f43b0444f3474738d2837e1bab", null ],
     [ "compile_safe", "classpage__markup__1__0__0.html#ab5ac5989dc88ab2627f2ed0ac3f608d5", null ],
     [ "$PageMarkupUtilities", "classpage__markup__1__0__0.html#a9d33872fc2c8ec0836fc9ebdf484a2a5", null ],
-    [ "$PageParts", "classpage__markup__1__0__0.html#a53cd29da1b62d8d5aa05e4718293d77d", null ],
     [ "$Security", "classpage__markup__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518", null ]
 ];

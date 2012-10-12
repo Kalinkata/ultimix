@@ -74,7 +74,7 @@ $(document).ready(function(){initNavTree('classpage__css__1__0__0.html','');});
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__css__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:a78d9ec1f6958d8dbe260ad4eddf43954"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__css__1__0__0.html#a78d9ec1f6958d8dbe260ad4eddf43954">join_stylesheets</a> ($Files)</td></tr>
-<tr class="memitem:a6479fd92b19f76f9ed7f2d7e9c008069"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__css__1__0__0.html#a6479fd92b19f76f9ed7f2d7e9c008069">output_stylesheets</a> ($Str)</td></tr>
+<tr class="memitem:ad833bdbe7132b0bb6fb057af53fd5e2b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__css__1__0__0.html#ad833bdbe7132b0bb6fb057af53fd5e2b">compile_stylesheets</a> (&amp;$Settings)</td></tr>
 <tr class="memitem:a7f1e971711fdd72a275a71288ad071cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__css__1__0__0.html#a7f1e971711fdd72a275a71288ad071cb">add_stylesheet</a> ($Path, $Join=false)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -168,7 +168,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__css_8php_source.html#l00510">510</a> of file <a class="el" href="page__css_8php_source.html">page_css.php</a>.</p>
+<p>Definition at line <a class="el" href="page__css_8php_source.html#l00498">498</a> of file <a class="el" href="page__css_8php_source.html">page_css.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -186,6 +186,58 @@ Data Fields</h2></td></tr>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
 <div class="line">                        $this-&gt;CSSFiles [] = array( <span class="stringliteral">&#39;path&#39;</span> =&gt; $Path , <span class="stringliteral">&#39;join&#39;</span> =&gt; $Join );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ad833bdbe7132b0bb6fb057af53fd5e2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_stylesheets </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function outputs style sheets.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Settings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Stylesheets.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="page__css_8php_source.html#l00455">455</a> of file <a class="el" href="page__css_8php_source.html">page_css.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Content = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( is_array( $this-&gt;CSSFiles ) &amp;&amp; count( $this-&gt;CSSFiles ) )</div>
+<div class="line">                        {</div>
+<div class="line">                              $Content = $this-&gt;get_stylesheets_content();</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        $this-&gt;CSSFiles = array();</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Content );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -240,56 +292,6 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( $Files );</div>
 <div class="line">                        }</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a6479fd92b19f76f9ed7f2d7e9c008069"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">output_stylesheets </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function outputs style sheets.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Page content.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Page with style sheets.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="page__css_8php_source.html#l00469">469</a> of file <a class="el" href="page__css_8php_source.html">page_css.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( is_array( $this-&gt;CSSFiles ) &amp;&amp; count( $this-&gt;CSSFiles ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Str = $this-&gt;compile_stylesheets( $Str );</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        $this-&gt;CSSFiles = array();</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -425,7 +427,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpage__css__1__0__0.html">page_css_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:39 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:50 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

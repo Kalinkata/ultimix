@@ -26,6 +26,42 @@
 	class	unit_tests{
 
 		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var				$PageComposer = false;
+		var				$Security = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+	
+		/**
 		*	\~russian Настройка тестового стенда.
 		*
 		*	@author Додонов А.А.
@@ -82,12 +118,36 @@
 		*/
 		function			test_display_list()
 		{
-			$PageComposer = get_package_object( 'page::page_composer' );
-			$PageContent = $PageComposer->get_page( 'comment_manager' );
+			$PageContent = $this->PageComposer->get_page( 'comment_manager' );
 
 			if( stripos( $PageContent , 'comment' ) === false )
 			{
 				print( 'ERROR: comment list was not displayed' );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record_form()
+		{
+			$this->Security->set_g( 'comment_context_action' , 'create_record_form' );
+
+			$PageContent = $this->PageComposer->get_page( 'comment_manager' );
+
+			if( stripos( $PageContent , 'comment_create_form' ) === false )
+			{
+				print( 'ERROR: comment create form was not displayed'.$PageContent );
 				return;
 			}
 

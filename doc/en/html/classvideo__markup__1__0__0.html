@@ -145,24 +145,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00084">84</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00134">134</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="comment">//TODO: remove duplicate code</span></div>
-<div class="line">                        $Hash = $Settings-&gt;get_setting( <span class="stringliteral">&#39;hash&#39;</span> );</div>
-<div class="line">                        $Width = $Settings-&gt;get_setting( <span class="stringliteral">&#39;width&#39;</span> , <span class="stringliteral">&#39;640&#39;</span> );</div>
-<div class="line">                        $Height = $Settings-&gt;get_setting( <span class="stringliteral">&#39;height&#39;</span> , <span class="stringliteral">&#39;480&#39;</span> );</div>
-<div class="line">                        $Autoplay = $Settings-&gt;get_setting( <span class="stringliteral">&#39;autoplay&#39;</span> , <span class="charliteral">&#39;0&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;rutube.tpl&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $Code = str_replace( </div>
-<div class="line">                              array( <span class="stringliteral">&#39;{hash}&#39;</span> , <span class="stringliteral">&#39;{width}&#39;</span> , <span class="stringliteral">&#39;{height}&#39;</span> , <span class="stringliteral">&#39;{autoplay}&#39;</span> ) , </div>
-<div class="line">                              array( $Hash , $Width , $Height , $Autoplay ) , $Code</div>
-<div class="line">                        );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;compile_template( $Settings , <span class="stringliteral">&#39;rutube.tpl&#39;</span> ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -201,23 +188,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00131">131</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="video__markup_8php_source.html#l00168">168</a> of file <a class="el" href="video__markup_8php_source.html">video_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $Hash = $Settings-&gt;get_setting( <span class="stringliteral">&#39;hash&#39;</span> );</div>
-<div class="line">                        $Width = $Settings-&gt;get_setting( <span class="stringliteral">&#39;width&#39;</span> , <span class="stringliteral">&#39;640&#39;</span> );</div>
-<div class="line">                        $Height = $Settings-&gt;get_setting( <span class="stringliteral">&#39;height&#39;</span> , <span class="stringliteral">&#39;480&#39;</span> );</div>
-<div class="line">                        $Autoplay = $Settings-&gt;get_setting( <span class="stringliteral">&#39;autoplay&#39;</span> , <span class="charliteral">&#39;0&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;youtube.tpl&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $Code = str_replace( </div>
-<div class="line">                              array( <span class="stringliteral">&#39;{hash}&#39;</span> , <span class="stringliteral">&#39;{width}&#39;</span> , <span class="stringliteral">&#39;{height}&#39;</span> , <span class="stringliteral">&#39;{autoplay}&#39;</span> ) , </div>
-<div class="line">                              array( $Hash , $Width , $Height , $Autoplay ) , $Code</div>
-<div class="line">                        );</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;compile_template( $Settings , <span class="stringliteral">&#39;youtube.tpl&#39;</span> ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -253,7 +228,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classvideo__markup__1__0__0.html">video_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:50 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:18:08 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -79,7 +79,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-//TODO: fix swotch user button
+
 		/**
 		*	\~russian Функция компиляции макроса 'session_login'.
 		*

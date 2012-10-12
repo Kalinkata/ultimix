@@ -88,60 +88,64 @@ $(document).ready(function(){initNavTree('package__settings_8php_source.html',''
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            {</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                  {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                  }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                  {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                  }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            </div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="code" href="classpackage__settings__1__0__0.html#ab11ccfdfd9c3bffd0e4d78627140f08a">  100</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpackage__settings__1__0__0.html#ab11ccfdfd9c3bffd0e4d78627140f08a">get_package_setting</a>( $PackageName , $PackageVersion , $FileName , </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                                                                         $SettingName , $DefaultValue = <span class="stringliteral">&#39;_throw_exception&#39;</span> )</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                  {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        $S = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        $S-&gt;load_package_settings( $PackageName , $PackageVersion , $FileName );</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                        <span class="keywordflow">return</span>( $S-&gt;get_setting( $SettingName , $DefaultValue ) );</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  }</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                  {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                  }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            </div>
-<div class="line"><a name="l00151"></a><span class="lineno"><a class="code" href="classpackage__settings__1__0__0.html#abfcbbca40f2bee3575c6e687ec5adbfb">  151</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpackage__settings__1__0__0.html#abfcbbca40f2bee3575c6e687ec5adbfb">set_package_setting</a>( $PackageName , $PackageVersion , $FileName , $SettingName , $Value )</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            {</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                  {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                        $S = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        $S-&gt;load_package_settings( $PackageName , $PackageVersion , $FileName );</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                        $S-&gt;set_setting( $SettingName , $Value );</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                        $PackagePath = <a class="code" href="core_8php.html#a1ea4fe90b349e48a58c207ebc3be5a1d">_get_package_path_ex</a>( $PackageName , $PackageVersion );</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        $this-&gt;CachedMultyFS-&gt;file_put_contents( <span class="stringliteral">&quot;$PackagePath/conf/$FileName&quot;</span> , $S-&gt;get_all_settings() );</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                  }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                  {</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                  }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                  {</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                  }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="code" href="classpackage__settings__1__0__0.html#ab11ccfdfd9c3bffd0e4d78627140f08a">   99</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpackage__settings__1__0__0.html#ab11ccfdfd9c3bffd0e4d78627140f08a">get_package_setting</a>( $PackageName , $PackageVersion , $FileName , </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                                                                         $SettingName , $DefaultValue = <span class="stringliteral">&#39;_throw_exception&#39;</span> )</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                  {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        $S = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                        </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        $S-&gt;load_package_settings( $PackageName , $PackageVersion , $FileName );</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                        </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                        <span class="keywordflow">return</span>( $S-&gt;get_setting( $SettingName , $DefaultValue ) );</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                  }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                  {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                  }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            </div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="code" href="classpackage__settings__1__0__0.html#abfcbbca40f2bee3575c6e687ec5adbfb">  150</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpackage__settings__1__0__0.html#abfcbbca40f2bee3575c6e687ec5adbfb">set_package_setting</a>( $PackageName , $PackageVersion , $FileName , $SettingName , $Value )</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                  {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                        $S = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        $S-&gt;load_package_settings( $PackageName , $PackageVersion , $FileName );</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                        $S-&gt;set_setting( $SettingName , $Value );</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        $PackagePath = <a class="code" href="core_8php.html#a1ea4fe90b349e48a58c207ebc3be5a1d">_get_package_path_ex</a>( $PackageName , $PackageVersion );</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                        <span class="keywordflow">if</span>( $this-&gt;CachedMultyFS === <span class="keyword">false</span> )</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                        {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                              $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                        }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                        $this-&gt;CachedMultyFS-&gt;file_put_contents( <span class="stringliteral">&quot;$PackagePath/conf/$FileName&quot;</span> , $S-&gt;get_all_settings() );</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                  }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;      }</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;      </div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;?&gt;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                  {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                  }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            }</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;      }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;      </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_f257b18e806fd4baa30b81d3a8f3edbe.html">settings</a></li><li class="navelem"><a class="el" href="dir_ac5311c7384a742820427e75c6f54614.html">packages</a></li><li class="navelem"><a class="el" href="dir_204ad050abbd85d35437659407f15fda.html">package_settings</a></li><li class="navelem"><a class="el" href="package__settings_8php.html">package_settings.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:14 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:08 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

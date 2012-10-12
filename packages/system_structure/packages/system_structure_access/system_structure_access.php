@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	system_structure_access_1_0_0{
-	
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_system_structure`';
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -51,7 +51,7 @@
 		var					$DatabaseAlgorithms = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -76,7 +76,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -88,7 +88,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -125,7 +125,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -153,11 +153,11 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				$Records = $this->Database->select( 
 					'*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition"
 				);
-				
+
 				foreach( $Records as $k => $v )
 				{
 					$Records[ $k ]->page = htmlspecialchars_decode( $Records[ $k ]->page , ENT_QUOTES );
@@ -165,7 +165,7 @@
 					$Records[ $k ]->navigation = htmlspecialchars_decode( $Records[ $k ]->navigation , ENT_QUOTES );
 					$Records[ $k ]->navigation = htmlspecialchars_decode( $Records[ $k ]->navigation , ENT_QUOTES );
 				}
-				
+
 				return( $Records );
 			}
 			catch( Exception $e )
@@ -173,7 +173,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -219,15 +219,15 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				$Items = $this->unsafe_select( $Condition );
-				
+
 				foreach( $Items as $k => $i )
 				{
 					$Items[ $k ]->navigation = str_replace( '{' , '[lfb]' , $Items[ $k ]->navigation );
 					$Items[ $k ]->navigation = str_replace( '}' , '[rfb]' , $Items[ $k ]->navigation );
 				}
-				
+
 				return( $Items );
 			}
 			catch( Exception $e )
@@ -235,7 +235,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает запись по идентификатору.
 		*
@@ -263,14 +263,14 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Records = $this->unsafe_select( $this->NativeTable.".id = $id" );
-				
+
 				if( count( $Records ) == 0 )
 				{
 					throw( new Exception( 'Record was not found' ) );
 				}
-				
+
 				return( $Records[ 0 ] );
 			}
 			catch( Exception $e )
@@ -278,54 +278,52 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
-		*	@param $Page - Страница для которой создается запись.
+		*	@param $Record - Объект по чьему образцу будет создаваться запись.
 		*
-		*	@param $RootPage - Корневая страница.
+		*	@return Идентификатор созданной записи.
 		*
-		*	@param $Navigation - Информация о навигации.
-		*
-		*	@exception Exception - кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
 		*	\~english Creating record.
 		*
-		*	@param $Page - Page name.
+		*	@param $Record Example for creation.
 		*
-		*	@param $RootPage - Root page.
-		*
-		*	@param $Navigation - Navigation information.
+		*	@return id of the created record.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			create_system_structure( $Page , $RootPage , $Navigation )
+		function			create( $Record )
 		{
 			try
 			{
-				$Params = $this->SecurityParser->parse_parameters( 
-					func_get_args() , '0:string,alias_page;1:string,alias_root_page;2:string,alias_navigation'
+				$Record = $this->SecurityParser->parse_parameters( 
+					$Record , 'page:string;root_page:string;navigation:string,allow_not_set'
 				);
 
-				$this->Database->insert( 
-					$this->NativeTable , 
-					'page , root_page , navigation' , 
-					"'".$Params->page."' , '".$Params->root_page."' , '".$Params->navigation."'"
-				);
-				$this->Database->commit();
+				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
+
+				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
+
+				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
+				$EventManager->trigger_event( 'on_after_create_system_structure' , array( 'id' => $id ) );
+
+				return( $id );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записи из базы.
 		*
@@ -349,9 +347,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
-				/** \~russian удаление записи
-					\~english deleting record */
+
 				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
 				$this->Database->commit();
 			}
@@ -360,7 +356,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция редактирования записи.
 		*
@@ -393,7 +389,7 @@
 				);
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$this->Database->update( 
@@ -407,7 +403,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -435,7 +431,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
+
 				return( $this->unsafe_select( $this->NativeTable.".id IN ( $id )" ) );
 			}
 			catch( Exception $e )

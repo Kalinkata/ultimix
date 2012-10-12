@@ -14,3 +14,4 @@ system_structure_was_deleted=Все выделенные записи были �
 no_selected_system_structure=Не выбрано ни одной записи
 system_structure_update_was_completed=Редактирование было завершено
 shure_to_delete_all_system_structure=Вы уверены, что хотите удалить все выбранные записи?
+system_structure_create_was_completed=Запись была создана

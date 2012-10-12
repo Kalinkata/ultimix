@@ -115,26 +115,41 @@ $(document).ready(function(){initNavTree('change__history__view_8js_source.html'
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.change_history_view.get_custom_list_form = <span class="keyword">function</span>( Fuctions , Header , Item , Footer , ViewOptions )</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;{</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      <span class="keywordflow">if</span>( !Fuctions )</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            Fuctions = {};</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;      ViewOptions = <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.change_history_view.set_default_options( ViewOptions );</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;      ViewOptions.header = Header ? Header : <span class="stringliteral">&#39;change_history_header.tpl&#39;</span>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      ViewOptions.item = Item ? Item : <span class="stringliteral">&#39;change_history_item.tpl&#39;</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      ViewOptions.footer = Footer ? Footer : <span class="stringliteral">&#39;change_history_footer.tpl&#39;</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.ajax_gate.direct_view( ViewOptions , Fuctions );</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.auto.get_custom_list_form( Fuctions , Header , Item , Footer , <span class="keyword">false</span> , ViewOptions , <span class="stringliteral">&#39;ad_banner&#39;</span> );</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.change_history_view.delete = <span class="keyword">function</span>( Id , DataSelector )</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;{</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.auto.delete( </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            Id , DataSelector , </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            { </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                  <span class="stringliteral">&#39;package_name&#39;</span> : <span class="stringliteral">&#39;change_history_view::change_history_view_controller&#39;</span> , </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                  <span class="stringliteral">&#39;change_history_view_context_action&#39;</span> : <span class="stringliteral">&#39;delete_record&#39;</span> , </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                  <span class="stringliteral">&#39;change_history_view_action&#39;</span> : <span class="stringliteral">&#39;delete_record&#39;</span> , <span class="stringliteral">&#39;change_history_view_record_id&#39;</span> : Id , </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                  <span class="stringliteral">&#39;meta&#39;</span> : <span class="stringliteral">&#39;meta_delete_change_history_view&#39;</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;      );</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.change_history_view.record_view_form = <span class="keyword">function</span>( Id , DataSelector )</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <a class="code" href="lang_8core_8en_8js.html#a5c7ad12d06e696d2464d818f98f50857">ultimix</a>.auto.record_view_form( </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            Id , DataSelector , </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                  <span class="stringliteral">&#39;package_name&#39;</span> : <span class="stringliteral">&#39;database::change_history_view::change_history_view_view&#39;</span> , </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                  <span class="stringliteral">&#39;change_history_view_context_action&#39;</span> : <span class="stringliteral">&#39;record_view_form&#39;</span> , </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                  <span class="stringliteral">&#39;change_history_view_action&#39;</span> : <span class="stringliteral">&#39;record_view_form&#39;</span> , <span class="stringliteral">&#39;change_history_view_record_id&#39;</span> : Id , </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                  <span class="stringliteral">&#39;meta&#39;</span> : <span class="stringliteral">&#39;meta_record_view_change_history_view_form&#39;</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            }</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      );</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_7a1342b7493b16c2abcd88860e50b74f.html">database</a></li><li class="navelem"><a class="el" href="dir_9e29d43dd7407de83abd117b75b27387.html">packages</a></li><li class="navelem"><a class="el" href="dir_b53a2d53403bcb159658c11a715192f2.html">change_history</a></li><li class="navelem"><a class="el" href="dir_72fd315d3bddda49f0084451f9ba8c30.html">packages</a></li><li class="navelem"><a class="el" href="dir_31357d8580d4bb03378cadd773254d5c.html">change_history_view</a></li><li class="navelem"><a class="el" href="dir_04ecc2eebc3151a1155cbeb6deecc2d7.html">include</a></li><li class="navelem"><a class="el" href="dir_86bd637ac34704e31d942b3a8f6c4076.html">js</a></li><li class="navelem"><a class="el" href="change__history__view_8js.html">change_history_view.js</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:49 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

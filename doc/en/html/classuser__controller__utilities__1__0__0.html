@@ -77,6 +77,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab434b85d2c69482c0560c162be3e2d2f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuser__controller__utilities__1__0__0.html#ab434b85d2c69482c0560c162be3e2d2f">handle_register_errors</a> ()</td></tr>
 <tr class="memitem:a1ddf1750857b2af5ac90311f938c316b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuser__controller__utilities__1__0__0.html#a1ddf1750857b2af5ac90311f938c316b">send_email</a> ($SystemEmail, $EmailSender, $Message, $Subject, $Email=false)</td></tr>
 <tr class="memitem:a7ad68378ce4d7ed24c64e2401f842707"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuser__controller__utilities__1__0__0.html#a7ad68378ce4d7ed24c64e2401f842707">add_default_permits</a> ($id)</td></tr>
+<tr class="memitem:ade22f37e91414442096d2eee125760bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classuser__controller__utilities__1__0__0.html#ade22f37e91414442096d2eee125760bb">get_configs</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
@@ -161,6 +162,48 @@ Data Fields</h2></td></tr>
 <div class="line">                        $PermitAccess = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;permit::permit_access&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $PermitAccess-&gt;add_permit_for_object( <span class="stringliteral">&#39;public&#39;</span> , $id , <span class="stringliteral">&#39;user&#39;</span> );</div>
 <div class="line">                        $PermitAccess-&gt;add_permit_for_object( <span class="stringliteral">&#39;registered&#39;</span> , $id , <span class="stringliteral">&#39;user&#39;</span> );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ade22f37e91414442096d2eee125760bb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">get_configs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function returns a list of configs.</p>
+<dl class="section return"><dt>Returns</dt><dd>List of configs.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="user__controller__utilities_8php_source.html#l00258">258</a> of file <a class="el" href="user__controller__utilities_8php_source.html">user_controller_utilities.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">return</span>(</div>
+<div class="line">                              array( </div>
+<div class="line">                                    <span class="stringliteral">&#39;cfcx_update_user&#39;</span> , <span class="stringliteral">&#39;cfcx_activate_user&#39;</span> , <span class="stringliteral">&#39;cfcx_admin_activate_user&#39;</span> , </div>
+<div class="line">                                    <span class="stringliteral">&#39;cfcx_admin_deactivate_user&#39;</span> , <span class="stringliteral">&#39;cfcx_restore_password&#39;</span> , <span class="stringliteral">&#39;cfcx_registration&#39;</span> , </div>
+<div class="line">                                    <span class="stringliteral">&#39;cfcx_user_set_avatar&#39;</span> , <span class="stringliteral">&#39;cfcx_login&#39;</span> , <span class="stringliteral">&#39;cfcx_logout&#39;</span></div>
+<div class="line">                              )</div>
+<div class="line">                        );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -435,7 +478,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classuser__controller__utilities__1__0__0.html">user_controller_utilities_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:49 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:18:07 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

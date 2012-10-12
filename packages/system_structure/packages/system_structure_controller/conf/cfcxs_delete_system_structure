@@ -1,4 +1,4 @@
 call_params_filter=delete_{prefix}:integer,value_1
-permits_validation=delete_{prefix}
+permits_filter=delete_{prefix}
 access_package_name=system_structure::system_structure_access
 success_message=system_structure_was_deleted

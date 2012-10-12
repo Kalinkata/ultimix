@@ -74,7 +74,7 @@ $(document).ready(function(){initNavTree('classpage__js__1__0__0.html','');});
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__js__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:a16c5dbe55623bdc54c9bb8f86de0ef75"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__js__1__0__0.html#a16c5dbe55623bdc54c9bb8f86de0ef75">join_scripts</a> ($Files)</td></tr>
-<tr class="memitem:aec2570fa1c1d9cac979c568285719759"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__js__1__0__0.html#aec2570fa1c1d9cac979c568285719759">output_scripts</a> ($Str)</td></tr>
+<tr class="memitem:a96d0d571e831330c605c141a951599ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__js__1__0__0.html#a96d0d571e831330c605c141a951599ae">compile_scripts</a> (&amp;$Settings)</td></tr>
 <tr class="memitem:a7b2cc9d1976046c7c5877a32f46af826"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpage__js__1__0__0.html#a7b2cc9d1976046c7c5877a32f46af826">add_javascript</a> ($Path, $Join=true)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -168,7 +168,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="page__js_8php_source.html#l00409">409</a> of file <a class="el" href="page__js_8php_source.html">page_js.php</a>.</p>
+<p>Definition at line <a class="el" href="page__js_8php_source.html#l00402">402</a> of file <a class="el" href="page__js_8php_source.html">page_js.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -185,6 +185,58 @@ Data Fields</h2></td></tr>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
 <div class="line">                        $this-&gt;JSFiles [] = array( <span class="stringliteral">&#39;path&#39;</span> =&gt; $Path , <span class="stringliteral">&#39;join&#39;</span> =&gt; $Join );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a96d0d571e831330c605c141a951599ae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">compile_scripts </td>
+          <td>(</td>
+          <td class="paramtype">&amp;&#160;</td>
+          <td class="paramname"><em>$Settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function outputs scripts.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$Settings</td><td>- Settings.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Scripts.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="page__js_8php_source.html#l00359">359</a> of file <a class="el" href="page__js_8php_source.html">page_js.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $Content = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">if</span>( is_array( $this-&gt;JSFiles ) &amp;&amp; count( $this-&gt;JSFiles ) )</div>
+<div class="line">                        {</div>
+<div class="line">                              $Content = $this-&gt;get_scripts_content();</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        $this-&gt;JSFiles = array();</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( $Content );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -247,65 +299,6 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>( $Files );</div>
 <div class="line">                        }</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aec2570fa1c1d9cac979c568285719759"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">output_scripts </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$Str</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function outputs scripts.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Str</td><td>- Page content.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Page with scripts.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="page__js_8php_source.html#l00359">359</a> of file <a class="el" href="page__js_8php_source.html">page_js.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( is_array( $this-&gt;JSFiles ) &amp;&amp; count( $this-&gt;JSFiles ) )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Content = $this-&gt;get_header_content();</div>
-<div class="line"></div>
-<div class="line">                              <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{header}&#39;</span> ) !== <span class="keyword">false</span> )</div>
-<div class="line">                              {</div>
-<div class="line">                                    $Str = str_replace( <span class="stringliteral">&#39;{header}&#39;</span> , $Content.<span class="stringliteral">&#39;{header}&#39;</span> , $Str );</div>
-<div class="line">                              }</div>
-<div class="line">                              <span class="keywordflow">else</span></div>
-<div class="line">                              {</div>
-<div class="line">                                    $Str = str_replace( <span class="stringliteral">&#39;&lt;/head&gt;&#39;</span> , $Content.<span class="stringliteral">&#39;&lt;/head&gt;&#39;</span> , $Str );</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line"></div>
-<div class="line">                        $this-&gt;JSFiles = array();</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Str );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -441,7 +434,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpage__js__1__0__0.html">page_js_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:39 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:50 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

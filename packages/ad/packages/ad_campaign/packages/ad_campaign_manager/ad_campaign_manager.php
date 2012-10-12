@@ -279,8 +279,6 @@
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_list_ad_campaign_form' );
-				
 				$ContextSet->execute( $Options , $this , __FILE__ );
 
 				return( $this->Output );

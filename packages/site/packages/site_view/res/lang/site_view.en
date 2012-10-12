@@ -2,3 +2,5 @@ site_manager=Sites
 domain=Domain
 comment=Comment
 site_delete=Delete site
+domain_must_be_filled=Field '{lang:domain}' must be filled
+site_create_was_completed=Record was created

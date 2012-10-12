@@ -101,16 +101,34 @@ $(document).ready(function(){initNavTree('group__view_8php_source.html','');});
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                  }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;?&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="classgroup__view__1__0__0.html#a6f8ad57985fc7fe91368ce5f310d321a">   86</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classgroup__view__1__0__0.html#a6f8ad57985fc7fe91368ce5f310d321a">pre_generation</a>()</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                  {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        $PageJS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_js&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        $Version = <a class="code" href="core__public__api_8php.html#ad87b539c3272be8d867b44d7d0e4b9aa">get_package_version_s</a>( __CLASS__ );</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        $PackagePath = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;permit::group_view&#39;</span> , $Version );</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        $PageJS-&gt;add_javascript( <span class="stringliteral">&quot;{http_host}/$PackagePath/include/js/group_view.js&quot;</span> );</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                  {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                  }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_5f88a6a098a3b1e62a848fb3343d29dd.html">permit</a></li><li class="navelem"><a class="el" href="dir_ba817ab0780f95827f843ef49f61c250.html">packages</a></li><li class="navelem"><a class="el" href="dir_33cf76756f3b387679864b28d9ec1255.html">group_view</a></li><li class="navelem"><a class="el" href="group__view_8php.html">group_view.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:10 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:04 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

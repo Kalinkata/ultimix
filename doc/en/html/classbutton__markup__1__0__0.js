@@ -10,5 +10,6 @@ var classbutton__markup__1__0__0 =
     [ "$CachedMultyFS", "classbutton__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d", null ],
     [ "$PageJS", "classbutton__markup__1__0__0.html#a156f7b55298bd183fd8358f4ef136990", null ],
     [ "$Settings", "classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d", null ],
-    [ "$String", "classbutton__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ]
+    [ "$String", "classbutton__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ],
+    [ "$Utilities", "classbutton__markup__1__0__0.html#ade0c6ab7d75ab44172bff178ff7c34f9", null ]
 ];

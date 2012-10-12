@@ -4,5 +4,6 @@ var classdb__markup__1__0__0 =
     [ "compile_query_field", "classdb__markup__1__0__0.html#ad29a975cf3e7628831f6bf5629011e9b", null ],
     [ "compile_record_field", "classdb__markup__1__0__0.html#a72ac7c2ab6f41b146027c6c987eed510", null ],
     [ "$Database", "classdb__markup__1__0__0.html#ae10cc045c1502f148d1aa728183898e7", null ],
-    [ "$String", "classdb__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ]
+    [ "$String", "classdb__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458", null ],
+    [ "$Utilities", "classdb__markup__1__0__0.html#ade0c6ab7d75ab44172bff178ff7c34f9", null ]
 ];

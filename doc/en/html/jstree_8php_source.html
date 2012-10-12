@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>ultimix: packages/jstree/jstree.php Source File</title>
+<title>ultimix: packages/gui/packages/jstree/jstree.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -104,80 +104,55 @@ $(document).ready(function(){initNavTree('jstree_8php_source.html','');});
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            {</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                  {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        $Path = <span class="stringliteral">&#39;{http_host}/&#39;</span>._get_package_relative_path_ex( <span class="stringliteral">&#39;jstree&#39;</span> , <a class="code" href="core__public__api_8php.html#ad87b539c3272be8d867b44d7d0e4b9aa">get_package_version_s</a>( __CLASS__ ) );</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/include/js/jquery.jstree.js&quot;</span> );</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/include/js/jquery.jstree.buttons.js&quot;</span> );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/include/js/jquery.jstree.autorun.default.js&quot;</span> );</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/include/js/jquery.jstree.extractor.js&quot;</span> );</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        $Lang = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;lang&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                        $Lang-&gt;include_strings_js( <span class="stringliteral">&#39;jstree&#39;</span> );</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                  }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                  {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                  }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="classjstree__1__0__0.html#aea6d9d54683931890210fd8cce6e4e4b">  130</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classjstree__1__0__0.html#aea6d9d54683931890210fd8cce6e4e4b">compile_tree_control</a>( &amp;$Settings )</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            {</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                  {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                        $Selector = $Settings-&gt;get_setting( <span class="stringliteral">&#39;selector&#39;</span> , <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                        <span class="keywordflow">if</span>( $Selector === <span class="keyword">false</span> )</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                        {</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                              $Path = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;jstree&#39;</span> , <a class="code" href="core__public__api_8php.html#ad87b539c3272be8d867b44d7d0e4b9aa">get_package_version_s</a>( __CLASS__ ) );</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                              $Path = <span class="stringliteral">&quot;{http_host}/$Path/include/js&quot;</span>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                              $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/jquery.jstree.autorun.default.js&quot;</span> );</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                              $Control = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                        }</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                        {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                              $Control = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;tree_control.tpl&#39;</span> );</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                              $Control = str_replace( <span class="stringliteral">&#39;{selector}&#39;</span> , $Selector );</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                        }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                        <span class="keywordflow">return</span>( $Control );</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                  }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                  {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                  }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        $Path = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;gui::jstree&#39;</span> , <a class="code" href="core__public__api_8php.html#ad87b539c3272be8d867b44d7d0e4b9aa">get_package_version_s</a>( __CLASS__ ) );</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                        $Path = <span class="stringliteral">&quot;{http_host}/$Path/include/js&quot;</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/jquery.jstree.js&quot;</span> );</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/jquery.jstree.buttons.js&quot;</span> );</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/jquery.jstree.autorun.default.js&quot;</span> );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/jquery.jstree.extractor.js&quot;</span> );</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        $this-&gt;PageJS-&gt;add_javascript( <span class="stringliteral">&quot;$Path/jquery.jstree.autorun.default.js&quot;</span> );</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        $Lang = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;lang&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        $Lang-&gt;include_strings_js( <span class="stringliteral">&#39;gui::jstree&#39;</span> );</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                  }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                  {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                  }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="code" href="classjstree__1__0__0.html#a517aad113268cdbb58cdc77ed75f1bb8">  132</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classjstree__1__0__0.html#a517aad113268cdbb58cdc77ed75f1bb8">compile_tree_control_buttons</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                  {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;tree_control_buttons.tpl&#39;</span> );</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                        $Selector = $Settings-&gt;get_setting( <span class="stringliteral">&#39;tree_control_selector&#39;</span> , <span class="stringliteral">&#39;.tree_control&#39;</span> );</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                        $Code = str_replace( <span class="stringliteral">&#39;{tree_control_selector}&#39;</span> , $Selector , $Code );</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                        $DirectCategory = $Settings-&gt;get_setting( <span class="stringliteral">&#39;direct_category&#39;</span> , <span class="stringliteral">&#39;14&#39;</span> );</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                        $Code = str_replace( <span class="stringliteral">&#39;{direct_category}&#39;</span> , $DirectCategory , $Code );</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                        $Code = $this-&gt;String-&gt;print_record( $Code , $Settings );</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                  }</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                  {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                  }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      }</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="comment">//TODO move this package to the GUI package</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="code" href="classjstree__1__0__0.html#a517aad113268cdbb58cdc77ed75f1bb8">  179</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classjstree__1__0__0.html#a517aad113268cdbb58cdc77ed75f1bb8">compile_tree_control_buttons</a>( &amp;$Settings )</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            {</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                  {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;tree_control_buttons.tpl&#39;</span> );</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                        $Selector = $Settings-&gt;get_setting( <span class="stringliteral">&#39;tree_control_selector&#39;</span> , <span class="stringliteral">&#39;.tree_control&#39;</span> );</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                        $Code = str_replace( <span class="stringliteral">&#39;{tree_control_selector}&#39;</span> , $Selector , $Code );</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                        $DirectCategory = $Settings-&gt;get_setting( <span class="stringliteral">&#39;direct_category&#39;</span> , <span class="stringliteral">&#39;14&#39;</span> );</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                        $Code = str_replace( <span class="stringliteral">&#39;{direct_category}&#39;</span> , $DirectCategory , $Code );</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                        $Code = $this-&gt;String-&gt;print_record( $Code , $Settings );</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                  }</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                  {</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                  }</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            }</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;      }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;?&gt;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_7c2f000b61436bc098c7753a9e0bfab5.html">jstree</a></li><li class="navelem"><a class="el" href="jstree_8php.html">jstree.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:07 for ultimix by
+    <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_6e11b47f71b207b27145207ea75fef9e.html">gui</a></li><li class="navelem"><a class="el" href="dir_22da140b0ceba9af8df63b75c08d8cba.html">packages</a></li><li class="navelem"><a class="el" href="dir_2f6b4165041e67b8366be7fbb419f461.html">jstree</a></li><li class="navelem"><a class="el" href="jstree_8php.html">jstree.php</a></li>
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:51 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

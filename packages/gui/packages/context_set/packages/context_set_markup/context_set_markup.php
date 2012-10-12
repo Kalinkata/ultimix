@@ -108,7 +108,7 @@
 					$this->MacroSettings->load_settings( $Parameters );
 					$Name = $this->MacroSettings->get_setting( 'name' );
 
-					$Value = $Options->get_setting( $Name , $Options->get_setting( 'default' , '0' ) );
+					$Value = $Options->get_setting( $Name , $this->MacroSettings->get_setting( 'default' , '0' ) );
 
 					$Str = str_replace( "{options:$Parameters}" , $Value , $Str );
 					$Changed = true;

@@ -197,7 +197,7 @@
 					$Permits = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 					$PageName = $this->Security->get_g( 'page_name' , 'command' );
 					
-					if( $Permits->validate_permits_ex( false , 'user' , $PageName , 'page' ) === false )
+					if( $Permits->validate_permits( false , 'user' , $PageName , 'page' ) === false )
 					{
 						header( 'Location: ./no_permits.html' );
 						exit( 1 );

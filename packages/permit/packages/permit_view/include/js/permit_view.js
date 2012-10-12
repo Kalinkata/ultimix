@@ -173,8 +173,8 @@ ultimix.permit.delete_permit = function( PermitName )
 		);
 		document.getElementById( 'permit_list' ).innerHTML += "<div class='double_panel_row no_selection_text' id='" + 
 			PermitName + "_div_id_rest'></div>";
-		document.getElementById( PermitName + '_div_id_rest' ).innerHTML += " <a href=\"javascript:ultimix.permit.add_permit( '" + 
-			PermitName + "' );\">" + PermitName + "</a><br>";
+		document.getElementById( PermitName + '_div_id_rest' ).innerHTML += 
+			" <a href=\"javascript:ultimix.permit.add_permit( '" + PermitName + "' );\">" + PermitName + "</a><br>";
 	}
 }
 

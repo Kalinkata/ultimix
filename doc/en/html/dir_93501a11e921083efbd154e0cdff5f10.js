@@ -1,5 +1,6 @@
 var dir_93501a11e921083efbd154e0cdff5f10 =
 [
+    [ "_core_data", "dir_8fb932e4d92d71c5f5a6f578d5fdd099.html", "dir_8fb932e4d92d71c5f5a6f578d5fdd099" ],
     [ "ad", "dir_671e261b7d015f0ed26e0522f8924a64.html", "dir_671e261b7d015f0ed26e0522f8924a64" ],
     [ "cache", "dir_4a0a20f81f39d195fcc82a6e88cb41dd.html", "dir_4a0a20f81f39d195fcc82a6e88cb41dd" ],
     [ "cached_fs", "dir_06558f554eceb4ca0e0a3d26a35b821f.html", "dir_06558f554eceb4ca0e0a3d26a35b821f" ],
@@ -14,6 +15,7 @@ var dir_93501a11e921083efbd154e0cdff5f10 =
     [ "database", "dir_7a1342b7493b16c2abcd88860e50b74f.html", "dir_7a1342b7493b16c2abcd88860e50b74f" ],
     [ "error_log", "dir_7f8c56000a0a3c43ddc72af0d2a4f7ff.html", "dir_7f8c56000a0a3c43ddc72af0d2a4f7ff" ],
     [ "event_manager", "dir_38682885bba03ccc75628191e4621267.html", "dir_38682885bba03ccc75628191e4621267" ],
+    [ "file_formats", "dir_353da03aae81f0a3f08537c9ecd4c252.html", "dir_353da03aae81f0a3f08537c9ecd4c252" ],
     [ "file_input", "dir_28364750a72fad1195852335c7d5ff35.html", "dir_28364750a72fad1195852335c7d5ff35" ],
     [ "gallery", "dir_a38893d68cc46673ce4109d5c1e90eaf.html", "dir_a38893d68cc46673ce4109d5c1e90eaf" ],
     [ "graph", "dir_133536783a728810444307eae2631f60.html", "dir_133536783a728810444307eae2631f60" ],
@@ -23,7 +25,6 @@ var dir_93501a11e921083efbd154e0cdff5f10 =
     [ "jsdialogs", "dir_762058f1630194e648f5a07137fda1a3.html", "dir_762058f1630194e648f5a07137fda1a3" ],
     [ "jslib", "dir_926aaad51c53394a4fdd3a21be52ba76.html", "dir_926aaad51c53394a4fdd3a21be52ba76" ],
     [ "json", "dir_2cbe2fc85816c8b7b6fe9cab37b3ee93.html", "dir_2cbe2fc85816c8b7b6fe9cab37b3ee93" ],
-    [ "jstree", "dir_7c2f000b61436bc098c7753a9e0bfab5.html", "dir_7c2f000b61436bc098c7753a9e0bfab5" ],
     [ "lang", "dir_d97b72f45ba4bdc4f37d5e17b990dffb.html", "dir_d97b72f45ba4bdc4f37d5e17b990dffb" ],
     [ "link", "dir_8648ad258f24e9cf9243d885b50dd7c5.html", "dir_8648ad258f24e9cf9243d885b50dd7c5" ],
     [ "mail", "dir_3ff582d9cee29bb6013b63ebca1d6ee3.html", "dir_3ff582d9cee29bb6013b63ebca1d6ee3" ],

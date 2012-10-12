@@ -75,7 +75,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup__buttons__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:a979ac625f1efd2c2a1c4aec51dfbff50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup__buttons__1__0__0.html#a979ac625f1efd2c2a1c4aec51dfbff50">get_controller</a> ()</td></tr>
 <tr class="memitem:aa3b9883763857f33466302b1c0f9b3d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup__buttons__1__0__0.html#aa3b9883763857f33466302b1c0f9b3d5">compile_set_group_button</a> (&amp;$Settings)</td></tr>
-<tr class="memitem:aa3b9883763857f33466302b1c0f9b3d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup__buttons__1__0__0.html#aa3b9883763857f33466302b1c0f9b3d5">compile_set_group_button</a> (&amp;$Settings)</td></tr>
 <tr class="memitem:a9625409140be5a36978b8bdecc7baa4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup__buttons__1__0__0.html#a9625409140be5a36978b8bdecc7baa4a">compile_delete_group_button</a> (&amp;$Settings)</td></tr>
 <tr class="memitem:a7ea5deb5505b915cc1352116f31050b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup__buttons__1__0__0.html#a7ea5deb5505b915cc1352116f31050b9">compile_toggle_group_button</a> (&amp;$Settings)</td></tr>
 </table><table class="memberdecls">
@@ -151,62 +150,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00256">256</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
+<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00214">214</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classgroup__buttons__1__0__0.html#aa3b9883763857f33466302b1c0f9b3d5">compile_set_group_button</a>( &amp;$Settings , <span class="stringliteral">&#39;Delete&#39;</span> ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="aa3b9883763857f33466302b1c0f9b3d5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">compile_set_group_button </td>
-          <td>(</td>
-          <td class="paramtype">&amp;&#160;</td>
-          <td class="paramname"><em>$Settings</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function compiles macro 'set_group_button'.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$Parameters</td><td>- Processing options.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Widget.</dd></dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00138">138</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        list( $Text , $Group , $MasterId ) = $Settings-&gt;get_settings( <span class="stringliteral">&#39;text,group,master_id&#39;</span> );</div>
-<div class="line">                        $MasterType = $Settings-&gt;get_setting( <span class="stringliteral">&#39;master_type&#39;</span> , <span class="stringliteral">&#39;user&#39;</span> );</div>
-<div class="line">                        $CheckBoxes = $Settings-&gt;get_setting( <span class="stringliteral">&#39;checkboxes&#39;</span> , <span class="stringliteral">&#39;user&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $Code = $this-&gt;<a class="code" href="classgroup__buttons__1__0__0.html#a979ac625f1efd2c2a1c4aec51dfbff50">get_controller</a>();</div>
-<div class="line">                        $Code .= <span class="stringliteral">&quot;{href:text=$Text;page=javascript:ultimix.permit.SetGroupButton&quot;</span>.</div>
-<div class="line">                              <span class="stringliteral">&quot;( &#39;$Group&#39; , $MasterId , &#39;$MasterType&#39; , &#39;$CheckBoxes&#39; )}&quot;</span>;</div>
-<div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;compile_group_button( $Settings , <span class="stringliteral">&#39;Delete&#39;</span> ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -245,11 +193,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00222">222</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
+<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00180">180</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classgroup__buttons__1__0__0.html#aa3b9883763857f33466302b1c0f9b3d5">compile_set_group_button</a>( &amp;$Settings , <span class="stringliteral">&#39;Set&#39;</span> ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;compile_group_button( $Settings , <span class="stringliteral">&#39;Set&#39;</span> ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -288,11 +236,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00290">290</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
+<p>Definition at line <a class="el" href="group__buttons_8php_source.html#l00248">248</a> of file <a class="el" href="group__buttons_8php_source.html">group_buttons.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;<a class="code" href="classgroup__buttons__1__0__0.html#aa3b9883763857f33466302b1c0f9b3d5">compile_set_group_button</a>( &amp;$Settings , <span class="stringliteral">&#39;Toggle&#39;</span> ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( $this-&gt;compile_group_button( $Settings , <span class="stringliteral">&#39;Toggle&#39;</span> ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -404,7 +352,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classgroup__buttons__1__0__0.html">group_buttons_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:45 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -208,7 +208,7 @@ $(document).ready(function(){initNavTree('messages_8php_source.html','');});
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                  }</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            }</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno"><a class="code" href="classmessages__1__0__0.html#a33dd5d24b189e61d6203ab796bc3f3d6">  320</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classmessages__1__0__0.html#a33dd5d24b189e61d6203ab796bc3f3d6">compile_success_messages</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00320"></a><span class="lineno"><a class="code" href="classmessages__1__0__0.html#a4c12ea23fcb07079578d8bcec37f73e9">  320</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classmessages__1__0__0.html#a4c12ea23fcb07079578d8bcec37f73e9">compile_success_message</a>( &amp;$Settings )</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;            {</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;                  {</div>
@@ -217,59 +217,58 @@ $(document).ready(function(){initNavTree('messages_8php_source.html','');});
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                        <span class="keywordflow">if</span>( isset( $this-&gt;SuccessMessages[ 0 ] ) )</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                        {</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                              $StartingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;success_start.tpl&#39;</span> );</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                              $ClosingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;success_end.tpl&#39;</span> );</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                              $Messages = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;SuccessMessages );</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                              $Code = $StartingDiv.<span class="stringliteral">&quot;{lang:$Messages}&quot;</span>.$ClosingDiv;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                              $this-&gt;SuccessMessages = array();</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                        }</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                  }</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                  {</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;                  }</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            }</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            </div>
-<div class="line"><a name="l00369"></a><span class="lineno"><a class="code" href="classmessages__1__0__0.html#a7b49f0d9710887c6b5487833e4953e99">  369</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classmessages__1__0__0.html#a7b49f0d9710887c6b5487833e4953e99">compile_error_messages</a>( &amp;$Settings )</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;            {</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                  {</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                        $Code = <span class="stringliteral">&#39;&#39;</span>;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                        <span class="keywordflow">if</span>( isset( $this-&gt;ErrorMessages[ 0 ] ) )</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                        {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                              $StartingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;error_start.tpl&#39;</span> );</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                              $ClosingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;error_end.tpl&#39;</span> );</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                              $Code = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;ErrorMessages );</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                              $Code = $StartingDiv.<span class="stringliteral">&quot;{lang:$Messages}&quot;</span>.$ClosingDiv;</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                              $this-&gt;ErrorMessages = array();</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                        }</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                  }</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                  {</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                  }</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;            }</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;      }</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;?&gt;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                              $ClosingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;success_end.tpl&#39;</span> );</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                              $Messages = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;SuccessMessages );</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                              $Code = $StartingDiv.<span class="stringliteral">&quot;{lang:$Messages}&quot;</span>.$ClosingDiv;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                              $this-&gt;SuccessMessages = array();</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                        }</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                        </div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                  }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                  {</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;                  }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            }</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            </div>
+<div class="line"><a name="l00368"></a><span class="lineno"><a class="code" href="classmessages__1__0__0.html#ab6537fdf491a81fe60e7b132fc643efe">  368</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classmessages__1__0__0.html#ab6537fdf491a81fe60e7b132fc643efe">compile_error_message</a>( &amp;$Settings )</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;            {</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                  {</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                        $Code = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                        <span class="keywordflow">if</span>( isset( $this-&gt;ErrorMessages[ 0 ] ) )</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                        {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                              $StartingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;error_start.tpl&#39;</span> );</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                              $ClosingDiv = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;error_end.tpl&#39;</span> );</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                              $Messages = implode( <span class="charliteral">&#39;}&#39;</span>.$ClosingDiv.$StartingDiv.<span class="stringliteral">&#39;{lang:&#39;</span> , $this-&gt;ErrorMessages );</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                              $Code = $StartingDiv.<span class="stringliteral">&quot;{lang:$Messages}&quot;</span>.$ClosingDiv;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                              $this-&gt;ErrorMessages = array();</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                        }</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                        <span class="keywordflow">return</span>( $Code );</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                  }</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                  {</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;                  }</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            }</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;      }</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_c078e481c2612ffba5017188b09afd19.html">page</a></li><li class="navelem"><a class="el" href="dir_45d5d742c6a2e963177f6f892a398aed.html">packages</a></li><li class="navelem"><a class="el" href="dir_0f794c448958dae773981b40b2d2515e.html">messages</a></li><li class="navelem"><a class="el" href="messages_8php.html">messages.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:08 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:02 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -79,7 +79,7 @@ $(document).ready(function(){initNavTree('auto__view_8php_source.html','');});
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">      *</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">      *     @author Alexey &quot;gdever&quot; Dodonov</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">      */</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html">   26</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classauto__view__1__0__0.html">auto_view_1_0_0</a>{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            </div>
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html#aca4968cf8b92f65f827793dc88b205ed">   38</a></span>&#160;            var                           <a class="code" href="classauto__view__1__0__0.html#aca4968cf8b92f65f827793dc88b205ed">$PackagePath</a>;</div>
@@ -96,44 +96,58 @@ $(document).ready(function(){initNavTree('auto__view_8php_source.html','');});
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                  }</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            </div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html#a837f97c180520baee0fe1a6f74fb8c9e">   91</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classauto__view__1__0__0.html#a837f97c180520baee0fe1a6f74fb8c9e">set_path</a>( $thePackagePath )</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html#af43f781a948dc753c7fe55bb38bbc07e">   91</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classauto__view__1__0__0.html#af43f781a948dc753c7fe55bb38bbc07e">pre_generation</a>( &amp;$Options )</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                  {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        $this-&gt;PackagePath = $thePackagePath;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                  {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                  }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            </div>
-<div class="line"><a name="l00121"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html#a43074158f41bf195878c903457afa35f">  121</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classauto__view__1__0__0.html#a43074158f41bf195878c903457afa35f">view</a>( $Options )</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                  {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        $ContextSet = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , $this-&gt;PackagePath );</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                        </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        $ContextSet-&gt;execute( $Options , $this , $this-&gt;PackagePath );</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                        </div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                  }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                  {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                  }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;      }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;?&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        $PageJS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_js&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                        <a class="code" href="classauto__view__1__0__0.html#aca4968cf8b92f65f827793dc88b205ed">$PackagePath</a> = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( <span class="stringliteral">&#39;page::auto_view&#39;</span> , <span class="stringliteral">&#39;1.0.0&#39;</span> );</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                        $PageJS-&gt;add_javascript( <span class="stringliteral">&quot;{http_host}/$PackagePath/include/js/auto_view.js&quot;</span> );</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                  }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                  {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                  }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html#a837f97c180520baee0fe1a6f74fb8c9e">  123</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classauto__view__1__0__0.html#a837f97c180520baee0fe1a6f74fb8c9e">set_path</a>( $thePackagePath )</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                  {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        $this-&gt;PackagePath = $thePackagePath;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                  }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                  {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                  }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno"><a class="code" href="classauto__view__1__0__0.html#a43074158f41bf195878c903457afa35f">  153</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classauto__view__1__0__0.html#a43074158f41bf195878c903457afa35f">view</a>( $Options )</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                  {</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        $ContextSet = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , $this-&gt;PackagePath );</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                        $ContextSet-&gt;execute( $Options , $this , $this-&gt;PackagePath );</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                  }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                  {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                  }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      }</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_c078e481c2612ffba5017188b09afd19.html">page</a></li><li class="navelem"><a class="el" href="dir_45d5d742c6a2e963177f6f892a398aed.html">packages</a></li><li class="navelem"><a class="el" href="dir_a0c1ac2aaf64f556b4a32b6f306aa776.html">auto_view</a></li><li class="navelem"><a class="el" href="auto__view_8php.html">auto_view.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:08 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:02 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

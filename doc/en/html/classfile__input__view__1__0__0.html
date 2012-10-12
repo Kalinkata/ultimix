@@ -155,23 +155,24 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="file__input__view_8php_source.html#l00160">160</a> of file <a class="el" href="file__input__view_8php_source.html">file_input_view.php</a>.</p>
+<p>Definition at line <a class="el" href="file__input__view_8php_source.html#l00198">198</a> of file <a class="el" href="file__input__view_8php_source.html">file_input_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $FileInputAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;file_input::file_input_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $File = $FileInputAlgorithms-&gt;get_by_id( $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;fid&#39;</span> , <span class="stringliteral">&#39;integer&#39;</span> ) );</div>
+<div class="line">                        $Fid = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;fid&#39;</span> , <span class="stringliteral">&#39;integer&#39;</span> , <span class="keyword">false</span> );</div>
 <div class="line"></div>
-<div class="line">                        $FileSize = filesize( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $File , <span class="stringliteral">&#39;file_path&#39;</span> ) );</div>
-<div class="line">                        $FileName = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $File , <span class="stringliteral">&#39;original_file_name&#39;</span> );</div>
+<div class="line">                        <span class="keywordflow">if</span>( $Fid !== <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              $FileInputAlgorithms = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;file_input::file_input_algorithms&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                              $File = $FileInputAlgorithms-&gt;get_by_id(  );</div>
 <div class="line"></div>
-<div class="line">                        header( <span class="stringliteral">&#39;HTTP/1.0 200 OK&#39;</span> );</div>
-<div class="line">                        header( <span class="stringliteral">&#39;Content-type: application/octet-stream&#39;</span> );</div>
-<div class="line">                        header( <span class="stringliteral">&quot;Content-Length: $FileSize&quot;</span> );</div>
-<div class="line">                        header( <span class="stringliteral">&quot;Content-Disposition: attachment; filename=\&quot;$FileName\&quot;&quot;</span> );</div>
-<div class="line">                        header( <span class="stringliteral">&#39;Connection: close&#39;</span> );</div>
+<div class="line">                              $FileSize = filesize( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $File , <span class="stringliteral">&#39;file_path&#39;</span> ) );</div>
+<div class="line">                              $FileName = <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $File , <span class="stringliteral">&#39;original_file_name&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                        readfile( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $File , <span class="stringliteral">&#39;file_path&#39;</span> ) );</div>
+<div class="line">                              $this-&gt;file_headers( $FileSize , $FileName );</div>
+<div class="line"></div>
+<div class="line">                              readfile( <a class="code" href="functional__programming_8php.html#a113f39218a0e805d475fbc5ab87a16ab">get_field</a>( $File , <span class="stringliteral">&#39;file_path&#39;</span> ) );</div>
+<div class="line">                        }</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -259,7 +260,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="file__input__view_8php_source.html#l00202">202</a> of file <a class="el" href="file__input__view_8php_source.html">file_input_view.php</a>.</p>
+<p>Definition at line <a class="el" href="file__input__view_8php_source.html#l00241">241</a> of file <a class="el" href="file__input__view_8php_source.html">file_input_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -267,7 +268,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              $this-&gt;<a class="code" href="classfile__input__view__1__0__0.html#a1bd3d5c4abe19a696ce3c7f5a6a93596">download</a>( $Options );</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( <span class="stringliteral">&#39;&#39;</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -332,7 +333,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classfile__input__view__1__0__0.html">file_input_view_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:43 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

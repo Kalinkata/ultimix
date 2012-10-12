@@ -567,8 +567,8 @@
 			{
 				return(
 					array( 
-						'cfcxs_user_line' , 'cfcx_login_form' , 'cfcx_logout_form' , 'cfcx_auto_open_login_dialog' , 
-						'cfcx_switch_user_form' , 'cfcx_registration_form' , 'cfcx_update_user_form' , 
+						'cfcx_switch_user_form' , 'cfcxs_user_line' , 'cfcx_login_form' , 'cfcx_logout_form' , 
+						'cfcx_auto_open_login_dialog' , 'cfcx_registration_form' , 'cfcx_update_user_form' , 
 						'cfcx_short_profile' , 'cfcx_full_profile' , 'cfcx_activate_user_form' , 
 						'cfcx_restore_password_form' , 'cfcx_login_button' , 'cfcx_logout_button' , 
 						'cfcx_logout_img_button' , 'cfcx_switch_user_button' , 'cfcx_update_profile_button'

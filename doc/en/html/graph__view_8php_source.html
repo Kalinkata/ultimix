@@ -82,50 +82,62 @@ $(document).ready(function(){initNavTree('graph__view_8php_source.html','');});
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html">   26</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classgraph__view__1__0__0.html">graph_view_1_0_0</a>{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">   46</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">view_graph</a>( &amp;$Options )</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                  {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                        $this-&gt;prepare_graph_area();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                        $this-&gt;draw_graph_data( $Options );</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                  }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                  }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663">   82</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classgraph__view__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663">view</a>( &amp;$Options )</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                  {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        <span class="keywordflow">if</span>( $Options-&gt;get_setting( <span class="stringliteral">&#39;graph&#39;</span> , <span class="keyword">false</span> ) == 1 )</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                        {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                              $this-&gt;<a class="code" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">view_graph</a>( $Options );</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                        elseif( $Options-&gt;get_setting( <span class="stringliteral">&#39;map&#39;</span> , <span class="keyword">false</span> ) == 1 )</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                              $this-&gt;view_map( $Options );</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  }</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                  {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                  }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;?&gt;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html#a8ca1bfd7658667567378944e8c53c4e9">   38</a></span>&#160;            var                           <a class="code" href="classgraph__view__1__0__0.html#a8ca1bfd7658667567378944e8c53c4e9">$Graph</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html#a095c5d389db211932136b53f25f39685">   50</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classgraph__view__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                  {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        $this-&gt;Graph = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;graph&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                  {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                  }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">   80</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">view_graph</a>( &amp;$Options )</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                  {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                        $this-&gt;Graph-&gt;draw_graph_data( $Options );</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                  }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                  {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                  }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="code" href="classgraph__view__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663">  114</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classgraph__view__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663">view</a>( &amp;$Options )</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                  {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                        <span class="keywordflow">if</span>( $Options-&gt;get_setting( <span class="stringliteral">&#39;graph&#39;</span> , <span class="keyword">false</span> ) == 1 )</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                        {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                              $this-&gt;<a class="code" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">view_graph</a>( $Options );</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        elseif( $Options-&gt;get_setting( <span class="stringliteral">&#39;map&#39;</span> , <span class="keyword">false</span> ) == 1 )</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                              $this-&gt;view_map( $Options );</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                        </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                  }</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                  {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                  }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            }</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;      </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_133536783a728810444307eae2631f60.html">graph</a></li><li class="navelem"><a class="el" href="dir_2f0bd91a0714506c55b775447170c762.html">packages</a></li><li class="navelem"><a class="el" href="dir_f1198938278f614917771125580bd7a8.html">graph_view</a></li><li class="navelem"><a class="el" href="graph__view_8php.html">graph_view.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:52 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:42 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

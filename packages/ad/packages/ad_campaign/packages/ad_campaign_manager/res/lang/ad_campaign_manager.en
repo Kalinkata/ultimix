@@ -1,2 +1,4 @@
 ad_campaign_manager=Campaigns
 ad_campaign_title=Title
+ad_campaign_field_must_be_set=Field "{lang:ad_campaign_title}" must be filled
+ad_campaign_create_was_completed=Ad Campaign was created

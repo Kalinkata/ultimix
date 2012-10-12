@@ -79,75 +79,71 @@ $(document).ready(function(){initNavTree('table_8php_source.html','');});
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">      *</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">      *     @author Alexey &quot;gdever&quot; Dodonov</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">      */</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="table_8php.html#a3ecb8f5ef44cf3d12289ad302caff5ce">   16</a></span>&#160;      define( <span class="stringliteral">&#39;DB_ASSOC_ARRAY&#39;</span> , 1 );</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="table_8php.html#a1b72226638a2b68c4d481c0bebca0063">   17</a></span>&#160;      define( <span class="stringliteral">&#39;DB_OBJECT&#39;</span> , 2 );</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="table_8php.html#a1ab4852c7d469a9ae283c0da86b7d4a4">   18</a></span>&#160;      define( <span class="stringliteral">&#39;DB_ARRAY&#39;</span> , 3 );</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;      </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html">   30</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classtable__1__0__0.html">table_1_0_0</a>{</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#a095c5d389db211932136b53f25f39685">   46</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                  {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html">   26</a></span>&#160;      <span class="keyword">class </span><a class="code" href="classtable__1__0__0.html">table_1_0_0</a>{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#a095c5d389db211932136b53f25f39685">   42</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a>()</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                  {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                  }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                  {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                  }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                  {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#aa781c13ec985a57829a2c7b2c1298d02">   75</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#aa781c13ec985a57829a2c7b2c1298d02">drop</a>( $Table )</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        $this-&gt;QueryCounter++;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                        $DBO = $this-&gt;get_object();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        $DBO-&gt;drop( $Table );</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#aa781c13ec985a57829a2c7b2c1298d02">   71</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#aa781c13ec985a57829a2c7b2c1298d02">drop</a>( $Table )</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                  {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                        $this-&gt;QueryCounter++;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                        $DBO = $this-&gt;get_object();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        $DBO-&gt;drop( $Table );</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                  }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                  {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                  }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                  {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                  }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            </div>
-<div class="line"><a name="l00119"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#aae9890f7d450e4b9e346fd620660990f">  119</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#aae9890f7d450e4b9e346fd620660990f">add_column</a>( $Table , $ColumnName , $Type , $Mode = <span class="stringliteral">&#39;NOT NULL AFTER `id`&#39;</span> )</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                  {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        $this-&gt;QueryCounter++;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                        $DBO = $this-&gt;get_object();</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        $DBO-&gt;add_column( $Table , $ColumnName , $Type , $Mode = <span class="stringliteral">&#39;NOT NULL AFTER `id`&#39;</span> );</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#aae9890f7d450e4b9e346fd620660990f">  115</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#aae9890f7d450e4b9e346fd620660990f">add_column</a>( $Table , $ColumnName , $Type , $Mode = <span class="stringliteral">&#39;NOT NULL AFTER `id`&#39;</span> )</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                  {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                        $this-&gt;QueryCounter++;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                        $DBO = $this-&gt;get_object();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        $DBO-&gt;add_column( $Table , $ColumnName , $Type , $Mode = <span class="stringliteral">&#39;NOT NULL AFTER `id`&#39;</span> );</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                  }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                  {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                  }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                  {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                  }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            </div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#a91a17d943d9065bae6c6f65aa292fa1b">  155</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#a91a17d943d9065bae6c6f65aa292fa1b">drop_column</a>( $Table , $ColumnName )</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            {</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                  {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                        $this-&gt;QueryCounter++;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                        $DBO = $this-&gt;get_object();</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                        $DBO-&gt;drop_column( $Table , $ColumnName );</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="code" href="classtable__1__0__0.html#a91a17d943d9065bae6c6f65aa292fa1b">  151</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classtable__1__0__0.html#a91a17d943d9065bae6c6f65aa292fa1b">drop_column</a>( $Table , $ColumnName )</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;            {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                  {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                        $this-&gt;QueryCounter++;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        $DBO = $this-&gt;get_object();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        $DBO-&gt;drop_column( $Table , $ColumnName );</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                  }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                  {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                  }</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                  {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                  }</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;?&gt;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_7a1342b7493b16c2abcd88860e50b74f.html">database</a></li><li class="navelem"><a class="el" href="dir_9e29d43dd7407de83abd117b75b27387.html">packages</a></li><li class="navelem"><a class="el" href="dir_df7c933159bcba9f88ebe7a84f957410.html">table</a></li><li class="navelem"><a class="el" href="table_8php.html">table.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:50 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:41 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

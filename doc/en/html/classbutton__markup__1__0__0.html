@@ -86,6 +86,7 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a1b21a3420462aafbfb9e6420c224452d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbutton__markup__1__0__0.html#a1b21a3420462aafbfb9e6420c224452d">$CachedMultyFS</a> = false</td></tr>
 <tr class="memitem:a156f7b55298bd183fd8358f4ef136990"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbutton__markup__1__0__0.html#a156f7b55298bd183fd8358f4ef136990">$PageJS</a> = false</td></tr>
 <tr class="memitem:a541f49d5b9cf7bae2f91f639abcf3458"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbutton__markup__1__0__0.html#a541f49d5b9cf7bae2f91f639abcf3458">$String</a> = false</td></tr>
+<tr class="memitem:ade0c6ab7d75ab44172bff178ff7c34f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbutton__markup__1__0__0.html#ade0c6ab7d75ab44172bff178ff7c34f9">$Utilities</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Class processes buttons macro.</p>
@@ -108,7 +109,7 @@ Data Fields</h2></td></tr>
 <p>Constructor.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00054">54</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00055">55</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -116,6 +117,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        $this-&gt;CachedMultyFS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cached_multy_fs&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;PageJS = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_js&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;String = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;string&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        $this-&gt;Utilities = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;utilities&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -156,7 +158,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00126">126</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00128">128</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -167,11 +169,10 @@ Data Fields</h2></td></tr>
 <div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;component_button.tpl&#39;</span> );</div>
 <div class="line">                        $Code = $this-&gt;String-&gt;print_record( $Code , <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_raw_settings() );</div>
 <div class="line"></div>
-<div class="line">                        $Path = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( </div>
-<div class="line">                              <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> ) , <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> )</div>
-<div class="line">                        );</div>
+<div class="line">                        $Path = $this-&gt;Utilities-&gt;get_package_path( <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
+<div class="line"></div>
 <div class="line">                        $Icon = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;icon&#39;</span> );</div>
-<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , $Path.<span class="stringliteral">&quot;/res/images/$Icon&quot;</span> , $Code );</div>
+<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , <span class="stringliteral">&quot;$Path/res/images/$Icon&quot;</span> , $Code );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
@@ -212,7 +213,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00217">217</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00218">218</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -220,16 +221,13 @@ Data Fields</h2></td></tr>
 <div class="line"></div>
 <div class="line">                        $Icon = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;icon&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                        $PackageName = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> );</div>
-<div class="line">                        $PackageVersion = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
-<div class="line"></div>
-<div class="line">                        $PathToPackage = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( $PackageName , $PackageVersion );</div>
+<div class="line">                        $Path = $this-&gt;Utilities-&gt;get_package_path( <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
 <div class="line"></div>
 <div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;menu_button.tpl&#39;</span> );</div>
 <div class="line"></div>
 <div class="line">                        $Code = $this-&gt;String-&gt;print_record( $Code , <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_raw_settings() );</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">return</span>( str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , $PathToPackage.<span class="stringliteral">&quot;/res/images/$Icon&quot;</span> , $Code ) );</div>
+<div class="line">                        <span class="keywordflow">return</span>( str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , <span class="stringliteral">&quot;$Path/res/images/$Icon&quot;</span> , $Code ) );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -268,19 +266,19 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00446">446</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00400">400</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;set_default_data_for_toolbar_button( <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
 <div class="line"></div>
 <div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;run_controller_and_remove_dom_button.tpl&#39;</span> );</div>
+<div class="line"></div>
 <div class="line">                        $Code = $this-&gt;String-&gt;print_record( $Code , <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_raw_settings() );</div>
 <div class="line"></div>
-<div class="line">                        $PackageName = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> );</div>
-<div class="line">                        $PackageVersion = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
-<div class="line">                        $PathToPackage = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( $PackageName , $PackageVersion );</div>
-<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , $PathToPackage.<span class="stringliteral">&quot;/res/images/$Icon&quot;</span> , $Code );</div>
+<div class="line">                        $Path = $this-&gt;Utilities-&gt;get_package_path( <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
+<div class="line"></div>
+<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , $Path.<span class="stringliteral">&quot;/res/images/$Icon&quot;</span> , $Code );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
@@ -321,7 +319,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00403">403</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00358">358</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -371,20 +369,19 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00264">264</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00262">262</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;set_default_data_for_toolbar_button( <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
 <div class="line"></div>
 <div class="line">                        $Icon = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;icon&#39;</span> );</div>
-<div class="line">                        $PackageName = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_name&#39;</span> );</div>
-<div class="line">                        $PackageVersion = <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_setting( <span class="stringliteral">&#39;package_version&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> );</div>
-<div class="line">                        $PathToPackage = <a class="code" href="core_8php.html#a5723fd5d1f06ff63181f91d948316d87">_get_package_relative_path_ex</a>( $PackageName , $PackageVersion );</div>
+<div class="line"></div>
+<div class="line">                        $Path = $this-&gt;Utilities-&gt;get_package_path( <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a> );</div>
 <div class="line"></div>
 <div class="line">                        $Code = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&#39;toolbar_button.tpl&#39;</span> );</div>
 <div class="line">                        $Code = $this-&gt;String-&gt;print_record( $Code , <a class="code" href="classbutton__markup__1__0__0.html#a2c1da60c6cd872abbb042bcd58b7c10d">$Settings</a>-&gt;get_raw_settings() );</div>
-<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , $PathToPackage.<span class="stringliteral">&quot;/res/images/$Icon&quot;</span> , $Code );</div>
+<div class="line">                        $Code = str_replace( <span class="stringliteral">&#39;{path_to_image}&#39;</span> , <span class="stringliteral">&quot;$Path/res/images/$Icon&quot;</span> , $Code );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Code );</div>
 <div class="line">                  }</div>
@@ -424,7 +421,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00087">87</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00089">89</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -498,6 +495,20 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ade0c6ab7d75ab44172bff178ff7c34f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$Utilities = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="button__markup_8php_source.html#l00043">43</a> of file <a class="el" href="button__markup_8php_source.html">button_markup.php</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>packages/gui/packages/button_markup/<a class="el" href="button__markup_8php_source.html">button_markup.php</a></li>
 </ul>
@@ -507,7 +518,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classbutton__markup__1__0__0.html">button_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:28 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:36 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

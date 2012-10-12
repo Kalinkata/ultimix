@@ -13,6 +13,8 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
+	//TODO: move it to view/controller
+	
 	/**
 	*	\~russian Работа с отчетами.
 	*
@@ -462,8 +464,6 @@
 			}
 		}
 
-		// TODO add report generating tutorial
-
 		/**
 		*	\~russian Функция генерации отчета.
 		*
@@ -561,6 +561,47 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+//TODO: report_permit_manager
+
+		/**
+		*	\~russian Функция генерации отчета.
+		*
+		*	@param $Options - настройки работы модуля.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function generates report.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	run_generate_report_function( &$Options )
+		{
+			try
+			{
+				$FunctionName = $this->Security->get_gp( 'func_name' , 'string' , 'report' );
+				$FunctionName = $Options->get_setting( 'func_name' , $FunctionName );
+
+				if( method_exists( $Package , $FunctionName ) )
+				{
+					$this->compile_report( $Package , $FunctionName , $Options );
+					return;
+				}
+
+				$Message = "Method \"$FunctionName\" does not exists in the package \"".get_class( $Package )."\"";
+				throw( new Exception( $Message ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Функция генерации отчета.
@@ -584,6 +625,7 @@
 		{
 			try
 			{
+				$Name = $Options->get_setting( 'name' );
 				$Package = $this->get_report_generator( $Options );
 
 				if( $Package === false )
@@ -591,19 +633,12 @@
 					return;
 				}
 
-				// TODO close reports with permits
-
-				$FunctionName = $this->Security->get_gp( 'func_name' , 'string' , 'report' );
-				$FunctionName = $Options->get_setting( 'func_name' , $FunctionName );
-
-				if( method_exists( $Package , $FunctionName ) )
+				if( $this->PermitAlgorithms->validate_permits( false , 'user' , 'report' , $Name ) === false )
 				{
-					$this->compile_report( $Package , $FunctionName , $Options );
-					return;
+					throw( new Exception( 'No permits for this report' ) );
 				}
 
-				$Message = "Method \"$FunctionName\" does not exists in the package \"".get_class( $Package )."\"";
-				throw( new Exception( $Message ) );
+				$this->run_generate_report_function( $Options );
 			}
 			catch( Exception $e )
 			{

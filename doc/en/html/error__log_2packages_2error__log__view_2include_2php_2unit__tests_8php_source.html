@@ -79,58 +79,37 @@ $(document).ready(function(){initNavTree('error__log_2packages_2error__log__view
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">      *</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">      *     @author Alexey &quot;gdever&quot; Dodonov</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">      */</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;      <span class="keyword">class </span><a class="code" href="classunit__tests.html">unit_tests</a>{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            var                           <a class="code" href="classunit__tests.html#a4eb25fa3c00a2e5b393134818c5ccf83">$ErrorLogAccess</a> = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classunit__tests.html#a665171b68e75f0f6aefcef3f4c7cf826">   39</a></span>&#160;            var                           <a class="code" href="classunit__tests.html#a665171b68e75f0f6aefcef3f4c7cf826">$ErrorLogView</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            var                           <a class="code" href="classunit__tests.html#ac2f0bd8c3964c5cb918a04157aa3a9bd">$Options</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classunit__tests.html#ac2f0bd8c3964c5cb918a04157aa3a9bd">   40</a></span>&#160;            var                           <a class="code" href="classunit__tests.html#ac2f0bd8c3964c5cb918a04157aa3a9bd">$Options</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classunit__tests.html#a69829875c8d4b6ce94908445c4155741">   52</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classunit__tests.html#a69829875c8d4b6ce94908445c4155741">set_up</a>()</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            {</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  $this-&gt;ErrorLogAccess = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;error_log::error_log_access&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  $this-&gt;ErrorLogView = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;error_log::error_log_view&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                  $this-&gt;Options = <a class="code" href="core__public__api_8php.html#a7dbfff8b452767e03ec52155dff6bdd3">get_package_object</a>( <span class="stringliteral">&#39;settings::settings&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      </div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classunit__tests.html#a6dbd8d2783c4df9604473d51e477c616">   73</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classunit__tests.html#a6dbd8d2783c4df9604473d51e477c616">test_simple_view</a>()</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                  {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        $this-&gt;ErrorLogAccess-&gt;add_message_to_log( 1 , <span class="stringliteral">&#39;title_of_testing_record&#39;</span> , <span class="stringliteral">&#39;description&#39;</span> );</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        $this-&gt;Options-&gt;load_settings( <span class="stringliteral">&#39;view=1;list_of_messages=1&#39;</span> );</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                        $Page = $this-&gt;ErrorLogView-&gt;view( $this-&gt;Options );</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                        <span class="keywordflow">if</span>( strpos( $Page , <span class="stringliteral">&#39;title_of_testing_record&#39;</span> ) !== <span class="keyword">false</span> )</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                        {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                              $Result = <span class="stringliteral">&#39;TEST PASSED&#39;</span>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                        }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                        {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                              $Result = <span class="stringliteral">&#39;ERROR&#39;</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                        }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                        $Messages = $this-&gt;ErrorLogAccess-&gt;unsafe_select_messages( <span class="stringliteral">&#39;1 ORDER BY id DESC LIMIT 0 , 1&#39;</span> );</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                        $this-&gt;ErrorLogAccess-&gt;delete_error_log( $Messages[ 0 ]-&gt;<span class="keywordtype">id</span> );</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                        <span class="keywordflow">return</span>( $Result );</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                  }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                  {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                  }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      }</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;?&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="comment">//TODO: create unit-test with simple create form view</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            <span class="comment">//TODO: create unit-test with simple update form view</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="comment">//TODO: create unit-test with simple copy form view</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            <span class="comment">//TODO: create unit-test with simple create controller</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            <span class="comment">//TODO: create unit-test with simple update controller</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="comment">//TODO: create unit-test with simple delete controller</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_7f8c56000a0a3c43ddc72af0d2a4f7ff.html">error_log</a></li><li class="navelem"><a class="el" href="dir_1ac030a6ab26cc1ed11957ed56cdd692.html">packages</a></li><li class="navelem"><a class="el" href="dir_ca43dce619ef816894762f52bd696091.html">error_log_view</a></li><li class="navelem"><a class="el" href="dir_f9fdf063bf9dbc028fb708f451e87abe.html">include</a></li><li class="navelem"><a class="el" href="dir_13cf4ea44eeadc9ec9c3178166328a9f.html">php</a></li><li class="navelem"><a class="el" href="error__log_2packages_2error__log__view_2include_2php_2unit__tests_8php.html">unit_tests.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:30:45 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:16:31 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

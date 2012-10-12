@@ -371,7 +371,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00416">416</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00418">418</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -439,15 +439,17 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $Control = str_replace( <span class="stringliteral">&#39;{records_per_page}&#39;</span> , <span class="stringliteral">&#39;{records_per_page:type=default}&#39;</span> , $Control );</div>
+<div class="line">                        $Control = str_replace( </div>
+<div class="line">                              <span class="stringliteral">&#39;{records_per_page_control}&#39;</span> , <span class="stringliteral">&#39;{records_per_page_control:type=default}&#39;</span> , $Control</div>
+<div class="line">                        );</div>
 <div class="line"></div>
-<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $Paging-&gt;String-&gt;get_macro_parameters( $Control , <span class="stringliteral">&#39;records_per_page&#39;</span> ) ; )</div>
+<div class="line">                        <span class="keywordflow">for</span>( ; $Parameters = $Paging-&gt;String-&gt;get_macro_parameters( $Control , <span class="stringliteral">&#39;records_per_page_control&#39;</span> ) ; )</div>
 <div class="line">                        {</div>
 <div class="line">                              $this-&gt;Settings-&gt;load_settings( $Parameters );</div>
 <div class="line"></div>
 <div class="line">                              $Code = $this-&gt;<a class="code" href="classpaging__markup__1__0__0.html#aab4a7864140013faa6a01aa9f1c6e051">get_records_per_page_control</a>( $Paging , $this-&gt;Settings );</div>
 <div class="line"></div>
-<div class="line">                              $Control = str_replace( <span class="stringliteral">&quot;{records_per_page:$Parameters}&quot;</span> , $Code , $Control );</div>
+<div class="line">                              $Control = str_replace( <span class="stringliteral">&quot;{records_per_page_control:$Parameters}&quot;</span> , $Code , $Control );</div>
 <div class="line">                        }</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $Control );</div>
@@ -560,7 +562,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00469">469</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00471">471</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -621,7 +623,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00564">564</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00566">566</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -753,7 +755,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00514">514</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
+<p>Definition at line <a class="el" href="paging__markup_8php_source.html#l00516">516</a> of file <a class="el" href="paging__markup_8php_source.html">paging_markup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -833,7 +835,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classpaging__markup__1__0__0.html">paging_markup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:40 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:51 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -491,7 +491,7 @@
 					$ids = get_field_ex( $Links , 'object2_id' );
 
 					$Permits = $this->select_list( implode( ',' , $ids ) );
-					
+
 					return( get_field_ex( $Permits , 'permit' ) );
 				}
 			}
@@ -527,7 +527,7 @@
 		{
 			try
 			{
-				$uid = ( $uid === false ) ? $this->UserAlgorithms->get_id() : $this->Security->get( $uid , 'integer' );
+				$uid = $this->Security->get( $uid , 'integer' );
 
 				$Type = $this->LinkDictionary->get_link_type( 'user' , 'group' );
 				$this->Database->query_as( DB_OBJECT );

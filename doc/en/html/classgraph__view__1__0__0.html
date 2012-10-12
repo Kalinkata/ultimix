@@ -63,7 +63,8 @@ $(document).ready(function(){initNavTree('classgraph__view__1__0__0.html','');})
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
 <div class="title">graph_view_1_0_0 Class Reference</div>  </div>
 </div><!--header-->
@@ -71,15 +72,50 @@ $(document).ready(function(){initNavTree('classgraph__view__1__0__0.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraph__view__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:ad2dfe00003d4a4b281c646a66ec5b345"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraph__view__1__0__0.html#ad2dfe00003d4a4b281c646a66ec5b345">view_graph</a> (&amp;$Options)</td></tr>
 <tr class="memitem:a10be4c0ec9fe6c200d3aba188c6f1663"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraph__view__1__0__0.html#a10be4c0ec9fe6c200d3aba188c6f1663">view</a> (&amp;$Options)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a8ca1bfd7658667567378944e8c53c4e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgraph__view__1__0__0.html#a8ca1bfd7658667567378944e8c53c4e9">$Graph</a> = false</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Working with graphs.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
 <p>Definition at line <a class="el" href="graph__view_8php_source.html#l00026">26</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
-</div><h2>Member Function Documentation</h2>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a095c5d389db211932136b53f25f39685"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__construct </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constructor.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="graph__view_8php_source.html#l00050">50</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        $this-&gt;Graph = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;graph&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2>Member Function Documentation</h2>
 <a class="anchor" id="a10be4c0ec9fe6c200d3aba188c6f1663"></a>
 <div class="memitem">
 <div class="memproto">
@@ -109,7 +145,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph__view_8php_source.html#l00082">82</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
+<p>Definition at line <a class="el" href="graph__view_8php_source.html#l00114">114</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -160,13 +196,11 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="graph__view_8php_source.html#l00046">46</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
+<p>Definition at line <a class="el" href="graph__view_8php_source.html#l00080">80</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $this-&gt;prepare_graph_area();</div>
-<div class="line"></div>
-<div class="line">                        $this-&gt;draw_graph_data( $Options );</div>
+<div class="line">                        $this-&gt;Graph-&gt;draw_graph_data( $Options );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -174,6 +208,23 @@ Public Member Functions</h2></td></tr>
 <div class="line">                  }</div>
 <div class="line">            }</div>
 </div><!-- fragment -->
+</div>
+</div>
+<h2>Field Documentation</h2>
+<a class="anchor" id="a8ca1bfd7658667567378944e8c53c4e9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$Graph = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cached objects.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="graph__view_8php_source.html#l00038">38</a> of file <a class="el" href="graph__view_8php_source.html">graph_view.php</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -185,7 +236,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classgraph__view__1__0__0.html">graph_view_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:45 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

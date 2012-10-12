@@ -77,6 +77,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
+<tr class="memitem:a3d8adebf449f020eb1c7d05ea2b0a55e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcustom__state__startup__1__0__0.html#a3d8adebf449f020eb1c7d05ea2b0a55e">$Cache</a> = false</td></tr>
 <tr class="memitem:a12a35bc953de9d171d972c1c58afaef9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcustom__state__startup__1__0__0.html#a12a35bc953de9d171d972c1c58afaef9">$DefaultControllers</a> = false</td></tr>
 <tr class="memitem:ae0b1590363a53c36cdaf53abf4813cf5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcustom__state__startup__1__0__0.html#ae0b1590363a53c36cdaf53abf4813cf5">$DefaultViews</a> = false</td></tr>
 <tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcustom__state__startup__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
@@ -109,10 +110,11 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00057">57</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00058">58</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
+<div class="line">                        $this-&gt;Cache = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;cache&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;DefaultControllers = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set::default_controllers&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;DefaultViews = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set::default_views&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
 <div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
@@ -181,22 +183,24 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00378">378</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00341">341</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">switch</span>( $Settings-&gt;get_setting( <span class="stringliteral">&#39;success_func&#39;</span> , <span class="keyword">false</span> ) )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">case</span>( <span class="stringliteral">&#39;multy_call&#39;</span> ):</div>
-<div class="line">                                    $Res = $this-&gt;run_multy_call( $ContextSet , $Config , $Settings , $Options );<span class="keywordflow">break</span>;</div>
+<div class="line">                                    $Res = $this-&gt;run_multy_call( $ContextSet , $Config , $Settings , $Options );</div>
+<div class="line">                              <span class="keywordflow">break</span>;</div>
 <div class="line">                              <span class="keywordflow">case</span>( <span class="stringliteral">&#39;simple_form&#39;</span> ):</div>
-<div class="line">                                    $Res = $this-&gt;run_simple_form( $ContextSet , $Config , $Settings );<span class="keywordflow">break</span>;</div>
+<div class="line">                                    $Res = $this-&gt;run_simple_form( $ContextSet , $Config , $Settings , $Options );</div>
+<div class="line">                              <span class="keywordflow">break</span>;</div>
 <div class="line">                              <span class="keywordflow">case</span>( <span class="stringliteral">&#39;list_view&#39;</span> ):</div>
-<div class="line">                                    $Res = $this-&gt;run_list_view( $ContextSet , $Config , $Settings );<span class="keywordflow">break</span>;</div>
-<div class="line">                              <span class="keywordflow">case</span>( <span class="stringliteral">&#39;record_view_form&#39;</span> ):</div>
-<div class="line">                                    $Res = $this-&gt;run_record_view_form( $ContextSet , $Config , $Settings );<span class="keywordflow">break</span>;</div>
+<div class="line">                                    $Res = $this-&gt;run_list_view( $ContextSet , $Config , $Settings );</div>
+<div class="line">                              <span class="keywordflow">break</span>;</div>
 <div class="line">                              <span class="keywordflow">default</span>:</div>
-<div class="line">                                    $Res = $this-&gt;run_custom_config( $ContextSet , $Config , $Settings );<span class="keywordflow">break</span>;</div>
+<div class="line">                                    $Res = $this-&gt;run_custom_config( $ContextSet , $Config , $Settings );</div>
+<div class="line">                              <span class="keywordflow">break</span>;</div>
 <div class="line">                        }</div>
 <div class="line">                        <span class="keywordflow">return</span>( $Res );</div>
 <div class="line">                  }</div>
@@ -209,6 +213,22 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Field Documentation</h2>
+<a class="anchor" id="a3d8adebf449f020eb1c7d05ea2b0a55e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$Cache = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cached packages.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00038">38</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a12a35bc953de9d171d972c1c58afaef9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -218,10 +238,8 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Cached packages.</p>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00038">38</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00039">39</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
 
 </div>
 </div>
@@ -235,7 +253,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00039">39</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00040">40</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
 
 </div>
 </div>
@@ -249,7 +267,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00040">40</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00041">41</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
 
 </div>
 </div>
@@ -263,7 +281,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00041">41</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
+<p>Definition at line <a class="el" href="custom__state__startup_8php_source.html#l00042">42</a> of file <a class="el" href="custom__state__startup_8php_source.html">custom_state_startup.php</a>.</p>
 
 </div>
 </div>
@@ -276,7 +294,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcustom__state__startup__1__0__0.html">custom_state_startup_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:32 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:40 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

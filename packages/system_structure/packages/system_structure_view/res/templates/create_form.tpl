@@ -10,7 +10,7 @@
 						</tr>
 						<tr>
 							<td valign="top">
-								<input class="width_800 flat" type="text" name="{prefix}_page" value="{http_param:name={prefix}_page;type=string;post=1;default=}">
+								<input class="width_320 flat" type="text" name="page" value="{http_param:name=page;type=string;post=1;default=}">
 							</td>
 						</tr>
 						<tr>
@@ -20,7 +20,7 @@
 						</tr>
 						<tr>
 							<td valign="top">
-								<input class="width_800 flat" type="text" name="{prefix}_root_page" value="{http_param:name={prefix}_root_page;type=string;post=1;default=}">
+								<input class="width_320 flat" type="text" name="root_page" value="{http_param:name=root_page;type=string;post=1;default=}">
 							</td>
 						</tr>
 						<tr>
@@ -30,7 +30,7 @@
 						</tr>
 						<tr>
 							<td valign="top">
-								<textarea class="width_800 flat height_320" name="{prefix}_navigation">{http_param:name={prefix}_navigation;type=raw;post=1;default=}</textarea>
+								<textarea class="width_320 flat height_320" name="navigation">{http_param:name=navigation;type=raw;post=1;default=}</textarea>
 							</td>
 						</tr>
 						<tr>

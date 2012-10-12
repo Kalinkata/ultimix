@@ -161,10 +161,8 @@ Data Fields</h2></td></tr>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        <span class="comment">//TODO: create view macro to auto_markup</span></div>
-<div class="line">                        <span class="comment">//TODO: to trait view as a macro</span></div>
 <div class="line">                        $this-&gt;<a class="code" href="classforms__1__0__0.html#a11cb7514a3ce83ce8cc34d28daf9920e">draw_form</a>( $Settings );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -203,14 +201,14 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="forms_8php_source.html#l00250">250</a> of file <a class="el" href="forms_8php_source.html">forms.php</a>.</p>
+<p>Definition at line <a class="el" href="forms_8php_source.html#l00248">248</a> of file <a class="el" href="forms_8php_source.html">forms.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $ContextSet = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cfcx_send_form&#39;</span> );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;execute( $Options , $this , __FILE__ );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -254,7 +252,7 @@ Data Fields</h2></td></tr>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $FormFile = $Options-&gt;get_setting( <span class="stringliteral">&#39;form_template&#39;</span> );</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                        $this-&gt;Output = $this-&gt;CachedMultyFS-&gt;get_template( __FILE__ , <span class="stringliteral">&quot;$FormFile.tpl&quot;</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -344,16 +342,16 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="forms_8php_source.html#l00288">288</a> of file <a class="el" href="forms_8php_source.html">forms.php</a>.</p>
+<p>Definition at line <a class="el" href="forms_8php_source.html#l00286">286</a> of file <a class="el" href="forms_8php_source.html">forms.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        $ContextSet = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;gui::context_set&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $ContextSet-&gt;add_context( dirname( __FILE__ ).<span class="stringliteral">&#39;/conf/cfcx_draw_form&#39;</span> );</div>
 <div class="line"></div>
 <div class="line">                        $ContextSet-&gt;execute( $Options , $this , __FILE__ );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">return</span>( $this-&gt;Output );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -462,7 +460,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classforms__1__0__0.html">forms_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:34 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:44 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

@@ -82,7 +82,6 @@
 		*/
 		function			test_gen_pages()
 		{
-			//TODO: add select_list method unit-test to all *_access packages
 			$PageAccess = get_package( 'page::page_access' , 'last' , __FILE__ );
 
 			$Pages = $PageAccess->get_list_of_pages();

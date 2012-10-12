@@ -87,6 +87,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a3d8adebf449f020eb1c7d05ea2b0a55e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcache__1__0__0.html#a3d8adebf449f020eb1c7d05ea2b0a55e">$Cache</a></td></tr>
+<tr class="memitem:aaae5f70ebc2b60f22e8159944cd2d518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcache__1__0__0.html#aaae5f70ebc2b60f22e8159944cd2d518">$Security</a> = false</td></tr>
 <tr class="memitem:af9d4b230b961a54d62c3a6cf18fa0fa3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcache__1__0__0.html#af9d4b230b961a54d62c3a6cf18fa0fa3">$CacheWasUpdated</a> = false</td></tr>
 <tr class="memitem:ac668e4b309f70857cd38d83da5328dde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcache__1__0__0.html#ac668e4b309f70857cd38d83da5328dde">$TableOfContents</a> = false</td></tr>
 <tr class="memitem:a5066d64f10e68f2640372497dec35a63"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcache__1__0__0.html#a5066d64f10e68f2640372497dec35a63">$CacheSwitch</a> = true</td></tr>
@@ -119,16 +120,16 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00102">102</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00114">114</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        $Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line">                        $PageName = $Security-&gt;get_gp( <span class="stringliteral">&#39;page_name&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> );</div>
+<div class="line">                        $this-&gt;Security = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;security&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line">                        $PageName = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;page_name&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> );</div>
 <div class="line"></div>
 <div class="line">                        $this-&gt;Cache = @file_get_contents( dirname( __FILE__ ).<span class="stringliteral">&#39;/data/&#39;</span>.$PageName.<span class="stringliteral">&#39;.cache&#39;</span> );</div>
 <div class="line"></div>
-<div class="line">                        $this-&gt;TableOfContents = @file_get_contents( dirname( __FILE__ ).<span class="stringliteral">&#39;/data/&#39;</span>.$PageName.<span class="stringliteral">&#39;table&#39;</span> );</div>
+<div class="line">                        $this-&gt;TableOfContents = @file_get_contents( dirname( __FILE__ ).<span class="stringliteral">&#39;/data/&#39;</span>.$PageName.<span class="stringliteral">&#39;.table&#39;</span> );</div>
 <div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $this-&gt;TableOfContents !== <span class="keyword">false</span> )</div>
 <div class="line">                        {</div>
@@ -166,7 +167,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00790">790</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00808">808</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -174,7 +175,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">return</span>;</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        $this-&gt;<a class="code" href="classcache__1__0__0.html#a7751f77b5263bcf940ece6e824a05b38">flush</a>();</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -233,7 +234,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00463">463</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00475">475</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -247,7 +248,7 @@ Data Fields</h2></td></tr>
 <div class="line">                        $this-&gt;TableOfContents[ $md5SectionOriginName ][ <span class="stringliteral">&#39;tags&#39;</span> ] = array_merge( </div>
 <div class="line">                              $Tags , array( <span class="stringliteral">&#39;_cache_sys&#39;</span> , <span class="stringliteral">&#39;_timeout&#39;</span> =&gt; time() )</div>
 <div class="line">                        );</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">if</span>( $this-&gt;CacheSwitch === <span class="keyword">true</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              $this-&gt;CacheWasUpdated = <span class="keyword">true</span>;</div>
@@ -290,7 +291,7 @@ Data Fields</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Function validates data existance with checking timeout, so if data was timed out but presents in the cache, then function will return true.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00548">548</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00560">560</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -339,7 +340,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00507">507</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00519">519</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -385,7 +386,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00684">684</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00695">695</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -394,7 +395,7 @@ Data Fields</h2></td></tr>
 <div class="line">                              <span class="keywordflow">return</span>;</div>
 <div class="line">                        }</div>
 <div class="line">                        $Sections = array();</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $this-&gt;TableOfContents as $Key =&gt; $Value )</div>
 <div class="line">                        {</div>
 <div class="line">                              <span class="keywordflow">if</span>( array_search( $Tag , $Value[ <span class="stringliteral">&#39;tags&#39;</span> ] ) !== <span class="keyword">false</span> )</div>
@@ -402,7 +403,7 @@ Data Fields</h2></td></tr>
 <div class="line">                                    $Sections [] = $Key;</div>
 <div class="line">                              }</div>
 <div class="line">                        }</div>
-<div class="line">                        </div>
+<div class="line"></div>
 <div class="line">                        <span class="keywordflow">foreach</span>( $Sections as $Key =&gt; $Value )</div>
 <div class="line">                        {</div>
 <div class="line">                              $this-&gt;delete_section( $Value );</div>
@@ -437,12 +438,14 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00763">763</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00779">779</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
-<div class="line">                        @unlink( dirname( __FILE__ ).<span class="stringliteral">&#39;./data/cache&#39;</span> );</div>
-<div class="line">                        @unlink( dirname( __FILE__ ).<span class="stringliteral">&#39;./data/table&#39;</span> );</div>
+<div class="line">                        $PageName = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;page_name&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                        @unlink( dirname( __FILE__ ).<span class="stringliteral">&#39;./data/&#39;</span>.$PageName.<span class="stringliteral">&#39;.cache&#39;</span> );</div>
+<div class="line">                        @unlink( dirname( __FILE__ ).<span class="stringliteral">&#39;./data/&#39;</span>.$PageName.<span class="stringliteral">&#39;.table&#39;</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
@@ -475,16 +478,21 @@ Data Fields</h2></td></tr>
 <p>save updated cache</p>
 <p>save cache's table of content </p>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00727">727</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00738">738</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">if</span>( $this-&gt;CacheWasUpdated &amp;&amp; $this-&gt;CacheSwitch === <span class="keyword">true</span> )</div>
 <div class="line">                        {</div>
-<div class="line">                              @unlink( dirname( __FILE__ ).<span class="stringliteral">&#39;./data/cache&#39;</span> );</div>
-<div class="line">                              file_put_contents( dirname( __FILE__ ).<span class="stringliteral">&#39;/data/cache&#39;</span> , $this-&gt;Cache );</div>
-<div class="line">                              </div>
-<div class="line">                              file_put_contents( dirname( __FILE__ ).<span class="stringliteral">&#39;/data/table&#39;</span> , serialize( $this-&gt;TableOfContents ) );</div>
+<div class="line">                              $this-&gt;<a class="code" href="classcache__1__0__0.html#a9d356195e556044b54d4ef25cfc01a9f">drop_cache</a>();</div>
+<div class="line"></div>
+<div class="line">                              $PageName = $this-&gt;Security-&gt;get_gp( <span class="stringliteral">&#39;page_name&#39;</span> , <span class="stringliteral">&#39;command&#39;</span> , <span class="stringliteral">&#39;default&#39;</span> );</div>
+<div class="line"></div>
+<div class="line">                              file_put_contents( dirname( __FILE__ ).<span class="stringliteral">&#39;/data/&#39;</span>.$PageName.<span class="stringliteral">&#39;.cache&#39;</span> , $this-&gt;Cache );</div>
+<div class="line"></div>
+<div class="line">                              file_put_contents( </div>
+<div class="line">                                    dirname( __FILE__ ).<span class="stringliteral">&#39;/data/&#39;</span>.$PageName.<span class="stringliteral">&#39;.table&#39;</span> , serialize( $this-&gt;TableOfContents )</div>
+<div class="line">                              );</div>
 <div class="line">                        }</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
@@ -524,7 +532,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00255">255</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00267">267</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -577,7 +585,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00140">140</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00152">152</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -635,7 +643,7 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Додонов А.А. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00402">402</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00414">414</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
@@ -647,9 +655,9 @@ Data Fields</h2></td></tr>
 <div class="line">                        <span class="keywordflow">if</span>( isset( $this-&gt;TableOfContents[ $md5SectionOriginName ] ) )</div>
 <div class="line">                        {</div>
 <div class="line">                              $this-&gt;update_cache( $md5SectionOriginName , $Data );</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              $this-&gt;update_table( $md5SectionOriginName , $Data );</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              <span class="keywordflow">if</span>( $this-&gt;CacheSwitch === <span class="keyword">true</span> )</div>
 <div class="line">                              {</div>
 <div class="line">                                    $this-&gt;CacheWasUpdated = <span class="keyword">true</span>;</div>
@@ -697,7 +705,7 @@ Data Fields</h2></td></tr>
 <p>Enables or disables caching.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00074">74</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00086">86</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 
 </div>
 </div>
@@ -713,7 +721,7 @@ Data Fields</h2></td></tr>
 <p>Cache's timeout. Default value is 120 seconds.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00086">86</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00098">98</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 
 </div>
 </div>
@@ -727,6 +735,22 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Evidence of the updated cache.</p>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00062">62</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaae5f70ebc2b60f22e8159944cd2d518"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$Security = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cached objects.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
 <p>Definition at line <a class="el" href="cache_8php_source.html#l00050">50</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
@@ -745,7 +769,7 @@ Data Fields</h2></td></tr>
 <p>Cache description.</p>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="cache_8php_source.html#l00062">62</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
+<p>Definition at line <a class="el" href="cache_8php_source.html#l00074">74</a> of file <a class="el" href="cache_8php_source.html">cache.php</a>.</p>
 
 </div>
 </div>
@@ -758,7 +782,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classcache__1__0__0.html">cache_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:28 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:36 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

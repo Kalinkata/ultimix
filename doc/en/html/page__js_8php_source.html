@@ -223,7 +223,7 @@ $(document).ready(function(){initNavTree('page__js_8php_source.html','');});
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                  }</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            }</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_header_content()</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            <span class="keyword">private</span> <span class="keyword">function</span>  get_scripts_content()</div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;            {</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;                  {</div>
@@ -251,67 +251,60 @@ $(document).ready(function(){initNavTree('page__js_8php_source.html','');});
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                  }</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            }</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
-<div class="line"><a name="l00359"></a><span class="lineno"><a class="code" href="classpage__js__1__0__0.html#aec2570fa1c1d9cac979c568285719759">  359</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpage__js__1__0__0.html#aec2570fa1c1d9cac979c568285719759">output_scripts</a>( $Str )</div>
+<div class="line"><a name="l00359"></a><span class="lineno"><a class="code" href="classpage__js__1__0__0.html#a96d0d571e831330c605c141a951599ae">  359</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpage__js__1__0__0.html#a96d0d571e831330c605c141a951599ae">compile_scripts</a>( &amp;$Settings )</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;            {</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                  {</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                        <span class="keywordflow">if</span>( is_array( $this-&gt;JSFiles ) &amp;&amp; count( $this-&gt;JSFiles ) )</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                        {</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                              $Content = $this-&gt;get_header_content();</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                              <span class="keywordflow">if</span>( strpos( $Str , <span class="stringliteral">&#39;{header}&#39;</span> ) !== <span class="keyword">false</span> )</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                              {</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                                    $Str = str_replace( <span class="stringliteral">&#39;{header}&#39;</span> , $Content.<span class="stringliteral">&#39;{header}&#39;</span> , $Str );</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                              }</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                              <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                              {</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                                    $Str = str_replace( <span class="stringliteral">&#39;&lt;/head&gt;&#39;</span> , $Content.<span class="stringliteral">&#39;&lt;/head&gt;&#39;</span> , $Str );</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                              }</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                        }</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                        $this-&gt;JSFiles = array();</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                        <span class="keywordflow">return</span>( $Str );</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                  }</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                  {</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                  }</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;            }</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00409"></a><span class="lineno"><a class="code" href="classpage__js__1__0__0.html#a7b2cc9d1976046c7c5877a32f46af826">  409</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpage__js__1__0__0.html#a7b2cc9d1976046c7c5877a32f46af826">add_javascript</a>( $Path , $Join = <span class="keyword">true</span> )</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            {</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                  <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                  {</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                        <span class="keywordflow">if</span>( $this-&gt;PageComposer === <span class="keyword">false</span> )</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                        {</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                              $this-&gt;PageComposer = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_composer&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                        }</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                        $Path = $this-&gt;PageComposer-&gt;Template-&gt;compile_string( $Path );</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                        <span class="keywordflow">foreach</span>( $this-&gt;JSFiles as $k =&gt; $v )</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                        {</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                              <span class="keywordflow">if</span>( $v[ <span class="stringliteral">&#39;path&#39;</span> ] == $Path )</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                              {</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                                    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                              }</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                        }</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                        $this-&gt;JSFiles [] = array( <span class="stringliteral">&#39;path&#39;</span> =&gt; $Path , <span class="stringliteral">&#39;join&#39;</span> =&gt; $Join );</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                  }</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;                  {</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                  }</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            }</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;      }</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;?&gt;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                        $Content = <span class="stringliteral">&#39;&#39;</span>;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                        <span class="keywordflow">if</span>( is_array( $this-&gt;JSFiles ) &amp;&amp; count( $this-&gt;JSFiles ) )</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                        {</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                              $Content = $this-&gt;get_scripts_content();</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                        }</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                        $this-&gt;JSFiles = array();</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                        <span class="keywordflow">return</span>( $Content );</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                  }</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                  {</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                  }</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;            }</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="line"><a name="l00402"></a><span class="lineno"><a class="code" href="classpage__js__1__0__0.html#a7b2cc9d1976046c7c5877a32f46af826">  402</a></span>&#160;            <span class="keyword">function</span>                <a class="code" href="classpage__js__1__0__0.html#a7b2cc9d1976046c7c5877a32f46af826">add_javascript</a>( $Path , $Join = <span class="keyword">true</span> )</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            {</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;                  <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                  {</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;                        <span class="keywordflow">if</span>( $this-&gt;PageComposer === <span class="keyword">false</span> )</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;                        {</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                              $this-&gt;PageComposer = <a class="code" href="core__public__api_8php.html#a3ba50cf690fa88e981b38b4779f18759">get_package</a>( <span class="stringliteral">&#39;page::page_composer&#39;</span> , <span class="stringliteral">&#39;last&#39;</span> , __FILE__ );</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;                        }</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;                        $Path = $this-&gt;PageComposer-&gt;Template-&gt;compile_string( $Path );</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;                        <span class="keywordflow">foreach</span>( $this-&gt;JSFiles as $k =&gt; $v )</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;                        {</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                              <span class="keywordflow">if</span>( $v[ <span class="stringliteral">&#39;path&#39;</span> ] == $Path )</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;                              {</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;                                    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;                              }</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;                        }</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;                        $this-&gt;JSFiles [] = array( <span class="stringliteral">&#39;path&#39;</span> =&gt; $Path , <span class="stringliteral">&#39;join&#39;</span> =&gt; $Join );</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;                  }</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;                  {</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;                  }</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            }</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;      }</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;?&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_93501a11e921083efbd154e0cdff5f10.html">packages</a></li><li class="navelem"><a class="el" href="dir_c078e481c2612ffba5017188b09afd19.html">page</a></li><li class="navelem"><a class="el" href="dir_45d5d742c6a2e963177f6f892a398aed.html">packages</a></li><li class="navelem"><a class="el" href="dir_00e422d4b4af4e291cd6aeebcd8c6612.html">page_js</a></li><li class="navelem"><a class="el" href="page__js_8php.html">page_js.php</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:09 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:03 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>

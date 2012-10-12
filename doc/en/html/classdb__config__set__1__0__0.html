@@ -75,7 +75,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a095c5d389db211932136b53f25f39685"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__config__set__1__0__0.html#a095c5d389db211932136b53f25f39685">__construct</a> ()</td></tr>
 <tr class="memitem:adb71f3b54a4ad0fc08c68352405d0bba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__config__set__1__0__0.html#adb71f3b54a4ad0fc08c68352405d0bba">load_config</a> ($ConfigPath)</td></tr>
 <tr class="memitem:a5a2b3a5aefdbce7e8f5bace90d81c84d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__config__set__1__0__0.html#a5a2b3a5aefdbce7e8f5bace90d81c84d">optimize_config_file</a> ($i, $ConfigLine)</td></tr>
-<tr class="memitem:a66f5abaecbf08104eef700fa6be60fb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__config__set__1__0__0.html#a66f5abaecbf08104eef700fa6be60fb0">compile_config_line</a> ($DBAdapter, $i, $ConfigLine)</td></tr>
+<tr class="memitem:a5c0f199d340077f38a0340c43ea047c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__config__set__1__0__0.html#a5c0f199d340077f38a0340c43ea047c3">get_connection_for_config_line</a> ($DBAdapter, $i, $ConfigLine)</td></tr>
 <tr class="memitem:a097d1aa5455b37da87404193f8aa6c1d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdb__config__set__1__0__0.html#a097d1aa5455b37da87404193f8aa6c1d">connect</a> ($DBAdapter)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
@@ -126,12 +126,69 @@ Data Fields</h2></td></tr>
 </div>
 </div>
 <h2>Member Function Documentation</h2>
-<a class="anchor" id="a66f5abaecbf08104eef700fa6be60fb0"></a>
+<a class="anchor" id="a097d1aa5455b37da87404193f8aa6c1d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">compile_config_line </td>
+          <td class="memname">connect </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>$DBAdapter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Function connects to database.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">$DBAdapter</td><td>- Database API adapter.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
+
+<p>Definition at line <a class="el" href="db__config__set_8php_source.html#l00241">241</a> of file <a class="el" href="db__config__set_8php_source.html">db_config_set.php</a>.</p>
+<div class="fragment"><div class="line">            {</div>
+<div class="line">                  <span class="keywordflow">try</span></div>
+<div class="line">                  {</div>
+<div class="line">                        <span class="keywordflow">if</span>( $this-&gt;Config == <span class="keyword">false</span> )</div>
+<div class="line">                        {</div>
+<div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&#39;Config was not loaded&#39;</span> ) );</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">foreach</span>( $this-&gt;Config as $i =&gt; $ConfigLine )</div>
+<div class="line">                        {</div>
+<div class="line">                              $Connection = $this-&gt;<a class="code" href="classdb__config__set__1__0__0.html#a5c0f199d340077f38a0340c43ea047c3">get_connection_for_config_line</a>( $DBAdapter , $i , $ConfigLine );</div>
+<div class="line"></div>
+<div class="line">                              <span class="keywordflow">if</span>( $Connection !== <span class="keyword">false</span> )</div>
+<div class="line">                              {</div>
+<div class="line">                                    <span class="keywordflow">return</span>( $Connection );</div>
+<div class="line">                              }</div>
+<div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&quot;Unable to connect to the database&quot;</span> ) );</div>
+<div class="line">                  }</div>
+<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
+<div class="line">                  {</div>
+<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
+<div class="line">                  }</div>
+<div class="line">            }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a5c0f199d340077f38a0340c43ea047c3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">get_connection_for_config_line </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>$DBAdapter</em>, </td>
@@ -173,79 +230,24 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="db__config__set_8php_source.html#l00200">200</a> of file <a class="el" href="db__config__set_8php_source.html">db_config_set.php</a>.</p>
+<p>Definition at line <a class="el" href="db__config__set_8php_source.html#l00202">202</a> of file <a class="el" href="db__config__set_8php_source.html">db_config_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">if</span>( $ConfigLine != <span class="stringliteral">&#39;&#39;</span> )</div>
 <div class="line">                        {</div>
 <div class="line">                              $DBAdapter-&gt;connect( $ConfigLine );</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              $this-&gt;<a class="code" href="classdb__config__set__1__0__0.html#a5a2b3a5aefdbce7e8f5bace90d81c84d">optimize_config_file</a>( $i , $ConfigLine );</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              <span class="keywordflow">return</span>( $DBAdapter-&gt;get_connection() );</div>
 <div class="line">                        }</div>
+<div class="line"></div>
+<div class="line">                        <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
 <div class="line">                  }</div>
 <div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">return</span>( <span class="keyword">false</span> );</div>
-<div class="line">                  }</div>
-<div class="line">            }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a class="anchor" id="a097d1aa5455b37da87404193f8aa6c1d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">connect </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>$DBAdapter</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Function connects to database.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">$DBAdapter</td><td>- Database API adapter.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">Exception</td><td>- An exception of this type is thrown.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
-
-<p>Definition at line <a class="el" href="db__config__set_8php_source.html#l00237">237</a> of file <a class="el" href="db__config__set_8php_source.html">db_config_set.php</a>.</p>
-<div class="fragment"><div class="line">            {</div>
-<div class="line">                  <span class="keywordflow">try</span></div>
-<div class="line">                  {</div>
-<div class="line">                        <span class="keywordflow">if</span>( $this-&gt;Config == <span class="keyword">false</span> )</div>
-<div class="line">                        {</div>
-<div class="line">                              <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&#39;Config was not loaded&#39;</span> ) );</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">foreach</span>( $this-&gt;Config as $i =&gt; $ConfigLine )</div>
-<div class="line">                        {</div>
-<div class="line">                              $Connection = $this-&gt;<a class="code" href="classdb__config__set__1__0__0.html#a66f5abaecbf08104eef700fa6be60fb0">compile_config_line</a>( $DBAdapter , $i , $ConfigLine );</div>
-<div class="line">                              </div>
-<div class="line">                              <span class="keywordflow">if</span>( $Connection !== <span class="keyword">false</span> )</div>
-<div class="line">                              {</div>
-<div class="line">                                    <span class="keywordflow">return</span>( $Connection );</div>
-<div class="line">                              }</div>
-<div class="line">                        }</div>
-<div class="line">                        </div>
-<div class="line">                        <span class="keywordflow">throw</span>( <span class="keyword">new</span> Exception( <span class="stringliteral">&quot;Unable to connect to the database&quot;</span> ) );</div>
-<div class="line">                  }</div>
-<div class="line">                  <span class="keywordflow">catch</span>( Exception $e )</div>
-<div class="line">                  {</div>
-<div class="line">                        $a = func_get_args();<a class="code" href="core__utilities_8php.html#abfba210aa5ad8e9a273b3342263c2961">_throw_exception_object</a>( __METHOD__ , $a , $e );</div>
 <div class="line">                  }</div>
 <div class="line">            }</div>
 </div><!-- fragment -->
@@ -285,6 +287,8 @@ Data Fields</h2></td></tr>
 <div class="line">                  {</div>
 <div class="line">                        $this-&gt;Config = $this-&gt;CachedMultyFS-&gt;file_get_contents( <a class="code" href="classdb__config__set__1__0__0.html#a4dd160cebd6d06179b92a468ff0f82c8">$ConfigPath</a> );</div>
 <div class="line"></div>
+<div class="line">                        $this-&gt;Config = str_replace( <span class="stringliteral">&quot;\r&quot;</span> , <span class="stringliteral">&quot;\n&quot;</span> , $this-&gt;Config );</div>
+<div class="line">                        $this-&gt;Config = str_replace( <span class="stringliteral">&quot;\n\n&quot;</span> , <span class="stringliteral">&quot;\n&quot;</span> , $this-&gt;Config );</div>
 <div class="line">                        $this-&gt;Config = explode( <span class="stringliteral">&quot;\n&quot;</span> , $this-&gt;Config );</div>
 <div class="line"></div>
 <div class="line">                        $this-&gt;ConfigPath = <a class="code" href="classdb__config__set__1__0__0.html#a4dd160cebd6d06179b92a468ff0f82c8">$ConfigPath</a>;</div>
@@ -336,14 +340,14 @@ Data Fields</h2></td></tr>
 </dl>
 <dl class="section author"><dt>Author</dt><dd>Dodonov A.A. </dd></dl>
 
-<p>Definition at line <a class="el" href="db__config__set_8php_source.html#l00146">146</a> of file <a class="el" href="db__config__set_8php_source.html">db_config_set.php</a>.</p>
+<p>Definition at line <a class="el" href="db__config__set_8php_source.html#l00148">148</a> of file <a class="el" href="db__config__set_8php_source.html">db_config_set.php</a>.</p>
 <div class="fragment"><div class="line">            {</div>
 <div class="line">                  <span class="keywordflow">try</span></div>
 <div class="line">                  {</div>
 <div class="line">                        <span class="keywordflow">if</span>( $i != 0 )</div>
 <div class="line">                        {</div>
 <div class="line">                              $Content = $ConfigLine.<span class="stringliteral">&quot;\r\n&quot;</span>;</div>
-<div class="line">                              </div>
+<div class="line"></div>
 <div class="line">                              <span class="keywordflow">foreach</span>( $this-&gt;Config as $j =&gt; $ConfigLine2 )</div>
 <div class="line">                              {</div>
 <div class="line">                                    <span class="keywordflow">if</span>( $i != $j &amp;&amp; $ConfigLine2 != <span class="stringliteral">&#39;&#39;</span> )</div>
@@ -420,7 +424,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classdb__config__set__1__0__0.html">db_config_set_1_0_0</a></li>
-    <li class="footer">Generated on Fri Aug 17 2012 18:31:33 for ultimix by
+    <li class="footer">Generated on Fri Sep 28 2012 17:17:41 for ultimix by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2 </li>
   </ul>
