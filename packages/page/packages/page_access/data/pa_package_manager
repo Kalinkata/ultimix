@@ -1,4 +1,8 @@
 gui::jstree#last#pre_generation=1#
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
+core::package_manager#last#controller=1;create_package=1#
+core::package_manager#last#controller=1;update_package=1#
 core::package_manager#last#controller=1;delete_package=1#
+core::package_manager#last#view=1;create_package_form=1#main
+core::package_manager#last#view=1;update_package_form=1#main
 core::package_manager#last#view=1;show_package_tree=1#main

@@ -1,3 +1,3 @@
 call_params_filter=categories_path:integer,value_1
-permits_validation=public
+permits_filter=public
 success_func=draw_categories_path

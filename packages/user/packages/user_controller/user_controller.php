@@ -566,7 +566,7 @@
 			try
 			{
 				$PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$HasPermit = $PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
+				$HasPermit = $PermitAlgorithms->object_has_all_permits( false , 'user' , 'user_manager' );
 				$ChangePassword = $HasPermit || ( $this->Security->get_gp( 'current_password' , 'set' ) && 
 					strlen( $CurrentPassword = $this->Security->get_gp( 'current_password' , 'string' ) ) && 
 					$this->UserAlgorithms->validate_auth( $Login , $CurrentPassword ) );
@@ -795,7 +795,7 @@
 			try
 			{
 				$PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$HasPermit = $PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
+				$HasPermit = $PermitAlgorithms->object_has_all_permits( false , 'user' , 'user_manager' );
 
 				if( $this->EnableRegistration === 1 || $HasPermit )
 				{

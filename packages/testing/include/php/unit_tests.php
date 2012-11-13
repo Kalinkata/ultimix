@@ -25,7 +25,17 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
+		/**
+		*	\~russian Закэшированный объект.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached object.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Utilities = false;
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -37,8 +47,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
+		function			set_up()
 		{
+			$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 		}
 
 		/**
@@ -70,6 +81,261 @@
 			get_package( 'testing' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_list()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				if( strpos( $Files[ $i ] , '_manager.php' ) !== false && 
+					strpos( $Files[ $i ] , 'event_manager.php' ) === false )
+				{
+					$Content = file_get_contents( dirname( $Files[ $i ] )."/include/php/unit_tests.php" );
+					if( strpos( $Content , 'test_display_list' ) === false )
+					{
+						$Errors++;
+						print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					}
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_delete_record()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_create_record' ) !== false && 
+					strpos( $Content , 'test_copy_record' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_search_list()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_display_list' ) !== false && 
+					strpos( $Content , 'test_smth_display_search_list' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_create_record_form()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_display_list' ) !== false && 
+					strpos( $Content , 'test_create_record_form' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'"</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_create_record()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_create_record_form' ) !== false && 
+					strpos( $Content , 'test_create_record' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_update_record_form()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_display_list' ) !== false && 
+					strpos( $Content , 'test_update_record_form' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_update_record()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_create_record' ) !== false && 
+					strpos( $Content , 'test_update_record' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_display_copy_record_form()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_display_list' ) !== false && 
+					strpos( $Content , 'test_copy_record_form' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_copy_record()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_create_record' ) !== false && 
+					strpos( $Content , 'test_copy_record' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
 	}
 

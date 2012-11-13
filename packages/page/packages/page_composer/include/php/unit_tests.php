@@ -26,7 +26,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
+
 		/**
 		*	\~russian Закэшированный объект.
 		*
@@ -38,7 +38,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Utilities = false;
-		
+
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -53,7 +53,7 @@
 		{
 			$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 		}
-		
+
 		/**
 		*	\~russian Возвращаем тестовый стенд в исходное положение.
 		*
@@ -67,7 +67,7 @@
 		function			tear_down()
 		{
 		}
-		
+
 		/**
 		*	\~russian Обработка некорректных макросов.
 		*
@@ -84,7 +84,7 @@
 			
 			return( 'TEST PASSED' );
 		}
-		
+
 		/**
 		*	\~russian Проверка длины строк в php файлах.
 		*
@@ -119,7 +119,7 @@
 			}
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка php файлов в строках.
 		*
@@ -148,7 +148,7 @@
 			
 			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
 		}
-		
+
 		/**
 		*	\~russian Проверка размера php файлов.
 		*
@@ -705,93 +705,6 @@
 				{
 					$Errors++;
 					print( "<nobr>".$Path." : no unit tests were found</nobr><br>" );
-				}
-			}
-
-			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
-		}
-
-		/**
-		*	\~russian Проверка налиция теста на отображение списка сущностей.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing unit_tests for test_display_list test.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_smth_display_list()
-		{
-			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-
-			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
-			{
-				if( strpos( $Files[ $i ] , '_manager.php' ) !== false && 
-					strpos( $Files[ $i ] , 'event_manager.php' ) === false )
-				{
-					$Content = file_get_contents( dirname( $Files[ $i ] )."/include/php/unit_tests.php" );
-					if( strpos( $Content , 'test_display_list' ) === false )
-					{
-						$Errors++;
-						print( "<nobr>".$Files[ $i ]."</nobr><br>" );
-					}
-				}
-			}
-
-			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
-		}
-
-		/**
-		*	\~russian Проверка налиция теста на отображение формы создания сущностей.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing unit_tests for test_create_record_form test.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_smth_display_create_record_form()
-		{
-			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-
-			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
-			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_display_list' ) !== false && 
-					strpos( $Content , 'test_create_record_form' ) === false )
-				{
-					$Errors++;
-					print( "<nobr>".$Files[ $i ]."</nobr><br>" );
-				}
-			}
-
-			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
-		}
-
-		/**
-		*	\~russian Проверка налиция теста на отображение формы создания сущностей.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing unit_tests for test_create_record_form test.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_smth_create_record()
-		{
-			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-
-			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
-			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record_form' ) !== false && 
-					strpos( $Content , 'test_create_record' ) === false )
-				{
-					$Errors++;
-					print( "<nobr>".$Files[ $i ]."</nobr><br>" );
 				}
 			}
 

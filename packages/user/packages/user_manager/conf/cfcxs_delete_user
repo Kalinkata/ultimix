@@ -1,6 +1,6 @@
 call_params_filter=delete_{prefix}:integer,value_1
 get_post_vilter={prefix}_context_action:integer,value_delete_record
-permits_validation=delete_{prefix}
+permits_filter=delete_{prefix}
 custom_validation_package_name=user::user_manager
 custom_validation_func=vaidate_non_system
 access_package_name={prefix}::{prefix}_algorithms

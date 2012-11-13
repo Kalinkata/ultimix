@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для работы с доступами (пока только доступами).
 	*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_group`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -54,7 +54,7 @@
 		var					$Security = false;
 		var					$SecurityParser = false;
 		var					$UserAccess = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -82,7 +82,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -94,7 +94,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -131,7 +131,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -159,11 +159,11 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				$Records = $this->Database->select( 
 					'*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition"
 				);
-				
+
 				foreach( $Records as $k => $v )
 				{
 					$Records[ $k ]->title = htmlspecialchars_decode( $Records[ $k ]->title , ENT_QUOTES );
@@ -177,7 +177,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записи.
 		*
@@ -205,14 +205,14 @@
 			try
 			{
 				$Group = $this->Security->get( $Group , 'command' );
-				
+
 				$Items = $this->unsafe_select( "( $this->AddLimitations ) AND title LIKE '$Group'" );
-				
+
 				if( isset( $Items[ 0 ] ) === false )
 				{
 					throw( new Exception( "Group \"$Group\" was not found" ) );
 				}
-				
+
 				return( $Items[ 0 ] );
 			}
 			catch( Exception $e )
@@ -220,7 +220,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записи.
 		*
@@ -248,14 +248,14 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Items = $this->unsafe_select( "id = $id" );
-				
+
 				if( count( $Items ) == 0 )
 				{
 					throw( new Exception( "Group $id was not found" ) );
 				}
-				
+
 				return( $Items[ 0 ] );
 			}
 			catch( Exception $e )
@@ -263,7 +263,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -310,7 +310,7 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -318,7 +318,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -342,7 +342,7 @@
 			try
 			{
 				$Record = $this->SecurityParser->parse_parameters( $Record , 'title:command;comment:string' );
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
@@ -354,7 +354,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записи из базы.
 		*
@@ -378,7 +378,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
+
 				/**	\~russian удаление записи
 					\~english deleting record*/
 				$Database = get_package( 'database' , 'last' , __FILE__ );
@@ -390,7 +390,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -457,9 +457,9 @@
 				$Record = $this->SecurityParser->parse_parameters( 
 					$Record , 'title:command;comment:string' , 'allow_not_set'
 				);
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$this->Database->update( 
@@ -473,7 +473,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение групп для объекта.
 		*
@@ -510,13 +510,13 @@
 			{
 				$Object = $this->Security->get( $Object , 'integer' );
 				$LinkType = $this->LinkDictionary->get_link_type( $ObjectType , 'group' );
-				
+
 				$Items = $this->Database->select( 
 					'title' , $this->NativeTable.' , umx_link' , 
 					"( $this->AddLimitations ) AND ".$this->NativeTable.
 						".id = umx_link.object2_id AND umx_link.object1_id = $Object AND type = $LinkType"
 				);
-				
+
 				$Content = array();
 				if( count( $Items ) > 0 )
 				{
@@ -524,10 +524,10 @@
 					{
 						$Content [] = $i->title;
 					}
-					
+
 					$Content = array_unique( $Content );
 				}
-				
+
 				return( $Content );
 			}
 			catch( Exception $e )
@@ -535,7 +535,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Добавление групы доступов для объекта.
 		*
@@ -586,7 +586,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление групы доступов для объекта.
 		*
@@ -619,7 +619,7 @@
 			{
 				$Object = $this->Security->get( $Object , 'string' );
 				$ObjectType = $this->Security->get( $ObjectType , 'command' );
-				
+
 				if( $Group === false )
 				{
 					$this->Link->delete_link( $Object , false , $ObjectType , 'group' , true );
@@ -675,7 +675,7 @@
 				$this->PermitsCache = array();
 
 				$Group = $this->get_group_by_name( $Group );
-				
+
 				$Object = $this->Security->get( $Object , 'string' );
 				$ObjectType = $this->Security->get( $ObjectType , 'command' );
 
@@ -693,7 +693,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Добавление группы для объекта.
 		*
@@ -726,18 +726,18 @@
 			{
 				/* dropping local cache */
 				$this->PermitsCache = array();
-			
+
 				$Group = $this->Security->get( $Group , 'command' );
 				$Group = $this->GroupAccess->unsafe_select( "title LIKE '$Group'" );
 				if( isset( $Group[ 0 ] ) === false )
 				{
 					throw( new Exception( "Group \"$Group\" was not found" ) );
 				}
-				
+
 				$Group = $Group[ 0 ];
 				$Object = $this->Security->get( $Object , 'string' );
 				$ObjectType = $this->Security->get( $ObjectType , 'command' );
-				
+
 				$this->Link->create_link( $Object , get_field( $Group , 'id' ) , $ObjectType , 'group' , true );
 			}
 			catch( Exception $e )

@@ -1,6 +1,6 @@
 call_params_filter=delete_group:integer,value_1
 get_post_filter=delete_group:set
-permits_validation={prefix}_manager
+permits_filter={prefix}_manager
 auto_redirect=1
 success_func=delete_group
 success_message=changes_were_saved

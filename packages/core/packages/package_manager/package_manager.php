@@ -171,7 +171,7 @@
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_install_package' );
+				//$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcxs_install_package' );
 
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}

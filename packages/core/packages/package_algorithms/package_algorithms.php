@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	package_algorithms_1_0_0{
-	
+
 		/**
 		*	\~russian Закэшированный объект.
 		*
@@ -35,8 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$PackageAccess = false;
 		var					$Utilities = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -51,6 +52,7 @@
 		{
 			try
 			{
+				$this->PackageAccess = get_package( 'core::package_access' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -58,50 +60,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
-		/**
-		*	\~russian Функция выполнения команды.
-		*
-		*	@param $ScriptLine - Команда.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function executes command.
-		*
-		*	@param $ScriptLine - Command.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			execute_script_line( $ScriptLine )
-		{
-			try
-			{
-				$Params = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$Params->load_settings( $ScriptLine );
-				
-				if( $Params->get_setting( 'command' , '' ) === 'install_package' )
-				{
-					$PackageFilePath = $Params->get_setting( 'package_file_path' , '' );
-					$MasterPackageName = $Params->get_setting( 'master_package_name' , '' );
-					$MasterPackageVersion = $Params->get_setting( 'master_package_version' , '' );
-					
-					$this->install_package( $PackageFilePath , $MasterPackageName , $MasterPackageVersion );
-					return;
-				}
-				
-				throw( new Exception( 'Command '.$ScriptLine.' was not executed' ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Получение названия и версии мастер-пакета.
 		*
@@ -201,7 +160,7 @@
 					$ROOT_DIR = _get_root_dir( $MasterPackageName , $MasterPackageVersion , INSTALL_DIR );
 					$ROOT_DIR = _get_package_path( $MasterPackageName , $MasterPackageVersion , $ROOT_DIR );
 				}
-				
+
 				return( $ROOT_DIR );
 			}
 			catch( Exception $e )
@@ -243,14 +202,14 @@
 				list( $MasterPackageName , $MasterPackageVersion ) = $this->get_master_package( 
 					$PackageFilePath , $MasterPackageName , $MasterPackageVersion
 				);
-				
+
 				$ROOT_DIR = $this->get_root_dir( $MasterPackageName , $MasterPackageVersion );
-				
+
 				$PackageFolder = _install_package( $PackageFilePath , $ROOT_DIR );
 
 				$PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 				$PageComposer->add_success_message( 'package_was_installed' );
-				
+
 				_drop_core_cache();
 			}
 			catch( Exception $e )
@@ -258,63 +217,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
-		/**
-		*	\~russian Функция возвращает дату изменения пакета.
-		*
-		*	@param $Directory - Директория пакета.
-		*
-		*	@param $TimeFunc - Фунцкия получения времени.
-		*
-		*	@return Дата изменения.
-		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns package modification date.
-		*
-		*	@param $Directory - Package's directory.
-		*
-		*	@param $TimeFunc - Time extraction function.
-		*
-		*	@return Modification time.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_package_time( $Directory , $TimeFunc = '' )
-		{
-			try
-			{
-				$Utilities = get_package( 'utilities' , 'last' , __FILE__ );
-				$Files = $Utilities->get_files_from_directory( $Directory );
 
-				if( count( $Files ) )
-				{
-					$Time = $TimeFunc( $Files[ 0 ] );
-					foreach( $Files as $k => $v )
-					{
-						$Tmp = $TimeFunc( $v );
-						if( $Tmp > $Time )
-						{
-							$Time = $Tmp;
-						}
-					}
-					
-					return( $Time );
-				}
-
-				return( false );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-	
 		/**
 		*	\~russian Выборка всех пакетов в системе.
 		*
@@ -338,19 +241,19 @@
 			try
 			{
 				$List = _get_packages_list();
-				
+
 				foreach( $List as $i => $l )
 				{
 					$RootDir = _get_root_dir( $l[ 'package_name' ] , $l[ 'package_version' ] , INSTALL_DIR );
 					$PackagePath = _get_package_path( $l[ 'package_name' ] , $l[ 'package_version' ] , $RootDir );
-					
+
 					$FileMTime = $this->get_package_time( $PackagePath , 'filemtime' );
 					$List[ $i ][ 'modify_date' ] = date( 'Y-m-d&\nb\sp;G:i:s' , $FileMTime );
-					
+
 					$FileATime = $this->get_package_time( $PackagePath , 'fileatime' );
 					$List[ $i ][ 'access_date' ] = date( 'Y-m-d&\nb\sp;G:i:s' , $FileATime );
 				}
-				
+
 				return( $List );
 			}
 			catch( Exception $e )
@@ -358,7 +261,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка мета-файлов пакета.
 		*
@@ -388,7 +291,7 @@
 				$PackagePath = _get_package_relative_path_ex( 
 					$PackageInfo[ 'full_package_name' ] , $PackageInfo[ 'full_package_version' ]
 				);
-				
+
 				return( $this->Utilities->get_files_from_directory( "$PackagePath/meta" , '/meta_.+/' ) );
 			}
 			catch( Exception $e )
@@ -396,7 +299,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка конфигов пакета.
 		*
@@ -426,7 +329,7 @@
 				$PackagePath = _get_package_relative_path_ex( 
 					$PackageInfo[ 'full_package_name' ] , $PackageInfo[ 'full_package_version' ]
 				);
-				
+
 				return( $this->Utilities->get_files_from_directory( "$PackagePath/conf" , '/_.+/' ) );
 			}
 			catch( Exception $e )
@@ -434,7 +337,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка всех пакетов в системе.
 		*
@@ -463,7 +366,7 @@
 			{
 				if( $List === false )
 				{
-					$List = _get_packages_tree();
+					$List = $this->PackageAccess->get_packages_tree();
 				}
 
 				foreach( $List as $i => $l )
@@ -482,70 +385,48 @@
 		}
 
 		/**
-		*	\~russian Функция отрисовки компонента.
+		*	\~russian Существует ли пакет.
 		*
-		*	@param $Start - Номер первой записи.
+		*	@param $PackageName - Название пакета.
 		*
-		*	@param $Limit - Количество записей.
+		*	@param $PackageVersion - Версия пакета.
 		*
-		*	@param $Field - Поле, по которому будет осуществляться сортировка.
+		*	@param $Path - Путь к вызывающему скрипту.
 		*
-		*	@param $Order - Порядок сортировки.
-		*
-		*	@return HTML код компонента.
+		*	@return true/false.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function draws component.
+		*	\~english Does package exists.
 		*
-		*	@param $Start - Number of the first record.
+		*	@param $PackageName - Package name.
 		*
-		*	@param $Limit - Count of records.
+		*	@param $PackageVersion - Package version.
 		*
-		*	@param $Field - Field to sort by.
+		*	@param $Path - Path to the caller.
 		*
-		*	@param $Order - Sorting order.
-		*
-		*	@return HTML code of the компонента.
+		*	@return true/false.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			select_packages( $Start , $Limit , $Field = false , $Order = false )
+		function			package_exists( $PackageName , $PackageVersion , $Path )
 		{
 			try
 			{
-				$List = $this->get_all_packages();
-				if( $Order !== false )
-				{
-					$SortSign = $Order === 'ascending' ? '<' : '>';
-					$SortFunc = create_function( 
-						'$a , $b' , 
-						"if( \$a[ '$Field' ] == \$b[ '$Field' ] )return(0);".
-							"return( \$a[ '$Field' ] $SortSign \$b[ '$Field' ] ? -1 : 1 );"
-					);
-					usort( $List , $SortFunc );
-				}
+				get_package( $PackageName , $PackageVersion , $Path );
 
-				$Ret = array();
-				foreach( $List as $i => $l )
-				{
-					if( $i >= $Start && $i < $Start + $Limit )
-					{
-						$Ret [] = $l;
-					}
-				}
-				return( $Ret );
+				return( true );
 			}
 			catch( Exception $e )
 			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+				return( false );
 			}
 		}
 	}
-	
+
 ?>

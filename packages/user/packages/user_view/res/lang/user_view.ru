@@ -61,3 +61,4 @@ users_were_activated=Выбранные пользователи были акт
 users_were_deactivated=Выбранные пользователи были деактивированы
 bleave=Выход
 switch_user_dialog=Смена пользователя
+user_management=Пользователи

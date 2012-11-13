@@ -1,3 +1,4 @@
 call_params_filter=categories_catalogue:integer,value_1
-permits_validation=public
+permits_filter=public
 success_func=draw_categories_catalogue_view
+access_package_name={prefix}::{prefix}_access

@@ -35,12 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$CachedMultyFS = false;
-		var					$MacroSettings = false;
 		var					$PermitAlgorithms = false;
-		var					$String = false;
+		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
-		var					$UserView = false;
 
 		/**
 		*	\~russian Разрешена ли регистрация.
@@ -68,11 +65,9 @@
 		{
 			try
 			{
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
-				$this->UserView = get_package( 'user::user_view' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{

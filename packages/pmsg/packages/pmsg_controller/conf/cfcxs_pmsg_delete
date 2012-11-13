@@ -1,4 +1,4 @@
 call_params_filter=delete_{prefix}:integer,value_1
-permits_validation=registered
+permits_filter=registered
 access_package_name={prefix}::{prefix}_algorithms
 delete_func=delete_message_for_user

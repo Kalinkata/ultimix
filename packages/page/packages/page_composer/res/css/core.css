@@ -414,10 +414,21 @@ p
 	width					: 50px;
 }
 
+.width_60
+{
+	width					: 60px;
+}
+
 .width_64
 {
 	width					: 64px;
 }
+
+.width_70
+{
+	width					: 70px;
+}
+
 
 .width_80
 {
@@ -704,6 +715,11 @@ p
 .margin_0_auto
 {
 	margin					: 0px auto;
+}
+
+.margin_30_auto
+{
+	margin					: 30px auto;
 }
 
 .pointer

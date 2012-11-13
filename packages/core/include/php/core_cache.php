@@ -381,6 +381,6 @@
 	function				_drop_core_cache()
 	{
 		global	$CoreCache;
-		$CoreCache->drop_cache();
+		$CoreCache->drop_core_cache();
 	}
 ?>

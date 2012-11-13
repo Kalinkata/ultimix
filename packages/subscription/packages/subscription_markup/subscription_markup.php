@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$String = false;
 		var					$SubscriptionAlgorithms = false;
 
 		/**
@@ -56,7 +55,6 @@
 		{
 			try
 			{
-				$this->String = get_package_object( 'string' , 'last' , __FILE__ );
 				$this->SubscriptionAlgorithms = get_package( 
 					'subscription::subscription_algorithms' , 'last' , __FILE__
 				);

@@ -52,7 +52,7 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -152,6 +152,37 @@
 			}
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , 'subscription_manager' );
+			$PageContent = $this->PageComposer->get_page( 'group_manager' );
+			$Exists = strpos( $PageContent , 'subscription_manager' ) >= 0;
+
+			$this->Security->set_p( 'search_string' , 'subscription_manager' );
+			$PageContent = $this->PageComposer->get_page( 'group_manager' );
+			$NotExists = strpos( $PageContent , 'site_manager' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
 		}
 	}
 

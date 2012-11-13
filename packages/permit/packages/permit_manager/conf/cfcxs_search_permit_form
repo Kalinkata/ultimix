@@ -1,2 +1,2 @@
-permits_validation={prefix}_manager
+permits_filter={prefix}_manager
 search_fields=permit,comment

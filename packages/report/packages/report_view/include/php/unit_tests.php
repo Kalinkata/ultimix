@@ -52,7 +52,7 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -102,54 +102,6 @@
 		function			test_load_package()
 		{
 			get_package( 'report::report_view' , 'last' , __FILE__ );
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_display_list()
-		{
-			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-
-			if( stripos( $PageContent , 'report' ) === false )
-			{
-				print( 'ERROR: report list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_create_record_form()
-		{
-			$this->Security->set_g( 'report_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-
-			if( stripos( $PageContent , '_record_id' ) === false )
-			{
-				print( 'ERROR: report create form was not displayed'.$PageContent );
-				return;
-			}
 
 			return( 'TEST PASSED' );
 		}

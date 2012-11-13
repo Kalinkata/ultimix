@@ -428,6 +428,56 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция рекурсивного удаления директории.
+		*
+		*	@param $Path - Удаляемая директория.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Dodonov A.A.
+		*/
+		/**
+		*	\~english Function recursively deletes directory.
+		*
+		*	@param $Path - Directory to delete.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function 			rmdir( $Path )
+		{
+			try
+			{
+				if( ( $Handle = @opendir( $Path = rtrim( $Path , '/' ).'/' ) ) !== false )
+				{
+					for( ; false !== ( $File = readdir( $Handle ) ) ; )
+					{
+						if( $File != "." and $File != ".." )
+						{
+							$FullPath = $Path.$File;
+							if( is_dir( $FullPath ) )
+							{
+								$this->rmdir( $FullPath );
+								@rmdir( $FullPath );
+							}
+							else
+							{
+								@unlink( $FullPath );
+							}
+						}
+					}
+					closedir( $Handle );
+				}
+				@rmdir( $Path );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
 
 ?>

@@ -1,4 +1,4 @@
 call_params_filter=delete_package:integer,value_1
-permit_validation=package_manager
+permits_filter=package_manager
 get_post_filter=package_action:string,value_delete_package
 success_func=delete_package

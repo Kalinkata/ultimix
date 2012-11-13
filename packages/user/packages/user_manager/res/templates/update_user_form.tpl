@@ -82,7 +82,7 @@
 								<td valign="top">
 									<input class="width_240 flat" type="password" name="current_password">
 								</td>
-							</tr>{no_permit:~user_manager}
+							</tr>{~no_permit}
 							<tr>
 								<td valign="top" align="left">
 									{lang:new_password}

@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для управления компонентом.
 	*
@@ -43,7 +43,7 @@
 		var					$Security = false;
 		var					$UserAccess = false;
 		var					$UserAlgorithms = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -72,7 +72,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция котроллера компонента.
 		*
@@ -118,7 +118,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция котроллера компонента.
 		*

@@ -5,3 +5,4 @@ name_must_be_filled=Field '{lang:menu_name}' must be filled
 menu_update_was_completed=Menu was updated
 shure_to_delete_all_menu=Are you shure that you want to delete all selected menues?
 menu_was_deleted=Selected menues were deleted
+menu_create_was_completed=Menu was created

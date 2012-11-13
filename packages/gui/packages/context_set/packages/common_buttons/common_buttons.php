@@ -85,6 +85,47 @@
 			}
 		}
 
+		
+		/**
+		*	\~russian Функция возвращает код кнопки создания записи.
+		*
+		*	@param $Name - Название кнопки.
+		*
+		*	@return HTML код для отображения.
+		*
+		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function returns code of the create button.
+		*
+		*	@param $Name - Button name.
+		*
+		*	@return HTML code to display.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_button_code( $Name )
+		{
+			try
+			{
+				$Path = _get_package_relative_path_ex( 'gui::context_set::common_buttons' , 'last' );
+
+				$ButtonCode = $this->CachedMultyFS->get_template( __FILE__ , 'toolbar_'.$Name.'_button.tpl' );
+
+				$this->Trace->add_trace_string( "{lang:$Name"."_button_was_compiled}" , COMMON );
+
+				return( $ButtonCode );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
 		/**
 		*	\~russian Функция возвращает код кнопки создания записи.
 		*
@@ -120,21 +161,19 @@
 			try
 			{
 				$PermitsFilter = $CommonStateConfig->get_setting( 'permits_filter' , 'admin' );
-				$ValidatingPermits = $CommonStateConfig->get_setting( 'permits_validation' , $PermitsFilter );
+
+				$this->Trace->add_trace_string( "{lang:permits_filter} : \"$PermitsFilter\"" , COMMON );
 
 				$PermitValidationResult = $this->PermitAlgorithms->object_has_all_permits( 
-					false , 'user' , $ValidatingPermits 
+					false , 'user' , $PermitsFilter
 				);
 
 				if( $PermitValidationResult )
 				{
-					$Path = _get_package_relative_path_ex( 'gui::context_set::common_buttons' , 'last' );
-
-					$ButtonCode = $this->CachedMultyFS->get_template( __FILE__ , 'toolbar_'.$Name.'_button.tpl' );
-
-					return( $ButtonCode );
+					return( $this->get_button_code( $Name ) );
 				}
 
+				$this->Trace->add_trace_string( "{lang:$Name"."_button_was_not_compiled}" , COMMON );
 				return( '' );
 			}
 			catch( Exception $e )

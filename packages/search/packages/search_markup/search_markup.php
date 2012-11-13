@@ -35,10 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
-		var					$Security = false;
-		var					$String = false;
 
 		/**
 		*	\~russian Результат работы функций отображения.
@@ -66,10 +63,7 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -103,7 +97,7 @@
 		{
 			try
 			{
-				list( $Speed , $Prefix , $FormId , $Action ) = $this->BlockSettings->get_settings( 
+				list( $Speed , $Prefix , $FormId , $Action ) = $Settings->get_settings( 
 					'speed,prefix,form_id,action' , '500,common,search_form,'
 				);
 

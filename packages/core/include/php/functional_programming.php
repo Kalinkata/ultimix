@@ -265,49 +265,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
-	/**
-	*	\~russian Функция фильтрации массивов.
-	*
-	*	@param $ArrayOfEntities - Масив объектов или массивов.
-	*
-	*	@param $Condition - Условие фильтрации записей.
-	*
-	*	@return Массив значений.
-	*
-	*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-	*
-	*	@author Додонов А.А.
-	*/
-	/**
-	*	\~english Function filters array.
-	*
-	*	@param $ArrayOfEntities - Array of objects or arrays.
-	*
-	*	@param $Condition - Record filtration condition.
-	*
-	*	@return Array of values.
-	*
-	*	@exception Exception An exception of this type is thrown.
-	*
-	*	@author Dodonov A.A.
-	*/
-	function			array_filter_ex( &$ArrayOfEntities , $Condition = '1 == 1' )
-	{
-		try
-		{
-			$FilterFunction = create_function( '$Element' , "return( $Condition );" );
-			
-			$FilteredArrayOfEntities = array_filter( $ArrayOfEntities , $FilterFunction );
-			
-			return( $FilteredArrayOfEntities );
-		}
-		catch( Exception $e )
-		{
-			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
-		}
-	}
-	
+
 	/**
 	*	\~russian Функция получения значений из масива объектов/массивов.
 	*
@@ -363,69 +321,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
-	/**
-	*	\~russian Функция суммирования элементов в массиве.
-	*
-	*	@param $Array - Массив с элементами.
-	*
-	*	@param $Field - Суммируемое поле.
-	*
-	*	@param $Condition - Условие фильтрации записей.
-	*
-	*	@return Сумма.
-	*
-	*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-	*
-	*	@author Додонов А.А.
-	*/
-	/**
-	*	\~english Function sum all array's elements.
-	*
-	*	@param $Array - Array with elements.
-	*
-	*	@param $Field - Field to sum.
-	*
-	*	@param $Condition - Record filtration condition.
-	*
-	*	@return Sum.
-	*
-	*	@exception Exception An exception of this type is thrown.
-	*
-	*	@author Dodonov A.A.
-	*/
-	function			array_sum_cond( &$Array , $Field = false , $Condition = '1 == 1' )
-	{
-		try
-		{
-			if( count( $Array ) )
-			{
-				$Keys = array_keys( $Array );
-				
-				if( is_array( $Array[ $Keys[ 0 ] ] ) )
-				{
-					$Sum = 0;
-					foreach( $Array as $i => $Element )
-					{
-						$Sum += array_sum_cond( $Element , $Field , $Condition );
-					}
-					return( $Sum );
-				}
-			}
-			
-			if( $Field !== false )
-			{
-				$Array = get_field_cond( $Array , $Field , $Condition );
-			}
-			
-			return( array_sum( $Array ) );
-		}
-		catch( Exception $e )
-		{
-			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-		}
-	}
-	
+
 	/**
 	*	\~russian Функция установки значения из объекта/массива.
 	*

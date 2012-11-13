@@ -66,12 +66,15 @@ ultimix.button_markup.run_controller_and_remove_dom = function( Data , DomSelect
 		'are_you_shure' , 
 		function()
 		{
+			var			DialogId;
 			var			Functions = { 
 				'success' : function()
 				{
 					jQuery( DomSelector ).remove();
+					ultimix.std_dialogs.close_message_box( DialogId );
 				}
 			};
+			DialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
 			ultimix.ajax_gate.direct_controller( Data , Functions );
 		}
 	);

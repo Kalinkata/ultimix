@@ -39,7 +39,6 @@
 		var					$Database = false;
 		var					$GroupAccess = false;
 		var					$PermitAlgorithms = false;
-		var					$UserAlgorithms = false;
 		
 		/**
 		*	\~russian Добавлен ли контроллер.
@@ -71,7 +70,6 @@
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->GroupAccess = get_package( 'permit::group_access' , 'last' , __FILE__ );
 				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -153,7 +151,7 @@
 			{
 				$GroupList = '';
 
-				if( $this->PermitAlgorithms->object_has_permit( false , 'user' , 'permit_manager' ) )
+				if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , 'permit_manager' ) )
 				{
 					list( $Object , $Type ) = $Settings->get_settings( 'object,type' , 'public,' );
 

@@ -15,7 +15,7 @@
 
 	global $CachedFiles;
 	$CachedFiles = array();
-	
+
 	/**
 	*	\~russian Получение содержимого файла с кэшированием.
 	*
@@ -37,57 +37,18 @@
 	function			_file_get_contents( $FilePath )
 	{
 		global	$CachedFiles;
-		
+
 		if( isset( $CachedFiles[ $FilePath ] ) === false )
 		{
 			$CachedFiles[ $FilePath ] = @file_get_contents( $FilePath );
 		}
-		
+
 		return( $CachedFiles[ $FilePath ] );
 	}
-	
-	/**
-	*	\~russian Функция рекурсивного удаления директории.
-	*
-	*	@param $Path - Удаляемая директория.
-	*
-	*	@author Dodonov A.A.
-	*/
-	/**
-	*	\~english Function recursively deletes directory.
-	*
-	*	@param $Path - Directory to delete.
-	*
-	*	@author Dodonov A.A.
-	*/
-	function 			_rmdir_recurse( $Path )
-	{
-		$Handle = @opendir( $Path = rtrim( $Path , '/' ).'/' );
-		if( $Handle !== false )
-		{
-			for( ; false !== ( $File = readdir( $Handle ) ) ; )
-			{
-				if( $File != "." and $File != ".." )
-				{
-					$FullPath = $Path.$File;
-					if( is_dir( $FullPath ) )
-					{
-						_rmdir_recurse( $FullPath );
-						rmdir( $FullPath );
-					}
-					else
-					{
-						unlink( $FullPath );
-					}
-				}
-			}
-			closedir( $Handle );
-		}
-	}
-	
+
 	global	$LoadedPackagesPaths;
 	$LoadedPackagesPaths = array();
-	
+
 	/**
 	*	\~russian Функция вызвращает массив путей к загруженным пакетам.
 	*
@@ -111,7 +72,7 @@
 		try
 		{
 			global 	$LoadedPackagesPaths;
-			
+
 			return( $LoadedPackagesPaths );
 		}
 		catch( Exception $e )
@@ -122,7 +83,7 @@
 
 	global					$_parsed_objects;
 	$_parsed_objects = array();
-	
+
 	/**
 	*	\~russian Возвращение обработанных данных.
 	*
@@ -150,7 +111,7 @@
 		if( is_object( $v ) || is_array( $v ) )
 		{
 			global					$_parsed_objects;
-			
+
 			if( in_array( $k , $_parsed_objects ) === false || is_numeric( $k ) )
 			{
 				$_parsed_objects[] = $k;
@@ -165,10 +126,10 @@
 		{
 			$Data = base64_encode( _collapse_params( $v ).' ' );
 		}
-		
+
 		return( $Data );
 	}
-	
+
 	/**
 	*	\~russian Возвращение обработанных параметров.
 	*
@@ -202,10 +163,10 @@
 			return( $Params );
 		}
 	}
-	
+
 	global					$_collapse_span_id;
 	$_collapse_span_id = 0;
-	
+
 	/**
 	*	\~russian Возвращение скомпилированных параметров.
 	*
@@ -227,26 +188,26 @@
 	function			_compile_params( $Params )
 	{
 		global					$_collapse_span_id;
-		
+
 		$Str = ' ';
-			
+
 		foreach( $Params as $k => $v )
 		{
 			$Data = _compile_data( $k , $v );
-			
+
 			$_collapse_span_id += 1;
 			$id = $_collapse_span_id;
-		
+
 			$PlaceHolders = array( '{id}' , '{data}' , '{k}' );
-			
+
 			$Template = _file_get_contents( dirname( __FILE__ ).'/../../res/templates/func_link.tpl' );
-			
+
 			$Str .= str_replace( $PlaceHolders , array( $id , $Data , $k ) , $Template );
 		}
-		
+
 		return( $Str );
 	}
-	
+
 	/**
 	*	\~russian Функция свертывания параметров.
 	*
@@ -267,7 +228,7 @@
 		{
 			return( '' );
 		}
-		
+
 		if( is_array( $Params ) || is_object( $Params ) )
 		{
 			return( _compile_params( $Params ) );
@@ -277,7 +238,7 @@
 			return( _return_params( $Params ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция создания объекта исключения.
 	*
@@ -310,7 +271,7 @@
 
 		return( new Exception( "$Method("._collapse_params( $Args ).")::$ExceptionMessage" ) );
 	}
-	
+
 	/**
 	*	\~russian Функция бросает эксепшен.
 	*
@@ -337,7 +298,7 @@
 	{
 		throw( _get_exception_object( $Method , $Args , $ExceptionObject ) );
 	}
-	
+
 	/**
 	*	\~russian Функция единственной замены подстроки.
 	*

@@ -35,10 +35,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Settings = false;
 		var					$CachedMultyFS = false;
 		var					$FileInputAlgorithms = false;
-		var					$Security = false;
 		var					$String = false;
 
 		/**
@@ -61,7 +59,6 @@
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->FileInputAlgorithms = get_package( 'file_input::file_input_algorithms' , 'last' , __FILE__ );
-				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )

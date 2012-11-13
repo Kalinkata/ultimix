@@ -23,16 +23,25 @@ if( !ultimix.auto )
 *
 *	@param ViewOptions - Extra view generation options.
 *
+*	@param Prefix - Prefix.
+*
+*	@param PackageName - Package name.
+*
 *	@return View options.
 *
 *	@author Dodonov A.A.
 */
-ultimix.auto.set_default_options = function( ViewOptions )
+ultimix.auto.set_default_options = function( ViewOptions , Prefix , PackageName )
 {
 	if( !ViewOptions )
 	{
 		ViewOptions = {};
 	}
+
+	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_' + Prefix + '_list';
+	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : PackageName;
+	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
+	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
 
 	return( ViewOptions );
 }
@@ -73,19 +82,19 @@ ultimix.auto.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@param Prefix - Prefix.
 *
+*	@param PackageName - Package name.
+*
 *	@author Dodonov A.A.
 */
-ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer , NoDataFound , ViewOptions , Prefix )
+ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer , NoDataFound , ViewOptions , 
+												Prefix , PackageName )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
-	//TODO: replace *.get_list_form methods everywhere
-	//TODO: remove *.set_default_options methods everywhere
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions );
+	ViewOptions = ultimix.auto.set_default_options( ViewOptions , Prefix , PackageName );
 
 	ViewOptions.header = Header ? Header : Prefix + '_header.tpl';
 	ViewOptions.item = Item ? Item : Prefix + '_item.tpl';

@@ -35,8 +35,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var				$PageComposer = false;
-		var				$Security = false;
+		var					$DatabaseAlgorithms = false;
+		var					$DefaultControllers = false;
+		var					$MenuItemAccess = false;
+		var					$PageComposer = false;
+		var					$Security = false;
+		var					$Settings = false;
+		var					$Testing = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -52,8 +57,13 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
+				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
+				$this->MenuItemAccess = get_package( 'menu::menu_item_access' , 'last' , __FILE__ );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -73,6 +83,7 @@
 		*/
 		function	set_up()
 		{
+			$this->Settings->clear();
 		}
 
 		/**
@@ -145,9 +156,69 @@
 
 			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'menu_item_create_form' ) === false )
 			{
 				print( 'ERROR: menu item create form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Тестирование вида.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing view.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'name' , 'test_name' );
+			$this->Security->set_g( 'menu' , 'test_menu' );
+			$this->Security->set_g( 'href' , 'test_href' );
+
+			$Controller = get_package( 'menu::menu_item_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'menu_item' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_menu_item' , 'name LIKE "test_name"' ) )
+			{
+				$this->MenuItemAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_p( 'menu_item_context_action' , 'update_record_form' );
+			$this->Security->set_p( '_id_2' , 'on' );
+			$this->Security->set_p( 'menu_item_record_id' , '-1' );
+
+			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );
+
+			if( stripos( $PageContent , 'menu_item_update_form' ) === false )
+			{
+				print( 'ERROR: menu item update form was not displayed'.$PageContent );
 				return;
 			}
 

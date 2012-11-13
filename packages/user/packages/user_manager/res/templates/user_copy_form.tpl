@@ -28,7 +28,7 @@
 								<td valign="top">
 									<input class="width_160 flat" type="password" name="current_password">
 								</td>
-							</tr>{no_permit:~user_manager}
+							</tr>{~no_permit}
 							<tr>
 								<td valign="top">
 									{lang:password}

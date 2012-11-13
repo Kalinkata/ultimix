@@ -36,7 +36,6 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$ReviewAccess = false;
 		var					$ReviewAlgorithms = false;
 		var					$String = false;
 
@@ -59,7 +58,6 @@
 			try
 			{
 				$this->CachedMultyFS = get_package_object( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->ReviewAccess = get_package( 'review::review_access' , 'last' , __FILE__ );
 				$this->ReviewAlgorithms = get_package( 'review::review_algorithms' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}

@@ -1,4 +1,4 @@
 call_params_filter=delete_{prefix}:integer,value_1
-permits_validation=delete_{prefix}
+permits_filter=delete_{prefix}
 success_func=delete
 access_package_name={prefix}::{prefix}_access

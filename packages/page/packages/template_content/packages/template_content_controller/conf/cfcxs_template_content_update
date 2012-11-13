@@ -1,4 +1,4 @@
 call_params_filter=update_{prefix}:integer,value_1
 custom_get_post_validation=content:string,default_
-permits_validation=update_{prefix}
+permits_filter=update_{prefix}
 access_package_name=page::{prefix}::{prefix}_access

@@ -1,6 +1,6 @@
 call_params_filter=copy_{prefix}:integer,value_1
 get_post_filter={prefix}_action:string,value_copy_record
 get_post_validation=author:integer,err_msg_author_must_be_filled#title:string,err_msg_title_must_be_filled#category:integer#demo_content:string,err_msg_content_demo_must_be_filled#main_content:string,err_msg_content_main_must_be_filled
-permits_validation=create_{prefix}
+permits_filter=create_{prefix}
 get_post_extraction_script=keywords:string#description:string#author:integer#title:string#category:integer#demo_content:string#main_content:string#print_content:string
 access_package_name={prefix}::{prefix}_access

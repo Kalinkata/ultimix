@@ -52,7 +52,7 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -118,8 +118,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageComposer = get_package_object( 'page::page_composer' );
-			$PageContent = $PageComposer->get_page( 'subscription_manager' );
+			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
 
 			if( stripos( $PageContent , 'Main Subscription Description' ) === false )
 			{
@@ -146,7 +145,7 @@
 
 			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'subscription_create_form' ) === false )
 			{
 				print( 'ERROR: subscription create form was not displayed'.$PageContent );
 				return;

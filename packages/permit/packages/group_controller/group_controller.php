@@ -252,7 +252,7 @@
 			try
 			{
 				if( $this->Security->get_gp( 'group_name' , 'set' , false ) &&
-					$this->PermitAlgorithms->object_has_permit( false , 'user' , 'permit_manager' ) )
+					$this->PermitAlgorithms->object_has_all_permits( false , 'user' , 'permit_manager' ) )
 				{
 					$GroupAccess = get_package( 'permit::group_access' , 'last' , __FILE__ );
 

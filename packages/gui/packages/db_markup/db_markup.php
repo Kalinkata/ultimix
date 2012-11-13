@@ -37,7 +37,6 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Database = false;
-		var					$String = false;
 		var					$Utilities = false;
 		
 		/**
@@ -55,7 +54,6 @@
 			try
 			{
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )

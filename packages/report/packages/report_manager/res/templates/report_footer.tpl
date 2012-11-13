@@ -1,5 +1,5 @@
 						<tr>
-							<td colspan="0" class="no_padding">
+							<td colspan="3" class="no_padding">
 								<table width="100%" cellpadding="0" cellspacing="0px">
 									<tr>
 										<td align="left" class="table_footer" width="50%">

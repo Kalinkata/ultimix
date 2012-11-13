@@ -25,7 +25,41 @@
 	*/
 	class	unit_tests{
 
+		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
 		var					$ContentMarkup = false;
+		var					$Settings = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->ContentMarkup = get_package( 'content::content_markup' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Настройка тестового стенда.
@@ -39,7 +73,7 @@
 		*/
 		function			set_up()
 		{
-			$this->ContentMarkup = get_package( 'content::content_markup' , 'last' , __FILE__ );
+			$this->Settings->clear();
 		}
 
 		/**
@@ -87,10 +121,8 @@
 		{
 			try
 			{
-				$Changed = false;
-				$Str = '{content_links:category=news}';
-
-				list( $Str , $Changed ) = this->ContentMarkup->process_content_links( $Str , $Changed );
+				$this->Settings->set_setting( 'category' , 'news' );
+				$Str = $this->ContentMarkup->compile_content_links( $this->Settings );
 
 				if( strpos( $Str , 'Welcome' ) === false )
 				{

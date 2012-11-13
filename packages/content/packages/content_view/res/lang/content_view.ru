@@ -46,3 +46,4 @@ latest_contents=Последние материалы
 blogs=Блоги
 post_blog=Постинг в блог
 add_blog_entry=Добавить запись в блог
+blog_manager=Записи в блогах

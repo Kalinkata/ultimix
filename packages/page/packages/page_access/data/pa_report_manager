@@ -1,1 +1,7 @@
-report::report_manager#last#view=1;show_report_list=1#main
+system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
+report::report_manager#last#controller=1;delete_report=1#
+report::report_manager#last#controller=1;create_report=1#
+report::report_manager#last#controller=1;update_report=1#
+report::report_manager#last#view=1;report_list=1#main
+report::report_manager#last#view=1;create_report_form=1#main
+report::report_manager#last#view=1;update_report_form=1#main

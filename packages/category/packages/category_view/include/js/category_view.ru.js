@@ -10,8 +10,8 @@ if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_actions' ] ) ultimix
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_actions' ][ 'default' ] = 'Действия';
 if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_delete' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_delete' ] = {};
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_delete' ][ 'default' ] = 'удалить';
-if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_edit' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_edit' ] = {};
-ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_edit' ][ 'default' ] = 'редактировать';
+if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_update' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_update' ] = {};
+ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_update' ][ 'default' ] = 'редактировать';
 if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_save' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_save' ] = {};
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_save' ][ 'default' ] = 'сохранить';
 if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_create' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_create' ] = {};
@@ -44,3 +44,5 @@ if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_selection' ] ) ultim
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_selection' ][ 'default' ] = 'Выбор категории';
 if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_name' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_name' ] = {};
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_name' ][ 'default' ] = 'Локатор';
+if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'catalogue_manager' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'catalogue_manager' ] = {};
+ultimix.lang.Strings[ ultimix.lang.Locale ][ 'catalogue_manager' ][ 'default' ] = 'Каталог';

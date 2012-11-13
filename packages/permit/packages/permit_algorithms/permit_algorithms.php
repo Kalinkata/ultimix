@@ -256,51 +256,6 @@
 		*
 		*	@param $ObjectType - Тип объекта.
 		*
-		*	@param $Permit - Название доступа.
-		*
-		*	@return true если валидация прошла успешно, иначе false.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function validates permit's existance for object.
-		*
-		*	@param $Object - Name of the validating object.
-		*
-		*	@param $ObjectType - Type of the object.
-		*
-		*	@param $Permit - Permit's title.
-		*
-		*	@return true if validation was passed, false otherwise
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			object_has_permit( $Object , $ObjectType , $Permit )
-		{
-			try
-			{
-				//TODO: remove this function
-				$ObjectsPermits = $this->get_permits_for_object( $Object , $ObjectType );
-
-				return( in_array( $Permit , $ObjectsPermits ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Проверка есть ли у пользователя доступы.
-		*
-		*	@param $Object - Название проверяемого объекта.
-		*
-		*	@param $ObjectType - Тип объекта.
-		*
 		*	@param $Permits - Строка с доступами, например "public,admin,reader".
 		*
 		*	@return true если валидация прошла успешно, иначе false.

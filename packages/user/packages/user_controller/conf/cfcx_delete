@@ -1,3 +1,3 @@
-permits_validation=user_manager
+permits_filter=user_manager
 get_post_filter=user_context_action:string,value_delete_record
 success_func=delete

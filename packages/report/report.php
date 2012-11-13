@@ -13,8 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	//TODO: move it to view/controller
-	
 	/**
 	*	\~russian Работа с отчетами.
 	*
@@ -561,7 +559,6 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-//TODO: report_permit_manager
 
 		/**
 		*	\~russian Функция генерации отчета.
@@ -625,10 +622,10 @@
 		{
 			try
 			{
-				$Name = $Options->get_setting( 'name' );
+				$Name = $Options->get_setting( 'name' , false );
 				$Package = $this->get_report_generator( $Options );
 
-				if( $Package === false )
+				if( $Package === false || $Name === false )
 				{
 					return;
 				}

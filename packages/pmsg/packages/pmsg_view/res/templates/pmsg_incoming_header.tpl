@@ -1,5 +1,5 @@
 					<div class="toolbar">
-						{search_form}{create_button:text=create_message}{search_button}{delete_button:name=pmsg_i}
+						{search_form:form_id={prefix}_form}{create_button:text=create_message}{search_button}{delete_button:name=pmsg_i}
 					</div>
 					<input type="hidden" name="message_action" id="message_action" value="no_action">
 					<input type="hidden" name="message_id" id="message_id" value="-1">

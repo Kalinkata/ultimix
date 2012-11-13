@@ -1,6 +1,6 @@
 call_params_filter={prefix}_deleted:integer,value_1
 get_post_filter=pmsg_context_action:not_filled
-permits_validation=registered
+permits_filter=registered
 success_func=list_view
 header={prefix}_deleted_header.tpl
 item={prefix}_deleted_item.tpl

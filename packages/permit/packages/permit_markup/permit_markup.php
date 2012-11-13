@@ -48,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$PermitAccess = false;
+		var					$Database = false;
 		var					$PermitAlgorithms = false;
 		var					$UserAlgorithms = false;
 

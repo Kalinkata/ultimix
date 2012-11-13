@@ -1,4 +1,4 @@
 call_params_filter=change_permits_view:integer,value_1
 get_post_filter=user_permit_context_action:string,value_change_permits
-permits_validation=permit_manager
+permits_filter=permit_manager
 success_func=change_permits_view

@@ -52,7 +52,7 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка форм.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing forms.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -143,11 +143,37 @@
 		{
 			$this->Security->set_g( 'user_context_action' , 'create_record_form' );
 
-			$PageContent = $this->PageComposer->get_page( 'user_manager' );
+			$PageContent = $this->PageComposer->get_page( 'admin_registration' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'registration_form' ) === false )
 			{
 				print( 'ERROR: user create form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка форм.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing forms.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'user_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'user_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'user_manager' );
+
+			if( stripos( $PageContent , 'update_record_form' ) === false )
+			{
+				print( 'ERROR: user update form was not displayed'.$PageContent );
 				return;
 			}
 

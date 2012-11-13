@@ -35,11 +35,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$MacroParameters = false;
 		var					$CachedMultyFS = false;
 		var					$ChangeHistoryView = false;
-		var					$PageComposer = false;
-		var					$String = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -63,8 +60,6 @@
 				$this->ChangeHistoryView = get_package( 
 					'database::change_history::change_history_view' , 'last' , __FILE__
 				);
-				$this->PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{

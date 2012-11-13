@@ -2,8 +2,8 @@
 					<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="update_record_form">
 					<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="update_record">
 					<input type="hidden" name="{prefix}_record_id" id="{prefix}_record_id" value="{ids}">
-					{composer:condition={neq:value1={options:name=category_name};value2=}}
-					<input type="hidden" name="category" value="{category_id:names={options:name=category_name}}">
+					{composer:condition={neq:value1={options:name=category_name;default=content_category};value2=content_category}}
+					<input type="hidden" name="category" value="{category_id:names={options:name=category_name;default=content_category}}">
 {~composer}<center>
 						<table>
 							<tr>
@@ -27,7 +27,7 @@
 									<input class="width_640 flat" type="text" name="title" value="{form_value:name=title}">
 								</td>
 							</tr>
-							{composer:condition={eq:value1={options:name=category_name};value2=}}<tr>
+							{composer:condition={eq:value1={options:name=category_name;default=content_category};value2=content_category}}<tr>
 								<td valign="top">
 									{lang:{prefix}_category}
 								</td>

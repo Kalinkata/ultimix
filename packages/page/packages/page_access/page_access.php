@@ -392,8 +392,6 @@
 			}
 		}
 
-		//TODO: fetch pages from DB in the get_list_of_pages method
-
 		/**
 		*	\~russian Получение списка страниц.
 		*

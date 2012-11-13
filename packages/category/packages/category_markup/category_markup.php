@@ -35,11 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$CachedMultyFS = false;
 		var					$CategoryAccess = false;
 		var					$CategoryAlgorithms = false;
 		var					$CategoryView = false;
-		var					$String = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -55,11 +53,9 @@
 		{
 			try
 			{
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->CategoryAccess = get_package( 'category::category_access' , 'last' , __FILE__ );
 				$this->CategoryAlgorithms = get_package( 'category::category_algorithms' , 'last' , __FILE__ );
 				$this->CategoryView = get_package( 'category::category_view' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{

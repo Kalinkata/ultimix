@@ -315,8 +315,8 @@
 			try
 			{
 				$PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				$HasUserManagerPermit = $PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' );
-				if( $this->EnableRegistration != 1 && $HasUserManagerPermit == false )
+				$IsUserManager = $PermitAlgorithms->object_has_all_permits( false , 'user' , 'user_manager' );
+				if( $this->EnableRegistration != 1 && $IsUserManager == false )
 				{
 					$this->Output = '{lang:registration_is_disabled}';
 					return;
@@ -441,7 +441,7 @@
 			{
 				$Changed = false;
 				$this->Output = $this->String->hide_block( 
-					$this->Output , 'permit:user_manager' , 'permit:~user_manager' , $Changed
+					$this->Output , 'permit:user_manager' , 'permit' , $Changed
 				);
 
 				$User = $this->UserAlgorithms->get_user();

@@ -1,2 +1,2 @@
-permits_validation={prefix}_manager
+permits_filter={prefix}_manager
 search_fields=umx_content.title,demo_content,main_content,publication_date,modification_date,creation_date,umx_category.title

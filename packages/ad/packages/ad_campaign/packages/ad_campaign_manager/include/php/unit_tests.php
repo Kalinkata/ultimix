@@ -60,7 +60,7 @@
 				$this->AdCampaignAccess = get_package( 'ad::ad_campaign::ad_campaign_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );

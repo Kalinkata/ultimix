@@ -38,7 +38,6 @@
 		var					$CachedMultyFS = false;
 		var					$CategoryAlgorithms = false;
 		var					$ContentAccess = false;
-		var					$ContentAlgorithms = false;
 		var					$ContentView = false;
 		var					$Security = false;
 		var					$String = false;
@@ -64,9 +63,7 @@
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->CategoryAlgorithms = get_package( 'category::category_algorithms' , 'last' , __FILE__ );
 				$this->ContentAccess = get_package( 'content::content_access' , 'last' , __FILE__ );
-				$this->ContentAlgorithms = get_package( 'content::content_algorithms' , 'last' , __FILE__ );
 				$this->ContentView = get_package( 'content::content_view' , 'last' , __FILE__ );
-				$this->load_content_packages();
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}

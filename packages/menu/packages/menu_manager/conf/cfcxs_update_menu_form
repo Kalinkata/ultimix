@@ -1,3 +1,4 @@
 call_params_filter=show_update_{prefix}_form:integer,value_1
 access_package_name={prefix}::{prefix}_access
-permits_validation=update_{prefix}
+permits_filter=update_{prefix}
+form_template=update_menu_form

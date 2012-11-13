@@ -52,7 +52,7 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -145,7 +145,7 @@
 
 			$PageContent = $this->PageComposer->get_page( 'review_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'review_create_form' ) === false )
 			{
 				print( 'ERROR: review create form was not displayed'.$PageContent );
 				return;

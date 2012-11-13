@@ -123,11 +123,11 @@
 		/**
 		*	\~russian Действия если обработки не произошло.
 		*
-		*	@param $ContextSet - Набор контекстов.
-		*
 		*	@param $Str1 - Первая строка.
 		*
 		*	@param $Str2 - Вторая строка.
+		*
+		*	@param $Direct - Прямой вызов.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
@@ -136,29 +136,27 @@
 		/**
 		*	\~english No action processing.
 		*
-		*	@param $ContextSet - Set of contexts.
-		*
 		*	@param $Str1 - First string.
 		*
 		*	@param $Str2 - Second string.
+		*
+		*	@param $Direct - Direct call.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	not_processed( &$ContextSet , $Str1 , $Str2 )
+		private function	not_processed( $Str1 , $Str2 , $Direct )
 		{
 			try
 			{
-				$this->StartupUtilities->trace_no_need_to_run_state_message( $Str1 , $this->Prefix , $Str2 );
+				$this->StartupUtilities->trace_no_need_to_run_state_message( $Str1 , $this->Prefix , $Str2 , $Direct );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-
-		//TODO: store page permits in db
 
 		/**
 		*	\~russian Нужен ли запуск стандартных контекстов.
@@ -251,7 +249,7 @@
 				else
 				{
 					$Result = false;
-					$this->not_processed( $ContextSet , $State , $State.'_record' );
+					$this->not_processed( $State , $State.'_record' , $Direct );
 				}
 
 				$ContextSet->Trace->end_group();
@@ -364,7 +362,7 @@
 				else
 				{
 					$Result = false;
-					$this->not_processed( $ContextSet , $State , $State.'_form' );
+					$this->not_processed( $State , $State.'_record_form' , $Direct );
 				}
 
 				$ContextSet->Trace->end_group();

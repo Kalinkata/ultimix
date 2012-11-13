@@ -144,7 +144,7 @@
 				$FileName = $Options->get_setting( 'item' , $Prefix.'_item.tpl' );
 				$Path = dirname( $Options->get_setting( 'file_path' ) )."/res/templates/$FileName";
 				$Item = $this->CachedMultyFS->file_get_contents( $Path );
-				
+
 				$Paging->set( 'ItemTemplate' , $Item );
 			}
 			catch( Exception $e )
@@ -152,7 +152,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция инициализации грида.
 		*
@@ -189,7 +189,7 @@
 				}
 
 				$NoDataFoundTemplate = $this->CachedMultyFS->file_get_contents( $Path );
-				
+
 				$Paging->set( 'NoDataFoundMessage' , $NoDataFoundTemplate );
 			}
 			catch( Exception $e )
@@ -197,7 +197,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция инициализации шаблона грида.
 		*
@@ -235,7 +235,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция инициализации основных настроек грида.
 		*
@@ -263,7 +263,7 @@
 			try
 			{
 				$Paging->set( 'RecordsPerPage' , $Options->get_setting( 'records_per_page' , 20 ) );
-				
+
 				$Paging->set( 'PageField' , $Options->get_setting( 'page_field' , 'page' ) );
 			}
 			catch( Exception $e )
@@ -271,7 +271,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция возвращает записи из БД.
 		*
@@ -303,13 +303,13 @@
 			try
 			{
 				$Provider = $this->get_data_provider( $Options , $this->Provider );
-				
+
 				if( method_exists( $Provider , 'select_list' ) === false )
 				{
 					$ClassName = $Provider ? get_class( $Provider ) : 'undefined_class';
 					throw( new Exception( 'Method "select_list" was not found in the class "'.$ClassName."'" ) );
 				}
-				
+
 				$Records = call_user_func( array( $Provider , 'select_list' ) , implode( ',' , $IdList ) );
 
 				return( $Records );
@@ -319,7 +319,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция возвращает суперпозицию записей.
 		*
@@ -351,9 +351,9 @@
 			try
 			{
 				$Records = $this->get_original_records( $Options , $IdList );
-				
+
 				$Record = $Records[ 0 ];
-				
+
 				if( intval( $Options->get_setting( 'massive_processing' , 1 ) ) )
 				{
 					$c = count( $Records );
@@ -368,7 +368,7 @@
 						}
 					}
 				}
-				
+
 				return( $Record );
 			}
 			catch( Exception $e )
@@ -376,7 +376,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки идентификаторов из запроса.
 		*
@@ -419,18 +419,18 @@
 				{
 					$Parameter = $Options->get_setting( $SettingName );
 					$PostedRecord = $this->SecurityParser->parse_http_parameters( $Parameter );
-					
+
 					foreach( $PostedRecord as $k => $v )
 					{
 						$k = str_replace( $Prefix.'_' , '' , $k );
-						
+
 						if( $v !== false )
 						{
 							set_field( $Record , $k , $v );
 						}
 					}
 				}
-				
+
 				return( $Record );
 			}
 			catch( Exception $e )
@@ -438,7 +438,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция возвращает объект доступа к данным.
 		*
@@ -469,7 +469,7 @@
 				{
 					$PackageName = $Options->get_setting( 'access_package_name' );
 					$PackageVersion = $Options->get_setting( 'access_package_version' , 'last' );
-					
+
 					return( get_package( $PackageName , $PackageVersion , __FILE__ ) );
 				}
 				else
@@ -482,7 +482,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Получение идентификаторов записей.
 		*
@@ -519,7 +519,7 @@
 					$Mode = POST | PREFIX_NAME | KEYS;
 					$Ids = $this->SecurityUtilities->get_global( '_id_' , 'string' , $Mode , array() );
 				}
-				
+
 				return( $Ids );
 			}
 			catch( Exception $e )
@@ -527,7 +527,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения значений формы.
 		*

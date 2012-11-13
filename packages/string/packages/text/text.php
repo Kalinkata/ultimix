@@ -52,6 +52,8 @@
 			try
 			{
 				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
+
+				$this->init_patterns();
 			}
 			catch( Exception $e )
 			{
@@ -514,6 +516,7 @@
 				$this->init_mac();
 				$this->init_ibm_1();
 				$this->init_ibm_2();
+				$this->init_ibm_3();
 			}
 			catch( Exception $e )
 			{
@@ -552,6 +555,8 @@
 					return( $this->Patterns[ $Name ] );
 				}
 
+				var_dump( $this->Patterns );
+				
 				throw( new Exception( 'Illegal pattern name' ) );
 			}
 			catch( Exception $e )

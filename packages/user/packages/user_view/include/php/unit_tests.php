@@ -24,8 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	unit_tests{
-		
-		var				$CacheSwitch;
+	
 		
 		/**
 		*	\~russian Настройка тестового стенда.

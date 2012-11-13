@@ -1,2 +1,2 @@
-permits_validation=registered
+permits_filter=registered
 search_fields=author,recipient,subject,message,creation_date,`read`

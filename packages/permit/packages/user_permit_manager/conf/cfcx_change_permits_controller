@@ -1,6 +1,6 @@
 call_params_filter=change_permits_controller:integer,value_1
 get_post_filter=context_action:string,value_change_permits#action:string,value_save_permits
-permits_validation=permit_manager
+permits_filter=permit_manager
 success_func=change_permits_controller
 success_message=permit_changes_were_saved
 auto_redirect=1

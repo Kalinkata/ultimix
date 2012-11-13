@@ -19,30 +19,6 @@ if( !ultimix.ad_banner )
 }
 
 /**
-*	Function sets list view options.
-*
-*	@param ViewOptions - Extra view generation options.
-*
-*	@return View options.
-*
-*	@author Dodonov A.A.
-*/
-ultimix.ad_banner.set_default_options = function( ViewOptions )
-{
-	if( !ViewOptions )
-	{
-		ViewOptions = {};
-	}
-
-	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_ad_banner_list';
-	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : 'ad::ad_banner::ad_banner_view';
-	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
-	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
-
-	return( ViewOptions );
-}
-
-/**
 *	Function returns list view.
 *
 *	@param Functions - Functions to process success and error events.
@@ -58,7 +34,7 @@ ultimix.ad_banner.get_list_form = function( Fuctions , ViewOptions )
 		Fuctions = {};
 	}
 
-	ViewOptions = ultimix.ad_banner.set_default_options( ViewOptions );
+	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'ad_banner' , 'ad::ad_banner::ad_banner_view' );
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }

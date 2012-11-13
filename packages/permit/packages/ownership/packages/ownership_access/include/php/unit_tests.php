@@ -25,8 +25,6 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
-
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -37,7 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
+		function			set_up()
 		{
 		}
 
@@ -51,7 +49,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	tear_down()
+		function			tear_down()
 		{
 		}
 
@@ -68,9 +66,6 @@
 		function			test_load_package()
 		{
 			get_package( 'permit::ownership::ownership_access' , 'last' , __FILE__ );
-
-			//TODO: rename ownership into 'permittion_domain' ad entity in the database
-			//TODO: create permittion_domain_access package
 
 			return( 'TEST PASSED' );
 		}

@@ -222,7 +222,7 @@
 				$UserController->login( $Options );
 
 				$Permits = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
-				if( $Permits->object_has_permit( false , 'user' , 'tester' ) === false )
+				if( $Permits->object_has_all_permits( false , 'user' , 'tester' ) === false )
 				{
 					$UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 					print( $UserAlgorithms->get_login() );

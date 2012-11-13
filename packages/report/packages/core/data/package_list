@@ -1,5 +1,6 @@
 report_access.1.0.0#report_access
 report_algorithms.1.0.0#report_algorithms
 report_controller.1.0.0#report_controller
+report_manager.1.0.0#report_manager
 report_view.1.0.0#report_view
 report_utilities.1.0.0#report_utilities

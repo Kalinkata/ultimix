@@ -108,6 +108,61 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Загрузка конфига стейта для соответствующей кнопки.
+		*
+		*	@param $ComponentPath - Путь к пакету.
+		*
+		*	@param $Config - Файл конфига.
+		*
+		*	@param $Settings - Настройки стейтов.
+		*
+		*	@return Конфиг. false если файл не загружен.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function load state's config (for the corresponding button).
+		*
+		*	@param $ComponentPath - Path to the package.
+		*
+		*	@param $Config - Config file name.
+		*
+		*	@param $Settings - States settings.
+		*
+		*	@return Config. false if the config was not loaded.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_common_state_config_content( $ComponentPath , $Config , &$Settings )
+		{
+			try
+			{
+				$Path = dirname( $ComponentPath )."/conf/$Config";
+
+				if( $this->CachedMultyFS->file_exists( $Path ) === false )
+				{
+					$this->Trace->add_trace_string( "{lang:file_does_not_exist} : \"$Config\"" , COMMON );
+					return( false );
+				}
+				$this->Trace->add_trace_string( "{lang:file_exists} : \"$Config\"" , COMMON );
+
+				$Config = $this->CachedMultyFS->file_get_contents( $Path );
+
+				$Config = str_replace( '{prefix}' , $Settings->get_setting( 'prefix' , '' ) , $Config );
+
+				return( $Config );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 		
 		/**
 		*	\~russian Загрузка конфига стейта для соответствующей кнопки.
@@ -148,25 +203,13 @@
 			try
 			{
 				$Message = "{lang:attempt_to_load_config} : \"$SettingName\" or default \"$Default\"";
-
 				$this->Trace->add_trace_string( $Message , COMMON );
 
 				$Config = $Settings->get_setting( $SettingName , $Default );
 
 				$this->Trace->add_trace_string( "{lang:searching_file} : \"$Config\"" , COMMON );
 
-				$Path = dirname( $ComponentPath )."/conf/$Config";
-
-				if( $this->CachedMultyFS->file_exists( $Path ) === false )
-				{
-					return( false );
-				}
-
-				$Config = $this->CachedMultyFS->file_get_contents( $Path );
-
-				$Config = str_replace( '{prefix}' , $Settings->get_setting( 'prefix' , '' ) , $Config );
-
-				return( $Config );
+				return( $this->get_common_state_config_content( $ComponentPath , $Config , $Settings ) );
 			}
 			catch( Exception $e )
 			{
@@ -212,11 +255,11 @@
 		{
 			try
 			{
-				$Config = $this->get_common_state_config( $Settings , $SettingName , $Default , $ComponentPath );
+				$RawConfig = $this->get_common_state_config( $Settings , $SettingName , $Default , $ComponentPath );
 
 				$Config = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 
-				$Config->load_settings( $Config );
+				$Config->load_settings( $RawConfig );
 
 				return( $Config );
 			}
@@ -312,7 +355,10 @@
 				);
 
 				$PermitsFilter = $CommonStateConfig->get_setting( 'permits_filter' , 'admin' );
-				return( $CommonStateConfig->get_setting( 'permits_validation' , $PermitsFilter ) );
+				
+				$this->Trace->add_trace_string( "{lang:permits_filter} : \"$PermitsFilter\"" , COMMON );
+
+				return( $PermitsFilter );
 			}
 			catch( Exception $e )
 			{

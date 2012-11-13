@@ -68,42 +68,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Проверка доступов.
-		*
-		*	@param $Validation - Скрипт проверки доступов.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function validates permits.
-		*
-		*	@param $Validation - Permits validation script.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			compile_no_permits( $Validation )
-		{
-			try
-			{
-				$this->Messages->add_error_message( 'no_permits' );
-				$this->Trace->add_trace_string( 
-					"{lang:permits_validation_not_passed} : $Validation" , COMMON
-				);
-				$this->Trace->add_trace_string( "GET  : ".wordwrap( serialize( $_GET ) ) , COMMON );
-				$this->Trace->add_trace_string( "POST : ".wordwrap( serialize( $_POST ) ) , COMMON );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция возвращает секцию конфига по её имени.
 		*
@@ -152,7 +117,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция проверяет существование секции.
 		*
@@ -187,7 +152,7 @@
 				{
 					throw( new Exception( 'Config was not set' ) );
 				}
-				
+
 				if( isset( $Config[ $SectionName ] ) )
 				{
 					$this->Trace->add_trace_string( "{lang:section_was_found} : $SectionName" , COMMON );
@@ -196,7 +161,7 @@
 				{
 					$this->Trace->add_trace_string( "{lang:section_was_not_found} : $SectionName" , COMMON );
 				}
-				
+
 				return( isset( $Config[ $SectionName ] ) );
 			}
 			catch( Exception $e )
@@ -204,7 +169,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка сообщений.
 		*
@@ -239,7 +204,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка сообщений.
 		*
@@ -284,7 +249,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка сообщений.
 		*
@@ -328,7 +293,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Вывод трассировки.
 		*
@@ -360,7 +325,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка GET/POST фильтров.
 		*
@@ -405,6 +370,7 @@
 					$this->print_get_post_filter_trace( $Filter );
 					return( false );
 				}
+
 				return( true );
 			}
 			catch( Exception $e )

@@ -1,2 +1,2 @@
 call_params_filter=show_create_{prefix}_form:integer,value_1
-permits_validation={prefix}_create
+permits_filter={prefix}_create

@@ -1,6 +1,6 @@
 call_params_filter=save_settings:integer,value_1
 get_post_filter=settings_form_action:command,value_1
-permits_validation=admin
+permits_filter=admin
 success_func=save_settings
 auto_redirect=1
 success_message=settings_were_saved

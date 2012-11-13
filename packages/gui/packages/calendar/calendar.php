@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс отображения календаря.
 	*
@@ -25,7 +25,7 @@
 	*/
 	class	calendar_1_0_0
 	{
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -38,7 +38,7 @@
 		*/
 		var					$CachedMultyFS = false;
 		var					$Security = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -61,7 +61,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
@@ -93,9 +93,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение шаблонов для вывода календаря.
+		*
+		*	@param $TemplateNames - 
 		*
 		*	@return Шаблоны.
 		*
@@ -112,21 +114,18 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_templates()
+		function			get_templates( $TemplateNames )
 		{
 			try
 			{
-				//TODO: refactor it to get_templates( $TemplateNames )
-				return(
-					array(
-						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_start.tpl' ) , 
-						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_end.tpl' ) , 
-						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_row_start.tpl' ) , 
-						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_row_end.tpl' ) , 
-						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_header_cell.tpl' ) , 
-						$this->CachedMultyFS->get_template( __FILE__ , 'calendar_cell.tpl' )
-					)
-				);
+				$Return = array();
+
+				foreach( $TemplateNames as $i => $Name )
+				{
+					$Return[] = "calendar_$Name.tpl";
+				}
+
+				return( $Return );
 			}
 			catch( Exception $e )
 			{
@@ -173,15 +172,15 @@
 			try
 			{
 				$Template = str_replace( '{header_cell}' , $Text , $Template );
-				
+
 				$FirstDay = mktime( 0 , 0 , 0 , date( 'n',  $DisplayTime ) , 1 , date( 'Y' , $DisplayTime ) );
 				$w = date( 'w' , $FirstDay );
 				$w = $w == 0 ? 6 : $w - 1;
-				
+
 				$Class = $w == $Day && date( 'd' ) < 7 - $w ? ' active_cell_bottom' : '';
-				
+
 				$Template = str_replace( '{active_cell_bottom}' , $Class , $Template );
-				
+
 				return( $Template );
 			}
 			catch( Exception $e )
@@ -189,7 +188,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция заголовка календаря.
 		*
@@ -239,7 +238,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция заголовка календаря.
 		*
@@ -266,8 +265,9 @@
 		{
 			try
 			{
-				list( $CalendarStart , $CalendarEnd , $RowStart , $RowEnd , $HeaderCell , $Cell ) = 
-																								$this->get_templates();
+				list( $RowStart , $RowEnd , $HeaderCell ) = $this->get_templates( 
+					array( 'row_start' , 'row_end' , 'header_cell' )
+				);
 
 				$HolidayHeaderCell = str_replace( '{holiday}' , ' holiday' , $HeaderCell );
 
@@ -280,7 +280,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция тулбара.
 		*
@@ -330,7 +330,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция стиля ячейки календаря.
 		*
@@ -359,15 +359,15 @@
 			{
 				$ThisDay = date( 'Y-m-d' ) == date( 'Y-m-d' , $CellDay );
 				$ThisMonth = date( 'Y-m' ) == date( 'Y-m' , $CellDay );
-				
+
 				$Class = $ThisDay ? ' active_cell' : '';
 
 				$NextWeekDay = date( 'j' ) == date( 'j' , $CellDay ) + 7;
 				$Class = $ThisMonth && $NextWeekDay ? ' active_cell_bottom' : $Class;
-				
+
 				$NextDay = date( 'j' ) == date( 'j' , $CellDay ) + 1;
 				$Class = $ThisMonth && $NextDay ? ' active_cell_right' : $Class;
-				
+
 				return( $Class );
 			}
 			catch( Exception $e )
@@ -375,7 +375,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция календаря.
 		*
@@ -406,21 +406,20 @@
 		{
 			try
 			{
-				list( $CalendarStart , $CalendarEnd , $RowStart , $RowEnd , $HeaderCell , $Cell ) = 
-																								$this->get_templates();
-				
+				list( $RowStart , $RowEnd , $Cell ) = $this->get_templates( array( 'row_start' , 'row_end' , 'cell' ) );
+
 				$Code = '';
-				
+
 				$Code .= $Day % 7 === 1 ? $RowStart : '';
 				$Code .= str_replace( '{day}' , $CellDay , $Cell );
-				
+
 				$DayOfWeek = date( 'w' , $CellDay );
-				
+
 				$Code = $DayOfWeek == 0 || $DayOfWeek == 6 ? str_replace( '{holiday}' , ' holiday' , $Code ) : $Code;
 				$Class = $this->compile_cell_class( $CellDay );
 				$Code = str_replace( '{active_cell}' , $Class , $Code );
 				$Code .= $Day % 7 === 0 ? $RowEnd : '';
-				
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -428,7 +427,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция строки календаря.
 		*
@@ -463,23 +462,20 @@
 		{
 			try
 			{
-				list( $CalendarStart , $CalendarEnd , $RowStart , $RowEnd , $HeaderCell , $Cell ) = 
-																								$this->get_templates();
-
 				$Code = '';
-				
+
 				for( $Day = 1 ; $Day <= 42 ; $Day++ )
 				{
 					$DayAdd = $Day - $DayOfWeek;
 					$CellDay = strtotime( $DayAdd < 0 ? $DayAdd.' day' : "+$DayAdd day" , $FirstDay );
 					$Code .= $this->compile_cell( $Day , $CellDay );
-					
+
 					if( date( 'm' , $CellDay ) !== date( 'm' , $DisplayTime ) && $Day % 7 === 0 )
 					{
 						break;
 					}
 				}
-				
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -517,8 +513,7 @@
 				$DisplayTime = $this->Settings->get_setting( 'calendar_time' , time() );
 				$DisplayTime = $this->Security->get_gp( 'calendar_time' , 'integer' , $DisplayTime );
 
-				list( $Start , $End , $RowStart , $RowEnd , $HeaderCell , $Cell ) = 
-					$this->get_templates();
+				list( $Start , $End ) = $this->get_templates( array( 'start' , 'end' ) );
 
 				$FirstDay = mktime( 0 , 0 , 0 , date( 'n',  $DisplayTime ) , 1 , date( 'Y' , $DisplayTime ) );
 
@@ -567,7 +562,7 @@
 					$CalendarTime = $this->Security->get_gp( 'calendar_time' , 'integer' , false );
 					$this->Output = $this->compile_calendar( $CalendarTime );
 				}
-				
+
 				return( $this->Output );
 			}
 			catch( Exception $e )
@@ -576,5 +571,5 @@
 			}
 		}
 	}
-	
+
 ?>

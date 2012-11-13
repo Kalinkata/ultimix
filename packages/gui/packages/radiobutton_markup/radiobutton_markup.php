@@ -25,7 +25,6 @@
 	*/
 	class	radiobutton_markup_1_0_0
 	{
-		
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -38,8 +37,7 @@
 		*/
 		var					$Database = false;
 		var					$Security = false;
-		var					$String = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -56,7 +54,6 @@
 			{
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -99,11 +96,11 @@
 			try
 			{
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'radio_set_item.tpl' );
-				
+
 				$PlaceHolders = array( '{name}' , '{value}' , '{current_value}' , '{label}' );
-				
+
 				$Data = array( $Name , $r->Value , $CurrentValue , $r->label );
-				
+
 				return( str_replace( $PlaceHolders , $Data , $Code ) );
 			}
 			catch( Exception $e )
@@ -111,7 +108,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция набора radio баттонов.
 		*
@@ -173,7 +170,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения записей.
 		*
@@ -204,7 +201,7 @@
 				$this->Database->query_as( DB_OBJECT );
 				$Records = $this->Database->query( $Query );
 				$Records = $this->Database->fetch_results( $Records );
-				
+
 				return( $Records );
 			}
 			catch( Exception $e )
@@ -283,7 +280,7 @@
 			{
 				$Value = $Settings->get_setting( 'value' );
 				$Name = $Settings->get_setting( 'name' );
-				
+
 				if( $this->Security->get_gp( $Name ) )
 				{
 					$CurrentValue = $this->Security->get_gp( $Name , 'string' );
@@ -294,7 +291,7 @@
 				}
 
 				$Checked = $Value === $CurrentValue ? $Checked = 'checked' : '';
-				
+
 				return( $Checked );
 			}
 			catch( Exception $e )
@@ -302,7 +299,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компиляция контрола.
 		*
@@ -330,23 +327,23 @@
 			try
 			{
 				$Name = $Settings->get_setting( 'name' );
-				
+
 				$Value = $Settings->get_setting( 'value' );
-				
+
 				$Checked = $this->get_checked( $Settings );
-				
+
 				$id = $Settings->get_setting( 'id' , md5( microtime() ) );
 
 				$Template = "<input id=\"$id\" style=\"cursor: pointer;\" ".
 									"type=\"radio\" value=\"$Value\" $Checked name=\"$Name\">";
-									
+
 				$Label = $Settings->get_setting( 'label' , '' );
-				
+
 				if( $Label != '' )
 				{
 					$Template = "<label for=\"$id\" style=\"cursor: pointer;\">$Template {lang:$Label}</label>";
 				}
-				
+
 				return( $Template );
 			}
 			catch( Exception $e )
@@ -397,5 +394,5 @@
 			}
 		}
 	}
-	
+
 ?>

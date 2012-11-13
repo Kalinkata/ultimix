@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Предикаты.
 	*
@@ -38,7 +38,7 @@
 		var					$Settings = false;
 		var					$String = false;
 		var					$SupportedDataTypes = false;
-		
+
 		/**
 		*	\~russian Ошибка валидации.
 		*
@@ -50,7 +50,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ErrorMessage = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -74,7 +74,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -115,7 +115,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -156,13 +156,13 @@
 				{
 					return( true );
 				}
-				
+
 				if( $Value == '' || $this->SupportedDataTypes->compile_data( $Value , 'email' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -170,7 +170,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -206,18 +206,18 @@
 			try
 			{
 				$Value = get_field( $Data , $Name , '' );
-			
+
 				if( $Value === '' && $this->SecurityParser->allow_not_set( $Predicates ) )
 				{
 					return( true );
 				}
-				
+
 				if( $Value === '' || $this->SupportedDataTypes->compile_data( $Value , 'float' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -225,7 +225,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -261,18 +261,18 @@
 			try
 			{
 				$Value = get_field( $Data , $Name , '' );
-				
+
 				if( $Value === '' && $this->SecurityParser->allow_not_set( $Predicates ) )
 				{
 					return( true );
 				}
-				
+
 				if( $Value === '' || $this->SupportedDataTypes->compile_data( $Value , 'integer' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -316,13 +316,13 @@
 			try
 			{
 				$Value = get_field( $Data , $Name , '' );
-				
+
 				if( $Value == '' && $this->SecurityParser->allow_not_set( $Predicates ) === false )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -330,7 +330,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -366,18 +366,18 @@
 			try
 			{
 				$Value = get_field( $Data , $Name , '' );
-				
+
 				if( $Value == '' && $this->SecurityParser->allow_not_set( $Predicates ) )
 				{
 					return( true );
 				}
-				
+
 				if( $this->SupportedDataTypes->compile_data( $Value , 'command' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -385,7 +385,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -425,7 +425,7 @@
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -433,7 +433,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -473,7 +473,7 @@
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -481,7 +481,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -522,7 +522,7 @@
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -530,7 +530,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -579,7 +579,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -634,7 +634,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -674,14 +674,14 @@
 			try
 			{
 				$Value = intval( str_replace( 'min_' , '' , $Predicates[ $j ] ) );
-				
+
 				if( $this->SupportedDataTypes->compile_data( $Data[ $Name ] , 'raw' ) < $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -689,7 +689,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -729,14 +729,14 @@
 			try
 			{
 				$Value = intval( str_replace( 'max_' , '' , $Predicates[ $j ] ) );
-				
+
 				if( $this->SupportedDataTypes->compile_data( $Data[ $Name ] , 'raw' ) > $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 					
 					return( false );
 				}
-				
+
 				return( true );
 			}
 			catch( Exception $e )
@@ -744,7 +744,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*
@@ -804,7 +804,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка значений ассоциативного массива с данными.
 		*

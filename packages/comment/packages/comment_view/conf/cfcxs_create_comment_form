@@ -1,2 +1,3 @@
 call_params_filter=create_{prefix}:integer,value_1
 permits_filter={prefix}_manager
+form_template=create_{prefix}_form

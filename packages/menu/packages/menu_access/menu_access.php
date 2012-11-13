@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_menu`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -47,9 +47,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Database = false;
 		var					$DatabaseAlgorithms = false;
+		var					$EventManager = false;
+		var					$Security = false;
 		var					$SecurityParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -64,7 +67,10 @@
 		{
 			try
 			{
+				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' , 'last' , __FILE__ );
+				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -72,7 +78,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -84,7 +90,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -121,7 +127,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -148,11 +154,12 @@
 		{
 			try
 			{
-				$Database = get_package( 'database' , 'last' , __FILE__ );
-				$Database->query_as( DB_OBJECT );
-				
-				$Records = $Database->select( '*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition" );
-				
+				$this->Database->query_as( DB_OBJECT );
+
+				$Records = $this->Database->select( 
+					'*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition"
+				);
+
 				return( $Records );
 			}
 			catch( Exception $e )
@@ -160,7 +167,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -206,7 +213,7 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -214,7 +221,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает запись по идентификатору.
 		*
@@ -241,16 +248,15 @@
 		{
 			try
 			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$id = $Security->get( $id , 'integer' );
-				
+				$id = $this->Security->get( $id , 'integer' );
+
 				$Records = $this->unsafe_select( $this->NativeTable.".id = $id" );
-				
+
 				if( count( $Records ) == 0 )
 				{
 					throw( new Exception( 'Record was not found' ) );
 				}
-				
+
 				return( $Records[ 0 ] );
 			}
 			catch( Exception $e )
@@ -258,7 +264,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -282,7 +288,7 @@
 			try
 			{
 				$Record = $this->SecurityParser->parse_parameters( $Record , 'name:string' );
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
@@ -294,7 +300,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список меню, зарегистрированых в системе.
 		*
@@ -330,17 +336,15 @@
 		{
 			try
 			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$Start = $Security->get( $Start , 'integer' );
-				$Limit = $Security->get( $Limit , 'integer' );
-				
-				$Databse = get_package( 'database' , 'last' , __FILE__ );
-				$Result = $Databse->select( '*' , 'umx_menu' , "$this->AddLimitations LIMIT $Start , $Limit" );
+				$Start = $this->Security->get( $Start , 'integer' );
+				$Limit = $this->Security->get( $Limit , 'integer' );
+
+				$Result = $this->Databse->select( '*' , 'umx_menu' , "$this->AddLimitations LIMIT $Start , $Limit" );
 				foreach( $Result as $i => $r )
 				{
 					$Result[ $i ] = array_merge( array( 'n' => $i + 1 ) , $Result );
 				}
-				
+
 				return( $Result );
 			}
 			catch( Exception $e )
@@ -348,7 +352,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение элементов меню для $Menu.
 		*
@@ -375,9 +379,8 @@
 		{
 			try
 			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$Menu = $Security->get( $Menu , 'command' );
-				
+				$Menu = $this->Security->get( $Menu , 'command' );
+
 				$Counter = 0;
 
 				$MenuItemAccess = get_package( 'menu::menu_item_access' , 'last' , __FILE__ );
@@ -392,7 +395,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает меню.
 		*
@@ -419,11 +422,12 @@
 		{
 			try
 			{
-				$Security = & get_package( 'security' , 'last' , __FILE__ );
-				$Menu = $Security->get( $Menu , 'command' );
-				
-				$Databse = get_package( 'database' , 'last' , __FILE__ );
-				$Result = $Databse->select( '*' , 'umx_menu' , "( $this->AddLimitations ) AND name LIKE '$Menu'" );
+				$Menu = $this->Security->get( $Menu , 'command' );
+
+				$Result = $this->Databse->select( 
+					'*' , 'umx_menu' , "( $this->AddLimitations ) AND name LIKE '$Menu'"
+				);
+
 				if( count( $Result ) !== 1 )
 				{
 					throw( new Exception( "An error occured while selecting menu" ) );
@@ -438,78 +442,76 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция изменения меню.
+		*	\~russian Удаление записей.
 		*
-		*	@param $OldMenuLocator - Старый локатор меню.
+		*	@param $id - Идентификатор записи.
 		*
-		*	@param $NewMenuLocator - Новый локатор меню.
+		*	@param $Options - Дополнительные настройки.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function updates menu.
+		*	\~english Deleting records.
 		*
-		*	@param $OldMenuLocator - Old menu locator.
+		*	@param $id - Record's identificator.
 		*
-		*	@param $NewMenuLocator - New menu locator.
+		*	@param $Options - Additional options.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
-		*	@author Додонов А.А.
+		*	@author Dodonov A.A.
 		*/
-		function			update_menu( $OldMenuLocator , $NewMenuLocator )
+		function			delete( $id , $Options = ' 1 = 1' )
 		{
 			try
 			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$OldMenuLocator = $Security->get( $OldMenuLocator , 'command' );
-				$NewMenuLocator = $Security->get( $NewMenuLocator , 'command' );
-				
-				$Databse = get_package( 'database' , 'last' , __FILE__ );
-				$Databse->update( 
-					'umx_menu' , array( 'name' ) , array( $NewMenuLocator ) , 
-					"( $this->AddLimitations ) AND name LIKE '$OldMenuLocator'"
-				);
-				$Databse->commit();
+				$this->EventManager->trigger_event( 'on_before_delete_menu' , array( 'id' => $id ) );
+
+				$id = $this->Security->get( $id , 'integer_list' );
+				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
+				$this->Database->commit();
+
+				$this->EventManager->trigger_event( 'on_after_delete_menu' , array( 'id' => $id ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
-		*	\~russian Функция удаления меню.
+		*	\~russian Выборка массива объектов.
 		*
-		*	@param $Menu - название удаляемого меню.
+		*	@param $id - Список идентификаторов удаляемых данных, разделённых запятыми.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@return Массив записей.
+		*
+		*	@exception Exception - кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function deletes menu.
+		*	\~english Function selects list of objects.
 		*
-		*	@param $Menu - Deleting menu locator.
+		*	@param $id - Comma separated list of record's id.
+		*
+		*	@return Array of records.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			delete_menu( $Menu )
+		function			select_list( $id )
 		{
 			try
 			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$Menu = $Security->get( $Menu , 'command' );
-				
-				$Database = get_package( 'database' , 'last' , __FILE__ );
-				$Database->delete( 'umx_menu' , "( $this->AddLimitations ) AND name LIKE '$Menu'" );
-				$Database->commit();
+				$id = $this->Security->get( $id , 'integer_list' );
+
+				return( $this->unsafe_select( $this->NativeTable.".id IN ( $id ) ORDER BY id DESC" ) );
 			}
 			catch( Exception $e )
 			{

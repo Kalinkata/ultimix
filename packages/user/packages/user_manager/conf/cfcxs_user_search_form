@@ -1,2 +1,2 @@
-permits_validation={prefix}_manager
+permits_fitler={prefix}_manager
 search_fields=login,email,active_to,banned_to

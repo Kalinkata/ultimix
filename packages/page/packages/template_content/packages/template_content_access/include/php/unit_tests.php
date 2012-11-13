@@ -25,8 +25,6 @@
 	*/
 	class	unit_tests{
 
-		var				$CacheSwitch;
-
 		/**
 		*	\~russian Настройка тестового стенда.
 		*
@@ -37,8 +35,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	set_up()
-		{
+		function			set_up()
+		{               
 		}
 
 		/**
@@ -51,7 +49,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function	tear_down()
+		function			tear_down()
 		{
 		}
 

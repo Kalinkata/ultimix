@@ -1,7 +1,7 @@
 call_params_filter=copy_{prefix}:integer,value_1
 get_post_validation=login:string,err_msg_login_must_be_filled#email:email,err_msg_email_must_be_filled#password:string,same_as_password_confirmation,err_msg_password_must_be_the_same#password:string,err_msg_password_must_be_filled#password_confirmation:string,err_msg_password_confirmation_must_be_filled
 custom_validation=login_does_not_exist:login
-permits_validation={prefix}_manager
+permits_filter={prefix}_manager
 get_post_extraction_script=login:string#email:email#password:string#active:command,default_active
 access_package_name={prefix}::{prefix}_access
 auto_redirect=0

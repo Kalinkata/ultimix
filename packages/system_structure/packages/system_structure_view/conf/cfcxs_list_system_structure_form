@@ -1,3 +1,3 @@
 call_params_filter=show_{prefix}_list:integer,value_1
-permits_validation=system_structure_manager
+permits_filter=system_structure_manager
 access_package_name=system_structure::{prefix}_access

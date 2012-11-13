@@ -59,15 +59,16 @@ ultimix.ajax_gate.direct_controller = function( Data , Functions , Options )
 	{
 		Options = {};
 	}
-	jQuery.extend( Options , { 'async' : true , 'dataType' : 'text' } );
-	jQuery.extend( Data , { 'auto_redirect' : 0 , 'template' : 'ajax_result_template' } );
+	jQuery.extend( { 'async' : true , 'dataType' : 'text' } , Options );
+	var			CallData = { 'auto_redirect' : 0 , 'template' : 'ajax_result_template' , 'controller' : 1 };
+	Data = jQuery.extend( CallData , Data );
 	if( Functions && Functions.before_request )
 	{
 		Functions.before_request();
 	}
 	var			Request = {
 		async : Options.async , type : 'POST' , url : 'direct_controller.html?' + ( new Date() ).getTime() , 
-		data : Data , success : Functions ? Functions.success : false , 
+		data : CallData , success : Functions ? Functions.success : false , 
 		error : Functions ? Functions.error : false , dataType : Options.data_type
 	};
 	jQuery.ajax( Request );
@@ -92,14 +93,15 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 	}
 	Options = !Options ? {} : Options;
 	jQuery.extend( { 'async' : true , 'data_type' : 'html' } , Options );
-	jQuery.extend( { 'auto_redirect' : 0 , 'template' : 'ajax_result_template' } , Data );
+	var			CallData = { 'auto_redirect' : 0 , 'view' : 1 };
+	jQuery.extend( CallData , Data );
 	if( Functions && Functions.before_request )
 	{
 		Functions.before_request();
 	}
 	var			Request = {
 		async : Options.async , type : 'POST' , url : 'direct_view.html?' + ( new Date() ).getTime() , 
-		data : Data , success : Functions ? Functions.success : false , 
+		data : CallData , success : Functions ? Functions.success : false , 
 		error : Functions ? Functions.error : false , dataType : Options.data_type
 	};
 	jQuery.ajax( Request );

@@ -1,5 +1,5 @@
 call_params_filter=send_pmsg:integer,value_1
-permits_validation=registered
+permits_filter=registered
 get_post_filter={prefix}_action:string,value_create_record
 get_post_validation=recipient:string,err_msg_recipient_must_be_filled#subject:string,err_msg_subject_must_be_filled#message:string,err_msg_message_must_be_filled
 get_post_extraction_script=recipient:string#subject:string#message:string

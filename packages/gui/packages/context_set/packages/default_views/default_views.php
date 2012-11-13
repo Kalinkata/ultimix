@@ -42,7 +42,7 @@
 		var					$Security = false;
 		var					$String = false;
 		var					$UserAlgorithms = false;
-	
+
 		/**
 		*	\~russian Префикс.
 		*
@@ -54,7 +54,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Prefix = false;
-		
+
 		/**
 		*	\~russian Объект класса представляющего функции-обработчики.
 		*
@@ -66,7 +66,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Provider = false;
-		
+
 		/**
 		*	\~russian Набор контекстов.
 		*
@@ -78,7 +78,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$ContextSet = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -143,7 +143,7 @@
 				$this->Prefix = $ContextSet->Prefix;
 				$this->Provider = $ContextSet->Provider;
 				$this->ContextSet = &$ContextSet;
-				
+
 				$this->DefaultViewsUtilities->set_constants( $ContextSet , $Options );
 			}
 			catch( Exception $e )
@@ -635,85 +635,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Функция отрисовки произвольного списка записей.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@param $Paging - Контрол.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Method draws custom record list.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@param $Paging - Control.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	set_list_view_custom_buttons( &$Options , $Paging )
-		{
-			try
-			{
-				$HeaderFields = 
-					'<input type="hidden" name="{prefix}_context_action" id="{prefix}_context_action" value="">
-					<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="">
-					<input type="hidden" name="{prefix}_record_id" id="{prefix}_record_id" value="">';
-				$Paging->set( 'CustomButtons' , $HeaderFields );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
-		/**
-		*	\~russian Функция отрисовки произвольного списка записей.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@param $Paging - Контрол.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Method draws custom record list.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@param $Paging - Control.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	set_list_view_parts( &$Options , $Paging )
-		{
-			try
-			{
-				$this->set_list_view_custom_buttons( $Options , $Paging );
-				$this->ContextSetUtilities->set_header_template( $Options , $Paging , $this->Prefix );
-				$this->ContextSetUtilities->set_item_template( $Options , $Paging , $this->Prefix );
-				$this->ContextSetUtilities->set_no_data_found_message( $Options , $Paging , $this->Prefix );
-				$this->ContextSetUtilities->set_footer_template( $Options , $Paging , $this->Prefix );
-				$this->ContextSetUtilities->set_main_settings( $Options , $Paging );
-				$this->ContextSetUtilities->set_grid_data( $Options , $Paging );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Функция отрисовки произвольного списка записей.
 		*
@@ -737,10 +659,8 @@
 			try
 			{
 				$Paging = get_package( 'gui::paging' , 'last' , __FILE__ );
-				$Paging->set( 'FormId' , $this->Prefix.'_form' );
-				$Paging->set( 'Prefix' , $this->Prefix );
 
-				$this->set_list_view_parts( $Options , $Paging );
+				$this->DefaultViewsUtilities->construct_paging( $Options , $Paging );
 
 				$Str = $Paging->draw( false , $Options );
 

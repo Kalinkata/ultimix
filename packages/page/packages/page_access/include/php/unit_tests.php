@@ -93,7 +93,7 @@
 				if( stripos( $PageContent , ' error:' ) !== false || stripos( $PageContent , 'Notice:' ) !== false || 
 					stripos( $PageContent , 'Warning:' ) !== false || stripos( $PageContent , 'exception' ) !== false )
 				{
-					return( 'ERROR: Error page is '.get_field( $Page , 'alias' ) );
+					return( 'ERROR: Error page is '.get_field( $Page , 'alias' ).'. Page content: '.$PageContent );
 				}
 			}
 

@@ -1,3 +1,4 @@
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
 review::review_controller#last#meta=meta_delete_review#main
 review::review_view#last#meta=meta_review_list#main
+review::review_view#last#meta=meta_create_review_form#main

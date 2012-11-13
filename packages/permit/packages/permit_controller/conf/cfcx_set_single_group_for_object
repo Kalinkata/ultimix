@@ -1,4 +1,4 @@
 call_params_filter=set_single_group_for_object:integer,value_1
 get_post_filter=set_single_group:set
-permits_validation={prefix}_manager
+permits_filter={prefix}_manager
 success_func=set_single_group_for_object

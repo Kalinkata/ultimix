@@ -1,1 +1,1 @@
-permits_validation=delete_{prefix}
+permits_filter=delete_{prefix}

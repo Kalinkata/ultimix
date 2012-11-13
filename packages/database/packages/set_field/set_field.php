@@ -132,7 +132,7 @@
 			try
 			{
 				$NotDirectControllerCall = $this->Security->get_s( 'direct_controller' , 'integer' , 0 ) == 0;
-				$HasPermits = $this->PermitAlgorithms->object_has_permit( false , 'user' , $Permit );
+				$HasPermits = $this->PermitAlgorithms->object_has_all_permits( false , 'user' , $Permit );
 				$GetPostParamsPassed = $this->Security->get_gp( 'set_field' , 'integer' , 1 );
 				$Permit = $Options->get_setting( 'permit' , 'admin' );
 				

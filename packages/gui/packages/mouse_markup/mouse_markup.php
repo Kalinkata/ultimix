@@ -25,28 +25,6 @@
 	*/
 	class	mouse_markup_1_0_0
 	{
-
-		/**
-		*	\~russian Конструктор.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Constructor.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			__construct()
-		{
-			try
-			{
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
 		/**
 		*	\~russian Функция компиляции макроса 'update_record'.
 		*

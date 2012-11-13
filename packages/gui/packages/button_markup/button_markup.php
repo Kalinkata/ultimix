@@ -36,7 +36,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Settings = false;
 		var					$CachedMultyFS = false;
 		var					$PageJS = false;
 		var					$String = false;
@@ -56,7 +55,6 @@
 		{
 			try
 			{
-				$Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -374,7 +372,6 @@
 			}
 		}
 
-		//TODO: use run_controller_and_remove_dom_button macro anywhere
 		/**
 		*	\~russian Функция компиляции кнопки 'run_controller_and_remove_dom_button'.
 		*
@@ -408,6 +405,8 @@
 				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
 
 				$Path = $this->Utilities->get_package_path( $Settings );
+
+				$Icon = $Settings->get_setting( 'icon' );
 
 				$Code = str_replace( '{path_to_image}' , $Path."/res/images/$Icon" , $Code );
 

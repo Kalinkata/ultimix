@@ -35,7 +35,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$Settings = false;
 		var					$CachedMultyFS = false;
 		var					$CommentAlgorithms = false;
 		var					$Link = false;
@@ -59,7 +58,6 @@
 		{
 			try
 			{
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->CommentAlgorithms = get_package( 'comment::comment_algorithms' , 'last' , __FILE__ );
 				$this->Link = get_package( 'link' , 'last' , __FILE__ );
@@ -208,7 +206,7 @@
 		/**
 		*	\~russian Функция компиляции макроса 'comment_form'.
 		*
-		*	@param $Parameters - Параметры компиляции.
+		*	@param $Settings - Параметры компиляции.
 		*
 		*	@return Виджет.
 		*
@@ -219,7 +217,7 @@
 		/**
 		*	\~english Function compiles macro 'comment_form'.
 		*
-		*	@param $Parameters - Compilation parameters.
+		*	@param $Settings - Compilation parameters.
 		*
 		*	@return Widget.
 		*
@@ -227,14 +225,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			compile_comment_form( $Parameters )
+		function			compile_comment_form( &$Settings )
 		{
 			try
 			{
-				$this->Settings->load_settings( $Parameters );
-
-				list( $MasterType , $MasterId )= $this->Settings->get_settings( 'master_type,master_id' );
-				$NeedRun = $this->Settings->get_setting( 'need_run' , 1 );
+				list( $MasterType , $MasterId )= $Settings->get_settings( 'master_type,master_id' );
+				$NeedRun = $Settings->get_setting( 'need_run' , 1 );
 
 				$Code = '{direct_controller:package_name=comment::comment_controller;meta=meta_create_comment;'.
 							"master_type=$MasterType;master_id=$MasterId;direct_create=1;need_run=$NeedRun}".

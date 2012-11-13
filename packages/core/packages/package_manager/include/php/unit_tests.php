@@ -35,8 +35,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var				$DefaultControllers = false;
+		var				$PackageAccess = false;
+		var				$PackageAlgorithms = false;
 		var				$PageComposer = false;
 		var				$Security = false;
+		var				$Settings = false;
+		var				$Testing = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -52,8 +57,13 @@
 		{
 			try
 			{
-				$this->PageComposer = get_package_object( 'page::page_composer' );
+				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' , 'last' , __FILE__ );
+				$this->PackageAccess = get_package( 'core::package_access' , 'last' , __FILE__ );
+				$this->PackageAlgorithms = get_package( 'core::package_algorithms' , 'last' , __FILE__ );
+				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -145,9 +155,69 @@
 
 			$PageContent = $this->PageComposer->get_page( 'package_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'package_create_form' ) === false )
 			{
 				print( 'ERROR: package create form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Тестирование вида.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing view.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'master_package_name' , 'core' );
+			$this->Security->set_g( 'master_package_version' , '1.0.0' );
+
+			$this->Security->set_p( 'package_name' , 'test' );
+			$this->Security->set_p( 'package_version' , '1.0.0' );
+
+			$Controller = get_package( 'core::package_manager' , 'last' , __FILE__ );
+			$this->Testing->setup_controller( $this->Settings , 'package' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->PackageAlgorithms->package_exists( 
+				'core::test' , '1.0.0::1.0.0' , __FILE__ ) )
+			{
+				$this->PackageAccess->delete( 'test.1.0.0' );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
+		}
+
+		/**
+		*	\~russian Обработка некорректных макросов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Processing illegal macro.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'package_context_action' , 'update_record_form' );
+
+			$PageContent = $this->PageComposer->get_page( 'package_manager' );
+
+			if( stripos( $PageContent , 'package_update_form' ) === false )
+			{
+				print( 'ERROR: package update form was not displayed'.$PageContent );
 				return;
 			}
 

@@ -1,7 +1,7 @@
 					<table width="100%" height="100%">
 						<tr>
 							<td align="center">
-								<form id="registration_form" method="post">
+								<form id="registration_form" method="post" class="margin_30_auto">
 									<input type="hidden" id="user_action" name="user_action" value="register">
 									<table>
 										<tr>

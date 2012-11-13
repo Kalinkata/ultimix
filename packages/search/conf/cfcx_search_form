@@ -1,4 +1,4 @@
 call_params_filter=search_form:integer,value_1
-permit_validation=public
+permits_filter=public
 success_func=simple_form
 form_template=site_search_form

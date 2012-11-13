@@ -181,6 +181,8 @@
 		*
 		*	@param $ContextAction - Действие контекста.
 		*
+		*	@param $Direct - Прямой вызов.
+		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
@@ -194,16 +196,24 @@
 		*
 		*	@param $ContextAction - Context action.
 		*
+		*	@param $Direct - Direct call.
+		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			trace_no_need_to_run_state_message( $StateName , $Prefix , $ContextAction )
+		function			trace_no_need_to_run_state_message( $StateName , $Prefix , $ContextAction , $Direct )
 		{
 			try
 			{
 				$this->Trace->add_trace_string( '{lang:no_need_to_run_trace_message}' , COMMON );
 
+				if( $Direct == 0)
+				{
+					$this->Trace->add_trace_string( 'direct_call_is_not_allowed' );
+					return;
+				}
+				
 				if( strpos( $ContextAction , '_form' ) !== false )
 				{
 					$this->trace_field( $Prefix , 'context_action' , $ContextAction );

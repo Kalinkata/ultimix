@@ -13,10 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	//TODO: add field 'attached' wich is 0 by default
-	//TODO: add field 'upload_date' wich is 0 by default
-	//TODO: add method delete_unattached_files, so we'll delete unattached files wich were loaded more than 1 hour ago
-
 	/**
 	*	\~russian Класс для работы с файлами.
 	*
@@ -250,7 +246,9 @@
 			try
 			{
 				/* deleting file itself */
+				$id = $this->Security->get( $id , 'integer_list' );
 				$Files = $this->select_list( $id );
+
 				if( count( $Files ) )
 				{
 					foreach( $Files as $i => $File )
@@ -259,7 +257,6 @@
 					}
 
 					/* deleting file record */
-					$id = $this->Security->get( $id , 'integer_list' );
 					$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
 					$this->Database->commit();
 				}
@@ -343,7 +340,8 @@
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
 				$Record = $this->SecurityParser->parse_parameters( 
-					$Record , 'file_path:string;original_file_name:string;preview_image:string' , 'allow_not_set'
+					$Record , 'file_path:string;original_file_name:string;preview_image:string;attached:integer' , 
+					'allow_not_set'
 				);
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
@@ -355,6 +353,66 @@
 					);
 					$this->Database->commit();
 				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Установка признаа что файл был прикреплён.
+		*
+		*	@param $id - Список идентификаторов удаляемых данных, разделённых запятыми.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Setting 'attached' field.
+		*
+		*	@param $id - Comma separated list of record's id.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			attach_file( $id )
+		{
+			try
+			{
+				$this->update( $id , array( 'attached' => 1 ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Удаление неприкреплённых файлов.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method deletes unattached files
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			delete_unattached_files()
+		{
+			try
+			{
+				$Files = $this->unsafe_select( 'DATE_ADD( upload_date , INTERVAL 1 DAY ) < NOW()' );
+
+				$id = get_field_ex( $Files , 'id' );
+
+				$this->delete( $id );
 			}
 			catch( Exception $e )
 			{

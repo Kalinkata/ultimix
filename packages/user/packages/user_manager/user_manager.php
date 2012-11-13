@@ -138,7 +138,7 @@
 		{
 			try
 			{
-				if( $this->PermitAlgorithms->object_has_permit( false , 'user' , 'user_manager' ) === false )
+				if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , 'user_manager' ) === false )
 				{
 					$Password = $this->Security->get_p( 'current_password' , 'string' );
 					if( $this->UserAlgorithms->validate_auth( $User->login , $Password ) === false )

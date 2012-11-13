@@ -101,12 +101,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			pre_generation( $Options )
+		function			pre_generation( &$Options )
 		{
 			try
 			{
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
-				
+
 				$Lang->include_strings_js( 'category::category_view' );
 			}
 			catch( Exception $e )
@@ -114,7 +114,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки идентфикаторы категории из настроек.
 		*
@@ -137,7 +137,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_category_id( $Options )
+		function			get_category_id( &$Options )
 		{
 			try
 			{
@@ -151,7 +151,7 @@
 				{
 					$DirectCategoryName = $Options->get_setting( 'category_name' );
 				}
-				
+
 				if( $DirectCategoryName === false )
 				{
 					return( $Options->get_setting( 'direct_category' , 0 ) );
@@ -166,7 +166,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция формирования кода дерева.
 		*
@@ -339,7 +339,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			draw_categories_catalogue_view( $Options )
+		function			draw_categories_catalogue_view( &$Options )
 		{
 			try
 			{
@@ -385,7 +385,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			draw_categories_catalogue_part( $Options , $Records , $Templates = false )
+		function			draw_categories_catalogue_part( &$Options , $Records , $Templates = false )
 		{
 			try
 			{
@@ -435,7 +435,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			draw_categories_catalogue_part_view( $Options )
+		function			draw_categories_catalogue_part_view( &$Options )
 		{
 			try
 			{
@@ -476,7 +476,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			draw_categories_path( $Options )
+		function			draw_categories_path( &$Options )
 		{
 			try
 			{
@@ -712,7 +712,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
@@ -738,4 +738,5 @@
 			}
 		}
 	}
+
 ?>

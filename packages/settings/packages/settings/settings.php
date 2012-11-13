@@ -782,10 +782,11 @@
 		{
 			try
 			{
-				if( $this->SettingsList !== false )
+				if( $this->SettingsList === false )
 				{
-					$this->SettingsList[ $Name ] = $Value;
+					$this->SettingsList = array();
 				}
+				$this->SettingsList[ $Name ] = $Value;
 			}
 			catch( Exception $e )
 			{

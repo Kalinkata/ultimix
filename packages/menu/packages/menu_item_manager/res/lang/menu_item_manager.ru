@@ -10,3 +10,4 @@ name_must_be_filled=Поле '{lang:menu_item_name}' должно быть за�
 menu_must_be_filled=Поле '{lang:menu_item_menu}' должно быть заполнено
 href_must_be_filled=Поле '{lang:menu_item_href}' должно быть заполнено
 menu_item_update_was_completed=Редактирование было успешно завершено
+menu_item_create_was_completed=Создание было успешно завершено

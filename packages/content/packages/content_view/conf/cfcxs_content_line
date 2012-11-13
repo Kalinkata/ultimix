@@ -1,5 +1,5 @@
 call_params_filter={prefix}_line:integer,value_1
-permits_validation=public
+permits_filter=public
 success_func=list_view
 header={prefix}_line_header.tpl
 item={prefix}_line_item.tpl

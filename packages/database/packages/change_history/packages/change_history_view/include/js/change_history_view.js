@@ -19,31 +19,6 @@ if( !ultimix.change_history_view )
 }
 
 /**
-*	Function sets list view options.
-*
-*	@param ViewOptions - Extra view generation options.
-*
-*	@return View options.
-*
-*	@author Dodonov A.A.
-*/
-ultimix.change_history_view.set_default_options = function( ViewOptions )
-{
-	if( !ViewOptions )
-	{
-		ViewOptions = {};
-	}
-
-	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_change_history_list';
-	var			PackageName = 'database::change_history::change_history_view';
-	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : PackageName;
-	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
-	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
-
-	return( ViewOptions );
-}
-
-/**
 *	Function returns list view.
 *
 *	@param ResultAcceptor - Result accepting function.
@@ -54,23 +29,16 @@ ultimix.change_history_view.set_default_options = function( ViewOptions )
 */
 ultimix.change_history_view.get_list_form = function( ResultAcceptor , ViewOptions )
 {
-	if( !ResultAcceptor )
+	if( !Fuctions )
 	{
-		ResultAcceptor = function(){};
+		Fuctions = {};
 	}
-	if( !ViewOptions )
-	{
-		ViewOptions = {};
-	}
-	if( !ViewOptions.meta )
-	{
-		ViewOptions.meta = 'meta_change_history_list';
-	}
-	if( !ViewOptions.package_name )
-	{
-		ViewOptions.package_name = 'database::change_history_view::change_history_view';
-	}
-	ultimix.ajax_gate.direct_view( ViewOptions , ResultAcceptor );
+
+	ViewOptions = ultimix.auto.set_default_options( 
+		ViewOptions , 'change_history' , 'database::change_history::change_history_view' 
+	);
+
+	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
 
 /**
@@ -90,7 +58,7 @@ ultimix.change_history_view.get_list_form = function( ResultAcceptor , ViewOptio
 */
 ultimix.change_history_view.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
+	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'change_history' );
 }
 
 /**

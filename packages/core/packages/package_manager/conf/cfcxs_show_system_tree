@@ -1,3 +1,3 @@
 call_params_filter=show_system_tree:integer,value_1
-permits_validation=package_manager
+permits_filter=package_manager
 success_func=show_system_tree

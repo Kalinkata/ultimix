@@ -1,5 +1,5 @@
 call_params_filter={prefix}_incoming:integer,value_1
-permits_validation=registered
+permits_filter=registered
 header={prefix}_incoming_header.tpl
 item={prefix}_incoming_item.tpl
 footer={prefix}_incoming_footer.tpl

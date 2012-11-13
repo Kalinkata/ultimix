@@ -19,31 +19,6 @@ if( !ultimix.template_content )
 }
 
 /**
-*	Function sets list view options.
-*
-*	@param ViewOptions - Extra view generation options.
-*
-*	@return View options.
-*
-*	@author Dodonov A.A.
-*/
-ultimix.template_content.set_default_options = function( ViewOptions )
-{
-	if( !ViewOptions )
-	{
-		ViewOptions = {};
-	}
-
-	ViewOptions.meta = ViewOptions.meta ? ViewOptions.meta : 'meta_template_content_list';
-	var			PackageName = 'page::template_content::template_content_view';
-	ViewOptions.package_name = ViewOptions.package_name ? ViewOptions.package_name : PackageName;
-	ViewOptions.paging_require_form = ViewOptions.paging_require_form ? ViewOptions.paging_require_form : '0';
-	ViewOptions.add_hidden_fields = ViewOptions.add_hidden_fields ? ViewOptions.add_hidden_fields : '0';
-
-	return( ViewOptions );
-}
-
-/**
 *	Function returns list view.
 *
 *	@param ResultAcceptor - Result accepting function.
@@ -59,7 +34,9 @@ ultimix.template_content.get_list_form = function( ResultAcceptor , ViewOptions 
 		ResultAcceptor = function(){};
 	}
 
-	ViewOptions = ultimix.template_content.set_default_options( ViewOptions );
+	ViewOptions = ultimix.template_content.set_default_options( 
+		ViewOptions , 'template_content' , 'page::template_content::template_content_view'
+	);
 
 	ultimix.ajax_gate.direct_view( ViewOptions , ResultAcceptor );
 }
@@ -81,7 +58,7 @@ ultimix.template_content.get_list_form = function( ResultAcceptor , ViewOptions 
 */
 ultimix.template_content.get_custom_list_form = function( ResultAcceptor , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
+	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'template_content' );
 }
 
 /**

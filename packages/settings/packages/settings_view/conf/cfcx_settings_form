@@ -1,3 +1,3 @@
 call_params_filter=settings_form:integer,value_1
-permits_validation=admin
+permits_filter=admin
 success_func=settings_form

@@ -327,55 +327,6 @@
 		}
 
 		/**
-		*	\~russian Проверка доступов.
-		*
-		*	@param $Options - Параметры выполнения.
-		*
-		*	@return false если проверка не была пройдена.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function validates permits.
-		*
-		*	@param $Options - Execution parameters.
-		*
-		*	@return false if the validation was not passed.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			compile_permits_validation( &$Options )
-		{
-			try
-			{
-				if( $this->ContextUtilities->section_exists( $this->Config , 'permits_validation' ) )
-				{
-					$Validation = $this->ContextUtilities->get_section( $this->Config ,  'permits_validation' );
-
-					if( $this->PermitAlgorithms->object_has_all_permits( false , 'user' , $Validation ) === false )
-					{
-						$this->Trace->add_trace_string( 
-							"{lang:permits_validation_was_not_passed} : $Validation" , COMMON
-						);
-
-						$this->ContextUtilities->compile_no_permits( $Validation );
-						return( false );
-					}
-				}
-
-				return( true );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Кастомные проверки.
 		*
 		*	@param $Options - Параметры выполнения.
@@ -778,8 +729,7 @@
 		{
 			try
 			{
-				if( $this->run_filters( $Options , $Owner ) === false || 
-					$this->compile_permits_validation( $Options ) === false	)
+				if( $this->run_filters( $Options , $Owner ) === false )
 				{
 					return( false );
 				}

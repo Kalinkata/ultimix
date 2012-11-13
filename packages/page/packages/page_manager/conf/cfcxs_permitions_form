@@ -1,4 +1,4 @@
 call_params_filter=show_update_{prefix}_permitions_form:integer,value_1
 get_post_filter=page_context_action:string,value_update_permitions_form
-permits_validation=update_{prefix}
+permits_filter=update_{prefix}
 success_func=update_permitions_form

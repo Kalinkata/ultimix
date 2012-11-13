@@ -1,3 +1,3 @@
 call_params_filter=top:integer,value_1
-permit_validation=public
+permits_filter=public
 success_func=draw_top

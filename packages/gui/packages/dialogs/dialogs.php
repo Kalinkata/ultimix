@@ -93,7 +93,6 @@
 		{
 			try
 			{
-				/* TODO: AJAX request for record creation */
 				$PackageName = $Settings->get_setting( 'package_name' );
 				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
 				$Prefix = $this->ContextSetConfigs->get_context_set_prefix( $PackageName , $PackageVersion );

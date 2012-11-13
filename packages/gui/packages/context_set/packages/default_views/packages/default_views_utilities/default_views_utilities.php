@@ -231,7 +231,7 @@
 				$Conf = str_replace( '{prefix}' , $this->Prefix , $Conf );
 				$this->Settings->load_settings( $Conf );
 				$Fields = $this->Settings->get_setting( 'search_fields' , false );
-				
+
 				if( $Fields !== false )
 				{
 					$Fields = explode( ',' , $Fields );
@@ -269,7 +269,7 @@
 			{
 				$this->QueryString = '1 = 1';
 				$SearchString = $this->Security->get_gp( 'search_string' , 'string' , '' );
-				
+
 				if( strlen( $SearchString ) )
 				{
 					$CommonStateConfigFileName = $Options->get_setting( 

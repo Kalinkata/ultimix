@@ -13,9 +13,6 @@
 	*	@author Alexey "gdever" Dodonov
 	*/
 
-	//TODO: use it somewere, in the gui::context package for example
-	//TODO: remove validation from gui::context (filters are enough)
-
 	/**
 	*	\~russian Класс для работы с отношениями владениями.
 	*
