@@ -2,6 +2,6 @@ system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_cr
 permit::permit_manager#last#controller=1;delete_permit=1#
 permit::permit_manager#last#controller=1;create_permit=1#
 permit::permit_manager#last#controller=1;update_permit=1#
-permit::permit_manager#last#view=1;show_permit_list=1#main
-permit::permit_manager#last#view=1;show_create_permit_form=1#main
-permit::permit_manager#last#view=1;show_update_permit_form=1#main
+permit::permit_manager#last#view=1;permit_list=1#main
+permit::permit_manager#last#view=1;create_permit_form=1#main
+permit::permit_manager#last#view=1;update_permit_form=1#main

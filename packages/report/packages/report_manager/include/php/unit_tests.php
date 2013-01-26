@@ -107,12 +107,12 @@
 		}
 
 		/**
-		*	\~russian Тестирование вида.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing view.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Тестирование вида.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing view.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -148,6 +148,89 @@
 			if( stripos( $PageContent , 'create_report_form' ) === false )
 			{
 				print( 'ERROR: report create form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'report_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'report_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'report_manager' );
+
+			if( stripos( $PageContent , 'update_report_form' ) === false )
+			{
+				print( 'ERROR: report update form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$PageContent = $this->PageComposer->get_page( 'report_manager' );
+			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'report_manager' );
+			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'report_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'report_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'report_manager' );
+
+			if( stripos( $PageContent , 'create_report_form' ) === false )
+			{
+				print( 'ERROR: copy report form was not displayed'.$PageContent );
 				return;
 			}
 

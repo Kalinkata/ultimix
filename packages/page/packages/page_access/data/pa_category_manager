@@ -5,3 +5,4 @@ category::category_controller#last#meta=meta_update_category#
 category::category_view#last#meta=meta_category_list#main
 category::category_view#last#meta=meta_create_category_form#main
 category::category_view#last#meta=meta_update_category_form#main
+category::category_view#last#meta=meta_copy_category_form=1#main

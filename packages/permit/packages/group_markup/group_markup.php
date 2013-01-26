@@ -372,6 +372,42 @@
 		*
 		*	@param $Settings - Параметры компиляции.
 		*
+		*	@return Выбранное значение.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles macro 'group_list_widget'.
+		*
+		*	@param $Settings - Compilation parameters.
+		*
+		*	@return Selected value.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_selected_value( &$Settings )
+		{
+			try
+			{
+				$Groups = $this->GroupAccess->get_groups_for_object( $Settings->get_setting( 'master_id' , false ) );
+
+				return( isset( $Groups[ 0 ] ) ? $Groups[ 0 ] : 'undefined' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция компиляции макроса 'group_list_widget'.
+		*
+		*	@param $Settings - Параметры компиляции.
+		*
 		*	@return Widget.
 		*
 		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
@@ -395,8 +431,18 @@
 			{
 				list( $Name , $Class ) = $Settings->get_settings( 'name,class',  'group,flat width_160' );
 
-				$Code = "{select:name=$Name;class=$Class;".
-						"query=SELECT id , title AS value FROM `umx_group` ORDER BY title}";
+				$Value = $this->get_selected_value( $Settings );
+
+				$Query = $Settings->get_setting( 'query' , false );
+				if( $Query === false )
+				{
+					$First = $Second = $Settings->get_setting( 'groups' );
+					$Code = "{select:name=$Name;class=$Class;first=$First;second=$Second;value=$Value}";
+				}
+				else
+				{
+					$Code = "{select:name=$Name;class=$Class;query=$Query;value=$Value}";
+				}
 
 				return( $Code );
 			}

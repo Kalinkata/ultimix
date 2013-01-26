@@ -90,12 +90,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -107,12 +107,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Проверка форм.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing forms.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -155,12 +155,12 @@
 		}
 
 		/**
-		*	\~russian Проверка форм.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing forms.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -174,6 +174,63 @@
 			if( stripos( $PageContent , 'update_record_form' ) === false )
 			{
 				print( 'ERROR: user update form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , 'developer' );
+			$PageContent = $this->PageComposer->get_page( 'user_manager' );
+			$Exists = strpos( $PageContent , 'developer' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'user_manager' );
+			$NotExists = strpos( $PageContent , 'developer' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'user_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'user_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'user_manager' );
+
+			if( stripos( $PageContent , 'create_user_form' ) === false )
+			{
+				print( 'ERROR: user copy form was not displayed'.$PageContent );
 				return;
 			}
 

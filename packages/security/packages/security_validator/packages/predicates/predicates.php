@@ -614,13 +614,15 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			exec_value( $Data , $Name , $Predicates , $j )
+		function			exec_value( &$Data , $Name , $Predicates , $j )
 		{
 			try
 			{
 				$Value = str_replace( 'value_' , '' , $Predicates[ $j ] );
 
-				if( $this->SupportedDataTypes->compile_data( @$Data[ $Name ] , 'raw' ) != $Value )
+				$Raw = @$Data[ $Name ];
+
+				if( $this->SupportedDataTypes->compile_data( $Raw , 'raw' ) != $Value )
 				{
 					$this->ErrorMessage = $this->dispatch_error_message( $Predicates );
 

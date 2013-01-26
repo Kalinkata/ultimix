@@ -2,3 +2,4 @@ report_manager=Report manager
 name=Report name
 package_name=Package name
 package_version=Package version
+report_package=Package

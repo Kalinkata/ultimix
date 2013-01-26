@@ -154,7 +154,8 @@
 			try
 			{
 				$RawSettings = $Settings->get_raw_settings();
-				$Parmit = array_shift( array_keys( $RawSettings ) );
+				$Keys = array_keys( $RawSettings );
+				$Parmit = array_shift( $Keys );
 
 				$UserId = $this->UserAlgorithms->get_id();
 				$this->load_permits_for_user( $UserId );

@@ -1,2 +1,2 @@
-page::template_content::template_content_controller#last#controller=1;update_template_content=1#
-page::template_content::template_content_view#last#view=1;show_update_template_content_form=1#main
+page::template_content::template_content_controller#last#controller=1;template_content=1#
+page::template_content::template_content_view#last#view=1;update_template_content_form=1#main

@@ -1,0 +1,1 @@
+{checkbox:type=double;name=_sf_{name};value={http_param:name=_sf_{name};post=1;default=0};label={label}}

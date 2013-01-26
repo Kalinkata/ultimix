@@ -408,19 +408,18 @@
 
 				list( $Fields , $Values ) = $this->fetch_update_data( $Record );
 
-				if( count( $Fields ) == 0 )
-				{
-					return;
-				}
 				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$this->EventManager->trigger_event( 
 					'on_before_update_user' , array( 'id' => $id , 'data' => $Record )
 				);
 
-				$this->Database->update( 
-					$this->NativeTable , $Fields , $Values , "( $this->AddLimitations ) AND id IN ( $id )"
-				);
-				$this->Database->commit();
+				if( count( $Fields ) != 0 )
+				{
+					$this->Database->update( 
+						$this->NativeTable , $Fields , $Values , "( $this->AddLimitations ) AND id IN ( $id )"
+					);
+					$this->Database->commit();
+				}
 
 				$this->UserAccessUtilities->rise_update_event( $id );
 			}
@@ -676,7 +675,8 @@
 			{
 				$Record = $this->SecurityParser->parse_parameters( 
 					$Record , 
-					'login:string;password:string;email:email;name:string;sex:integer;site:string;about:string'
+					'login:string;password:string;email:email;name:string;sex:integer;'.
+					'site:string,allow_not_set;about:string,allow_not_set'
 				);
 
 				$this->set_fields( $Record );

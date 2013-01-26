@@ -29,14 +29,7 @@ if( !ultimix.settings )
 */
 ultimix.settings.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'db_settings' , 'settings::settings_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'settings' , 'settings::settings_view' );
 }
 
 /**
@@ -50,13 +43,17 @@ ultimix.settings.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@param Footer - List footer template file name.
 *
+*	@param NoDataFound - No data found template.
+*
 *	@param ViewOptions - Extra view generation options.
 *
 *	@author Dodonov A.A.
 */
 ultimix.settings.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'settings' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'settings' , 'settings::settings_view'
+	);
 }
 
 /**

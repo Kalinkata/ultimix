@@ -1,5 +1,6 @@
 <select name="regions" class="flat">
 	<option value="213">Москва</option>
+	<option value="149">Беларусь</option>
 	<option value="225">Россия</option>
 	<option value="0">По-умолчанию</option>
 	<option value="0">------------</option>
@@ -9,6 +10,7 @@
 	<option value="20">Архангельск</option>
 	<option value="10842">Архангельская область</option>
 	<option value="241">Африка</option>
+	<option value="11111">Башкортостан</option>
 	<option value="24">Великий Новгород</option>
 	<option value="75">Владивосток</option>
 	<option value="21">Вологда</option>
@@ -20,7 +22,11 @@
 	<option value="63">Иркутск</option>
 	<option value="22">Калининград</option>
 	<option value="10857">Калининградская область</option>
+	<option value="62">Красноярск</option>
+	<option value="11309">Красноярский край</option>
 	<option value="1">Москва и Московская область</option>
+	<option value="157">Минск</option>
+	<option value="29630">Минская область</option>
 	<option value="23">Мурманск</option>
 	<option value="10897">Мурманская область</option>
 	<option value="47">Нижний Новгород</option>
@@ -41,8 +47,12 @@
 	<option value="166">СНГ</option>
 	<option value="14">Тверь</option>
 	<option value="10819">Тверская область</option>
+	<option value="15">Тула</option>
+	<option value="10832">Тульская область</option>
 	<option value="55">Тюмень</option>
 	<option value="187">Украина</option>
+	<option value="195">Ульяновск</option>
+	<option value="11153">Ульяновская область</option>
 	<option value="147">Харьков</option>
 	<option value="56">Челябинск</option>
 	<option value="10003">Южная Америка</option>

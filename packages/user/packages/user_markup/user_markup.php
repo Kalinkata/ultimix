@@ -145,7 +145,8 @@
 			try
 			{
 				$RawSettings = $Settings->get_raw_settings();
-				$Flag = array_shift( array_keys( $RawSettings ) );
+				$Keys = array_keys( $RawSettings );
+				$Flag = array_shift( $Keys );
 
 				$ShowData = ( $Flag == 'logged_in' && $this->UserAlgorithms->logged_in() === true ) || 
 							( $Flag == 'guest' && $this->UserAlgorithms->logged_in() === false );

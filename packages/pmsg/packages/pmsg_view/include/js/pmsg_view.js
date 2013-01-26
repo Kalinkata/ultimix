@@ -53,14 +53,7 @@ ultimix.pmsg.set_read = function( Id )
 */
 ultimix.pmsg.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'pmsg' , 'pmsg::pmsg_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'pmsg' , 'pmsg::pmsg_view' );
 }
 
 /**
@@ -80,7 +73,9 @@ ultimix.pmsg.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.pmsg.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'pmsg' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'pmsg' , 'pmsg::pmsg_view'
+	);
 }
 
 /**

@@ -1,3 +1,2 @@
-call_params_filter=show_create_{prefix}_form:integer,value_1
+call_params_filter=create_{prefix}_form:integer,value_1
 permits_filter=create_{prefix}
-form_template=create_menu_form

@@ -1,4 +1,4 @@
-call_params_filter=show_update_{prefix}_form:integer,value_1
+call_params_filter=update_{prefix}_form:integer,value_1
 permits_filter=update_{prefix}
 get_post_extraction_script={prefix}_title:string,allow_not_set#{prefix}_template:string,allow_not_set#{prefix}_template_version:command,allow_not_set#{prefix}_predefined_packages:command,allow_not_set,default_on
 access_package_name={prefix}::{prefix}_access

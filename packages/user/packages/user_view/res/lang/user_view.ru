@@ -62,3 +62,4 @@ users_were_deactivated=Выбранные пользователи были де
 bleave=Выход
 switch_user_dialog=Смена пользователя
 user_management=Пользователи
+you_were_activated=Ваш аккаунт был активирован

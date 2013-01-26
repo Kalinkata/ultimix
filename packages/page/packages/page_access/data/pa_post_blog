@@ -1,2 +1,2 @@
 content::content_controller#last#controller=1;create_content=1;direct_create=1#
-content::content_view#last#view=1;show_create_content_form=1;category_name=blog;direct_create=1;form_template=create_blog_content_form#main
+content::content_view#last#view=1;create_content_form=1;category_name=blog;direct_create=1;form_template=create_blog_content_form#main

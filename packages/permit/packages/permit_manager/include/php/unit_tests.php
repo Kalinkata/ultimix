@@ -90,12 +90,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -107,12 +107,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -145,7 +145,7 @@
 
 			$PageContent = $this->PageComposer->get_page( 'permit_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'create_permit_form' ) === false )
 			{
 				print( 'ERROR: permit create form was not displayed'.$PageContent );
 				return;
@@ -155,12 +155,38 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'permit_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'permit_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'permit_manager' );
+
+			if( stripos( $PageContent , 'update_permit_form' ) === false )
+			{
+				print( 'ERROR: update permit form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -183,6 +209,32 @@
 				print( 'ERROR' );
 				return;
 			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'permit_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'permit_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'permit_manager' );
+
+			if( stripos( $PageContent , 'create_permit_form' ) === false )
+			{
+				print( 'ERROR: copy permit form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
 		}
 	}
 

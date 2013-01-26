@@ -1,0 +1,3 @@
+prefix=template
+common_state_config_list_form=cfcxs_list_template_form
+common_state_config_create_form=cfcxs_create_template_form

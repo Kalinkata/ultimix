@@ -383,7 +383,7 @@
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
 
-				return( $this->unsafe_select( $this->NativeTable.".id IN ( $id ) ORDER BY creation_date ASC" ) );
+				return( $this->unsafe_select( $this->NativeTable.".id IN ( $id ) ORDER BY id ASC" ) );
 			}
 			catch( Exception $e )
 			{

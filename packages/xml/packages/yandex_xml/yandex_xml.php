@@ -183,7 +183,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	search_query( $Query , $Region = 0 )
+		private function	search_query( $Query , $Region = 0 , $Page = 0 )
 		{
 			try
 			{
@@ -193,6 +193,7 @@
 					<groupings>
 						<groupby attr=\"d\" mode=\"deep\" groups-on-page=\"100\" docs-in-group=\"1\" />
 					</groupings>
+					<page>$Page</page>
 				</request>";
 
 				return( $this->send_request( $Data , $Region ) );
@@ -248,6 +249,8 @@
 		*
 		*	@param $Region - Регион.
 		*
+		*	@param $Depth - Глубина.
+		*
 		*	@return Позиция.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -263,31 +266,36 @@
 		*
 		*	@param $Region - Region.
 		*
+		*	@param $Depth - Depth.
+		*
 		*	@return Position.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_position( $Domain , $Query , $Region = 0 )
+		function			get_position( $Domain , $Query , $Region = 0 , $Depth = 1 )
 		{
 			try
 			{
 				$Domain = str_ireplace( 'http://' , '' , $Domain );
 				$Domain = rtrim( $Domain , '/\\' );
 
-				$Response = $this->search_query( $Query , $Region );
-
-				$Response = $this->parse_response( $Response );
-
 				$Counter = 1;
-				foreach( $Response as $Item )
+
+				for( $Page = 0 ; $Page < $Depth ; $Page++ )
 				{
-					if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+					$Response = $this->search_query( $Query , $Region , $Page );
+					$Response = $this->parse_response( $Response );
+
+					foreach( $Response as $Item )
 					{
-						return( $Counter );
+						if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+						{
+							return( $Counter );
+						}
+						$Counter++;
 					}
-					$Counter++;
 				}
 
 				return( false );
@@ -307,6 +315,8 @@
 		*
 		*	@param $Region - Регион.
 		*
+		*	@param $Depth - Глубина.
+		*
 		*	@return array( $Position , $URL ).
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -322,36 +332,37 @@
 		*
 		*	@param $Region - Region.
 		*
+		*	@param $Depth - Depth.
+		*
 		*	@return array( $Position , $URL ).
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_position_and_url( $Domain , $Query , $Region = 0 )
+		function			get_position_and_url( $Domain , $Query , $Region = 0 , $Depth = 1 )
 		{
 			try
 			{
-				$Domain = str_ireplace( 'http://' , '' , $Domain );
-				$Domain = rtrim( $Domain , '/\\' );
-				$Response = $this->search_query( $Query , $Region );
-				$Response = $this->parse_response( $Response );
-
-				if( empty( $Response ) )
-				{
-					return( array( false , false ) );
-				}
-
+				$Domain = rtrim( str_ireplace( 'http://' , '' , $Domain ) , '/\\' );
 				$Counter = 1;
-				foreach( $Response as $Item )
+				for( $Page = 0 ; $Page < $Depth ; $Page++ )
 				{
-					if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+					$Response = $this->search_query( $Query , $Region , $Page );
+					$Response = $this->parse_response( $Response );
+					if( empty( $Response ) )
 					{
-						return( array( $Counter , "$Item->url" ) );
+						return( array( false , false ) );
 					}
-					$Counter++;
+					foreach( $Response as $Item )
+					{
+						if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+						{
+							return( array( $Counter , "$Item->url" ) );
+						}
+						$Counter++;
+					}
 				}
-
 				return( array( $Counter < count( $Response ) ? $Counter : 0 , 'undefined' ) );
 			}
 			catch( Exception $e )
@@ -369,6 +380,8 @@
 		*
 		*	@param $Region - Регион.
 		*
+		*	@param $Depth - Глубина.
+		*
 		*	@return Позиция.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
@@ -384,28 +397,33 @@
 		*
 		*	@param $Region - Region.
 		*
+		*	@param $Depth - Depth.
+		*
 		*	@return Position.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_url( $Domain , $Query , $Region = 0 )
+		function			get_url( $Domain , $Query , $Region = 0 , $Depth = 1 )
 		{
 			try
 			{
 				$Domain = str_ireplace( 'http://' , '' , $Domain );
 				$Domain = rtrim( $Domain , '/\\' );
 
-				$Response = $this->search_query( "$Query site:$Domain" , $Region );
-
-				$Response = $this->parse_response( $Response );
-
-				foreach( $Response as $Item )
+				for( $Page = 0 ; $Page < $Depth ; $Page++ )
 				{
-					if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+					$Response = $this->search_query( "$Query site:$Domain" , $Region , $Page );
+
+					$Response = $this->parse_response( $Response );
+
+					foreach( $Response as $Item )
 					{
-						return( "$Item->url" );
+						if( strtolower( $Item->domain ) == strtolower( $Domain ) )
+						{
+							return( "$Item->url" );
+						}
 					}
 				}
 
@@ -417,16 +435,5 @@
 			}
 		}
 	}
-
-	/*
-		$YandexXML = get_package( 'xml::yandex_xml' , 'last' , __FILE__ );
-		
-		$YandexXML->set( 'User' , 'gdever' );
-		$YandexXML->set( 'Key' , '03.47194176:143dc52413f92c472306881e7f75a626' );
-		
-		print( $YandexXML->get_position( 'gdzone.ru' , 'шанти' ) );
-
-		exit( 0 );
-	*/
 
 ?>

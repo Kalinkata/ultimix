@@ -53,16 +53,20 @@ ultimix.auto.set_default_options = function( ViewOptions , Prefix , PackageName 
 *
 *	@param ViewOptions - Extra view generation options.
 *
+*	@param Prefix - Prefix.
+*
+*	@param PackageName - Package name.
+*
 *	@author Dodonov A.A.
 */
-ultimix.auto.get_list_form = function( Fuctions , ViewOptions )
+ultimix.auto.get_list_form = function( Fuctions , ViewOptions , Prefix , PackageName )
 {
 	if( !Fuctions )
 	{
 		Fuctions = {};
 	}
 
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions );
+	ViewOptions = ultimix.auto.set_default_options( ViewOptions , Prefix , PackageName );
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
@@ -77,6 +81,8 @@ ultimix.auto.get_list_form = function( Fuctions , ViewOptions )
 *	@param Item - List item template file name.
 *
 *	@param Footer - List footer template file name.
+*
+*	@param NoDataFound - No data found template.
 *
 *	@param ViewOptions - Extra view generation options.
 *
@@ -99,7 +105,7 @@ ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 	ViewOptions.header = Header ? Header : Prefix + '_header.tpl';
 	ViewOptions.item = Item ? Item : Prefix + '_item.tpl';
 	ViewOptions.footer = Footer ? Footer : Prefix + '_footer.tpl';
-	ViewOptions.NoDataFound = NoDataFound ? NoDataFound : Prefix + '_no_data_found.tpl';
+	ViewOptions.no_data_found_message = NoDataFound ? NoDataFound : Prefix + '_no_data_found.tpl';
 
 	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
@@ -113,9 +119,11 @@ ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 *
 *	@param Settings - Request settings.
 *
+*	@param Functions - Callbacks.
+*
 *	@author Dodonov A.A.
 */
-ultimix.auto.delete = function( Id , DataSelector , Settings )
+ultimix.auto.delete = function( Id , DataSelector , Settings , Functions )
 {
 	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
 		function( Result )
@@ -124,10 +132,14 @@ ultimix.auto.delete = function( Id , DataSelector , Settings )
 			{
 				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
 
-				ultimix.ajax_gate.direct_controller( 
-					Settings , 
-					{ 'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId ) } , {}
-				);
+				if( !Functions )
+				{
+					Functions = { 
+						'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId )
+					};
+				}
+
+				ultimix.ajax_gate.direct_controller( Settings , Functions , {} );
 			}
 		}
 	)
@@ -157,4 +169,20 @@ ultimix.auto.record_view_form = function( Id , DataSelector , Settings )
 			}
 		} , {}
 	);
+}
+
+/**
+*	Function creates record.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param Data - Request data.
+*
+*	@param Functions - Callbacks.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.auto.create = function( Data , Functions )
+{
+	ultimix.ajax_gate.direct_controller( Data , Functions , {} );
 }

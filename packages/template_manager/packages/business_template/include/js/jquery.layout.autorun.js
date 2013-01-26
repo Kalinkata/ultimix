@@ -3,6 +3,7 @@ jQuery(
 	{
 		jQuery( 'body' ).layout(
 			{
+				enableCursorHotkey			: false , 
 				sliderTip					: ultimix.get_string( 'slide_panel' ) , 
 				togglerTip_open				: ultimix.get_string( 'close_panel' ) , 
 				togglerTip_closed			: ultimix.get_string( 'open_panel' ) , 

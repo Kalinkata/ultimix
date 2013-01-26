@@ -36,11 +36,12 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
-		var					$Database = false;
 		var					$PageJS = false;
+		var					$PermitAlgorithms = false;
 		var					$ReportUtilities = false;
 		var					$Security = false;
 		var					$String = false;
+		var					$Trace = false;
 		var					$Utilities = false;
 
 		/**
@@ -86,11 +87,12 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
+				$this->PermitAlgorithms = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );
 				$this->ReportUtilities = get_package( 'report::report_utilities' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -102,7 +104,7 @@
 		/**
 		*	\~russian Функция предгенерационных действий.
 		*
-		*	@param $Options - настройки работы модуля.
+		*	@param $Options - Настройки работы модуля.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
@@ -516,7 +518,7 @@
 		/**
 		*	\~russian Получение пакета генерации отчета.
 		*
-		*	@param $Options - настройки работы модуля.
+		*	@param $Options - Настройки работы модуля.
 		*
 		*	@return Пакет.
 		*
@@ -563,7 +565,9 @@
 		/**
 		*	\~russian Функция генерации отчета.
 		*
-		*	@param $Options - настройки работы модуля.
+		*	@param $Package - Пакет.
+		*
+		*	@param $Options - Настройки работы модуля.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
@@ -572,13 +576,15 @@
 		/**
 		*	\~english Function generates report.
 		*
+		*	@param $Package - Package.
+		*
 		*	@param $Options - Settings.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	run_generate_report_function( &$Options )
+		private function	run_generate_report_function( &$Package , &$Options )
 		{
 			try
 			{
@@ -603,7 +609,7 @@
 		/**
 		*	\~russian Функция генерации отчета.
 		*
-		*	@param $Options - настройки работы модуля.
+		*	@param $Options - Настройки работы модуля.
 		*
 		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
@@ -622,7 +628,10 @@
 		{
 			try
 			{
-				$Name = $Options->get_setting( 'name' , false );
+				$this->Trace->add_trace_string( 'report_1_0_0::generate_report', COMMON );
+
+				$Name = $this->Security->get_gp( 'report_name' , 'string' , false );
+				$Name = $Options->get_setting( 'report_name' , $Name );
 				$Package = $this->get_report_generator( $Options );
 
 				if( $Package === false || $Name === false )
@@ -630,12 +639,12 @@
 					return;
 				}
 
-				if( $this->PermitAlgorithms->validate_permits( false , 'user' , 'report' , $Name ) === false )
+				if( $this->PermitAlgorithms->validate_permits( false , 'user' , $Name , 'report' ) === false )
 				{
 					throw( new Exception( 'No permits for this report' ) );
 				}
 
-				$this->run_generate_report_function( $Options );
+				$this->run_generate_report_function( $Package , $Options );
 			}
 			catch( Exception $e )
 			{
@@ -646,7 +655,7 @@
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
-		*	@param $Options - настройки работы модуля.
+		*	@param $Options - Настройки работы модуля.
 		*
 		*	@return HTML код компонента.
 		*

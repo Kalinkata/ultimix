@@ -531,7 +531,7 @@
 						if( method_exists( $p[ 'fetched_package' ] , $Type ) )
 						{
 							$Caller = array( $p[ 'fetched_package' ] , $Type );
-							$Settings = $p[ 'settings' ];
+							$Settings = &$p[ 'settings' ];
 							call_user_func( $Caller , $Settings );
 							continue;
 						}

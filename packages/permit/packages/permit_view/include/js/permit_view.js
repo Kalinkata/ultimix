@@ -189,14 +189,7 @@ ultimix.permit.delete_permit = function( PermitName )
 */
 ultimix.permit.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'permit' , 'permit::permit_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'permit' , 'permit::permit_view' );
 }
 
 /**
@@ -216,7 +209,9 @@ ultimix.permit.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.permit.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'permit' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'permit' , 'permit::permit_view'
+	);
 }
 
 /**

@@ -1,4 +1,4 @@
-					<form method="post" action="" id="{prefix}_create_form" class="form_330">
+					<form method="post" action="" id="create_{prefix}_form" class="form_330">
 						<input type="hidden" name="{prefix}_context_action" id="{prefix}_context_action" value="create_record_form">
 						<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="create_record">
 						<table>
@@ -52,10 +52,10 @@
 									{checkbox:name={prefix}_predefined_packages}
 								</td>
 							</tr>
-							<tr>
+							{composer:condition={options:name=show_buttons;default=1}}<tr>
 								<td align="center" colspan="2">
 									{create}&nbsp;{cancel}
 								</td>
-							</tr>
+							</tr>{~composer}
 						</table>
 					</form>{lang_file:package_name=page::page_manager}

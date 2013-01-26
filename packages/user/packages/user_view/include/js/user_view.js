@@ -75,14 +75,7 @@ ultimix_user_after_avatar_upload_processor = function( File , ServerData , Recei
 */
 ultimix.user.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'user' , 'user::user_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'user' , 'user::user_view' );
 }
 
 /**
@@ -96,13 +89,17 @@ ultimix.user.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@param Footer - List footer template file name.
 *
+*	@param NoDataFound - No data found template.
+*
 *	@param ViewOptions - Extra view generation options.
 *
 *	@author Dodonov A.A.
 */
 ultimix.user.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'user' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'user' , 'user::user_manager'
+	);
 }
 
 /**
@@ -305,4 +302,3 @@ ultimix.user.record_view_form = function( Id , DataSelector )
 		}
 	);
 }
-

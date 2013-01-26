@@ -312,6 +312,17 @@
 			}
 		}
 
+		private function	skip_validation( $ScriptLine )
+		{
+			try
+			{
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
 		/**
 		*	\~russian Функция парсинга параметров запроса.
 		*

@@ -90,12 +90,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -107,12 +107,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -145,9 +145,92 @@
 
 			$PageContent = $this->PageComposer->get_page( 'review_manager' );
 
-			if( stripos( $PageContent , 'review_create_form' ) === false )
+			if( stripos( $PageContent , 'create_review_form' ) === false )
 			{
-				print( 'ERROR: review create form was not displayed'.$PageContent );
+				print( 'ERROR: create review form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'comment_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'comment_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'review_manager' );
+
+			if( stripos( $PageContent , 'update_review_form' ) === false )
+			{
+				print( 'ERROR: update review form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$PageContent = $this->PageComposer->get_page( 'review_manager' );
+			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'review_manager' );
+			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'comment_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'comment_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'review_manager' );
+
+			if( stripos( $PageContent , 'create_review_form' ) === false )
+			{
+				print( 'ERROR: copy review form was not displayed'.$PageContent );
 				return;
 			}
 

@@ -95,61 +95,13 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing package loading.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
 		function			test_load_package()
 		{
 			get_package( 'site::site_view' , 'last' , __FILE__ );
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_display_list()
-		{
-			$PageContent = $this->PageComposer->get_page( 'site_manager' );
-
-			if( stripos( $PageContent , 'site_form' ) === false )
-			{
-				print( 'ERROR: site list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_create_record_form()
-		{
-			$this->Security->set_g( 'site_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'site_manager' );
-
-			if( stripos( $PageContent , 'site_create_form' ) === false )
-			{
-				print( 'ERROR: site create form was not displayed'.$PageContent );
-				return;
-			}
 
 			return( 'TEST PASSED' );
 		}

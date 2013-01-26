@@ -29,14 +29,7 @@ if( !ultimix.site )
 */
 ultimix.site.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'site' , 'site::site_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'site' , 'site::site_view' );
 }
 
 /**
@@ -49,6 +42,8 @@ ultimix.site.get_list_form = function( Fuctions , ViewOptions )
 *	@param Item - List item template file name.
 *
 *	@param Footer - List footer template file name.
+*
+*	@param NoDataFound - No data found template.
 *
 *	@param ViewOptions - Extra view generation options.
 *
@@ -68,9 +63,11 @@ ultimix.site.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 *
 *	@param DataSelector - Data selector.
 *
+*	@param Functions - Callbacks.
+*
 *	@author Dodonov A.A.
 */
-ultimix.site.delete = function( Id , DataSelector )
+ultimix.site.delete = function( Id , DataSelector , Functions )
 {
 	ultimix.auto.delete( 
 		Id , DataSelector , 
@@ -78,7 +75,7 @@ ultimix.site.delete = function( Id , DataSelector )
 			'package_name' : 'site::site_controller' , 'site_context_action' : 'delete_record' , 
 			'site_action' : 'delete_record' , 'site_record_id' : Id , 
 			'meta' : 'meta_delete_site'
-		}
+		} , Functions
 	);
 }
 

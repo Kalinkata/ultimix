@@ -295,13 +295,13 @@
 			try
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_set_group' );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_delete_group' );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_toggle_group' );
-				
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}
 			catch( Exception $e )

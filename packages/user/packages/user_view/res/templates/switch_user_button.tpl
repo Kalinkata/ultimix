@@ -1,2 +1,2 @@
 {component_button:package_name=user::user_view;label=switch_user_label;page=#;size=100;icon=switch_user_064.gif;permit=registered;id=switch_user_button}
-{view_dialog:resizable=false;package_name=user::user_view;switch_user_form=1;opener=#switch_user_button;width=240;height=120;title={lang:bswitch_user}}
+{view_dialog:resizable=false;package_name=user::user_view;switch_user_form=1;opener=#switch_user_button;width=240;height=120;title={lang:switch_user_dialog}}

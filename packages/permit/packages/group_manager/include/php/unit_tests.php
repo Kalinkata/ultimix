@@ -90,12 +90,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -107,12 +107,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -145,9 +145,9 @@
 
 			$PageContent = $this->PageComposer->get_page( 'group_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'create_group_form' ) === false )
 			{
-				print( 'ERROR: group create form was not displayed'.$PageContent );
+				print( 'ERROR: create group form was not displayed'.$PageContent );
 				return;
 			}
 
@@ -155,12 +155,38 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'group_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'group_record_id' , '9' );
+
+			$PageContent = $this->PageComposer->get_page( 'group_manager' );
+
+			if( stripos( $PageContent , 'update_group_form' ) === false )
+			{
+				print( 'ERROR: update group form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -168,7 +194,7 @@
 		{
 			$this->Security->set_p( 'search_string' , 'subscription_manager' );
 			$PageContent = $this->PageComposer->get_page( 'group_manager' );
-			$Exists = strpos( $PageContent , 'subscription_manager' ) >= 0;
+			$Exists = strpos( $PageContent , 'subscription_manager' ) !== false;
 
 			$this->Security->set_p( 'search_string' , 'subscription_manager' );
 			$PageContent = $this->PageComposer->get_page( 'group_manager' );
@@ -183,6 +209,32 @@
 				print( 'ERROR' );
 				return;
 			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'group_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'group_record_id' , '9' );
+
+			$PageContent = $this->PageComposer->get_page( 'group_manager' );
+
+			if( stripos( $PageContent , 'create_group_form' ) === false )
+			{
+				print( 'ERROR: copy group form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
 		}
 	}
 

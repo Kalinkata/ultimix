@@ -29,16 +29,9 @@ if( !ultimix.system_structure )
 */
 ultimix.system_structure.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( 
-		ViewOptions , 'system_structure' , 'system_structure::system_structure_view'
+	ultimix.auto.get_list_form(
+		Fuctions , ViewOptions , 'system_structure' , 'system_structure::system_structure_view'
 	);
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
 
 /**
@@ -52,13 +45,18 @@ ultimix.system_structure.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@param Footer - List footer template file name.
 *
+*	@param NoDataFound - No data found template.
+*
 *	@param ViewOptions - Extra view generation options.
 *
 *	@author Dodonov A.A.
 */
 ultimix.system_structure.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'system_structure' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 
+		'system_structure' , 'system_structure::system_structure_manager'
+	);
 }
 
 /**

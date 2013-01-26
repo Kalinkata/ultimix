@@ -124,10 +124,10 @@
 								</td>
 							</tr>
 {~permit}
-							<tr>
+							{composer:condition={options:name=show_buttons;default=1}}<tr>
 								<td colspan="2" align="center" valign="center">
-									{href:tpl=submit0;form_id={prefix}_form;text=save_{prefix}}{permit:user_manager}&nbsp;{href:tpl=submit1;form_id={prefix}_form;param1={prefix}_context_action;value=;text=cancel;action=./{prefix}_manager.html}{~permit}
+									{save}&nbsp;{cancel}
 								</td>
-							</tr>
+							</tr>{~composer}
 						</table>
 					</form>

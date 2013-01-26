@@ -68,7 +68,7 @@
 		/**
 		*	\~russian Функция удаления блока.
 		*
-		*	@param $StringData - строковые данные, подвергаемые обработке.
+		*	@param $Str - строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockStart - маркер начал блока.
 		*
@@ -87,7 +87,7 @@
 		/**
 		*	\~english Function deletes text block.
 		*
-		*	@param $StringData - Processing data.
+		*	@param $Str - Processing data.
 		*
 		*	@param $BlockStart - Marker of the block's begin.
 		*
@@ -103,15 +103,15 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			hide_block( $StringData , $BlockStart , $BlockEnd , &$Changed )
+		function			hide_block( $Str , $BlockStart , $BlockEnd , &$Changed )
 		{
 			try
 			{
-				list( $StartPos , $EndPos ) = $this->get_block_positions( $StringData , $BlockStart , $BlockEnd );
+				list( $StartPos , $EndPos ) = $this->get_block_positions( $Str , $BlockStart , $BlockEnd );
 
 				if( $StartPos !== false )
 				{
-					$StringData = substr_replace( $StringData , 
+					$Str = substr_replace( $Str , 
 						'' , 
 						$StartPos , 
 						$EndPos - $StartPos + strlen( chr( 123 ).$BlockEnd.chr( 125 ) ) 
@@ -120,7 +120,7 @@
 					$Changed = true;
 				}
 
-				return( $StringData );
+				return( $Str );
 			}
 			catch( Exception $e )
 			{
@@ -131,7 +131,7 @@
 		/**
 		*	\~russian Функция удаляет границы блока.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockStart - Маркер начал блока.
 		*
@@ -148,7 +148,7 @@
 		/**
 		*	\~english Function deletes block's bounds.
 		*
-		*	@param $StringData - Processing data.
+		*	@param $Str - Processing data.
 		*
 		*	@param $BlockStart - Marker of the block's begin.
 		*
@@ -162,16 +162,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_block( $StringData , $BlockStart , $BlockEnd , &$Changed )
+		function			show_block( $Str , $BlockStart , $BlockEnd , &$Changed )
 		{
 			try
 			{
-				list( $StartPos , $EndPos ) = $this->get_block_positions( $StringData , $BlockStart , $BlockEnd );
+				list( $StartPos , $EndPos ) = $this->get_block_positions( $Str , $BlockStart , $BlockEnd );
 				if( $StartPos !== false )
 				{
-					$BlockData = $this->get_block_data( $StringData , $BlockStart , $BlockEnd );
+					$BlockData = $this->get_block_data( $Str , $BlockStart , $BlockEnd );
 
-					$StringData = substr_replace( $StringData , 
+					$Str = substr_replace( $Str , 
 						$BlockData , 
 						$StartPos , 
 						$EndPos - $StartPos + strlen( chr( 123 ).$BlockEnd.chr( 125 ) ) 
@@ -180,7 +180,7 @@
 					$Changed = true;
 				}
 
-				return( $StringData );
+				return( $Str );
 			}
 			catch( Exception $e )
 			{
@@ -350,7 +350,7 @@
 		/**
 		*	\~russian Функция проверки существования блока.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockStart - Маркер начал блока.
 		*
@@ -365,7 +365,7 @@
 		/**
 		*	\~english Function validates block's existance.
 		*
-		*	@param $StringData Processing data.
+		*	@param $Str Processing data.
 		*
 		*	@param $BlockStart - Marker of the block's begin.
 		*
@@ -377,19 +377,19 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			block_exists( $StringData , $BlockStart , $BlockEnd = false )
+		function			block_exists( $Str , $BlockStart , $BlockEnd = false )
 		{
 			try
 			{
-				$StartPos = strpos( $StringData , chr( 123 ).$BlockStart.chr( 125 ) );
-				if( $StartPos == false )
+				$StartPos = strpos( $Str , chr( 123 ).$BlockStart.chr( 125 ) );
+				if( $StartPos === false )
 				{
 					return( false );
 				}
 				
 				if( $BlockEnd !== false )
 				{
-					$EndPos = strpos( $StringData , chr( 123 ).$BlockEnd.chr( 125 ) );
+					$EndPos = strpos( $Str , chr( 123 ).$BlockEnd.chr( 125 ) );
 					if( $EndPos == false )
 					{
 						return( false );
@@ -407,7 +407,7 @@
 		/**
 		*	\~russian Функция выборки параметров макроса.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $Name - Параметры макроса.
 		*
@@ -422,7 +422,7 @@
 		/**
 		*	\~english Function returns macro's parameters.
 		*
-		*	@param $StringData - Data to be parsed.
+		*	@param $Str - Data to be parsed.
 		*
 		*	@param $Name - Macro's parameters.
 		*
@@ -434,13 +434,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_macro_parameters( $StringData , $Name , $RegExValidators = array() )
+		function			get_macro_parameters( $Str , $Name , $RegExValidators = array() )
 		{
 			try
 			{
 				$StartPos = -1;
 
-				for( ; ( $TmpStartPos = strpos( $StringData , chr( 123 ).$Name.':' , $StartPos + 1 ) ) !== false ; )
+				for( ; ( $TmpStartPos = strpos( $Str , chr( 123 ).$Name.':' , $StartPos + 1 ) ) !== false ; )
 				{
 					$Counter = 1;
 					$StartPos = $TmpEndPos = $TmpStartPos;
@@ -448,7 +448,7 @@
 					$MacroStartPos = $StartPos;
 					$ParamStartPos = $MacroStartPos + strlen( chr( 123 ).$Name.':' );
 
-					$Result = $this->MacroParser->find_macro( $StringData , $TmpStartPos , $TmpEndPos , 
+					$Result = $this->MacroParser->find_macro( $Str , $TmpStartPos , $TmpEndPos , 
 										$StartPos , $Counter , $MacroStartPos , $ParamStartPos , $RegExValidators );
 
 					if( $Result !== false )
@@ -468,7 +468,7 @@
 		/**
 		*	\~russian Функция проверки существования.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockStart - Маркер начал блока.
 		*
@@ -483,7 +483,7 @@
 		/**
 		*	\~english Function validates block's existance.
 		*
-		*	@param $StringData - Processing data.
+		*	@param $Str - Processing data.
 		*
 		*	@param $BlockStart - Marker of the block's begin.
 		*
@@ -495,16 +495,16 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_block_data( $StringData , $BlockStart , $BlockEnd )
+		function			get_block_data( $Str , $BlockStart , $BlockEnd )
 		{
 			try
 			{
-				list( $StartPos , $EndPos ) = $this->get_block_positions( $StringData , $BlockStart , $BlockEnd );
+				list( $StartPos , $EndPos ) = $this->get_block_positions( $Str , $BlockStart , $BlockEnd );
 
 				if( $StartPos !== false )
 				{
 					$BlockData = substr( 
-						$StringData , 
+						$Str , 
 						$StartPos + strlen( chr( 123 ).$BlockStart.chr( 125 ) ) , 
 						$EndPos - $StartPos - strlen( chr( 123 ).$BlockStart.chr( 125 ) )
 					);
@@ -525,7 +525,7 @@
 		/**
 		*	\~russian Функция удаления блока.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockType - Тип блока.
 		*
@@ -542,7 +542,7 @@
 		/**
 		*	\~english Function deletes text block.
 		*
-		*	@param $StringData - Processing data.
+		*	@param $Str - Processing data.
 		*
 		*	@param $BlockType - Block's type.
 		*
@@ -556,7 +556,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			hide_unprocessed_blocks( $StringData , $BlockType , &$Changed )
+		function			hide_unprocessed_blocks( $Str , $BlockType , &$Changed )
 		{
 			try
 			{
@@ -565,17 +565,17 @@
 				{
 					$PlaceHolders = array();
 
-					preg_match( "/\{$BlockType:([a-zA-Z0-9_]+)\}/" , $StringData , $PlaceHolders );
+					preg_match( "/\{$BlockType:([a-zA-Z0-9_]+)\}/" , $Str , $PlaceHolders );
 
 					if( count( $PlaceHolders ) > 1 )
 					{
-						$StringData = $this->hide_block( $StringData , "$BlockType:".$PlaceHolders[ 1 ] , 
+						$Str = $this->hide_block( $Str , "$BlockType:".$PlaceHolders[ 1 ] , 
 														 "$BlockType:~".$PlaceHolders[ 1 ] , $Changed );
 					}
 				}
 				while( count( $PlaceHolders ) > 1 );
 				
-				return( $StringData );
+				return( $Str );
 			}
 			catch( Exception $e )
 			{
@@ -586,7 +586,7 @@
 		/**
 		*	\~russian Функция выборки позиций начала и конца всех блоков.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockStart - Маркер начал блока.
 		*
@@ -601,7 +601,7 @@
 		/**
 		*	\~english Function returns positions of all blocks'es ends and beginnings.
 		*
-		*	@param $StringData - Processing data.
+		*	@param $Str - Processing data.
 		*
 		*	@param $BlockStart - Marker of the block's begin.
 		*
@@ -613,7 +613,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_all_block_positions( $StringData , $BlockStart , $BlockEnd )
+		function			get_all_block_positions( $Str , $BlockStart , $BlockEnd )
 		{
 			try
 			{
@@ -622,11 +622,11 @@
 				$StartPos = -1;
 				$EndPos = -1;
 
-				for( ; $StartPos = strpos( $StringData , chr( 123 ).$BlockStart.chr( 125 ) , $StartPos + 1 ) ; )
+				for( ; ( $StartPos = strpos( $Str , chr( 123 ).$BlockStart.chr( 125 ) , $StartPos + 1 ) ) !== false ; )
 				{
 					$Positions [ $StartPos ] = 's';
 				}
-				for( ; $EndPos = strpos( $StringData , chr( 123 ).$BlockEnd.chr( 125 ) , $EndPos + 1 ) ; )
+				for( ; $EndPos = strpos( $Str , chr( 123 ).$BlockEnd.chr( 125 ) , $EndPos + 1 ) ; )
 				{
 					$Positions [ $EndPos ] = 'e';
 				}
@@ -697,7 +697,7 @@
 		/**
 		*	\~russian Функция выборки позиций начала и конца блока.
 		*
-		*	@param $StringData - Строковые данные, подвергаемые обработке.
+		*	@param $Str - Строковые данные, подвергаемые обработке.
 		*
 		*	@param $BlockStart - Маркер начал блока.
 		*
@@ -712,7 +712,7 @@
 		/**
 		*	\~english Function returns positions of the block's end and beginning.
 		*
-		*	@param $StringData - Processing data.
+		*	@param $Str - Processing data.
 		*
 		*	@param $BlockStart - Marker of the block's begin.
 		*
@@ -724,11 +724,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_block_positions( $StringData , $BlockStart , $BlockEnd )
+		function			get_block_positions( $Str , $BlockStart , $BlockEnd )
 		{
 			try
 			{
-				$Positions = $this->get_all_block_positions( $StringData , $BlockStart , $BlockEnd );
+				$Positions = $this->get_all_block_positions( $Str , $BlockStart , $BlockEnd );
 
 				list( $StartPos , $EndPos ) = $this->get_possible_block_positions( $Positions );
 

@@ -1,5 +1,4 @@
-call_params_filter=show_update_{prefix}_form:integer,value_1
+call_params_filter=update_{prefix}_form:integer,value_1
 access_package_name={prefix}::{prefix}_access
 permits_filter=update_{prefix}
 massive_processing=0
-form_template=update_{prefix}_form

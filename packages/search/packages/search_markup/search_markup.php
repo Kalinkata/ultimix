@@ -93,6 +93,57 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		private function	compile_search_fields( &$Settings )
+		{
+			try
+			{
+				if( $Settings->get_setting( 'fields' , false ) === false )
+				{
+					return( '' );
+				}
+
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'search_fields.tpl' );;
+				$Fields = explode( ',' , $Settings->get_setting( 'fields' ) );
+				$Labels = explode( ',' , $Settings->get_setting( 'labels' ) );
+
+				foreach( $Fields as $i => $Field )
+				{
+					$Tmp = $this->CachedMultyFS->get_template( __FILE__ , 'search_field.tpl' );
+					$Field = str_replace( '.' , '_dot_' , $Field );
+					$Tmp = str_replace( array( '{name}' , '{label}' ) , array( $Field , $Labels[ $i ] ) , $Tmp );
+					$Code .= $Tmp;
+				}
+
+				return( $Code );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Компиляция формы.
+		*
+		*	@param $Settings - Параметры компиляции.
+		*
+		*	@return HTML код формы.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function compiles search form.
+		*
+		*	@param $Settings - Compilation parameters.
+		*
+		*	@return HTML code of the widget.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			compile_search_form( &$Settings )
 		{
 			try
@@ -105,9 +156,11 @@
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , $TemplateFileName );
 
+				$Fields = $this->compile_search_fields( $Settings );
+
 				$Code = str_replace( 
-					array( '{speed}' , '{prefix}' , '{form_id}' , '{action}' ) , 
-					array( $Speed , $Prefix , $FormId , $Action ) , 
+					array( '{speed}' , '{prefix}' , '{form_id}' , '{action}' , '{fields}' ) , 
+					array( $Speed , $Prefix , $FormId , $Action , $Fields ) , 
 					$Code
 				);
 

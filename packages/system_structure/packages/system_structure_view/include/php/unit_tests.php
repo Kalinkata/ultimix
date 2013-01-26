@@ -95,61 +95,13 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing package loading.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
 		function			test_load_package()
 		{
 			get_package( 'system_structure::system_structure_view' , 'last' , __FILE__ );
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_display_list()
-		{
-			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
-
-			if( stripos( $PageContent , 'site_manager' ) === false )
-			{
-				print( 'ERROR: system structure list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_create_record_form()
-		{
-			$this->Security->set_g( 'system_structure_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
-
-			if( stripos( $PageContent , '_record_id' ) === false )
-			{
-				print( 'ERROR: system structure create form was not displayed'.$PageContent );
-				return;
-			}
 
 			return( 'TEST PASSED' );
 		}

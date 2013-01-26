@@ -1,5 +1,7 @@
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
 site::site_view#last#pre_generation=1#
-site::site_controller#last#meta=meta_create_site#main
-site::site_view#last#meta=meta_create_site_form#main
-site::site_view#last#meta=meta_site_list#main
+site::site_manager#last#meta=meta_create_site#main
+site::site_manager#last#meta=meta_delete_site#main
+site::site_manager#last#meta=meta_create_site_form#main
+site::site_manager#last#meta=meta_update_site_form#main
+site::site_manager#last#meta=meta_site_list#main

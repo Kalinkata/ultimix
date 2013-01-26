@@ -1,1 +1,4 @@
 template_manager=Template manager
+package_name=Package name
+package_version=Package version
+template_package=Package

@@ -100,6 +100,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AutoMarkup = false;
+		var					$CachedFS = false;
 		var					$Messages = false;
 		var					$PageAccess = false;
 		var					$PageComposerUtilities = false;
@@ -163,8 +164,11 @@
 		{
 			try
 			{
+				$this->CachedFS = get_package( 'cached_fs' , 'last' , __FILE__ );
 				$this->Messages = get_package( 'page::messages' , 'last' , __FILE__ );
+
 				$this->load_page_packages();
+
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
 				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
@@ -193,7 +197,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			pre_generation( &$Options )
+		function			pre_generation( $Options )
 		{
 			try
 			{
@@ -400,7 +404,9 @@
 
 				$Settings->load_settings( $Options );
 
-				return( $this->String->print_record( $Str , $Settings->get_raw_settings() ) );
+				$Raw = $Settings->get_raw_settings();
+
+				return( $this->String->print_record( $Str , $Raw ) );
 			}
 			catch( Exception $e )
 			{
@@ -539,11 +545,142 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
+		/**
+		*	\~russian Проверка существования скрипта.
+		*
+		*	@param $PageName - Имя компонуемой страницы.
+		*
+		*	return true/false.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Does html script exists.
+		*
+		*	@param $PageName - Name of the composing page.
+		*
+		*	return true/false.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	html_script_exists( $PageName )
+		{
+			try
+			{
+				$PageName = $this->Security->get( $PageName , 'string' );
+
+				return( $this->CachedFS->file_exists( "./$PageName.html" ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Получение скомпилированного скрипта.
+		*
+		*	@param $PageName - Имя компонуемой страницы.
+		*
+		*	@return HTML код скомпонованной страницы.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function starts page composition.
+		*
+		*	@param $PageName - Name of the composing page.
+		*
+		*	@return HTML code of the composed page.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_html_script( $PageName )
+		{
+			try
+			{
+				$PageName = $this->Security->get( $PageName , 'string' );
+
+				$Page = $this->CachedFS->file_get_contents( "./$PageName.html" );
+
+				$Page = str_replace( array( '<?php' , '?>' ) , array( '{<?php}' , '{?>}' ) , $Page );
+
+				for( ; $this->String->block_exists( $Page , '<?php' , '?>' ) ; )
+				{
+					$PHPScript = $this->String->get_block_data( $Page , '<?php' , '?>' );
+					ob_start();
+					eval( $PHPScript );
+					$Page = str_replace( "{<?php}$PHPScript{?>}" , ob_get_contents() , $Page );
+					ob_end_clean();
+				}
+
+				return( $this->AutoMarkup->compile_string( $Page ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Получение скомпилированного скрипта.
+		*
+		*	@param $PageName - Имя компонуемой страницы.
+		*
+		*	@return HTML код скомпонованной страницы.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function starts page composition.
+		*
+		*	@param $PageName - Name of the composing page.
+		*
+		*	@return HTML code of the composed page.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_data_script( $PageName )
+		{
+			try
+			{
+				$PageDescription = $this->prepare_page_generation( $PageName );
+				
+				if( $PageDescription !== false )
+				{
+					$this->Trace->add_trace_string( "{lang:page_generation_start} : $PageName" , COMMON );
+					$this->fetch_page_data( $this->PageAccess , $PageName , $PageDescription );
+					$this->generation_loop( $PageName , $PageDescription );
+
+					return( $this->Template->get_template() );
+				}
+
+				$this->Trace->add_trace_string( "{lang:requested_page_was_not_found} : $PageName" , ERROR );
+				return( $this->get_page( '404' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция, запускающая компоновку страницы.
 		*
-		*	@param $PageName - имя компонуемой страницы.
+		*	@param $PageName - Имя компонуемой страницы.
 		*
 		*	@return HTML код скомпонованной страницы.
 		*
@@ -566,21 +703,14 @@
 		{
 			try
 			{
-				$PageDescription = $this->prepare_page_generation( $PageName );
-
-				if( $PageDescription !== false )
+				if( $this->html_script_exists( $PageName ) )
 				{
-					$this->Trace->add_trace_string( "{lang:page_generation_start} : $PageName" , COMMON );
-					$this->fetch_page_data( $this->PageAccess , $PageName , $PageDescription );
-
-					$this->generation_loop( $PageName , $PageDescription );
-
-					return( $this->Template->get_template() );
+					return( $this->get_html_script( $PageName ) );
 				}
-
-				$this->Trace->add_trace_string( "{lang:requested_page_was_not_found} : $PageName" , ERROR );
-
-				return( $this->get_page( '404' ) );
+				else
+				{
+					return( $this->get_data_script( $PageName ) );
+				}
 			}
 			catch( Exception $e )
 			{

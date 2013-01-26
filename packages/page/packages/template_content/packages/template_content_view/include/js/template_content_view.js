@@ -29,16 +29,9 @@ if( !ultimix.template_content )
 */
 ultimix.template_content.get_list_form = function( ResultAcceptor , ViewOptions )
 {
-	if( !ResultAcceptor )
-	{
-		ResultAcceptor = function(){};
-	}
-
-	ViewOptions = ultimix.template_content.set_default_options( 
-		ViewOptions , 'template_content' , 'page::template_content::template_content_view'
+	ultimix.auto.get_list_form(
+		Fuctions , ViewOptions , 'template_content' , 'page::template_content::template_content_view'
 	);
-
-	ultimix.ajax_gate.direct_view( ViewOptions , ResultAcceptor );
 }
 
 /**
@@ -52,13 +45,19 @@ ultimix.template_content.get_list_form = function( ResultAcceptor , ViewOptions 
 *
 *	@param Footer - List footer template file name.
 *
+*	@param NoDataFound - No data found template.
+*
 *	@param ViewOptions - Extra view generation options.
 *
 *	@author Dodonov A.A.
 */
-ultimix.template_content.get_custom_list_form = function( ResultAcceptor , Header , Item , Footer , ViewOptions )
+ultimix.template_content.get_custom_list_form = function( ResultAcceptor , Header , 
+																			Item , Footer , NoDataFound , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'template_content' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , NoDataFound , ViewOptions , 
+		'template_content' , 'page::template_content::template_content_view'
+	);
 }
 
 /**

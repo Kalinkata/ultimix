@@ -124,34 +124,6 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			test_smth_delete_record()
-		{
-			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
-
-			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
-			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record' ) !== false && 
-					strpos( $Content , 'test_copy_record' ) === false )
-				{
-					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
-				}
-			}
-
-			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
-		}
-
-		/**
-		*	\~russian Проверка стайта.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing state.
-		*
-		*	@author Dodonov A.A.
-		*/
 		function			test_smth_display_search_list()
 		{
 			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
@@ -160,7 +132,7 @@
 			{
 				$Content = file_get_contents( $Files[ $i ] );
 				if( strpos( $Content , 'test_display_list' ) !== false && 
-					strpos( $Content , 'test_smth_display_search_list' ) === false )
+					strpos( $Content , 'test_display_search_list' ) === false )
 				{
 					$Errors++;
 					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
@@ -191,7 +163,7 @@
 					strpos( $Content , 'test_create_record_form' ) === false )
 				{
 					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'"</nobr><'.'br>' );
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
 				}
 			}
 
@@ -215,8 +187,36 @@
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
 				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record_form' ) !== false && 
-					strpos( $Content , 'test_create_record' ) === false )
+				if( strpos( $Content , 'test_create_record_form(' ) !== false && 
+					strpos( $Content , 'test_create_record(' ) === false )
+				{
+					$Errors++;
+					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+				}
+			}
+
+			return( $Errors == 0 ? 'TEST PASSED' : "ERROR( $Errors )" );
+		}
+
+		/**
+		*	\~russian Проверка стайта.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing state.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_smth_delete_record()
+		{
+			$Files = $this->Utilities->get_files_from_directory( '.' , '/.+\.php/' , true );
+
+			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
+			{
+				$Content = file_get_contents( $Files[ $i ] );
+				if( strpos( $Content , 'test_create_record(' ) !== false && 
+					strpos( $Content , 'test_delete_record(' ) === false )
 				{
 					$Errors++;
 					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
@@ -271,8 +271,8 @@
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
 				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record' ) !== false && 
-					strpos( $Content , 'test_update_record' ) === false )
+				if( strpos( $Content , 'test_create_record(' ) !== false && 
+					strpos( $Content , 'test_update_record(' ) === false )
 				{
 					$Errors++;
 					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
@@ -299,8 +299,8 @@
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
 				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_display_list' ) !== false && 
-					strpos( $Content , 'test_copy_record_form' ) === false )
+				if( strpos( $Content , 'test_display_list(' ) !== false && 
+					strpos( $Content , 'test_copy_record_form(' ) === false )
 				{
 					$Errors++;
 					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
@@ -327,8 +327,8 @@
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
 				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record' ) !== false && 
-					strpos( $Content , 'test_copy_record' ) === false )
+				if( strpos( $Content , 'test_create_record(' ) !== false && 
+					strpos( $Content , 'test_copy_record(' ) === false )
 				{
 					$Errors++;
 					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );

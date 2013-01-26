@@ -164,14 +164,7 @@ ultimix.permit.delete_group = function( GroupName )
 */
 ultimix.group.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.group.set_default_options( ViewOptions , 'group' , 'permit::group_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'group' , 'permit::group_view' );
 }
 
 /**
@@ -191,7 +184,9 @@ ultimix.group.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.group.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'group' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'group' , 'permit::group_view'
+	);
 }
 
 /**

@@ -90,12 +90,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -107,12 +107,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +130,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -145,9 +145,92 @@
 
 			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
 
-			if( stripos( $PageContent , 'subscription_create_form' ) === false )
+			if( stripos( $PageContent , 'create_subscription_form' ) === false )
 			{
-				print( 'ERROR: subscription create form was not displayed'.$PageContent );
+				print( 'ERROR: create subscription form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'subscription_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'subscription_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
+
+			if( stripos( $PageContent , 'update_subscription_form' ) === false )
+			{
+				print( 'ERROR: update subscription form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
+			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
+			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'subscription_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'subscription_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
+
+			if( stripos( $PageContent , 'create_subscription_form' ) === false )
+			{
+				print( 'ERROR: copy subscription form was not displayed'.$PageContent );
 				return;
 			}
 

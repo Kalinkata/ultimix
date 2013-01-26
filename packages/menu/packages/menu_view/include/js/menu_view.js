@@ -30,14 +30,7 @@ if( !ultimix.menu )
 */
 ultimix.menu.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'menu' , 'menu::menu_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'menu' , 'menu::menu_view' );
 }
 
 /**
@@ -57,7 +50,9 @@ ultimix.menu.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.menu.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'menu' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'menu' , 'menu::menu_view'
+	);
 }
 
 /**

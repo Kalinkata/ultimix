@@ -1,0 +1,2 @@
+permits_filter={prefix}_manager
+search_fields=menu,name,href

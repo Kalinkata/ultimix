@@ -1,4 +1,4 @@
-					<form method="post" action="" id="{prefix}_update_form" class="form_650">
+					<form method="post" action="" id="update_{prefix}_form" class="form_650">
 						<input type="hidden" name="{prefix}_context_action" id="{prefix}_context_action" value="update_packages_form">
 						<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="save_packages">
 						<input type="hidden" name="{prefix}_record_id" id="{prefix}_record_id" value="{page_alias}">

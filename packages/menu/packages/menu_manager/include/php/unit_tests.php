@@ -101,12 +101,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -118,12 +118,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -141,12 +141,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -156,9 +156,9 @@
 
 			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
 
-			if( stripos( $PageContent , 'menu_create_form' ) === false )
+			if( stripos( $PageContent , 'create_menu_form' ) === false )
 			{
-				print( 'ERROR: menu create form was not displayed'.$PageContent );
+				print( 'ERROR: create menu form was not displayed'.$PageContent );
 				return;
 			}
 
@@ -166,12 +166,12 @@
 		}
 
 		/**
-		*	\~russian Тестирование вида.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing view.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -197,12 +197,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -214,9 +214,67 @@
 
 			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
 
-			if( stripos( $PageContent , 'menu_update_form' ) === false )
+			if( stripos( $PageContent , 'update_menu_form' ) === false )
 			{
-				print( 'ERROR: menu update form was not displayed'.$PageContent );
+				print( 'ERROR: update menu form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , 'admin' );
+			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
+			$Exists = strpos( $PageContent , '_id_1' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
+			$NotExists = strpos( $PageContent , '_id_1' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_p( 'menu_context_action' , 'copy_record_form' );
+			$this->Security->set_p( '_id_2' , 'on' );
+			$this->Security->set_p( 'menu_record_id' , '-1' );
+
+			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
+
+			if( stripos( $PageContent , 'create_menu_form' ) === false )
+			{
+				print( 'ERROR: copy menu form was not displayed'.$PageContent );
 				return;
 			}
 

@@ -114,7 +114,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'system_structure::system_structure_controller' , 'last' , __FILE__ );
+			get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}

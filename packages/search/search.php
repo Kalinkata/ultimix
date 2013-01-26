@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс поиска по сайту.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	search_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -35,11 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$BlockSettings = false;
 		var					$CachedMultyFS = false;
 		var					$Security = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Результат работы функций отображения.
 		*
@@ -51,7 +50,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -66,7 +65,6 @@
 		{
 			try
 			{
-				$this->BlockSettings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
@@ -102,17 +100,17 @@
 				$Config = $this->CachedMultyFS->get_config( __FILE__ , 'cf_search_access' , 'exploded' );
 				$Settigs = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$Packages = array();
-				
+
 				foreach( $Config as $i => $ConfigLine )
 				{
 					$Settigs->load_settings( $ConfigLine );
-					
+
 					$PackageName = $Settigs->get_setting( 'package_name' );
 					$PackageVersion = $Settigs->get_setting( 'package_version' );
-					
+
 					$Packages [] = get_package( $PackageName , $PackageVersion , __FILE__ );
 				}
-				
+
 				return( $Packages );
 			}
 			catch( Exception $e )
@@ -120,7 +118,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение найденных записей.
 		*
@@ -152,17 +150,17 @@
 			try
 			{
 				$Results = array();
-				
+
 				$Limitations = $this->Security->get_gp( 'search_output_limitations' , 'string' , '' );
 				$Limitations = explode( ',' , $Limitations );
-				
+
 				foreach( $Packages as $i => $Package )
 				{
 					$Results [] = call_user_func( 
 						array( $Package , 'search' ) , get_field( $Limitations , $i , 0 ) , $SearchString
 					);
 				}
-				
+
 				return( $Results );
 			}
 			catch( Exception $e )
@@ -170,7 +168,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Фильтрация результатов с нулевой релевантностью.
 		*
@@ -200,7 +198,7 @@
 				foreach( $Results as $i => $Records )
 				{
 					$Return = array();
-					
+
 					foreach( $Records as $j => $Record )
 					{
 						$Relevation = intval( get_field( $Record , 'relevation' ) );
@@ -209,10 +207,10 @@
 							$Return [] = $Record;
 						}
 					}
-					
+
 					$Results[ $i ] = $Return;
 				}
-				
+
 				return( $Results );
 			}
 			catch( Exception $e )
@@ -220,7 +218,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение максимальной релевантности.
 		*
@@ -248,11 +246,11 @@
 			try
 			{
 				$MaxRelevation = 0;
-				
+
 				if( isset( $Records[ 0 ] ) )
 				{
 					$MaxRelevation = intval( get_field( $Records[ 0 ] , 'relevation' ) );
-					
+
 					foreach( $Records as $j => $Record )
 					{
 						$Tmp = intval( get_field( $Record , 'relevation' ) );
@@ -262,7 +260,7 @@
 						}
 					}
 				}
-				
+
 				return( $MaxRelevation );
 			}
 			catch( Exception $e )
@@ -270,7 +268,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Нормализация значений релевантности.
 		*
@@ -298,11 +296,11 @@
 			try
 			{
 				$Return = array();
-				
+
 				foreach( $Results as $i => $Records )
 				{
 					$MaxRelevation = $this->get_maximum_relevation( $Records );
-					
+
 					foreach( $Records as $j => $Record )
 					{
 						set_field( 
@@ -311,7 +309,7 @@
 						);
 					}
 				}
-				
+
 				return( $Results );
 			}
 			catch( Exception $e )
@@ -319,7 +317,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Компоновка записей для вывода.
 		*
@@ -347,8 +345,7 @@
 			try
 			{
 				$SearchLine = array();
-				
-				/* setting fetches ids */
+
 				foreach( $Results as $i => $Result )
 				{
 					foreach( $Result as $j => $Record )
@@ -356,13 +353,12 @@
 						set_field( $Results[ $i ][ $j ] , 'fetch_id' , $i );
 					}
 				}
-				
-				/* composing records */
+
 				foreach( $Results as $i => $Result )
 				{
 					$SearchLine = array_merge( $SearchLine , $Result );
 				}
-				
+
 				return( array_slice( $SearchLine , 0 , 10 ) );
 			}
 			catch( Exception $e )
@@ -370,7 +366,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подготовка записей к выводу.
 		*
@@ -414,7 +410,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подготовка записей к выводу.
 		*
@@ -460,7 +456,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Подготовка записей к выводу.
 		*
@@ -494,10 +490,10 @@
 				foreach( $SearchLine as $i => $Result )
 				{
 					$Preview = $this->compile_preview( $Result , $SearchString );
-					
+
 					set_field( $SearchLine[ $i ] , 'record_text' , $Preview );
 				}
-				
+
 				return( $SearchLine );
 			}
 			catch( Exception $e )
@@ -505,7 +501,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Контрол перелистывания страниц в результатах поиска.
 		*
@@ -536,17 +532,17 @@
 				{
 					return( '' );
 				}
-				
+
 				$Limitations = $this->Security->get_gp( 'search_output_limitations' , 'string' , '' );
 				$Limitations = explode( ',' , $Limitations );
-				
+
 				foreach( $SearchLine as $i => $Record )
 				{
 					$FetchId = get_field( $Record , 'fetch_id' );
 					
 					$Limitations[ $FetchId ]++;
 				}
-				
+
 				return( implode( ',' , $Limitations ) );
 			}
 			catch( Exception $e )
@@ -554,7 +550,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Контрол перелистывания страниц в результатах поиска.
 		*
@@ -679,7 +675,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Отрисовка списка результатов поиска.
 		*
@@ -703,19 +699,19 @@
 			try
 			{
 				$this->Output = '';
-				
+
 				foreach( $SearchLine as $i => $Result )
 				{
 					$TemplatePath = dirname( __FILE__ ).'/res/templates/search_item.tpl';
 					$this->Output .= $this->CachedMultyFS->file_get_contents( $TemplatePath );
-					
+
 					$this->Output = $this->String->print_record( $this->Output , $Result );
 					$this->Output = str_replace( 
 						'{item_number}' , 
 						$this->Security->get_gp( 'page' , 'integer' , 0 ) * 10 + $i + 1 , $this->Output
 					);
 				}
-				
+
 				$this->Output .= $this->get_switch_page_controler( $SearchLine );
 			}
 			catch( Exception $e )
@@ -723,7 +719,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -743,21 +739,21 @@
 			try
 			{
 				$Packages = $this->get_list_of_packages();
-				
+
 				$SearchString = $this->Security->get_gp( 'search_string' , 'string' , false );
-				
+
 				if( $SearchString !== false )
 				{
 					$Records = $this->get_records( $Packages , $SearchString );
-					
+
 					$FilteredRecords = $this->filter_results( $Records );
-					
+
 					$NormalizedRecords = $this->normalize_relevation( $FilteredRecords );
-					
+
 					$SearchLine = $this->get_search_line( $NormalizedRecords );
-					
+
 					$SearchLine = $this->prepare_for_output( $SearchLine , $SearchString );
-					
+
 					$this->output_search_results( $SearchLine );
 				}
 			}
@@ -766,7 +762,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки компонента.
 		*
@@ -794,13 +790,66 @@
 			try
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_search_form' );
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_search_results' );
-				
+
 				if( $ContextSet->execute( $Options , $this , __FILE__ ) )return( $this->Output );
-				
+
 				return( $this->Output );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция создания поискового запроса.
+		*
+		*	@param $Field - Поле.
+		*
+		*	@param $QueryString - Поисковый SQL запрос.
+		*
+		*	@param $SearchString - Поисковый запрос.
+		*
+		*	@return Скрипт поиска.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates query string.
+		*
+		*	@param $Field - Field.
+		*
+		*	@param $QueryString - Query string.
+		*
+		*	@param $SearchString - Search string.
+		*
+		*	@return Search script.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	add_field_to_query_string( $Field , $QueryString , $SearchString )
+		{
+			try
+			{
+				$Field = str_replace( '.' , '_dot_' , $Field );
+
+				if( $this->Security->get_p( '_sf_'.$Field , 'integer' , 1 ) == 1 )
+				{
+					$Strict = strpos( $Field , ':strict' ) !== false;
+					$Suffix = $Strict ? "'".$SearchString."'" : "'%".$SearchString."%'";
+					$QueryString [] = str_replace( 
+						array( '_dot_' , ':strict' ) , array( '.' , '' ) , $Field
+					)." LIKE $Suffix";
+				}
+
+				return( $QueryString );
 			}
 			catch( Exception $e )
 			{
@@ -835,21 +884,21 @@
 			try
 			{
 				$QueryString = '1 = 1';
-				
+
 				$SearchString = $this->Security->get_gp( 'search_string' , 'string' , '' );
-				
+
 				if( $SearchString !== '' && isset( $Fields[ 0 ] ) )
-				{					
-					$QueryString = '( '.$Fields[ 0 ]." LIKE '%".$SearchString."%'";
-					
-					for( $i = 1 ; $i < count( $Fields ) ; $i++ )
+				{
+					$QueryString = array();
+
+					foreach( $Fields as $i => $Field )
 					{
-						$QueryString .= ' OR '.$Fields[ $i ]." LIKE '%".$SearchString."%'";
+						$QueryString = $this->add_field_to_query_string( $Field , $QueryString , $SearchString );
 					}
-					
-					$QueryString .= ' )';
+
+					$QueryString = '( '.implode( ' OR ' , $QueryString ).' )';
 				}
-				
+
 				return( $QueryString );
 			}
 			catch( Exception $e )
@@ -858,4 +907,5 @@
 			}
 		}
 	}
+
 ?>

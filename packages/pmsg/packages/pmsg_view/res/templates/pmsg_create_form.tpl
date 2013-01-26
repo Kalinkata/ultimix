@@ -1,5 +1,5 @@
-					<form method="post" id="{prefix}_create_form" class="form_330">
-						<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="create_record_form">
+					<form method="post" id="create_{prefix}_form" class="form_330">
+						<input type="hidden" id="{prefix}_context_action" name="{prefix}_context_action" value="create_record_form">
 						<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="create_record">
 						<table>
 							<tr>
@@ -22,8 +22,8 @@
 							</tr>
 							<tr>
 								<td class="centered">
-									{href:tpl=submit0;form_id={prefix}_create_form;text=send}
-									&nbsp;{href:page=pmsg.html;text=cancel}{action_list}
+									{create:text=send}
+									&nbsp;{cancel}{action_list}
 								</td>
 							</tr>
 						</table>

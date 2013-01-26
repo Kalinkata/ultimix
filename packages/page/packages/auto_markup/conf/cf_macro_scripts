@@ -5,7 +5,7 @@ macro_name=category;package_name=category::category_markup;compilation_func=comp
 macro_name=category_id;package_name=category::category_markup;compilation_func=compile_category_id;terminal_values=name,names
 macro_name=category_siblings_ids;package_name=category::category_markup;compilation_func=compile_category_siblings_ids;terminal_values=id
 macro_name=category_name;package_name=category::category_markup;compilation_func=compile_category_name;terminal_values=id
-macro_name=history_button;package_name=database::change_histoy::change_history_markup;compilation_func=compile_history_button;terminal_values=id,object_type
+macro_name=history_button;package_name=database::change_history::change_history_markup;compilation_func=compile_history_button;terminal_values=id,object_type
 macro_name=select_dialog_content;package_name=jquery::dialog_markup;compilation_func=compile_select_dialog_content
 macro_name=select_dialog;package_name=jquery::dialog_markup;compilation_func=compile_select_dialog
 macro_name=view_dialog;package_name=jquery::dialog_markup;compilation_func=compile_view_dialog
@@ -20,6 +20,7 @@ macro_name=comment_form;package_name=comment::comment_markup;compilation_func=co
 macro_name=comment_line;package_name=comment::comment_markup;compilation_func=compile_comment_line;terminal_values=master_id,master_type
 macro_name=comment_link;package_name=comment::comment_markup;compilation_func=compile_comment_link;terminal_values=master_id,master_type
 macro_name=file_input;package_name=file_input::file_input_markup;compilation_func=compile_file_input
+macro_name=import_form;package_name=file_input::file_input_markup;template=import_form.tpl;default_values=speed:500
 macro_name=yes_no;package_name=gui::radiobutton_markup;compilation_func=compile_yes_no;terminal_values=current_value
 macro_name=radio;package_name=gui::radiobutton_markup;compilation_func=compile_radio;terminal_values=value,current_value
 macro_name=radio_set;package_name=gui::radiobutton_markup;compilation_func=compile_radio_set
@@ -47,7 +48,7 @@ macro_name=component_button;package_name=gui::button_markup;compilation_func=com
 macro_name=menu_button;package_name=gui::button_markup;compilation_func=compile_menu_button;terminal_values=icon
 macro_name=toolbar_button;package_name=gui::button_markup;compilation_func=compile_toolbar_button;terminal_values=icon
 macro_name=toggle_button;package_name=gui::button_markup;compilation_func=compile_toggle_button;terminal_values=icon
-macro_name=run_controller_and_remove_dom_button;package_name=gui::button_markup;compilation_func=compile_run_controller_and_remove_dom_button;terminal_values=icon,dom_selector
+macro_name=run_controller_and_remove_dom_button;package_name=gui::button_markup;compilation_func=compile_run_controller_and_remove_dom_button;terminal_values=icon,dom_selector,id,api_method
 macro_name=page_parameters;package_name=security::security_markup;compilation_func=compile_page_parameters
 macro_name=update_record;package_name=gui::mouse_markup;compilation_func=compile_update_record;terminal_values=id,prefix
 macro_name=create_record;package_name=gui::dialogs;compilation_func=compile_create_record
@@ -158,3 +159,4 @@ macro_name=template_content;package_name=page::template_content::template_conten
 macro_name=exact_config;package_name=page::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
 macro_name=view;package_name=page::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
 macro_name=controller;package_name=page::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
+macro_name=select_package_dialog;package_name=core::package_manager;template=select_package_dialog.tpl

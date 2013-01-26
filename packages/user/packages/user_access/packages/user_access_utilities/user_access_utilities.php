@@ -128,8 +128,10 @@
 			try
 			{
 				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
-				$EventManager->trigger_event( 'on_after_create_user' , array( 'login' => $Login , 'id' => $id ) );
-				$EventManager->trigger_event( 'anonimous' , array( 'master_id' => $id , 'master_type' => 'user' ) );
+				$Parameters = array( 'login' => $Login , 'id' => $id );
+				$EventManager->trigger_event( 'on_after_create_user' , $Parameters );
+				$Parameters = array( 'master_id' => $id , 'master_type' => 'user' );
+				$EventManager->trigger_event( 'anonimous' , $Parameters );
 			}
 			catch( Exception $e )
 			{

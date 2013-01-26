@@ -167,7 +167,7 @@
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function removes BOM .
+		*	\~english Function removes prefix .
 		*
 		*	@param $Strings - Strings to process.
 		*

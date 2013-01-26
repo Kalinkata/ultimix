@@ -1,1 +1,7 @@
-template::template_manager#last#view=1;show_template_list=1#main
+system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
+template_manager#last#controller=1;update_template=1#
+template_manager#last#controller=1;create_template=1#
+template_manager#last#controller=1;delete_template=1#
+template_manager#last#view=1;update_template=1#main
+template_manager#last#view=1;create_template=1#main
+template_manager#last#view=1;template_list=1#main

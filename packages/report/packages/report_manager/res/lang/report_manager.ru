@@ -2,3 +2,4 @@ report_manager=Менеджер отчетов
 name=Название отчета
 package_name=Название пакета
 package_version=Версия пакета
+report_package=Пакет

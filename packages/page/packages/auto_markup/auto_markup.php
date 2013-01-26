@@ -260,7 +260,8 @@
 
 				if( $Settings !== false )
 				{
-					$Content = $this->String->print_record( $Content , $Settings->get_raw_settings() );
+					$Raw = $Settings->get_raw_settings();
+					$Content = $this->String->print_record( $Content , $Raw );
 				}
 
 				return( $Content );
@@ -318,7 +319,8 @@
 
 				if( $Settings !== false )
 				{
-					$Content = $this->String->print_record( $Content , $Settings->get_raw_settings() );
+					$Raw = $Settings->get_raw_settings();
+					$Content = $this->String->print_record( $Content , $Raw );
 				}
 
 				return( $Content );
@@ -784,6 +786,11 @@
 				$this->load_template_contents_configs();
 
 				$Macroes = $this->String->find_all_macro( $Str );
+
+				if( in_array( 'lang_file' , $Macroes ) )
+				{
+					list( $Str , $Changed ) = $this->compile_named_macro( 'lang_file' , $Str , $Changed );
+				}
 
 				foreach( $Macroes as $i => $Name )
 				{

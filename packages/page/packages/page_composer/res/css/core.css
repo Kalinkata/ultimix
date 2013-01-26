@@ -77,7 +77,7 @@
 
 .toolbar
 {
-	height					: 34px;
+	min-height				: 34px;
 }
 
 /*
