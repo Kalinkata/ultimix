@@ -36,4 +36,5 @@
 	$Trace->end_group();
 	
 	print( $Trace->compile_trace() );
+
 ?>

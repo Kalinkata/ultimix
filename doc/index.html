@@ -92,7 +92,24 @@
 
 </pre></div>
 					<h4 class="header">&nbsp;&nbsp;First 'Hello world' application</h4>
-					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo1.php' file. It is simple and obvious like all 'hello world' applations.</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Page creation is very simple. You can use common html files or php scripts. These types of files are processed in a different way. But don't think about it now. Lets create our first html script (this code can be found in the 'hello_world_demo.html' file):
+<div class="code"><strong>Code:</strong><pre>
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Hello world!&lt;/title&gt;
+	&lt;/head&gt;
+
+	&lt;body&gt;
+		&lt;?php
+
+			print( 'Hello world! Today is {date:value=now}' );
+
+		?&gt;
+	&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;To run this script, copy it in the root directory of the Ultimix Framework and type http://localhost/ultimix/hello_world_demo.html Note that macro was processed.
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Second hello world demo can be found in the '/doc/demo/hello_world_demo.php' file. It is simple and obvious like all 'hello world' applications.</p>
 					<div class="code"><strong>Code:</strong><pre>
 &lt;?php
 
@@ -102,6 +119,7 @@
 
 ?&gt;
 </pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;All macroes will not be processed in the php scripts. To do this you need to run macro processing function manualy. The only reason these two script types are supported is to provide faster page generation. Obviously php script will work faster than html scripts, because you may deside on your own wich modules of the Ultimix Project will be used while page generation. The other difference of the html scripts is that you will be able to use framework without any programming skills! Just data-driven declaration! It is hard to belive but it is true! <a href="sourceforge.net/projects/ultimix/files/">Try yourself</a>.
 					<h4 class="header">&nbsp;&nbsp;Modular architecture</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;This demo can be found in the '/doc/demo/demo2.php' file.</p>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;All ultimix code is organized into packages. You can load any of them without limitations and use them in your code.</p>
@@ -186,7 +204,10 @@
 	$Cache = get_package( 'cache' , '1.0.0' , __FILE__ );
 
 	/* This function call adds data to the cache */
-	$Cache->add_data( 'first_string' , 'String to be cached!' , array( 'tag1' , 'tag2' , 'tag3' ) );
+	$Cache->add_data( 
+		'first_string' , 'String to be cached!' , 
+		array( 'tag1' , 'tag2' , 'tag3' )
+	);
 
 	/* remove data from cache */
 	$Cache->delete_data_by_tag( 'tag2' );
@@ -334,6 +355,10 @@ class	package_name_1_0_0
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Now we have a good full featured package. Let's use it!
 					<div class="code"><strong>Code:</strong><pre>
 &lt;?php
+	require_once( 'include/php/startup.php' );
+
+	start_php_script();
+
 	$NewPackage = get_package( 'package_name' , 'last' , __FILE__ );
 
 	$NewPackage->func();
@@ -350,6 +375,10 @@ key3=Third localized string
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Now let's find out hou this data can be used in your code. It can be done using 'lang' package.
 					<div class="code"><strong>Code:</strong><pre>
 &lt;?php
+	require_once( 'include/php/startup.php' );
+
+	start_php_script();
+
 	/* this code can be found in the 'demo6.php' file */
 	$Lang = get_package( 'lang' , 'last' , __FILE__ );
 
@@ -360,7 +389,11 @@ key3=Third localized string
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultimix provides API for tracing and logging. It can be found in the 'trace' package. To switch this API on you should set trace_x_y_z->StoreTrace variable to true. This package has a very simple API wich is described below:
 					<div class="code"><strong>Code:</strong><pre>
 &lt;?php
-	/* this code can be found in the 'demo6.php' file */
+	require_once( 'include/php/startup.php' );
+
+	start_php_script();
+
+	/* this code can be found in the 'demo7.php' file */
 	$Trace = get_package( 'trace' , 'last' , __FILE__ );
 
 	/* these function calls output trace strings with different severity */
@@ -395,6 +428,86 @@ key3=Third localized string
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Obviously all templates are packages itself. Note that html code of the template must be stored in the '/res/templates/template.tpl' file.
 					<h4 class="header">&nbsp;&nbsp;Report generation</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Each report is described by records wich are stored in the umx_report table. You can use Report Manager in the Admin Console. Each record contains report's name, package name and version and function name wich are used to find report generation code.
+					<h4 class="header">&nbsp;&nbsp;Built-in support of internationalization (I18N) and localization (L10N)</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultimix Framework supports internationalization (I18N) and localization (L10N) in a native way. Just look at the example:
+<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+	require_once( 'include/php/startup.php' );
+
+	start_php_script();
+
+	/* this code can be found in the 'demo8.php' file */
+	$AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
+
+	$Str = '{lang:main_page}';
+	$Str = $AutoMarkup->compile_string( $Str );
+
+	print( 'The macro {lang:main_page} will be replaced with "'.$Str.'" string' );
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;You can use the macro {lang:string_alias} anywhere in the *.tpl files. Where string_alias is a string to be displayed according to he client's locale.
+					<h4 class="header">&nbsp;&nbsp;Template engine</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Ultimix Framework has it's own template engine wich is powerfull and easy to understand. It can be accessed through 'page::auto_markup' package, like shown below:
+<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+	require_once( 'include/php/startup.php' );
+
+	start_php_script();
+
+	/* this code can be found in the 'demo9.php' file */
+	$AutoMarkup = get_package( 'page::auto_markup' , 'last' , __FILE__ );
+
+	$Str = '{date:value=now}';
+	$Str = $AutoMarkup->compile_string( $Str );
+
+	print( 'The macro {date:value=now} will be replaced with "'.$Str.'" string' );
+?&gt;
+</pre></div>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;All supported macro a stored in the ./packages/page/packages/auto_markup/conf/cf_macro_scripts config. See it for more information.
+					<h4 class="header">&nbsp;&nbsp;Database support</h4>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;This framework supports wide range of database engines. For example MySQL, PostgreSQL, Oracle, MSSQL etc. You can work with the databases using adapter from package 'database'. The way you can do it is shown below:
+<div class="code"><strong>Code:</strong><pre>
+&lt;?php
+	require_once( 'include/php/startup.php' );
+
+	start_php_script();
+
+	/* this code can be found in the 'database_demo.php' file */
+	$Database = get_package( 'database' , 'last' , __FILE__ );
+
+	/* selecting all users */
+	$Result = $Database->query( 'SELECT * FROM umx_user' );
+	
+	var_dump( $Database->fetch_results( $Result ) );
+	
+	/* selecting all users in the other way */
+	var_dump( $Database->select( '*' , 'umx_user' ) );
+	
+	/* selecting exact user in the other way */
+	var_dump( $Database->select( '*' , 'umx_user' , 'id = 1' ) );
+	
+	/* inserting record */
+	$Database->insert( 
+		'umx_user' , array( 'login' , 'password' ) , 
+		array( 'test_user' , 'test_pass' )
+	);
+	/* commit changes */
+	$Database->commit();
+	
+	/* deleting record */
+	$Database->delete( 'umx_user' , 'id = 1234567' );
+	/* commit changes */
+	$Database->commit();
+	
+	/* updating record */
+	$Database->insert( 
+		'umx_user' , array( 'password' ) , array( 'new_pass' ) , 
+		'login LIKE "test_user"'
+	);
+	/* commit changes */
+	$Database->commit();
+?&gt;
+</pre></div>
 					<h4 class="header">&nbsp;&nbsp;Additional resources</h4>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b><u><a href="http://sourceforge.net/projects/ultimix/forums">Forum (registration is not necessary)</a></u></b>
 					<p>&nbsp;&nbsp;&nbsp;&nbsp;<b>Ultimix-based projects can be found <a href="http://sourceforge.net/projects/ultimix/files/projects/">here</a></b>

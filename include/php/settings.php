@@ -19,4 +19,7 @@
 	global	$ENABLE_REWRITES;
 	$ENABLE_REWRITES = true;
 	
+	global	$TIMEZONE;
+	$TIMEZONE = 'UTC';
+	
 ?>

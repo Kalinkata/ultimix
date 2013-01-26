@@ -17,7 +17,7 @@ Ultimix v. 1.5.252
 18. Preformance was improved.
 19. The macro 'color_scheme' was added.
 20. Other refactorings and improvements.
-21. Documentation was updated.
+21. Installation script was improved.
 
 Ultimix v. 1.5.251
 -----------------------------------------

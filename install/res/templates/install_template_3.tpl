@@ -72,6 +72,7 @@
 			</tr>
 			<tr height="100%">
 				<td colspan="4" class="active_header" align="center">
+					{error_message}
 					<form method="post" id="system">
 						<table>
 							<tr>

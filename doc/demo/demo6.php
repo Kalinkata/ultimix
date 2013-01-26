@@ -10,4 +10,5 @@
 	$Lang = get_package( 'lang' , 'last' , __FILE__ );
 
 	print( 'Hello from '.$Lang->get_string( 'ultimix' ) );
+
 ?>

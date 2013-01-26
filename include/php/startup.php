@@ -42,6 +42,9 @@
 			ini_set( 'session.gc_maxlifetime' , $SessionTimeout );
 			ini_set( 'session.cookie_lifetime' , $SessionTimeout );
 			ini_set( 'session.save_path' , './packages/_core_data/data/session/' );
+
+			global	$TIMEZONE;
+			date_default_timezone_set( $TIMEZONE );
 		}
 		catch( Exception $e )
 		{
@@ -134,10 +137,6 @@
 		{
 			start_script_settings();
 
-			// TODO add markup demo
-			// TODO ... (add multylanguage demo script)
-			// TODO database support (add demo)
-
 			$_GET[ 'page_name' ] = basename( $_SERVER[ 'SCRIPT_NAME' ] , ".php" );
 		}
 		catch( Exception $e )
@@ -202,8 +201,8 @@
 			main_setup();
 
 			$Schedule = get_package( 'schedule' , 'last' , __FILE__ );
-			
-			$Schedule->process_tasks();
+
+			$Schedule->run_tasks();
 		}
 		catch( Exception $e )
 		{
@@ -257,7 +256,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 	/**
 	*	\~russian Обработка ошибок исполнения.
 	*
@@ -290,7 +289,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 	/**
 	*	\~russian Обработка ошибок исполнения.
 	*
@@ -339,5 +338,5 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-	
+
 ?>

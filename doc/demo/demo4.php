@@ -20,4 +20,5 @@
 	{
 		print( 'The file index.php exists!' );
 	}
+
 ?>

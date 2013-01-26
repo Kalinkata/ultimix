@@ -15,10 +15,10 @@
 
 	require_once( './packages/core/core.php' );
 	require_once( './include/php/startup.php' );
-	
+
 	@unlink( './packages/cache/data/cache' );
 	@unlink( './packages/cache/data/table' );
-	
+
 	/**
 	*	Первый шаг.
 	*
@@ -36,7 +36,7 @@
 		print( $Page );
 		exit( 0 );
 	}
-	
+
 	/**
 	*	Обработка ситуации, когда не удалось подключиться к базе данных.
 	*
@@ -73,7 +73,7 @@
 			exit( 0 );
 		}
 	}
-	
+
 	/**
 	*	Функция обработки второго шага.
 	*
@@ -115,7 +115,7 @@
 		$CachedFS->file_put_contents( 
 			"packages/_core_data/conf/cf_mysql_database" , "$Host#$User#$Password#$Database#$Prefix"
 		);
-		
+
 		if( $DatabaseAlgorithms->try_connect() )
 		{
 			$DBScript = file_get_contents( './install/sql/data.sql' , 'cleaned' );
@@ -132,7 +132,7 @@
 			handle_connection_error( $Silent );
 		}
 	}
-	
+
 	/**
 	*	Показать форму для второго шага.
 	*
@@ -147,16 +147,16 @@
 	{
 		$CachedFS = get_package( 'cached_fs' );
 		$Page = $CachedFS->file_get_contents( "./install/res/templates/install_template_2.tpl" );
-		
+
 		$Needles = array( '{host}' , '{user}' , '{password}' , '{database}' , '{prefix}' , '{error_message}' );
-		
+
 		$Config = $CachedFS->file_get_contents( "packages/_core_data/conf/cf_mysql_database" );
 		$Replacements = array_merge( explode( '#' , $Config ) , array( '' ) );
-		
+
 		print( str_replace( $Needles , $Replacements , $Page ) );
 		exit( 0 );
 	}
-	
+
 	/**
 	*	Второй шаг.
 	*
@@ -188,7 +188,7 @@
 			show_step_2_form();
 		}
 	}
-	
+
 	/**
 	*	Функция обработки третьего шага.
 	*
@@ -212,17 +212,54 @@
 		$HttpHost = rtrim( $HttpHost , '/\\' );
 		$HtAccess = file_get_contents( './install/res/templates/tpl.htaccess' );
 		$HtAccess = str_replace( '{http_host}' , $HttpHost , $HtAccess );
-		file_put_contents( '.htaccess' , $HtAccess );
-		
+		$Result = @file_put_contents( '.htaccess' , $HtAccess );
+
+		if( $Result === false && $Silent === false )
+		{
+			print( install_step_3_form( $HttpHost , 'Can\'t access .htaccess' ) );
+			return;
+		}
+
 		file_put_contents( 
 			'./packages/_core_data/conf/cf_settings' , "HTTP_HOST=$HttpHost\r\nGZIP_TRAFFIC=false"
 		);
-		
+
 		if( $Silent === false )
 		{
 			header( 'Location: ./install.php?page=4' );
 			exit( 0 );
 		}
+	}
+
+	/**
+	*	Форма третбего шага.
+	*
+	*	@param $HttpHost - Хост.
+	*
+	*	@param $ErrorMessage - Сообщение об ошибке.
+	*
+	*	@author Додонов А.А.
+	*/
+	/**
+	*	Third step form.
+	*
+	*	@param $HttpHost - Host.
+	*
+	*	@param $ErrorMessage - Error message.
+	*
+	*	@author Dodonov A.A.
+	*/
+	function			install_step_3_form( $HttpHost , $ErrorMessage )
+	{
+		$CachedFS = get_package( 'cached_fs' );
+
+		$HttpHost = $HttpHost ? $HttpHost : 
+						rtrim( 'http://'.$_SERVER[ 'SERVER_NAME' ].dirname( $_SERVER[ 'REQUEST_URI' ] ) , '/\\' );
+
+		$Page = $CachedFS->file_get_contents( "./install/res/templates/install_template_3.tpl" );
+		$Page = str_replace( array( '{http_root}' , '{error_message}' ) , array( $HttpHost , $ErrorMessage ) , $Page );
+
+		return( $Page );
 	}
 	
 	/**
@@ -231,6 +268,8 @@
 	*	@param $HttpHost - Хост.
 	*
 	*	@param $Silent - Тихая обработка.
+	*
+	*	@param $ErrorMessage - Сообщение об ошибке.
 	*
 	*	@author Додонов А.А.
 	*/
@@ -241,23 +280,17 @@
 	*
 	*	@param $Silent - Silent processing.
 	*
+	*	@param $ErrorMessage - Error message.
+	*
 	*	@author Dodonov A.A.
 	*/
-	function			install_step_3( $HttpHost , $Silent = false )
+	function			install_step_3( $HttpHost , $Silent = false , $ErrorMessage = false )
 	{
-		$CachedFS = get_package( 'cached_fs' );
-		$Security = get_package( 'security' );
-		
 		if( $HttpHost === false )
 		{
 			if( $Silent === false )
 			{
-				$Page = $CachedFS->file_get_contents( "./install/res/templates/install_template_3.tpl" );
-				$Page = str_replace( 
-					'{http_root}' , 
-					rtrim( 'http://'.$_SERVER[ 'SERVER_NAME' ].dirname( $_SERVER[ 'REQUEST_URI' ] ) , '/\\' ) , 
-					$Page
-				);
+				$Page = install_step_3_form( $HttpHost , $ErrorMessage );
 				print( $Page );
 				exit( 0 );
 			}
@@ -267,7 +300,7 @@
 			handle_step_3( $HttpHost , $Silent );
 		}
 	}
-	
+
 	/**
 	*	Четвёртый шаг.
 	*
@@ -285,7 +318,7 @@
 		print( $Page );
 		exit( 0 );
 	}
-	
+
 	/**
 	*	Шаги инсталлятора.
 	*
@@ -308,21 +341,19 @@
 	{
 		$Security = get_package( 'security' );
 		$Page = $Security->get_gp( 'page' , 'integer' , 1 );
-		
+
 		switch( $Page )
 		{
-			case( 1 ):install_step_1();
-			
-			case( 2 ):install_step_2( false );
-			
-			case( 3 ):
-				install_step_3( $Security->get_gp( 'http_root' , 'string' , false ) , false );
-			break;
-			
-			case( 4 ):install_step_4();
+			case( 1 ):install_step_1();break;
+
+			case( 2 ):install_step_2( false );break;
+
+			case( 3 ):install_step_3( $Security->get_gp( 'http_root' , 'string' , false ) , false , false );break;
+
+			case( 4 ):install_step_4();break;
 		}
 	}
-	
+
 	/**
 	*	Отображение визарда установки.
 	*
@@ -341,9 +372,9 @@
 			{
 				$DBS = file_get_contents( './install/conf/cf_db_settings' );
 				$DBS = explode( '#' , $DBS );
-				
+
 				install_step_2( $DBS[ 0 ] , $DBS[ 1 ] , $DBS[ 2 ] , $DBS[ 3 ] , $DBS[ 4 ] , true );
-				
+
 				$HttpHost = rtrim( 'http://'.$_SERVER[ 'SERVER_NAME' ].dirname( $_SERVER[ 'REQUEST_URI' ] ) , '/\\' );
 				install_step_3( $HttpHost , true );
 			}
@@ -357,7 +388,9 @@
 			handle_script_error( true , $e );
 		}
 	}
-	
+
+	start_php_script();
+
 	/* running wizard */
 	run_installation_wizard();
 ?>
