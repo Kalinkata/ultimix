@@ -203,7 +203,9 @@
 			{
 				$Name = $Settings->get_setting( 'name' );
 
-				return( isset( $this->Vars[ $Name ] ) ? $this->Vars[ $Name ] : '' );
+				return( 
+					isset( $this->Vars[ $Name ] ) ? $this->Vars[ $Name ] : $Settings->get_setting( 'default' , '' )
+				);
 			}
 			catch( Exception $e )
 			{

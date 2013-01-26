@@ -117,7 +117,7 @@
 					$this->Settings->load_settings( $Parameters );
 					$Text = $this->Settings->get_setting( 'text' , 'create' );
 					
-					$Code = "{href:tpl=submit0;form_id={prefix}_create_form;text=$Text}";
+					$Code = "{href:tpl=submit0;form_id=create_{prefix}_form;text=$Text}";
 					$Str = str_replace( "{create:$Parameters}" , $Code , $Str );
 				}
 				
@@ -161,7 +161,7 @@
 			{
 				if( strpos( $Str , '{save}' ) !== false )
 				{
-					$Str = str_replace( '{save}' , '{href:tpl=submit0;form_id={prefix}_update_form;text=save}' ,$Str );
+					$Str = str_replace( '{save}' , '{href:tpl=submit0;form_id=update_{prefix}_form;text=save}' ,$Str );
 				}
 				
 				return( $Str );
@@ -204,7 +204,7 @@
 			{
 				if( strpos( $Str , '{copy}' ) !== false )
 				{
-					$Str = str_replace( '{copy}' , '{href:tpl=submit0;form_id={prefix}_copy_form;text=save}' ,$Str );
+					$Str = str_replace( '{copy}' , '{href:tpl=submit0;form_id=copy_{prefix}_form;text=save}' ,$Str );
 				}
 				
 				return( $Str );

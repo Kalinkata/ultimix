@@ -1,3 +1,0 @@
-<div id="{prefix}_search_form" class="{if:condition={http_param:post=1;type=string;name=search_string;default=};then=block;else=invisible} no_padding">
-<input id="search_string" type="text" class="width_320 flat" value="{http_param:post=1;type=string;name=search_string;default=}" name="search_string">&nbsp;{href:tpl=submit0;form_id={form_id};raw_text={lang:{prefix}_search;default=search}}&nbsp;{href:page=javascript[dot_dot]ultimix.CancelSearch( '{element_id}' , {speed} )[dot_comma];text=cancel}
-</div>

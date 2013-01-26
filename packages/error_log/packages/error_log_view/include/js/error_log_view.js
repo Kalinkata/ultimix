@@ -29,14 +29,7 @@ if( !ultimix.error_log )
 */
 ultimix.error_log.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'error_log' , 'error_log::error_log_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'error_log' , 'error_log::error_log_view' );
 }
 
 /**
@@ -56,7 +49,9 @@ ultimix.error_log.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.error_log.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'error_log' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'error_log' , 'error_log::error_log_view'
+	);
 }
 
 /**

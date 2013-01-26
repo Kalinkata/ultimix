@@ -117,14 +117,7 @@ ultimix_file_input_view_after_image_upload_processor.store_file_info = function(
 */
 ultimix.file_input.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'file_input' , 'file_input::file_input_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'file_input' , 'file_input::file_input_view' );
 }
 
 /**
@@ -144,7 +137,9 @@ ultimix.file_input.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.file_input.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'file_input_view' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'file_input' , 'file_input::file_input_view'
+	);
 }
 
 /**

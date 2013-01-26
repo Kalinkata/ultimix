@@ -313,7 +313,7 @@ ultimix.forms.submit_form_1 = function( FormId , Param1 , Value1 , ConfirmString
 *	@author Dodonov A.A.
 */
 ultimix.forms.submit_form_2 = function( FormId , Param1 , Value1 , Param2 , Value2 , 
-																			ConfirmString , Action , Waiting , Method )
+															ConfirmString , Action , Waiting , Method )
 {	
 	if( !ultimix.forms.form_exists( FormId ) || !ultimix.forms.item_exists( Param1 ) || 
 		!ultimix.forms.item_exists( Param2 ) )
@@ -360,7 +360,7 @@ ultimix.forms.submit_form_2 = function( FormId , Param1 , Value1 , Param2 , Valu
 *	@author Dodonov A.A.
 */
 ultimix.forms.submit_form_3 = function( FormId , Param1 , Value1 , Param2 , Value2 , Param3 , Value3 , 
-																			ConfirmString , Action , Waiting , Method )
+															ConfirmString , Action , Waiting , Method )
 {
 	if( !ultimix.forms.form_exists( FormId ) || !ultimix.forms.item_exists( Param1 ) || 
 		!ultimix.forms.item_exists( Param2 ) || !ultimix.forms.item_exists( Param3 ) )
@@ -475,6 +475,34 @@ ultimix.forms.cancel_search = function( ElementId , Speed )
 		document.getElementById( 'search_string' ).value = '';
 		window.location.href = window.location.href;
 	}
+}
+
+/**
+*	Function cancels importing.
+*
+*	@param ElementId - Element id.
+*
+*	@param Speed - Toggle speed.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.forms.cancel_import = function( ElementId , Speed )
+{
+	ultimix.ToggleElement( ElementId , Speed );
+}
+
+/**
+*	Function imports file.
+*
+*	@param Prefix -Prefix.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.forms.import_file = function( Prefix )
+{
+	jQuery( '#' + Prefix + '_form' ).attr( 'enctype' , 'multipart/form-data' );
+
+	ultimix.forms.submit_form_1( Prefix + '_form' , Prefix + '_action' , 'import_record' , '' , '' , false , 'post' );
 }
 
 /**

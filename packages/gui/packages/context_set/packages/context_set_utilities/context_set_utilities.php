@@ -307,7 +307,7 @@
 				if( method_exists( $Provider , 'select_list' ) === false )
 				{
 					$ClassName = $Provider ? get_class( $Provider ) : 'undefined_class';
-					throw( new Exception( 'Method "select_list" was not found in the class "'.$ClassName."'" ) );
+					throw( new Exception( 'Method "select_list" was not found in the class "'.$ClassName.'"' ) );
 				}
 
 				$Records = call_user_func( array( $Provider , 'select_list' ) , implode( ',' , $IdList ) );
@@ -510,7 +510,8 @@
 			try
 			{
 				if( $this->Security->get_gp( $Prefix.'_record_id' , 'command' , false ) !== false && 
-					$this->Security->get_gp( $Prefix.'_record_id' , 'command' ) != -1 )
+					$this->Security->get_gp( $Prefix.'_record_id' , 'command' ) != -1 && 
+					$this->Security->get_gp( $Prefix.'_record_id' , 'command' ) != 'undefined' )
 				{
 					$Ids = array( $this->Security->get_gp( $Prefix.'_record_id' , 'command' ) );
 				}
@@ -560,7 +561,7 @@
 			{
 				$Name = $Settings->get_setting( 'name' );
 				$Type = $Settings->get_setting( 'type' , 'string' );
-				
+
 				if( $this->Security->get_gp( $Name , 'set' ) )
 				{
 					$Value = $this->Security->get_gp( $Name , $Type );
@@ -575,7 +576,7 @@
 					$Value = serialize( $Value );
 					$Value = $this->Security->get( $Value , 'string' );
 				}
-				
+
 				return( $Value );
 			}
 			catch( Exception $e )
@@ -583,7 +584,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция подстановки данных в форму.
 		*
@@ -637,7 +638,58 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Функция установка метода выборки данных.
+		*
+		*	@param $PackageName - Название пакета.
+		*
+		*	@param $PackageVersion - Версия пакета.
+		*
+		*	@param $Method - Метод.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function sets data selecting method.
+		*
+		*	@param $PackageName - Package name.
+		*
+		*	@param $PackageVersion - Package version.
+		*
+		*	@param $Method - Method.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	check_method( $PackageName , $PackageVersion , $Method )
+		{
+			try
+			{
+				$Object = get_package( $PackageName , $PackageVersion , __FILE__ );
+
+				if( method_exists( $Object , $Method ) === false )
+				{
+					throw( 
+						new Exception( 
+							"The method '$Method' was not foud in the $PackageName.$PackageVersion package"
+						)
+					);
+				}
+
+				$this->Trace->add_trace_string( 
+					"{lang:data_accessor} : $PackageName.$PackageVersion->$Method" , COMMON
+				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция установка пакета выборки данных.
 		*
@@ -672,9 +724,7 @@
 				$PackageVersion = $Options->get_setting( 'access_package_version' , 'last' );
 				$Method = $Options->get_setting( 'select_func' , 'select' );
 
-				$this->Trace->add_trace_string( 
-					"{lang:data_accessor} : $PackageName.$PackageVersion->$Method" , COMMON
-				);
+				$this->check_method( $PackageName , $PackageVersion , $Method );
 
 				$Paging->set( 'DataAccessor' , create_function( '$Start , $Limit , $Field , $Order , $Options' , 
 					"\$Object = get_package( '$PackageName' , '$PackageVersion' , __FILE__ );

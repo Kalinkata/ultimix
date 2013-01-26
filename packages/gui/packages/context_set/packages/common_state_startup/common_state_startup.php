@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	common_state_startup_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные пакеты.
 		*
@@ -40,7 +40,7 @@
 		var					$Security = false;
 		var					$StartupUtilities = false;
 		var					$Trace = false;
-		
+
 		/**
 		*	\~russian Префикс.
 		*
@@ -52,7 +52,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Prefix = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -119,7 +119,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Действия если обработки не произошло.
 		*
@@ -241,7 +241,7 @@
 
 				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
 				$Direct = $Options->get_setting( 'direct_'.$State , 0 );
-
+				
 				if( $Action == $State.'_record' || $Direct != 0 )
 				{
 					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , $State );
@@ -293,7 +293,7 @@
 			{
 				$Next = true;
 
-				$States = array( 'delete' , 'create' , 'update' , 'copy' );
+				$States = array( 'delete' , 'create' , 'update' , 'copy' , 'import' );
 
 				foreach( $States as $i => $State )
 				{
@@ -406,7 +406,7 @@
 			{
 				$Next = true;
 
-				$States = array( 'list' , 'create' , 'update' , 'copy' , 'record_view' );
+				$States = array( 'list' , 'create' , 'update' , 'copy' , 'record_view' , 'export' );
 
 				foreach( $States as $i => $State )
 				{

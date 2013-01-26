@@ -208,12 +208,12 @@
 			{
 				$this->Trace->add_trace_string( '{lang:no_need_to_run_trace_message}' , COMMON );
 
-				if( $Direct == 0)
+				if( $Direct == 0 )
 				{
 					$this->Trace->add_trace_string( 'direct_call_is_not_allowed' );
 					return;
 				}
-				
+
 				if( strpos( $ContextAction , '_form' ) !== false )
 				{
 					$this->trace_field( $Prefix , 'context_action' , $ContextAction );
@@ -317,6 +317,57 @@
 		}
 
 		/**
+		*	\~russian Заполнение настроек.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@param $StateName - Имя стейта.
+		*
+		*	@param $Config - Конфиг стейта.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function sets settings.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@param $StateName - State's name.
+		*
+		*	@param $Config - State's config.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	set_undefined_options( $Options , $StateName , $Config )
+		{
+			try
+			{
+				$this->LocalOptions->clear();
+				$this->LocalOptions->append_settings( $Config );
+				$this->LocalOptions->add_settings_from_object( $Options );
+				$this->LocalOptions->set_undefined( 'access_package_version' , 'last' );
+				if( $StateName == 'import' )
+				{
+					$this->LocalOptions->set_undefined( $StateName.'_func' , 'import' );
+				}
+				else
+				{
+					$this->LocalOptions->set_undefined( 
+						$StateName.'_func' , $StateName == 'copy' ? 'create' : $StateName
+					);
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Функция запускает стейт-вида.
 		*
 		*	@param $ContextSet - Набор контекстов.
@@ -356,13 +407,10 @@
 			{
 				$Config = $this->prepare_config( $ContextSet , $Config , $StateName );
 
-				$this->LocalOptions->clear();
-				$this->LocalOptions->append_settings( $Config );
-				$this->LocalOptions->add_settings_from_object( $Options );
-				$this->LocalOptions->set_undefined( 'access_package_version' , 'last' );
-				$this->LocalOptions->set_undefined( $StateName.'_func' , $StateName == 'copy' ? 'create' : $StateName );
+				$this->set_undefined_options( $Options , $StateName , $Config );
 
 				$ContextSet->Context->load_raw_config( $Config );
+
 				if( $ContextSet->run_execution( $this->LocalOptions , $this->DefaultControllers , 1 ) )
 				{
 					return( true );
@@ -406,7 +454,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			prepare_options( $Options , $StateName , $Config )
+		function			prepare_options( &$Options , $StateName , $Config )
 		{
 			try
 			{
@@ -417,7 +465,7 @@
 
 				if( strpos( $Config , 'success_func' ) === false )
 				{
-					$Suffix = '_form';
+					$Suffix = $StateName == 'export' ? '' : '_form';
 					$Config .= "\r\nsuccess_func=".$StateName.$Suffix;
 					$this->LocalOptions->set_undefined( 'success_func' , $StateName.$Suffix );
 				}
@@ -464,7 +512,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			run_view_state( &$ContextSet , $Options , $StateName , $Config )
+		function			run_view_state( &$ContextSet , &$Options , $StateName , $Config )
 		{
 			try
 			{
@@ -572,11 +620,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			try_run_view_state( &$ContextSet , $Options , $StateName )
+		function			try_run_view_state( &$ContextSet , &$Options , $StateName )
 		{
 			try
 			{
-				$Config = $this->get_common_state_config( $ContextSet , $Options , $StateName , '_form' );
+				$Config = $this->get_common_state_config( 
+					$ContextSet , $Options , $StateName , $StateName == 'export' ? '' : '_form'
+				);
 
 				if( $Config !== false )
 				{

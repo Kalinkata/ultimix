@@ -322,14 +322,15 @@
 			{
 				$Settings->set_undefined( 'default' , 0 );
 				$Settings->set_undefined( 'id' , md5( microtime() ) );
-				$Settings->set_undefined( 'label' , '' );
+				$Settings->set_undefined( 'label' , 'no_text' );
 
 				$Type = $Settings->get_setting( 'type' , 'double' );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , $Type.'_state_checkbox.tpl' );
 
-				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
-				
+				$Raw = $Settings->get_raw_settings();
+				$Code = $this->String->print_record( $Code , $Raw );
+
 				return( $Code );
 			}
 			catch( Exception $e )

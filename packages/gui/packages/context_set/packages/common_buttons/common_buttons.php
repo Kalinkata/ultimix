@@ -91,6 +91,8 @@
 		*
 		*	@param $Name - Название кнопки.
 		*
+		*	@param $Permits - Доступы на кнопку.
+		*
 		*	@return HTML код для отображения.
 		*
 		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
@@ -102,19 +104,23 @@
 		*
 		*	@param $Name - Button name.
 		*
+		*	@param $Permits - Button permits.
+		*
 		*	@return HTML code to display.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_button_code( $Name )
+		private function	get_button_code( $Name , $Permits )
 		{
 			try
 			{
 				$Path = _get_package_relative_path_ex( 'gui::context_set::common_buttons' , 'last' );
 
 				$ButtonCode = $this->CachedMultyFS->get_template( __FILE__ , 'toolbar_'.$Name.'_button.tpl' );
+
+				$ButtonCode = str_replace( '{permits}' , $Permits , $ButtonCode );
 
 				$this->Trace->add_trace_string( "{lang:$Name"."_button_was_compiled}" , COMMON );
 
@@ -170,7 +176,7 @@
 
 				if( $PermitValidationResult )
 				{
-					return( $this->get_button_code( $Name ) );
+					return( $this->get_button_code( $Name , $PermitsFilter ) );
 				}
 
 				$this->Trace->add_trace_string( "{lang:$Name"."_button_was_not_compiled}" , COMMON );
@@ -275,6 +281,62 @@
 				$Code = str_replace( 
 					'{search_button}' , 
 					$this->get_common_button_content( $Config , $ExtOptions , 'search' ) , $Code 
+				);
+
+				return( $Code );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция отвечающая за обработку кнопки импорта.
+		*
+		*	@param $ContextSetConfig - Настройки набора контекстов.
+		*
+		*	@param $Options - Параметры отображения.
+		*
+		*	@param $Code - Обрабатывемая строка.
+		*
+		*	@return HTML код для отображения.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes string.
+		*
+		*	@param $ContextSetConfig - Set of contexts settings.
+		*
+		*	@param $Options - Options of drawing.
+		*
+		*	@param $Code - Processing string.
+		*
+		*	@return HTML code to display.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_import_button( &$ContextSetConfig , &$Options , $Code )
+		{
+			try
+			{
+				if( strpos( $Code , chr( 123 ).'import_button' ) === false )
+				{
+					return( $Code );
+				}
+
+				$Config = $this->get_config( $ContextSetConfig , $Options , 'import_button' );
+
+				$ExtOptions = false;
+
+				$Code = str_replace( 
+					'{import_button}' , 
+					$this->get_common_button_content( $Config , $ExtOptions , 'import' ) , $Code 
 				);
 
 				return( $Code );
@@ -538,6 +600,111 @@
 		}
 
 		/**
+		*	\~russian Функция отвечающая за обработку кнопки экспорта.
+		*
+		*	@param $ContextSetConfig - Настройки набора контекстов.
+		*
+		*	@param $Options - Параметры отображения.
+		*
+		*	@param $Code - Обрабатывемая строка.
+		*
+		*	@return HTML код для отображения.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes string.
+		*
+		*	@param $ContextSetConfig - Set of contexts settings.
+		*
+		*	@param $Options - Options of drawing.
+		*
+		*	@param $Code - Processing string.
+		*
+		*	@return HTML code to display.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			compile_export_button( &$ContextSetConfig , &$Options , $Code )
+		{
+			try
+			{
+				if( strpos( $Code , chr( 123 ).'export_button' ) === false )
+				{
+					return( $Code );
+				}
+
+				$Config = $this->get_config( $ContextSetConfig , $Options , 'export' );
+
+				return( $this->compile_button( $Config , $Code , 'export' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция создания кнопок.
+		*
+		*	@param $ContextSetConfig - Опции набора контекстов.
+		*
+		*	@param $Options - Параметры отображения.
+		*
+		*	@param $Str - Обрабатывемая строка.
+		*
+		*	@return HTML код для отображения.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method creates buttons.
+		*
+		*	@param $ContextSetConfig - Options of context_set.
+		*
+		*	@param $Options - Options of drawing.
+		*
+		*	@param $Str - Processing string.
+		*
+		*	@return HTML code to display.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	run_button_compilation( &$ContextSetConfig , &$Options , $Str )
+		{
+			try
+			{
+				$Str = $this->compile_search_button( $ContextSetConfig , $Options , $Str );
+
+				$Str = $this->compile_import_button( $ContextSetConfig , $Options , $Str );
+
+				$Str = $this->compile_create_button( $ContextSetConfig , $Options , $Str );
+
+				$Str = $this->compile_update_button( $ContextSetConfig , $Options , $Str );
+
+				$Str = $this->compile_copy_button( $ContextSetConfig , $Options , $Str );
+
+				$Str = $this->compile_delete_button( $ContextSetConfig , $Options , $Str );
+
+				$Str = $this->compile_export_button( $ContextSetConfig , $Options , $Str );
+
+				return( $Str );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Функция создания кнопок.
 		*
 		*	@param $ContextSetConfig - Опции набора контекстов.
@@ -573,15 +740,7 @@
 			{
 				$this->Trace->start_group( 'compile_buttons' );
 
-				$Str = $this->compile_search_button( $ContextSetConfig , $Options , $Str );
-
-				$Str = $this->compile_create_button( $ContextSetConfig , $Options , $Str );
-
-				$Str = $this->compile_update_button( $ContextSetConfig , $Options , $Str );
-
-				$Str = $this->compile_copy_button( $ContextSetConfig , $Options , $Str );
-
-				$Str = $this->compile_delete_button( $ContextSetConfig , $Options , $Str );
+				$Str = $this->run_button_compilation( $ContextSetConfig , $Options , $Str );
 
 				$this->Trace->end_group();
 

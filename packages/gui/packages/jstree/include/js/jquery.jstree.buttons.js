@@ -19,6 +19,25 @@ if( !ultimix.jstree )
 }
 
 /**
+*	Getting selected nodex.
+*
+*	@param Selector - Tree selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.jstree.get_selected_node = function( Selector )
+{
+	var 		Nodes = jQuery( Selector ).jstree( 'get_selected' );
+
+	if( Nodes.length )
+	{
+		return( Nodes[ 0 ] );
+	}
+
+	return( [] );
+}
+
+/**
 *	Create node event handler.
 *
 *	@param e - Event object.
@@ -30,22 +49,21 @@ if( !ultimix.jstree )
 ultimix.jstree.create_node_event_handler = function( e , Data )
 {
 	var			RootId = jQuery( Data.rslt.parent ).attr( 'id' ).replace( 'phtml_' , '' );
+	var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
 
 	ultimix.ajax_gate.direct_controller(
 		{
-			'package_name' : 'category::category_controller' , 
-			'meta' : 'meta_create_category' , 
-			'category_action' : 'create_record' , 
-			'root_id' : RootId , 
-			'title' : Data.rslt.name , 
+			'package_name' : 'category::category_controller' , 'meta' : 'meta_create_category' , 
+			'category_action' : 'create_record' , 'root_id' : RootId , 'title' : Data.rslt.name , 
 			'category_name' : 'category_name'
 		} , 
 		{
-			'after_request' : function( Result )
+			'success' : function( Result )
 			{
 				/* parsing result */
 				eval( "Result = " + Result + ";" );
 				jQuery( Data.rslt.obj ).attr( 'id' , 'phtml_' + Result.id );
+				ultimix.std_dialogs.close_message_box( ProgressDialogId );
 			}
 		}
 	);
@@ -71,7 +89,7 @@ ultimix.jstree.rename_node_event_handler = function( e , Data )
 			'category_action' : 'update_category_title' , 
 			'category_id' : NodeId , 
 			'title' : Data.rslt.new_name
-		}
+		} , {}
 	);
 }
 
@@ -90,14 +108,14 @@ ultimix.jstree.remove_node_event_handler = function( e , Data )
 	{
 		var			NodeId = jQuery( Data.rslt.obj[ i ] ).attr( 'id' ).replace( 'phtml_' , '' );
 
-		/*ultimix.ajax_gate.direct_controller(
+		ultimix.ajax_gate.direct_controller(
 			{
 				'package_name' : 'category::category_controller' , 
 				'meta' : 'meta_delete_category' , 
 				'category_action' : 'delete_record' , 
 				'category_record_id' : NodeId
-			}
-		);*/
+			} , {}
+		);
 	}
 }
 
@@ -192,9 +210,9 @@ ultimix.jstree.show_remove_item_dialog = function( ConfirmString )
 			if( Result == ultimix.std_dialogs.MB_YES )
 			{
 				var 		Tree = jQuery.jstree._focused();
-				
+
 				ultimix.jstree.move_up_for_selected( Tree );
-				
+
 				Tree.remove();
 			}
 		}

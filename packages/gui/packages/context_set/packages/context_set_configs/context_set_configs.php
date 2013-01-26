@@ -355,7 +355,7 @@
 				);
 
 				$PermitsFilter = $CommonStateConfig->get_setting( 'permits_filter' , 'admin' );
-				
+
 				$this->Trace->add_trace_string( "{lang:permits_filter} : \"$PermitsFilter\"" , COMMON );
 
 				return( $PermitsFilter );

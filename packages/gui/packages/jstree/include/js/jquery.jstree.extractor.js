@@ -38,7 +38,7 @@ ultimix.jstree.ExtractJSTreeNode = function( AcceptorSelector , StatusSelector )
 	{
 		var	id = jQuery( Node ).attr( 'id' );
 		id = id.replace( 'phtml_' , '' );
-		
+
 		jQuery( AcceptorSelector ).attr( 'value' , id );
 		jQuery( StatusSelector ).attr( 'value' , Tree.get_text( Node ) );
 

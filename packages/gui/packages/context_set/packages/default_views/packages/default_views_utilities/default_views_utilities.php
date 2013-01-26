@@ -263,7 +263,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	build_query_string( $Options )
+		function			build_query_string( &$Options )
 		{
 			try
 			{
@@ -272,14 +272,14 @@
 
 				if( strlen( $SearchString ) )
 				{
-					$CommonStateConfigFileName = $Options->get_setting( 
+					$CommonStateConfigFileName = $this->ContextSet->ContextSetSettings->get_setting( 
 						'common_state_config_search_form' , 'cfcxs_search_form'
 					);
-					
+
 					$ComponentPath = dirname( $Options->get_setting( 'file_path' ) );
-					
+
 					$CommonStateConfigPath = "$ComponentPath/conf/$CommonStateConfigFileName";
-					
+
 					if( $this->CachedMultyFS->file_exists( $CommonStateConfigPath ) )
 					{
 						$this->compile_query_string( $CommonStateConfigPath );
@@ -333,7 +333,7 @@
 					$Record = $this->ContextSetUtilities->extract_data_from_request(
 						$Options , $Record , 'get_post_extraction_script' , $this->Prefix
 					);
-					
+
 					$Form = $this->ContextSetUtilities->set_form_data( $Form , $Record );
 				}
 

@@ -1,0 +1,1 @@
+{toolbar_button:page=javascript:ultimix.ToggleElement( 'import_{prefix}_form' , 500 );package_name=gui::context_set::common_buttons;icon=import_024.gif;permit={permits};title=import_button}

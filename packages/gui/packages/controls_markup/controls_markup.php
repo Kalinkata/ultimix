@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс обработки контролов.
 	*
@@ -25,7 +25,6 @@
 	*/
 	class	controls_markup_1_0_0
 	{
-		
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -40,7 +39,8 @@
 		var					$Database = false;
 		var					$Security = false;
 		var					$String = false;
-		
+		var					$Utilities = false;
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -59,6 +59,7 @@
 				$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->String = get_package( 'string' , 'last' , __FILE__ );
+				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -97,7 +98,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'textarea'.
 		*
@@ -167,25 +168,17 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_select_data( &$Settings )
+		private function	get_select_data_from_query( &$Settings )
 		{
 			try
 			{
-				if( $Settings->get_setting( 'query' , false ) !== false )
-				{
-					$Query = $Settings->get_setting( 'query' );
-					$this->Database->query_as( DB_OBJECT );
-					$Records = $this->Database->query( $Query );
-					$Records = $this->Database->fetch_results( $Records );
-					$First = get_field_ex( $Records , 'id' );
-					$Second = get_field_ex( $Records , 'value' );
-				}
-				else
-				{
-					$First = explode( '|' , $Settings->get_setting( 'first' , false ) );
-					$Second = explode( '|' , $Settings->get_setting( 'second' , false ) );
-				}
-				
+				$Query = $Settings->get_setting( 'query' );
+				$this->Database->query_as( DB_OBJECT );
+				$Records = $this->Database->query( $Query );
+				$Records = $this->Database->fetch_results( $Records );
+				$First = get_field_ex( $Records , 'id' );
+				$Second = get_field_ex( $Records , 'value' );
+
 				return( array( $First , $Second ) );
 			}
 			catch( Exception $e )
@@ -193,7 +186,94 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Выборка данных для селекта.
+		*
+		*	@param $Settings - Настройки селекта.
+		*
+		*	@return array( ids , values ).
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function fetches data for select.
+		*
+		*	@param $Settings - Select settings.
+		*
+		*	@return array( ids , values ).
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_select_data_from_package( &$Settings )
+		{
+			try
+			{
+				$Package = $this->Utilities->get_package( $Settings , __FILE__ , 'access_' );
+				$Records = $Package->simple_select();
+				$First = get_field_ex( $Records , 'id' );
+				$Second = get_field_ex( $Records , 'title' );
+
+				return( array( $First , $Second ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Выборка данных для селекта.
+		*
+		*	@param $Settings - Настройки селекта.
+		*
+		*	@return array( ids , values ).
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function fetches data for select.
+		*
+		*	@param $Settings - Select settings.
+		*
+		*	@return array( ids , values ).
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_select_data( &$Settings )
+		{
+			try
+			{
+				if( $Settings->get_setting( 'query' , false ) !== false )
+				{
+					return( $this->get_select_data_from_query( $Settings ) );
+				}
+				elseif( $Settings->get_setting( 'access_package_name' , false ) !== false )
+				{
+					return( $this->get_select_data_from_package( $Settings ) );
+				}
+				else
+				{
+					$First = explode( ',' , $Settings->get_setting( 'first' , false ) );
+					$Second = explode( ',' , $Settings->get_setting( 'second' , false ) );
+				}
+
+				return( array( $First , $Second ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция обработки макроса 'select'.
 		*
@@ -229,22 +309,22 @@
 			try
 			{
 				$Code = '';
-				
+
 				foreach( $First as $k => $v )
 				{
 					$Selected = '';
-					
+
 					if( $SelectedId !== false && $SelectedId == $v )
 					{
 						$Selected = 'selected ';
 					}
-					
+
 					$PlaceHolders = array( '{selected}' , '{value}' , '{title}' );
 					$Data = array( $Selected , $v , $Second[ $k ] );
 					$Code .= $this->CachedMultyFS->get_template( __FILE__ , 'select_option.tpl' );
 					$Code = str_replace( $PlaceHolders , $Data , $Code );
 				}
-				
+
 				return( $Code );
 			}
 			catch( Exception $e )
@@ -252,7 +332,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция обработки макроса 'select'.
 		*

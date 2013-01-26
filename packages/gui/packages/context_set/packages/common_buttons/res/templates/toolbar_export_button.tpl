@@ -1,0 +1,1 @@
+{toolbar_button:page=javascript:ultimix.forms.submit_form_2( '{prefix}_form' , '{prefix}_action' , 'export_record' , '{prefix}_context_action' , 'export_record_form' , false , false , false , 'post');package_name=gui::context_set::common_buttons;icon=export_024.gif;permit={permits};title=export_button}

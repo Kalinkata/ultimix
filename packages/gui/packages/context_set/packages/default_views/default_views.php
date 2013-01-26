@@ -221,7 +221,7 @@
 				else
 				{
 					$this->Provider->Output = $this->ContextSetUtilities->get_form( 
-						$Options , array() , 'create_form' , $this->Prefix , 'create_record'
+						$Options , array() , 'create_'.$this->Prefix.'_form' , $this->Prefix , 'create_record'
 					);
 				}
 
@@ -259,22 +259,7 @@
 		{
 			try
 			{
-				$IdList = $this->ContextSetUtilities->get_posted_ids( $this->Prefix );
-
-				if( $Options->get_setting( 'default_form' , 1 ) == 0 )
-				{
-					call_user_func( array( $this->Provider , 'update_form' ) , $Options );
-				}
-				else
-				{
-					$this->Provider->Output = $this->ContextSetUtilities->get_form(
-						$Options , $IdList , 'update_form' , $this->Prefix , 'update_record'
-					);
-				}
-
-				$this->Provider->Output = $this->DefaultViewsUtilities->compile_form( 
-					$Options , $this->Provider->Output , $IdList
-				);
+				$this->compile_form_for_posted_record( $Options , 'update' );
 			}
 			catch( Exception $e )
 			{
@@ -304,37 +289,33 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_copy_form( &$Options )
+		private function	compile_form_for_posted_record( &$Options , $Name )
 		{
 			try
 			{
-				if( $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' ) !== '' )
+				$IdList = $this->ContextSetUtilities->get_posted_ids( $this->Prefix );
+
+				if( $Options->get_setting( 'default_form' , 1 ) == 0 )
 				{
-					$Record = $IdList = array();
+					call_user_func( array( $this->Provider , $Name.'_form' ) , $Options );
 				}
 				else
 				{
-					$IdList = $this->ContextSetUtilities->get_posted_ids( $this->Prefix );
-
-					$Record = $this->ContextSetUtilities->get_data_record( $Options , $IdList );
+					$this->Provider->Output = $this->ContextSetUtilities->get_form(
+						$Options , $IdList , $Name.'_'.$this->Prefix.'_form' , $this->Prefix , $Name.'_record'
+					);
 				}
 
-				$Record = $this->ContextSetUtilities->extract_data_from_request( 
-					$Options , $Record , 'get_post_extraction_script' , $this->Prefix
+				$this->Provider->Output = $this->DefaultViewsUtilities->compile_form( 
+					$Options , $this->Provider->Output , $IdList
 				);
-
-				$Form = $this->ContextSetUtilities->get_form( 
-					$Options , $IdList , 'copy_form' , $this->Prefix , 'create_record'
-				);
-
-				return( $Form );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисоки формы редактирования записей.
 		*
@@ -357,18 +338,14 @@
 		{
 			try
 			{
-				$Form = $this->get_copy_form( $Options );
-
-				$this->Provider->Output = $this->ContextSetUtilities->set_form_data( $Form , $Record );
-
-				$this->DefaultViewsUtilities->compile_form( $Options , $this->Provider->Output );
+				$this->compile_form_for_posted_record( $Options , 'copy' );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения шаблонов.
 		*
@@ -396,13 +373,13 @@
 			try
 			{
 				$Header = $this->DefaultViewsUtilities->get_template( $Options , 'header' );
-				
+
 				$Item = $Options->get_setting( 'item' );
 				$Item = dirname( $Options->get_setting( 'file_path' ) )."/res/templates/$Item.tpl";
 				$Item = $this->CachedMultyFS->file_get_contents( $Item );
-				
+
 				$Footer = $this->DefaultViewsUtilities->get_template( $Options , 'footer' );
-				
+
 				return( array( $Header , $Item , $Footer ) );
 			}
 			catch( Exception $e )
@@ -410,7 +387,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отрисовки формы последних записей.
 		*
@@ -618,6 +595,7 @@
 			try
 			{
 				$FormTemplateFileName = $Options->get_setting( 'form_template' );
+
 				$FilePath = $Options->get_setting( 'file_path' );
 
 				$Form = $this->CachedMultyFS->get_template( $FilePath , "$FormTemplateFileName.tpl" );
@@ -665,7 +643,129 @@
 				$Str = $Paging->draw( false , $Options );
 
 				$Str = $this->ContextSet->compile_special_macro( $Options , $Str , $Changed );
+
 				list( $this->Provider->Output , $Changed ) = $this->ContextSet->compile_prefix( $Str , $Changed );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция получения выгружаемых записей.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@return Записи.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method returns records to export.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@return Records.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_export_records( &$Options )
+		{
+			try
+			{
+				$this->DefaultViewsUtilities->build_query_string( $Options );
+
+				$Provider = $this->ContextSetUtilities->get_data_provider( $Options , $this->Provider );
+
+				$Records = call_user_func(
+					array( $Provider , 'select' ) , 
+					false , false , false , false , $this->DefaultViewsUtilities->QueryString
+				);
+
+				return( $Records );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция выгрузки записей.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method exports records.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	output_export()
+		{
+			try
+			{
+				header( 'HTTP/1.0 200 OK' );
+				header( 'Content-type: application/octet-stream' );
+				header( 'Content-Length: '.strlen( $this->Output ) );
+				header( 'Content-Disposition: attachment; filename="'.date( 'YmdHid' ).".csv".'"' );
+				header( 'Connection: close' );
+				print( $this->Output );
+				exit( 0 );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция выгрузки записей.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method exports records.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			export( &$Options )
+		{
+			try
+			{
+				$Records = $this->get_export_records( $Options );
+
+				$Fields = explode( ',' , $Options->get_setting( 'fields' ) );
+
+				$this->Output = chr( 239 ).chr( 187 ).chr( 191 );/* additing BOM */
+
+				foreach( $Records as $i => $Record )
+				{
+					$Row = array();
+					foreach( $Fields as $j => $Field )
+					{
+						$Row [] = '"'.get_field( $Record , $Field , '' ).'"';
+					}
+					$this->Output .= implode( ';' , $Row )."\r\n";
+				}
+
+				$this->output_export();
 			}
 			catch( Exception $e )
 			{

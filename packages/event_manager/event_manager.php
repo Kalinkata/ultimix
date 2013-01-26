@@ -195,24 +195,26 @@
 		{
 			try
 			{
-				$Return = array();
-				
+				$Ret = array();
 				if( isset( $this->LoadedBindings[ $Event ] ) )
 				{
 					foreach( $this->LoadedBindings[ $Event ] as $PackageName => $PackageVersions )
 					{
 						foreach( $PackageVersions as $PackageVersion => $FunctionNames )
 						{
-							foreach( $FunctionNames as $k => $FunctionName )
+							foreach( $FunctionNames as $k => $FuncName )
 							{
 								$Object = get_package( $PackageName , $PackageVersion , __FILE__ );
-								$Return [] = call_user_func( array( $Object , $FunctionName ) , $Parameters );
+								if( $Object === false )
+								{
+									throw( new Exception( 'Event handler is false' ) );
+								}
+								$Ret [] = call_user_func( array( $Object , $FuncName ) , $Parameters );
 							}
 						}
 					}
 				}
-				
-				return( $Return );
+				return( $Ret );
 			}
 			catch( Exception $e )
 			{

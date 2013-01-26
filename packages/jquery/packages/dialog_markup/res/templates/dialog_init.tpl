@@ -3,7 +3,7 @@
 		function()
 		{
 			var	ButtonSet = new Object();
-			
+
 			if( {cancel} || '{cancel_processor}' != '' )
 			{
 				var	ButtonCaption = ultimix.get_string( 'Cancel' );
@@ -28,7 +28,7 @@
 					}
 				};
 			}
-			
+
 			if( '{ok_processor}' != '' )
 			{
 				var	ButtonCaption = ultimix.get_string( 'OK' );
@@ -45,7 +45,7 @@
 					}
 				};
 			}
-			
+
 			// creating the dialog
 			jQuery( "{selector}" ).dialog(
 				{
@@ -59,7 +59,7 @@
 					closeOnEscape : {close_on_escape}
 				}
 			);
-			
+
 			if( "{on_open}" != 'nop()' )
 			{
 				jQuery( "{selector}" ).unbind( "dialogopen.ultimix" );
@@ -71,7 +71,7 @@
 					}
 				);
 			}
-			
+
 			if( {hide_close_button} )
 			{
 				jQuery( "{selector}" ).parent().find( '.ui-dialog-titlebar-close' ).remove();

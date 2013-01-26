@@ -54,28 +54,21 @@ ultimix.button_markup.toggle_button = function( Obj , Icon , IconToggle , Toggle
 /**
 *	Function runs controller and removes dom.
 *
-*	@param Data - Request data.
+*	@param id - id of the processing record.
+*
+*	@param APIMethod - API method wich will process record.
 *
 *	@param DomSelector - Selector of the DOM element.
 *
 *	@author Dodonov A.A.
 */
-ultimix.button_markup.run_controller_and_remove_dom = function( Data , DomSelector )
+ultimix.button_markup.run_controller_and_remove_dom = function( id , APIMethod , DomSelector )
 {
 	ultimix.std_dialogs.QuestionMessageBox( 
 		'are_you_shure' , 
 		function()
 		{
-			var			DialogId;
-			var			Functions = { 
-				'success' : function()
-				{
-					jQuery( DomSelector ).remove();
-					ultimix.std_dialogs.close_message_box( DialogId );
-				}
-			};
-			DialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-			ultimix.ajax_gate.direct_controller( Data , Functions );
+			APIMethod( Id , DomSelector );
 		}
 	);
 }

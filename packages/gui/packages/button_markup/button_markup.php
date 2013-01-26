@@ -132,7 +132,8 @@
 				$Settings->set_undefined( 'package_version' , 'last' );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'component_button.tpl' );
-				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
+				$Raw = $Settings->get_raw_settings();
+				$Code = $this->String->print_record( $Code , $Raw );
 
 				$Path = $this->Utilities->get_package_path( $Settings );
 
@@ -234,7 +235,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции кнопки.
 		*
@@ -268,7 +269,8 @@
 				$Path = $this->Utilities->get_package_path( $Settings );
 
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'toolbar_button.tpl' );
-				$Code = $this->String->print_record( $Code , $Settings->get_raw_settings() );
+				$Raw = $Settings->get_raw_settings();
+				$Code = $this->String->print_record( $Code , $Raw );
 				$Code = str_replace( '{path_to_image}' , "$Path/res/images/$Icon" , $Code );
 
 				return( $Code );

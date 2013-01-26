@@ -261,7 +261,8 @@
 			try
 			{
 				$RawSettings = $Settings->get_raw_settings();
-				$StringAlias = array_shift( array_keys( $RawSettings ) );
+				$Keys = array_keys( $RawSettings );
+				$StringAlias = array_shift( $Keys );
 				$Value = $Settings->get_setting( 'value' , 'default' );
 				$TransformedString = $this->Lang->get_string( $StringAlias , $Value );
 

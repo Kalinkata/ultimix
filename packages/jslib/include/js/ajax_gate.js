@@ -39,6 +39,58 @@ ultimix.ajax_gate.validate_direct_data = function( Data )
 }
 
 /**
+*	Function creates result processor.
+*
+*	@param Functions - Result processing functions.
+*
+*	@param ResultObject - Result object.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.ajax_gate.controller_error = function( Functions , ResultObject )
+{
+	if( Functions.controller_error )
+	{
+		Functions.controller_error();
+	}
+
+	ultimix.std_dialogs.MessageBox( 
+		ultimix.get_string( ResultObject.message ) , ultimix.get_string( 'Error' ) , 
+		ultimix.std_dialogs.MB_OK | ultimix.std_dialogs.MB_ICONERROR | ultimix.std_dialogs.MB_MODAL , 
+		Functions.controller_error_restore
+	)
+}
+
+/**
+*	Function creates result processor.
+*
+*	@param Functions - Result processing functions.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.ajax_gate.controller_success = function( Functions )
+{
+	return(
+		function( Result )
+		{
+			eval( 'var			ResultObject = ' + Result + ';' );
+
+			if( ResultObject.code == 1 )
+			{
+				ultimix.ajax_gate.controller_error( Functions , ResultObject );
+			}
+			else
+			{
+				if( Functions.success )
+				{
+					Functions.success( Result );
+				}
+			}
+		}
+	);
+}
+
+/**
 *	Function executes controller action.
 *
 *	@param Data - Transfering data.
@@ -68,7 +120,7 @@ ultimix.ajax_gate.direct_controller = function( Data , Functions , Options )
 	}
 	var			Request = {
 		async : Options.async , type : 'POST' , url : 'direct_controller.html?' + ( new Date() ).getTime() , 
-		data : CallData , success : Functions ? Functions.success : false , 
+		data : CallData , success : ultimix.ajax_gate.controller_success( Functions ) , 
 		error : Functions ? Functions.error : false , dataType : Options.data_type
 	};
 	jQuery.ajax( Request );

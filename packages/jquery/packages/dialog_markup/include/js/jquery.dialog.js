@@ -67,7 +67,7 @@ ultimix.dialog.add_opener = function( Opener , Selector , DataAcceptor , StatusA
 	{
 		if( jQuery( Opener ).length )
 		{
-			var	Items = jQuery( Opener );
+			var			Items = jQuery( Opener );
 
 			for( var i = 0 ; i < Items.length ; i++ )
 			{
@@ -103,7 +103,8 @@ ultimix.dialog.open_dialog = function( Selector , DataAcceptor , StatusAcceptor 
 	jQuery( Selector ).attr( 'data_acceptor' , DataAcceptor );
 	jQuery( Selector ).attr( 'status_acceptor' , StatusAcceptor );
 	jQuery( Selector ).attr( 'data_source' , DataSource );
-	
+	jQuery( Selector ).children( 'form' ).removeClass( 'form_330' );
+
 	if( BeforeOpenValidation && BeforeOpenValidation() == false )
 	{
 		return;
@@ -163,4 +164,65 @@ ultimix.dialog.show_dom_in_dialog = function( Selector , Title )
 ultimix.dialog.create_form = function( DataAcceptor , StatusAcceptor , DataSource , Selector )
 {
 	return( true );
+}
+
+/**
+*	Function creates record creation handlers.
+*
+*	@param Selector - Dialog selector.
+*
+*	@param TabId - Id of the tab.
+*
+*	@param ProgressDialogId - Process dialog id.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.dialog.create_dialog_function = function( Selector , TabId , ProgressDialogId )
+{
+	return(
+		{
+			'success' : function()
+			{
+				ultimix.std_dialogs.close_message_box( ProgressDialogId );
+				jQuery( Selector ).remove();
+				ultimix.windows.regenerate_tab( '#' + TabId );
+			} , 
+			'controller_error' : function()
+			{
+				ultimix.std_dialogs.close_message_box( ProgressDialogId );
+			} , 
+			'controller_error_restore' : function()
+			{
+				jQuery( Selector ).dialog( 'open' );
+			}
+		}
+	);
+}
+
+/**
+*	Function creates record creation controller handler.
+*
+*	@param RecordCreator - Record creating function.
+*
+*	@param TabId - Id of the tab.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.dialog.create = function( RecordCreator , TabId )
+{
+	return(
+		function( DataAcceptor , StatusAcceptor , DataSource , Selector )
+		{
+			jQuery( Selector ).dialog( 'close' );
+
+			var			Data = ultimix.forms.extract_form_data( DataSource );
+			var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+
+			RecordCreator( 
+				Data , ultimix.dialog.create_dialog_function( Selector , TabId , ProgressDialogId )
+			);
+
+			return( false );
+		}
+	);
 }

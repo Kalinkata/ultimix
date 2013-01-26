@@ -315,61 +315,6 @@
 		}
 
 		/**
-		*	\~russian Функция возвращает запись для обновления.
-		*
-		*	@param $New - Запись.
-		*
-		*	@param $Original - Запись.
-		*
-		*	@return - Запись.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Method returns update record.
-		*
-		*	@param $New - Record.
-		*
-		*	@param $Original - Record.
-		*
-		*	@return - Record.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_update_record( $New , $Original )
-		{
-			try
-			{
-				$Update = array();
-				
-				foreach( $New as $Field => $NewValue )
-				{
-					$Field = str_replace( $this->Prefix.'_' , '' , $Field );
-					
-					if( @$Original->$Field == $NewValue )
-					{
-						continue;
-					}
-					if( @$Original->$Field != $this->Security->get( $NewValue , 'unsafe_string' ) )
-					{
-						@$Update[ $Field ] = $NewValue;
-						continue;
-					}
-				}
-				
-				return( $Update );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Функция обработки макроса 'prefix'.
 		*
 		*	@param $Str - Строка требуюшщая обработки.

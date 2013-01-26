@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс обработки контролов.
 	*
@@ -25,7 +25,6 @@
 	*/
 	class	date_picker_1_0_0
 	{
-		
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -40,7 +39,7 @@
 		var					$Database = false;
 		var					$Security = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -67,53 +66,57 @@
 		}
 
 		/**
-		*	\~russian Функция компиляции макроса 'date_picker'.
+		*	\~russian Получение введенного значения.
+		*
+		*	@param $Settings - Параметры.
 		*
 		*	@param $Name - Название.
 		*
-		*	@param $Value - Значение.
+		*	@param $Format - Формат.
 		*
-		*	@param $SetFormat - Фотрамат возвращаемой даты.
-		*
-		*	@return Код макроса.
+		*	@return Значение.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function compiles macro 'date_picker'.
+		*	\~english Getting value.
+		*
+		*	@param $Settings - Parameters.
 		*
 		*	@param $Name - Name.
 		*
-		*	@param $Value - Value.
+		*	@param $Format - Format.
 		*
-		*	@param $SetFormat - Date format.
-		*
-		*	@return HTML code.
+		*	@return Value.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	set_date_picker_parameters( $Name , $Value , $SetFormat )
+		private function	get_datepicker_value( &$Settings , $Name , $Format )
 		{
 			try
 			{
-				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'date_picker.tpl' );
+				if( $this->Security->get_gp( $Name , 'set' ) )
+				{
+					$Value = $this->Security->get_gp( $Name , 'string' );
+				}
+				else
+				{
+					$Default = date( $Format , strtotime( $Settings->get_setting( 'default' , 'now' ) ) );
+					$Value = $Settings->get_setting( 'value' , $Default );
+				}
 
-				$Code = str_replace( 
-					array( '{name}' , '{value}' , '{set_format}' ) , array( $Name , $Value , $SetFormat ) , $Code
-				);
-
-				return( $Code );
+				return( $Value );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция компиляции макроса 'date_picker'.
 		*
@@ -144,17 +147,17 @@
 				$Format = $Settings->get_setting( 'display_date_format' , 'Y-m-d' );
 				$SetFormat = str_replace( array( 'Y' , 'm' , 'd' ) , array( 'yy' , 'mm' , 'dd' ) , $Format );
 
-				if( $this->Security->get_gp( $Name , 'set' ) )
-				{
-					$Value = $this->Security->get_gp( $Name , 'string' );
-				}
-				else
-				{
-					$Default = date( $Format , strtotime( $Settings->get_setting( 'default' , 'now' ) ) );
-					$Value = $Settings->get_setting( 'value' , $Default );
-				}
+				$Value = $this->get_datepicker_value( $Settings , $Name , $Format );
 
-				return( $this->set_date_picker_parameters( $Name , $Value , $SetFormat ) );
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'date_picker.tpl' );
+
+				$Code = str_replace( 
+					array( '{name}' , '{value}' , '{set_format}' , '{id}' ) , 
+					array( $Name , $Value , $SetFormat , $Settings->get_setting( 'id' , md5( microtime( true ) ) ) ) , 
+					$Code
+				);
+
+				return( $Code );
 			}
 			catch( Exception $e )
 			{

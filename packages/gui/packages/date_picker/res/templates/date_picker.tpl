@@ -1,8 +1,8 @@
-					<input type="text" name="{name}" id="{name}" class="width_80 flat" value="{http_param:name={name};type=string;post=1;default={value}}" onkeypress="return( false );" onfocus="jQuery( '#{name}' ).datepicker( 'show' );" onclick="jQuery( '#{name}' ).datepicker( 'show' );">
+					<input type="text" name="{name}" id="{id}" class="width_80 flat autoCreateDatepicker" value="{http_param:name={name};type=string;post=1;default={value}}" onkeypress="return( false );" onfocus="jQuery( '#{id}' ).datepicker( 'show' );" onclick="jQuery( '#{id}' ).datepicker( 'show' );">
 					<script type="text/javascript">
 						jQuery( function()
 							{
-								jQuery( '#{name}' ).datepicker(
+								jQuery( '#{id}' ).datepicker(
 									jQuery.extend(
 										{
 											showOn: 'button' , 

@@ -125,14 +125,7 @@ ultimix.gallery.detach_file = function( GalleryId , FileId )
 */
 ultimix.gallery.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'gallery' , 'gallery::gallery_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'gallery' , 'gallery::gallery_view' );
 }
 
 /**
@@ -152,7 +145,9 @@ ultimix.gallery.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.gallery.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'gallery' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'gallery' , 'gallery::gallery_view'
+	);
 }
 
 /**

@@ -1,1 +1,1 @@
-{toolbar_button:page=javascript:ultimix.ToggleElement( 'common_search_form' , 500 );package_name=gui::context_set::common_buttons;icon=search_24.gif;permit=create_{prefix};title=search_button}
+{toolbar_button:page=javascript:ultimix.ToggleElement( 'common_search_form' , 500 );package_name=gui::context_set::common_buttons;icon=search_024.gif;permit={permits};title=search_button}

@@ -1,0 +1,3 @@
+<div id="import_{prefix}_form" class="{if:condition={http_param:post=1;type=string;name=file_path;default=0};then=block;else=invisible} padding_0">
+<input id="file_path" type="file" size="25" class="width_320 flat" value="{http_param:post=1;type=string;name=file_path;default=}" name="file_path">&nbsp;{href:page=javascript[dot_dot]ultimix.forms.import_file( '{prefix}' )[dot_comma];text=import}&nbsp;{href:page=javascript[dot_dot]ultimix.forms.cancel_import( 'import_{prefix}_form' , {speed} )[dot_comma];text=cancel}
+</div>

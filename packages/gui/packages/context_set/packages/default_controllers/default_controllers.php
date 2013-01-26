@@ -37,6 +37,7 @@
 		*/
 		var					$ContextSetUtilities = false;
 		var					$GUI = false;
+		var					$Security = false;
 		var					$SecurityParser = false;
 
 		/**
@@ -97,6 +98,7 @@
 					'gui::context_set::context_set_utilities' , 'last' , __FILE__
 				);
 				$this->GUI = get_package( 'gui' , 'last' , __FILE__ );
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -394,7 +396,7 @@
 			try
 			{
 				$GetPostValidation = $Options->get_setting( 'get_post_validation' , false );
-				$ValidationScript = $Options->get_setting( 'custom_get_post_validation' , $GetPostValidation );
+				$ValidationScript = $Options->get_setting( 'get_post_extraction_script' , $GetPostValidation );
 
 				if( $ValidationScript === false )
 				{
@@ -530,6 +532,150 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
+
+		/**
+		*	\~russian Функция загрузки записей.
+		*
+		*	@param $Provider - Провайдер.
+		*
+		*	@param $Fields - Поля и порядок их загрузи.
+		*
+		*	@param $Content - Содержимое файла.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function imports records.
+		*
+		*	@param $Provider - Provider.
+		*
+		*	@param $Fields - Fields.
+		*
+		*	@param $Content - Content.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	import_by_record( &$Provider , &$Fields , &$Content )
+		{
+			try
+			{
+				$FuncName = method_exists( $Provider , 'import' ) ? 'import' : 'create';
+
+				foreach( $Content as $i => $Row )
+				{
+					if( strlen( $Row ) == 0 )
+					{
+						continue;
+					}
+					$Row = explode( ';' , $Row );
+					$Record = array();
+					foreach( $Fields as $i => $Field )
+					{
+						$Value = get_field( $Row , $this->Security->get( $Field[ 0 ] , 'integer' ) , '' );
+						$Record[ $Field[ 1 ] ] = trim( $Value , '"' );
+					}
+
+					$Provider->$FuncName( $Record );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Функция загрузки записей.
+		*
+		*	@param $Provider - Провайдер.
+		*
+		*	@param $Fields - Поля и порядок их загрузи.
+		*
+		*	@param $Content - Содержимое файла.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function imports records.
+		*
+		*	@param $Provider - Provider.
+		*
+		*	@param $Fields - Fields.
+		*
+		*	@param $Content - Content.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	import_file( &$Provider , &$Fields , &$Content )
+		{
+			try
+			{
+				$Content = str_replace( "\r\n" , "\n" , $Content );
+				$Content = explode( "\n" , $Content );
+
+				if( method_exists( $Provider , 'import_file' ) )
+				{
+					$Provider->import_file( $Fields , $Content );
+				}
+				else
+				{
+					$this->import_by_record( $Provider , $Fields , $Content );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Функция загрузки записей.
+		*
+		*	@param $Options - Параметры выполнения.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function imports records.
+		*
+		*	@param $Options - Execution parameters.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			import( &$Options )
+		{
+			try
+			{
+				$SimpleFileAccess = get_package( 'file_input::simple_file_access' , 'last' , __FILE__ );
+
+				$Content = $SimpleFileAccess->get_uploaded_file_content( 'file_path' );
+				$Provider = $this->ContextSetUtilities->get_data_provider( $Options , $this->Provider );
+				$Fields = explode( ',' , $Options->get_setting( 'fields' ) );
+
+				foreach( $Fields as $i => $Field )
+				{
+					$Fields[ $i ] = explode( ':' , $Field );
+				}
+
+				$this->import_file( $Provider , $Fields , $Content );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 	}
-	
+
 ?>

@@ -95,7 +95,8 @@
 				$FileName = $Settings->get_setting( 'tpl' , 'std' );
 				$Code = $this->CachedMultyFS->get_template( __FILE__ , $FileName.'.tpl' );
 
-				return( $this->String->print_record( $Code , $Settings->get_raw_settings() ) );
+				$Raw = $Settings->get_raw_settings();
+				return( $this->String->print_record( $Code , $Raw ) );
 			}
 			catch( Exception $e )
 			{
