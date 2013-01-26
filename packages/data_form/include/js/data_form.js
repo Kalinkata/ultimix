@@ -33,14 +33,14 @@ ultimix.data_form.create_form = function( Action , Method )
 	{
 		Method = 'post';
 	}
-	
+
 	if( jQuery( '#data_form' ).length )
 	{
 		jQuery( '#data_form' ).remove();
 	}
 
 	jQuery( 'body' ).append( '<form id="data_form" method="' + Method + '" style="display: none;"></form>' );
-	
+
 	if( Action )
 	{
 		jQuery( '#data_form' ).attr( 'action' , Action );

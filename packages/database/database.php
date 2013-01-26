@@ -12,11 +12,11 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	define( 'DB_ASSOC_ARRAY' , 1 );
 	define( 'DB_OBJECT' , 2 );
 	define( 'DB_ARRAY' , 3 );
-	
+
 	/**
 	*	\~russian Класс для работы с базой данных.
 	*
@@ -28,7 +28,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	database_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -47,7 +47,7 @@
 		var					$String = false;
 		var					$Text = false;
 		var					$Tags = false;
-	
+
 		/**
 		*	\~russian Объект для работы с БД.
 		*
@@ -59,7 +59,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$DatabaseAccessObject = false;
-		
+
 		/**
 		*	\~russian Кодировка строк в БД.
 		*
@@ -71,7 +71,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$DatabaseEncoding = 'UTF-8';
-		
+
 		/**
 		*	\~russian Счетчик количества запросов к БД.
 		*
@@ -83,7 +83,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$QueryCounter = 0;
-		
+
 		/**
 		*	\~russian Логирование запросов.
 		*
@@ -95,7 +95,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$DBLogging;
-		
+
 		/**
 		*	\~russian Префикс таблиц.
 		*
@@ -107,7 +107,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$TablenamePrefix;
-		
+
 		/**
 		*	\~russian Сессия.
 		*
@@ -119,7 +119,7 @@
 		*	@author Dodonov A.A.
 		*/
 		static				$Session = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -152,7 +152,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция process config line.
 		*
@@ -187,7 +187,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция инициализации ограничений на данные.
 		*
@@ -223,7 +223,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция настройки соединения.
 		*
@@ -259,7 +259,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выполнения запроса.
 		*
@@ -300,7 +300,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выполнения запроса.
 		*
@@ -352,7 +352,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Режим выборки данных из таблицы.
 		*

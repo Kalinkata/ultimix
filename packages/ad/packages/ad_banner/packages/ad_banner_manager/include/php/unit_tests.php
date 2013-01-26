@@ -35,8 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var				$PageComposer = false;
-		var				$Security = false;
+		var					$AdBannerAccess	= false;
+		var					$DatabaseAlgorithms = false;
+		var					$DefaultControllers = false;
+		var					$PageComposer = false;
+		var					$Security = false;
+		var					$Testing = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -52,8 +56,12 @@
 		{
 			try
 			{
+				$this->AdBannerAccess = get_package_object( 'ad::ad_banner::ad_banner_access' , 'last' , __FILE__ );
+				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
+				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -90,12 +98,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -107,12 +115,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -130,12 +138,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -145,9 +153,92 @@
 
 			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
 
-			if( stripos( $PageContent , '_record_id' ) === false )
+			if( stripos( $PageContent , 'create_ad_banner_form' ) === false )
 			{
 				print( 'ERROR: ad banner create form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'ad_banner_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'ad_banner_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
+
+			if( stripos( $PageContent , 'update_ad_banner_form' ) === false )
+			{
+				print( 'ERROR: ad banner update form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , 'Ultimix Project' );
+			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
+			$Exists = strpos( $PageContent , 'Ultimix Project' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
+			$NotExists = strpos( $PageContent , 'Ultimix Project' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'ad_banner_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'ad_banner_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
+
+			if( stripos( $PageContent , 'create_ad_banner_form' ) === false )
+			{
+				print( 'ERROR: ad banner copy form was not displayed'.$PageContent );
 				return;
 			}
 

@@ -50,7 +50,7 @@
 			return( $DefaultValue );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция получения значения из объекта/массива.
 	*
@@ -91,20 +91,20 @@
 				{
 					return( $Entity->$Field );
 				}
-				
+
 				return( _return_or_throw( $DefaultValue , $Field ) );
 			}
-			
+
 			if( is_array( $Entity ) )
 			{
 				if( array_key_exists( $Field , $Entity ) )
 				{
 					return( $Entity[ $Field ] );
 				}
-				
+
 				return( _return_or_throw( $DefaultValue , $Field ) );
 			}
-			
+
 			throw( new Exception( "Illegal value was passed" ) );
 		}
 		catch( Exception $e )
@@ -112,7 +112,7 @@
 			$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 		}
 	}
-	
+
 	/**
 	*	\~russian Функция получения значения из объекта/массива.
 	*

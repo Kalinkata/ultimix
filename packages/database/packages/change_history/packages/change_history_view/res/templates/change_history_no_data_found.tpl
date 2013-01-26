@@ -1,1 +1,1 @@
-<div id="history_{id}" class="centered_text">{lang:data_for_grid_was_not_found}</div>
+<div id="history_{id}" class="centered_text invisible">{lang:data_for_grid_was_not_found}</div>

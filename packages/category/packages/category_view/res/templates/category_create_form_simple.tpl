@@ -1,4 +1,4 @@
-						<form method="post" id="{prefix}_create_form" class="form_330">
+						<form method="post" id="create_{prefix}_form" class="form_330">
 							<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="create_record_form">
 							<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="create_record">
 							<input type="hidden" name="mask" value="0">

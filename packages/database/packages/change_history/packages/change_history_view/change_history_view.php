@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для сохранения изменений записей.
 	*
@@ -35,8 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$CachedMultyFS = false;
 		var					$ChangeHistoryAcces = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -55,6 +56,7 @@
 		{
 			try
 			{
+				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
 				$this->ChangeHistoryAcces = get_package( 
 					'database::change_history::change_history_access' , 'last' , __FILE__
 				);
@@ -64,7 +66,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Получение заголовка грида.
 		*
@@ -100,9 +102,15 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение параметров подстановки.
+		*
+		*	@param $i - Курсор записи.
+		*
+		*	@param $Change - Одно изменение.
+		*
+		*	@param $Previous - Предыдущие значения.
 		*
 		*	@return Параметры подстановки.
 		*
@@ -113,13 +121,19 @@
 		/**
 		*	\~english Method returns replace parameters.
 		*
+		*	@param $i - Record cursor.
+		*
+		*	@param $Change - Single change.
+		*
+		*	@param $Previous - Pervious values.
+		*
 		*	@return Replace parameters.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	get_replace_parameters()
+		private function	get_replace_parameters( $i , $Change , $Previous )
 		{
 			try
 			{
@@ -127,21 +141,26 @@
 					'{class}' , '{date_string}' , '{time_string}' , '{author_name}' , '{field_name}' , 
 					'{previous}' , '{field_value}'
 				);
-				
+
+				$Time = strtotime( get_field( $Change , 'creation_date' ) );
+
+				$Name = get_field( $Change , 'field_name' );
+				$Value = get_field( $Change , 'field_value' );
+
 				$Data = array( 
 					'table_row_'.( $i % 2 ? 'even' : 'odd' ) , date( 'd.m.y' , $Time ) , date( 'H:i:s' , $Time ) , 
-					get_field( $Change , 'author_name' ) , $FieldName = get_field( $Change , 'field_name' ) , 
-					get_field( $Previous , $FieldName , '-' ) , $FieldValue = get_field( $Change , 'field_value' )
+					get_field( $Change , 'author_name' ) , $Name , 
+					get_field( $Previous , $Name , '-' ) , $Value
 				);
-				
-				return( array( $PlaceHolders , $Data ) );
+
+				return( array( $PlaceHolders , $Data , $Name , $Value ) );
 			}
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение строк грида.
 		*
@@ -169,20 +188,22 @@
 			try
 			{
 				$Lines = $Previous = array();
-				
+
 				foreach( $Changes as $i => $Change )
 				{
-					list( $PlaceHolders , $Data ) = $this->get_replace_parameters();
-					
+					list( $PlaceHolders , $Data , $Name , $Value ) = $this->get_replace_parameters( 
+						$i , $Change , $Previous
+					);
+
 					$Code = $this->CachedMultyFS->get_template( __FILE__ , 'change_history_item.tpl' );
-					
+
 					$Code = str_replace( $PlaceHolders , $Data , $Code );
-					
-					$Previous[ $FieldName ] = $FieldValue;
-					
+
+					$Previous[ $Name ] = $Value;
+
 					$Lines [] = $Code;
 				}
-				
+
 				return( implode( '' , array_reverse( $Lines ) ) );
 			}
 			catch( Exception $e )
@@ -190,7 +211,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение грида истории изменений.
 		*
@@ -229,7 +250,7 @@
 					$Code .= $this->get_grid_lines( $Changes );
 
 					$Footer = $this->CachedMultyFS->get_template( __FILE__ , 'change_history_footer.tpl' );
-					$Code .= str_replace( '{code}' , $Code , $Footer );
+					$Code = str_replace( '{code}' , $Code , $Footer );
 				}
 				else
 				{

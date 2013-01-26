@@ -29,14 +29,7 @@ if( !ultimix.comment )
 */
 ultimix.comment.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'comment' , 'comment::comment_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'comment' , 'comment::comment_view' );
 }
 
 /**
@@ -56,7 +49,9 @@ ultimix.comment.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.comment.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'comment' );
+	ultimix.auto.get_custom_list_form( 
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'comment' , 'comment::comment_view'
+	);
 }
 
 /**

@@ -5,3 +5,4 @@ ad_banner_shows=Shows
 ad_banner_clicks=Clicks
 ad_banner_yes=yes
 ad_banner_no=no
+no_selected_ad_banner=At least one banner must be selected

@@ -13,9 +13,9 @@ if( !ultimix )
 *
 *	@author Dodonov A.A.
 */
-if( !ultimix.change_history_view )
+if( !ultimix.change_history )
 {
-	ultimix.change_history_view = {};
+	ultimix.change_history = {};
 }
 
 /**
@@ -27,18 +27,11 @@ if( !ultimix.change_history_view )
 *
 *	@author Dodonov A.A.
 */
-ultimix.change_history_view.get_list_form = function( ResultAcceptor , ViewOptions )
+ultimix.change_history.get_list_form = function( ResultAcceptor , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( 
-		ViewOptions , 'change_history' , 'database::change_history::change_history_view' 
+	ultimix.auto.get_list_form( 
+		Fuctions , ViewOptions , 'change_history' , 'database::change_history::change_history_view'
 	);
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
 }
 
 /**
@@ -52,13 +45,18 @@ ultimix.change_history_view.get_list_form = function( ResultAcceptor , ViewOptio
 *
 *	@param Footer - List footer template file name.
 *
+*	@param NoDataFound - No data found template.
+*
 *	@param ViewOptions - Extra view generation options.
 *
 *	@author Dodonov A.A.
 */
-ultimix.change_history_view.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
+ultimix.change_history.get_custom_list_form = function( Fuctions , Header , Item , Footer , NoDataFound , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'change_history' );
+	ultimix.auto.get_custom_list_form(
+		Fuctions , Header , Item , Footer , NoDataFound , ViewOptions , 
+		'change_history' , 'database::change_history::change_history_view'
+	);
 }
 
 /**
@@ -70,7 +68,7 @@ ultimix.change_history_view.get_custom_list_form = function( Fuctions , Header ,
 *
 *	@author Dodonov A.A.
 */
-ultimix.change_history_view.delete = function( Id , DataSelector )
+ultimix.change_history.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
 		Id , DataSelector , 
@@ -94,7 +92,7 @@ ultimix.change_history_view.delete = function( Id , DataSelector )
 *
 *	@author Dodonov A.A.
 */
-ultimix.change_history_view.record_view_form = function( Id , DataSelector )
+ultimix.change_history.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
 		Id , DataSelector , 

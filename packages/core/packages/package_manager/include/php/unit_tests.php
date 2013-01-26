@@ -100,12 +100,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -117,12 +117,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -140,12 +140,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -155,9 +155,9 @@
 
 			$PageContent = $this->PageComposer->get_page( 'package_manager' );
 
-			if( stripos( $PageContent , 'package_create_form' ) === false )
+			if( stripos( $PageContent , 'create_package_form' ) === false )
 			{
-				print( 'ERROR: package create form was not displayed'.$PageContent );
+				print( 'ERROR: create package form was not displayed'.$PageContent );
 				return;
 			}
 
@@ -165,12 +165,12 @@
 		}
 
 		/**
-		*	\~russian Тестирование вида.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing view.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -200,24 +200,66 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
 		function			test_update_record_form()
 		{
 			$this->Security->set_g( 'package_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'package_record_id' , 'core.1.0.0' );
 
 			$PageContent = $this->PageComposer->get_page( 'package_manager' );
 
-			if( stripos( $PageContent , 'package_update_form' ) === false )
+			if( stripos( $PageContent , 'update_package_form' ) === false )
 			{
-				print( 'ERROR: package update form was not displayed'.$PageContent );
+				print( 'ERROR: update package form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'package_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'package_record_id' , 'core.1.0.0' );
+
+			$PageContent = $this->PageComposer->get_page( 'package_manager' );
+
+			if( stripos( $PageContent , 'create_package_form' ) === false )
+			{
+				print( 'ERROR: copy package form was not displayed'.$PageContent );
 				return;
 			}
 

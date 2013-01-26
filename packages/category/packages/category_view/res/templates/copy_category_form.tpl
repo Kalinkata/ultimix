@@ -1,7 +1,6 @@
-						<form method="post" id="{prefix}_update_form" class="form_330">
-							<input type="hidden" name="{prefix}_context_action" id="{prefix}_context_action" value="update_record_form">
-							<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="update_record">
-							<input type="hidden" name="{prefix}_record_id" id="{prefix}_record_id" value="{ids}">
+						<form method="post" id="create_{prefix}_form" class="form_330">
+							<input type="hidden" name="{prefix}_context_action" id="{prefix}_context_action" value="copy_record_form">
+							<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="copy_record">
 							<table>
 								<tr>
 									<td>
@@ -29,7 +28,7 @@
 								</tr>
 								<tr>
 									<td colspan="2" align="center">
-										{save}&nbsp;{cancel}
+										{create}&nbsp;{cancel}
 									</td>
 								</tr>
 							</table>

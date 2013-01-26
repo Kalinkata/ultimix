@@ -1,3 +1,0 @@
-call_params_filter=show_update_{prefix}_form:integer,value_1
-permits_filter={prefix}_update
-access_package_name=ad::{prefix}::{prefix}_access

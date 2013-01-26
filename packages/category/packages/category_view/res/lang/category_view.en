@@ -22,3 +22,4 @@ category_update_was_completed=Category was updated
 category_selection=Category selection
 category_name=Locator
 catalogue_manager=Catalogue
+no_selected_category=At least one category must be selected

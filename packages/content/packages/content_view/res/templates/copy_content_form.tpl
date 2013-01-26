@@ -1,8 +1,8 @@
-				<form method="post" id="{prefix}_copy_form" class="form_650">
+				<form method="post" id="create_{prefix}_form" class="form_650">
 					<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="copy_record_form">
 					<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="copy_record">
-					{composer:condition={neq:value1={options:name=category_name};value2=}}
-					<input type="hidden" name="category" value="{category_id:names={options:name=category_name}}">
+					{composer:condition={neq:value1={options:name=category_name;default=};value2=}}
+					<input type="hidden" name="category" value="{category_id:names={options:name=category_name;default=}}">
 {~composer}<center>
 						<table>
 							<tr>
@@ -26,7 +26,7 @@
 									<input class="width_640 flat" type="text" name="title" value="{form_value:name=title}">
 								</td>
 							</tr>
-							{composer:condition={eq:value1={options:name=category_name};value2=}}<tr>
+							{composer:condition={eq:value1={options:name=category_name;default=};value2=}}<tr>
 								<td valign="top">
 									{lang:{prefix}_category}
 								</td>
@@ -104,7 +104,7 @@
 							</tr>
 							<tr>
 								<td align="center" colspan="2" valign="center">
-									{copy}&nbsp;{cancel}
+									{create}&nbsp;{cancel}
 								</td>
 							</tr>
 						</table>

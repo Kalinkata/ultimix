@@ -1,0 +1,1 @@
+{view_dialog:id=package_select_dialog;title=package_select_dialog;auto_open=true;package_name=core::package_manager;cancel=true;width=800;height=640;package_tree=1;toolbar_buttons=0;ok_processor={ok_processor}}{lang_file:package_name=core::package_manager}

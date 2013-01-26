@@ -22,3 +22,4 @@ category_update_was_completed=Редактирование было успешн
 category_selection=Выбор категории
 category_name=Локатор
 catalogue_manager=Каталог
+no_selected_category=Ни одной категории не выбрано

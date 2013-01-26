@@ -7,5 +7,5 @@ comments=Комментарии
 creation_date=Дата создания
 page=Страница
 shure_to_delete_all_comment2=Вы уверены?
-no_selected_comment2=Ни одного комментария не выбрано
+no_selected_comment=Ни одного комментария не выбрано
 comment_delete_was_completed=Все выбранные комментарии были удалены

@@ -101,12 +101,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка загрузки пакета.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing package load.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -118,12 +118,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -141,12 +141,12 @@
 		}
 
 		/**
-		*	\~russian Обработка некорректных макросов.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Processing illegal macro.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -156,9 +156,9 @@
 
 			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
 
-			if( stripos( $PageContent , 'ad_campaign_create_form' ) === false )
+			if( stripos( $PageContent , 'create_ad_campaign_form' ) === false )
 			{
-				print( 'ERROR: ad campaign create form was not displayed'.$PageContent );
+				print( 'ERROR: create ad campaign form was not displayed'.$PageContent );
 				return;
 			}
 
@@ -166,12 +166,12 @@
 		}
 
 		/**
-		*	\~russian Тестирование вида.
+		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing view.
+		*	\~english Testing standart states.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -194,6 +194,89 @@
 			{
 				return( 'ERROR' );
 			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record_form()
+		{
+			$this->Security->set_g( 'ad_campaign_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'ad_campaign_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
+
+			if( stripos( $PageContent , 'update_ad_campaign_form' ) === false )
+			{
+				print( 'ERROR: update ad campaign form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_search_list()
+		{
+			$this->Security->set_p( 'search_string' , 'Ultimix Project AD campaign' );
+			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
+			$Exists = strpos( $PageContent , 'Ultimix Project AD campaign' ) !== false;
+
+			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
+			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
+			$NotExists = strpos( $PageContent , 'Ultimix Project AD campaign' ) === false;
+
+			if( $Exists && $NotExists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				print( 'ERROR' );
+				return;
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_copy_record_form()
+		{
+			$this->Security->set_g( 'ad_campaign_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'ad_campaign_record_id' , '1' );
+
+			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
+
+			if( stripos( $PageContent , 'create_ad_campaign_form' ) === false )
+			{
+				print( 'ERROR: copy ad campaign form was not displayed'.$PageContent );
+				return;
+			}
+
+			return( 'TEST PASSED' );
 		}
 	}
 

@@ -247,17 +247,17 @@
 		{
 			$CachedFS = get_package_object( 'cached_fs' , 'last' , __FILE__ );
 
-			$CachedFS->file_put_contents( './exception.log' , '' );
+			$CachedFS->file_put_contents( './log/exception.log' , '' );
 
 			// проверим что информация сохранилась в кэше
-			if( $CachedFS->file_exists( './exception.log' ) === false )
+			if( $CachedFS->file_exists( './log/exception.log' ) === false )
 			{
 				return( 'ERROR' );
 			}
 
 			// проверим что информация сохранилась на диске
 			$CachedFS->Cache->delete_data( './packages/index.html' );
-			if( $CachedFS->file_exists( './exception.log' ) === false )
+			if( $CachedFS->file_exists( './log/exception.log' ) === false )
 			{
 				return( 'ERROR' );
 			}

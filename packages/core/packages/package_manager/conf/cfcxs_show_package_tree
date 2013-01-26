@@ -1,4 +1,4 @@
-call_params_filter=show_{prefix}_tree:integer,value_1
+call_params_filter={prefix}_tree:integer,value_1
 permits_filter={prefix}_manager
 get_post_filter={prefix}_context_action:command,not_set
 success_func=show_{prefix}_tree

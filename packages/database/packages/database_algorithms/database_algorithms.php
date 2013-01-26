@@ -120,6 +120,7 @@
 		{
 			try
 			{
+				$SetOfQueries = str_replace( ";\r\n" , ";\n" , $SetOfQueries );
 				$SetOfQueries = explode( ";\n" , $SetOfQueries );
 
 				foreach( $SetOfQueries as $Query )
@@ -133,7 +134,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция проверяет можно ли законнектиться.
 		*
@@ -160,6 +161,8 @@
 			}
 			catch( Exception $e )
 			{
+				handle_script_error( false , $e );
+
 				return( false );
 			}
 		}

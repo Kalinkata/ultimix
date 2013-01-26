@@ -1,0 +1,3 @@
+call_params_filter=copy_{prefix}_form:integer,value_1
+permits_filter=create_{prefix}
+access_package_name=ad::{prefix}::{prefix}_access

@@ -16,3 +16,4 @@ package_was_installed=Пакет был установлен
 note_auto_select=Место установки пакета будет выбрано автоматически
 package_manager=Пакеты
 package_create_was_completed=Пакет был создан
+package_select_dialog=Выбор пакета

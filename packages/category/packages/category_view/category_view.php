@@ -459,6 +459,46 @@
 		}
 
 		/**
+		*	\~russian Функция получения пути в дереве категорий.
+		*
+		*	@param $Options - Настройки работы модуля.
+		*
+		*	@return Путь.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method returns path for categories.
+		*
+		*	@param $Options - Settings.
+		*
+		*	@return Path.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	get_path_items( &$Options )
+		{
+			try
+			{
+				$Items = $this->CategoryAccess->select_categories_list( $id = $this->get_category_id( $Options ) );
+
+				$cid = $this->Security->get_gp( 'cid' , 'integer' , $id );
+
+				$Path = $this->CategoryAlgorithms->get_previous_items( $Items , $cid );
+
+				return( $Path );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Функция отображение пути в дереве категорий.
 		*
 		*	@param $Options - Настройки работы модуля.
@@ -480,9 +520,7 @@
 		{
 			try
 			{
-				$Items = $this->CategoryAccess->select_categories_list( $id = $this->get_category_id( $Options ) );
-				$cid = $this->Security->get_gp( 'cid' , 'integer' , $id );
-				$Path = $this->CategoryAlgorithms->get_previous_items( $Items , $cid );
+				$Path = $this->get_path_items( $Options );
 
 				$RetCode = array();
 
@@ -491,6 +529,7 @@
 					$Template = $this->CachedMultyFS->get_template( __FILE__ , 'categories_path.tpl' );
 					$PlaceHolders = array( '{id}' , '{title}' );
 					$Template = str_replace( $PlaceHolders , array( $Item->id , $Item->title ) , $Template );
+					$RetCode [] = $Template;
 				}
 
 				$RetCode = implode( '&nbsp;&gt;&nbsp;' , $RetCode );

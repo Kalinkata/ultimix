@@ -35,6 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Security = false;
 		var					$Utilities = false;
 
 		/**
@@ -51,6 +52,7 @@
 		{
 			try
 			{
+				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Utilities = get_package( 'utilities' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -106,6 +108,102 @@
 		}
 
 		/**
+		*	\~russian Создание директорий пакета.
+		*
+		*	@param $PackagePath - Путь к пакету.
+		*
+		*	@param $PackageName - Название пакета.
+		*
+		*	@param $PackageVersion - Версия пакета.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates package drectories.
+		*
+		*	@param $PackagePath - Package path.
+		*
+		*	@param $PackageName - Package name.
+		*
+		*	@param $PackageVersion - Package version.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	create_main_directories( $PackagePath , $PackageName , $PackageVersion )
+		{
+			try
+			{
+				$Dir = "_$PackageName.$PackageVersion";
+				mkdir_ex( "$PackagePath/packages/$Dir" );
+				mkdir_ex( "$PackagePath/packages/$Dir/conf" );
+				mkdir_ex( "$PackagePath/packages/$Dir/data" );
+				mkdir_ex( "$PackagePath/packages/$Dir/data/page" );
+				mkdir_ex( "$PackagePath/packages/$Dir/data/permit" );
+				mkdir_ex( "$PackagePath/packages/$Dir/packages" );
+				mkdir_ex( "$PackagePath/packages/$Dir/packages/core" );
+				mkdir_ex( "$PackagePath/packages/$Dir/packages/core/data" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
+		*	\~russian Создание директорий пакета.
+		*
+		*	@param $PackagePath - Путь к пакету.
+		*
+		*	@param $PackageName - Название пакета.
+		*
+		*	@param $PackageVersion - Версия пакета.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates package drectories.
+		*
+		*	@param $PackagePath - Package path.
+		*
+		*	@param $PackageName - Package name.
+		*
+		*	@param $PackageVersion - Package version.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	create_package_directories( $PackagePath , $PackageName , $PackageVersion )
+		{
+			try
+			{
+				$this->create_main_directories( $PackagePath , $PackageName , $PackageVersion );
+
+				$Dir = "_$PackageName.$PackageVersion";
+
+				mkdir_ex( "$PackagePath/packages/$Dir/res" );
+				mkdir_ex( "$PackagePath/packages/$Dir/res/images" );
+				mkdir_ex( "$PackagePath/packages/$Dir/res/lang" );
+				mkdir_ex( "$PackagePath/packages/$Dir/res/templates" );
+				mkdir_ex( "$PackagePath/packages/$Dir/res/css" );
+				
+				mkdir_ex( "$PackagePath/packages/$Dir/include" );
+				mkdir_ex( "$PackagePath/packages/$Dir/include/php" );
+				mkdir_ex( "$PackagePath/packages/$Dir/include/js" );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Создание пакета.
 		*
 		*	@param $Record - Информация о создаваемом пакете.
@@ -132,11 +230,11 @@
 
 				$PackagePath = $this->get_install_dir( $Record );
 
-				mkdir( "$PackagePath/packages/$PackageName.$PackageVersion" );
+				$this->create_package_directories( $PackagePath , $PackageName , $PackageVersion );
 
 				file_put_contents( 
 					"$PackagePath/packages/core/data/package_list" , 
-					"\r\n$PackageName.$PackageVersion#$PackageName.$PackageVersion" , FILE_APPEND
+					"\r\n$PackageName.$PackageVersion#_$PackageName.$PackageVersion" , FILE_APPEND
 				);
 
 				_drop_core_cache();
@@ -560,6 +658,42 @@
 			catch( Exception $e )
 			{
 				$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
+			}
+		}
+
+		/**
+		*	\~russian Выборка массива объектов.
+		*
+		*	@param $id - Список идентификаторов удаляемых данных, разделённых запятыми.
+		*
+		*	@return Массив записей.
+		*
+		*	@exception Exception - кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function selects list of objects.
+		*
+		*	@param $id - Comma separated list of record's id.
+		*
+		*	@return Array of records.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			select_list( $id )
+		{
+			try
+			{
+				$id = $this->Security->get( $id , 'string' );
+
+				return( array( $this->get_package_info_by_id( $id ) ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
 	}

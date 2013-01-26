@@ -29,14 +29,7 @@ if( !ultimix.ad_banner )
 */
 ultimix.ad_banner.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'ad_banner' , 'ad::ad_banner::ad_banner_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'ad_banner' , 'ad::ad_banner::ad_banner_manager' );
 }
 
 /**
@@ -50,13 +43,18 @@ ultimix.ad_banner.get_list_form = function( Fuctions , ViewOptions )
 *
 *	@param Footer - List footer template file name.
 *
+*	@param NoDataFound - No data found template.
+*
 *	@param ViewOptions - Extra view generation options.
 *
 *	@author Dodonov A.A.
 */
-ultimix.ad_banner.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
+ultimix.ad_banner.get_custom_list_form = function( Fuctions , Header , Item , Footer , NoDataFound , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'ad_banner' );
+	ultimix.auto.get_custom_list_form( 
+		Fuctions , Header , Item , Footer , NoDataFound , 
+		ViewOptions , 'ad_banner' , 'ad::ad_banner::ad_banner_manager'
+	);
 }
 
 /**

@@ -1,2 +1,2 @@
 permits_filter={prefix}_manager
-search_fields=c1.title
+search_fields=umx_category.id,umx_category.title

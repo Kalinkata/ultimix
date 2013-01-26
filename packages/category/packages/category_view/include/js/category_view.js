@@ -29,14 +29,7 @@ if( !ultimix.category )
 */
 ultimix.category.get_list_form = function( Fuctions , ViewOptions )
 {
-	if( !Fuctions )
-	{
-		Fuctions = {};
-	}
-
-	ViewOptions = ultimix.auto.set_default_options( ViewOptions , 'category' , 'category::category_view' );
-
-	ultimix.ajax_gate.direct_view( ViewOptions , Fuctions );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'category' , 'category::category_view' );
 }
 
 /**
@@ -56,7 +49,9 @@ ultimix.category.get_list_form = function( Fuctions , ViewOptions )
 */
 ultimix.category.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
-	ultimix.auto.get_custom_list_form( Fuctions , Header , Item , Footer , false , ViewOptions , 'category' );
+	ultimix.auto.get_custom_list_form( 
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'category' , 'category::category_view'
+	);
 }
 
 /**

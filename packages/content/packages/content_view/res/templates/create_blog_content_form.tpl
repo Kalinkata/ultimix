@@ -1,4 +1,4 @@
-				<form method="post" id="{prefix}_create_form" class="form_650">
+				<form method="post" id="create_{prefix}_form" class="form_650">
 					<input type="hidden" id="{prefix}_context_action"name="{prefix}_context_action" value="create_record_form">
 					<input type="hidden" id="{prefix}_action" name="{prefix}_action" value="create_record">
 					{composer:condition={neq:value1={options:name=category_name;default=0};value2=0}}
@@ -105,11 +105,11 @@
 									</div>
 								</td>
 							</tr>
-							<tr>
+							{composer:condition={options:name=show_buttons;default=1}}<tr>
 								<td align="center" valign="center">
 									{create}&nbsp;{cancel}
 								</td>
-							</tr>
+							</tr>{~composer}
 						</table>
 					</center>
 				</form>
