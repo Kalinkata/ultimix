@@ -1,7 +1,8 @@
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
-system_structure::system_structure_controller#last#controller=1;update_system_structure=1#
-system_structure::system_structure_controller#last#controller=1;create_system_structure=1#
-system_structure::system_structure_controller#last#controller=1;delete_system_structure=1#
-system_structure::system_structure_view#last#view=1;update_system_structure_form=1#main
-system_structure::system_structure_view#last#view=1;create_system_structure_form=1#main
-system_structure::system_structure_view#last#view=1;system_structure_list=1#main
+system_structure::system_structure_manager#last#controller=1;update_system_structure=1#
+system_structure::system_structure_manager#last#controller=1;create_system_structure=1#
+system_structure::system_structure_manager#last#controller=1;delete_system_structure=1#
+system_structure::system_structure_manager#last#view=1;copy_system_structure_form=1#main
+system_structure::system_structure_manager#last#view=1;update_system_structure_form=1#main
+system_structure::system_structure_manager#last#view=1;create_system_structure_form=1#main
+system_structure::system_structure_manager#last#view=1;system_structure_list=1#main

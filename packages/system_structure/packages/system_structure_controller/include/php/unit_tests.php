@@ -114,43 +114,9 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
+			get_package( 'system_structure::system_structure_controller' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Тестирование вида.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing view.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_create_record()
-		{
-			$this->Security->set_g( 'page' , 'test_page' );
-			$this->Security->set_g( 'root_page' , 'test_root_page' );
-			$this->Security->set_g( 'navigation' , 'test_navigation' );
-			$this->Security->set_g( 'auto_redirect' , 0 );
-
-			$Controller = get_package( 'system_structure::system_structure_controller' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'system_structure' );
-
-			$Controller->controller( $this->Settings );
-
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_system_structure' , 'page LIKE "test_page"' ) )
-			{
-				$this->SystemStructureAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
 		}
 	}
 

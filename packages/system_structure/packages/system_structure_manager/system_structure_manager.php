@@ -23,7 +23,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	sustem_structure_manager_1_0_0{
+	class	system_structure_manager_1_0_0{
 
 		/**
 		*	\~russian Результат работы функций отображения.
@@ -36,42 +36,6 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Output;
-
-		/**
-		*	\~russian Закешированные объекты.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Cached objects.
-		*
-		*	@author Dodonov A.A.
-		*/
-		var					$CachedMultyFS = false;
-		var					$String = false;
-
-		/**
-		*	\~russian Конструктор.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Constructor.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			__construct()
-		{
-			try
-			{
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
 
 		/**
 		*	\~russian Функция управления компонентом.
@@ -91,7 +55,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
@@ -127,7 +91,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{

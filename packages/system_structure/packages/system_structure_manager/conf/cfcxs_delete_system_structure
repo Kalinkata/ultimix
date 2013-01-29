@@ -1,4 +1,4 @@
 call_params_filter=delete_{prefix}:integer,value_1
 permits_filter=delete_{prefix}
-access_package_name=system_structure::system_structure_access
+access_package_name={prefix}::{prefix}_access
 success_message=system_structure_was_deleted

@@ -136,7 +136,7 @@
 			$this->Security->set_g( 'navigation' , 'test_navigation' );
 			$this->Security->set_g( 'auto_redirect' , 0 );
 
-			$Controller = get_package( 'system_structure::system_structure_controller' , 'last' , __FILE__ );
+			$Controller = get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
 
 			$this->Testing->setup_controller( $this->Settings , 'system_structure' );
 
