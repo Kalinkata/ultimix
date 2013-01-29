@@ -29,7 +29,7 @@ if( !ultimix.site )
 */
 ultimix.site.get_list_form = function( Fuctions , ViewOptions )
 {
-	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'site' , 'site::site_view' );
+	ultimix.auto.get_list_form( Fuctions , ViewOptions , 'site' , 'site::site_manager' );
 }
 
 /**
@@ -52,7 +52,7 @@ ultimix.site.get_list_form = function( Fuctions , ViewOptions )
 ultimix.site.get_custom_list_form = function( Fuctions , Header , Item , Footer , ViewOptions )
 {
 	ultimix.auto.get_custom_list_form( 
-		Fuctions , Header , Item , Footer , false , ViewOptions , 'site' , 'site::site_view'
+		Fuctions , Header , Item , Footer , false , ViewOptions , 'site' , 'site::site_manager'
 	);
 }
 
@@ -95,9 +95,27 @@ ultimix.site.record_view_form = function( Id , DataSelector )
 	ultimix.auto.record_view_form( 
 		Id , DataSelector , 
 		{
-			'package_name' : 'site::site_view' , 'site_context_action' : 'record_view_form' , 
+			'package_name' : 'site::site_manager' , 'site_context_action' : 'record_view_form' , 
 			'site_action' : 'record_view_form' , 'site_record_id' : Id , 
 			'meta' : 'meta_record_view_site_form'
 		}
 	);
+}
+
+/**
+*	Function creates record.
+*
+*	@param Data - Request settings.
+*
+*	@param Functions - Callbacks.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.site.create = function( Data , Functions )
+{
+	Data[ 'package_name' ] = 'site::site_controller';
+	Data[ 'package_version' ] = 'last';
+	Data[ 'create_site' ] = '1';
+
+	ultimix.auto.create( Data , Functions );
 }

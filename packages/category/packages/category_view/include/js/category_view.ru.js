@@ -46,3 +46,5 @@ if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_name' ] ) ultimix.la
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'category_name' ][ 'default' ] = 'Локатор';
 if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'catalogue_manager' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'catalogue_manager' ] = {};
 ultimix.lang.Strings[ ultimix.lang.Locale ][ 'catalogue_manager' ][ 'default' ] = 'Каталог';
+if( !ultimix.lang.Strings[ ultimix.lang.Locale ][ 'no_selected_category' ] ) ultimix.lang.Strings[ ultimix.lang.Locale ][ 'no_selected_category' ] = {};
+ultimix.lang.Strings[ ultimix.lang.Locale ][ 'no_selected_category' ][ 'default' ] = 'Ни одной категории не выбрано';

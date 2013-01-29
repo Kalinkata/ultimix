@@ -5,3 +5,4 @@ permit::permit_manager#last#controller=1;update_permit=1#
 permit::permit_manager#last#view=1;permit_list=1#main
 permit::permit_manager#last#view=1;create_permit_form=1#main
 permit::permit_manager#last#view=1;update_permit_form=1#main
+permit::permit_manager#last#view=1;copy_permit_form=1#main

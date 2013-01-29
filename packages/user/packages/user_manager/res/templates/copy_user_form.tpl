@@ -1,4 +1,4 @@
-					<form method="post" action="" id="create_{prefix}_form" name="{prefix}_form" class="margin_0_auto width_400">
+					<form method="post" action="" id="create_{prefix}_form" class="margin_0_auto width_400">
 						<input type="hidden" name="{prefix}_context_action" id="{prefix}_context_action" value="copy_record_form">
 						<input type="hidden" name="{prefix}_action" id="{prefix}_action" value="copy_record">{permit:user_manager}
 						<input type="hidden" name="current_password" value="current_password">
