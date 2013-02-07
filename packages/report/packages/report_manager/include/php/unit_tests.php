@@ -192,13 +192,13 @@
 		*/
 		function			test_display_search_list()
 		{
-			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$this->Security->set_p( 'search_string' , 'Main Report' );
 			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+			$Exists = strpos( $PageContent , 'Main Report' ) !== false;
 
 			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
 			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+			$NotExists = strpos( $PageContent , 'Main Report' ) === false;
 
 			if( $Exists && $NotExists )
 			{

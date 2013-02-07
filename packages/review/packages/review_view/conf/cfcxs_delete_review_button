@@ -1,2 +1,2 @@
 call_params_filter=delete_{prefix}:integer,value_1
-permits_filter={prefix}_delete
+permits_filter=delete_{prefix}

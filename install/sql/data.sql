@@ -565,7 +565,8 @@ INSERT INTO `{prefix}system_structure` ( `id` , `page` , `root_page` , `navigati
 ( '29' , 'menu_manager' , 'admin' , '' ),
 ( '30' , 'menu_item_manager' , 'admin' , '' ),
 ( '31' , 'subscription_manager' , 'admin' , '' ),
-( '32' , 'site_manager' , 'admin' , '' );
+( '32' , 'site_manager' , 'admin' , '' ),
+( '33' , 'system_structure' , 'admin' , '' );
 
 DROP TABLE IF EXISTS `{prefix}uploaded_file`;
 CREATE TABLE `{prefix}uploaded_file` (

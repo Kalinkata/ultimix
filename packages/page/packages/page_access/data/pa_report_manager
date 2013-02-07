@@ -5,3 +5,4 @@ report::report_manager#last#controller=1;update_report=1#
 report::report_manager#last#view=1;report_list=1#main
 report::report_manager#last#view=1;create_report_form=1#main
 report::report_manager#last#view=1;update_report_form=1#main
+report::report_manager#last#view=1;copy_report_form=1#main

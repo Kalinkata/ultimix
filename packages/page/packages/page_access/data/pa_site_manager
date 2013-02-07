@@ -4,4 +4,5 @@ site::site_manager#last#meta=meta_create_site#main
 site::site_manager#last#meta=meta_delete_site#main
 site::site_manager#last#meta=meta_create_site_form#main
 site::site_manager#last#meta=meta_update_site_form#main
+site::site_manager#last#meta=meta_copy_site_form#main
 site::site_manager#last#meta=meta_site_list#main

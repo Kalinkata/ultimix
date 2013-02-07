@@ -235,13 +235,13 @@
 		*/
 		function			test_display_search_list()
 		{
-			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$this->Security->set_p( 'search_string' , 'ultimix.sf.net' );
 			$PageContent = $this->PageComposer->get_page( 'site_manager' );
-			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+			$Exists = strpos( $PageContent , 'ultimix.sf.net' ) !== false;
 
 			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
 			$PageContent = $this->PageComposer->get_page( 'site_manager' );
-			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+			$NotExists = strpos( $PageContent , 'ultimix.sf.net' ) === false;
 
 			if( $Exists && $NotExists )
 			{

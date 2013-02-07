@@ -7,9 +7,12 @@
 								{header_checkbox:name={prefix}}
 							</td>
 							<td width="30%" align="left" class="table_header">
-								{sort_link:text=domain;dbfield=domain}
+								{sort_link:text=name;dbfield=name}
 							</td>
-							<td width="70%" align="left" class="table_header">
-								{sort_link:text=comment;dbfield=comment}
+							<td width="35%" align="left" class="table_header">
+								{sort_link:text=package_name;dbfield=package_name}
+							</td>
+							<td width="35%" align="left" class="table_header">
+								{sort_link:text=package_version;dbfield=package_version}
 							</td>
 						</tr>

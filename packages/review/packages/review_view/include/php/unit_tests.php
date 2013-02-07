@@ -166,8 +166,8 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'comment_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'comment_record_id' , '1' );
+			$this->Security->set_g( 'review_context_action' , 'update_record_form' );
+			$this->Security->set_g( 'review_record_id' , '1' );
 
 			$PageContent = $this->PageComposer->get_page( 'review_manager' );
 
@@ -192,13 +192,13 @@
 		*/
 		function			test_display_search_list()
 		{
-			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$this->Security->set_p( 'search_string' , 'Good!' );
 			$PageContent = $this->PageComposer->get_page( 'review_manager' );
-			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+			$Exists = strpos( $PageContent , 'Good!' ) !== false;
 
 			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
 			$PageContent = $this->PageComposer->get_page( 'review_manager' );
-			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+			$NotExists = strpos( $PageContent , 'Good!' ) === false;
 
 			if( $Exists && $NotExists )
 			{
@@ -223,8 +223,8 @@
 		*/
 		function			test_copy_record_form()
 		{
-			$this->Security->set_g( 'comment_context_action' , 'copy_record_form' );
-			$this->Security->set_g( 'comment_record_id' , '1' );
+			$this->Security->set_g( 'review_context_action' , 'copy_record_form' );
+			$this->Security->set_g( 'review_record_id' , '1' );
 
 			$PageContent = $this->PageComposer->get_page( 'review_manager' );
 

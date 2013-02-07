@@ -7,14 +7,19 @@
 						<table class="margin_0_auto">
 							<tr>
 								<td align="left" >
-									{lang:comment}<br>
-									<textarea class="width_320 height_240 flat" name="comment">{form_value:name=comment}</textarea>
+									{lang:rank} {select:class=flat;name=rank;first=-5,-4,-3,-2,-1,0,1,2,3,4,5;second=-5,-4,-3,-2,-1,0,1,2,3,4,5}
+								</td>
+							</tr>
+							<tr>
+								<td align="left" >
+									{lang:review}<br>
+									<textarea class="width_320 height_240 flat" name="review">{http_param:post=1;name=review}</textarea>
 								</td>
 							</tr>
 							{composer:condition={options:name=show_buttons;default=1}}<tr>
 								<td class="centered">
-									{save}&nbsp;{cancel}
+									{save}
 								</td>
 							</tr>{~composer}
 						</table>
-					</form>
+					</form>{lang_file:package_name=review::review_markup}{lang_file:package_name=review::review_view}
