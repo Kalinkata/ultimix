@@ -35,6 +35,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var				$PageAccess = false;
 		var				$PageComposer = false;
 		var				$Security = false;
 
@@ -52,6 +53,7 @@
 		{
 			try
 			{
+				$this->PageAccess = get_package_object( 'page::page_access' , 'last' , __FILE__ );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
@@ -104,6 +106,37 @@
 			get_package( 'page::page_manager' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'page_name' , 'test_page_name' );
+
+			$Controller = get_package( 'page::page_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'page' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_page' , 'page_name LIKE "test_page_name"' ) )
+			{
+				$this->PageAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
 		}
 
 		/**

@@ -152,7 +152,113 @@
 		{
 			try
 			{
-				return( $this->get_template_list() );
+				$SearchString = $this->Security->get_gp( 'search_string' , 'string' , '' );
+				$Templates = $this->get_template_list();
+				$Return = array();
+
+				if( $SearchString == '' )
+				{
+					$Return = $Templates;
+				}
+				else
+				{
+					foreach( $Templates as $i => $Template )
+					{
+						if( strpos( get_field( $Template , 'name' ) , $SearchString ) !== false ||
+							strpos( get_field( $Template , 'version' ) , $SearchString ) !== false )
+						{
+							$Return [] = $Template;
+						}
+					}
+				}
+
+				return( $Return );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Получение информации о пакете по идентификатору.
+		*
+		*	@param $id - id пакета.
+		*
+		*	@return Информация о пакете.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Method returns package info.
+		*
+		*	@param $id - Package's id.
+		*
+		*	@return Package info.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			get_template_info_by_id( $id )
+		{
+			try
+			{
+				$id = str_replace( '[sharp]' , '_' , $id );
+				$id = str_replace( '.' , '_' , $id );
+
+				$Templates = $this->get_template_list();
+
+				foreach( $Templates as $i => $Template )
+				{
+					$Signature = get_field( $Template , 'name' ).'_'.
+									str_replace( '.' , '_' , get_field( $Template , 'version' ) );
+
+					if( $Signature == $id )
+					{
+						return( $Template );
+					}
+				}
+
+				throw( new Exception( "The package '$id' was not found" ) );
+			}
+			catch( Exception $e )
+			{
+				$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
+			}
+		}
+		
+		/**
+		*	\~russian Выборка массива объектов.
+		*
+		*	@param $id - Список идентификаторов удаляемых данных, разделённых запятыми.
+		*
+		*	@return Массив записей.
+		*
+		*	@exception Exception - кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function selects list of objects.
+		*
+		*	@param $id - Comma separated list of record's id.
+		*
+		*	@return Array of records.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			select_list( $id )
+		{
+			try
+			{
+				$id = $this->Security->get( $id , 'string' );
+
+				return( array( $this->get_template_info_by_id( $id ) ) );
 			}
 			catch( Exception $e )
 			{

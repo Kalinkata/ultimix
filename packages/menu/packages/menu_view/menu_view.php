@@ -103,7 +103,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			show_menu( $Options )
+		function			show_menu( &$Options )
 		{
 			try
 			{
@@ -147,15 +147,15 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
-				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/show_menu' );
 
-				if( $ContextSet->execute( $Options , $this ) )return( $this->Output );
+				$ContextSet->execute( $Options , $this , __FILE__ );
 
 				return( $this->Output );
 			}

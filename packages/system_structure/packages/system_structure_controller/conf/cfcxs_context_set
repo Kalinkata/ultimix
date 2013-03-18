@@ -1,0 +1,4 @@
+prefix=system_structure
+common_state_config_create=cfcxs_create_system_structure
+common_state_config_update=cfcxs_update_system_structure
+common_state_config_delete=cfcxs_delete_system_structure

@@ -37,6 +37,7 @@
 		*/
 		var				$PageComposer = false;
 		var				$Security = false;
+		var				$TemplateAccess = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -54,6 +55,7 @@
 			{
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->TemplateAccess = get_package( 'template_manager::template_access' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -104,6 +106,37 @@
 			get_package( 'template_manager' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'title' , 'test_title' );
+
+			$Controller = get_package( 'template_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'template' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_template' , 'title LIKE "test_title"' ) )
+			{
+				$this->TemplateAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
 		}
 
 		/**
@@ -167,7 +200,7 @@
 		function			test_update_record_form()
 		{
 			$this->Security->set_g( 'template_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'template_record_id' , '1' );
+			$this->Security->set_g( 'template_record_id' , 'template_manager::main_template_1_0_0::1_0_0' );
 
 			$PageContent = $this->PageComposer->get_page( 'template_manager' );
 
@@ -192,13 +225,13 @@
 		*/
 		function			test_display_search_list()
 		{
-			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$this->Security->set_p( 'search_string' , 'mono_' );
 			$PageContent = $this->PageComposer->get_page( 'template_manager' );
-			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+			$Exists = strpos( $PageContent , 'mono_' ) !== false;
 
 			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
 			$PageContent = $this->PageComposer->get_page( 'template_manager' );
-			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+			$NotExists = strpos( $PageContent , 'mono_' ) === false;
 
 			if( $Exists && $NotExists )
 			{
@@ -224,7 +257,7 @@
 		function			test_copy_record_form()
 		{
 			$this->Security->set_g( 'template_context_action' , 'copy_record_form' );
-			$this->Security->set_g( 'template_record_id' , '1' );
+			$this->Security->set_g( 'template_record_id' , 'template_manager::main_template_1_0_0::1_0_0' );
 
 			$PageContent = $this->PageComposer->get_page( 'template_manager' );
 

@@ -4,3 +4,4 @@ subscription_manager=Менеджер рассылок
 subscription_title=Название
 subscription_description=Описание
 subscription_template=Шаблон
+no_selected_subscription=Ни одной подписки не выбрано

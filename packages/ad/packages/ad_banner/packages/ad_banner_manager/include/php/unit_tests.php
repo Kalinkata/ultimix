@@ -124,6 +124,37 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'code' , 'test_code' );
+
+			$Controller = get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'ad_banner' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_code' , 'code LIKE "test_code"' ) )
+			{
+				$this->AdBannerAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_display_list()
 		{
 			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );

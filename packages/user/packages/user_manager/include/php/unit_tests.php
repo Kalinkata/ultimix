@@ -37,6 +37,7 @@
 		*/
 		var				$PageComposer = false;
 		var				$Security = false;
+		var				$UserAccess = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -54,6 +55,7 @@
 			{
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -104,6 +106,37 @@
 			get_package( 'user::user_manager' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'login' , 'test_login' );
+
+			$Controller = get_package( 'user::user_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'user' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_user' , 'login LIKE "test_login"' ) )
+			{
+				$this->UserAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
 		}
 
 		/**

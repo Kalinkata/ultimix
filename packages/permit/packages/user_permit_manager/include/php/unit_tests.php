@@ -116,6 +116,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_create_record()
+		{
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_display_list()
 		{
 			$PageContent = $this->PageComposer->get_page( 'user_permit_manager' );

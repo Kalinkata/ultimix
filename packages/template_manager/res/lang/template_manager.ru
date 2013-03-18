@@ -2,3 +2,4 @@ template_manager=Менеджер шаблонов
 package_name=Название пакета
 package_version=Версия пакета
 template_package=Пакет
+no_selected_template=Ни одного шаблона не выбрано

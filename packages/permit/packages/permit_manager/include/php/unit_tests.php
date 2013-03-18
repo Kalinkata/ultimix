@@ -36,6 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var				$PageComposer = false;
+		var				$PermitAccess = false;
 		var				$Security = false;
 
 		/**
@@ -53,6 +54,7 @@
 			try
 			{
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
+				$this->PermitAccess = get_package_object( 'permit::permit_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -127,6 +129,37 @@
 			}
 
 			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record()
+		{
+			$this->Security->set_g( 'title' , 'test_title' );
+
+			$Controller = get_package( 'permit::permit_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_controller( $this->Settings , 'permit' );
+
+			$Controller->controller( $this->Settings );
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_permit' , 'title LIKE "test_title"' ) )
+			{
+				$this->PermitAccess->delete( $this->DefaultControllers->id );
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
 		}
 
 		/**

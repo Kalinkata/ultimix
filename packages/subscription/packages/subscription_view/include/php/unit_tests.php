@@ -192,13 +192,13 @@
 		*/
 		function			test_display_search_list()
 		{
-			$this->Security->set_p( 'search_string' , '"./index.html"' );
+			$this->Security->set_p( 'search_string' , 'Main Subscription Title' );
 			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
-			$Exists = strpos( $PageContent , '"./index.html"' ) !== false;
+			$Exists = strpos( $PageContent , 'Main Subscription Title' ) !== false;
 
 			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
 			$PageContent = $this->PageComposer->get_page( 'subscription_manager' );
-			$NotExists = strpos( $PageContent , '"./index.html"' ) === false;
+			$NotExists = strpos( $PageContent , 'Main Subscription Title' ) === false;
 
 			if( $Exists && $NotExists )
 			{
