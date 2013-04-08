@@ -112,7 +112,7 @@
 			try
 			{
 				$FieldName = 'common_state_config_'.$StateName.$Suffix;
-				$FileName = 'cfcxs_'.$StateName.$Suffix;
+				$FileName = 'cfcxs_'.$StateName.'_'.$ContextSet->Prefix.$Suffix;
 
 				return( 
 					$this->ContextSetConfigs->get_common_state_config( 

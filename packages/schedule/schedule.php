@@ -160,7 +160,9 @@
 					throw( new Exception( 'The package "'.$Task->package_name.'" has no script' ) );
 				}
 
-				$Delegate = array( $Package , 'schedule_task' );
+				$FunctionName = get_field( $Task , 'function_name' );
+
+				$Delegate = array( $Package , $FunctionName == '' ? 'schedule_task' : $FunctionName );
 
 				return( intval( call_user_func( $Delegate , $Task->parameters , $Task->next_iteration ) ) );
 			}

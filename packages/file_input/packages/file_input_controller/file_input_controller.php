@@ -47,6 +47,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$FileInputAccess = false;
 		var					$FileInputAlgorithms = false;
 		var					$Security = false;
 
@@ -68,6 +69,7 @@
 		{
 			try
 			{
+				$this->FileInputAccess = get_package( 'file_input::file_input_access' , 'last' , __FILE__ );
 				$this->FileInputAlgorithms = get_package( 'file_input::file_input_algorithms' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
@@ -111,10 +113,8 @@
 		{
 			try
 			{
-				$FileInputAccess = get_package( 'file_input::file_input_access' , 'last' , __FILE__ );
-
 				$Record = array( 'file_path' => $SavePath.$FileName , 'original_file_name' => $OriginalFileName );
-				$id = $FileInputAccess->create( $Record );
+				$id = $this->FileInputAccess->create( $Record );
 
 				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$EventManager->trigger_event( 'on_load_file' , array( 'id' => $id ) );
@@ -268,6 +268,38 @@
 		}
 
 		/**
+		*	\~russian Обработка задания удаления неприаттаченных файлов.
+		*
+		*	@param $Settings - Параметры работы задания.
+		*
+		*	@return Следующая итерация.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function processes task of unattached files deletion.
+		*
+		*	@param $Settings - Parameters of the task processing.
+		*
+		*	@return Next iteration.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			delete_unattached_files( &$Settings )
+		{
+			try
+			{
+				$this->FileInputAccess->delete_unattached_files();
+
+				return( 0 );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Функция управления компонентом.
 		*
 		*	@param $Options - Настройки работы модуля.
@@ -285,7 +317,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{

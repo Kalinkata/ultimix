@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс обработки макросов пакетов.
 	*
@@ -56,7 +56,7 @@
 				$PackageName = 'core::package_manager';
 				$Settings->set_setting( 'package_name' , $PackageName );
 				$Settings->set_setting( 'show_package_tree' , '1' );
-				
+
 				return( '{view_dialog:'.$Settings->get_all_settings().'}' );
 			}
 			catch( Exception $e )
@@ -65,5 +65,5 @@
 			}
 		}
 	}
-	
+
 ?>

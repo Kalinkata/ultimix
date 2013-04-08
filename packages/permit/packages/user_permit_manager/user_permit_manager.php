@@ -183,7 +183,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			change_permits_view( $Options )
+		function			change_permits_view( &$Options )
 		{
 			try
 			{
@@ -218,7 +218,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			change_groups_view( $Options )
+		function			change_groups_view( &$Options )
 		{
 			try
 			{
@@ -257,7 +257,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{

@@ -579,7 +579,7 @@ ultimix.tab_control.open_record_in_tab = function( ControlId , Title , Index ,
 																	Closable , Selected , ContentProvider , RecordId )
 {
 	var			TabId = 'tabs' + ultimix.tab_control.TabCounter;
-	
+
 	ultimix.tab_control.add_tab_from_content( 
 		ControlId , Title , Index , ultimix.std_dialogs.loading_img_widget() , Closable , Selected
 	);
@@ -588,3 +588,24 @@ ultimix.tab_control.open_record_in_tab = function( ControlId , Title , Index ,
 
 	ContentProvider( RecordId , jQuery( '#' + ControlId ).children( 'div' ).eq( Index ) );
 }
+
+jQuery( 
+	function()
+	{
+		window.setInterval(
+			function()
+			{
+				var			Panels = jQuery( '.ui-tabs' ).find( '.ui-tabs-panel' ).filter( ':visible' );
+
+				if( Panels.length )
+				{
+					for( var i = 0 ; i < Panels.length ; i++ )
+					{
+						ultimix.windows.auto_fit_div( Panels[ i ] );
+					}
+				}
+			} , 
+			100
+		);
+	}
+);

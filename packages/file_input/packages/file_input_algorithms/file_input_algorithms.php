@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	file_input_algorithms_1_0_0{
-	
+
 		/**
 		*	\~russian Закэшированные пакеты.
 		*
@@ -39,7 +39,7 @@
 		var					$Security = false;
 
 		var					$Extensions = array();
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -60,19 +60,19 @@
 			{
 				$this->FileInputAccess = get_package( 'file_input::file_input_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				
+
 				$this->Extensions[ 'default' ] = array( 'jpg' , 'jpeg' , 'gif' , 'bmp' , 'png' , 'tif' , 
 					'tiff' , 'doc' , 'docx' , 'ppt' , 'pptx' , 'rtf' , 'xls' , 'xslx' , 'pdf'
 				);
-												
+
 				$this->Extensions[ 'images' ] = array( 
 					'jpg' , 'jpeg' , 'gif' , 'bmp' , 'png' , 'tiff' , 'tif'
 				);
-				
+
 				$this->Extensions[ 'archives' ] = array( 
 					'zip' , '7zip' , 'gz' , 'gz2' , 'tar' , 'rar' , 'arc'
 				);
-				
+
 				$this->Extensions[ 'all' ] = array( '*' );
 			}
 			catch( Exception $e )
@@ -80,7 +80,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция получения списка расширений.
 		*
@@ -112,12 +112,12 @@
 			try
 			{
 				$Extensions = array();
-				
+
 				if( isset( $this->Extensions[ $Type ] ) === false )
 				{
 					throw( new Exception( "File type \"$Type\" is undefined" ) );
 				}
-				
+
 				return( 
 					$AsString ? '*.'.implode( ';*.' , $this->Extensions[ $Type ] ) : $this->Extensions[ $Type ] 
 				);
@@ -127,7 +127,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения фильтра.
 		*
@@ -155,7 +155,7 @@
 			try
 			{
 				$FileExtensions = $this->get_extensions( $Type , true );
-					
+
 				if( $Type == 'default' )
 				{
 					$FileDescription = 'Supported types';
@@ -172,7 +172,7 @@
 				{
 					$FileDescription = 'All files';
 				}
-				
+
 				return( array( $FileExtensions , $FileDescription ) );
 			}
 			catch( Exception $e )
@@ -180,7 +180,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает запись по идентификатору.
 		*
@@ -208,7 +208,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Records = $this->FileInputAccess->unsafe_select( "id = $id" );
 
 				if( count( $Records ) !== 1 )
@@ -226,4 +226,5 @@
 			}
 		}
 	}
+
 ?>

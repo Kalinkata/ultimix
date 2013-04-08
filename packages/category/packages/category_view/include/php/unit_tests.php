@@ -35,8 +35,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var				$PageComposer = false;
-		var				$Security = false;
+		var					$PageComposer = false;
+		var					$Security = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -102,137 +102,6 @@
 		function			test_load_package()
 		{
 			get_package( 'category::category_view' , 'last' , __FILE__ );
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Проверка стандартных стейтов.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing standart states.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_display_list()
-		{
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-
-			if( stripos( $PageContent , 'category' ) === false )
-			{
-				print( 'ERROR: category list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Проверка стандартных стейтов.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing standart states.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_create_record_form()
-		{
-			$this->Security->set_g( 'category_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-
-			if( stripos( $PageContent , 'create_category_form' ) === false )
-			{
-				print( 'ERROR: create category form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Проверка стандартных стейтов.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing standart states.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_update_record_form()
-		{
-			$this->Security->set_g( 'category_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'category_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-
-			if( stripos( $PageContent , 'update_category_form' ) === false )
-			{
-				print( 'ERROR: update category form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
-		}
-
-		/**
-		*	\~russian Проверка стандартных стейтов.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing standart states.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_display_search_list()
-		{
-			$this->Security->set_p( 'search_string' , 'content_category' );
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-			$Exists = strpos( $PageContent , 'content_category' ) !== false;
-
-			$this->Security->reset_p( 'search_string' , 'unexisting_search_string' );
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-			$NotExists = strpos( $PageContent , 'content_category' ) === false;
-
-			if( $Exists && $NotExists )
-			{
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				print( 'ERROR' );
-				return;
-			}
-		}
-
-		/**
-		*	\~russian Проверка стандартных стейтов.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Testing standart states.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			test_copy_record_form()
-		{
-			$this->Security->set_g( 'category_context_action' , 'copy_record_form' );
-			$this->Security->set_g( 'category_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-
-			if( stripos( $PageContent , 'create_category_form' ) === false )
-			{
-				print( 'ERROR: copy category form was not displayed'.$PageContent );
-				return;
-			}
 
 			return( 'TEST PASSED' );
 		}

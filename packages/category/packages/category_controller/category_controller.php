@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Обработчик компонента.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	category_controller_1_0_0{
-		
+
 		/**
 		*	\~russian Обновление записи.
 		*
@@ -58,7 +58,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка списков категорий.
 		*
@@ -85,10 +85,10 @@
 				$MasterId = $Options->get_setting( 'master_id' );
 				$MasterType = $Options->get_setting( 'master_type' );
 				$Link->delete_link( $MasterId , false , $MasterType , 'category' );
-				
+
 				$SecurityUtilities = get_package( 'security::security_utilities' , 'last' , __FILE__ );
 				$Ids = $SesurityUtilities->get_global( '_id_' , 'integer' , CHECKBOX_IDS );
-				
+
 				$Link->create_link( $MasterId , $Ids , $MasterType , 'category' , true );
 			}
 			catch( Exception $e )
@@ -121,9 +121,9 @@
 			{
 				/* allways called for the single category */
 				$cid = get_field( $Parameters , 'id' );
-				
+
 				$CategoryAccess = get_package( 'category::category_access' , 'last' , __FILE__ );
-				
+
 				$Categories = $CategoryAccess->select_list( $cid );
 
 				$CategoryAccess->move_up_children_categories( $cid , get_field( $Categories[ 0 ] , 'root_id' ) );
@@ -133,7 +133,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка компонента.
 		*
@@ -152,15 +152,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
-				
+
 				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_update_category_title' );
-				
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_category_list' );
 
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}

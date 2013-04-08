@@ -399,6 +399,8 @@
 			{
 				if( $this->StoreTrace )
 				{
+					$Database = get_package( 'database' , 'last' , __FILE__ );
+					$this->add_trace_string( 'queries_count : '.$Database->QueryCounter , QUERY );
 					$Output = $this->compile_trace_items();
 
 					$TraceBlock = $this->CachedMultyFS->get_template( __FILE__ , 'trace_block.tpl' );

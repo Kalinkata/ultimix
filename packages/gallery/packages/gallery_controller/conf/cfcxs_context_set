@@ -1,4 +1,1 @@
 prefix=gallery
-common_state_config_create=cfcxs_create_gallery
-common_state_config_update=cfcxs_update_gallery
-common_state_config_delete=cfcxs_delete_gallery

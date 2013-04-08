@@ -104,7 +104,7 @@
 				}
 				else
 				{
-					$FileUploadLimit = $Settings->get_setting( 'file_upload_limit' , 1 );
+					$FileUploadLimit = $Settings->get_setting( 'file_upload_limit' , 999 );
 					$Code = str_replace( '{file_upload_limit}' , $FileUploadLimit , $Code );
 					$FileQueueLimit = $Settings->get_setting( 'file_queue_limit' , 1 );
 					$Code = str_replace( '{file_queue_limit}' , $FileQueueLimit , $Code );

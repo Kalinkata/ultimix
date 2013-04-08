@@ -1,5 +1,5 @@
 call_params_filter=create_{prefix}:integer,value_1
-get_post_validation=title:command,err_msg_group_must_be_filled#comment:string
+get_post_validation=title:command,err_msg_group_must_be_filled
 permits_filter=create_{prefix}
 get_post_extraction_script=title:string#comment:string,allow_not_set,default_
 access_package_name=permit::{prefix}_access

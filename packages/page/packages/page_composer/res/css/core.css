@@ -822,11 +822,6 @@ p
 	color					: #008800;
 }
 
-.margin_0_auto
-{
-	margin					: 0 auto;
-}
-
 .triple_checkbox_style_0
 {
 	position				: absolute;
@@ -895,4 +890,24 @@ p
 {
 	height					: 250px;
 	overflow				: scroll;
+}
+
+.catalogue_subitems
+{
+	padding-left			: 10px;
+}
+
+.table_row_even > p
+{
+	margin-top				: 10px;
+}
+
+.table_row_odd > p
+{
+	margin-top				: 10px;
+}
+
+.formatted_text p
+{
+	margin-top				: 10px;
 }

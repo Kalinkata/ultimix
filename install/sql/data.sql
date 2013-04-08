@@ -353,6 +353,7 @@ CREATE TABLE `{prefix}message` (
 DROP TABLE IF EXISTS `{prefix}page`;
 CREATE TABLE `{prefix}page` (
 	`id` int(10) unsigned NOT NULL auto_increment ,
+	`name` text ,
 	`title` text ,
 	`template_package_name` text ,
 	`template_package_version` text ,
@@ -488,8 +489,13 @@ CREATE TABLE `{prefix}schedule` (
 	`count` int(10) unsigned NOT NULL default '1' ,
 	`next_iteration` int(10) unsigned NOT NULL default '0' ,
 	`iteration_step` int(10) unsigned NOT NULL default '1' ,
+	`function_name` TEXT DEFAULT NULL ,
 	PRIMARY KEY  ( `id` )
 ) AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `{prefix}schedule` ( `id` , `package_name` , `time_step` ) VALUES 
+( '1' , 'file_input::file_input_controller' , 'delete_unattached_files' , '2678400' );
 
 DROP TABLE IF EXISTS `{prefix}setting`;
 CREATE TABLE `{prefix}setting` (

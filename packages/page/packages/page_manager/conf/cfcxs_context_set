@@ -1,6 +1,1 @@
 prefix=page
-common_state_config_create_form=cfcxs_create_page_form
-common_state_config_create=cfcxs_create_page
-common_state_config_update_form=cfcxs_update_page_form
-common_state_config_copy_form=cfcxs_copy_page_form
-common_state_config_update=cfcxs_update_page

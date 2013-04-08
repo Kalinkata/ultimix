@@ -192,6 +192,8 @@
 		{
 			try
 			{
+				$this->Trace->add_trace_string( 'page_permit_validation' );
+
 				if( $Options->get_setting( 'page_permit_validation' , false ) )
 				{
 					$Permits = get_package( 'permit::permit_algorithms' , 'last' , __FILE__ );

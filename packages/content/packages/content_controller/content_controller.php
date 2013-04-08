@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-		
+
 	/**
 	*	\~russian Класс для управления контентом.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	content_controller_1_0_0{
-		
+	
 		/**
 		*	\~russian Функция управления компонентом.
 		*
@@ -43,11 +43,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
+
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}
 			catch( Exception $e )

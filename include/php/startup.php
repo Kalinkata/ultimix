@@ -146,6 +146,34 @@
 	}
 
 	/**
+	*	\~russian Отработка заданий.
+	*
+	*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+	*
+	*	@author Додонов А.А.
+	*/
+	/**
+	*	\~english Function processes tasks.
+	*
+	*	@exception Exception - An exception of this type is thrown.
+	*
+	*	@author Dodonov A.A.
+	*/
+	function			run_cron_tasks()
+	{
+		try
+		{
+			$Schedule = get_package( 'schedule' , 'last' , __FILE__ );
+
+			$Schedule->run_tasks();
+		}
+		catch( Exception $e )
+		{
+			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+		}
+	}
+	
+	/**
 	*	\~russian Генерация страницы.
 	*
 	*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
@@ -165,6 +193,8 @@
 		{
 			start_script_settings();
 
+			run_cron_tasks();
+			
 			$PageComposer = get_package( 'page::page_composer' , 'last' , __FILE__ );
 
 			if( isset( $_GET[ 'page_name' ] ) === false )
@@ -179,7 +209,7 @@
 			$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 		}
 	}
-
+	
 	/**
 	*	\~russian Отработка заданий.
 	*
@@ -200,9 +230,7 @@
 		{
 			main_setup();
 
-			$Schedule = get_package( 'schedule' , 'last' , __FILE__ );
-
-			$Schedule->run_tasks();
+			run_cron_tasks();
 		}
 		catch( Exception $e )
 		{

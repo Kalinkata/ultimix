@@ -1,0 +1,11 @@
+review_manager_label=Модерация<br>отзывов
+review_manager=Модерация отзывов
+go_to_the_page_of_the_review=На страницу
+author_login=Автор
+review=Отзыв
+creation_date=Дата создания
+page=Страница
+no_selected_review=Ни одного отзыва не выбрано
+review_delete_was_completed=Все выбранные отзывы были удалены
+rank=Оценка
+user_reviews=Отзывы

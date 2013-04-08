@@ -6,16 +6,16 @@
 								<td width="0%" class="table_header">
 									{header_checkbox:name={prefix}}
 								</td>
-								<td align="left" class="table_header">
+								<td width="10%" align="left" class="table_header">
 									{sort_link:text={prefix}_alias;dbfield=alias}
 								</td>
-								<td align="left" class="table_header">
+								<td width="20%" align="left" class="table_header">
 									{sort_link:text={prefix}_template;dbfield=template}
 								</td>
-								<td align="left" class="table_header">
+								<td width="10%" align="left" class="table_header">
 									{sort_link:text={prefix}_template_version;dbfield=template_version}
 								</td>
-								<td align="left" class="table_header">
+								<td width="60%" align="left" class="table_header">
 									{lang:{prefix}_options}
 								</td>
 								<td width="0%" align="left" class="table_header">

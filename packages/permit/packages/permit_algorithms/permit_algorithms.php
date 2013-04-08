@@ -40,6 +40,7 @@
 		var					$PermitAccess = false;
 		var					$Security = false;
 		var					$String = false;
+		var					$Trace = false;
 		var					$UserAlgorithms = false;
 
 		/**
@@ -64,6 +65,7 @@
 				$this->Link = get_package( 'link' , 'last' , __FILE__ );
 				$this->PermitAccess = get_package( 'permit::permit_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
 				$this->UserAlgorithms = get_package( 'user::user_algorithms' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -343,8 +345,10 @@
 		{
 			try
 			{
+				$this->Trace->add_trace_string( "get_permits_for_object" );
 				$Permits1 = $this->get_permits_for_object( $Object1 , $ObjectType1 );
 
+				$this->Trace->add_trace_string( "get_permits_for_object" );
 				$Permits2 = $this->get_permits_for_object( $Object2 , $ObjectType2 );
 
 				if( count( $Permits2 ) === count( array_intersect( $Permits1 , $Permits2 ) ) )

@@ -35,9 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var				$PageComposer = false;
-		var				$Security = false;
-		var				$TemplateAccess = false;
+		var					$PageComposer = false;
+		var					$Security = false;
+		var					$TemplateAccess = false;
 
 		/**
 		*	\~russian Конструктор.

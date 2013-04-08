@@ -1,8 +1,8 @@
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
-comment::comment_controller#last#meta=meta_create_comment#main
-comment::comment_controller#last#meta=meta_update_comment#main
-comment::comment_controller#last#meta=meta_delete_comment#main
-comment::comment_view#last#meta=meta_comment_list#main
-comment::comment_view#last#meta=meta_create_comment_form#main
-comment::comment_view#last#meta=meta_update_comment_form#main
-comment::comment_view#last#meta=meta_copy_comment_form#main
+comment::comment_manager#last#meta=meta_create_comment#main
+comment::comment_manager#last#meta=meta_update_comment#main
+comment::comment_manager#last#meta=meta_delete_comment#main
+comment::comment_manager#last#meta=meta_comment_list#main
+comment::comment_manager#last#meta=meta_create_comment_form#main
+comment::comment_manager#last#meta=meta_update_comment_form#main
+comment::comment_manager#last#meta=meta_copy_comment_form#main

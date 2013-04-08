@@ -1,5 +1,6 @@
 comment_access.1.0.0#comment_access
 comment_algorithms.1.0.0#comment_algorithms
 comment_controller.1.0.0#comment_controller
+comment_manager.1.0.0#comment_manager
 comment_markup.1.0.0#comment_markup
 comment_view.1.0.0#comment_view

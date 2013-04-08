@@ -520,24 +520,24 @@
 			{
 				$this->Trace->start_group( $Type );
 
-				$Changed = false;
 				$Template->add_stylesheets();
-				$counter = 0;
-
 				foreach( $Packages as $i => $p )
 				{
 					if( $p[ 'settings' ]->get_setting( $Type , false ) )
 					{
 						if( method_exists( $p[ 'fetched_package' ] , $Type ) )
 						{
+							$this->Trace->start_group( get_class( $p[ 'fetched_package' ] ) );
 							$Caller = array( $p[ 'fetched_package' ] , $Type );
-							$Settings = &$p[ 'settings' ];
-							call_user_func( $Caller , $Settings );
+							$Tmp = &$p[ 'settings' ];
+							call_user_func( $Caller , $Tmp );
+							$this->Trace->end_group();
 							continue;
 						}
 						$this->throw_method_was_not_found_exception( $p , $Type );
 					}
 				}
+
 				$this->Trace->end_group();
 			}
 			catch( Exception $e )

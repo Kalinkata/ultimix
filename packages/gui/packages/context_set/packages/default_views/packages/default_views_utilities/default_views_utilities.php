@@ -273,7 +273,7 @@
 				if( strlen( $SearchString ) )
 				{
 					$CommonStateConfigFileName = $this->ContextSet->ContextSetSettings->get_setting( 
-						'common_state_config_search_form' , 'cfcxs_search_form'
+						'common_state_config_search_form' , 'cfcxs_search_'.$this->Prefix.'_form'
 					);
 
 					$ComponentPath = dirname( $Options->get_setting( 'file_path' ) );

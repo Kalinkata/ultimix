@@ -211,7 +211,7 @@
 		function			test_update_record_form()
 		{
 			$this->Security->set_p( 'menu_item_context_action' , 'update_record_form' );
-			$this->Security->set_p( '_id_2' , 'on' );
+			$this->Security->set_p( '_id_1' , 'on' );
 			$this->Security->set_p( 'menu_item_record_id' , '-1' );
 
 			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );
@@ -269,7 +269,7 @@
 		function			test_copy_record_form()
 		{
 			$this->Security->set_p( 'menu_item_context_action' , 'copy_record_form' );
-			$this->Security->set_p( '_id_2' , 'on' );
+			$this->Security->set_p( '_id_1' , 'on' );
 			$this->Security->set_p( 'menu_item_record_id' , '-1' );
 
 			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );

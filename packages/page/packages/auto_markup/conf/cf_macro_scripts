@@ -62,8 +62,8 @@ macro_name=form;package_name=gui::forms;compilation_func=compile_form
 macro_name=timer;package_name=gui::timer_widget;compilation_func=compile_timer
 macro_name=media;package_name=jquery::jquery_media;compilation_func=compile_media
 macro_name=google_map;package_name=maps::google_maps;compilation_func=compile_google_map
-macro_name=rss_link;template=rss_link.tpl;package_name=rss
-macro_name=rss_button;package_name=rss;compilation_func=compile_rss_button
+macro_name=rss_link;template=rss_link.tpl;package_name=xml::rss
+macro_name=rss_button;package_name=xml::rss;compilation_func=compile_rss_button
 macro_name=object_list;package_name=gui::object_list;compilation_func=compile_object_list
 macro_name=locked;template=locked.tpl;package_name=gui::keyboard_markup
 macro_name=sape_common_links;package_name=sape;compilation_func=compile_sape_common_links
@@ -156,7 +156,7 @@ macro_name=scripts;package_name=page::page_js;compilation_func=compile_scripts
 macro_name=stylesheets;package_name=page::page_css;compilation_func=compile_stylesheets
 macro_name=paginator;package_name=gui::paginator;compilation_func=compile_paginator;terminal_values=count_query
 macro_name=template_content;package_name=page::template_content::template_content_markup;compilation_func=compile_template_content
-macro_name=exact_config;package_name=page::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
-macro_name=view;package_name=page::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
-macro_name=controller;package_name=page::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
+macro_name=exact_config;package_name=gui::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
+macro_name=view;package_name=gui::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
+macro_name=controller;package_name=gui::context_set::exact_config;compilation_func=compile_exact_config;terminal_values=package_name,package_version,config
 macro_name=select_package_dialog;package_name=core::package_manager;template=select_package_dialog.tpl

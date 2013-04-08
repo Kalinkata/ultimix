@@ -53,7 +53,7 @@
 		var					$CategoryViewTemplates = false;
 		var					$Security = false;
 		var					$String = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -142,7 +142,6 @@
 			try
 			{
 				$DirectCategoryName = false;
-
 				if( $Options->get_setting( 'direct_category_name' , false ) !== false )
 				{
 					$DirectCategoryName = $Options->get_setting( 'direct_category_name' );
@@ -151,10 +150,13 @@
 				{
 					$DirectCategoryName = $Options->get_setting( 'category_name' );
 				}
-
 				if( $DirectCategoryName === false )
 				{
-					return( $Options->get_setting( 'direct_category' , 0 ) );
+					if( $Options->get_setting( 'direct_category' , 0 ) )
+					{
+						return( $Options->get_setting( 'direct_category' , 0 ) );
+					}
+					return( false );
 				}
 				else
 				{
@@ -484,9 +486,21 @@
 		{
 			try
 			{
-				$Items = $this->CategoryAccess->select_categories_list( $id = $this->get_category_id( $Options ) );
+				$cid = $Options->get_setting( 'cid' , $this->Security->get_gp( 'cid' , 'integer' , false ) );
+				if( $cid === false )
+				{
+					throw( new Exception( 'Category id is undefined' ) );
+				}
 
-				$cid = $this->Security->get_gp( 'cid' , 'integer' , $id );
+				$DirectCategoryId = $this->get_category_id( $Options );
+
+				if( $DirectCategoryId === false )
+				{
+					$DirectCategoryId = $this->CategoryAlgorithms->get_by_id( $cid );
+					$DirectCategoryId = get_field( $DirectCategoryId , 'direct_category' );
+				}
+
+				$Items = $this->CategoryAccess->select_categories_list( $DirectCategoryId );
 
 				$Path = $this->CategoryAlgorithms->get_previous_items( $Items , $cid );
 
@@ -497,7 +511,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение пути в дереве категорий.
 		*
@@ -541,7 +555,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция формирования кода дерева.
 		*
@@ -583,7 +597,7 @@
 				$RetCode  = $this->String->print_record( $RetCode , $Record );
 				$RetCode .= $SubTree;
 				$RetCode .= get_field( $DisplayTemplates , 'end_item_tag' );
-				
+
 				return( $RetCode );
 			}
 			catch( Exception $e )
@@ -591,7 +605,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция формирования кода дерева.
 		*
@@ -645,7 +659,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция вывода корня.
 		*
@@ -675,15 +689,15 @@
 				if( $Options->get_setting( 'output_root' , 1 ) )
 				{
 					$TreeRoot = $this->CachedMultyFS->get_template( __FILE__ , 'tree_root.tpl' );
-					
+
 					$PlaceHolders = array( '{id}' , '{output}' );
-					
+
 					$this->Output = str_replace( $PlaceHolders , array( $id , $this->Output ) , $TreeRoot );
 				}
 				else
 				{
 					$NoTreeRoot = $this->CachedMultyFS->get_template( __FILE__ , 'no_tree_root.tpl' );
-					
+
 					$this->Output = str_replace( '{output}' , $this->Output , $NoTreeRoot );
 				}
 			}
@@ -692,7 +706,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция отображение списка категорий.
 		*

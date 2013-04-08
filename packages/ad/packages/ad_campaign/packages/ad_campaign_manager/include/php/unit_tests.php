@@ -35,13 +35,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var				$AdCampaignAccess = false;
-		var				$DatabaseAlgorithms = false;
-		var				$DefaultControllers = false;
-		var				$PageComposer = false;
-		var				$Security = false;
-		var				$Settings = false;
-		var				$Testing = false;
+		var					$AdCampaignAccess = false;
+		var					$DatabaseAlgorithms = false;
+		var					$DefaultControllers = false;
+		var					$PageComposer = false;
+		var					$Security = false;
+		var					$Settings = false;
+		var					$Testing = false;
 
 		/**
 		*	\~russian Конструктор.

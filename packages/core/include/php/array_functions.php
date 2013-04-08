@@ -41,7 +41,7 @@
 			$Array , 
 			create_function( 
 				'$a , $b' , 
-				'return( get_field( $a , "'.$Field.'" ) < get_field( $b , "'.$Field.'" ) );'
+				'return( get_field( $a , "'.$Field.'" ) > get_field( $b , "'.$Field.'" ) );'
 			)
 		);
 	}
@@ -74,7 +74,7 @@
 			$Array , 
 			create_function( 
 				'$a , $b' , 
-				'return( get_field( $a , "'.$Field.'" ) > get_field( $b , "'.$Field.'" ) );'
+				'return( get_field( $a , "'.$Field.'" ) < get_field( $b , "'.$Field.'" ) );'
 			)
 		);
 	}

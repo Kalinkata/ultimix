@@ -97,7 +97,7 @@
 				$PackageVersion = $Settings->get_setting( 'package_version' , 'last' );
 				$Prefix = $this->ContextSetConfigs->get_context_set_prefix( $PackageName , $PackageVersion );
 				$Permits = $this->ContextSetConfigs->get_context_permits( 
-					'create' , $PackageName , $PackageVersion
+					'create_'.$Prefix , $PackageName , $PackageVersion
 				);
 
 				return( array( $Prefix , $Permits ) );

@@ -40,6 +40,7 @@
 		var					$DefaultControllers = false;
 		var					$PageComposer = false;
 		var					$Security = false;
+		var					$Settings = false;
 		var					$Testing = false;
 
 		/**
@@ -61,6 +62,7 @@
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -134,7 +136,7 @@
 
 			$Controller->controller( $this->Settings );
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_code' , 'code LIKE "test_code"' ) )
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code"' ) )
 			{
 				$this->AdBannerAccess->delete( $this->DefaultControllers->id );
 				return( 'TEST PASSED' );

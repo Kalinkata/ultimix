@@ -1,0 +1,1 @@
+<div class="with_100p right_aligned">{href:tpl=std;text=all_line;page=./news_line.html}</a></div>

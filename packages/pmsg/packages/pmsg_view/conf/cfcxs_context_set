@@ -1,4 +1,1 @@
 prefix=pmsg
-common_state_config_list_form=cfcxs_pmsg_list
-common_state_config_create_form=cfcxs_pmsg_create_form
-common_state_config_delete_button=cfcxs_pmsg_delete_button

@@ -1,6 +1,6 @@
 call_params_filter=create_{prefix}:integer,value_1
 permits_filter=registered
 get_post_filter={prefix}_action:command,value_create_record
-get_post_validation=comment:string,allow_not_set#title:string,err_msg_task_title_must_be_filled#description:string,err_msg_task_description_must_be_filled
-get_post_extraction_script=comment:string,allow_not_set#title:string#description:string#state:integer#action:integer#end_date:string,allow_not_set
+get_post_validation=name:string,err_msg_report_name_must_be_filled
+get_post_extraction_script=name:string#package_name:string,allow_not_set#package_version:string,allow_not_set
 access_package_name={prefix}::{prefix}_access

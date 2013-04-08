@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для работы с базой данных.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	mysql_database_1_0_0{
-		
+
 		/**
 		*	\~russian Объект соединения.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Connection = false;
-		
+
 		/**
 		*	\~russian Список заблокированных таблиц.
 		*
@@ -48,7 +48,7 @@
 		*	@author Dodonov A.A.
 		*/
 		static				$LockedTables = false;
-		
+
 		/**
 		*	\~russian Режимы блокировок таблиц.
 		*
@@ -60,21 +60,19 @@
 		*	@author Dodonov A.A.
 		*/
 		static 				$LockModes = false;
-		
+
 		/**
-		*	\~russian Режим выборки данных. Либо DB_ASSOC_ARRAY (запись представлена в виде 
-		*	ассоциативного массива) либо DB_OBJECT (запись представлена в виде объекта).
+		*	\~russian Режим выборки данных. DB_ASSOC_ARRAY/DB_OBJECT
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Data querying mode. Either DB_ASSOC_ARRAY (record is reprecented as 
-		*	associative array) or DB_OBJECT (record is represented as an object).
+		*	\~english Data querying mode. DB_ASSOC_ARRAY/DB_OBJECT
 		*
 		*	@author Dodonov A.A.
 		*/
 		static 				$QueryMode = DB_ASSOC_ARRAY;
-		
+
 		/**
 		*	\~russian Параметры подключения к базе.
 		*
@@ -90,11 +88,49 @@
 		var					$Password;
 		var					$Database;
 		var					$TablenamePrefix;
-		
+
+		/**
+		*	\~russian Закешированные объекты.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Cached objects.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$Trace = false;
+
+		/**
+		*	\~russian Конструктор.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Constructor.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			__construct()
+		{
+			try
+			{
+				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
 		/**
 		*	\~russian Функция коннекта к базе.
 		*
-		*	@param $ConfigRow - Строка из конфига.
+		*	@param $Row - Строка из конфига.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
@@ -103,23 +139,23 @@
 		/**
 		*	\~english Function connects to database.
 		*
-		*	@param $ConfigRow - String from the config.
+		*	@param $Row - String from the config.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			connect( $ConfigRow )
+		function			connect( $Row )
 		{
 			try
 			{
-				$Config = explode( "#" , $ConfigRow );
+				$Config = explode( "#" , $Row );
 				$this->Host = $Config[ 0 ];
 				$this->Username = $Config[ 1 ];
 				$this->Password = $Config[ 2 ];
 				$this->Database = $Config[ 3 ];
 				$this->TablenamePrefix = $Config[ 4 ];
-				
+
 				$this->Connection = @new mysqli( $this->Host , $this->Username , $this->Password , $this->Database );
 			}
 			catch( Exception $e )
@@ -127,11 +163,11 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция получения соединения с базой данных.
 		*
-		*	@param $ForceReconnect - Принудительное пересоздание коннекта.
+		*	@param $Reconnect - Принудительное пересоздание коннекта.
 		*
 		*	@return Объект mysqli.
 		*
@@ -140,7 +176,7 @@
 		/**
 		*	\~english Function returns database connection.
 		*
-		*	@param $ForceReconnect - Force reconnect to database.
+		*	@param $Reconnect - Force reconnect to database.
 		*
 		*	@return mysqli object.
 		*
@@ -148,11 +184,11 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			get_connection( $ForceReconnect = false )
+		function			get_connection( $Reconnect = false )
 		{
 			try
 			{
-				if( $this->Connection === false || $ForceReconnect === true )
+				if( $this->Connection === false || $Reconnect === true )
 				{
 					if( $this->Connection !== false )
 					{
@@ -178,7 +214,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выполнения запроса.
 		*
@@ -207,6 +243,8 @@
 
 				$Query = str_replace( 'umx_' , $this->TablenamePrefix , $Query );
 
+				$this->Trace->add_trace_string( $Query , QUERY );
+
 				$Result = $this->Connection->query( $Query );
 
 				if( $this->Connection->errno !== 0 )
@@ -221,7 +259,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Режим выборки данных из таблицы.
 		*
@@ -251,7 +289,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса к БД.
 		*
@@ -295,7 +333,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение выборки результатов запроса.
 		*
@@ -323,7 +361,7 @@
 			try
 			{				
 				$RetValues = array();
-					
+
 				for( $i = 0; $i < $Result->num_rows ; $i++ )
 				{
 					if( self::$QueryMode == DB_ASSOC_ARRAY )
@@ -339,7 +377,7 @@
 						$RetValues [] = $Result->fetch_object();
 					}
 				}
-					
+
 				$Result->close();
 
 				return( $RetValues );
@@ -349,7 +387,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса вставки записи к БД.
 		*
@@ -387,7 +425,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления записи из БД.
 		*
@@ -421,7 +459,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса редактирования записи в БД.
 		*
@@ -457,13 +495,13 @@
 			try
 			{
 				$SubQuery = '';
-				
+
 				for( $i = 0 ; $i < count( $Fields ) - 1 ; $i++ )
 				{
 					$SubQuery .= $Fields[ $i ].' = '.$Values[ $i ].' , ';
 				}
 				$SubQuery .= $Fields[ count( $Fields ) - 1 ].' = '.$Values[ count( $Fields ) - 1 ];
-				
+
 				$this->query( "UPDATE $Table SET $SubQuery WHERE $Condition" );
 			}
 			catch( Exception $e )
@@ -471,13 +509,13 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса создания таблицы в БД.
 		*
 		*	@param $Table - Создаваемая таблица.
 		*
-		*	@param $FirstIndexField - Имя поля которое будет индексом. Поле создастся автоматически.
+		*	@param $IndexField - Имя поля которое будет индексом. Поле создастся автоматически.
 		*
 		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
@@ -488,19 +526,19 @@
 		*
 		*	@param $Table - Table to create.
 		*
-		*	@param $FirstIndexField - Index field name.
+		*	@param $IndexField - Index field name.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Додонов А.А.
 		*/
-		function			create( $Table , $FirstIndexField = 'id' )
+		function			create( $Table , $IndexField = 'id' )
 		{
 			try
 			{
 				$this->query( 
-					"CREATE TABLE `$Table` ( `$FirstIndexField` INTEGER UNSIGNED NOT NULL DEFAULT NULL ".
-						"AUTO_INCREMENT , PRIMARY KEY ( `$FirstIndexField` ) )"
+					"CREATE TABLE `$Table` ( `$IndexField` INTEGER UNSIGNED NOT NULL DEFAULT NULL ".
+						"AUTO_INCREMENT , PRIMARY KEY ( `$IndexField` ) )"
 				);
 			}
 			catch( Exception $e )
@@ -508,7 +546,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления таблицы в БД.
 		*
@@ -538,7 +576,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса добавления столбца в таблицу.
 		*
@@ -580,7 +618,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выполнение запроса удаления столбца из таблицы.
 		*
@@ -614,7 +652,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Первичная блокирование таблиц.
 		*
@@ -642,17 +680,15 @@
 			try
 			{
 				$QueryPart = '';
-				
-				/** \~russian первая блокировка
-					\~english first lock */
+
 				for( $i = 0 ; $i < count( $Tables ) - 1 ; $i++ )
 				{
 					$QueryPart .= $Tables[ $i ].' '.$Modes[ $i ].', ';
 				}
 				$QueryPart .= $Tables[ count( $Tables ) - 1 ].' '.$Modes[ count( $Tables ) - 1 ];
-				
+
 				$this->query( 'LOCK TABLES '.$QueryPart );
-				
+
 				self::$LockedTables = $Tables;
 				self::$LockModes = $Modes;
 			}
@@ -661,7 +697,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Попытка заблокировать таблицу.
 		*
@@ -716,7 +752,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Блокирование таблиц.
 		*
@@ -749,8 +785,7 @@
 				}
 				else
 				{
-					/** \~russian уже есть заблокированные таблицы
-						\~english we already have locked tables */
+					/** we already have locked tables */
 					for( $i = 0 ; $i < count( $Tables ) ; $i++ )
 					{
 						$this->try_lock_table( $Tables , $Modes , $i );
@@ -762,7 +797,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция снятия блокировок с таблиц.
 		*
@@ -790,7 +825,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Установка точки сохранения.
 		*
@@ -820,7 +855,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Откат до точки сохранения.
 		*
@@ -850,7 +885,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция начала транзакции.
 		*
@@ -876,7 +911,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Закоммитить транзакцию.
 		*

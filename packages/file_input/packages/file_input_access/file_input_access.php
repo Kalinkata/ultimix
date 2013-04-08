@@ -222,7 +222,7 @@
 		/**
 		*	\~russian Удаление записей.
 		*
-		*	@param $id - Идентификатор записи.
+		*	@param $ids - Идентификатор записи.
 		*
 		*	@param $Options - Дополнительные настройки.
 		*
@@ -233,7 +233,7 @@
 		/**
 		*	\~english Deleting records.
 		*
-		*	@param $id - Record's identificator.
+		*	@param $ids - Record's identificator.
 		*
 		*	@param $Options - Additional options.
 		*
@@ -241,23 +241,23 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			delete( $id , $Options = ' 1 = 1' )
+		function			delete( $ids , $Options = ' 1 = 1' )
 		{
 			try
 			{
-				/* deleting file itself */
-				$id = $this->Security->get( $id , 'integer_list' );
-				$Files = $this->select_list( $id );
+				$ids = $this->Security->get( $ids , 'integer_list' );
+				$Files = $this->select_list( $ids );
 
 				if( count( $Files ) )
 				{
 					foreach( $Files as $i => $File )
 					{
+						/* deleting file itself */
 						@unlink( get_field( $File , 'file_path' ) );
 					}
 
 					/* deleting file record */
-					$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
+					$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $ids )" );
 					$this->Database->commit();
 				}
 			}
@@ -410,9 +410,12 @@
 			{
 				$Files = $this->unsafe_select( 'DATE_ADD( upload_date , INTERVAL 1 DAY ) < NOW()' );
 
-				$id = get_field_ex( $Files , 'id' );
+				if( isset( $Files[ 0 ] ) )
+				{
+					$id = get_field_ex( $Files , 'id' );
 
-				$this->delete( $id );
+					$this->delete( implode( ',' , $id ) );
+				}
 			}
 			catch( Exception $e )
 			{

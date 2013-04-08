@@ -89,7 +89,7 @@
 		{
 			try
 			{
-				$PackageName = $Options->get_setting( 'package_name' , 0 );
+				$PackageName = $Options->get_setting( 'package_name' );
 				$PackageVersion = $Options->get_setting( 'package_version' , 'last' );
 
 				$PackagePath = _get_package_relative_path_ex( $PackageName , $PackageVersion );

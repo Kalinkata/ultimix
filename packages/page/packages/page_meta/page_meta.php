@@ -62,55 +62,6 @@
 		var					$PageDescription = '';
 
 		/**
-		*	\~russian Закэшированный объект.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Cached object.
-		*
-		*	@author Dodonov A.A.
-		*/
-		var					$Cache = false;
-		var					$CachedMultyFS = false;
-		var					$PageComposer = false;
-		var					$PageMarkupUtilities = false;
-		var					$Settings = false;
-		var					$String = false;
-		var					$Tags = false;
-		var					$Trace = false;
-
-		/**
-		*	\~russian Конструктор.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Constructor.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			__construct()
-		{
-			try
-			{
-				$this->Cache = get_package( 'cache' , 'last' , __FILE__ );
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
-				$this->PageMarkupUtilities = get_package( 
-					'page::page_markup::page_markup_utilities' , 'last' , __FILE__
-				);
-				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->String = get_package( 'string' , 'last' , __FILE__ );
-				$this->Tags = get_package( 'string::tags' , 'last' , __FILE__ );
-				$this->Trace = get_package( 'trace' , 'last' , __FILE__ );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Установка тайтла страницы.
 		*
 		*	@param $NewTitle - Новый тайтл страницы.

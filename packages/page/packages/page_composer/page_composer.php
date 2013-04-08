@@ -197,7 +197,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			pre_generation( $Options )
+		function			pre_generation( &$Options )
 		{
 			try
 			{
@@ -396,7 +396,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	apply_options( $Str , $Options )
+		private function	apply_options( $Str , &$Options )
 		{
 			try
 			{

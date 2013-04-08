@@ -293,7 +293,7 @@
 					$Record , 'name:string;package_name:string;package_version:string,default_last'
 				);
 
-				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record , CREATION_DATE );
+				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
 

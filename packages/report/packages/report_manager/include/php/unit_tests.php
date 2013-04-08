@@ -35,9 +35,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$DatabaseAlgorithms = false;
+		var					$DefaultControllers = false;
 		var					$PageComposer = false;
 		var					$ReportAccess = false;
 		var					$Security = false;
+		var					$Settings = false;
+		var					$Testing = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -53,9 +57,13 @@
 		{
 			try
 			{
+				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
+				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->ReportAccess = get_package_object( 'report::report_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -75,6 +83,7 @@
 		*/
 		function			set_up()
 		{
+			$this->Settings->clear();
 		}
 
 		/**
@@ -120,7 +129,9 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'title' , 'test_title' );
+			$this->Security->set_g( 'name' , 'test_title' );
+			$this->Security->set_g( 'package_name' , 'package_name' );
+			$this->Security->set_g( 'package_version' , 'package_version' );
 
 			$Controller = get_package( 'report::report_manager' , 'last' , __FILE__ );
 
@@ -128,7 +139,7 @@
 
 			$Controller->controller( $this->Settings );
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_report' , 'title LIKE "test_title"' ) )
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_report' , 'name LIKE "test_title"' ) )
 			{
 				$this->ReportAccess->delete( $this->DefaultControllers->id );
 				return( 'TEST PASSED' );

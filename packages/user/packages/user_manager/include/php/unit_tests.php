@@ -35,9 +35,13 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var				$PageComposer = false;
-		var				$Security = false;
-		var				$UserAccess = false;
+		var					$DatabaseAlgorithms = false;
+		var					$DefaultControllers = false;
+		var					$PageComposer = false;
+		var					$Security = false;
+		var					$Settings = false;
+		var					$Testing = false;
+		var					$UserAccess = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -53,8 +57,12 @@
 		{
 			try
 			{
+				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
+				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 				$this->UserAccess = get_package( 'user::user_access' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )

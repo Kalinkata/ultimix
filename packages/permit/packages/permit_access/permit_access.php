@@ -312,6 +312,8 @@
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
+
+				return( $id );
 			}
 			catch( Exception $e )
 			{

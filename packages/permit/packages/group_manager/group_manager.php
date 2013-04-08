@@ -87,7 +87,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			change_permits_controller( $Options )
+		function			change_permits_controller( &$Options )
 		{
 			try
 			{
@@ -134,7 +134,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			change_permits_view( $Options )
+		function			change_permits_view( &$Options )
 		{
 			try
 			{
@@ -169,7 +169,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			controller( $Options )
+		function			controller( &$Options )
 		{
 			try
 			{
@@ -206,7 +206,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{

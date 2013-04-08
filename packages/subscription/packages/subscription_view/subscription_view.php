@@ -59,7 +59,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			view( $Options )
+		function			view( &$Options )
 		{
 			try
 			{
