@@ -120,6 +120,62 @@
 		}
 
 		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'page' , 'test_page' );
+			$this->Security->set_g( 'root_page' , 'test_root_page' );
+			$this->Security->set_g( 'navigation' , 'test_navigation' );
+			$this->Security->set_g( 'auto_redirect' , 0 );
+
+			$Controller = get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'system_structure' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_system_structure' , '`page` LIKE "test_page"' ) )
+			{
+				$Controller = get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'system_structure' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 
+						'umx_system_structure' , '`page` LIKE "test_page"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+
+		/**
 		*	\~russian Тестирование вида.
 		*
 		*	@author Додонов А.А.
@@ -131,16 +187,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'page' , 'test_page' );
-			$this->Security->set_g( 'root_page' , 'test_root_page' );
-			$this->Security->set_g( 'navigation' , 'test_navigation' );
-			$this->Security->set_g( 'auto_redirect' , 0 );
-
-			$Controller = get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'system_structure' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_system_structure' , 'page LIKE "test_page"' ) )
 			{
@@ -164,16 +211,8 @@
 		*	@author Dodonov A.A.
 		*/
 		function			test_display_list()
-		{
-			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
-
-			if( stripos( $PageContent , 'site_manager' ) === false )
-			{
-				print( 'ERROR: system structure list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+		{	
+			$this->Testing->test_display_list_form( 'system_structure' , 'site_manager' );
 		}
 
 		/**
@@ -188,17 +227,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'system_structure_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
-
-			if( stripos( $PageContent , 'create_system_structure_form' ) === false )
-			{
-				print( 'ERROR: system structure create form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'system_structure' );
 		}
 
 		/**
@@ -213,18 +242,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'system_structure_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'system_structure_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'system_structure_manager' );
-
-			if( stripos( $PageContent , 'update_system_structure_form' ) === false )
-			{
-				print( 'ERROR: update system structure form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'system_structure' );
 		}
 
 		/**

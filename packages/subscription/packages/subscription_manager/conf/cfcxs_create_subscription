@@ -1,0 +1,4 @@
+call_params_filter=create_{prefix}:integer,value_1
+permits_filter=create_{prefix}
+get_post_extraction_script=title:string,allow_not_set#description:string,allow_not_set#email_template:string,allow_not_set
+access_package_name={prefix}::{prefix}_access

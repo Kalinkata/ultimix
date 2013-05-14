@@ -3,3 +3,5 @@ package_name=Название пакета
 package_version=Версия пакета
 template_package=Пакет
 no_selected_template=Ни одного шаблона не выбрано
+template_create_was_completed=Шаблон был создан
+template_delete_was_completed=Все выбранные шаблоны были удалены

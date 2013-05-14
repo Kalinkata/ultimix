@@ -117,6 +117,59 @@
 		}
 
 		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'login' , 'test_login' );
+
+			$Controller = get_package( 'user::user_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'user' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_system_structure' , '`page` LIKE "test_page"' ) )
+			{
+				$Controller = get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'system_structure' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 
+						'umx_system_structure' , '`page` LIKE "test_page"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+
+		/**
 		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
@@ -128,17 +181,11 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'login' , 'test_login' );
+			$this->create_test_record();
 
-			$Controller = get_package( 'user::user_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'user' );
-
-			$Controller->controller( $this->Settings );
-
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_user' , 'login LIKE "test_login"' ) )
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_user' , 'page LIKE "test_page"' ) )
 			{
-				$this->UserAccess->delete( $this->DefaultControllers->id );
+				$this->SystemStructureAccess->delete( $this->DefaultControllers->id );
 				return( 'TEST PASSED' );
 			}
 			else
@@ -159,15 +206,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'user_manager' );
-
-			if( stripos( $PageContent , 'admin' ) === false )
-			{
-				print( 'ERROR: user list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'user_manager' , 'admin' );
 		}
 
 		/**
@@ -182,17 +221,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'user_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'admin_registration' );
-
-			if( stripos( $PageContent , 'registration_form' ) === false )
-			{
-				print( 'ERROR: user create form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'user' );
 		}
 
 		/**
@@ -207,18 +236,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'user_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'user_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'user_manager' );
-
-			if( stripos( $PageContent , 'update_record_form' ) === false )
-			{
-				print( 'ERROR: user update form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'user' );
 		}
 
 		/**

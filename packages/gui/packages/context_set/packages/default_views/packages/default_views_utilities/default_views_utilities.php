@@ -329,7 +329,7 @@
 				if( $IdList !== false )
 				{
 					$Record = $this->ContextSetUtilities->get_data_record( $Options , $IdList );
-					
+
 					$Record = $this->ContextSetUtilities->extract_data_from_request(
 						$Options , $Record , 'get_post_extraction_script' , $this->Prefix
 					);
@@ -352,7 +352,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Конструирование грида.
 		*

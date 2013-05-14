@@ -17,6 +17,22 @@
 	$CachedFiles = array();
 
 	/**
+	*	\~russian Очистка кэша.
+	*
+	*	@author Dodonov A.A.
+	*/
+	/**
+	*	\~english Clear cache.
+	*
+	*	@author Dodonov A.A.
+	*/
+	function			_drop_cached_package_files()
+	{
+		global	$CachedFiles;
+		$CachedFiles = array();
+	}
+
+	/**
 	*	\~russian Получение содержимого файла с кэшированием.
 	*
 	*	@param $FilePath - Загружаемый файл.

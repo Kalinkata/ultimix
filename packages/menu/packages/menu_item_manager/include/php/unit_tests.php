@@ -129,15 +129,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );
-
-			if( stripos( $PageContent , '>main<' ) === false )
-			{
-				print( 'ERROR: menu item list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'menu_item' , '>main<' );
 		}
 
 		/**
@@ -152,17 +144,61 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'menu_item_context_action' , 'create_record_form' );
+			$this->Testing->test_create_form( 'menu_item' );
+		}
 
-			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );
+		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'name' , 'test_name' );
+			$this->Security->set_g( 'menu' , 'test_menu' );
+			$this->Security->set_g( 'href' , 'test_href' );
 
-			if( stripos( $PageContent , 'create_menu_item_form' ) === false )
+			$Controller = get_package( 'menu::menu_item_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'menu_item' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_menu_item' , 'name LIKE "test_name"' ) )
 			{
-				print( 'ERROR: create menu item form was not displayed'.$PageContent );
-				return;
+				$Controller = get_package( 'menu::menu_item_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'menu_item' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_menu_item' , 'name LIKE "test_name"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
 			}
 
-			return( 'TEST PASSED' );
+			return( 'ERROR' );
 		}
 
 		/**
@@ -177,15 +213,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'name' , 'test_name' );
-			$this->Security->set_g( 'menu' , 'test_menu' );
-			$this->Security->set_g( 'href' , 'test_href' );
-
-			$Controller = get_package( 'menu::menu_item_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'menu_item' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_menu_item' , 'name LIKE "test_name"' ) )
 			{
@@ -210,19 +238,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_p( 'menu_item_context_action' , 'update_record_form' );
-			$this->Security->set_p( '_id_1' , 'on' );
-			$this->Security->set_p( 'menu_item_record_id' , '-1' );
-
-			$PageContent = $this->PageComposer->get_page( 'menu_item_manager' );
-
-			if( stripos( $PageContent , 'update_menu_item_form' ) === false )
-			{
-				print( 'ERROR: update menu item form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'menu_item' );
 		}
 
 		/**

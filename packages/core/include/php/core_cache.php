@@ -196,7 +196,7 @@
 
 		function			_save_root_dir_cache( $Dirname )
 		{
-			global $RootDirCacheChanged;
+			global	$RootDirCacheChanged;
 			if( $RootDirCacheChanged )
 			{
 				global	$RootDirCache;
@@ -380,7 +380,29 @@
 	*/
 	function				_drop_core_cache()
 	{
-		global	$CoreCache;
-		$CoreCache->drop_core_cache();
+		global	$CoreCache;$CoreCache->drop_core_cache();
+
+		global	$RootDirCache;$RootDirCache = array();
+
+		global	$PackageRealVersionCache;$PackageRealVersionCache = array();
+
+		global	$RewritedPackageCache;$RewritedPackageCache = array();
+
+		global	$RewritesCache;$RewritesCache = array();
+
+		global	$PackagePathCache;$PackagePathCache = array();
+
+		global	$PackageRelativePathCache;$PackageRelativePathCache = array();
+
+		global	$TopPackageNameCache;$TopPackageNameCache = array();
+
+		global	$MakeFullVersionCache;$MakeFullVersionCache = array();
+
+		global	$FullClassNameCache;$FullClassNameCache = array();
+
+		global	$GetPackageCache;$GetPackageCache = array();
+
+		global	$PackagePathsCache;$PackagePathsCache = array();
 	}
+
 ?>

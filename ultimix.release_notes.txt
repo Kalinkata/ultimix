@@ -18,6 +18,12 @@ Ultimix v. 1.5.252
 19. The macro 'color_scheme' was added.
 20. Other refactorings and improvements.
 21. Installation script was improved.
+22. Create and update unit_tests were added.
+23. Tree category fixes.
+24. Documentation was fixed.
+25. 20 unit-tests were refactored.
+26. All managers were fixed and improved.
+27. The package page::page_access::page_fs_access was fixed.
 
 Ultimix v. 1.5.251
 -----------------------------------------

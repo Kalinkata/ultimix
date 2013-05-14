@@ -237,6 +237,8 @@
 					"\r\n$PackageName.$PackageVersion#_$PackageName.$PackageVersion" , FILE_APPEND
 				);
 
+				_drop_cached_package_files();
+
 				_drop_core_cache();
 
 				return( array( 'package_name' => $PackageName , 'package_version' => $PackageVersion ) );
@@ -416,7 +418,7 @@
 						$RetArray , $ROOT_DIR , $p ,  $PackageNamePrefix , $PackageVersionPrefix
 					);
 					
-					rsort_by_field( $RetArray , 'package_signature' );
+					sort_by_field( $RetArray , 'package_signature' );
 				}
 
 				return( $RetArray );
@@ -652,6 +654,8 @@
 				$this->Utilities->rmdir( $Path );
 
 				$this->unregister_package( $id , $Path );
+
+				_drop_cached_package_files();
 
 				_drop_core_cache();
 			}

@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Контроллер управления компонентом.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class		permit_controller_1_0_0{
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -211,9 +211,11 @@
 		{
 			try
 			{
-				$Object = $this->Security->get( get_field( $Parameters , 'page_name' ) , 'command' );
+				$Ids = $this->Security->get( get_field( $Parameters , 'id' ) , 'integer_list' );
 
-				$this->PermitAccess->delete_permits_for_page( $Object );
+				$Link = get_package( 'link' , 'last' , __FILE__ );
+
+				$Link->delete_link( $Ids , false , 'page' , 'permit' );
 			}
 			catch( Exception $e )
 			{

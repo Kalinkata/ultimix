@@ -40,6 +40,10 @@
 	<option value="10926">Псковская область</option>
 	<option value="10231">Республика Алтай</option>
 	<option value="225">Россия</option>
+	<option value="10838">Ростов</option>
+	<option value="39">Ростов-на-Дону</option>
+	<option value="11029">Ростовская область</option>
+	<option value="51">Самара</option>
 	<option value="2">Санкт-Петербург</option>
 	<option value="10174">Санкт-Петербург и Ленинградская область</option>
 	<option value="10002">Северная Америка</option>

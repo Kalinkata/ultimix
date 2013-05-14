@@ -36,6 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
+		var					$PackageAccess = false;
 		var					$Security = false;
 
 		/**
@@ -53,6 +54,7 @@
 			try
 			{
 				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				$this->PackageAccess = get_package( 'core::package_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -229,7 +231,7 @@
 				$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -263,6 +265,132 @@
 			catch( Exception $e )
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Создание пакета.
+		*
+		*	@param $Record - Информация о создаваемом пакете.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates package.
+		*
+		*	@param $Record - Creating package's description.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create( &$Record )
+		{
+			try
+			{
+				set_field( $Record , 'package_name' , get_field( $Record , 'template_package_name' ) );
+				set_field( $Record , 'package_version' , get_field( $Record , 'template_package_version' ) );
+
+				$id = $this->PackageAccess->create( $Record );
+				$id = implode( '.' , $id );
+
+				$Info = $this->PackageAccess->get_package_info_by_id( $id );
+
+				$List = $this->CachedMultyFS->get_data( __FILE__ , 'template_list' );
+
+				$List .= "\r\n".$Info[ 'full_package_name' ].'#'.$Info[ 'full_package_version' ]."#";
+
+				$this->CachedMultyFS->file_put_contents( dirname( __FILE__ ).'/data/template_list' , $List );
+
+				return( $id );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Удаление пакета из списка.
+		*
+		*	@param $id - id пакета.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Delete package from list.
+		*
+		*	@param $id - Package's id.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	remove_template_from_list( $id )
+		{
+			try
+			{
+				$Info = $this->PackageAccess->get_package_info_by_id( $id );
+				$List = $this->CachedMultyFS->get_data( __FILE__ , 'template_list' );
+
+				$List = str_replace( 
+					"\r\n".$Info[ 'full_package_name' ].'#'.$Info[ 'full_package_version' ]."#" , '' , $List
+				);
+
+				$List = str_replace( 
+					$Info[ 'full_package_name' ].'#'.$Info[ 'full_package_version' ]."#" , '' , $List 
+				);
+
+				$this->CachedMultyFS->file_put_contents( dirname( __FILE__ ).'/data/template_list' , $List );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Удаление пакета по имени и версии.
+		*
+		*	@param $Ids - id пакета.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Delete package by given name and version.
+		*
+		*	@param $Ids - Package's id.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			delete( $Ids )
+		{
+			try
+			{
+				$Ids = explode( ',' , $Ids );
+
+				foreach( $Ids as $k => $id )
+				{
+					$id = explode( '[sharp]' , $id );
+					$PackageName = array_pop( explode( '::' , $id[ 0 ] ) );
+					$PackageVersion = str_replace( '_' , '.' , array_pop( explode( '::' , $id[ 1 ] ) ) );
+
+					$this->remove_template_from_list( "$PackageName.$PackageVersion" );
+
+					$this->PackageAccess->delete( "$PackageName.$PackageVersion" );
+				}
+			}
+			catch( Exception $e )
+			{
+				$Args = func_get_args();throw( _get_exception_object( __FUNCTION__ , $Args , $e ) );
 			}
 		}
 	}

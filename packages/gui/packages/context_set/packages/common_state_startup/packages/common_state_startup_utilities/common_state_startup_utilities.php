@@ -211,7 +211,6 @@
 				if( $Direct == 0 )
 				{
 					$this->Trace->add_trace_string( 'direct_call_is_not_allowed' );
-					return;
 				}
 
 				if( strpos( $ContextAction , '_form' ) !== false )
@@ -221,7 +220,7 @@
 
 				if( strpos( $ContextAction , '_form' ) === false )
 				{
-					$this->trace_field( $Prefix , 'action' , $StateName );
+					$this->trace_field( $Prefix , 'action' , $ContextAction );
 				}
 			}
 			catch( Exception $e )

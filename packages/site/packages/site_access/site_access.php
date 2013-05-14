@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_site`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -52,7 +52,7 @@
 		var					$EventManager = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -78,7 +78,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -90,7 +90,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -127,7 +127,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -155,7 +155,7 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				return( 
 					$this->Database->select( 
 						$this->NativeTable.'.*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition"
@@ -167,7 +167,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -214,7 +214,7 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -297,8 +297,7 @@
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
 
-				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
-				$EventManager->trigger_event( 'on_after_create_site' , array( 'id' => $id ) );
+				$this->EventManager->trigger_event( 'on_after_create_site' , array( 'id' => $id ) );
 
 				return( $id );
 			}
@@ -307,7 +306,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Редактирование записи.
 		*
@@ -340,7 +339,7 @@
 				);
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$this->Database->update( 

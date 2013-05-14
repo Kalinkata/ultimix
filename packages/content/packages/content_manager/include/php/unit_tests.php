@@ -128,15 +128,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'content_manager' );
-
-			if( stripos( $PageContent , 'content' ) === false )
-			{
-				print( 'ERROR: content list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'content' , 'content' );
 		}
 
 		/**
@@ -162,6 +154,62 @@
 		}
 
 		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->set_demo_data_for_creation();
+
+			$Controller = get_package( 'content::content_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'content' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_content' , 'demo_content LIKE "test_demo_content"' ) )
+			{
+				$Controller = get_package( 'content::content_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'content' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				$Exists = $this->DatabaseAlgorithms->record_exists( 
+					'umx_content' , 'demo_content LIKE "test_demo_content"'
+				);
+
+				if( $Exists === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+		
+		/**
 		*	\~russian Тестирование контроллера.
 		*
 		*	@author Додонов А.А.
@@ -173,13 +221,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->set_demo_data_for_creation();
-
-			$Controller = get_package( 'content::content_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'content' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_content' , 'demo_content LIKE "test_demo_content"' ) )
 			{
@@ -204,17 +246,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'content_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'content_manager' );
-
-			if( stripos( $PageContent , 'create_content_form' ) === false )
-			{
-				print( 'ERROR: create content form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'content' );
 		}
 
 		/**
@@ -229,18 +261,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'content_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'content_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'content_manager' );
-
-			if( stripos( $PageContent , 'update_content_form' ) === false )
-			{
-				print( 'ERROR: update content form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'content' );
 		}
 
 		/**

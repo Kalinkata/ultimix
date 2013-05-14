@@ -118,6 +118,60 @@
 		}
 
 		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'name' , 'test_title' );
+			$this->Security->set_g( 'package_name' , 'package_name' );
+			$this->Security->set_g( 'package_version' , 'package_version' );
+
+			$Controller = get_package( 'report::report_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'report' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_report' , '`name` LIKE "test_title"' ) )
+			{
+				$Controller = get_package( 'report::report_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'report' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_report' , '`name` LIKE "test_title"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+		
+		/**
 		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
@@ -129,15 +183,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'name' , 'test_title' );
-			$this->Security->set_g( 'package_name' , 'package_name' );
-			$this->Security->set_g( 'package_version' , 'package_version' );
-
-			$Controller = get_package( 'report::report_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'report' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_report' , 'name LIKE "test_title"' ) )
 			{
@@ -162,15 +208,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-
-			if( stripos( $PageContent , 'report' ) === false )
-			{
-				print( 'ERROR: report list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'report' , 'report' );
 		}
 
 		/**
@@ -185,17 +223,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'report_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-
-			if( stripos( $PageContent , 'create_report_form' ) === false )
-			{
-				print( 'ERROR: report create form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'report' );
 		}
 
 		/**
@@ -210,18 +238,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'report_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'report_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'report_manager' );
-
-			if( stripos( $PageContent , 'update_report_form' ) === false )
-			{
-				print( 'ERROR: report update form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'report' );
 		}
 
 		/**

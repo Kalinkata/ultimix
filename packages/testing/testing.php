@@ -72,34 +72,35 @@
 		var					$TestingObject = false;
 
 		/**
-		*	\~russian Подготовка среды к запуску контроллера.
+		*	\~russian Подготовка среды к запуску контроллера создания.
 		*
 		*	@param $Settings - Параметры запуска.
 		*
 		*	@param $Prefix - Префикс.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Prepearing environment for controller startup.
+		*	\~english Prepearing environment for creting controller startup.
 		*
 		*	@param $Settings - Settings.
 		*
 		*	@param $Prefix - Prefix.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			setup_controller( &$Settings , $Prefix )
+		function			setup_create_controller( &$Settings , $Prefix )
 		{
 			try
 			{
-				$this->Security->set_g( $Prefix.'_context_action' , 'create_record_form' );
-				$this->Security->set_g( $Prefix.'_action' , 'create_record' );
+				$this->Security->reset_g( $Prefix.'_context_action' , 'create_record_form' );
+				$this->Security->reset_g( $Prefix.'_action' , 'create_record' );
 
+				$Settings->clear();
 				$Settings->set_setting( 'create_'.$Prefix , 1 );
 				$Settings->set_setting( 'controller' , 1 );
 			}
@@ -108,13 +109,219 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
+		/**
+		*	\~russian Подготовка среды к запуску контроллера создания.
+		*
+		*	@param $Settings - Параметры запуска.
+		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@param $id - Идентификатор редактируемой записи.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Prepearing environment for creating controller startup.
+		*
+		*	@param $Settings - Settings.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@param $id - id of the deleting record.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			setup_update_controller( &$Settings , $Prefix , $id )
+		{
+			try
+			{
+				$this->Security->reset_g( $Prefix.'_context_action' , 'update_record_form' );
+				$this->Security->reset_g( $Prefix.'_action' , 'update_record' );
+				$this->Security->reset_g( $Prefix.'_record_id' , $id );
+
+				$Settings->clear();
+				$Settings->set_setting( 'update_'.$Prefix , 1 );
+				$Settings->set_setting( 'controller' , 1 );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Подготовка среды к запуску контроллера удаления.
+		*
+		*	@param $Settings - Параметры запуска.
+		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@param $id - Идентификатор удаляемой записи.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Prepearing environment for deleting controller startup.
+		*
+		*	@param $Settings - Settings.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@param $id - id of the deleting record.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			setup_delete_controller( &$Settings , $Prefix , $id )
+		{
+			try
+			{
+				$this->Security->reset_g( $Prefix.'_context_action' , '' );
+				$this->Security->reset_g( $Prefix.'_action' , 'delete_record' );
+				$this->Security->reset_g( $Prefix.'_record_id' , '-1' );
+				$this->Security->reset_g( '_id_'.$id , 'on' );
+
+				$Settings->clear();
+				$Settings->set_setting( 'delete_'.$Prefix , 1 );
+				$Settings->set_setting( 'controller' , 1 );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Тестирование формы создания.
+		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing create form.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_form( $Prefix )
+		{
+			try
+			{
+				$this->Security->set_g( $Prefix.'_context_action' , 'create_record_form' );
+
+				$PageComposer = get_package( 'page::page_composet' , 'last' , __FILE__ );
+				$PageContent = $PageComposer->get_page( $Prefix.'_manager' );
+
+				if( stripos( $PageContent , 'create_'.$Prefix.'_form' ) === false )
+				{
+					return( 'ERROR: '.$Prefix.' create form was not displayed'.$PageContent );
+				}
+
+				return( 'TEST PASSED' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Тестирование формы создания.
+		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing update form.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_form( $Prefix )
+		{
+			try
+			{
+				$this->Security->set_g( $Prefix.'_context_action' , 'update_record_form' );
+				$this->Security->set_g( $Prefix.'_record_id' , '1' );
+
+				$PageContent = $this->PageComposer->get_page( $Prefix.'_manager' );
+
+				if( stripos( $PageContent , 'update_'.$Prefix.'_form' ) === false )
+				{
+					return( 'ERROR: '.$Prefix.' update form was not displayed'.$PageContent );
+				}
+
+				return( 'TEST PASSED' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Тестирование списка записей.
+		*
+		*	@param $Prefix - Префикс.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing list form.
+		*
+		*	@param $Prefix - Prefix.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_display_list_form( $Prefix , $Str )
+		{
+			try
+			{
+				$PageContent = $this->PageComposer->get_page( $Prefix.'_manager' );
+
+				if( stripos( $PageContent , $Str ) === false )
+				{
+					return( 'ERROR: '.$Prefix.' list was not displayed' );
+				}
+
+				return( 'TEST PASSED' );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}	
+
 		/**
 		*	\~russian Получение директории пакета.
 		*
 		*	@return Путь к пакету.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -123,7 +330,7 @@
 		*
 		*	@return Package path.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -151,7 +358,7 @@
 		*
 		*	@return Объект с юнит-тестами.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -160,7 +367,7 @@
 		*
 		*	@return Object with unit-tests.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -199,7 +406,7 @@
 		*
 		*	@return false если все нормально.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -210,7 +417,7 @@
 		*
 		*	@return false if everyting is OK.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -242,7 +449,7 @@
 		*
 		*	@return Количество подтестов.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -251,7 +458,7 @@
 		*
 		*	@return Subtests count.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -286,7 +493,7 @@
 		*
 		*	@return Название подтеста.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -295,7 +502,7 @@
 		*
 		*	@return Subtest's name.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -336,7 +543,7 @@
 		*
 		*	@return Результат работы теста.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -345,7 +552,7 @@
 		*
 		*	@return Test's result.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -380,7 +587,7 @@
 		*
 		*	@return Результат работы теста.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -391,7 +598,7 @@
 		*
 		*	@return Test's result.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -430,7 +637,7 @@
 		*
 		*	@return Результат работы теста.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -439,7 +646,7 @@
 		*
 		*	@return Test's result.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -469,7 +676,7 @@
 		*
 		*	@return Результат работы функции.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -478,7 +685,7 @@
 		*
 		*	@return Result.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -518,7 +725,7 @@
 		*
 		*	@return HTML код компонента.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -529,7 +736,7 @@
 		*
 		*	@return HTML code of the component.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/

@@ -169,7 +169,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				$ObjectType = $this->Security->get( $ObjectType , 'integer' );;
+				$ObjectType = $this->Security->get( $ObjectType , 'integer' );
 				$Name = $this->Security->get( $Name , 'command' );
 				
 				$Entry = $this->get_entry( $id , $ObjectType , $Name );

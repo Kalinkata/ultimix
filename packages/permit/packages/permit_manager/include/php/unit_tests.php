@@ -129,15 +129,59 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'permit_manager' );
+			$this->Testing->test_display_list_form( 'permit' , 'admin' );
+		}
 
-			if( stripos( $PageContent , 'admin' ) === false )
+		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'permit' , 'test_title' );
+
+			$Controller = get_package( 'permit::permit_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'permit' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_permit' , '`permit` LIKE "test_title"' ) )
 			{
-				print( 'ERROR: permit list was not displayed' );
-				return;
+				$Controller = get_package( 'permit::permit_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'permit' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_permit' , '`permit` LIKE "test_title"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
 			}
 
-			return( 'TEST PASSED' );
+			return( 'ERROR' );
 		}
 
 		/**
@@ -152,13 +196,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'permit' , 'test_title' );
-
-			$Controller = get_package( 'permit::permit_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'permit' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_permit' , 'permit LIKE "test_title"' ) )
 			{
@@ -183,17 +221,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'permit_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'permit_manager' );
-
-			if( stripos( $PageContent , 'create_permit_form' ) === false )
-			{
-				print( 'ERROR: permit create form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'permit' );
 		}
 
 		/**
@@ -208,18 +236,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'permit_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'permit_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'permit_manager' );
-
-			if( stripos( $PageContent , 'update_permit_form' ) === false )
-			{
-				print( 'ERROR: update permit form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'permit' );
 		}
 
 		/**

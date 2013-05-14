@@ -1,4 +1,4 @@
 call_params_filter=delete_{prefix}:integer,value_1
-permits_filter={prefix}_delete
-get_post_filter={prefix}_context_action:string,value_delete_record
+permits_filter=delete_{prefix}
 access_package_name={prefix}::{prefix}_access
+auto_redirect=0

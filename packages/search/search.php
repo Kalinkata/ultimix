@@ -578,7 +578,7 @@
 				$CurrentLimitations = $this->Security->get_gp( 'search_output_limitations' , 'string' , '' );
 				if( $CurrentLimitations != '' )
 				{
-					$Arrows [] = $this->CachedMultyFS->get_template( __FILE__ , 'search_form_prev_arrow.tpl' );;
+					$Arrows [] = $this->CachedMultyFS->get_template( __FILE__ , 'search_form_prev_arrow.tpl' );
 				}
 
 				return( $Arrows );

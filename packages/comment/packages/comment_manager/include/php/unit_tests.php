@@ -57,7 +57,7 @@
 		{
 			try
 			{
-				$this->CommentAccess = get_package_object( 'comment::comment_access' , 'last' , __FILE__ );
+				$this->CommentAccess = get_package( 'comment::comment_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
@@ -128,39 +128,79 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'comment_manager' );
-
-			if( stripos( $PageContent , 'comment' ) === false )
-			{
-				print( 'ERROR: comment list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'comment' , 'comment' );
 		}
 
 		/**
-		*	\~russian Тестирование вида.
+		*	\~russian Функция создания тестовой записи.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Testing view.
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'author_login' , 'admin' );
+			$this->Security->set_g( 'comment' , 'test_comment' );
+			$this->Security->set_g( 'master_id' , '0' );
+			$this->Security->set_g( 'master_type' , 'user' );
+
+			$Controller = get_package( 'comment::comment_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'comment' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_comment' , 'comment LIKE "test_comment"' ) )
+			{
+				$Controller = get_package( 'comment::comment_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'comment' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_comment' , 'comment LIKE "test_comment"' );
+
+				if( $Exists === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+
+		/**
+		*	\~russian Тестирование контроллера.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing controller.
 		*
 		*	@author Dodonov A.A.
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'author_login' , 'admin' );
-			$this->Security->set_g( 'comment' , 'test_comment' );
-			$this->Security->set_g( 'master_id' , '0' );
-			$this->Security->set_g( 'master_type' , '0' );
-
-			$Controller = get_package( 'comment::comment_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'comment' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_comment' , 'comment LIKE "test_comment"' ) )
 			{
@@ -185,17 +225,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'comment_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'comment_manager' );
-
-			if( stripos( $PageContent , 'create_comment_form' ) === false )
-			{
-				print( 'ERROR: create comment form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'comment' );
 		}
 
 		/**
@@ -210,18 +240,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'comment_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'comment_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'comment_manager' );
-
-			if( stripos( $PageContent , 'update_comment_form' ) === false )
-			{
-				print( 'ERROR: update comment form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'comment' );
 		}
 
 		/**

@@ -6,3 +6,6 @@ ad_banner_clicks=Clicks
 ad_banner_yes=yes
 ad_banner_no=no
 no_selected_ad_banner=At least one banner must be selected
+ad_banner_create_was_completed=Banner was created
+ad_banner_delete_was_completed=All selected banners were deleted
+ad_banner_update_was_completed=Banner was changed

@@ -26,6 +26,18 @@
 	class	page_access_1_0_0{
 
 		/**
+		*	\~russian Таблица в которой хранятся объекты этой сущности.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Table name in wich objects of this entity are stored.
+		*
+		*	@author Dodonov A.A.
+		*/
+		var					$NativeTable = '`umx_page`';
+
+		/**
 		*	\~russian Закешированные объекты.
 		*
 		*	@author Додонов А.А.
@@ -36,7 +48,12 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$CachedMultyFS = false;
+		var					$Database = false;
+		var					$DatabaseAlgorithms = false;
+		var					$EventManager = false;
+		var					$PageFSAccess = false;
 		var					$Security = false;
+		var					$SecurityParser = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -52,8 +69,11 @@
 		{
 			try
 			{
-				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );;
+				$this->CachedMultyFS = get_package( 'cached_multy_fs' , 'last' , __FILE__ );
+				$this->EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
+				$this->PageFSAccess = get_package( 'page::page_access::page_fs_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->SecurityParser = get_package( 'security::security_parser' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -111,101 +131,6 @@
 		}
 
 		/**
-		*	\~russian Выборка содержимого файла страницы.
-		*
-		*	@param $PageName - Имя страницы, для которой выбирается информация о примененных пакетах.
-		*
-		*	@return Содержимое файла страницы.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns content of the page file.
-		*
-		*	@param $PageName - Name of the page.
-		*
-		*	@return Content of the page file
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_raw_page( $PageName )
-		{
-			try
-			{
-				$PageName = $this->Security->get( $PageName , 'command' );
-
-				$FileName = dirname( __FILE__ ).'/data/pa_'.$PageName;
-				if( $this->CachedMultyFS->file_exists( $FileName ) )
-				{
-					$RawData = $this->CachedMultyFS->file_get_contents( $FileName , 'cleaned' );
-				}
-				else
-				{
-					$RawData = '';
-				}
-
-				return( $RawData );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Парсинг пакетов страницы.
-		*
-		*	@param $RawData - Содержимое файла страницы.
-		*
-		*	@return Информация о примененных пакетах в формате array( array( 'package' , 'package_version' , 
-		*	'options' , 'placeholder' ) )
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function parses page packages.
-		*
-		*	@param $RawData - Content of the page file.
-		*
-		*	@return Information about all packages wich are applied to the page.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			parse_raw_page( $RawData )
-		{
-			try
-			{
-				$Appliance = array();
-
-				$RawData = explode( "\n" , $RawData );
-				$c = count( $RawData );
-
-				for( $i = 0 ; $i < $c ; $i++ )
-				{
-					$RawDataInfo = explode( '#' , $RawData[ $i ] );
-					$Appliance [] = array( 
-						'package' => @$RawDataInfo[ 0 ] , 'package_version' => @$RawDataInfo[ 1 ] , 
-						'options' => @$RawDataInfo[ 2 ] , 'placeholder' => @$RawDataInfo[ 3 ]
-					);
-				}
-
-				return( $Appliance );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Выборка списка пакетов, применённых к странице $PageName.
 		*
 		*	@param $PageName - Имя страницы, для которой выбирается информация о примененных пакетах.
@@ -236,13 +161,13 @@
 		{
 			try
 			{
-				$RawData = $this->get_raw_page( $PageName );
+				$RawData = $this->PageFSAccess->get_raw_page( $PageName );
 
 				if( $Parse == true )
 				{
 					if( strlen( $RawData ) !== 0 )
 					{
-						return( $this->parse_raw_page( $RawData ) );
+						return( $this->PageFSAccess->parse_raw_page( $RawData ) );
 					}
 
 					return( array() );
@@ -631,6 +556,40 @@
 		}
 
 		/**
+		*	\~russian Функция обработки записи.
+		*
+		*	@param $Record - Данные.
+		*
+		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function process data.
+		*
+		*	@param $Record - Data.
+		*
+		*	@exception Exception An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	process_creation_data( &$Record )
+		{
+			try
+			{
+				$Record = $this->SecurityParser->parse_parameters( 
+					$Record , 
+						'alias:string;title:string;template_package_name:string,default_default;'.
+							'template_package_version:command,default_default;predefined_packages:command,allow_not_set'
+				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+		
+		/**
 		*	\~russian Функция содания страницы.
 		*
 		*	@param $Record - Данные.
@@ -656,19 +615,20 @@
 		{
 			try
 			{
-				$PageName = $this->Security->get( get_field( $Record , 'page_alias' ) , 'command' );
+				$this->process_creation_data( $Record );
 
-				if( $this->page_exists( $PageName ) )
+				if( $this->DatabaseAlgorithms === false )
 				{
-					return( $PageName );
+					$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' , 'last' , __FILE__ );
 				}
 
-				$Page = $this->compile_create_data( $Record );
+				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
-				$this->CachedMultyFS->file_put_contents( dirname( __FILE__ )."/data/".$PageName , $Page );
-				$this->CachedMultyFS->file_put_contents( dirname( __FILE__ )."/data/pa_".$PageName , '' );
+				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
 
-				return( $PageName );
+				$this->EventManager->trigger_event( 'on_after_create_page' , array( 'id' => $id ) );
+
+				return( $id );
 			}
 			catch( Exception $e )
 			{
@@ -732,39 +692,43 @@
 		}
 
 		/**
-		*	\~russian Функция удаления страницы.
+		*	\~russian Удаление записей.
 		*
-		*	@param $PageNames - Имена страниц.
+		*	@param $id - Идентификатор записи.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@param $Options - Дополнительные настройки.
+		*
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function deletes page.
+		*	\~english Deleting records.
 		*
-		*	@param $PageNames - Name of pages.
+		*	@param $id - Record's identificator.
+		*
+		*	@param $Options - Additional options.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			delete( $PageNames )
+		function			delete( $id , $Options = ' 1 = 1' )
 		{
 			try
 			{
-				$PageNames = explode( ',' , $PageNames );
+				$this->EventManager->trigger_event( 'on_before_delete_page' , array( 'id' => $id ) );
 
-				foreach( $PageNames as $i => $PageName )
+				if( $this->Database === false )
 				{
-					$PageName = $this->Security->get( $PageName , 'command' );
-
-					@unlink( dirname( __FILE__ ).'/data/'.$PageName );
-					@unlink( dirname( __FILE__ ).'/data/pa_'.$PageName );
-
-					$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
-					$EventManager->trigger_event( 'on_after_delete_page' , array( 'page_name' => $PageName ) );
+					$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				}
+
+				$id = $this->Security->get( $id , 'integer_list' );
+				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
+				$this->Database->commit();
+
+				$this->EventManager->trigger_event( 'on_after_delete_page' , array( 'id' => $id ) );
 			}
 			catch( Exception $e )
 			{

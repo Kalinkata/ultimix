@@ -129,15 +129,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
-
-			if( stripos( $PageContent , 'Ultimix Project AD campaign' ) === false )
-			{
-				print( 'ERROR: ad list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'ad_campaign' , 'Ultimix Project AD campaign' );
 		}
 
 		/**
@@ -152,17 +144,61 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'ad_campaign_context_action' , 'create_record_form' );
+			$this->Testing->test_create_form( 'ad_campaign' );
+		}
 
-			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
+		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'title' , 'test_title' );
 
-			if( stripos( $PageContent , 'create_ad_campaign_form' ) === false )
+			$Controller = get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'ad_campaign' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_campaign' , 'title LIKE "test_title"' ) )
 			{
-				print( 'ERROR: create ad campaign form was not displayed'.$PageContent );
-				return;
+				$Controller = get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'ad_campaign' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_ad_campaign' , 'title LIKE "test_title"' );
+
+				if( $Exists === false )
+				{
+					return( 'TEST PASSED' );
+				}
 			}
 
-			return( 'TEST PASSED' );
+			return( 'ERROR' );
 		}
 
 		/**
@@ -177,13 +213,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'title' , 'test_title' );
-
-			$Controller = get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'ad_campaign' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_campaign' , 'title LIKE "test_title"' ) )
 			{
@@ -206,20 +236,44 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_update_record()
+		{
+			$this->create_test_record();
+
+			$this->Security->reset_g( 'title' , 'test_title2' );
+
+			$Controller = get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_update_controller( $this->Settings , 'ad_campaign' , $this->DefaultControllers->id );
+
+			$Controller->controller( $this->Settings );
+
+			$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_ad_campaign' , 'title LIKE "test_title2"' );
+			$this->AdCampaignAccess->delete( $this->DefaultControllers->id );
+
+			if( $Exists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'ad_campaign_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'ad_campaign_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'ad_campaign_manager' );
-
-			if( stripos( $PageContent , 'update_ad_campaign_form' ) === false )
-			{
-				print( 'ERROR: update ad campaign form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'ad_campaign' );
 		}
 
 		/**

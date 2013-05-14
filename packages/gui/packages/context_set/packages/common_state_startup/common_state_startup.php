@@ -241,7 +241,7 @@
 
 				$Action = $this->Security->get_gp( $this->Prefix.'_action' , 'command' , '' );
 				$Direct = $Options->get_setting( 'direct_'.$State , 0 );
-				
+
 				if( $Action == $State.'_record' || $Direct != 0 )
 				{
 					$Result = $this->StartupUtilities->try_run_controller_state( $ContextSet , $Options , $State );

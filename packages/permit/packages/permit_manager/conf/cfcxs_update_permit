@@ -1,6 +1,4 @@
 call_params_filter=update_{prefix}:integer,value_1
-custom_get_post_validation=permit:string,err_msg_permit_must_be_filled#comment:string
 permits_filter=update_{prefix}
 get_post_extraction_script=permit:string#comment:string,allow_not_set,default_
 access_package_name=permit::permit_access
-cleanup_fields={prefix}_action,{prefix}_context_action

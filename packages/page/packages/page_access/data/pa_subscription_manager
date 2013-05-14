@@ -1,4 +1,7 @@
 system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
+subscription::subscription_manager#last#meta=meta_create_subscription#main
+subscription::subscription_manager#last#meta=meta_update_subscription#main
+subscription::subscription_manager#last#meta=meta_delete_subscription#main
 subscription::subscription_manager#last#meta=meta_subscription_list#main
 subscription::subscription_manager#last#meta=meta_subscription_create_form#main
 subscription::subscription_manager#last#meta=meta_subscription_copy_form#main

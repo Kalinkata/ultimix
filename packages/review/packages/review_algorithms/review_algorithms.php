@@ -106,9 +106,9 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Records = $this->ReviewAccess->unsafe_select( $this->ReviewAccess->NativeTable.".id = $id" );
-				
+
 				return( count( $Records ) === 1 );
 			}
 			catch( Exception $e )
@@ -144,14 +144,14 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Records = $this->ReviewAccess->unsafe_select( $this->ReviewAccess->NativeTable.".id = $id" );
-				
+
 				if( count( $Records ) == 0 )
 				{
 					throw( new Exception( 'Record was not found' ) );
 				}
-				
+
 				return( $Records[ 0 ] );
 			}
 			catch( Exception $e )
@@ -159,7 +159,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка комментариев.
 		*
@@ -194,11 +194,11 @@
 				{
 					return( $this->Cache[ "$MasterId.$MasterType" ] );
 				}
-				
+
 				$this->Cache[ "$MasterId.$MasterType" ] = $this->LinkUtilities->get_dependent_objects( 
 					$MasterId , $MasterType , 'review' , $this->ReviewAccess
 				);
-				
+
 				return( $this->Cache[ "$MasterId.$MasterType" ] );
 			}
 			catch( Exception $e )
@@ -206,48 +206,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Создание записи.
-		*
-		*	@param $Record - Объект по чьему образцу будет создаваться запись.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@return Идентификатор созданной записи.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Creating record.
-		*
-		*	@param $Record Example for creation.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@return id of the created record.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			create( &$Record , &$Options )
-		{
-			try
-			{
-				$MasterId = $Options->get_setting( 'master_id' );
-				$MasterType = $Options->get_setting( 'master_type' );
-				
-				return( $this->ReviewAccess->create( $Record ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Выборка отзыва.
 		*

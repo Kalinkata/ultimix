@@ -17,3 +17,4 @@ note_auto_select=Место установки пакета будет выбр�
 package_manager=Пакеты
 package_create_was_completed=Пакет был создан
 package_select_dialog=Выбор пакета
+package_delete_was_completed=Пакет был удалён

@@ -9,7 +9,7 @@
 							</tr>
 							<tr>
 								<td>
-									<input type="text" class="width_320 flat" name="{prefix}_alias" value="{http_param:name={prefix}_alias;post=1}">
+									<input type="text" class="width_320 flat" name="alias" value="{http_param:name=alias;post=1}">
 								</td>
 							</tr>
 							<tr>
@@ -19,7 +19,7 @@
 							</tr>
 							<tr>
 								<td>
-									<input type="text" class="width_320 flat" name="{prefix}_title" value="{http_param:name={prefix}_title;post=1}">
+									<input type="text" class="width_320 flat" name="title" value="{http_param:name=title;post=1}">
 								</td>
 							</tr>
 							<tr>
@@ -29,7 +29,7 @@
 							</tr>
 							<tr>
 								<td>
-									<input type="text" class="width_320 flat" name="{prefix}_template" value="{http_param:name={prefix}_template;post=1}">
+									<input type="text" class="width_320 flat" name="template_package_name" value="{http_param:name=template_package_name;post=1}">
 								</td>
 							</tr>
 							<tr>
@@ -39,7 +39,7 @@
 							</tr>
 							<tr>
 								<td>
-									<input type="text" class="width_320 flat" name="{prefix}_template_version" value="{http_param:name={prefix}_template_version;post=1}">
+									<input type="text" class="width_320 flat" name="template_package_version" value="{http_param:name=template_package_version;post=1}">
 								</td>
 							</tr>
 							<tr>
@@ -49,7 +49,7 @@
 							</tr>
 							<tr>
 								<td>
-									{checkbox:name={prefix}_predefined_packages}
+									{checkbox:name=predefined_packages}
 								</td>
 							</tr>
 							{composer:condition={options:name=show_buttons;default=1}}<tr>
@@ -58,4 +58,4 @@
 								</td>
 							</tr>{~composer}
 						</table>
-					</form>{lang_file:package_name=page::page_manager}
+					</form>

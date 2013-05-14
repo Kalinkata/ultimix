@@ -117,6 +117,60 @@
 		}
 
 		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'code' , 'test_code' );
+
+			$Controller = get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'ad_banner' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code"' ) )
+			{
+				$Controller = get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( 
+					$this->Settings , 'ad_banner' , $this->DefaultControllers->id
+				);
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+
+		/**
 		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
@@ -128,13 +182,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'code' , 'test_code' );
-
-			$Controller = get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'ad_banner' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code"' ) )
 			{
@@ -157,17 +205,44 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_update_record()
+		{
+			$this->create_test_record();
+
+			$this->Security->reset_g( 'code' , 'test_code2' );
+
+			$Controller = get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_update_controller( $this->Settings , 'ad_banner' , $this->DefaultControllers->id );
+
+			$Controller->controller( $this->Settings );
+
+			$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code2"' );
+			$this->AdBannerAccess->delete( $this->DefaultControllers->id );
+
+			if( $Exists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
-
-			if( stripos( $PageContent , 'Ultimix Project' ) === false )
-			{
-				print( 'ERROR: ad banners list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'ad_banner' , 'Ultimix Project' );
 		}
 
 		/**
@@ -182,17 +257,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'ad_banner_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
-
-			if( stripos( $PageContent , 'create_ad_banner_form' ) === false )
-			{
-				print( 'ERROR: ad banner create form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'ad_banner' );
 		}
 
 		/**
@@ -207,18 +272,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'ad_banner_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'ad_banner_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
-
-			if( stripos( $PageContent , 'update_ad_banner_form' ) === false )
-			{
-				print( 'ERROR: ad banner update form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'ad_banner' );
 		}
 
 		/**

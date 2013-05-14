@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс дополнительных алгоритмов выборки данных.
 	*
@@ -40,7 +40,7 @@
 		var					$Settings = false;
 		var					$String = false;
 		var					$SupportedDataTypes = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -64,7 +64,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Выборка из массива.
 		*
@@ -100,7 +100,7 @@
 			try
 			{
 				$Fields = array();
-				
+
 				foreach( $Array as $k => $v )
 				{
 					if( strpos( $k , $Prefix ) !== false )
@@ -108,7 +108,7 @@
 						$Fields [] = $k;
 					}
 				}
-				
+
 				return( $Fields );
 			}
 			catch( Exception $e )
@@ -116,7 +116,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка полей.
 		*
@@ -148,7 +148,7 @@
 			try
 			{
 				$Fields = array();
-				
+
 				if( $Mode & POST )
 				{
 					$Fields = array_merge( $this->get_fields_from_array( $Prefix , $Mode , $_POST ) , $Fields );
@@ -165,7 +165,7 @@
 				{
 					$Fields = array_merge( $this->get_fields_from_array( $Prefix , $Mode , $_SESSION ) , $Fields );
 				}
-				
+
 				return( $Fields );
 			}
 			catch( Exception $e )
@@ -220,7 +220,7 @@
 					}
 					return( $this->Security->get( $Array[ $Field ] , $Type ) );
 				}
-				
+
 				return( $this->handle_default_set( $Array , $Field , $Type , $DefaultValue ) );
 			}
 			catch( Exception $e )
@@ -256,17 +256,17 @@
 			try
 			{
 				$Data = array();
-				
-				$Data = $Mode & POST ? array_merge( $Data , $_POST ) : $Data;
-				
+
 				$Data = $Mode & GET ? array_merge( $Data , $_GET ) : $Data;
-				
+
+				$Data = $Mode & POST ? array_merge( $Data , $_POST ) : $Data;
+
 				$Data = $Mode & COOKIE ? array_merge( $Data , $_COOKIE ) : $Data;
-				
+
 				$Data = $Mode & SESSION ? array_merge( $Data , $_SESSION ) : $Data;
-				
+
 				$Data = $Mode & SERVER ? array_merge( $Data , $_SERVER ) : $Data;
-				
+
 				return( $Data );
 			}
 			catch( Exception $e )
@@ -274,7 +274,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка данных.
 		*
@@ -334,7 +334,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка данных.
 		*
@@ -365,13 +365,13 @@
 		{
 			try
 			{
-				if( ( $Mode & POST ) && isset( $_POST[ $Field ] ) )
-				{
-					return( $_POST[ $Field ] );
-				}
-				elseif( ( $Mode & GET ) && isset( $_GET[ $Field ] ) )
+				if( ( $Mode & GET ) && isset( $_GET[ $Field ] ) )
 				{
 					return( $_GET[ $Field ] );
+				}
+				elseif( ( $Mode & POST ) && isset( $_POST[ $Field ] ) )
+				{
+					return( $_POST[ $Field ] );
 				}
 				elseif( ( $Mode & COOKIE ) && isset( $_COOKIE[ $Field ] ) )
 				{
@@ -392,7 +392,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка данных.
 		*
@@ -453,7 +453,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка данных.
 		*
@@ -505,12 +505,12 @@
 
 					return( $this->Security->get( $Return , $Type ) );
 				}
-
 				if( $Type !== 'set' && ( $Value = $this->handle_get( $Field , $Mode ) ) !== false )
 				{
 					return( $this->Security->get( $Value , $Type ) );
 				}
 				$Data = $this->merge_globals( $Mode );
+
 				return( $this->handle_default_set( $Data , $Field , $Type , $DefaultValue ) );
 			}
 			catch( Exception $e )
@@ -545,7 +545,7 @@
 				{
 					$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				}
-					
+
 				return( $this->Security->get( $_POST , 'string' ) );
 			}
 			catch( Exception $e )

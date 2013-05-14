@@ -1,4 +1,3 @@
 call_params_filter=delete_{prefix}:integer,value_1
 permits_filter=delete_{prefix}
 access_package_name=permit::{prefix}_access
-success_message={prefix}_was_deleted

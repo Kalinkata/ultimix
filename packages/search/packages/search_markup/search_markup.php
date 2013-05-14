@@ -102,7 +102,7 @@
 					return( '' );
 				}
 
-				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'search_fields.tpl' );;
+				$Code = $this->CachedMultyFS->get_template( __FILE__ , 'search_fields.tpl' );
 				$Fields = explode( ',' , $Settings->get_setting( 'fields' ) );
 				$Labels = explode( ',' , $Settings->get_setting( 'labels' ) );
 

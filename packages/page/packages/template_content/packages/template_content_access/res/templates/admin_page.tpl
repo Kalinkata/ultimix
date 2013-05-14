@@ -30,3 +30,4 @@
 {logout_img_button}
 {lang_file:package_name=permit}
 {lang_file:package_name=system_structure}
+{lang_file:package_name=subscription}

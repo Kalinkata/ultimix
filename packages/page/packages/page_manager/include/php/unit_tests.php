@@ -117,6 +117,62 @@
 		}
 
 		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'title' , 'test_title' );
+			$this->Security->set_g( 'alias' , 'test_alias' );
+			$this->Security->set_g( 'template_package_name' , 'test_template_package_name' );
+			$this->Security->set_g( 'template_package_version' , 'test_template_package_version' );
+			$this->Security->set_g( 'predefined_packages' , '0' );
+
+			$Controller = get_package( 'page::page_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'page' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_page' , '`alias` LIKE "test_alias"' ) )
+			{
+				$Controller = get_package( 'page::page_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'page' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_page' , '`alias` LIKE "test_alias"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+
+		/**
 		*	\~russian Проверка стандартных стейтов.
 		*
 		*	@author Додонов А.А.
@@ -128,15 +184,9 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'page_name' , 'test_page_name' );
+			$this->create_test_record();
 
-			$Controller = get_package( 'page::page_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'page' );
-
-			$Controller->controller( $this->Settings );
-
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_page' , '`name` LIKE "test_page_name"' ) )
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_page' , '`alias` LIKE "test_alias"' ) )
 			{
 				$this->PageAccess->delete( $this->DefaultControllers->id );
 				return( 'TEST PASSED' );
@@ -159,15 +209,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'page_manager' );
-
-			if( stripos( $PageContent , 'ad_banner_manager' ) === false )
-			{
-				print( 'ERROR: page list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'page' , 'ad_banner_manager' );
 		}
 
 		/**
@@ -182,17 +224,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'page_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'page_manager' );
-
-			if( stripos( $PageContent , 'create_page_form' ) === false )
-			{
-				print( 'ERROR: create page form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'page' );
 		}
 
 		/**
@@ -207,18 +239,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'page_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'page_record_id' , 'index' );
-
-			$PageContent = $this->PageComposer->get_page( 'page_manager' );
-
-			if( stripos( $PageContent , 'update_page_form' ) === false )
-			{
-				print( 'ERROR: update page form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'page' );
 		}
 
 		/**

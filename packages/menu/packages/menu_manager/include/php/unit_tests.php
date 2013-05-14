@@ -129,15 +129,7 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
-
-			if( stripos( $PageContent , 'main' ) === false )
-			{
-				print( 'ERROR: menu list was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'menu' , 'main' );
 		}
 
 		/**
@@ -152,17 +144,28 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'menu_context_action' , 'create_record_form' );
+			$this->Testing->test_create_form( 'menu' );
+		}
 
-			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
+		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'name' , 'test_name' );
 
-			if( stripos( $PageContent , 'create_menu_form' ) === false )
-			{
-				print( 'ERROR: create menu form was not displayed'.$PageContent );
-				return;
-			}
+			$Controller = get_package( 'menu::menu_manager' , 'last' , __FILE__ );
 
-			return( 'TEST PASSED' );
+			$this->Testing->setup_create_controller( $this->Settings , 'menu' );
+
+			$Controller->controller( $this->Settings );
 		}
 
 		/**
@@ -175,15 +178,40 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_menu' , 'name LIKE "test_name"' ) )
+			{
+				$Controller = get_package( 'menu::menu_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'menu' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_menu' , 'name LIKE "test_name"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
+			}
+
+			return( 'ERROR' );
+		}
+		
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'name' , 'test_name' );
-
-			$Controller = get_package( 'menu::menu_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'menu' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_menu' , 'name LIKE "test_name"' ) )
 			{
@@ -208,19 +236,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_p( 'menu_context_action' , 'update_record_form' );
-			$this->Security->set_p( '_id_2' , 'on' );
-			$this->Security->set_p( 'menu_record_id' , '-1' );
-
-			$PageContent = $this->PageComposer->get_page( 'menu_manager' );
-
-			if( stripos( $PageContent , 'update_menu_form' ) === false )
-			{
-				print( 'ERROR: update menu form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'menu' );
 		}
 
 		/**

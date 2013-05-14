@@ -68,8 +68,8 @@ ultimix.category.delete = function( Id , DataSelector )
 	ultimix.auto.delete( 
 		Id , DataSelector , 
 		{ 
-			'package_name' : 'category::category_controller' , 
-			'category_context_action' : 'delete_record' , 'category_action' : 'delete_record' , 
+			'package_name' : 'category::category_manager' , 
+			'category_action' : 'delete_record' , 
 			'category_record_id' : Id , 'meta' : 'meta_delete_category'
 		}
 	);

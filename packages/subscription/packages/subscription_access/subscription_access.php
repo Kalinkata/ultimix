@@ -289,7 +289,7 @@
 			try
 			{
 				$Record = $this->SecurityParser->parse_parameters( 
-					$Record , 'title:string;description:string;template:string'
+					$Record , 'title:string;description:string,allow_not_set;email_template:string,allow_not_set'
 				);
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
@@ -335,7 +335,7 @@
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
 				$Record = $this->SecurityParser->parse_parameters( 
-					$Record , 'title:string;description:string;template:string' , 'allow_not_set'
+					$Record , 'title:string;description:string;email_template:string' , 'allow_not_set'
 				);
 
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );

@@ -307,7 +307,7 @@
 		{
 			try
 			{
-				$_SESSION[ $Field ] = $Value;
+				$_GET[ $Field ] = $Value;
 			}
 			catch( Exception $e )
 			{

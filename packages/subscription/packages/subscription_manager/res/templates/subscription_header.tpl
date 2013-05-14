@@ -13,6 +13,6 @@
 								{sort_link:text=subscription_description;dbfield=description}
 							</td>
 							<td width="20%" align="left" class="table_header">
-								{sort_link:text=subscription_template;dbfield=template}
+								{sort_link:text=subscription_email_template;dbfield=template}
 							</td>
 						</tr>

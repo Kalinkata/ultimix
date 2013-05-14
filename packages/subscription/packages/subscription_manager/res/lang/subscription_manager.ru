@@ -3,5 +3,6 @@ unsubscribe=Отписаться от рассылки
 subscription_manager=Менеджер рассылок
 subscription_title=Название
 subscription_description=Описание
-subscription_template=Шаблон
+subscription_email_template=Шаблон
 no_selected_subscription=Ни одной подписки не выбрано
+subscription_create_was_completed=Все выбранные рассылки были удалены

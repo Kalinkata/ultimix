@@ -1,5 +1,4 @@
 call_params_filter=update_{prefix}:integer,value_1
 permits_filter=registered
-get_post_filter={prefix}_action:string,value_update_record
 custom_get_post_validation=comment:string#title:string,err_msg_task_title_must_be_filled#description:string,err_msg_task_description_must_be_filled#state:integer,err_msg_state_must_be_filled#action:integer,err_msg_action_must_be_filled#end_date:string
 access_package_name={prefix}::{prefix}_access

@@ -3,5 +3,6 @@ unsubscribe=Unsubscribe
 subscription_manager=Subscription manager
 subscription_title=Title
 subscription_description=Description
-subscription_template=Template
+subscription_email_template=Template
 no_selected_subscription=At least one subscription must be selected
+subscription_create_was_completed=All selected subscriptions were deleted

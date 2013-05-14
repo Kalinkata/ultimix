@@ -9,3 +9,5 @@ no_selected_review=Ни одного отзыва не выбрано
 review_delete_was_completed=Все выбранные отзывы были удалены
 rank=Оценка
 user_reviews=Отзывы
+review_create_was_completed=Отзыв был создан
+ad_banner_delete_was_completed=Все выбранные баннеры были удалены

@@ -131,17 +131,39 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_delete_record()
+		{
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( 'TEST PASSED' );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'user_permit_manager' );
-
-			if( stripos( $PageContent , 'admin' ) === false )
-			{
-				print( 'ERROR: user list with permits and group was not displayed' );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_display_list_form( 'user_permit' , 'admin' );
 		}
 
 		/**

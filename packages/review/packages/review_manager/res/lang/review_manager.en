@@ -9,3 +9,5 @@ no_selected_review=At least on review must be slected
 review_delete_was_completed=All selected reviewes were deleted
 rank=ќценка
 user_reviews=Reviews
+review_create_was_completed=Review was created
+ad_banner_delete_was_completed=All selected banners were deleted

@@ -1,3 +1,4 @@
-system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
+category::category_view#last#pre_generation=1#
 gui::jstree#last#pre_generation=1#
+system_structure::system_structure_view#last#view=1;draw_bread_crumbs=1#bread_crumbs
 category::category_view#last#view=1;categories_tree=1#main

@@ -525,11 +525,11 @@ CREATE TABLE `{prefix}subscription` (
 	`id` int(10) unsigned NOT NULL auto_increment ,
 	`title` text ,
 	`description` text ,
-	`template` text ,
+	`email_template` text ,
 	PRIMARY KEY  ( `id` )
 ) AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-INSERT INTO `{prefix}subscription` ( `id` , `title` , `description` , `template` ) VALUES 
+INSERT INTO `{prefix}subscription` ( `id` , `title` , `description` , `email_template` ) VALUES 
 ( '1' , 'Main Subscription Title' , 'Main Subscription Description' , 'main_template.tpl' );
 
 DROP TABLE IF EXISTS `{prefix}system_structure`;

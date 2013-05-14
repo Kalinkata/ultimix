@@ -27,7 +27,7 @@ macro_name=radio_set;package_name=gui::radiobutton_markup;compilation_func=compi
 macro_name=gallery;package_name=gallery::gallery_markup;compilation_func=compile_gallery
 macro_name=select;package_name=gui::controls_markup;compilation_func=compile_select;terminal_values=name
 macro_name=year_list;package_name=gui::controls_markup;compilation_func=compile_year_list;terminal_values=name
-macro_name=checkbox;package_name=gui::checkbox_markup;compilation_func=compile_checkbox;terminal_values=default,id,name
+macro_name=checkbox;package_name=gui::checkbox_markup;compilation_func=compile_checkbox;terminal_values=default,id,name;default_values=value:0
 macro_name=checkbox_ex;package_name=gui::checkbox_markup;compilation_func=compile_checkbox_ex
 macro_name=checkbox_set;package_name=gui::checkbox_markup;compilation_func=compile_checkbox_set
 macro_name=header_checkbox;package_name=gui::checkbox_markup;compilation_func=compile_header_checkbox

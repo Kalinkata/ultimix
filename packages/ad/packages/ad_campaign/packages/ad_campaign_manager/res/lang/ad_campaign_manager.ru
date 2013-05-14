@@ -2,3 +2,5 @@ ad_campaign_manager=Кампании
 ad_campaign_title=Название
 ad_campaign_field_must_be_set=Поле "{lang:ad_campaign_title}" должно быть заполнено
 ad_campaign_create_was_completed=Кампания была создана
+ad_campaign_delete_was_completed=Все выбранные кампании были удалены
+ad_campaign_update_was_completed=Кампания была изменена

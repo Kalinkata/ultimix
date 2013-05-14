@@ -1,0 +1,4 @@
+call_params_filter=update_{prefix}:integer,value_1
+permits_filter=update_{prefix}
+get_post_extraction_script=title:string,err_msg_ad_campaign_field_must_be_set
+access_package_name=ad::{prefix}::{prefix}_access

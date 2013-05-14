@@ -23,7 +23,7 @@
 	*
 	*	@author Dodonov A.A.
 	*/
-	class	subscription_view_1_0_0{
+	class	subscription_manager_1_0_0{
 		
 		/**
 		*	\~russian Результат работы функций отображения.
@@ -96,10 +96,6 @@
 			try
 			{
 				$ContextSet = get_package_object( 'gui::context_set' , 'last' , __FILE__ );
-
-				$Path = dirname( __FILE__ );
-
-				$ContextSet->add_context( "$Path/conf/cfcxs_unsubscribe_form" );
 
 				$ContextSet->execute( $Options , $this , __FILE__ );
 

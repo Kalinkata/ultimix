@@ -108,14 +108,7 @@ ultimix.jstree.remove_node_event_handler = function( e , Data )
 	{
 		var			NodeId = jQuery( Data.rslt.obj[ i ] ).attr( 'id' ).replace( 'phtml_' , '' );
 
-		ultimix.ajax_gate.direct_controller(
-			{
-				'package_name' : 'category::category_controller' , 
-				'meta' : 'meta_delete_category' , 
-				'category_action' : 'delete_record' , 
-				'category_record_id' : NodeId
-			} , {}
-		);
+		ultimix.category.delete( NodeId );
 	}
 }
 

@@ -5,3 +5,4 @@ package_version=Package version
 report_package=Package
 report_name_must_be_filled=Report name must be filled
 report_create_was_completed=Report was created
+report_delete_was_completed=All selected reports were deleted

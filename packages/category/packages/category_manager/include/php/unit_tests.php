@@ -128,15 +128,62 @@
 		*/
 		function			test_display_list()
 		{
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
+			$this->Testing->test_display_list_form( 'category' , 'category_manager' );
+		}
 
-			if( stripos( $PageContent , 'category' ) === false )
+		/**
+		*	\~russian Функция создания тестовой записи.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function creates testing record.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			create_test_record()
+		{
+			$this->Security->set_g( 'title' , 'test_title' );
+			$this->Security->set_g( 'root_id' , '1' );
+			$this->Security->set_g( 'mask' , '1' );
+			$this->Security->set_g( 'direct_category' , '1' );
+
+			$Controller = get_package( 'category::category_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_create_controller( $this->Settings , 'category' );
+
+			$Controller->controller( $this->Settings );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_delete_record()
+		{
+			$this->create_test_record();
+
+			if( $this->DatabaseAlgorithms->record_exists( 'umx_category' , 'title LIKE "test_title"' ) )
 			{
-				print( 'ERROR: category list was not displayed' );
-				return;
+				$Controller = get_package( 'category::category_manager' , 'last' , __FILE__ );
+
+				$this->Testing->setup_delete_controller( $this->Settings , 'category' , $this->DefaultControllers->id );
+
+				$Controller->controller( $this->Settings );
+
+				if( $this->DatabaseAlgorithms->record_exists( 'umx_category' , 'title LIKE "test_title"' ) === false )
+				{
+					return( 'TEST PASSED' );
+				}
 			}
 
-			return( 'TEST PASSED' );
+			return( 'ERROR' );
 		}
 
 		/**
@@ -151,14 +198,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->Security->set_g( 'title' , 'test_title' );
-			$this->Security->set_g( 'root_id' , '1' );
-
-			$Controller = get_package( 'category::category_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_controller( $this->Settings , 'category' );
-
-			$Controller->controller( $this->Settings );
+			$this->create_test_record();
 
 			if( $this->DatabaseAlgorithms->record_exists( 'umx_category' , 'title LIKE "test_title"' ) )
 			{
@@ -181,19 +221,44 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_update_record()
+		{
+			$this->create_test_record();
+
+			$this->Security->reset_g( 'title' , 'test_title2' );
+
+			$Controller = get_package( 'category::category_manager' , 'last' , __FILE__ );
+
+			$this->Testing->setup_update_controller( $this->Settings , 'category' , $this->DefaultControllers->id );
+
+			$Controller->controller( $this->Settings );
+
+			$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_category' , 'title LIKE "test_title2"' );
+			$this->CategoryAccess->delete( $this->DefaultControllers->id );
+
+			if( $Exists )
+			{
+				return( 'TEST PASSED' );
+			}
+			else
+			{
+				return( 'ERROR' );
+			}
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'category_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-
-			if( stripos( $PageContent , 'create_category_form' ) === false )
-			{
-				print( 'ERROR: create category form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->Testing->test_create_form( 'category' );
 		}
 
 		/**
@@ -208,18 +273,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->Security->set_g( 'category_context_action' , 'update_record_form' );
-			$this->Security->set_g( 'category_record_id' , '1' );
-
-			$PageContent = $this->PageComposer->get_page( 'category_manager' );
-
-			if( stripos( $PageContent , 'update_category_form' ) === false )
-			{
-				print( 'ERROR: update category form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			$this->test_update_form( 'category' );
 		}
 
 		/**

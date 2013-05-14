@@ -465,17 +465,10 @@
 		{
 			try
 			{
-				if( $Options->get_setting( 'access_package_name' , false ) )
-				{
-					$PackageName = $Options->get_setting( 'access_package_name' );
-					$PackageVersion = $Options->get_setting( 'access_package_version' , 'last' );
+				$PackageName = $Options->get_setting( 'access_package_name' );
+				$PackageVersion = $Options->get_setting( 'access_package_version' , 'last' );
 
-					return( get_package( $PackageName , $PackageVersion , __FILE__ ) );
-				}
-				else
-				{
-					return( $DefaultProvider );
-				}
+				return( get_package( $PackageName , $PackageVersion , __FILE__ ) );
 			}
 			catch( Exception $e )
 			{
@@ -517,7 +510,7 @@
 				}
 				else
 				{
-					$Mode = POST | PREFIX_NAME | KEYS;
+					$Mode = GET | POST | PREFIX_NAME | KEYS;
 					$Ids = $this->SecurityUtilities->get_global( '_id_' , 'string' , $Mode , array() );
 				}
 

@@ -102,7 +102,9 @@
 		{
 			try
 			{
-				$Code = $this->CachedMultyFS->get_template( __FILE__ , get_field( $Subscription , 'template' ).'.tpl' );
+				$Code = $this->CachedMultyFS->get_template( 
+					__FILE__ , get_field( $Subscription , 'email_template' ).'.tpl'
+				);
 
 				$User = set_field( $User , 'user_id' , get_field( $User , 'id' ) );
 				$Code = $this->String->print_record( $Code , $User );
@@ -343,7 +345,8 @@
 			{
 				$Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$Settings->load_package_settings( 
-					'subscription::subscription_algorithms' , 'last' , 'cf_'.get_field( $Subscription , 'template' )
+					'subscription::subscription_algorithms' , 'last' , 
+					'cf_'.get_field( $Subscription , 'email_template' )
 				);
 				$From = $Settings->get_setting( 'email' , $From );
 				$Subject = $Settings->get_setting( 'subject' , 'Subscription' );

@@ -283,16 +283,16 @@
 			$RootDirectory = _get_root_dir( $PackageName , $PackageVersion , INSTALL_DIR );
 			$PackageDirectory = _get_package_path( $PackageName , $PackageVersion , $RootDirectory );
 			$TopPackageName = _get_top_package_name( $PackageName );
-			
+
 			$PackageClassName = 'unexisting_class';
 			$Exists = false;
-			
+
 			if( file_exists( $PackageDirectory.'/'.$TopPackageName.'.php' ) )
 			{
 				$PackageClassName = _get_full_class_name( $TopPackageName , $PackageVersion , $RootDirectory );
 				$Exists = true;
 			}
-			
+
 			return( 
 				array( $PackageDirectory.'/'.$TopPackageName.'.php' , $Exists , $PackageClassName , $TopPackageName )
 			);

@@ -1,7 +1,5 @@
 call_params_filter=create_{prefix}:integer,value_1
-get_post_filter=page_action:string,value_create_record
 permits_filter=create_{prefix}
-get_post_validation={prefix}_alias:string,err_msg_alias_must_be_filled#{prefix}_template:string,err_msg_template_must_be_filled
-get_post_extraction_script={prefix}_alias:string#{prefix}_title:string#{prefix}_template:string#{prefix}_template_version:command#{prefix}_predefined_packages:command,allow_not_set
+get_post_validation=alias:string,err_msg_alias_must_be_filled#template_package_name:string,err_msg_template_must_be_filled
+get_post_extraction_script=alias:string#title:string#template_package_name:string#template_package_version:command#predefined_packages:command,allow_not_set
 access_package_name={prefix}::{prefix}_access
-success_func=create

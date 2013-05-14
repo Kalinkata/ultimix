@@ -49,7 +49,7 @@ ultimix.ajax_gate.validate_direct_data = function( Data )
 */
 ultimix.ajax_gate.controller_error = function( Functions , ResultObject )
 {
-	if( Functions.controller_error )
+	if( Functions && Functions.controller_error )
 	{
 		Functions.controller_error();
 	}
@@ -81,7 +81,7 @@ ultimix.ajax_gate.controller_success = function( Functions )
 			}
 			else
 			{
-				if( Functions.success )
+				if( Functions && Functions.success )
 				{
 					Functions.success( Result );
 				}
@@ -175,7 +175,10 @@ ultimix.ajax_gate.succes_delete_function = function( DataSelector , ProgressDial
 		{
 			ultimix.std_dialogs.close_message_box( ProgressDialogId );
 			ultimix.std_dialogs.InfoMessageBox( 'all_selected_records_were_deleted' );
-			jQuery( DataSelector ).remove();
+			if( DataSelector )
+			{
+				jQuery( DataSelector ).remove();
+			}
 		}
 	);
 }

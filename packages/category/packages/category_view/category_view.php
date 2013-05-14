@@ -106,8 +106,11 @@
 			try
 			{
 				$Lang = get_package( 'lang' , 'last' , __FILE__ );
-
 				$Lang->include_strings_js( 'category::category_view' );
+
+				$PageJS = get_package( 'page::page_js' , 'last' , __FILE__ );
+				$PackagePath = _get_package_relative_path_ex( 'category::category_view' , 'last::last' );
+				$PageJS->add_javascript( "{http_host}/$PackagePath/include/js/category_view.js" );
 			}
 			catch( Exception $e )
 			{
@@ -141,16 +144,16 @@
 		{
 			try
 			{
-				$DirectCategoryName = false;
+				$CategoryName = false;
 				if( $Options->get_setting( 'direct_category_name' , false ) !== false )
 				{
-					$DirectCategoryName = $Options->get_setting( 'direct_category_name' );
+					$CategoryName = $Options->get_setting( 'direct_category_name' );
 				}
 				elseif( $Options->get_setting( 'category_name' , false ) !== false )
 				{
-					$DirectCategoryName = $Options->get_setting( 'category_name' );
+					$CategoryName = $Options->get_setting( 'category_name' );
 				}
-				if( $DirectCategoryName === false )
+				if( $CategoryName === false )
 				{
 					if( $Options->get_setting( 'direct_category' , 0 ) )
 					{
@@ -160,7 +163,7 @@
 				}
 				else
 				{
-					return( $this->CategoryAccess->get_category_id( $DirectCategoryName ) );
+					return( $this->CategoryAccess->get_category_id( $CategoryName ) );
 				}
 			}
 			catch( Exception $e )

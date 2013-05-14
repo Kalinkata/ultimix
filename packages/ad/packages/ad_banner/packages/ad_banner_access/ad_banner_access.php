@@ -12,7 +12,7 @@
 	*
 	*	@author Alexey "gdever" Dodonov
 	*/
-	
+
 	/**
 	*	\~russian Класс для работы с рекламными сообщениями.
 	*
@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	ad_banner_access_1_0_0{
-		
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_ad_banner`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -51,7 +51,7 @@
 		var					$DatabaseAlgorithms = false;
 		var					$Security = false;
 		var					$SecurityParser = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -76,7 +76,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -88,7 +88,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -125,7 +125,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка записей.
 		*
@@ -153,20 +153,20 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				$Records = $this->Database->select( 
 					'* , code AS preview , IF( shows , ( 100 * clicks / shows ) , 0 ) AS ctr' , 
 					$this->NativeTable , 
 					"( $this->AddLimitations ) AND $Condition"
 				);
-				
+
 				foreach( $Records as $k => $v )
 				{
 					set_field( 
 						$Records[ $k ] , 'preview' , $this->Security->get( get_field( $v , 'code' ) , 'unsafe_string' )
 					);
 				}
-				
+
 				return( $Records );
 			}
 			catch( Exception $e )
@@ -174,7 +174,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -221,7 +221,7 @@
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -229,7 +229,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -259,14 +259,14 @@
 				$Record = $this->SecurityParser->parse_parameters( 
 					$Record , 'campaign_id:integer,allow_not_set,default_0;code:string'
 				);
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
 
 				$id = $this->DatabaseAlgorithms->create( $this->NativeTable , $Fields , $Values );
-				
+
 				$EventManager = get_package( 'event_manager' , 'last' , __FILE__ );
 				$EventManager->trigger_event( 'on_after_create_ad_banner' , array( 'id' => $id ) );
-				
+
 				return( $id );
 			}
 			catch( Exception $e )
@@ -274,7 +274,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Удаление записи из базы.
 		*
@@ -298,9 +298,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
-				/** \~russian удаление записи
-					\~english deleting record*/
+
 				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
 				$this->Database->commit();
 			}
@@ -309,7 +307,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -345,7 +343,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -369,12 +367,12 @@
 			try
 			{
 				$Records = $this->unsafe_select( '1 = 1' );
-				
+
 				foreach( $Records as $k => $v )
 				{
 					$Records[ $k ]->title = '{lang:ad_code} '.$v->code;
 				}
-				
+
 				return( $Records );
 			}
 			catch( Exception $e )
@@ -382,7 +380,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Редактирование записи.
 		*
@@ -413,9 +411,9 @@
 				$Record = $this->SecurityParser->parse_parameters( 
 					$Record , 'campaign_id:integer,default_0;code:string' , 'allow_not_set'
 				);
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
 					$this->Database->update( 

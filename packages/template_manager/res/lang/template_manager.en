@@ -3,3 +3,5 @@ package_name=Package name
 package_version=Package version
 template_package=Package
 no_selected_template=At least one template must be selected
+template_create_was_completed=Template was created
+template_delete_was_completed=All selected templates were deleted

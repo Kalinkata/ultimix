@@ -16,7 +16,7 @@
 	global	$RewritesCacheChanged;
 	global	$RewritesCache;
 	$RewritesCache = array();
-	
+
 	/**
 	*	\~russian Карта алиасов для версий и названий пакетов.
 	*
@@ -29,7 +29,7 @@
 	*/
 	global 	$RewriteMap;
 	$RewriteMap = array();
-	
+
 	/**
 	*	\~russian Функция установки локальных карт переадресации.
 	*

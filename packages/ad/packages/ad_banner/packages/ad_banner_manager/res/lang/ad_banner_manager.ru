@@ -6,3 +6,6 @@ ad_banner_clicks=Клики
 ad_banner_yes=да
 ad_banner_no=нет
 no_selected_ad_banner=Ни одного баннера не выбрано
+ad_banner_create_was_completed=Баннер был создан
+ad_banner_delete_was_completed=Все выбранные баннеры были удалены
+ad_banner_update_was_completed=Баннер был изменён
