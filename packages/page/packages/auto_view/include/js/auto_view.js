@@ -111,64 +111,69 @@ ultimix.auto.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 }
 
 /**
-*	Function deletes record.
-*
-*	@param Id - Record id.
+*	Function processing handler.
 *
 *	@param DataSelector - Data selector.
 *
-*	@param Settings - Request settings.
+*	@param Data - Data.
 *
 *	@param Functions - Callbacks.
 *
 *	@author Dodonov A.A.
 */
-ultimix.auto.delete = function( Id , DataSelector , Settings , Functions )
+ultimix.auto.processing_handler = function( DataSelector , Data , Functions )
 {
-	ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
-		function( Result )
+	var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+	if( !Functions )
+	{
+		Functions = { 
+			'success' :  ultimix.ajax_gate.succes_function( DataSelector , ProgressDialogId )
+		};
+	}
+	else
+	{
+		if( Functions.success )
 		{
-			if( Result == ultimix.std_dialogs.MB_YES )
+			var				SuccessFunction = Functions.success;
+			Functions.success = function( Result )
 			{
-				var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
-
-				if( !Functions )
-				{
-					Functions = { 
-						'success' :  ultimix.ajax_gate.succes_delete_function( DataSelector , ProgressDialogId )
-					};
-				}
-
-				ultimix.ajax_gate.direct_controller( Settings , Functions , {} );
+				SuccessFunction( Result );
+				ultimix.ajax_gate.succes_calling_function( Result , DataSelector , ProgressDialogId );
 			}
 		}
-	)
+	}
+	ultimix.ajax_gate.direct_controller( Data , Functions , {} );
 }
 
 /**
-*	Function shows record.
-*
-*	@param Id - Record id.
+*	Function runs create/update/delete controllers.
 *
 *	@param DataSelector - Data selector.
 *
-*	@param Settings - Request settings.
+*	@param Data - Request data.
 *
-*	@return Content of the form.
+*	@param Functions - Callbacks.
 *
 *	@author Dodonov A.A.
 */
-ultimix.auto.record_view_form = function( Id , DataSelector , Settings )
+ultimix.auto.create_update_delete = function( DataSelector , Data , Functions , HideDialog )
 {
-	ultimix.ajax_gate.direct_view( 
-		Settings , 
-		{ 
-			'success' : function( Result )
+	if( HideDialog )
+	{
+		ultimix.auto.processing_handler( DataSelector , Data , Functions );
+	}
+	else
+	{
+		ultimix.std_dialogs.QuestionMessageBox( 'are_you_shure' , 
+			function( Result )
 			{
-				jQuery( DataSelector ).html( Result );
+				if( Result == ultimix.std_dialogs.MB_YES )
+				{
+					ultimix.auto.processing_handler( DataSelector , Data , Functions );
+				}
 			}
-		} , {}
-	);
+		)
+	}
 }
 
 /**
@@ -182,7 +187,67 @@ ultimix.auto.record_view_form = function( Id , DataSelector , Settings )
 *
 *	@author Dodonov A.A.
 */
-ultimix.auto.create = function( Data , Functions )
+ultimix.auto.create = function( DataSelector , Data , Functions , HideDialog )
 {
-	ultimix.ajax_gate.direct_controller( Data , Functions , {} );
+	ultimix.auto.create_update_delete( DataSelector , Data , Functions , HideDialog );
+}
+
+/**
+*	Function updates record.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param Data - Request data.
+*
+*	@param Functions - Callbacks.
+*
+*	@param HideDialog - Hide confirmation dialog.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.auto.update = function( DataSelector , Data , Functions , HideDialog )
+{
+	ultimix.auto.create_update_delete( DataSelector , Data , Functions , HideDialog );
+}
+
+/**
+*	Function deletes record.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param Data - Request data.
+*
+*	@param Functions - Callbacks.
+*
+*	@param HideDialog - Hide dialog.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.auto.delete = function( DataSelector , Data , Functions , HideDialog )
+{
+	ultimix.auto.create_update_delete( DataSelector , Data , Functions , HideDialog );
+}
+
+/**
+*	Function shows record.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param Settings - Request settings.
+*
+*	@return Content of the form.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.auto.record_view_form = function( DataSelector , Settings )
+{
+	ultimix.ajax_gate.direct_view( 
+		Settings , 
+		{ 
+			'success' : function( Result )
+			{
+				jQuery( DataSelector ).html( Result );
+			}
+		} , {}
+	);
 }

@@ -154,7 +154,7 @@ ultimix.file_input.get_custom_list_form = function( Fuctions , Header , Item , F
 ultimix.file_input.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'file_input::file_input_controller' , 
 			'file_input_context_action' : 'delete_record' , 
@@ -178,7 +178,7 @@ ultimix.file_input.delete = function( Id , DataSelector )
 ultimix.file_input.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'file_input::file_input_view' , 'file_input_context_action' : 'record_view_form' , 
 			'file_input_action' : 'record_view_form' , 'file_input_record_id' : Id , 

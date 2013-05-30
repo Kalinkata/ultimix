@@ -1,4 +1,0 @@
-call_params_filter=update_{prefix}:integer,value_1
-get_post_filter={prefix}_action:string,value_update_category_title
-permits_filter=update_{prefix}
-success_func=update_category_title

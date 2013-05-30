@@ -35,10 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$ContentAccess = false;
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
+		var					$Entity = 'content';
 		var					$PageComposer = false;
+		var					$PackageName = 'content::content_manager';
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,7 +59,7 @@
 		{
 			try
 			{
-				$this->ContentAccess = get_package( 'content::content_access' );
+				$this->Access = get_package( 'content::content_access' );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
@@ -111,7 +113,7 @@
 		*/
 		function			test_load_package()
 		{
-			get_package( 'content::content_view' , 'last' , __FILE__ );
+			get_package( 'content::content_manager' , 'last' , __FILE__ );
 
 			return( 'TEST PASSED' );
 		}
@@ -128,7 +130,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'content' , 'content' );
+			return( $this->Testing->test_display_list_form( 'content' , 'content' ) );
 		}
 
 		/**
@@ -145,7 +147,7 @@
 		{
 			$this->Security->set_g( 'author' , '1' );
 			$this->Security->set_g( 'title' , 'test_title' );
-			$this->Security->set_g( 'category' , '0' );
+			$this->Security->set_g( 'category' , '1' );
 			$this->Security->set_g( 'demo_content' , 'test_demo_content' );
 			$this->Security->set_g( 'main_content' , 'test_main_content' );
 			$this->Security->set_g( 'keywords' , 'test_keywords' );
@@ -221,17 +223,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'demo_content' , 'test_demo_content' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_content' , 'demo_content LIKE "test_demo_content"' ) )
-			{
-				$this->ContentAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'demo_content' , 'test_demo_content2' ) );
 		}
 
 		/**
@@ -246,7 +253,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'content' );
+			return( $this->Testing->test_create_form( 'content' ) );
 		}
 
 		/**
@@ -261,7 +268,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'content' );
+			return( $this->Testing->test_update_form( 'content' ) );
 		}
 
 		/**
@@ -290,8 +297,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -314,8 +320,7 @@
 
 			if( stripos( $PageContent , 'create_content_form' ) === false )
 			{
-				print( 'ERROR: copy content form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy content form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

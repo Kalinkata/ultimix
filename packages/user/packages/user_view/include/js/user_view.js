@@ -270,7 +270,7 @@ ultimix.user.deactivate_users = function( CheckboxGroupName )
 ultimix.user.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'user::user_controller' , 
 			'user_context_action' : 'delete_record' , 
@@ -294,7 +294,7 @@ ultimix.user.delete = function( Id , DataSelector )
 ultimix.user.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'user::user_view' , 'user_context_action' : 'record_view_form' , 
 			'user_action' : 'record_view_form' , 'user_record_id' : Id , 

@@ -87,14 +87,14 @@
 		/**
 		*	\~russian Выборка пакетов.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
 		*	\~english Function fetches packages.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -119,14 +119,14 @@
 		/**
 		*	\~russian Выборка пакетов.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
 		*	\~english Function fetches packages.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -148,14 +148,14 @@
 		/**
 		*	\~russian Конструктор.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
 		*	\~english Constructor.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -180,7 +180,7 @@
 		*
 		*	@param $Options - Настройки работы модуля.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -189,7 +189,7 @@
 		*
 		*	@param $Options - Settings.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -209,14 +209,14 @@
 		/**
 		*	\~russian Очистка структур.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
 		*	\~english Method clears system structures.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -237,7 +237,7 @@
 		*
 		*	@param $ContextPath - Путь к конфигу контекста.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -246,7 +246,7 @@
 		*
 		*	@param $ContextPath - Path to the context's config.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -271,7 +271,7 @@
 		*
 		*	@param $Contexts - Контексты.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -284,7 +284,7 @@
 		*
 		*	@param $Contexts - Contexts.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -365,7 +365,7 @@
 		*
 		*	@param $AutoRedirect - Нужен ли редирект.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -376,7 +376,7 @@
 		*
 		*	@param $AutoRedirect - Should be redirected.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -407,6 +407,41 @@
 		}
 
 		/**
+		*	\~russian Обработка ошибок исполнения.
+		*
+		*	@param $GUI - Пакет GUI.
+		*
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Handling execution errors.
+		*
+		*	@param $GUI - GUI Package.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	handle_error_execution( &$GUI )
+		{
+			try
+			{
+				$GUI->set_var( 'last_context_set_execution_code' , 1 );
+				$ErrMsg = $this->Messages->get_last_error_message();
+				$GUI->set_var( 
+					'last_context_set_execution_message' , 
+					$ErrMsg == 'message_was_not_found' ? 'call_was_not_processed' : $ErrMsg
+				);
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
 		*	\~russian Функция запуска контроллера/вида.
 		*
 		*	@param $Options - Параметры выполнения.
@@ -417,7 +452,7 @@
 		*
 		*	@return true если запуск был успешным.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -432,7 +467,7 @@
 		*
 		*	@return true if the execution was successfull.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -454,10 +489,7 @@
 					return( true );
 				}
 
-				$GUI->set_var( 'last_context_set_execution_code' , 1 );
-				$GUI->set_var( 
-					'last_context_set_execution_message' , $this->Messages->get_last_error_message()
-				);
+				$this->handle_error_execution( $GUI );
 
 				return( false );
 			}
@@ -466,7 +498,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Обработка нестандартных конфигов.
 		*
@@ -476,7 +508,7 @@
 		*
 		*	@return Конфиг.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -489,7 +521,7 @@
 		*
 		*	@return Config.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -514,7 +546,7 @@
 		*
 		*	@param $Options - Параметры выполнения.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -523,7 +555,7 @@
 		*
 		*	@param $Options - Execution parameters.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -561,7 +593,7 @@
 		*
 		*	@param $ContextSetSettings - Параметры выполнения.
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -570,7 +602,7 @@
 		*
 		*	@param $ContextSetSettings - Execution parameters.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -602,7 +634,7 @@
 		*
 		*	@param $FilePath - Путь к компоненту. Должен быть __FILE__
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -615,7 +647,7 @@
 		*
 		*	@param $FilePath - Path tp the component. Must be equal to __FILE__
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -653,7 +685,7 @@
 		*
 		*	@param $FilePath - Путь к компоненту. Должен быть __FILE__
 		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -666,7 +698,7 @@
 		*
 		*	@param $FilePath - Path tp the component. Must be equal to __FILE__
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -702,7 +734,7 @@
 		*
 		*	@return Обработанная строка.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -717,7 +749,7 @@
 		*
 		*	@return Processed string.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
@@ -742,7 +774,7 @@
 		*
 		*	@return строка с описанием объекта.
 		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
@@ -751,7 +783,7 @@
 		*
 		*	@return string with the object's description.
 		*
-		*	@exception Exception An exception of this type is thrown.
+		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/

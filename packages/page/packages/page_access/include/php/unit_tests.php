@@ -84,7 +84,7 @@
 		{
 			$PageAccess = get_package( 'page::page_access' , 'last' , __FILE__ );
 
-			$Pages = $PageAccess->get_list_of_pages();
+			$Pages = $PageAccess->PageFSAccess->get_list_of_pages();
 
 			foreach( $Pages as $i => $Page )
 			{

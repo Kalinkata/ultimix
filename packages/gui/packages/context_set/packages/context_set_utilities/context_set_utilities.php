@@ -351,9 +351,11 @@
 			try
 			{
 				$Records = $this->get_original_records( $Options , $IdList );
-
+				if( isset( $Records[ 0 ] ) === false )
+				{
+					throw( new Exception( 'Original record with id '.implode( ',' , $IdList ).' was not found' ) );
+				}
 				$Record = $Records[ 0 ];
-
 				if( intval( $Options->get_setting( 'massive_processing' , 1 ) ) )
 				{
 					$c = count( $Records );
@@ -368,7 +370,6 @@
 						}
 					}
 				}
-
 				return( $Record );
 			}
 			catch( Exception $e )
@@ -503,7 +504,7 @@
 			try
 			{
 				if( $this->Security->get_gp( $Prefix.'_record_id' , 'command' , false ) !== false && 
-					$this->Security->get_gp( $Prefix.'_record_id' , 'command' ) != -1 && 
+					$this->Security->get_gp( $Prefix.'_record_id' , 'integer' ) != -1 && 
 					$this->Security->get_gp( $Prefix.'_record_id' , 'command' ) != 'undefined' )
 				{
 					$Ids = array( $this->Security->get_gp( $Prefix.'_record_id' , 'command' ) );

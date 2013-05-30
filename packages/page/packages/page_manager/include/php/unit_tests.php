@@ -35,9 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
-		var					$PageAccess = false;
 		var					$PageComposer = false;
 		var					$Security = false;
 		var					$Settings = false;
@@ -57,9 +57,9 @@
 		{
 			try
 			{
+				$this->Access = get_package_object( 'page::page_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
-				$this->PageAccess = get_package_object( 'page::page_access' , 'last' , __FILE__ );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
@@ -184,17 +184,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_page' , '`alias` LIKE "test_alias"' ) )
-			{
-				$this->PageAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -209,7 +214,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'page' , 'ad_banner_manager' );
+			return( $this->Testing->test_display_list_form( 'page' , 'ad_banner_manager' ) );
 		}
 
 		/**
@@ -224,7 +229,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'page' );
+			return( $this->Testing->test_create_form( 'page' ) );
 		}
 
 		/**
@@ -239,7 +244,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'page' );
+			return( $this->Testing->test_update_form( 'page' ) );
 		}
 
 		/**
@@ -268,8 +273,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -292,8 +296,7 @@
 
 			if( stripos( $PageContent , 'create_page_form' ) === false )
 			{
-				print( 'ERROR: copy page form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy page form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

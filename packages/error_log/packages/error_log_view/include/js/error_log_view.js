@@ -66,7 +66,7 @@ ultimix.error_log.get_custom_list_form = function( Fuctions , Header , Item , Fo
 ultimix.error_log.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'error_log::error_log_controller' , 
 			'error_log_context_action' : 'delete_record' , 'error_log_action' : 'delete_record' , 
@@ -90,7 +90,7 @@ ultimix.error_log.delete = function( Id , DataSelector )
 ultimix.error_log.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'error_log::error_log_view' , 'error_log_context_action' : 'record_view_form' , 
 			'error_log_action' : 'record_view_form' , 'error_log_record_id' : Id , 

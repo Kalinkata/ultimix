@@ -68,7 +68,7 @@ ultimix.subscription.get_custom_list_form = function( Fuctions , Header , Item ,
 ultimix.subscription.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'subscription::subscription_controller' , 
 			'subscription_context_action' : 'delete_record' , 
@@ -92,7 +92,7 @@ ultimix.subscription.delete = function( Id , DataSelector )
 ultimix.subscription.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'subscription::subscription_view' , 'subscription_context_action' : 'record_view_form' , 
 			'subscription_action' : 'record_view_form' , 'subscription_record_id' : Id , 

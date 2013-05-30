@@ -160,7 +160,7 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 }
 
 /**
-*	Function deletes page.
+*	Success function.
 *
 *	@param DataSelector - Data selector.
 *
@@ -168,17 +168,33 @@ ultimix.ajax_gate.direct_view = function( Data , Functions , Options )
 *
 *	@author Dodonov A.A.
 */
-ultimix.ajax_gate.succes_delete_function = function( DataSelector , ProgressDialogId )
+ultimix.ajax_gate.succes_calling_function = function( Result , DataSelector , ProgressDialogId )
+{
+	eval( 'Result = ' + Result + ';' );
+	ultimix.std_dialogs.close_message_box( ProgressDialogId );
+	ultimix.std_dialogs.InfoMessageBox( Result.message );
+
+	if( DataSelector )
+	{
+		jQuery( DataSelector ).remove();
+	}
+}
+
+/**
+*	Success function.
+*
+*	@param DataSelector - Data selector.
+*
+*	@param ProgressDialogId - Progress dialog selector.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.ajax_gate.succes_function = function( DataSelector , ProgressDialogId )
 {
 	return(
-		function()
+		function( Result )
 		{
-			ultimix.std_dialogs.close_message_box( ProgressDialogId );
-			ultimix.std_dialogs.InfoMessageBox( 'all_selected_records_were_deleted' );
-			if( DataSelector )
-			{
-				jQuery( DataSelector ).remove();
-			}
+			ultimix.ajax_gate.succes_calling_function( Result , DataSelector , ProgressDialogId );
 		}
 	);
 }

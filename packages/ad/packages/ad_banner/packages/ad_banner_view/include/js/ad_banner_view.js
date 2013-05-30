@@ -69,7 +69,7 @@ ultimix.ad_banner.get_custom_list_form = function( Fuctions , Header , Item , Fo
 ultimix.ad_banner.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'ad::ad_banner::ad_banner_controller' , 
 			'ad_banner_context_action' : 'delete_record' , 'ad_banner_action' : 'delete_record' , 
@@ -92,7 +92,7 @@ ultimix.ad_banner.delete = function( Id , DataSelector )
 ultimix.ad_banner.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'ad::ad_banner::ad_banner_view' , 'ad_banner_context_action' : 'record_view_form' , 
 			'task_action' : 'record_view_form' , 'ad_banner_record_id' : Id , 

@@ -130,12 +130,15 @@
 
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_display_list' ) !== false && 
-					strpos( $Content , 'test_display_search_list' ) === false )
+				if( strpos( $Files[ $i ] , 'testing.php' ) === false )
 				{
-					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					$Content = file_get_contents( $Files[ $i ] );
+					if( strpos( $Content , 'test_display_list' ) !== false && 
+						strpos( $Content , 'test_display_search_list' ) === false )
+					{
+						$Errors++;
+						print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					}
 				}
 			}
 
@@ -158,12 +161,15 @@
 
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_display_list' ) !== false && 
-					strpos( $Content , 'test_create_record_form' ) === false )
+				if( strpos( $Files[ $i ] , 'testing.php' ) === false )
 				{
-					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					$Content = file_get_contents( $Files[ $i ] );
+					if( strpos( $Content , 'test_display_list' ) !== false && 
+						strpos( $Content , 'test_create_record_form' ) === false )
+					{
+						$Errors++;
+						print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					}
 				}
 			}
 
@@ -214,12 +220,15 @@
 
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record(' ) !== false && 
-					strpos( $Content , 'test_delete_record(' ) === false )
+				if( strpos( $Files[ $i ] , 'testing.php' ) === false )
 				{
-					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					$Content = file_get_contents( $Files[ $i ] );
+					if( strpos( $Content , 'test_create_record(' ) !== false && 
+						strpos( $Content , 'test_delete_record(' ) === false )
+					{
+						$Errors++;
+						print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					}
 				}
 			}
 
@@ -242,12 +251,15 @@
 
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_display_list' ) !== false && 
-					strpos( $Content , 'test_update_record_form' ) === false )
+				if( strpos( $Files[ $i ] , 'testing.php' ) === false )
 				{
-					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					$Content = file_get_contents( $Files[ $i ] );
+					if( strpos( $Content , 'test_display_list' ) !== false && 
+						strpos( $Content , 'test_update_record_form' ) === false )
+					{
+						$Errors++;
+						print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					}
 				}
 			}
 
@@ -326,12 +338,15 @@
 
 			for( $i = 0 , $Errors = 0 ; $i < count( $Files ) ; $i++ )
 			{
-				$Content = file_get_contents( $Files[ $i ] );
-				if( strpos( $Content , 'test_create_record(' ) !== false && 
-					strpos( $Content , 'test_copy_record(' ) === false )
+				if( strpos( $Files[ $i ] , 'testing.php' ) === false )
 				{
-					$Errors++;
-					print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					$Content = file_get_contents( $Files[ $i ] );
+					if( strpos( $Content , 'test_create_record(' ) !== false && 
+						strpos( $Content , 'test_copy_record(' ) === false )
+					{
+						$Errors++;
+						print( '<nobr>'.$Files[ $i ].'</nobr><'.'br>' );
+					}
 				}
 			}
 

@@ -35,9 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
-		var					$GroupAccess = false;
 		var					$PageComposer = false;
 		var					$Security = false;
 		var					$Settings = false;
@@ -57,13 +57,13 @@
 		{
 			try
 			{
+				$this->Access = get_package_object( 'permit::group_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
-				$this->GroupAccess = get_package_object( 'permit::group_access' , 'last' , __FILE__ );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
-				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -129,7 +129,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'group' , 'admin' );
+			return( $this->Testing->test_display_list_form( 'group' , 'admin' ) );
 		}
 
 		/**
@@ -196,17 +196,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_group' , 'title LIKE "test_title"' ) )
-			{
-				$this->GroupAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -221,7 +226,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'group' );
+			return( $this->Testing->test_create_form( 'group' ) );
 		}
 
 		/**
@@ -236,7 +241,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'group' );
+			return( $this->Testing->test_update_form( 'group' , 9 ) );
 		}
 
 		/**
@@ -265,8 +270,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -289,8 +293,7 @@
 
 			if( stripos( $PageContent , 'create_group_form' ) === false )
 			{
-				print( 'ERROR: copy group form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy group form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

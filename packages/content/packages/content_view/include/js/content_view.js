@@ -66,7 +66,7 @@ ultimix.content.get_custom_list_form = function( Fuctions , Header , Item , Foot
 ultimix.content.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'content::content_controller' , 
 			'content_context_action' : 'delete_record' , 'content_action' : 'delete_record' , 
@@ -89,7 +89,7 @@ ultimix.content.delete = function( Id , DataSelector )
 ultimix.content.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'content::content_view' , 'content_context_action' : 'record_view_form' , 
 			'content_action' : 'record_view_form' , 'content_record_id' : Id , 

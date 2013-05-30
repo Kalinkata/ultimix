@@ -35,10 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
 		var					$PageComposer = false;
-		var					$ReviewAccess = false;
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,10 +57,10 @@
 		{
 			try
 			{
+				$this->Access = get_package( 'review::review_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' , 'last' , __FILE__ );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
-				$this->ReviewAccess = get_package( 'review::review_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
@@ -128,7 +128,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'review' , 'review' );
+			return( $this->Testing->test_display_list_form( 'review' , 'review' ) );
 		}
 
 		/**
@@ -199,17 +199,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_review' , 'review LIKE "test_review"' ) )
-			{
-				$this->ReviewAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -224,7 +229,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'review' );
+			return( $this->Testing->test_create_form( 'review' ) );
 		}
 
 		/**
@@ -239,7 +244,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'review' );
+			return( $this->Testing->test_update_form( 'review' ) );
 		}
 
 		/**
@@ -268,8 +273,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -292,8 +296,7 @@
 
 			if( stripos( $PageContent , 'create_review_form' ) === false )
 			{
-				print( 'ERROR: copy review form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy review form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

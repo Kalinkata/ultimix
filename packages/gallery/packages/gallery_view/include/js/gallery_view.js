@@ -162,7 +162,7 @@ ultimix.gallery.get_custom_list_form = function( Fuctions , Header , Item , Foot
 ultimix.gallery.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'gallery::gallery_controller' , 
 			'gallery_context_action' : 'delete_record' , 
@@ -186,7 +186,7 @@ ultimix.gallery.delete = function( Id , DataSelector )
 ultimix.gallery.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'gallery::gallery_view' , 'gallery_context_action' : 'record_view_form' , 
 			'gallery_action' : 'record_view_form' , 'gallery_record_id' : Id , 

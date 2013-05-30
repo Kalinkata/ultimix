@@ -35,12 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
 		var					$PageComposer = false;
 		var					$Security = false;
 		var					$Settings = false;
-		var					$SystemStructureAccess = false;
 		var					$Testing = false;
 
 		/**
@@ -57,14 +57,12 @@
 		{
 			try
 			{
+				$this->Access = get_package( 'system_structure::system_structure_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->SystemStructureAccess = get_package( 
-					'system_structure::system_structure_access' , 'last' , __FILE__
-				);
 				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -161,7 +159,9 @@
 			{
 				$Controller = get_package( 'system_structure::system_structure_manager' , 'last' , __FILE__ );
 
-				$this->Testing->setup_delete_controller( $this->Settings , 'system_structure' , $this->DefaultControllers->id );
+				$this->Testing->setup_delete_controller(
+					$this->Settings , 'system_structure' , $this->DefaultControllers->id
+				);
 
 				$Controller->controller( $this->Settings );
 
@@ -187,17 +187,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_system_structure' , 'page LIKE "test_page"' ) )
-			{
-				$this->SystemStructureAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -212,7 +217,7 @@
 		*/
 		function			test_display_list()
 		{	
-			$this->Testing->test_display_list_form( 'system_structure' , 'site_manager' );
+			return( $this->Testing->test_display_list_form( 'system_structure' , 'site_manager' ) );
 		}
 
 		/**
@@ -227,7 +232,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'system_structure' );
+			return( $this->Testing->test_create_form( 'system_structure' ) );
 		}
 
 		/**
@@ -242,7 +247,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'system_structure' );
+			return( $this->Testing->test_update_form( 'system_structure' ) );
 		}
 
 		/**
@@ -271,8 +276,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -295,8 +299,7 @@
 
 			if( stripos( $PageContent , 'create_system_structure_form' ) === false )
 			{
-				print( 'ERROR: copy system structure form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy system structure form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

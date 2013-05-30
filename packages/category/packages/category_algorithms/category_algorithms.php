@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	category_algorithms_1_0_0{
-	
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -38,7 +38,7 @@
 		var					$CategoryAccess = false;
 		var					$Link = false;
 		var					$Security = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -54,9 +54,9 @@
 			try
 			{
 				$this->CategoryAccess = get_package( 'category::category_access' , 'last' , __FILE__ );
-				
+
 				$this->Link = get_package( 'link' , 'last' , __FILE__ );
-				
+
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -64,7 +64,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Функция выборки детей.
 		*
@@ -96,7 +96,7 @@
 			try
 			{
 				$ReturnItems = array();
-				
+
 				foreach( $AllItems as $k => $v )
 				{
 					if( get_field( $v , 'root_id' ) == $RootId )
@@ -104,7 +104,7 @@
 						$ReturnItems [] = $v;
 					}
 				}
-				
+
 				return( $ReturnItems );
 			}
 			catch( Exception $e )
@@ -112,7 +112,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки элементов предыдущих даному.
 		*
@@ -146,7 +146,7 @@
 				$ReturnItems = array();
 				$CurrentId = $LeafId;				
 				$ItemFound = false;
-				
+
 				do
 				{
 					$ItemFound = false;
@@ -162,7 +162,7 @@
 					}
 				}
 				while( $ItemFound );
-				
+
 				return( array_reverse( isset( $ReturnItems[ 1 ] ) ? $ReturnItems : array() ) );
 			}
 			catch( Exception $e )
@@ -170,7 +170,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция выборки категорий объекта.
 		*
@@ -202,9 +202,9 @@
 			try
 			{
 				$Links = $this->Link->get_links( $MasterId , false , $MasterType , 'category' );
-				
+
 				$CategoryIds = get_field_ex( $Links , 'object2_id' );
-				
+
 				if( isset( $CategoryIds[ 0 ] ) )
 				{
 					$CategoryIds = implode( ',' , $CategoryIds );
@@ -221,7 +221,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает категорию по идентификатору.
 		*
@@ -249,7 +249,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Users = $this->CategoryAccess->unsafe_select( $this->CategoryAccess->NativeTable.".id = $id" );
 
 				if( count( $Users ) === 0 || count( $Users ) > 1 )
@@ -266,7 +266,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Проверка объекта на существование.
 		*
@@ -294,9 +294,9 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer' );
-				
+
 				$Records = $this->CategoryAccess->unsafe_select( $this->CategoryAccess->NativeTable.".id = $id" );
-				
+
 				return( count( $Records ) === 1 );
 			}
 			catch( Exception $e )
@@ -304,7 +304,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -332,11 +332,11 @@
 			try
 			{
 				$id = $this->CategoryAccess->create( $Record );
-				
+
 				if( get_field( $Record , 'direct_category' , false ) === false )
 				{
 					$RootId = get_field( $Record , 'root_id' );
-					
+
 					if( $this->object_exists( $RootId ) )
 					{
 						$RootCategory = $this->get_by_id( $RootId );
@@ -344,7 +344,7 @@
 						$this->CategoryAccess->update( $id , array( 'direct_category' => $DirectCategory ) );
 					}
 				}
-				
+
 				return( $id );
 			}
 			catch( Exception $e )
@@ -352,48 +352,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
-		/**
-		*	\~russian Обновление записей.
-		*
-		*	@param $cid - Идентификаткор записи.
-		*
-		*	@param $Title - Название категории.
-		*
-		*	@return Запись.
-		*
-		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Updating records.
-		*
-		*	@param $cid - Record's id.
-		*
-		*	@param $Title - Category's title.
-		*
-		*	@return Record.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			update_category_title( $cid , $Title )
-		{
-			try
-			{
-				$cid = $this->Security->get( $cid , 'integer' );
-				$Title = $this->Security->get( $Title , 'string' );
-				
-				$this->CategoryAccess->update( $cid , array( 'title' => $Title ) );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-		
+
 		/**
 		*	\~russian Выборка идентификаторов категорий по их именам.
 		*
@@ -424,19 +383,19 @@
 				{
 					return( array() );
 				}
-				
+
 				if( is_string( $Names ) )
 				{
 					$Names = explode( ',' , $Names );
 				}
-				
+
 				$Ids = array();
-				
+
 				foreach( $Names as $k => $v )
 				{
 					$Ids [] = $this->CategoryAccess->get_category_id( $v );
 				}
-				
+
 				return( $Ids );
 			}
 			catch( Exception $e )
@@ -444,7 +403,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка дочерних категорий.
 		*
@@ -480,7 +439,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка всех дочерних категорий.
 		*
@@ -508,7 +467,7 @@
 			try
 			{
 				$id = $this->CategoryAccess->get_category_id( $Name );
-				
+
 				return( $this->CategoryAccess->select_categories_list( $id ) );
 			}
 			catch( Exception $e )
@@ -517,5 +476,5 @@
 			}
 		}
 	}
-	
+
 ?>

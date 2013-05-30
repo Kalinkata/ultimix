@@ -226,7 +226,7 @@ ultimix.permit.get_custom_list_form = function( Fuctions , Header , Item , Foote
 ultimix.permit.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'permit::permit_controller' , 
 			'permit_context_action' : 'delete_record' , 
@@ -250,7 +250,7 @@ ultimix.permit.delete = function( Id , DataSelector )
 ultimix.permit.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'permit::permit_view' , 'permit_context_action' : 'record_view_form' , 
 			'permit_action' : 'record_view_form' , 'permit_record_id' : Id , 

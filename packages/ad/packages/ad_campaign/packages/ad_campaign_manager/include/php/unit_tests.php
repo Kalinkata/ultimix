@@ -35,10 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$AdCampaignAccess = false;
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
+		var					$Entity = 'ad_campaign';
 		var					$PageComposer = false;
+		var					$PackageName = 'ad::ad_campaign::ad_campaign_manager';
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,7 +59,7 @@
 		{
 			try
 			{
-				$this->AdCampaignAccess = get_package( 'ad::ad_campaign::ad_campaign_access' , 'last' , __FILE__ );
+				$this->Access = get_package( 'ad::ad_campaign::ad_campaign_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
@@ -129,7 +131,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'ad_campaign' , 'Ultimix Project AD campaign' );
+			return( $this->Testing->test_display_list_form( 'ad_campaign' , 'Ultimix Project AD campaign' ) );
 		}
 
 		/**
@@ -144,7 +146,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'ad_campaign' );
+			return( $this->Testing->test_create_form( 'ad_campaign' ) );
 		}
 
 		/**
@@ -186,7 +188,9 @@
 			{
 				$Controller = get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
 
-				$this->Testing->setup_delete_controller( $this->Settings , 'ad_campaign' , $this->DefaultControllers->id );
+				$this->Testing->setup_delete_controller(
+					$this->Settings , 'ad_campaign' , $this->DefaultControllers->id
+				);
 
 				$Controller->controller( $this->Settings );
 
@@ -213,17 +217,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
-
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_campaign' , 'title LIKE "test_title"' ) )
-			{
-				$this->AdCampaignAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+			return( $this->Testing->test_create_record( $this , 'title' , 'test_title' ) );
 		}
 
 		/**
@@ -238,27 +232,7 @@
 		*/
 		function			test_update_record()
 		{
-			$this->create_test_record();
-
-			$this->Security->reset_g( 'title' , 'test_title2' );
-
-			$Controller = get_package( 'ad::ad_campaign::ad_campaign_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_update_controller( $this->Settings , 'ad_campaign' , $this->DefaultControllers->id );
-
-			$Controller->controller( $this->Settings );
-
-			$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_ad_campaign' , 'title LIKE "test_title2"' );
-			$this->AdCampaignAccess->delete( $this->DefaultControllers->id );
-
-			if( $Exists )
-			{
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+			return( $this->Testing->test_update_record( $this , 'title' , 'test_title2' ) );
 		}
 
 		/**
@@ -273,7 +247,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'ad_campaign' );
+			return( $this->Testing->test_update_form( 'ad_campaign' ) );
 		}
 
 		/**
@@ -302,8 +276,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -326,8 +299,7 @@
 
 			if( stripos( $PageContent , 'create_ad_campaign_form' ) === false )
 			{
-				print( 'ERROR: copy ad campaign form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy ad campaign form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

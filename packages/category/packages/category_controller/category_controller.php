@@ -26,40 +26,6 @@
 	class	category_controller_1_0_0{
 
 		/**
-		*	\~russian Обновление записи.
-		*
-		*	@param $Options - Настройки работы модуля.
-		*
-		*	@exception Exception - кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Updating record.
-		*
-		*	@param $Options - Settings.
-		*
-		*	@exception Exception - An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			update_category_title( $Options )
-		{
-			try
-			{
-				$Security = get_package( 'security' , 'last' , __FILE__ );
-				$CategoryAlgorithms = get_package( 'category::category_algorithms' , 'last' , __FILE__ );
-				$CategoryAlgorithms->update_category_title( 
-					$Security->get_p( 'category_id' , 'integer' , 0 ) , $Security->get_p( 'title' , 'string' , '' )
-				);
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
 		*	\~russian Обработка списков категорий.
 		*
 		*	@param $Options - Настройки работы модуля.
@@ -158,8 +124,6 @@
 			{
 				$ContextSet = get_package( 'gui::context_set' , 'last' , __FILE__ );
 
-				$ContextSet->add_context( dirname( __FILE__ ).'/conf/cfcx_update_category_title' );
-
 				$ContextSet->execute( $Options , $this , __FILE__ );
 			}
 			catch( Exception $e )
@@ -168,4 +132,5 @@
 			}
 		}
 	}
+
 ?>

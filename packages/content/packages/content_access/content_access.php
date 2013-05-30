@@ -24,7 +24,7 @@
 	*	@author Dodonov A.A.
 	*/
 	class	content_access_1_0_0{
-		
+
 		/**
 		*	\~russian Таблица в которой хранятся объекты этой сущности.
 		*
@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$NativeTable = '`umx_content`';
-		
+
 		/**
 		*	\~russian Закешированные объекты.
 		*
@@ -52,7 +52,7 @@
 		var					$Security = false;
 		var					$SecurityParser = false;
 		var					$UserAccess = false;
-		
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -78,7 +78,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Дополнительные ограничения на рабочее множество данных.
 		*
@@ -90,7 +90,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$AddLimitations = '1 = 1';
-		
+
 		/**
 		*	\~russian Установка дополнительных ограничений.
 		*
@@ -127,7 +127,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция возвращает список записей.
 		*
@@ -183,11 +183,11 @@
 						',' , $Category->get_category_ids( $Options->get_setting( 'category_name' ) ) 
 					).' )';
 				}
-				
+
 				$Condition = $this->DatabaseAlgorithms->select_condition( 
 					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
 				);
-				
+
 				return( $this->unsafe_select( $Condition ) );
 			}
 			catch( Exception $e )
@@ -195,7 +195,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработика записей.
 		*
@@ -233,7 +233,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработика записей.
 		*
@@ -302,15 +302,15 @@
 			try
 			{
 				$this->Database->query_as( DB_OBJECT );
-				
+
 				$Content = $this->Database->select( 
 					$this->NativeTable.'.* , umx_category.title AS category_title , user.login AS author_name' , 
 					$this->NativeTable.' , umx_category , '.$this->UserAccess->NativeTable.' AS user' , 
 					"author = user.id AND ( $this->AddLimitations ) AND umx_category.id = category AND $Condition"
 				);
-				
+
 				$this->compile_selected_content( $Content );
-				
+
 				return( $Content );
 			}
 			catch( Exception $e )
@@ -318,7 +318,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка массива объектов.
 		*
@@ -346,7 +346,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
+
 				return( $this->unsafe_select( $this->NativeTable.".id IN ( $id )" ) );
 			}
 			catch( Exception $e )
@@ -354,7 +354,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция удаления записи.
 		*
@@ -378,7 +378,7 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
+
 				$this->Database->delete( $this->NativeTable , "( $this->AddLimitations ) AND id IN ( $id )" );
 			}
 			catch( Exception $e )
@@ -386,7 +386,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Получение параметров создания записи.
 		*
@@ -430,7 +430,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Создание записи.
 		*
@@ -471,7 +471,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка контента по категориям.
 		*
@@ -499,7 +499,7 @@
 			try
 			{
 				$CategoryIds = $this->Security->get( $CategoryIds , 'integer' );
-				
+
 				return( 
 					$this->unsafe_select( 
 						'category IN ( '.implode( ',' , $CategoryIds ).' ) ORDER BY publication_date ASC'
@@ -511,7 +511,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка структуры публикаций.
 		*
@@ -539,7 +539,7 @@
 			try
 			{
 				$CategoryIds = $this->Security->get( $CategoryIds , 'integer' );
-				
+
 				return( 
 					$this->Database->select( 
 						'YEAR( publication_date ) AS publication_year , MONTH( publication_date ) AS publication_month'.
@@ -555,7 +555,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Выборка контента.
 		*
@@ -593,7 +593,7 @@
 				$Year = $this->Security->get( $Year , 'integer' );
 				$Month = $this->Security->get( $Month , 'integer' );
 				$CategoryIds = $this->Security->get( $CategoryIds , 'integer' );
-				
+
 				return( 
 					$this->unsafe_select( 
 						"YEAR( publication_date ) = $Year AND MONTH( publication_date ) = $Month AND ".
@@ -606,7 +606,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Обработка записи.
 		*
@@ -640,7 +640,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Редактирование записи.
 		*
@@ -668,17 +668,16 @@
 			try
 			{
 				$id = $this->Security->get( $id , 'integer_list' );
-				
+
 				$this->compile_record( $Record );
-				
+
 				list( $Fields , $Values ) = $this->DatabaseAlgorithms->compile_fields_values( $Record );
-				
+
 				if( isset( $Fields[ 0 ] ) )
 				{
-					/* the modification_date will be changed only if the content was changed */
 					$Fields [] = 'modification_date';
 					$Values [] = 'now()';
-					
+
 					$Condition = "( $this->AddLimitations ) AND id IN ( $id )";
 					$this->Database->update( $this->NativeTable , $Fields , $Values , $Condition );
 					$this->Database->commit();
@@ -689,7 +688,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция поиска записей.
 		*
@@ -717,7 +716,7 @@
 			try
 			{
 				$SearchString = $this->Security->get( $SearchString , 'string' );
-				
+
 				return(
 				   "id , CONCAT( title , ' ' , demo_content , ' ' , main_content ) AS record_text , 
 					CHAR_LENGTH( CONCAT( title , ' ' , demo_content , ' ' , main_content ) ) - CHAR_LENGTH( 
@@ -732,7 +731,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-		
+
 		/**
 		*	\~russian Функция поиска записей.
 		*

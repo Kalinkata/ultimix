@@ -71,7 +71,7 @@ ultimix.system_structure.get_custom_list_form = function( Fuctions , Header , It
 ultimix.system_structure.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'system_structure::system_structure_controller' , 
 			'system_structure_context_action' : 'delete_record' , 
@@ -95,7 +95,7 @@ ultimix.system_structure.delete = function( Id , DataSelector )
 ultimix.system_structure.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'system_structure::system_structure_view' , 
 			'system_structure_context_action' : 'record_view_form' , 

@@ -67,7 +67,7 @@ ultimix.menu.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 ultimix.menu.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'menu::menu_controller' , 
 			'menu_context_action' : 'delete_record' , 
@@ -91,7 +91,7 @@ ultimix.menu.delete = function( Id , DataSelector )
 ultimix.menu.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'menu::menu_view' , 'menu_context_action' : 'record_view_form' , 
 			'menu_action' : 'record_view_form' , 'menu_record_id' : Id , 

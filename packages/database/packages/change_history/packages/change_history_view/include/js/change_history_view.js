@@ -71,7 +71,7 @@ ultimix.change_history.get_custom_list_form = function( Fuctions , Header , Item
 ultimix.change_history.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'change_history_view::change_history_view_controller' , 
 			'change_history_view_context_action' : 'delete_record' , 
@@ -95,7 +95,7 @@ ultimix.change_history.delete = function( Id , DataSelector )
 ultimix.change_history.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'database::change_history_view::change_history_view_view' , 
 			'change_history_view_context_action' : 'record_view_form' , 

@@ -308,7 +308,7 @@
 			{
 				$Map = '';
 				
-				$PageDescription = $this->PageAccess->get_page_description( $RootItem->page );
+				$PageDescription = $this->PageAccess->PageFSAccess->get_page_description( $RootItem->page );
 				
 				$Map .= $this->CachedMultyFS->get_template( __FILE__ , 'map_item_start.tpl' ).
 					( strlen( $RootItem->navigation ) ? $RootItem->navigation : 
@@ -455,7 +455,7 @@
 				{
 					$Str = $Separator.$Str;
 					$MainItem = $this->get_item( $MainItem->root_page , $Items );
-					$PageDescription = $this->PageAccess->get_page_description( $MainItem->page );
+					$PageDescription = $this->PageAccess->PageFSAccess->get_page_description( $MainItem->page );
 					$Str = ( 
 						strlen( $MainItem->navigation ) != 0 ? $MainItem->navigation : '{href:tpl=std;page=./'.
 						$MainItem->page.'.html;raw_text='.$PageDescription[ 'title' ].'}' 
@@ -505,7 +505,7 @@
 		{
 			try
 			{
-				$PageDescription = $this->PageAccess->get_page_description( $MainItem->page );
+				$PageDescription = $this->PageAccess->PageFSAccess->get_page_description( $MainItem->page );
 				$Str = strlen( $MainItem->navigation ) != 0 ? $MainItem->navigation : '{href:tpl=std;page=./'.
 						$MainItem->page.'.html;raw_text='.$PageDescription[ 'title' ].'}';
 						

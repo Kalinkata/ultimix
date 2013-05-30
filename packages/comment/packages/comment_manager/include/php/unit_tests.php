@@ -35,10 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$CommentAccess = false;
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
+		var					$Entity = 'comment';
 		var					$PageComposer = false;
+		var					$PackageName = 'comment::comment_manager';
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,7 +59,7 @@
 		{
 			try
 			{
-				$this->CommentAccess = get_package( 'comment::comment_access' , 'last' , __FILE__ );
+				$this->Access = get_package( 'comment::comment_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
@@ -128,7 +130,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'comment' , 'comment' );
+			return( $this->Testing->test_display_list_form( 'comment' , 'comment' ) );
 		}
 
 		/**
@@ -200,17 +202,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'comment' , 'test_comment' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_comment' , 'comment LIKE "test_comment"' ) )
-			{
-				$this->CommentAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'comment' , 'test_comment2' ) );
 		}
 
 		/**
@@ -225,7 +232,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'comment' );
+			return( $this->Testing->test_create_form( 'comment' ) );
 		}
 
 		/**
@@ -240,7 +247,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'comment' );
+			return( $this->Testing->test_update_form( 'comment' ) );
 		}
 
 		/**
@@ -269,8 +276,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -293,8 +299,7 @@
 
 			if( stripos( $PageContent , 'create_comment_form' ) === false )
 			{
-				print( 'ERROR: copy comment form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy comment form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

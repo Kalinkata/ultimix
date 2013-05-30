@@ -37,6 +37,7 @@
 		*/
 		var					$PageComposer = false;
 		var					$Security = false;
+		var					$Testing = false;
 
 		/**
 		*	\~russian Конструктор.
@@ -54,6 +55,7 @@
 			{
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
+				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
 			{
@@ -131,7 +133,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			test_delete_record()
+		function			test_update_record()
 		{
 			return( 'TEST PASSED' );
 		}
@@ -146,7 +148,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			test_update_record()
+		function			test_delete_record()
 		{
 			return( 'TEST PASSED' );
 		}
@@ -163,7 +165,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'user_permit' , 'admin' );
+			return( $this->Testing->test_display_list_form( 'user_permit' , 'admin' ) );
 		}
 
 		/**

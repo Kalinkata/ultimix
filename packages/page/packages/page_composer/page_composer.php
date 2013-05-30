@@ -246,7 +246,7 @@
 					@ob_start( 'ob_gzhandler' , 9 );
 				}
 				$this->Messages->get_success_message_from_session();
-				$PageDescription = $this->PageAccess->get_page_description( $PageName );
+				$PageDescription = $this->PageAccess->PageFSAccess->get_page_description( $PageName );
 
 				$this->PageComposerUtilities->translate_template_name( $this , $PageDescription );
 

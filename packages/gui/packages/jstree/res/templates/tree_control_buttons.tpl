@@ -1,2 +1,2 @@
-{permit:create_category}{href:page=javascript:ultimix.jstree.create_item()[dot_comma];text=create}&nbsp;{~permit}{permit:update_category}{href:page=javascript:ultimix.jstree.rename_item()[dot_comma];text=rename}&nbsp;{~permit}{permit:delete_category}{href:page=javascript:ultimix.jstree.remove_item( '{lang:shure_to_delete_tree_item}' )[dot_comma];text=delete}{~permit}
+{permit:create_category}{href:page=javascript:ultimix.jstree.create_item()[dot_comma];text=create}&nbsp;{~permit}{permit:update_category}{href:page=javascript:ultimix.jstree.rename_item()[dot_comma];text=rename}&nbsp;{~permit}{permit:delete_category}{href:page=javascript:ultimix.jstree.remove_item( '{lang:shure_to_delete_tree_item}' , true )[dot_comma];text=delete}{~permit}
 <p>&nbsp;

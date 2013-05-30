@@ -70,7 +70,7 @@ ultimix.site.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 ultimix.site.delete = function( Id , DataSelector , Functions )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'site::site_controller' , 'site_context_action' : 'delete_record' , 
 			'site_action' : 'delete_record' , 'site_record_id' : Id , 
@@ -93,7 +93,7 @@ ultimix.site.delete = function( Id , DataSelector , Functions )
 ultimix.site.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'site::site_manager' , 'site_context_action' : 'record_view_form' , 
 			'site_action' : 'record_view_form' , 'site_record_id' : Id , 

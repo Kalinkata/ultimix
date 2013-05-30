@@ -90,7 +90,7 @@ ultimix.pmsg.get_custom_list_form = function( Fuctions , Header , Item , Footer 
 ultimix.pmsg.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'pmsg::pmsg_controller' , 
 			'pmsg_context_action' : 'delete_record' , 
@@ -114,7 +114,7 @@ ultimix.pmsg.delete = function( Id , DataSelector )
 ultimix.pmsg.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'pmsg::pmsg_view' , 'pmsg_context_action' : 'record_view_form' , 
 			'pmsg_action' : 'record_view_form' , 'pmsg_record_id' : Id , 

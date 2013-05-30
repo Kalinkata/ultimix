@@ -1,4 +1,4 @@
 call_params_filter=update_{prefix}:integer,value_1
-permits_filter={prefix}_update
+permits_filter=update_{prefix}
 get_post_extraction_script=review:string,err_msg_review_must_be_filled#rank:integer,err_msg_rank_must_be_filled
 access_package_name={prefix}::{prefix}_access

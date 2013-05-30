@@ -35,10 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$CategoryAccess = false;
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
+		var					$Entity = 'category';
 		var					$PageComposer = false;
+		var					$PackageName = 'category::category_manager';
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,7 +59,7 @@
 		{
 			try
 			{
-				$this->CategoryAccess = get_package_object( 'category::category_access' , 'last' , __FILE__ );
+				$this->Access = get_package_object( 'category::category_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
@@ -128,7 +130,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'category' , 'category_manager' );
+			return( $this->Testing->test_display_list_form( 'category' , 'category_manager' ) );
 		}
 
 		/**
@@ -198,17 +200,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
-
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_category' , 'title LIKE "test_title"' ) )
-			{
-				$this->CategoryAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+			return( $this->Testing->test_create_record( $this , 'title' , 'test_title' ) );
 		}
 
 		/**
@@ -223,27 +215,7 @@
 		*/
 		function			test_update_record()
 		{
-			$this->create_test_record();
-
-			$this->Security->reset_g( 'title' , 'test_title2' );
-
-			$Controller = get_package( 'category::category_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_update_controller( $this->Settings , 'category' , $this->DefaultControllers->id );
-
-			$Controller->controller( $this->Settings );
-
-			$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_category' , 'title LIKE "test_title2"' );
-			$this->CategoryAccess->delete( $this->DefaultControllers->id );
-
-			if( $Exists )
-			{
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+			return( $this->Testing->test_update_record( $this , 'title' , 'test_title2' ) );
 		}
 
 		/**
@@ -258,7 +230,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'category' );
+			return( $this->Testing->test_create_form( 'category' ) );
 		}
 
 		/**
@@ -273,7 +245,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'category' );
+			return( $this->Testing->test_update_form( 'category' ) );
 		}
 
 		/**
@@ -302,8 +274,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -326,8 +297,7 @@
 
 			if( stripos( $PageContent , 'create_category_form' ) === false )
 			{
-				print( 'ERROR: copy category form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy category form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

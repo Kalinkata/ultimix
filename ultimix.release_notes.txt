@@ -19,11 +19,18 @@ Ultimix v. 1.5.252
 20. Other refactorings and improvements.
 21. Installation script was improved.
 22. Create and update unit_tests were added.
-23. Tree category fixes.
+23. Tree category was fixed.
 24. Documentation was fixed.
 25. 20 unit-tests were refactored.
 26. All managers were fixed and improved.
 27. The package page::page_access::page_fs_access was fixed.
+28. JavaScript API was improved.
+29. Page manager wes improved to display pages stored in the database.
+30.	Unit-tests of the 'testing.1.0.0' package were fixed.
+31. 'testing.1.0.0' package wes fixed.
+32. 'comment::comment_manager' was fixed.
+33. Unit-tests for 'ad', 'comment', 'content', 'category' packages were fixed.
+34. Missing permits were added.
 
 Ultimix v. 1.5.251
 -----------------------------------------

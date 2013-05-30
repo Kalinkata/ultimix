@@ -35,12 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DefaultControllers = false;
 		var					$PageComposer = false;
 		var					$PackageAlgorithms = false;
 		var					$Security = false;
 		var					$Settings = false;
-		var					$TemplateAccess = false;
 		var					$Testing = false;
 
 		/**
@@ -57,12 +57,12 @@
 		{
 			try
 			{
+				$this->Access = get_package( 'template_manager::template_access' , 'last' , __FILE__ );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' , 'last' , __FILE__ );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->PackageAlgorithms = get_package( 'core::package_algorithms' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
-				$this->TemplateAccess = get_package( 'template_manager::template_access' , 'last' , __FILE__ );
 				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
 			}
 			catch( Exception $e )
@@ -159,7 +159,9 @@
 			{
 				$Controller = get_package( 'template_manager' , 'last' , __FILE__ );
 
-				$this->Testing->setup_delete_controller( $this->Settings , 'template' , 'template_manager::test#1.0.0::1.0.0' );
+				$this->Testing->setup_delete_controller(
+					$this->Settings , 'template' , 'template_manager::test#1.0.0::1.0.0'
+				);
 
 				$Controller->controller( $this->Settings );
 
@@ -185,17 +187,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->PackageAlgorithms->package_exists( 'template_manager::test' , '1.0.0::1.0.0' , __FILE__ ) )
-			{
-				$this->TemplateAccess->delete( 'template_manager::test[sharp]1.0.0::1.0.0' );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -210,7 +217,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'template' , 'template_form' );
+			return( $this->Testing->test_display_list_form( 'template' , 'template_form' ) );
 		}
 
 		/**
@@ -231,8 +238,7 @@
 
 			if( stripos( $PageContent , 'create_template_form' ) === false )
 			{
-				print( 'ERROR: template create form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: template create form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );
@@ -257,8 +263,7 @@
 
 			if( stripos( $PageContent , 'update_template_form' ) === false )
 			{
-				print( 'ERROR: update template form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: update template form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );
@@ -290,8 +295,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -314,8 +318,7 @@
 
 			if( stripos( $PageContent , 'create_template_form' ) === false )
 			{
-				print( 'ERROR: copy template form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy template form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

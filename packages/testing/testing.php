@@ -36,7 +36,7 @@
 		*	@author Dodonov A.A.
 		*/
 		var					$Security = false;
-	
+
 		/**
 		*	\~russian Конструктор.
 		*
@@ -58,7 +58,7 @@
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
 		}
-	
+
 		/**
 		*	\~russian Объект с юнит-тестами.
 		*
@@ -113,11 +113,7 @@
 		/**
 		*	\~russian Подготовка среды к запуску контроллера создания.
 		*
-		*	@param $Settings - Параметры запуска.
-		*
-		*	@param $Prefix - Префикс.
-		*
-		*	@param $id - Идентификатор редактируемой записи.
+		*	@param $UnitTests - Объект теста.
 		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
@@ -126,27 +122,23 @@
 		/**
 		*	\~english Prepearing environment for creating controller startup.
 		*
-		*	@param $Settings - Settings.
-		*
-		*	@param $Prefix - Prefix.
-		*
-		*	@param $id - id of the deleting record.
+		*	@param $UnitTests - Testing object.
 		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			setup_update_controller( &$Settings , $Prefix , $id )
+		function			setup_update_controller( &$UnitTests )
 		{
 			try
 			{
-				$this->Security->reset_g( $Prefix.'_context_action' , 'update_record_form' );
-				$this->Security->reset_g( $Prefix.'_action' , 'update_record' );
-				$this->Security->reset_g( $Prefix.'_record_id' , $id );
+				$this->Security->reset_g( $UnitTests->Entity.'_context_action' , 'update_record_form' );
+				$this->Security->reset_g( $UnitTests->Entity.'_action' , 'update_record' );
+				$this->Security->reset_g( $UnitTests->Entity.'_record_id' , $UnitTests->DefaultControllers->id );
 
-				$Settings->clear();
-				$Settings->set_setting( 'update_'.$Prefix , 1 );
-				$Settings->set_setting( 'controller' , 1 );
+				$UnitTests->Settings->clear();
+				$UnitTests->Settings->set_setting( 'update_'.$UnitTests->Entity , 1 );
+				$UnitTests->Settings->set_setting( 'controller' , 1 );
 			}
 			catch( Exception $e )
 			{
@@ -221,9 +213,9 @@
 		{
 			try
 			{
-				$this->Security->set_g( $Prefix.'_context_action' , 'create_record_form' );
+				$this->Security->reset_g( $Prefix.'_context_action' , 'create_record_form' );
 
-				$PageComposer = get_package( 'page::page_composet' , 'last' , __FILE__ );
+				$PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$PageContent = $PageComposer->get_page( $Prefix.'_manager' );
 
 				if( stripos( $PageContent , 'create_'.$Prefix.'_form' ) === false )
@@ -244,6 +236,8 @@
 		*
 		*	@param $Prefix - Префикс.
 		*
+		*	@param $id - id записи, на которой проверяем.
+		*
 		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
@@ -253,18 +247,22 @@
 		*
 		*	@param $Prefix - Prefix.
 		*
+		*	@param $id - id of the record.
+		*
 		*	@exception Exception - An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			test_update_form( $Prefix )
+		function			test_update_form( $Prefix , $id = 1 )
 		{
 			try
 			{
-				$this->Security->set_g( $Prefix.'_context_action' , 'update_record_form' );
-				$this->Security->set_g( $Prefix.'_record_id' , '1' );
+				$this->Security->reset_g( $Prefix.'_context_action' , 'update_record_form' );
+				$this->Security->reset_g( $Prefix.'_record_id' , -1 );
+				$this->Security->reset_g( '_id_'.$id , 'on' );
 
-				$PageContent = $this->PageComposer->get_page( $Prefix.'_manager' );
+				$PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
+				$PageContent = $PageComposer->get_page( $Prefix.'_manager' );
 
 				if( stripos( $PageContent , 'update_'.$Prefix.'_form' ) === false )
 				{
@@ -301,7 +299,8 @@
 		{
 			try
 			{
-				$PageContent = $this->PageComposer->get_page( $Prefix.'_manager' );
+				$PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
+				$PageContent = $PageComposer->get_page( $Prefix.'_manager' );
 
 				if( stripos( $PageContent , $Str ) === false )
 				{
@@ -314,7 +313,164 @@
 			{
 				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
 			}
-		}	
+		}
+
+		/**
+		*	\~russian Запуск контроллера.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function runs controller.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	run_update_controller( &$UnitTests )
+		{
+			try
+			{
+				$Controller = get_package( $UnitTests->PackageName , 'last' , __FILE__ );
+
+				$Controller->controller( $UnitTests->Settings );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Проверка обновления записи.
+		*
+		*	@param $UnitTests - Объект тестов.
+		*
+		*	@param $Query - Запрос.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function tests update.
+		*
+		*	@param $UnitTests - Testing object.
+		*
+		*	@param $Query - Query.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		private function	test_record_was_updated( &$UnitTests , $Query )
+		{
+			try
+			{
+				$Exists = $UnitTests->DatabaseAlgorithms->record_exists( 'umx_'.$UnitTests->Entity , $Query );
+				$UnitTests->Access->delete( $UnitTests->DefaultControllers->id );
+
+				if( $Exists )
+				{
+					return( 'TEST PASSED' );
+				}
+				else
+				{
+					return( 'ERROR' );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Проверка создания записи.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function tests create state.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_create_record( &$UnitTests , $Field , $Value )
+		{
+			try
+			{
+				$UnitTests->create_test_record();
+				$Exists = $UnitTests->DatabaseAlgorithms->record_exists( 
+					'umx_'.$UnitTests->Entity , $Field.' LIKE "'.$Value.'"'
+				);
+
+				if( $Exists )
+				{
+					$UnitTests->Access->delete( $UnitTests->DefaultControllers->id );
+					return( 'TEST PASSED' );
+				}
+				else
+				{
+					return( 'ERROR' );
+				}
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
+
+		/**
+		*	\~russian Проверка редактирования записи.
+		*
+		*	@param $UnitTests - Объект теста.
+		*
+		*	@param $Field - Изменяемое поле.
+		*
+		*	@param $Value - Значение поля.
+		*
+		*	@exception Exception - Кидается иключение этого типа с описанием ошибки.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Function tests update state.
+		*
+		*	@param $UnitTests - Unit-testing object.
+		*
+		*	@param $Field - Field to be changed.
+		*
+		*	@param $Value - Value to be set.
+		*
+		*	@exception Exception - An exception of this type is thrown.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record( &$UnitTests , $Field , $Value )
+		{
+			try
+			{
+				$UnitTests->create_test_record();
+
+				$this->Security->reset_g( $Field , $Value );
+
+				$this->setup_update_controller( $UnitTests );
+
+				$this->run_update_controller( $UnitTests );
+
+				return( $this->test_record_was_updated( $UnitTests , $Field.' LIKE "'. $Value.'"' ) );
+			}
+			catch( Exception $e )
+			{
+				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
+			}
+		}
 
 		/**
 		*	\~russian Получение директории пакета.

@@ -35,8 +35,8 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DefaultControllers = false;
-		var					$PackageAccess = false;
 		var					$PackageAlgorithms = false;
 		var					$PageComposer = false;
 		var					$Security = false;
@@ -57,8 +57,8 @@
 		{
 			try
 			{
+				$this->Access = get_package( 'core::package_access' , 'last' , __FILE__ );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' , 'last' , __FILE__ );
-				$this->PackageAccess = get_package( 'core::package_access' , 'last' , __FILE__ );
 				$this->PackageAlgorithms = get_package( 'core::package_algorithms' , 'last' , __FILE__ );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
@@ -128,7 +128,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'package' , 'phtml_package_manager' );
+			return( $this->Testing->test_display_list_form( 'package' , 'phtml_package_manager' ) );
 		}
 
 		/**
@@ -143,17 +143,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Security->set_g( 'package_context_action' , 'create_record_form' );
-
-			$PageContent = $this->PageComposer->get_page( 'package_manager' );
-
-			if( stripos( $PageContent , 'create_package_form' ) === false )
-			{
-				print( 'ERROR: create package form was not displayed'.$PageContent );
-				return;
-			}
-
-			return( 'TEST PASSED' );
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
 		}
 
 		/**
@@ -248,6 +238,21 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
+		}
+
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
 		function			test_update_record_form()
 		{
 			$this->Security->set_g( 'package_context_action' , 'update_record_form' );
@@ -257,8 +262,7 @@
 
 			if( stripos( $PageContent , 'update_package_form' ) === false )
 			{
-				print( 'ERROR: update package form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: update package form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );
@@ -298,8 +302,7 @@
 
 			if( stripos( $PageContent , 'create_package_form' ) === false )
 			{
-				print( 'ERROR: copy package form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy package form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

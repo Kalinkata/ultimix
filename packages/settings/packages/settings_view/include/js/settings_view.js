@@ -68,7 +68,7 @@ ultimix.settings.get_custom_list_form = function( Fuctions , Header , Item , Foo
 ultimix.settings.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'settings::settings_controller' , 
 			'settings_context_action' : 'delete_record' , 
@@ -92,7 +92,7 @@ ultimix.settings.delete = function( Id , DataSelector )
 ultimix.settings.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'settings::settings_view' , 'settings_context_action' : 'record_view_form' , 
 			'settings_action' : 'record_view_form' , 'settings_record_id' : Id , 

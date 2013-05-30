@@ -219,202 +219,43 @@
 		}
 
 		/**
-		*	\~russian Создание описания страницы.
+		*	\~russian Выборка записей.
 		*
-		*	@param $RawData - Данные о странице.
+		*	@param $Condition - Условие отбора записей.
 		*
-		*	@param $PageName - Название страницы.
+		*	@return Массив объектов.
 		*
-		*	@return Описание страницы.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
+		*	@exception Exception Кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
-		*	\~english Function creates page description.
+		*	\~english Selecting records.
 		*
-		*	@param $RawData - Data for page.
+		*	@param $Condition - Records selection condition.
 		*
-		*	@param $PageName - Page name.
-		*
-		*	@return Page description
+		*	@return Array of objects.
 		*
 		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	create_object( &$RawData , $PageName )
+		function			unsafe_select( $Condition )
 		{
 			try
 			{
-				$RawData = explode( '#' , $RawData );
-
-				if( count( $RawData ) <= 3 )
+				if( $this->Database === false )
 				{
-					$RawData[ 3 ] = '';
-				}
-				if( count( $RawData ) <= 4 )
-				{
-					$RawData[ 4 ] = '';
-					$RawData[ 5 ] = '';
+					$this->Database = get_package( 'database' , 'last' , __FILE__ );
 				}
 
-				return(
-					array( 'title' => $RawData[ 0 ] , 'alias' => $PageName , 'template' => $RawData[ 1 ] , 
-						'template_version' => $RawData[ 2 ] , 'options' => $RawData[ 3 ] , 
-						'keywords' => $RawData[ 4 ] , 'description' => $RawData[ 5 ] )
+				$this->Database->query_as( DB_OBJECT );
+
+				return( 
+					$this->Database->select( 
+						$this->NativeTable.'.*' , $this->NativeTable , "( $this->AddLimitations ) AND $Condition"
+					)
 				);
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Функция возвращает описание запрошенной таблицы.
-		*
-		*	@param $PageName - Имя запрашиваемой страницы.
-		*
-		*	@return Описание запрашиваемой странице в виде array( 0 => array( id , title , name , 
-		*	template , template_version ) )
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns description of the requested page.
-		*
-		*	@param $PageName - Name of the requested page.
-		*
-		*	@return Description of the requesting page in the folowing representation : array( 0 => array( id , 
-		*	title , name , template , template_version ) )
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_page_description( $PageName )
-		{
-			try
-			{
-				$PageName = $this->Security->get( $PageName , 'command' );
-
-				if( $this->CachedMultyFS->file_exists( dirname( __FILE__ ).'/data/'.$PageName ) )
-				{
-					$RawData = $this->CachedMultyFS->file_get_contents( dirname( __FILE__ ).'/data/'.$PageName );
-
-					return( $this->create_object( $RawData , $PageName ) );
-				}
-
-				return( false );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Получение списка страниц.
-		*
-		*	@return Список страниц.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function returns a list of pages.
-		*
-		*	@return List of pages.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		function			get_list_of_pages()
-		{
-			try
-			{
-				$ListOfPages = array();
-				$MountedStorages = $this->CachedMultyFS->get_mounted_storages();
-				$MountedStorages [] = dirname( __FILE__ ).'/data';
-				foreach( $MountedStorages as $ms )
-				{
-					if( $Handle = @opendir( $ms ) )
-					{
-						while( false !== ( $File = readdir( $Handle ) ) )
-						{
-							$Flag = strpos( $File , 'pa_' ) !== 0 && strpos( $File , 'index.html' ) !== 0;
-							
-							if( is_file( dirname( __FILE__ ).'/data/'.$File ) && $Flag )
-							{
-								$ListOfPages [] = $this->get_page_description( $File );
-							}
-						}
-						closedir( $Handle );
-					}
-				}
-				return( $ListOfPages );
-			}
-			catch( Exception $e )
-			{
-				$a = func_get_args();_throw_exception_object( __METHOD__ , $a , $e );
-			}
-		}
-
-		/**
-		*	\~russian Фильтрация страниц.
-		*
-		*	@param $ListOfPages - Список страниц.
-		*
-		*	@param $Limit - Ограничение на количество записей.
-		*
-		*	@return Список страниц.
-		*
-		*	@exception Exception Кидается иключение этого типа с описанием ошибки.
-		*
-		*	@author Додонов А.А.
-		*/
-		/**
-		*	\~english Function filters pages.
-		*
-		*	@param $ListOfPages - List of pages.
-		*
-		*	@param $Limit - Count of records limitation.
-		*
-		*	@return List of pages.
-		*
-		*	@exception Exception An exception of this type is thrown.
-		*
-		*	@author Dodonov A.A.
-		*/
-		private function	filter_pages( &$ListOfPages , $Limit )
-		{
-			try
-			{
-				$Ret = array();
-				$SearchString = $this->Security->get_gp( 'search_string' , 'string' , '' );
-				$c = 0;
-				foreach( $ListOfPages as $i => $l )
-				{
-					if( $SearchString !== '' && !( strpos( $l[ 'title' ] , $SearchString ) !== false || 
-						strpos( $l[ 'alias' ] , $SearchString ) !== false || 
-						strpos( $l[ 'template' ] , $SearchString ) !== false || 
-						strpos( $l[ 'template_version' ] , $SearchString ) !== false ) )
-					{
-						continue;
-					}
-					if( $c < $Limit )
-					{
-						$Ret [] = $l;
-						$c++;
-					}
-				}
-				return( $Ret );
 			}
 			catch( Exception $e )
 			{
@@ -460,19 +301,22 @@
 		{
 			try
 			{
-				$ListOfPages = $this->get_list_of_pages();
-
-				if( $Order !== false )
+				if( $this->DatabaseAlgorithms === false )
 				{
-					$SortSign = $Order === 'ascending' ? '<' : '>';
-					$SortFunc = create_function( 
-						'$a , $b' , "if( \$a[ '$Field' ] == \$b[ '$Field' ] )".
-							"return(0);return( \$a[ '$Field' ] $SortSign \$b[ '$Field' ] ? -1 : 1 );"
-					);
-					usort( $ListOfPages , $SortFunc );
+					$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' , 'last' , __FILE__ );
 				}
 
-				return( $this->filter_pages( $ListOfPages , $Limit ) );
+				$Condition = $this->DatabaseAlgorithms->select_condition( 
+					$Start , $Limit , $Field , $Order , $Condition , $this->NativeTable
+				);
+
+				$Records =  $this->unsafe_select( $Condition );
+
+				$ListOfPages = $this->PageFSAccess->select( $Start , $Limit , $Field , $Order , $Condition );
+
+				$ListOfPages = array_merge( $Records , $ListOfPages );
+
+				return( $this->PageFSAccess->filter_pages( $ListOfPages , $Limit ) );
 			}
 			catch( Exception $e )
 			{
@@ -573,7 +417,7 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		private function	process_creation_data( &$Record )
+		private function	filter_creation_data( &$Record )
 		{
 			try
 			{
@@ -615,7 +459,7 @@
 		{
 			try
 			{
-				$this->process_creation_data( $Record );
+				$this->filter_creation_data( $Record );
 
 				if( $this->DatabaseAlgorithms === false )
 				{
@@ -674,7 +518,7 @@
 		{
 			try
 			{
-				$PageName = $this->Security->get( $PageName , 'command' );
+				/*$PageName = $this->Security->get( $PageName , 'command' );
 				$Page = $this->get_page_description( $PageName );
 
 				$Title = $this->Security->get( $Title , 'string' );
@@ -683,7 +527,7 @@
 				$PredefinedPackages = $this->Security->get( $PredefinedPackages , 'string' );
 
 				$Path = dirname( __FILE__ )."/data/$PageName";
-				$this->CachedMultyFS->file_put_contents( $Path , "$Title#$Template#$TemplateVersion#$Options" );
+				$this->CachedMultyFS->file_put_contents( $Path , "$Title#$Template#$TemplateVersion#$Options" );*/
 			}
 			catch( Exception $e )
 			{
@@ -791,42 +635,32 @@
 		/**
 		*	\~russian Выборка массива объектов.
 		*
-		*	@param $PageNames - Список локаторов страниц.
+		*	@param $id - Список идентификаторов удаляемых данных, разделённых запятыми.
 		*
 		*	@return Массив записей.
 		*
-		*	@exception Exception - Кидается исключение этого типа с описанием ошибки.
+		*	@exception Exception - кидается исключение этого типа с описанием ошибки.
 		*
 		*	@author Додонов А.А.
 		*/
 		/**
 		*	\~english Function selects list of objects.
 		*
-		*	@param $PageNames - List of page names.
+		*	@param $id - Comma separated list of record's id.
 		*
 		*	@return Array of records.
 		*
-		*	@exception Exception - An exception of this type is thrown.
+		*	@exception Exception An exception of this type is thrown.
 		*
 		*	@author Dodonov A.A.
 		*/
-		function			select_list( $PageNames )
+		function			select_list( $id )
 		{
 			try
 			{
-				if( is_string( $PageNames ) )
-				{
-					$PageNames = explode( ',' , $PageNames );
-				}
+				$id = $this->Security->get( $id , 'integer_list' );
 
-				$Pages = array();
-
-				foreach( $PageNames as $i => $PageName )
-				{
-					$Pages [] = $this->get_page_description( $PageName );
-				}
-
-				return( $Pages );
+				return( $this->unsafe_select( $this->NativeTable.".id IN ( $id ) ORDER BY id ASC" ) );
 			}
 			catch( Exception $e )
 			{

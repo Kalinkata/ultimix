@@ -68,7 +68,7 @@ ultimix.review.get_custom_list_form = function( Fuctions , Header , Item , Foote
 ultimix.review.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'review::review_controller' , 
 			'review_context_action' : 'delete_record' , 
@@ -92,7 +92,7 @@ ultimix.review.delete = function( Id , DataSelector )
 ultimix.review.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'review::review_view' , 'review_context_action' : 'record_view_form' , 
 			'review_action' : 'record_view_form' , 'review_record_id' : Id , 

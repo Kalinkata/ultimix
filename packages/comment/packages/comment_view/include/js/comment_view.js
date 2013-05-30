@@ -66,7 +66,7 @@ ultimix.comment.get_custom_list_form = function( Fuctions , Header , Item , Foot
 ultimix.comment.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'comment::comment_controller' , 'comment_context_action' : 'delete_record' , 
 			'comment_action' : 'delete_record' , 'comment_record_id' : Id , 
@@ -89,7 +89,7 @@ ultimix.comment.delete = function( Id , DataSelector )
 ultimix.comment.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'comment::comment_view' , 'comment_context_action' : 'record_view_form' , 
 			'comment_action' : 'record_view_form' , 'comment_record_id' : Id , 

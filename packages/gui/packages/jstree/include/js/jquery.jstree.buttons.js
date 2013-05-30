@@ -46,24 +46,19 @@ ultimix.jstree.get_selected_node = function( Selector )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.create_node_event_handler = function( e , Data )
+ultimix.jstree.create_node_event_handler = function( e , NodeData )
 {
-	var			RootId = jQuery( Data.rslt.parent ).attr( 'id' ).replace( 'phtml_' , '' );
-	var			ProgressDialogId = ultimix.std_dialogs.SimpleWaitingMessageBox();
+	var			RootId = jQuery( NodeData.rslt.parent ).attr( 'id' ).replace( 'phtml_' , '' );
+	var			Data = { 'root_id': RootId , 'title' : NodeData.rslt.name };
+	var			Obj = NodeData.rslt.obj;
 
-	ultimix.ajax_gate.direct_controller(
-		{
-			'package_name' : 'category::category_controller' , 'meta' : 'meta_create_category' , 
-			'category_action' : 'create_record' , 'root_id' : RootId , 'title' : Data.rslt.name , 
-			'category_name' : 'category_name'
-		} , 
+	ultimix.category.create( 
+		'' , Data , true , 
 		{
 			'success' : function( Result )
 			{
-				/* parsing result */
 				eval( "Result = " + Result + ";" );
-				jQuery( Data.rslt.obj ).attr( 'id' , 'phtml_' + Result.id );
-				ultimix.std_dialogs.close_message_box( ProgressDialogId );
+				jQuery( Obj ).attr( 'id' , 'phtml_' + Result.id );
 			}
 		}
 	);
@@ -82,15 +77,9 @@ ultimix.jstree.rename_node_event_handler = function( e , Data )
 {
 	var			NodeId = jQuery( Data.rslt.obj ).attr( 'id' ).replace( 'phtml_' , '' );
 
-	ultimix.ajax_gate.direct_controller(
-		{
-			'package_name' : 'category::category_controller' , 
-			'meta' : 'meta_update_category' , 
-			'category_action' : 'update_category_title' , 
-			'category_id' : NodeId , 
-			'title' : Data.rslt.new_name
-		} , {}
-	);
+	var			Data = { 'title' : Data.rslt.new_name };
+
+	ultimix.category.update( false , NodeId , Data , true );
 }
 
 /**
@@ -108,7 +97,7 @@ ultimix.jstree.remove_node_event_handler = function( e , Data )
 	{
 		var			NodeId = jQuery( Data.rslt.obj[ i ] ).attr( 'id' ).replace( 'phtml_' , '' );
 
-		ultimix.category.delete( NodeId );
+		ultimix.category.delete( NodeId , false , true );
 	}
 }
 
@@ -181,6 +170,25 @@ ultimix.jstree.move_up_for_selected = function( Tree )
 }
 
 /**
+*	Function process tree element removal.
+*
+*	@param Result - Dialog call result.
+*
+*	@author Dodonov A.A.
+*/
+ultimix.jstree.remove_item_dialog_handler = function( Result )
+{
+	if( Result == ultimix.std_dialogs.MB_YES )
+	{
+		var 		Tree = jQuery.jstree._focused();
+
+		ultimix.jstree.move_up_for_selected( Tree );
+
+		Tree.remove();
+	}
+}
+
+/**
 *	Function shows removal confirmation dialog.
 *
 *	@param ConfirmString - Confirmation string.
@@ -198,17 +206,7 @@ ultimix.jstree.show_remove_item_dialog = function( ConfirmString )
 		ultimix.get_string( ConfirmString ) , 
 		ultimix.get_string( 'Question' ) , 
 		ultimix.std_dialogs.MB_YESNO | ultimix.std_dialogs.MB_ICONQUESTION | ultimix.std_dialogs.MB_MODAL , 
-		function( Result )
-		{
-			if( Result == ultimix.std_dialogs.MB_YES )
-			{
-				var 		Tree = jQuery.jstree._focused();
-
-				ultimix.jstree.move_up_for_selected( Tree );
-
-				Tree.remove();
-			}
-		}
+		ultimix.jstree.remove_item_dialog_handler
 	);
 }
 
@@ -219,7 +217,7 @@ ultimix.jstree.show_remove_item_dialog = function( ConfirmString )
 *
 *	@author Dodonov A.A.
 */
-ultimix.jstree.remove_item = function( ConfirmString )
+ultimix.jstree.remove_item = function( ConfirmString , HideConfirmDialog )
 {
 	var 		Tree = jQuery.jstree._focused();
 	var			Node = Tree.get_selected();

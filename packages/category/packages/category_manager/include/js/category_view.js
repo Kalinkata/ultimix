@@ -66,7 +66,7 @@ ultimix.category.get_custom_list_form = function( Fuctions , Header , Item , Foo
 ultimix.category.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'category::category_controller' , 
 			'category_context_action' : 'delete_record' , 'category_action' : 'delete_record' , 
@@ -89,7 +89,7 @@ ultimix.category.delete = function( Id , DataSelector )
 ultimix.category.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'category::category_view' , 'category_context_action' : 'record_view_form' , 
 			'category_action' : 'record_view_form' , 'category_record_id' : Id , 

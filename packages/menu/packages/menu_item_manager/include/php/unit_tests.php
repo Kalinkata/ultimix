@@ -35,9 +35,9 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
-		var					$MenuItemAccess = false;
 		var					$PageComposer = false;
 		var					$Security = false;
 		var					$Settings = false;
@@ -57,9 +57,9 @@
 		{
 			try
 			{
+				$this->Access = get_package( 'menu::menu_item_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
-				$this->MenuItemAccess = get_package( 'menu::menu_item_access' , 'last' , __FILE__ );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
@@ -129,7 +129,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'menu_item' , '>main<' );
+			return( $this->Testing->test_display_list_form( 'menu_item' , '>main<' ) );
 		}
 
 		/**
@@ -144,7 +144,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'menu_item' );
+			return( $this->Testing->test_create_form( 'menu_item' ) );
 		}
 
 		/**
@@ -188,7 +188,9 @@
 			{
 				$Controller = get_package( 'menu::menu_item_manager' , 'last' , __FILE__ );
 
-				$this->Testing->setup_delete_controller( $this->Settings , 'menu_item' , $this->DefaultControllers->id );
+				$this->Testing->setup_delete_controller(
+					$this->Settings , 'menu_item' , $this->DefaultControllers->id
+				);
 
 				$Controller->controller( $this->Settings );
 
@@ -213,17 +215,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_menu_item' , 'name LIKE "test_name"' ) )
-			{
-				$this->MenuItemAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -238,7 +245,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'menu_item' );
+			return( $this->Testing->test_update_form( 'menu_item' ) );
 		}
 
 		/**
@@ -267,8 +274,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -292,8 +298,7 @@
 
 			if( stripos( $PageContent , 'create_menu_item_form' ) === false )
 			{
-				print( 'ERROR: copy menu item form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy menu item form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

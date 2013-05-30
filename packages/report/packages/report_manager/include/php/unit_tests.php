@@ -35,10 +35,10 @@
 		*
 		*	@author Dodonov A.A.
 		*/
+		var					$Access = false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
 		var					$PageComposer = false;
-		var					$ReportAccess = false;
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,10 +57,10 @@
 		{
 			try
 			{
+				$this->Access = get_package_object( 'report::report_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
-				$this->ReportAccess = get_package_object( 'report::report_access' , 'last' , __FILE__ );
 				$this->Security = get_package( 'security' , 'last' , __FILE__ );
 				$this->Settings = get_package_object( 'settings::settings' , 'last' , __FILE__ );
 				$this->Testing = get_package( 'testing' , 'last' , __FILE__ );
@@ -183,17 +183,22 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
+		}
 
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_report' , 'name LIKE "test_title"' ) )
-			{
-				$this->ReportAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+		/**
+		*	\~russian Проверка стандартных стейтов.
+		*
+		*	@author Додонов А.А.
+		*/
+		/**
+		*	\~english Testing standart states.
+		*
+		*	@author Dodonov A.A.
+		*/
+		function			test_update_record()
+		{
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -208,7 +213,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'report' , 'report' );
+			return( $this->Testing->test_display_list_form( 'report' , 'report' ) );
 		}
 
 		/**
@@ -223,7 +228,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'report' );
+			return( $this->Testing->test_create_form( 'report' ) );
 		}
 
 		/**
@@ -238,7 +243,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'report' );
+			return( $this->Testing->test_update_form( 'report' ) );
 		}
 
 		/**
@@ -267,8 +272,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -291,8 +295,7 @@
 
 			if( stripos( $PageContent , 'create_report_form' ) === false )
 			{
-				print( 'ERROR: copy report form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: copy report form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

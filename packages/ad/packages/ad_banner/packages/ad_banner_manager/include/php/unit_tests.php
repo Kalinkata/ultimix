@@ -35,10 +35,12 @@
 		*
 		*	@author Dodonov A.A.
 		*/
-		var					$AdBannerAccess	= false;
+		var					$Access	= false;
 		var					$DatabaseAlgorithms = false;
 		var					$DefaultControllers = false;
+		var					$Entity = 'ad_banner';
 		var					$PageComposer = false;
+		var					$PackageName = 'ad::ad_banner::ad_banner_manager';
 		var					$Security = false;
 		var					$Settings = false;
 		var					$Testing = false;
@@ -57,7 +59,7 @@
 		{
 			try
 			{
-				$this->AdBannerAccess = get_package_object( 'ad::ad_banner::ad_banner_access' , 'last' , __FILE__ );
+				$this->Access = get_package_object( 'ad::ad_banner::ad_banner_access' , 'last' , __FILE__ );
 				$this->DatabaseAlgorithms = get_package( 'database::database_algorithms' );
 				$this->DefaultControllers = get_package( 'gui::context_set::default_controllers' );
 				$this->PageComposer = get_package_object( 'page::page_composer' , 'last' , __FILE__ );
@@ -182,17 +184,7 @@
 		*/
 		function			test_create_record()
 		{
-			$this->create_test_record();
-
-			if( $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code"' ) )
-			{
-				$this->AdBannerAccess->delete( $this->DefaultControllers->id );
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+			return( $this->Testing->test_create_record( $this , 'code' , 'test_code' ) );
 		}
 
 		/**
@@ -207,27 +199,7 @@
 		*/
 		function			test_update_record()
 		{
-			$this->create_test_record();
-
-			$this->Security->reset_g( 'code' , 'test_code2' );
-
-			$Controller = get_package( 'ad::ad_banner::ad_banner_manager' , 'last' , __FILE__ );
-
-			$this->Testing->setup_update_controller( $this->Settings , 'ad_banner' , $this->DefaultControllers->id );
-
-			$Controller->controller( $this->Settings );
-
-			$Exists = $this->DatabaseAlgorithms->record_exists( 'umx_ad_banner' , 'code LIKE "test_code2"' );
-			$this->AdBannerAccess->delete( $this->DefaultControllers->id );
-
-			if( $Exists )
-			{
-				return( 'TEST PASSED' );
-			}
-			else
-			{
-				return( 'ERROR' );
-			}
+			return( $this->Testing->test_update_record( $this , 'code' , 'test_code2' ) );
 		}
 
 		/**
@@ -242,7 +214,7 @@
 		*/
 		function			test_display_list()
 		{
-			$this->Testing->test_display_list_form( 'ad_banner' , 'Ultimix Project' );
+			return( $this->Testing->test_display_list_form( 'ad_banner' , 'Ultimix Project' ) );
 		}
 
 		/**
@@ -257,7 +229,7 @@
 		*/
 		function			test_create_record_form()
 		{
-			$this->Testing->test_create_form( 'ad_banner' );
+			return( $this->Testing->test_create_form( 'ad_banner' ) );
 		}
 
 		/**
@@ -272,7 +244,7 @@
 		*/
 		function			test_update_record_form()
 		{
-			$this->test_update_form( 'ad_banner' );
+			return( $this->Testing->test_update_form( 'ad_banner' ) );
 		}
 
 		/**
@@ -287,7 +259,7 @@
 		*/
 		function			test_display_search_list()
 		{
-			$this->Security->set_p( 'search_string' , 'Ultimix Project' );
+			$this->Security->reset_p( 'search_string' , 'Ultimix Project' );
 			$PageContent = $this->PageComposer->get_page( 'ad_banner_manager' );
 			$Exists = strpos( $PageContent , 'Ultimix Project' ) !== false;
 
@@ -301,8 +273,7 @@
 			}
 			else
 			{
-				print( 'ERROR' );
-				return;
+				return( 'ERROR' );
 			}
 		}
 
@@ -325,8 +296,7 @@
 
 			if( stripos( $PageContent , 'create_ad_banner_form' ) === false )
 			{
-				print( 'ERROR: ad banner copy form was not displayed'.$PageContent );
-				return;
+				return( 'ERROR: ad banner copy form was not displayed'.$PageContent );
 			}
 
 			return( 'TEST PASSED' );

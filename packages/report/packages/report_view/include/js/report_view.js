@@ -68,7 +68,7 @@ ultimix.report.get_custom_list_form = function( Fuctions , Header , Item , Foote
 ultimix.report.delete = function( Id , DataSelector )
 {
 	ultimix.auto.delete( 
-		Id , DataSelector , 
+		DataSelector , 
 		{ 
 			'package_name' : 'report::report_controller' , 'report_context_action' : 'delete_record' , 
 			'report_action' : 'delete_record' , 'report_record_id' : Id , 
@@ -91,7 +91,7 @@ ultimix.report.delete = function( Id , DataSelector )
 ultimix.report.record_view_form = function( Id , DataSelector )
 {
 	ultimix.auto.record_view_form( 
-		Id , DataSelector , 
+		DataSelector , 
 		{
 			'package_name' : 'report::report_view' , 'report_context_action' : 'record_view_form' , 
 			'report_action' : 'record_view_form' , 'report_record_id' : Id , 
